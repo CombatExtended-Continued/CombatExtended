@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Kill recipe makers ========== -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeKrak" or defName="GW_GrenadeMelta"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<!-- ========== Melee tools ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeKrak" or defName="GW_GrenadeMelta"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Body</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.75</cooldownTime>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
+			<tradeTags Inherit="False">
+				<li>CE_MediumAmmo</li>
+			</tradeTags>
+			<allowedArchonexusCount>5</allowedArchonexusCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeKrak"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeMelta"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>25</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeKrak" or defName="GW_GrenadeMelta"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseKrakGrenadeProjectile" or @Name="BaseMeltaGrenadeProjectile"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ========== Krak Grenade ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeKrak"]/description</xpath>
+		<value>
+			<description>A powerful anti-armour grenade that explodes on impact, but has a very concentrated blast. Most effective against large, slow targets like vehicles, or heavily-armoured infantry.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseKrakGrenadeProjectile"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>Things/Projectiles/Krak_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseKrakGrenadeProjectile"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>120</damageAmountBase>
+				<explosionDelay>1</explosionDelay>
+				<dropsCasings>false</dropsCasings>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<speed>12</speed>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Grenade -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeKrak"]/label</xpath>
+		<value>
+			<label>krak grenade</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeKrak"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>ThirdParty/Warhammer/Explosives/KrakGrenade</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+				<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeKrak"]/comps</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>120</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.5</explosiveRadius>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_GrenadeKrak</defName>
+		<statBases>
+			<Mass>0.4</Mass>
+			<Bulk>0.87</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw krak grenade</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+			<minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_GrenadeKrak</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<ai_AvoidFriendlyFireRadius>6</ai_AvoidFriendlyFireRadius>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_AI_AOE</li>
+			<li>CE_OneHandedWeapon</li>
+			<li>GrenadeDestructive</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Melta Bomb ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeMelta"]/description</xpath>
+		<value>
+			<description>A tremendously powerful demolition charge. Excels at destroying tanks and blowing holes in walls with an intense blast of thermal energy, but its area of effect is extremely concentrated. Its high weight and extremely long timed fuse make it very hard to use.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseMeltaGrenadeProjectile"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>Things/Projectiles/MeltaBomb_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseMeltaGrenadeProjectile"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1.5</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>650</damageAmountBase>
+				<explosionDelay>200</explosionDelay>
+				<dropsCasings>false</dropsCasings>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<speed>12</speed>
+				<gravityFactor>2</gravityFactor>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+				<ballisticCoefficient>10.0~10.0</ballisticCoefficient>
+				<mass>1400~1500</mass>
+				<diameter>100~120</diameter>
+			</projectile>
+		</value>
+	</Operation>
+	
+	<!-- Grenade -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeMelta"]/label</xpath>
+		<value>
+			<label>melta bomb</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeMelta"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>ThirdParty/Warhammer/Explosives/MeltaBomb</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+				<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_GrenadeMelta"]/comps</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>650</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.5</explosiveRadius>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_GrenadeMelta</defName>
+		<statBases>
+			<Mass>2.5</Mass>
+			<Bulk>4.85</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>deploy melta bomb</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>2.5</range>
+			<warmupTime>2</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_GrenadeMelta</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<ai_AvoidFriendlyFireRadius>6</ai_AvoidFriendlyFireRadius>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_AI_AOE</li>
+			<li>CE_OneHandedWeapon</li>
+			<li>GrenadeDestructive</li>
+		</weaponTags>
+	</Operation>
+</Patch>
