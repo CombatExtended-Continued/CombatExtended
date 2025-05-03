@@ -85,6 +85,30 @@
 			</tools>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BMT_AaroxisDendoriaPupa"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BMT_AaroxisDendoriaPupa"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BMT_AaroxisDendoriaPupa"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>450</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- Full Grown Aaroxis -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="BMT_AaroxisDendoria"]</xpath>
