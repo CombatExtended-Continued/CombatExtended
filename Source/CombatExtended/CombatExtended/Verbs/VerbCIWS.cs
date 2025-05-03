@@ -100,7 +100,7 @@ namespace CombatExtended
             return projectile;
         }
         protected static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
-        
+
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {
@@ -188,7 +188,6 @@ namespace CombatExtended
             }
             int i = 1;
             var speed = ShotSpeed;
-            var tworker = TrajectoryWorker;
             var source = new Vector3(originV3.x, ShotHeight, originV3.z);
             foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks, ShouldAimDrawPos(target)).Skip(ticksToSkip))
             {
