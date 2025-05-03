@@ -487,6 +487,9 @@ Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Robotic Servitude   |
 Rockmen race    |
+Roo Fauna    |
+Roo Satyr    |
+Roo Satyr and Faun Xenotype Expanded    |
 Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |

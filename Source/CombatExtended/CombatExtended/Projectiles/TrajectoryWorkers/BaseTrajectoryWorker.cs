@@ -104,6 +104,33 @@ namespace CombatExtended
             var w = targetPos - source;
             return (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x)) % 360;
         }
+
+        public virtual bool CanReachPos(ProjectilePropertiesCE props, float speed, Vector3 source, Vector3 pos, out int ticksToReach)
+        {
+            var distance = (pos - source).MagnitudeHorizontal();
+            var heightOffset = pos.y - source.y;
+            var gravity = props.Gravity;
+            var shotAngle = ShotAngle(props, source, pos, speed);
+            var v_xz = speed * Mathf.Sin(shotAngle);
+            var d = v_xz * v_xz - 2 * gravity * heightOffset;
+            if (d < 0) // cannot actually reach the given location, probably too high up
+            {
+                ticksToReach = 0;
+                return false;
+            }
+            var ticksToReachFloat = (v_xz + Mathf.Sqrt(d)) / gravity;
+            if (Mathf.Abs(ticksToReachFloat * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way up, must be after the zenith
+            {
+                ticksToReachFloat = (v_xz - Mathf.Sqrt(d)) / gravity;
+                if (Mathf.Abs(ticksToReachFloat * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, it's probably landed, or otherwise invalid
+                {
+                    ticksToReach = 0;
+                    return false;
+                }
+            }
+            ticksToReach = Mathf.CeilToInt(ticksToReachFloat);
+            return true;
+        }
         public virtual bool GuidedProjectile => false;
     }
 }
