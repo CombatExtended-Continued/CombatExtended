@@ -33,7 +33,7 @@ namespace CombatExtended
         {
             get
             {
-                if (_falloffCurve != null) return _falloffCurve;
+                if (_falloffCurve != null) { return _falloffCurve; }
                 ProjectilePropertiesCE props = projectile?.projectile as ProjectilePropertiesCE;
                 _falloffCurve = props?.explosionFalloffCurve ?? defaultCurve;
                 return _falloffCurve;
