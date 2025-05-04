@@ -1,123 +1,627 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- Punisher Gatling Turret -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussPunisher_MainTurret"]/projectile</xpath>
-		<value>
-			<projectile>Bullet_20x102mmNATO_AP</projectile>
-		</value>
-	</Operation>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Hull Lascannon -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussPunisher_MainTurret"]/reloadTimer</xpath>
-		<value>
-			<reloadTimer>7.2</reloadTimer>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>300</magazineCapacity>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussPunisher_MainTurret"]/warmUpTimer</xpath>
-		<value>
-			<warmUpTimer>2.8</warmUpTimer>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussPunisher_MainTurret"]/genericAmmo</xpath>
-		<value>
-			<genericAmmo>false</genericAmmo>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Lasgun_Cannon</projectile>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussPunisher_MainTurret"]/maxRange</xpath>
-		<value>
-			<maxRange>66</maxRange>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]/maxRange</xpath>
+					<value>
+						<maxRange>75</maxRange>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussPunisher_MainTurret"]/ammunition/thingDefs</xpath>
-		<value>
-			<thingDefs>
-				<li>Ammo_20x102mmNATO_AP</li>
-				<li>Ammo_20x102mmNATO_Incendiary</li>
-				<li>Ammo_20x102mmNATO_HE</li>
-				<li>Ammo_20x102mmNATO_Sabot</li>				
-			</thingDefs>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_LasgunPowerPack</li>
+						</thingDefs>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussPunisher_MainTurret"]</xpath>
-		<value>
-			<li Class="Vehicles.CETurretDataDefModExtension">
-				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
-				<shotHeight>2</shotHeight>
-				<speed>96</speed>
-				<sway>1.0</sway>
-				<spread>0.05</spread>
-			</li>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]/chargePerAmmoCount</xpath>
+					<value>
+						<chargePerAmmoCount>5</chargePerAmmoCount>
+					</value>
+				</li>
 
-	<!--===== Plasma Destroyer =====-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Lasgun_Cannon</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussExecutioner_MainTurret"]/magazineCapacity</xpath>
-		<value>
-			<magazineCapacity>800</magazineCapacity>
-		</value>
-	</Operation>
+				<!-- Melta Sponson -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussExecutioner_MainTurret"]/genericAmmo</xpath>
-		<value>
-			<genericAmmo>false</genericAmmo>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MultiMelta"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussExecutioner_MainTurret"]/projectile</xpath>
-		<value>
-			<projectile>Bullet_Laser_PlasmaDestroyer</projectile>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MultiMelta"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Laser_MeltaCharge</projectile>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussExecutioner_MainTurret"]/maxRange</xpath>
-		<value>
-			<maxRange>75</maxRange>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MultiMelta"]/maxRange</xpath>
+					<value>
+						<maxRange>62</maxRange>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussExecutioner_MainTurret"]/ammunition/thingDefs</xpath>
-		<value>
-			<thingDefs>
-				<li>Ammo_PlasmaCanister</li>
-			</thingDefs>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MultiMelta"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_MeltaGun</li>
+						</thingDefs>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussExecutioner_MainTurret"]/chargePerAmmoCount</xpath>
-		<value>
-			<chargePerAmmoCount>50</chargePerAmmoCount>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MultiMelta"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<shotsPerBurst>2</shotsPerBurst>
+								<ticksBetweenShots>15</ticksBetweenShots>
+								<ticksBetweenBursts>50</ticksBetweenBursts>
+								<label>Burst</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+						</fireModes>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRussExecutioner_MainTurret"]</xpath>
-		<value>
-			<li Class="Vehicles.CETurretDataDefModExtension">
-				<ammoSet>AmmoSet_PlasmaCanister_Destroyer</ammoSet>
-				<shotHeight>1</shotHeight>
-				<sway>0.73</sway>
-				<spread>0.01</spread>
-			</li>
-		</value>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MultiMelta"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_MeltaCharge</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>80</speed>
+							<sway>1.0</sway>
+							<spread>0.05</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Plasma Sponson -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PlasmaSponson"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PlasmaSponson"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_PlasmaCannon</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PlasmaSponson"]/maxRange</xpath>
+					<value>
+						<maxRange>72</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PlasmaSponson"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_PlasmaCanister</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PlasmaSponson"]</xpath>
+					<value>
+						<minRange>3</minRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PlasmaSponson"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<shotsPerBurst>1</shotsPerBurst>
+								<ticksBetweenShots>0</ticksBetweenShots>
+								<ticksBetweenBursts>10</ticksBetweenBursts>
+								<label>Single</label>
+								<texPath>UI/Gizmos/FireRate_Single</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>5</shotsPerBurst>
+								<ticksBetweenShots>21</ticksBetweenShots>
+								<ticksBetweenBursts>90</ticksBetweenBursts>
+								<label>Burst</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+						</fireModes>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PlasmaSponson"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_PlasmaCanister_Cannon</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>80</speed>
+							<sway>1.0</sway>
+							<spread>0.05</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Battle Cannon Turret -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_BattleCannonTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_120mmCannonShell_HE</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_BattleCannonTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.2</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_BattleCannonTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.8</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_BattleCannonTurret"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_BattleCannonTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_BattleCannonTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>72</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_BattleCannonTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_120mmCannonShell_HEAT</li>
+							<li>Ammo_120mmCannonShell_HE</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_BattleCannonTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+							<shotHeight>2</shotHeight>
+							<speed>96</speed>
+							<sway>1.0</sway>
+							<spread>0.03</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Exterminator Autocannon Turret -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExterminatorTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_40x365mmBofors_HE</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExterminatorTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.2</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExterminatorTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.8</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExterminatorTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExterminatorTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>72</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExterminatorTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_40x365mmBofors_HE</li>
+							<li>Ammo_40x365mmBofors_AP</li>
+							<li>Ammo_40x365mmBofors_HE_TFuzed</li>
+							<li>Ammo_40x365mmBofors_Sabot</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExterminatorTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_40x365mmBofors</ammoSet>
+							<shotHeight>2</shotHeight>
+							<speed>96</speed>
+							<sway>1.0</sway>
+							<spread>0.05</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Vanquisher Cannon Turret
+				/\ Rather than make a whole new shell type, I opted to make this very similar to the standard Battlecannon
+				/\ but it has much more range, a higher shell velocity, and zero spread; the tradeoff is a longer reload and warmup
+				/\ The standard Battlecannon got a bit of a range nerf and I made the default projectile HE
+				-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_VanquisherTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_120mmCannonShell_HEAT</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_VanquisherTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>11.4</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_VanquisherTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>4.2</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_VanquisherTurret"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_VanquisherTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_VanquisherTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>108</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_VanquisherTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_120mmCannonShell_HEAT</li>
+							<li>Ammo_120mmCannonShell_HE</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_VanquisherTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+							<shotHeight>2</shotHeight>
+							<speed>144</speed>
+							<sway>0.5</sway>
+							<spread>0</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Annihilator Dual Lascannon Turret -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_AnnihilatorTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>600</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_AnnihilatorTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_AnnihilatorTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Lasgun_CannonDouble</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_AnnihilatorTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>75</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_AnnihilatorTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_LasgunPowerPack</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_AnnihilatorTurret"]/chargePerAmmoCount</xpath>
+					<value>
+						<chargePerAmmoCount>5</chargePerAmmoCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_AnnihilatorTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Lasgun_CannonDouble</ammoSet>
+							<shotHeight>2</shotHeight>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Punisher Gatling Turret -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PunisherTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_20x102mmNATO_AP</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PunisherTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.2</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PunisherTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.8</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PunisherTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PunisherTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>66</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PunisherTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_20x102mmNATO_AP</li>
+							<li>Ammo_20x102mmNATO_Incendiary</li>
+							<li>Ammo_20x102mmNATO_HE</li>
+							<li>Ammo_20x102mmNATO_Sabot</li>				
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_PunisherTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+							<shotHeight>2</shotHeight>
+							<speed>96</speed>
+							<sway>1.0</sway>
+							<spread>0.05</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Plasma Destroyer =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExecutionerTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>800</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExecutionerTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExecutionerTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Laser_PlasmaDestroyer</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExecutionerTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>75</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExecutionerTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_PlasmaCanister</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExecutionerTurret"]/chargePerAmmoCount</xpath>
+					<value>
+						<chargePerAmmoCount>50</chargePerAmmoCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_ExecutionerTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_PlasmaCanister_Destroyer</ammoSet>
+							<shotHeight>1</shotHeight>
+							<sway>0.73</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== The BFG, the Demolisher =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_DemolisherTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_DemolisherTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_155mmHowitzerShell_HE_directfire</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_DemolisherTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>86</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_DemolisherTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_155mmHowitzerShell_HE</li>
+							<li>Ammo_155mmHowitzerShell_Incendiary</li>
+							<li>Ammo_155mmHowitzerShell_EMP</li>
+							<li>Ammo_155mmHowitzerShell_Smoke</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_DemolisherTurret"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_DemolisherTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_155mmHowitzerShell_directfire</ammoSet>
+							<shotHeight>2</shotHeight>
+							<speed>102</speed>
+							<sway>0.73</sway>
+							<spread>0.03</spread>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
 	</Operation>
 
 </Patch>

@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<!--===== Drop Pod =====-->
+				<!--===== Drop Pod =====-->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleDef[defName="GW_DropPod"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>30</ArmorRating_Blunt>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_DropPod"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>30</ArmorRating_Blunt>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleDef[defName="GW_DropPod"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>14</ArmorRating_Sharp>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_DropPod"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					</value>
+				</li>
 
-	<!-- <Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleDef[defName="GW_DropPod"]/vehicleStats/CargoCapacity</xpath>
-		<value>
-			<CargoCapacity>2200</CargoCapacity>
-		</value>
-	</Operation> -->
+				<!-- <li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_DropPod"]/vehicleStats/CargoCapacity</xpath>
+					<value>
+						<CargoCapacity>2200</CargoCapacity>
+					</value>
+				</li> -->
 
-	<!-- "Armored Hull" but no armor (?) -->
+				<!-- "Armored Hull" but no armor (?) -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleDef[defName="GW_DropPod"]/components/li[key="Body"]/health</xpath>
-		<value>
-			<health>1560</health>
-		</value>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_DropPod"]/components/li[key="Body"]/health</xpath>
+					<value>
+						<health>1560</health>
+					</value>
+				</li>
+			</operations>
+		</match>
 	</Operation>
 
 </Patch>
