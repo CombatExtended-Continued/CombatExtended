@@ -19,7 +19,7 @@ namespace CombatExtended
         private const float MaxMergeTicks = 3f;
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
-        
+
         private readonly SimpleCurve defaultCurve = new SimpleCurve
         {
             {1.5f, 1f},
@@ -40,7 +40,7 @@ namespace CombatExtended
             }
             set { _falloffCurve = value; }
         }
-        
+
         // New method
         public virtual bool MergeWith(ExplosionCE other, out ExplosionCE merged, out ExplosionCE nonMerged)
         {
