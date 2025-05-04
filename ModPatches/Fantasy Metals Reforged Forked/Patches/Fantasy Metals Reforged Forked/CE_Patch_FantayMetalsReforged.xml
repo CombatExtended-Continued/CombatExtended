@@ -2,7 +2,6 @@
 <Patch>
 
 	<!-- Add Bulk and thingCategories -->
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="zavMithril" or defName="zavzavOrichalcum" or defName="zavAdamantine"]/statBases</xpath>
 		<value>
@@ -19,31 +18,37 @@
 	</Operation>
 
 	<!-- Mithril -->
-
 	<!-- From 'The Hobbit,' Mithril is described as triple the strength of steel. -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="zavMithril"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<StuffPower_Armor_Sharp>3</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Sharp>2</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="zavMithril"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
-			<StuffPower_Armor_Blunt>3.2</StuffPower_Armor_Blunt>
+			<StuffPower_Armor_Blunt>3</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="zavMithril"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0</StuffPower_Armor_Heat>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="zavMithril"]/stuffProps/statFactors</xpath>
 		<value>
-			<Mass>0.7</Mass>
+			<Mass>0.8</Mass>
+			<MeleePenetrationFactor>1.25</MeleePenetrationFactor>
 		</value>
 	</Operation>
 
 	<!-- zavOrichalcum -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="zavOrichalcum"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
@@ -58,15 +63,22 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="zavOrichalcum"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.0</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="zavOrichalcum"]/stuffProps/statFactors</xpath>
 		<value>
 			<Mass>1.4</Mass>
+			<MeleePenetrationFactor>1.25</MeleePenetrationFactor>
 		</value>
 	</Operation>
 
 	<!-- zavAdamantine -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="zavAdamantine"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
@@ -78,6 +90,13 @@
 		<xpath>Defs/ThingDef[defName="zavAdamantine"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
 			<StuffPower_Armor_Blunt>4.2</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="zavAdamantine"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.0</StuffPower_Armor_Heat>
 		</value>
 	</Operation>
 
