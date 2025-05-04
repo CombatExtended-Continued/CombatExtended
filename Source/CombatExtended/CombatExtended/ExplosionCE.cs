@@ -20,14 +20,27 @@ namespace CombatExtended
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
         
-        private SimpleCurve falloffCurve = new SimpleCurve
+        private readonly SimpleCurve defaultCurve = new SimpleCurve
         {
             {1.5f, 1f},
             {2.5f, 0.5f},
-            {5f, 0.3f},
-            {8f, 0.15f}
+            {5f, 0.25f},
+            {8f, 0.1f}
         };
+        private SimpleCurve _falloffCurve;
 
+        public SimpleCurve FalloffCurve
+        {
+            get
+            {
+                if (_falloffCurve != null) return _falloffCurve;
+                ProjectilePropertiesCE props = projectile?.projectile as ProjectilePropertiesCE;
+                _falloffCurve = props?.explosionFalloffCurve ?? defaultCurve;
+                return _falloffCurve;
+            }
+            set { _falloffCurve = value; }
+        }
+        
         // New method
         public virtual bool MergeWith(ExplosionCE other, out ExplosionCE merged, out ExplosionCE nonMerged)
         {
@@ -415,10 +428,9 @@ namespace CombatExtended
             {
                 return damAmount;
             }
-            var t = c.DistanceTo(Position) / radius;
-            return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, (float)damAmount * falloffCurve.Evaluate(radius), t)), 1);
+            var distFromCenter = c.DistanceTo(Position);
+            return Mathf.Max(GenMath.RoundRandom(damAmount * FalloffCurve.Evaluate(distFromCenter)), 1);
         }
-
         public float GetArmorPenetrationAtCE(IntVec3 c)
         {
             var basePen = Mathf.Max(damAmount * PressurePerDamage, armorPenetration);
@@ -426,8 +438,8 @@ namespace CombatExtended
             {
                 return basePen;
             }
-            var t = c.DistanceTo(Position) / radius;
-            return Mathf.Lerp(basePen, basePen * falloffCurve.Evaluate(radius), t);
+            var distFromCenter = c.DistanceTo(Position);
+            return basePen * FalloffCurve.Evaluate(distFromCenter);
         }
     }
 }
