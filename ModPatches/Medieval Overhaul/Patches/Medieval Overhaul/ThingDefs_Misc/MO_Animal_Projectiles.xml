@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Add thingClass with CE one ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_AlpSleep" or defName="DankPyon_WebknechtWeb"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ======= Defining Projectiles in CE Procedure ======= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_AlpSleep"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>DankPyon_AlpSleep</damageDef>
+				<damageAmountBase>5</damageAmountBase>
+				<speed>20</speed>
+				<armorPenetrationSharp>2</armorPenetrationSharp>
+				<armorPenetrationBlunt>1.4</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_WebknechtWeb"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>Stun</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<speed>15</speed>
+				<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

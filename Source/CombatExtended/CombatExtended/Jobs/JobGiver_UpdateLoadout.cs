@@ -291,6 +291,32 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Gets the unreserved stack count of a Thing.
+        /// </summary>
+        /// <param name="target">The Thing for which to get the unreserved stack count.</param>
+        /// <returns>Returns 0 if the target is not a Thing, is not on a Map, or all of its stack is reserved. Otherwise returns the unreserved stack count of a target.</returns>
+        private static int GetUnreservedStackCount(Thing thing)
+        {
+            var reservations = thing.Map?.reservationManager.ReservationsReadOnly;
+            if (reservations == null)
+            {
+                return 0;
+            }
+
+            int stackCount = thing.stackCount;
+            for (int i = 0; stackCount > 0 && i < reservations.Count(); ++i)
+            {
+                var reservation = reservations[i];
+                if (reservation.Target.Thing != thing)
+                {
+                    continue;
+                }
+                stackCount -= reservation.StackCount;
+            }
+            return stackCount;
+        }
+
+        /// <summary>
         /// Tries to give the pawn a job related to picking up or dropping an item from their inventory.
         /// </summary>
         /// <param name="pawn">Pawn to which the job is given.</param>
@@ -357,7 +383,15 @@ namespace CombatExtended
                                     && s.genericDef.lambda(pawn.equipment.Primary.def)))))
                     {
                         doEquip = true;
+                        count = 1;
                     }
+                    // Calculate the unreserved stack count; if all of the stack is reserved, perform no job
+                    count = Mathf.Min(GetUnreservedStackCount(closestThing), count);
+                    if (count <= 0)
+                    {
+                        return null;
+                    }
+
                     if (carriedBy == null)
                     {
                         // Equip gun if unarmed or current gun is not in loadout
@@ -366,7 +400,7 @@ namespace CombatExtended
                             return JobMaker.MakeJob(JobDefOf.Equip, closestThing);
                         }
                         Job job = JobMaker.MakeJob(JobDefOf.TakeCountToInventory, closestThing);
-                        job.count = Mathf.Min(closestThing.stackCount, count);
+                        job.count = count;
                         job.MakeDriver(pawn);
                         return job;
                     }
@@ -374,7 +408,7 @@ namespace CombatExtended
                     {
                         Job job = JobMaker.MakeJob(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null);
                         job.MakeDriver(pawn);
-                        job.count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count);
+                        job.count = count;
                         return job;
                     }
                 }

@@ -2,13 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Reflection;
 using RimWorld;
 using Verse;
 using Verse.AI;
-using Verse.Sound;
 using UnityEngine;
-using System.Runtime.CompilerServices;
 using RimWorld.Planet;
 
 namespace CombatExtended
@@ -433,126 +430,6 @@ namespace CombatExtended
             }
             return null;
         }
-
-        /// <summary>
-        /// Gets the true rating of armor with partial stats taken into account
-        /// </summary>
-        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part)
-        {
-            if (!apparel.def.apparel.CoversBodyPart(part))
-            {
-                return 0;
-            }
-
-            float result = apparel.GetStatValue(stat);
-
-            if (Controller.settings.PartialStat)
-            {
-                if (apparel.def.HasModExtension<PartialArmorExt>())
-                {
-                    foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
-                    {
-                        if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
-                        {
-
-                            if (partial.staticValue > 0f)
-                            {
-                                return partial.staticValue;
-                            }
-                            result *= partial.mult;
-                            break;
-
-                        }
-                    }
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Gets the true rating of armor with partial stats taken into account
-        /// </summary>
-        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part, float damage = 0f, float AP = 0f)
-        {
-            float result = pawn.GetStatValue(stat);
-
-            if (Controller.settings.PartialStat)
-            {
-                if (pawn.def.HasModExtension<PartialArmorExt>())
-                {
-                    foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
-                    {
-                        if (partial.stat == stat)
-                        {
-                            if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
-                            {
-
-                                if (partial.staticValue > 0f)
-                                {
-                                    return partial.staticValue;
-                                }
-                                result *= partial.mult;
-                                break;
-
-                            }
-                        }
-                    }
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// version of PartialStat used for display in StatWorker_ArmorPartial
-        /// </summary>
-        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartDef part)
-        {
-            float result = apparel.GetStatValue(stat);
-            if (apparel.def.HasModExtension<PartialArmorExt>())
-            {
-                foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
-                {
-                    if ((partial?.parts?.Contains(part) ?? false))
-                    {
-
-                        if (partial.staticValue > 0f)
-                        {
-                            return partial.staticValue;
-                        }
-                        result *= partial.mult;
-                        break;
-
-                    }
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// version of PartialStat used for display in StatWorker_ArmorPartial
-        /// </summary>
-        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartDef part)
-        {
-            float result = pawn.GetStatValue(stat);
-            if (pawn.def.HasModExtension<PartialArmorExt>())
-            {
-                foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
-                {
-                    if ((partial?.parts?.Contains(part) ?? false))
-                    {
-                        if (partial.staticValue > 0f)
-                        {
-                            return partial.staticValue;
-                        }
-                        result *= partial.mult;
-                        break;
-
-                    }
-                }
-            }
-            return result;
-        }
-
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
         public static void UpdateLabel(this Def def, string label)
@@ -782,9 +659,9 @@ namespace CombatExtended
             {
                 return;
             }
-            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount;
+            float recoil = ((VerbPropertiesCE)shootVerb.verbProps).recoilAmount;
 
-            float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
+            float recoilRelaxation = shootVerb.verbProps.burstShotCount > 1 ? shootVerb.verbProps.ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
 
             recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp((float)Math.Log10(recoilRelaxation), 0.1f, 10);
 
@@ -1459,6 +1336,35 @@ namespace CombatExtended
             return Mathf.Sqrt(dx * dx + dz * dz);
         }
 
+        /// <summary>
+        /// Finds intersection point for two segments
+        /// </summary>
+        /// <param name="A">First point of first segment</param>
+        /// <param name="B">Second point of first segment</param>
+        /// <param name="C">First point of second segment</param>
+        /// <param name="D">Second point of second segment</param>
+        /// <param name="result">Intersection point or <see cref="Vector2.negativeInfinity"/></param>
+        /// <returns>True if intersects, false if not</returns>
+        public static bool TryFindIntersectionPoint(Vector2 A, Vector2 B, Vector2 C, Vector2 D, out Vector2 result)
+        {
+            float x1 = A.x, y1 = A.y, x2 = B.x, y2 = B.y, x3 = C.x, y3 = C.y, x4 = D.x, y4 = D.y;
+            var det = ((x4 - x3) * (y2 - y1) - (y4 - y3) * (x2 - x1));
+            if (Mathf.Abs(det) < 0.0000001f)
+            {
+                result = Vector2.negativeInfinity;
+                return false;
+            }
+            var alpha = ((x4 - x3) * (y3 - y1) - (y4 - y3) * (x3 - x1)) / det;
+            var beta = ((x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1)) / det;
+            if (alpha < 0.0f || alpha > 1.0f || beta < 0.0f || beta > 1.0f)
+            {
+                result = Vector2.negativeInfinity;
+                return false;
+            }
+            result = new Vector2(x1 + alpha * (x2 - x1), y1 + alpha * (y2 - y1));
+            return true;
+        }
+
         public static Vector3 ToVec3Gridified(this Vector3 originalVec3)
         {
             Vector2 tempVec2 = new Vector2(originalVec3.normalized.x, originalVec3.normalized.z);
@@ -1617,6 +1523,27 @@ namespace CombatExtended
             return pawn;
         }
 
+        /// <summary>
+        /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.
+        /// </summary>
+        /// <param name="velocity">Projectile velocity in cells per second.</param>
+        /// <param name="range">Cells between shooter and target.</param>
+        /// <param name="heightDifference">Difference between initial shot height and target height in vertical cells.</param>
+        /// <param name="flyOverhead">Whether to take the lower (False) or upper (True) arc angle.</param>
+        /// <returns>Arc angle in radians off the ground.</returns>
+        public static float GetShotAngle(float velocity, float range, float heightDifference, bool flyOverhead, float gravity)
+        {
+            float squareRootCheck = Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)));
+            if (float.IsNaN(squareRootCheck))
+            {
+                //Target is too far to hit with given velocity/range/gravity params
+                //set firing angle for maximum distance
+                Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
+                return 45.0f * Mathf.Deg2Rad;
+            }
+            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
+        }
+
         public static object LaunchProjectileCE(ThingDef projectileDef,
                                                 ThingDef _ammoDef,
                                                 Def _ammosetDef,
@@ -1696,5 +1623,52 @@ namespace CombatExtended
         }
 
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
+
+        internal static IEnumerable<Thing> ContainedThings(this IThingHolder thingHolder)
+        {
+            if (thingHolder == null)
+            {
+                yield break;
+            }
+            var heldThings = thingHolder.GetDirectlyHeldThings();
+            if (heldThings != null)
+            {
+                foreach (var thing in heldThings)
+                {
+                    if (thing is IThingHolder childThingHolder && (thing is Skyfaller || thing is IActiveDropPod))
+                    {
+                        foreach (var childThing in ContainedThings(childThingHolder))
+                        {
+                            yield return childThing;
+                        }
+                        if (thing is IActiveDropPod dropPod)
+                        {
+                            foreach (var childThing in ContainedThings(dropPod.Contents))
+                            {
+                                yield return childThing;
+                            }
+                        }
+                    }
+                    else if (thing != null)
+                    {
+                        yield return thing;
+                    }
+                }
+            }
+        }
+        internal static T ElementAtOrLast<T>(this IEnumerable<T> enumerable, int index)
+        {
+            var source = enumerable.GetEnumerator();
+            T current = source.Current;
+            for (int i = 0; i < index; i++)
+            {
+                if (!source.MoveNext())
+                {
+                    break;
+                }
+                current = source.Current;
+            }
+            return current;
+        }
     }
 }

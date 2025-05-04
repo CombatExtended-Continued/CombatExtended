@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Melee Stuff === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Cr_Crossbow" or
+			defName="Cr_RepeatingCrossbow" or
+			defName="Cr_BulletShootingCrossbow"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!-- === Crossbow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Cr_Crossbow</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>1.2</SwayFactor>
+			<ShotSpread>0.5</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>70</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>22</range>
+			<soundCast>Cr_Crossbows</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>MedievalRangedDecent</li>
+			<li>CE_Bow</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- === Repeating Crossbow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Cr_RepeatingCrossbow</defName>
+		<statBases>
+			<Bulk>8</Bulk>
+			<SwayFactor>1.6</SwayFactor>
+			<ShotSpread>0.8</ShotSpread>
+			<SightsEfficiency>0.4</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>85</WoodLog>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_RepeatingCrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>16</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>1</reloadTime>
+			<ammoSet>AmmoSet_RepeatingCrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>MedievalRangedDecent</li>
+			<li>CE_Bow</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- === Bullet Shooting Crossbow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Cr_BulletShootingCrossbow</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>1.1</SwayFactor>
+			<ShotSpread>0.4</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>55</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_SlingBullet_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>26</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>1</reloadTime>
+			<ammoSet>AmmoSet_SlingBullet</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>MedievalRangedDecent</li>
+			<li>CE_Bow</li>
+		</weaponTags>
+	</Operation>
+	
+</Patch>

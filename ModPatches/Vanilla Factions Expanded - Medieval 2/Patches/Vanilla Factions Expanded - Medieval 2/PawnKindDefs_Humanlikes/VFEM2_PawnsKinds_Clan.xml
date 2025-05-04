@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Remove shield as apparel requirement -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[
+			defName="VFEM2_Raider" or 
+			defName="VFEM2_Spearman" or 
+			defName="VFEM2_SiegeRaider" or 
+			defName="VFEM2_Jarl"
+			]/apparelRequired/li[.="VFEM2_Shield_Round"]</xpath>
+	</Operation>
+
+	<!-- === Give Shield === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Raider"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>200~600</shieldMoney>
+				<shieldTags>
+					<li>VFEM2_Shield_Round</li>
+				</shieldTags>
+				<shieldChance>0.9</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_SiegeRaider"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>200~600</shieldMoney>
+				<shieldTags>
+					<li>VFEM2_Shield_Round</li>
+				</shieldTags>
+				<shieldChance>0.7</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Jarl"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>200~600</shieldMoney>
+				<shieldTags>
+					<li>VFEM2_Shield_Round</li>
+				</shieldTags>
+				<shieldChance>0.5</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give ammo to Bowman === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Bowman"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>15~30</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>50~150</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give ammo to Skirmisher and Heavy bowman === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Skirmisher" or defName="VFEM2_HeavyBowman"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>12~20</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>50~150</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="VFEM2_Bowman" or
+			defName="VFEM2_Skirmisher" or
+			defName="VFEM2_HeavyBowman"
+			]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Bowman" or defName="VFEM2_HeavyBowman"]/weaponTags</xpath>
+		<value>
+			<li>CE_Bow</li>
+		</value>
+	</Operation>
+
+</Patch>

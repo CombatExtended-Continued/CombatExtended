@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- ========== Research ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ResearchProjectDef[defName="UNSC_RocketLauncher"]/prerequisites</xpath>
 		<value>
@@ -13,7 +14,7 @@
 
 	<!-- ========== Melee Tools ========== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="M7_SubmachineGun" or defName="M6D_Personal_Defense_Weapon_System"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="VULCAN_UNSC_M7_SubmachineGun" or defName="VULCAN_UNSC_M6D_Personal_Defense_Weapon_System"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -42,8 +43,16 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="MA5D_ICWS" or defName="BR85_Service_Rifle" or defName="M90-CAWS_Shotgun"
-			or defName="SRS99C-S2_AM" or defName="M392_Designated_Marksman_Rifle" or defName="M41_SSR_MAV_AW" or defName="M319_Individual_Grenade_Launcher" or defName="M739_SAW" or defName="Asymmetric_Recoilless_Carbine" or defName="W-AV_M6_G-NR"]/tools </xpath>
+		<xpath>Defs/ThingDef[defName="VULCAN_UNSC_MA5D_ICWS" or
+			defName="VULCAN_UNSC_BR85_Service_Rifle" or 
+			defName="VULCAN_UNSC_M90-CAWS_Shotgun" or
+			defName="VULCAN_UNSC_SRS99C-S2_AM" or 
+			defName="VULCAN_UNSC_M392_Designated_Marksman_Rifle" or 
+			defName="VULCAN_UNSC_M41_SSR_MAV_AW" or 
+			defName="VULCAN_UNSC_M319_Individual_Grenade_Launcher" or 
+			defName="VULCAN_UNSC_M739_SAW" or 
+			defName="VULCAN_UNSC_Asymmetric_Recoilless_Carbine" or 
+			defName="VULCAN_UNSC_W-AV_M6_G-NR"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -82,7 +91,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='M6D_Personal_Defense_Weapon_System' or defName='M7_SubmachineGun' or defName='M319_Individual_Grenade_Launcher']/recipeMaker/skillRequirements</xpath>
+		<xpath>Defs/ThingDef[defName="VULCAN_UNSC_M6D_Personal_Defense_Weapon_System" or defName="VULCAN_UNSC_M7_SubmachineGun" or defName="VULCAN_UNSC_M319_Individual_Grenade_Launcher"]/recipeMaker/skillRequirements</xpath>
 		<value>
 			<skillRequirements>
 				<Crafting>5</Crafting>
@@ -91,7 +100,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='MA5D_ICWS' or defName='BR85_Service_Rifle' or defName='M392_Designated_Marksman_Rifle']/recipeMaker/skillRequirements</xpath>
+		<xpath>Defs/ThingDef[defName="VULCAN_UNSC_MA5D_ICWS" or defName="VULCAN_UNSC_BR85_Service_Rifle" or defName="VULCAN_UNSC_M392_Designated_Marksman_Rifle"]/recipeMaker/skillRequirements</xpath>
 		<value>
 			<skillRequirements>
 				<Crafting>6</Crafting>
@@ -100,7 +109,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='SRS99C-S2_AM' or defName='M739_SAW' or defName='Asymmetric_Recoilless_Carbine']/recipeMaker/skillRequirements</xpath>
+		<xpath>Defs/ThingDef[defName="VULCAN_UNSC_SRS99C-S2_AM" or defName="VULCAN_UNSC_M739_SAW" or defName="VULCAN_UNSC_Asymmetric_Recoilless_Carbine"]/recipeMaker/skillRequirements</xpath>
 		<value>
 			<skillRequirements>
 				<Crafting>7</Crafting>
@@ -109,7 +118,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='W-AV_M6_G-NR']/recipeMaker/skillRequirements</xpath>
+		<xpath>Defs/ThingDef[defName="VULCAN_UNSC_W-AV_M6_G-NR"]/recipeMaker/skillRequirements</xpath>
 		<value>
 			<skillRequirements>
 				<Crafting>8</Crafting>
@@ -118,12 +127,24 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName='SRS99C-S2_AM' or defName='M739_SAW' or defName='Asymmetric_Recoilless_Carbine' or defName='MA5D_ICWS' or defName='BR85_Service_Rifle' or defName='M392_Designated_Marksman_Rifle' or defName='W-AV_M6_G-NR' or defName='M6D_Personal_Defense_Weapon_System' or defName='M7_SubmachineGun' or defName='M319_Individual_Grenade_Launcher' or defName='M41_SSR_MAV_AW'or defName='M90-CAWS_Shotgun']/statBases/MarketValue</xpath>
+		<xpath>Defs/ThingDef[defName="VULCAN_UNSC_SRS99C-S2_AM" or
+			defName="VULCAN_UNSC_M739_SAW" or
+			defName="VULCAN_UNSC_Asymmetric_Recoilless_Carbine" or
+			defName="VULCAN_UNSC_MA5D_ICWS" or
+			defName="VULCAN_UNSC_BR85_Service_Rifle" or
+			defName="VULCAN_UNSC_M392_Designated_Marksman_Rifle" or
+			defName="VULCAN_UNSC_W-AV_M6_G-NR" or
+			defName="VULCAN_UNSC_M6D_Personal_Defense_Weapon_System" or
+			defName="VULCAN_UNSC_M7_SubmachineGun" or
+			defName="VULCAN_UNSC_M319_Individual_Grenade_Launcher" or
+			defName="VULCAN_UNSC_M41_SSR_MAV_AW" or
+			defName="VULCAN_UNSC_M90-CAWS_Shotgun"]/statBases/MarketValue
+		</xpath>
 	</Operation>
 
 	<!-- === Spartan Laser === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>W-AV_M6_G-NR</defName>
+		<defName>VULCAN_UNSC_W-AV_M6_G-NR</defName>
 		<statBases>
 			<WorkToMake>100000</WorkToMake>
 			<Mass>19.07</Mass>
@@ -142,7 +163,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_Laser_SpartanLaser</defaultProjectile>
+			<defaultProjectile>Bullet_Laser_SpartanLaserInf</defaultProjectile>
 			<warmupTime>2.6</warmupTime>
 			<range>86</range>
 			<soundCast>Shot_SpartanLaser</soundCast>
@@ -161,7 +182,7 @@
 
 	<!-- ========== MA5C ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>MA5D_ICWS</defName>
+		<defName>VULCAN_UNSC_MA5D_ICWS</defName>
 		<statBases>
 			<WorkToMake>31000</WorkToMake>
 			<SightsEfficiency>1.1</SightsEfficiency>
@@ -204,7 +225,7 @@
 
 	<!-- ========== BR85 ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>BR85_Service_Rifle</defName>
+		<defName>VULCAN_UNSC_BR85_Service_Rifle</defName>
 		<statBases>
 			<WorkToMake>35000</WorkToMake>
 			<SightsEfficiency>1.5</SightsEfficiency>
@@ -246,7 +267,7 @@
 
 	<!-- ========== SAW ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>M739_SAW</defName>
+		<defName>VULCAN_UNSC_M739_SAW</defName>
 		<statBases>
 			<WorkToMake>56000</WorkToMake>
 			<SightsEfficiency>1.1</SightsEfficiency>
@@ -289,7 +310,7 @@
 
 	<!-- ========== M-7 ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>M7_SubmachineGun</defName>
+		<defName>VULCAN_UNSC_M7_SubmachineGun</defName>
 		<statBases>
 			<WorkToMake>18000</WorkToMake>
 			<SightsEfficiency>1</SightsEfficiency>
@@ -334,7 +355,7 @@
 
 	<!-- ========== SRS99 ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>SRS99C-S2_AM</defName>
+		<defName>VULCAN_UNSC_SRS99C-S2_AM</defName>
 		<statBases>
 			<WorkToMake>56000</WorkToMake>
 			<SightsEfficiency>3.5</SightsEfficiency>
@@ -373,7 +394,7 @@
 
 	<!-- ========== Shotgun ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>M90-CAWS_Shotgun</defName>
+		<defName>VULCAN_UNSC_M90-CAWS_Shotgun</defName>
 		<statBases>
 			<WorkToMake>25000</WorkToMake>
 			<SightsEfficiency>1</SightsEfficiency>
@@ -411,7 +432,7 @@
 
 	<!-- ==========heavy Magnum ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>M6D_Personal_Defense_Weapon_System</defName>
+		<defName>VULCAN_UNSC_M6D_Personal_Defense_Weapon_System</defName>
 		<statBases>
 			<WorkToMake>13000</WorkToMake>
 			<SightsEfficiency>0.75</SightsEfficiency>
@@ -451,7 +472,7 @@
 
 	<!-- === Grenadier === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>M319_Individual_Grenade_Launcher</defName>
+		<defName>VULCAN_UNSC_M319_Individual_Grenade_Launcher</defName>
 		<statBases>
 			<WorkToMake>12000</WorkToMake>
 			<Mass>3</Mass>
@@ -497,7 +518,7 @@
 
 	<!-- === Railgun === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Asymmetric_Recoilless_Carbine</defName>
+		<defName>VULCAN_UNSC_Asymmetric_Recoilless_Carbine</defName>
 		<statBases>
 			<WorkToMake>60000</WorkToMake>
 			<Mass>14.9</Mass>
@@ -542,7 +563,7 @@
 
 	<!-- === Rocket Launcher === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>M41_SSR_MAV_AW</defName>
+		<defName>VULCAN_UNSC_M41_SSR_MAV_AW</defName>
 		<statBases>
 			<WorkToMake>45000</WorkToMake>
 			<Mass>8</Mass>
@@ -590,7 +611,7 @@
 
 	<!-- ========== M392 DMR========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>M392_Designated_Marksman_Rifle</defName>
+		<defName>VULCAN_UNSC_M392_Designated_Marksman_Rifle</defName>
 		<statBases>
 			<WorkToMake>35000</WorkToMake>
 			<SightsEfficiency>2.4</SightsEfficiency>

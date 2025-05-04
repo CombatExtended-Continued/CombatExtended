@@ -40,7 +40,7 @@ namespace CombatExtended
 
         public VerbPropertiesCE verbPropsCE(StatRequest req)
         {
-            var result = (VerbPropertiesCE)req.Thing?.def.verbs.Find(x => x is VerbPropertiesCE);
+            var result = req.Thing.TryGetComp<CompEquippable>()?.PrimaryVerb?.verbProps as VerbPropertiesCE;
 
             if (result == null)
             {
@@ -89,7 +89,7 @@ namespace CombatExtended
 
                 }
 
-                result += "\n" + "CE_BipodStatWhenSetUp".Translate().Colorize(Color.green) + "\n";
+                result += "\n" + "CE_BipodStatWhenSetUp".Translate().Colorize(ColorLibrary.Green) + "\n";
 
                 result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
                 result += "\n";
@@ -103,7 +103,7 @@ namespace CombatExtended
                 result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupMult * VerbPropsCE.warmupTime);
                 result += "\n" + "\n";
 
-                result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(Color.red) + "\n";
+                result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(ColorLibrary.LogError) + "\n";
 
                 result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff), 2);
 
@@ -132,13 +132,13 @@ namespace CombatExtended
                     return base.GetExplanationFinalizePart(req, numberSense, finalVal);
                 }
 
-                string result = "CE_BipodSetupTime".Translate() + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
+                string result = "CE_BipodSetupTime".Translate() + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "Stats when set up: ".Colorize(ColorLibrary.Green) + "\n";
 
-                result += CE_StatDefOf.Recoil.label + ": " + (VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton);
+                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
 
                 result += "\n";
 
-                result += CE_StatDefOf.SwayFactor.label + ": " + (((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty);
+                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
 
                 result += "\n";
 
@@ -150,13 +150,13 @@ namespace CombatExtended
 
                 result += "\n" + "\n";
 
-                result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(Color.red) + "\n";
+                result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(ColorLibrary.LogError) + "\n";
 
-                result += CE_StatDefOf.Recoil.label + ": " + (VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff);
+                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff), 2);
 
                 result += "\n";
 
-                result += CE_StatDefOf.SwayFactor.label + ": " + (((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty);
+                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty), 2);
 
                 result += "\n";
 
