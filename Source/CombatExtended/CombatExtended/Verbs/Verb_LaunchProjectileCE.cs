@@ -809,7 +809,8 @@ namespace CombatExtended
                     if (newCover != null
                             && (targetThing == null || !newCover.Equals(targetThing))
                             && newCover.def.Fillage == FillCategory.Partial
-                            && !newCover.IsPlant())
+                            && !newCover.IsPlant()
+                            && newCover is not Building_TrapExplosive)
                     {
                         float newCoverHeight = new CollisionVertical(newCover).Max;
 
