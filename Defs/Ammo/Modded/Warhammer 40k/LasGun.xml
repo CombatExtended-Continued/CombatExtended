@@ -58,6 +58,14 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Lasgun_CannonDouble</defName>
+		<label>twin-linked lascannon beam</label>
+		<ammoTypes>
+			<Ammo_LasgunPowerPack>Bullet_Lasgun_CannonDouble</Ammo_LasgunPowerPack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== AmmoSet (Astartes/Space Marines) ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -212,6 +220,19 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>CE_Laser</damageDef>
 			<damageAmountBase>80</damageAmountBase>
+			<armorPenetrationSharp>558</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+		<lifetime>75</lifetime>
+		<beamWidth>3</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletOrangeTwin">
+		<defName>Bullet_Lasgun_CannonDouble</defName>
+		<label>twin-linked lascannon beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>160</damageAmountBase>
 			<armorPenetrationSharp>558</armorPenetrationSharp>
 			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
 		</projectile>
