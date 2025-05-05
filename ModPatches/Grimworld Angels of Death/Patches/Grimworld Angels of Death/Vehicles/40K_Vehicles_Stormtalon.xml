@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Generic -->
+								
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[
+						defName="GW_StormTalon_Bolter" or
+						defName="GW_Stormtalon_lascannon" or
+						defName="GW_Stormtalon_AssaultCannons"
+						]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<!--===== Heavy Bolter Turret =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_StormTalon_Bolter"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Bolter998_Standard</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_StormTalon_Bolter"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_StormTalon_Bolter"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_StormTalon_Bolter"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_StormTalon_Bolter"]/maxRange</xpath>
+					<value>
+						<maxRange>62</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_StormTalon_Bolter"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_Bolter998_Standard</li>
+							<li>Ammo_Bolter998_MetalStorm</li>
+							<li>Ammo_Bolter998_Kraken</li>
+							<li>Ammo_Bolter998_Inferno</li>
+							<li>Ammo_Bolter998_Tempest</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_StormTalon_Bolter"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Bolter998</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>229</speed>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+				
+				<!-- Lascannon -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_lascannon"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Lasgun_Cannon_Astartes</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_lascannon"]/maxRange</xpath>
+					<value>
+						<maxRange>75</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_lascannon"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_LasgunPowerPack</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_lascannon"]/chargePerAmmoCount</xpath>
+					<value>
+						<chargePerAmmoCount>5</chargePerAmmoCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_lascannon"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>300</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_lascannon"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Lasgun_Cannon_Astartes</ammoSet>
+							<shotHeight>2</shotHeight>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Assault Cannon Turret =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_AssaultCannons"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_20x102mmNATO_AP</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_AssaultCannons"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_AssaultCannons"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>3.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_AssaultCannons"]/maxRange</xpath>
+					<value>
+						<maxRange>64</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_AssaultCannons"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_20x102mmNATO_AP</li>
+							<li>Ammo_20x102mmNATO_Incendiary</li>
+							<li>Ammo_20x102mmNATO_HE</li>
+							<li>Ammo_20x102mmNATO_Sabot</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Stormtalon_AssaultCannons"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>182</speed>
+							<sway>4.64</sway>
+							<spread>0.06</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Pawn =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="Stormtalonpawn"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>28</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="Stormtalonpawn"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="Stormtalonpawn"]/components/li[key="Primaryplating"]/health</xpath>
+					<value>
+						<health>1140</health>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
