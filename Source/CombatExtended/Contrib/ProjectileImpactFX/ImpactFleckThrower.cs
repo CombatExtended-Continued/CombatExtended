@@ -150,7 +150,7 @@ namespace ProjectileImpactFX
                 map.flecks.CreateFleck(creationData);
             }
 
-            if (StuckProjectileFleck != null)
+            if (Settings.StuckArrowAsFlecks && StuckProjectileFleck != null)
             {
                 FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, StuckProjectileFleck);
                 creationData.scale = ext.StuckProjectileFleckSize;
