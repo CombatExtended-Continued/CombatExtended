@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="FusionIEDBase" or @Name="LargeNuclearIEDBase" or @Name="SmallNuclearIEDBase"]</xpath>
+		<value>
+			<fillPercent>0.01</fillPercent>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="TrapIED_Fusion"]/costList</xpath>
 		<value>

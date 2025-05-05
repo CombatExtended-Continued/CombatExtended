@@ -19,6 +19,8 @@ namespace ProjectileImpactFX
             FleckDef ExplosionFleck = ext.explosionFleckDef;
             FleckDef ImpactFleck = ext.ImpactFleckDef;
             FleckDef ImpactGlowFleck = ext.ImpactGlowFleckDef;
+            FleckDef StuckProjectileFleck = ext.StuckProjectileFleckDef;
+
             SoundDef ImpactSound = ext.ImpactSoundDef;
             float ExplosionFleckSize = ext.explosionFleckSizeRange?.RandomInRange ?? ext.explosionFleckSize;
             float ImpactFleckSize = ext.ImpactFleckSizeRange?.RandomInRange ?? ext.ImpactFleckSize;
@@ -100,7 +102,7 @@ namespace ProjectileImpactFX
                     {//concrete and stone impact from shots. Only terrains that don't hold snow are non-solid ones, like water and vacuum from SOS2
                         ImpactFleck = FleckDefOf.AirPuff;
                         TriggerBulletHole(loc, map, projProps.damageAmountBase < 50 ? ScaleToRange(0.1f, 0.7f, 1, 50, projProps.damageAmountBase) : 0.7f);
-                        TriggerScatteredSparks(loc, map, projProps.damageAmountBase >= 10 && Rand.Chance(0.5f) ? (int)ScaleToRange(3, 15, 10, 100, projProps.damageAmountBase) : 2, direction > 0 ? 360 - direction : 0 - direction);
+                        TriggerScatteredSparks(loc, map, projProps.damageAmountBase >= 10 && Rand.Chance(0.5f) ? (int)ScaleToRange(3, 15, 10, 100, projProps.damageAmountBase) : 2, (-direction) % 360);
 
                     }
                 }
@@ -145,6 +147,18 @@ namespace ProjectileImpactFX
                 creationData.rotationRate = rotationRate;
                 creationData.spawnPosition = loc;
                 creationData.instanceColor = projProps.damageDef.explosionColorCenter;
+                map.flecks.CreateFleck(creationData);
+            }
+
+            if (StuckProjectileFleck != null)
+            {
+                FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, StuckProjectileFleck);
+                creationData.scale = ext.StuckProjectileFleckSize;
+                creationData.rotation = (-direction) % 360;
+                //tilt landed projectile slightly upwards so it looks stuck in ground
+                creationData.rotation += creationData.rotation > 180 ? Rand.Range(-45, 0) : Rand.Range(0, 45);
+                creationData.rotationRate = 0;
+                creationData.spawnPosition = loc;
                 map.flecks.CreateFleck(creationData);
             }
 
