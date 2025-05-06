@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- One-handed Tags -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "VBY_FlintKnife" or defName="VBY_FlintSpear" or defName="VBY_SharpStick" or defName="VBY_BambooFlintSpear" or defName="VBY_FangClub" or defName="VBY_ToothAxe" or defName="VBY_ToothClub" or defName="VBY_BambooBoneSpear" or defName="VBY_BoneSpear"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Flint Knife -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_FlintKnife"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>6.5</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.15</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.18</cooldownTime>
+					<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_FlintKnife"]/statBases</xpath>
+		<value>
+			<Bulk>0.12</Bulk>
+			<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_FlintKnife"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.08</MeleeCritChance>
+			<MeleeParryChance>0.08</MeleeParryChance>
+			<MeleeDodgeChance>0.03</MeleeDodgeChance>
+		</value>
+	</Operation>
+  
+  <!-- Flint Spear -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_FlintSpear"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>1.12</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.32</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_FlintSpear"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.48</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_FlintSpear"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.11</MeleeCritChance>
+				<MeleeParryChance>0.20</MeleeParryChance>
+				<MeleeDodgeChance>0.27</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+  
+  <!-- Sharp Stick -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_SharpStick"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.62</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.44</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.34</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_SharpStick"]/statBases</xpath>
+		<value>
+			<Bulk>0.25</Bulk>
+			<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_SharpStick"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.08</MeleeCritChance>
+				<MeleeParryChance>0.12</MeleeParryChance>
+				<MeleeDodgeChance>0.05</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+  
+  <!-- Bamboo Flint Spear -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_BambooFlintSpear"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+        <li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>1.12</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.32</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_BambooFlintSpear"]/statBases</xpath>
+		<value>
+			<Bulk>3.0</Bulk>
+			<MeleeCounterParryBonus>0.55</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_BambooFlintSpear"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.11</MeleeCritChance>
+				<MeleeParryChance>0.20</MeleeParryChance>
+				<MeleeDodgeChance>0.27</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+  
+  <!-- Fang Club -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_FangClub"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>3.12</cooldownTime>
+					<armorPenetrationBlunt>3.7</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.16</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>0.98</cooldownTime>
+					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.2</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_FangClub"]/statBases</xpath>
+		<value>
+			<Bulk>3.78</Bulk>
+			<MeleeCounterParryBonus>0.17</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_FangClub"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.71</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+  
+  <!-- Tooth Axe -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_ToothAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>serrated edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>0.74</cooldownTime>
+					<armorPenetrationBlunt>3.1</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.4</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_ToothAxe"]/statBases</xpath>
+		<value>
+			<Bulk>3.2</Bulk>
+			<MeleeCounterParryBonus>0.16</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_ToothAxe"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.40</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+			<MeleeDodgeChance>0.2</MeleeDodgeChance>
+		</value>
+	</Operation>
+  
+  <!-- Tooth Club -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_ToothClub"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>tooth</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.93</cooldownTime>
+					<armorPenetrationBlunt>0.84</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.17</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_ToothClub"]/statBases</xpath>
+		<value>
+			<Bulk>3.2</Bulk>
+			<MeleeCounterParryBonus>0.18</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_ToothClub"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.30</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+  
+  <!-- Thrumbo Chopper -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_ThrumboChopper"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>great horn</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>41</power>
+					<cooldownTime>3.77</cooldownTime>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.8</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_ThrumboChopper"]/statBases</xpath>
+		<value>
+			<Bulk>7.6</Bulk>
+			<MeleeCounterParryBonus>1.11</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_ThrumboChopper"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.07</MeleeCritChance>
+			<MeleeParryChance>0.83</MeleeParryChance>
+			<MeleeDodgeChance>0.83</MeleeDodgeChance>
+		</value>
+	</Operation>
+  
+  <!-- BambooBoneSpear -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_BambooBoneSpear"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>1.12</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.32</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_BambooBoneSpear"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.48</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_BambooBoneSpear"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.11</MeleeCritChance>
+				<MeleeParryChance>0.20</MeleeParryChance>
+				<MeleeDodgeChance>0.27</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+	
+	<!-- BoneSpear -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_BoneSpear"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>1.12</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.32</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_BoneSpear"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.48</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_BoneSpear"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.11</MeleeCritChance>
+				<MeleeParryChance>0.20</MeleeParryChance>
+				<MeleeDodgeChance>0.27</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+  
+</Patch>
