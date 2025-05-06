@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Drog Tusk -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DA_DrogTusk"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="DA_DrogTusk"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DA_DrogTusk"]/statBases/Mass</xpath>
+		<value>
+			<Mass>5</Mass>
+			<Bulk>5</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DA_DrogTusk"]/description</xpath>
+		<value>
+			 <description>The tusk of a northern drog. A valuable and durable trophy.</description>
+		</value>
+	</Operation>
+
+	<!-- Goldilox Horn -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DA_GoldiloxHorn"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="DA_GoldiloxHorn"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DA_GoldiloxHorn"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+			<Bulk>25</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DA_GoldiloxHorn"]/description</xpath>
+		<value>
+			 <description>The twisted horn of a goldilox. A valuable and durable trophy.</description>
+		</value>
+	</Operation>
+
+</Patch>
