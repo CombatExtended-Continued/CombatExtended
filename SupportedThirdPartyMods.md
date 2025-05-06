@@ -489,7 +489,7 @@ Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Robotic Servitude   |
 Rockmen race    |
-Roo Fauna    |
+Roo Faun    |
 Roo Satyr    |
 Roo Satyr and Faun Xenotype Expanded    |
 Roren, People of Rorensia   |
