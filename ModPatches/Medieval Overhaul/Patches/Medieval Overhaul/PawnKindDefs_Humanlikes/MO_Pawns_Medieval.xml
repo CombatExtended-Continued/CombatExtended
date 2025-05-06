@@ -4,22 +4,23 @@
 	<!-- === Remove conflicting apparel layer === -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/PawnKindDef[
-			@Name="DankPyon_Zweihander" or @Name="DankPyon_Medieval_Knight" or
+			@Name="DankPyon_Zweihander" or
+			@Name="DankPyon_Medieval_Knight" or
 			defName="DankPyon_Medieval_Lord"
 			]/apparelRequired/li[.="DankPyon_Footwear_BootsPlate"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/PawnKindDef[
-			@Name="DankPyon_Zweihander" or @Name="DankPyon_Medieval_Knight" or
+			@Name="DankPyon_Zweihander" or
+			@Name="DankPyon_Medieval_Knight" or
 			defName="DankPyon_Medieval_Lord"
 			]/apparelRequired/li[.="DankPyon_Handwear_GlovesPlate"]</xpath>
 	</Operation>
 
 	<!-- === Give backpack to melee pawn with shield chance === -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[
-			defName="DankPyon_Medieval_Mercenary" or defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Mercenary" or defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
 		<value>
 			<apparelRequired>
 				<li>CE_Apparel_TribalBackpack</li>
@@ -29,8 +30,7 @@
 
 	<!-- === Give shields === -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[
-			defName="DankPyon_Medieval_Mercenary" or defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Mercenary" or defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<shieldMoney>100~350</shieldMoney>
@@ -100,8 +100,10 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/PawnKindDef[
-			defName="DankPyon_Medieval_Arbalester" or defName="DankPyon_Medieval_Bowman" or
-			defName="DankPyon_BrigandMarksman"]</xpath>
+			defName="DankPyon_Medieval_Arbalester" or
+			defName="DankPyon_Medieval_Bowman" or
+			defName="DankPyon_BrigandMarksman"
+			]</xpath>
 		<value>
 			<apparelRequired>
 				<li>CE_Apparel_TribalBackpack</li>

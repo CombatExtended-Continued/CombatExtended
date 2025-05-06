@@ -3,7 +3,10 @@
 
 	<!-- Make ammos craftable with the workbench and anvil -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="AmmoGreatArrowBase" or @Name="AmmoArrowBase" or @Name="AmmoCrossbowBoltBase"]/tradeTags</xpath>
+		<xpath>Defs/ThingDef[
+			@Name="AmmoGreatArrowBase" or
+			@Name="AmmoArrowBase" or @Name="AmmoCrossbowBoltBase"
+			]/tradeTags</xpath>
 		<value>
 			<li>CE_AutoEnableCrafting_DankPyon_Workbench</li>
 			<li>CE_AutoEnableCrafting_DankPyon_Anvil</li>
@@ -28,7 +31,12 @@
 	<!-- Remove and Adjust - Rox Horn, Daer Antler, Scorpio Bolt, Ballista Bolt, And Stone Boulders -->
 	<!-- Scorpio Bolt, Ballista Bolt, and Stone Boulders -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="DankPyon_ScorpioBolt" or defName="DankPyon_BallistaBolt" or defName="DankPyon_StoneBoulder" or defName="DankPyon_StoneBoulderTarred"]</xpath>
+		<xpath>Defs/ThingDef[
+			defName="DankPyon_ScorpioBolt" or
+			defName="DankPyon_BallistaBolt" or
+			defName="DankPyon_StoneBoulder" or
+			defName="DankPyon_StoneBoulderTarred"
+			]</xpath>
 	</Operation>
 
 	<!-- Rox Horn and Daer Antler -->
