@@ -30,7 +30,7 @@ namespace CombatExtended
         private bool genericammo = false;
         private bool partialstats = true;
         private bool enableExtraEffects = true;
-        private bool enableCIWS = true;
+        private bool enableCIWS = false;
 
         private bool showExtraTooltips = false;
 
