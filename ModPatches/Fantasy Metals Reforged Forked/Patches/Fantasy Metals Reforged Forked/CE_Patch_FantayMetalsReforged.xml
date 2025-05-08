@@ -5,7 +5,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
 			defName="zavMithril" or
-			defName="zavzavOrichalcum" or
+			defName="zavOrichalcum" or
 			defName="zavAdamantine"
 			]/statBases</xpath>
 		<value>
@@ -105,6 +105,13 @@
 		<xpath>Defs/ThingDef[defName="zavAdamantine"]/statBases/StuffPower_Armor_Heat</xpath>
 		<value>
 			<StuffPower_Armor_Heat>0.0</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="zavAdamantine"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>1.25</MeleePenetrationFactor>
 		</value>
 	</Operation>
 
