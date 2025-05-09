@@ -359,6 +359,7 @@ Misc. Turrets   |
 Moa |
 Moonjelly Race  |
 More Archotech Garbage Continued  |
+More Armory! Midworld Arms Pack  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Medieval Helms and Armor	|
