@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyPartDef[defName="RE_HuskTorso" or defName="RE_HuskBody"]/hitPoints</xpath>
+		<value>
+			<hitPoints>50</hitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyPartDef[defName="RE_HuskLeg"]/hitPoints</xpath>
+		<value>
+			<hitPoints>40</hitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="RE_RachniLike"]//*[
+			def="MechanicalThoraxCanManipulate" or
+			def="Pronotum" or
+			def="RE_HuskHead" or
+			def="MechanicalLeg"]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="RE_Swarmer"]//*[
+			def="Shell" or
+			def="Pronotum" or
+			def="RE_HuskHead" or
+			def="MechanicalLeg"]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="RE_Banshee" or defName="RE_Husk" or defName="RE_Marauder" or defName="RE_Brute"]//*[
+			def="RE_HuskTorso" or
+			def="RE_HuskNeck" or
+			def="RE_HuskHead" or
+			def="RE_HuskShoulder" or
+			def="RE_HuskArm" or
+			def="RE_HuskHand" or
+			def="RE_HuskFoot" or
+			def="RE_HuskLeg"]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="RE_Colossus"]//*[
+			def="RE_HuskBodyCanManipulate" or
+			def="RE_HuskNeck" or
+			def="RE_HuskHead" or
+			def="Nose" or
+			def="Horn" or
+			def="Hoof" or
+			def="RE_HuskLeg"]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>
