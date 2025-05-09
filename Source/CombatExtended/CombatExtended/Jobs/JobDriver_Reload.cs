@@ -200,7 +200,7 @@ namespace CombatExtended
 
             //Actual reloader
             Toil reloadToil = new Toil();
-            reloadToil.AddFinishAction(() => compReloader.LoadAmmo(initAmmo));
+            reloadToil.AddFinishAction(() => DoReload());
             yield return reloadToil;
 
             // If reloading one shot at a time and if possible to reload, jump back to do-nothing toil
@@ -217,6 +217,18 @@ namespace CombatExtended
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
             yield return continueToil;
+        }
+
+        void DoReload()
+        {
+            compReloader.LoadAmmo(initAmmo, true);
+            if (!(compReloader.Props.reloadOneAtATime || compReloader.FullMagazine))
+            {
+                while (!compReloader.FullMagazine && compReloader.TryFindAmmoInInventory(out initAmmo))
+                {
+                    compReloader.LoadAmmo(initAmmo);
+                }
+            }
         }
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
