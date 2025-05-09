@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DA_Goldilox"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DA_Goldilox"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+			<MeleeDodgeChance>0.36</MeleeDodgeChance>
+			<MeleeCritChance>0.12</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DA_Goldilox"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>horn</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>2.52</cooldownTime>
+					<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>horn</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>2.52</cooldownTime>
+					<chanceFactor>0.65</chanceFactor>
+					<linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+					<armorPenetrationSharp>10</armorPenetrationSharp>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>2.13</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>14.640</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>2.13</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>14.640</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.62</cooldownTime>
+					<chanceFactor>0.7</chanceFactor>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.09</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.016</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>2.52</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DA_Goldilox"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DA_Goldilox"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DA_Goldilox"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>3000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
