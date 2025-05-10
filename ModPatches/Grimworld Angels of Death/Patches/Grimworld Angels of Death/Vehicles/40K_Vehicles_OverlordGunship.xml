@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--===== Heavy Bolter Turret =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Bolter998_Standard</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_Bolter998_Standard</li>
+							<li>Ammo_Bolter998_MetalStorm</li>
+							<li>Ammo_Bolter998_Kraken</li>
+							<li>Ammo_Bolter998_Inferno</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lascannon"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>300</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter" or defName="GW_Overlord_Lascannon"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/maxRange</xpath>
+					<value>
+						<maxRange>62</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Bolter998</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>229</speed>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lascannon"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Lasgun_Cannon_Astartes</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lascannon"]/maxRange</xpath>
+					<value>
+						<maxRange>75</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lascannon"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_LasgunPowerPack</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lascannon"]</xpath>
+					<value>
+						<chargePerAmmoCount>5</chargePerAmmoCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lascannon"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Lasgun_Cannon_Astartes</ammoSet>
+							<shotHeight>2</shotHeight>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Overlord Gunship =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="OverlordGunshippawn"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>48</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="OverlordGunshippawn"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>24</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<!-- <li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="OverlordGunshippawn"]/vehicleStats/CargoCapacity</xpath>
+					<value>
+						<CargoCapacity>8000</CargoCapacity>
+					</value>
+				</li> -->
+
+				<!-- "Primary Composite Plating" but no armor (?) -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="OverlordGunshippawn"]/components/li[key="Primaryplating"]/health</xpath>
+					<value>
+						<health>1140</health>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

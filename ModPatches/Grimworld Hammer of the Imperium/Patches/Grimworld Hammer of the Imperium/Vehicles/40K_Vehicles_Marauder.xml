@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+				<!-- Generic -->
+				
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[
+						defName="GW_Marauder_Bolter" or
+						defName="GW_Marauder_Bomber_Las" or
+						defName="GW_Marauder_Assault" or
+						defName="GW_Marauder_NoseAutoCannons"
+						]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<!--===== Heavy Bolter Turret =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bolter"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Bolter998_Standard</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bolter"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bolter"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bolter"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bolter"]/maxRange</xpath>
+					<value>
+						<maxRange>62</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bolter"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_Bolter998_Standard</li>
+							<li>Ammo_Bolter998_MetalStorm</li>
+							<li>Ammo_Bolter998_Kraken</li>
+							<li>Ammo_Bolter998_Inferno</li>
+							<li>Ammo_Bolter998_Tempest</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bolter"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Bolter998</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>229</speed>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+				
+				<!-- Lascannon -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bomber_Las"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Lasgun_Cannon</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bomber_Las"]/maxRange</xpath>
+					<value>
+						<maxRange>75</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bomber_Las"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_LasgunPowerPack</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bomber_Las"]</xpath>
+					<value>
+						<chargePerAmmoCount>5</chargePerAmmoCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bomber_Las"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>300</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Bomber_Las"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Lasgun_Cannon</ammoSet>
+							<shotHeight>2</shotHeight>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Assault Cannon Turret =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Assault"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_20x102mmNATO_AP</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Assault"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Assault"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>3.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Assault"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Assault"]/maxRange</xpath>
+					<value>
+						<maxRange>64</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Assault"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_20x102mmNATO_AP</li>
+							<li>Ammo_20x102mmNATO_Incendiary</li>
+							<li>Ammo_20x102mmNATO_HE</li>
+							<li>Ammo_20x102mmNATO_Sabot</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_Assault"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>182</speed>
+							<sway>4.64</sway>
+							<spread>0.06</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Nose Autocannons (Fixed!) =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_NoseAutoCannons"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_40x365mmBofors_HE</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_NoseAutoCannons"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_NoseAutoCannons"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_NoseAutoCannons"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_NoseAutoCannons"]/maxRange</xpath>
+					<value>
+						<maxRange>72</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_NoseAutoCannons"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_40x365mmBofors_AP</li>
+							<li>Ammo_40x365mmBofors_HE</li>
+							<li>Ammo_40x365mmBofors_HE_TFuzed</li>
+							<li>Ammo_40x365mmBofors_Sabot</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Marauder_NoseAutoCannons"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_40x365mmBofors</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>181</speed>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Marauder =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="MarauderBomberpawn"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>28</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="MarauderBomberpawn"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="MarauderBomberpawn"]/vehicleStats/CargoCapacity</xpath>
+					<value>
+						<CargoCapacity>2700</CargoCapacity>
+					</value>
+				</li>
+				<!-- the marauder canonically carries 6000 pounds of ordnance in its internal bay, which is 2700kg and change -->
+				<!-- it gets another 6000 pounds on the wings but you probably don't want to strap cargo onto those -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="MarauderBomberpawn"]/components/li[key="Primaryplating"]/health</xpath>
+					<value>
+						<health>1140</health>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
