@@ -7,6 +7,61 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
+				<!-- Pintle-Mounted Stormbolter -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>300</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Bolter75_Standard</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/maxRange</xpath>
+					<value>
+						<maxRange>45</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_Bolter75_Standard</li>
+							<li>Ammo_Bolter75_Inferno</li>
+							<li>Ammo_Bolter75_MetalStorm</li>
+							<li>Ammo_Bolter75_Kraken</li>
+							<li>Ammo_Bolter75_Tempest</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HullLascannon"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Bolter75</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
 				<!-- Hull Lascannon -->
 
 				<li Class="PatchOperationReplace">
