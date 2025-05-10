@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--Melee Attacks for Guns-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="RNGun_AR23ChaosLiberator_Rifle" or
+			defName="RNGun_AR23Liberator_Rifle" or
+			defName="RNGun_AR23LiberatorPenetrator_Rifle" or
+			defName="RNGun_AR23ALiberatorCarbine_Rifle"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ============ Standard Liberator ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_AR23Liberator_Rifle"]/description</xpath>
+		<value>
+			<description>The AR-23 Liberator is a 5.5x50mm gas-operated, magazine-fed, bullpup-configuration assault rifle. Known for its durability and stopping power, it's a Helldiver's favorite for its adaptability in harsh combat conditions. The Mk2 variant features reinforced internals and a quick-swap barrel system.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AR23Liberator_Rifle</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>5</Bulk>
+			<WorkToMake>41000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>RNShot_AR23Liberator</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.45</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>AssaultRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ Chaos Liberator ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_AR23ChaosLiberator_Rifle"]/description</xpath>
+		<value>
+			<description>The AR-23 Liberator (repainted and renamed by Chaos Divers to "Chaos Liberator") is a 5.5x50mm gas-operated, magazine-fed, bullpup-configuration assault rifle. Known for its durability and stopping power, it's a Helldiver's favorite for its adaptability in harsh combat conditions. The Mk2 variant features reinforced internals and a quick-swap barrel system.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AR23ChaosLiberator_Rifle</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>5</Bulk>
+			<WorkToMake>41000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>RNShot_AR23Liberator</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.45</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>AssaultRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ Liberator Penetrator ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_AR23LiberatorPenetrator_Rifle"]/description</xpath>
+		<value>
+			<description>The AR-23 Liberator Penetrator is a 5.5x50mm gas-operated, magazine-fed, bullpup-configuration assault rifle. Featuring an extended barrel, improved scope, tuned gas system, and hardened bolt assembly, the Penetrator trades some weight and handling for superior range and accuracy. Field-proven and reliable, it's a trusted upgrade for Helldivers who favour accuracy over volume of fire.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AR23LiberatorPenetrator_Rifle</defName>
+		<statBases>
+			<Mass>2.4</Mass>
+			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.25</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>5.25</Bulk>
+			<WorkToMake>41000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>62</range>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>RNShot_LiberatorPenetrator</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.42</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>AssaultRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ Liberator Carbine ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_AR23ALiberatorCarbine_Rifle"]/description</xpath>
+		<value>
+			<description>The AR-23A Liberator Carbine is a 5.5x50mm gas-operated, magazine-fed, bullpup-configuration assault rifle. This variant of the AR-23 reduces the overall length, making the weapon lighter and more convenient in confined spaces, whilst also increasing its rate of fire. Its accuracy and range suffer, but it excels in close-quarters engagements.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AR23ALiberatorCarbine_Rifle</defName>
+		<statBases>
+			<Mass>1.8</Mass>
+			<RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>4.5</Bulk>
+			<WorkToMake>41000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>0.75</warmupTime>
+			<range>48</range>
+			<burstShotCount>9</burstShotCount>
+			<soundCast>RNShot_LiberatorCarbine</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.85</recoilAmount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>AssaultRifle</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

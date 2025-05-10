@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--Melee Attacks for Guns-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="RNGun_M105_Stalwart" or
+			defName="RNGun_MG43_GPMG" or
+			defName="RNGun_MG206_HMG"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ============ SSW ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_M105_Stalwart"]/description</xpath>
+		<value>
+			<description>The M-105 Stalwart is a compact machine gun with a high rate of fire and 250-round capacity. Designed for mobility and sustained engagements, it excels at suppressing swarms of light enemies but lacks armor penetration, making it ideal for crowd control in extended firefights or for laying down suppressing fire. It uses the same 5.5x50mm Liberty cartridge as the AR-23 family of assault rifles.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_M105_Stalwart</defName>
+		<statBases>
+			<Mass>8</Mass>
+			<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>1.25</SwayFactor>
+			<Bulk>11.63</Bulk>
+			<WorkToMake>41000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>55</range>
+			<burstShotCount>25</burstShotCount>
+			<soundCast>RNShot_M105Stalwart</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>0.91</recoilAmount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>5.8</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>10</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+			<li>CE_MachineGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ GPMG ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_MG43_GPMG"]/description</xpath>
+		<value>
+			<description>The MG-43 Machine Gun is a belt-fed support weapon with adjustable fire rates and moderate armor penetration. Best used stationary, it excels in suppressing enemy swarms with sustained firepower, making it a reliable choice for Helldivers in heavy combat scenarios. It uses the more powerful 8x60mm Constution cartridge, performing significantly better against well-armoured targets than the Stalwart.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_MG43_GPMG</defName>
+		<statBases>
+			<Mass>9.6</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>12.65</Bulk>
+			<WorkToMake>41000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x60mmConstitution_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>62</range>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>RNShot_MG43MachineGun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.42</recoilAmount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>175</magazineSize>
+			<reloadTime>4.6</reloadTime>
+			<ammoSet>AmmoSet_8x60mmConstitution</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+			<li>CE_MachineGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ HMG ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_MG206_HMG"]/description</xpath>
+		<value>
+			<description>The MG-206 Heavy Machine Gun is a high-caliber, belt-fed weapon designed for sustained firepower in prolonged engagements. With its immense damage output and robust construction, it excels at suppressing enemy waves and dealing with light armored targets. A cornerstone of Helldivers fire support, it pairs overwhelming fire rate with durability for heavy combat scenarios. It shares its 12.5x100 'Justice' ammo with the APW-1 Anti-Materiel Rifle.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_MG206_HMG</defName>
+		<statBases>
+			<Mass>35</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>3.73</SwayFactor>
+			<Bulk>13.7</Bulk>
+			<WorkToMake>41000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_125x100_FMJ</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>70</range>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>RNShot_MG206HMGShot</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.57</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>5.5</reloadTime>
+			<ammoSet>AmmoSet_125x100Justice</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+			<li>CE_MachineGun</li>
+			<li>Bipod_AMR</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

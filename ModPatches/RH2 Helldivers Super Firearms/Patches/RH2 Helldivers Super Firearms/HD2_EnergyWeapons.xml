@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--Melee Attacks for Guns-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="RNGun_LAS16Sickle_Rifle" or
+			defName="RNGun_PLAS1_Scorcher" or
+			defName="RNGun_LAS99_QuasarCannon"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ============ Sickle ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_LAS16Sickle_Rifle"]/description</xpath>
+		<value>
+			<description>The LAS-16 Sickle is a high-energy laser rifle designed for precision and sustained fire. It features a compact frame, advanced cooling systems, and adjustable optics for versatility in various combat scenarios. Reliable and efficient, the LAS-16 is a preferred choice for Helldivers facing energy-resistant threats.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_LAS16Sickle_Rifle</defName>
+		<statBases>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.2</SwayFactor>
+			<Bulk>7</Bulk>
+			<WorkToMake>40000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_SicklePulse</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>RNShot_LAS16Sickle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>0</recoilAmount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>AssaultRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ Scorcher ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_PLAS1_Scorcher"]/description</xpath>
+		<value>
+			<description>The PLAS-1 Scorcher is a plasma-based heavy weapon designed for devastating area-of-effect attacks. Equipped with a high-capacity plasma generator and reinforced cooling systems, it excels in melting through armor and overwhelming enemy formations. A go-to choice for Helldivers in high-intensity engagements.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_PLAS1_Scorcher</defName>
+		<statBases>
+			<Mass>4</Mass>
+			<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.25</SwayFactor>
+			<Bulk>8.5</Bulk>
+			<WorkToMake>40000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_ScorcherPulse</defaultProjectile>
+			<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+			<warmupTime>1.75</warmupTime>
+			<range>55</range>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>RNShot_PLAS1Scorcher</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>0</recoilAmount>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AOE</li>
+			<li>AssaultRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ Quasar ============ -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_LAS99_QuasarCannon"]/description</xpath>
+		<value>
+			<description>The LAS-99 Quasar Cannon is a high-energy, charge-based laser weapon designed for overwhelming firepower. It delivers discrete energy 'pulses' that can inflict massive damage to single targets, but it suffers from a long chargeup time and a negligible splash zone, limiting its effectiveness against groups of fast, soft targets.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_LAS99_QuasarCannon</defName>
+		<statBases>
+			<SightsEfficiency>2.18</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.61</SwayFactor>
+			<Bulk>10.50</Bulk>
+			<Mass>6.6</Mass>
+			<RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_QuasarPulse</defaultProjectile>
+			<ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
+			<warmupTime>7</warmupTime>
+			<range>55</range>
+			<soundCast>RNShot_QuasarShot</soundCast>
+			<soundAiming>RN_Quasar_Aiming</soundAiming>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>15</muzzleFlashScale>
+			<recoilAmount>0</recoilAmount>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>GunHeavy</li>
+			<li>CE_AI_AOE</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Shared -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				@Name="RH2ApparelHD2_LightArmorBase" or
+				@Name="RH2ApparelHD2_MediumArmorBase" or
+				@Name="RH2ApparelHD2_HeavyArmorBase"
+				]/apparel/bodyPartGroups
+			</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<!-- Helmets -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_ArmorHelmetBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_ArmorHelmetBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_ArmorHelmetBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelDefExtension">
+				<isRadioPack>true</isRadioPack>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_ArmorHelmetBase"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_ArmorHelmetBase"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>0.15</AimingAccuracy>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_ArmorHelmetBase"]/apparel</xpath>
+		<value>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_ArmorHelmetBase"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_ArmorHelmetBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- Light Armour -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_LightArmorBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_LightArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>34</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_LightArmorBase"]/statBases</xpath>
+		<value>
+			<Bulk>80</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_LightArmorBase"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>35</CarryWeight>
+			<CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.1</ReloadSpeed>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_LightArmorBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Medium Armour -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]/statBases</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryWeight>50</CarryWeight>
+				<CarryBulk>30</CarryBulk>
+				<ReloadSpeed>0.1</ReloadSpeed>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Heavy Armour -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]/statBases</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>100</CarryWeight>
+			<CarryBulk>50</CarryBulk>
+			<ReloadSpeed>0.1</ReloadSpeed>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Set Tweak / "Perks" -->
+
+	<!-- Engineering Kit -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RH2ApparelHD2_CE07Armor" or defName="RH2ApparelHD2_CE81Armor"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ConstructionSpeed>0.25</ConstructionSpeed>
+				<MiningSpeed>0.25</MiningSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Medical Kit -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RH2ApparelHD2_CM21Armor" or defName="RH2ApparelHD2_TR117Armor"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MedicalTendSpeed>0.25</MedicalTendSpeed>
+				<MedicalTendQuality>0.25</MedicalTendQuality>
+				<MedicalOperationSpeed>0.25</MedicalOperationSpeed>
+				<MedicalSurgerySuccessChance>0.1</MedicalSurgerySuccessChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Peak Physique -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RH2ApparelHD2_PH202HeavyArmor" or defName="RH2ApparelHD2_PH9Armor"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDamageFactor>0.50</MeleeDamageFactor>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Unflinching -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RH2ApparelHD2_UF16Armor" or defName="RH2ApparelHD2_UF50Armor" or defName="RH2ApparelHD2_UF84Armor"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<Suppressability>-0.50</Suppressability>
+				<PainShockThreshold>0.2</PainShockThreshold>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>

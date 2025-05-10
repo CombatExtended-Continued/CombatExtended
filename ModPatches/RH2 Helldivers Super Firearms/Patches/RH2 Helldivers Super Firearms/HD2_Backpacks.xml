@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Shared -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNApparelHD2_Backpack_AutocannonPack" or
+			defName="RNApparelHD2_Backpack_SEAFPack" or
+			defName="RNApparelHD2_Backpack_SupplyPack" or
+			defName="RNApparelHD2_Backpack_RecoillessRiflePack" or
+			defName="RNApparelHD2_Backpack_ShieldPack"
+			]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparelHD2_Backpack_AutocannonPack"]/description</xpath>
+		<value>
+			<description>A sturdy pack designed to hold preloaded clips for the AC-8 Autocannon. It holds 10 5-round clips when fully loaded, for a total of 50 rounds. Whilst it could be used to carry other supplies in a pinch, this tends to be very awkward and isn't recommended unless no other pack is available.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparelHD2_Backpack_SEAFPack"]/description</xpath>
+		<value>
+			<description>A standard SEAF patrol pack. It has plenty of space for all the supplies a trooper might need whilst out securing the territories of Super Earth; ammunition, ration packs, bedroll, mess kit, canteens, stims, and so on.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparelHD2_Backpack_SupplyPack"]/description</xpath>
+		<value>
+			<description>A partitioned supply pack containing four pre-packed resupply packages. Each pack contains key supplies such as ammunition, grenades, stims, and the like.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparelHD2_Backpack_RecoillessRiflePack"]/description</xpath>
+		<value>
+			<description>A back-mounted ammo rack for the GR-8 Recoilless Rifle. It can hold five shells at full capacity, and supports the weight adequately. Creative troopers have been known to adapt it to carry additional supplies, but this tends to be awkward and not as efficient as using a proper supply pack.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparelHD2_Backpack_ShieldPack"]/description</xpath>
+		<value>
+			<description>A portable energy shield backpack that provides enhanced protection for the wearer, without impeding their ability fire upon the enemies of Freedom and Democracy. Can dramatically increase a soldier's survival chances during both short-term and prolonged engagement. It passively recharges so long as it isn't fully depleted, but if it is, there will be a noticeable delay before the shield comes back online.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="RNApparelHD2_Backpack_AutocannonPack" or
+			defName="RNApparelHD2_Backpack_SEAFPack" or
+			defName="RNApparelHD2_Backpack_SupplyPack" or
+			defName="RNApparelHD2_Backpack_RecoillessRiflePack" or
+			defName="RNApparelHD2_Backpack_ShieldPack"
+			]/statBases/Mass</xpath>
+			<value>
+				<Mass>1</Mass>
+			</value>
+	</Operation>
+	
+	<!-- No carry cap buffs for any of you!! -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="RNApparelHD2_Backpack_AutocannonPack" or
+			defName="RNApparelHD2_Backpack_SEAFPack" or
+			defName="RNApparelHD2_Backpack_SupplyPack" or
+			defName="RNApparelHD2_Backpack_RecoillessRiflePack" or
+			defName="RNApparelHD2_Backpack_ShieldPack"
+			]/equippedStatOffsets/CarryingCapacity</xpath>
+	</Operation>
+
+	<!-- Autocannon Pack: 50 rounds of AC ammo -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNApparelHD2_Backpack_AutocannonPack"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>12.7</CarryWeight>
+				<CarryBulk>17</CarryBulk>
+			</value>
+	</Operation>
+
+	<!-- Recoilless Pack: 5 HEAT rounds or 5 HE rounds -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNApparelHD2_Backpack_RecoillessRiflePack"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>21.5</CarryWeight>
+				<CarryBulk>52.05</CarryBulk>
+			</value>
+	</Operation>
+
+	<!-- SEAF/Supply pack; 50 bulk (generic), same as the CE:Armors Large Backpack -->	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNApparelHD2_Backpack_SEAFPack" or
+			defName="RNApparelHD2_Backpack_SupplyPack"
+			]/equippedStatOffsets</xpath>
+			<value>
+				<CarryBulk>50</CarryBulk>
+			</value>
+	</Operation>
+</Patch>
