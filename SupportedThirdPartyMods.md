@@ -172,12 +172,15 @@ CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Cybernetic Warfare and Special Weapons (Continued)  |
+Dark Ages : Beasts and Monsters  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
 Deployable Turret   |
 Det's Energy Weapons    |
 Det's Xenotypes - Boglegs   |
+Det's Xenotypes - Keshig   |
+Det's Xenotypes - Venators   |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -232,6 +235,7 @@ Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
 Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
+Fantasy Metals Reforged Forked |
 Farming Expansion   |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
@@ -328,9 +332,10 @@ Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
-Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
+Medieval Bowyer   |
+Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medieval Overhaul   |
 Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
@@ -356,6 +361,7 @@ Misc. Turrets   |
 Moa |
 Moonjelly Race  |
 More Archotech Garbage Continued  |
+More Armory! Midworld Arms Pack  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Medieval Helms and Armor	|
@@ -487,6 +493,9 @@ Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Robotic Servitude   |
 Rockmen race    |
+Roo Faun    |
+Roo Satyr    |
+Roo Satyr and Faun Xenotype Expanded    |
 Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |

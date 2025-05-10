@@ -125,7 +125,7 @@ namespace CombatExtended
                 mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
                 mainGunMagCount = CompAmmo.CurMagCount;
                 CompAmmo.CurMagCount = UnderBarrelMagCount;
-                CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo ?? Props.propsUnderBarrel.ammoSet.ammoTypes[0].ammo; //same as AmmoUser's init
                 CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
             }
             CompAmmo.props = this.Props.propsUnderBarrel;
