@@ -127,7 +127,7 @@ namespace CombatExtended.HarmonyCE
                         int count = 0;
                         if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
                         {
-                            opts.Add(new FloatMenuOption("CannotPickUp".Translate() + " " + item.LabelShort + " (" + "NoPath".Translate() + ")", null));
+                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "NoPath".Translate() + ")", null));
                         }
                         else if (!compInventory.CanFitInInventory(item, out count))
                         {

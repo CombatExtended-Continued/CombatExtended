@@ -107,5 +107,54 @@
 			<workAmount>1600</workAmount>
 		</value>
 	</Operation>
+	
+	<!-- Giant Primitive Bow -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BS_GiantPrimitiveBow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>15.00</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>90</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_BigSmall_GiantArrow_Stone</defaultProjectile>
+			<warmupTime>2</warmupTime>
+			<range>45</range>
+			<soundCast>BS_Bow_Giant</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_BigSmall_GiantArrow</ammoSet>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
+		</AmmoUser>
+		<FireModes />
+		<weaponTags>
+			<li>RangedMedievalGiant</li>
+			<li>RangedNeolithicAdvancedGiant</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BS_GiantPrimitiveBow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
 
 </Patch>

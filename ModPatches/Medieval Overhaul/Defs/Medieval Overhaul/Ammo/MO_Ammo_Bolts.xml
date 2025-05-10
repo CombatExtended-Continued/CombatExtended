@@ -13,12 +13,9 @@
 		<defName>Ammo_CrossbowBolt_Iron</defName>
 		<label>crossbow bolt (iron)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Medieval/Bolt/Steel</texPath>
+			<texPath>Things/Ammo/Medieval/Bolt/Iron</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>0.66</MarketValue>
-		</statBases>
 		<ammoClass>IronCrossbowBolt</ammoClass>
 	</ThingDef>
 
@@ -26,7 +23,7 @@
 		<defName>Projectile_CrossbowBolt_Iron</defName>
 		<label>crossbow bolt (iron)</label>
 		<graphicData>
-			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<texPath>Things/Projectile/Arrows/Arrow_Iron</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -36,6 +33,14 @@
 			<preExplosionSpawnChance>0.333</preExplosionSpawnChance><!-- 14.99 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Iron</preExplosionSpawnThingDef>
 		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Iron</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.55</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
 	</ThingDef>
 
 	<!-- Recipes -->
