@@ -43,6 +43,8 @@ Mod |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
 [RH2] Faction: V.O.I.D.	|
+[RH2] Helldivers: Super Apparel |
+[RH2] Helldivers: Super Firearms |
 [RH2] Metal Gear Solid  |
 [RH2] Rimmu-Nation² - Clothing	|
 [RH2] Rimmu-Nation² - Security  |
