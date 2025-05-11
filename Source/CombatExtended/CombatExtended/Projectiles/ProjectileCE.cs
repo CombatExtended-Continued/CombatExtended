@@ -247,10 +247,15 @@ namespace CombatExtended
         /// <summary>
         /// Based on equations of motion
         /// </summary>
+        private Quaternion? _drawRotation = null;
         public virtual Quaternion DrawRotation
         {
             get
             {
+                if (_drawRotation != null)
+                {
+                    return (Quaternion)_drawRotation;
+                }
                 Vector2 w = (Destination - origin);
 
                 var vx = w.x / startingTicksToImpact;
@@ -1027,8 +1032,12 @@ namespace CombatExtended
                 return false;
             }
             // Trees and bushes have RNG chance to collide
-            if (thing is Plant plant && plant.positionInt != LastPos.ToIntVec3())
+            if (thing is Plant plant)
             {
+                if (plant.positionInt == LastPos.ToIntVec3())
+                {
+                    return false;
+                }
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
                 var chance = thing.def.fillPercent * accuracyFactor;
@@ -1190,6 +1199,7 @@ namespace CombatExtended
             ticksToImpact--;
             FlightTicks++;
             Vector3 nextPosition = MoveForward();
+            _drawRotation = Quaternion.LookRotation(nextPosition - ExactPosition);
 
             if (!nextPosition.InBounds(Map))
             {
