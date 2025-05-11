@@ -33,40 +33,17 @@ namespace CombatExtended
 
         public static IEnumerable<Vector3> PredictPositions(this Skyfaller skyfaller, int maxTicks)
         {
-            bool leaving = skyfaller.def.skyfaller.reversed;
-            int step = -1;
-            int end = 0;
-
-            var getDrawPos = SkyfallerDrawPosUtility.DrawPos_ConstantSpeed;
-            IntVec3 groundPos = skyfaller.Position;
-            Vector3 baseDrawPos = new Vector3(groundPos.x, 0, groundPos.z);
-            var angle = skyfaller.angle;
-            var cosA = Mathf.Cos(Mathf.Deg2Rad * angle);
-            var sinA = Mathf.Sin(Mathf.Deg2Rad * angle);
-            var offsetComp = skyfaller.RandomizeDirectionComp;
-            if (skyfaller.def.skyfaller.movementType == SkyfallerMovementType.Accelerate)
+            for (int i = 1; i <= maxTicks && skyfaller.ticksToImpact - i >= 0; i++)
             {
-                getDrawPos = SkyfallerDrawPosUtility.DrawPos_Accelerate;
-            }
-            else if (skyfaller.def.skyfaller.movementType == SkyfallerMovementType.Decelerate)
-            {
-                getDrawPos = SkyfallerDrawPosUtility.DrawPos_Decelerate;
-            }
-            if (leaving)
-            {
-                step = 1;
-                end = skyfaller.LeaveMapAfterTicks;
-            }
-            for (int i = skyfaller.ticksToImpact; i != end; i += step)
-            {
-                var speed = CurrentSpeed(skyfaller, i);
-                Vector3 drawPos = getDrawPos(baseDrawPos, i, angle, speed, offsetComp);
-                var x = drawPos.x - groundPos.x;
-                x *= (1 - cameraSin);
-                x += groundPos.x;
-                var y = (drawPos.z - groundPos.z) / cameraSin;
-                var z = groundPos.z;
-                yield return new Vector3(x, y, z);
+                try
+                {
+                    skyfaller.ticksToImpact -= i;
+                    yield return skyfaller.DrawPos;
+                }
+                finally
+                {
+                    skyfaller.ticksToImpact += i;
+                }
             }
         }
     }
