@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Remove conflicting apparel layer === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[
+			@Name="DankPyon_Zweihander" or
+			@Name="DankPyon_Medieval_Knight" or
+			defName="DankPyon_Medieval_Lord"
+			]/apparelRequired/li[.="DankPyon_Footwear_BootsPlate"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[
+			@Name="DankPyon_Zweihander" or
+			@Name="DankPyon_Medieval_Knight" or
+			defName="DankPyon_Medieval_Lord"
+			]/apparelRequired/li[.="DankPyon_Handwear_GlovesPlate"]</xpath>
+	</Operation>
+
+	<!-- === Give backpack to melee pawn with shield chance === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Mercenary" or defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<!-- === Give shields === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Mercenary" or defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_Shield</li>
+					<li>DankPyon_ShieldKite</li>
+					<li>DankPyon_ShieldHeater</li>
+				</shieldTags>
+				<shieldChance>0.35</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give loadout to ranged PawnKind === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>12~20</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>100~200</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldKite</li>
+				</shieldTags>
+				<shieldChance>0.5</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Bowman"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>15~30</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>50~150</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_BrigandMarksman"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>12~20</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>50~150</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="DankPyon_Medieval_Arbalester" or
+			defName="DankPyon_Medieval_Bowman" or
+			defName="DankPyon_BrigandMarksman"
+			]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+				<li>DankPyon_Apparel_Quiver</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester" or defName="DankPyon_BrigandMarksman"]/weaponTags</xpath>
+		<value>
+			<li>CE_XBow</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Bowman" or defName="DankPyon_BrigandMarksman"]/weaponTags</xpath>
+		<value>
+			<li>CE_Bow</li>
+		</value>
+	</Operation>
+
+</Patch>

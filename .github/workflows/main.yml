@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
@@ -24,6 +24,7 @@ jobs:
         
     - name: build core
       run: |
+        sed -i "s_UNKNOWN_$(git rev-parse HEAD | head -c 10)-dev_" Source/CombatExtended/Version.cs
         TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer --csc $PWD/csc
         
     - name: build compat

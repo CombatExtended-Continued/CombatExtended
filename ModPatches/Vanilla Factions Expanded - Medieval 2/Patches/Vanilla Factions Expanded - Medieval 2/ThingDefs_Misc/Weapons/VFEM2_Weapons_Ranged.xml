@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Tools ======= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Arbalest"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Warbow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Gun_Arquebus" or defName="VFEM2_Gun_HandCannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===== Arbalest ===== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFEM2_Arbalest</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>1.0</SwayFactor>
+			<ShotSpread>0.20</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_VFEM2ArbalestBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>26</range>
+			<soundCast>VFEM2_Shot_Arbalest</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>5.5</reloadTime>
+			<ammoSet>AmmoSet_VFEM2ArbalestBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_XBow</li>
+			<li>VFEM2_Arbalest</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ===== Warbow ===== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFEM2_Warbow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>5.00</Bulk>
+			<RangedWeapon_Cooldown>0.7</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>20</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_VFEM2WarArrow_Stone</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>32</range>
+			<soundCast>VFEM2_Shot_Warbow</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_VFEM2WarArrow</ammoSet>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
+		</AmmoUser>
+		<FireModes />
+		<weaponTags>
+			<li>CE_Bow</li>
+			<li>VFEM2_Warbow</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VFEM2_Warbow"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEM2_Warbow"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEM2_Warbow"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<oneAmmoHolder>true</oneAmmoHolder>
+				<propsUnderBarrel>
+					<ammoSet>AmmoSet_VFEM2WarArrow_Indirect</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_VFEM2WarArrow_Stone_Indirect</defaultProjectile>
+					<warmupTime>3</warmupTime>
+					<range>32</range>
+					<minRange>3</minRange>
+					<indirectFirePenalty>0.01</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>VFEM2_Shot_Warbow</soundCast>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel />
+				<underBarrelLabel>Volley Shot</underBarrelLabel>
+				<!-- <underBarrelIconTexPath /> -->
+				<standardLabel>Direct Shot</standardLabel>
+				<!-- <standardIconTexPath /> -->
+			</li>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>
+					<li>70</li>
+					<li>80</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ===== Arquebus ===== -->
+	<Operation Class="PatchOperationReplace"> <!-- Without this patch it will keep the vanilla verb for unknown reason -->
+		<xpath>Defs/ThingDef[defName="VFEM2_Gun_Arquebus"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<range>35</range>
+					<soundCast>VFEM2_Shot_Arquebus</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFEM2_Gun_Arquebus</defName>
+		<statBases>
+			<Bulk>12</Bulk>
+			<SwayFactor>1.68</SwayFactor>
+			<ShotSpread>0.08</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+		</statBases>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>6</AmmoGenPerMagOverride>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_FastMusketBall</ammoSet>
+		</AmmoUser>
+		<!-- <Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+			<warmupTime>1.4</warmupTime>
+			<range>35</range>
+			<soundCast>VFEM2_Shot_Arquebus</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties> -->
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NeolithicRangedHeavy</li>
+			<li>NeolithicRangedChief</li>
+			<li>VFEM2_MedievalRangedChempowder</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ===== Hand Cannon ===== -->
+	<Operation Class="PatchOperationReplace"> <!-- Without this patch it will keep the vanilla verb for unknown reason -->
+		<xpath>Defs/ThingDef[defName="VFEM2_Gun_HandCannon"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_VFEM2HandCannon_Ball</defaultProjectile>
+					<warmupTime>1.66</warmupTime>
+					<range>12</range>
+					<soundCast>VFEM2_Shot_HandCannon</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFEM2_Gun_HandCannon</defName>
+		<statBases>
+			<Bulk>7</Bulk>
+			<SwayFactor>1.22</SwayFactor>
+			<ShotSpread>0.36</ShotSpread>
+			<SightsEfficiency>0.85</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<AmmoUser>
+			<magazineSize>4</magazineSize>
+			<AmmoGenPerMagOverride>12</AmmoGenPerMagOverride>
+			<reloadTime>5.1</reloadTime>
+			<ammoSet>AmmoSet_VFEM2HandCannonShot</ammoSet>
+		</AmmoUser>
+		<!-- <Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VFEM2HandCannon_Ball</defaultProjectile>
+			<warmupTime>1.66</warmupTime>
+			<range>12</range>
+			<soundCast>VFEM2_Shot_HandCannon</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
+		</Properties> -->
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NeolithicRangedHeavy</li>
+			<li>NeolithicRangedChief</li>
+			<li>VFEM2_MedievalRangedChempowder</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ===== Throwing Axe ===== -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]/costStuffCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]/stuffCategories</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]/statBases</xpath>
+		<value>
+			<statBases>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+				<Bulk>1.25</Bulk>
+				<Mass>0.75</Mass>
+				<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+			</statBases>
+			<stackLimit>25</stackLimit>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_VFEM2ThrowingAxe_Thrown</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>10</range>
+					<soundCast>Interact_BeatFire</soundCast>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.18</cooldownTime>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.62</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Remove shield as apparel requirement -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_ManAtArms"]/apparelRequired/li[.="VFEM2_Shield_Heater"]</xpath>
+	</Operation>
+
+	<!-- === Give Shield === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_ManAtArms"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>200~600</shieldMoney>
+				<shieldTags>
+					<li>VFEM2_Shield_Heater</li>
+				</shieldTags>
+				<shieldChance>0.8</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Knight" or defName="VFEM2_Lord"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>200~600</shieldMoney>
+				<shieldTags>
+					<li>VFEM2_Shield_Heater</li>
+				</shieldTags>
+				<shieldChance>0.5</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give ammo to Crossbowman === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Crossbowman"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>12~20</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>100~200</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give ammo to Handgunner === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Handgunner"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>2~4</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>100~200</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give ammo to Archer and Hunter === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Archer" or defName="VFEM2_Hunter"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>15~30</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>50~150</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give ammo to Guild master and Heavy archer === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Guildmaster" or defName="VFEM2_HeavyArcher"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>12~20</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>50~150</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="VFEM2_Crossbowman" or
+			defName="VFEM2_Handgunner" or
+			defName="VFEM2_Archer" or
+			defName="VFEM2_Hunter" or
+			defName="VFEM2_Guildmaster" or
+			defName="VFEM2_HeavyArcher"
+			]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="VFEM2_Crossbowman"]/weaponTags</xpath>
+		<value>
+			<li>CE_XBow</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="VFEM2_Archer" or 
+			defName="VFEM2_Hunter" or 
+			defName="VFEM2_Guildmaster" or 
+			defName="VFEM2_HeavyArcher"
+			]/weaponTags</xpath>
+		<value>
+			<li>CE_Bow</li>
+		</value>
+	</Operation>
+
+</Patch>

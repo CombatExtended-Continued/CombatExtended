@@ -6,8 +6,9 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[Cosplay Equipment]	Blue Archive |
+[AV] Mechtech   |
 [AV] Work Queen |
+[Cosplay Equipment]	Blue Archive |
 [CP] DOOM	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
@@ -34,10 +35,6 @@ Mod |
 [LTS] Military |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
-[O21] Outland - Core    |
-[O21] Outland - Eastborn Empire    |
-[O21] Outland - Motz Coalition  |
-[O21] Outland - Redburn Pact  |
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
@@ -80,6 +77,7 @@ Advanced Mortar (Continued) |
 All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
+Alpha Books |
 Alpha Genes |
 Alpha Implants |
 Alpha Mechs |
@@ -87,6 +85,7 @@ Alpha Memes |
 Alpha Mythology |
 Alpha Ships |
 Alpha Vehicles - Neolithic  |
+Alpha Vehicles - Age of Sail  |
 Altered Carbon |
 Ancient Arsenal: Warcaskets |
 Ancient Blade Cyborg  |
@@ -138,6 +137,7 @@ Big and Small - Vampires and the Undead  |
 Big and Small - Weapons	|
 Biomes! Caverns	|
 Biomes! Core	|
+Biomes! Polluted Lands  |
 Biotech Expansion - Insectoid   |
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
@@ -164,6 +164,7 @@ Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
 Communicable Diseases   |
 Cossacks of the Rim |
+Crossbows   |
 Crowns and Regalia  |
 Cupro's Alloys	|
 Cursed Guns |
@@ -171,12 +172,15 @@ CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Cybernetic Warfare and Special Weapons (Continued)  |
+Dark Ages : Beasts and Monsters  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
 Deployable Turret   |
 Det's Energy Weapons    |
 Det's Xenotypes - Boglegs   |
+Det's Xenotypes - Keshig   |
+Det's Xenotypes - Venators   |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -231,6 +235,7 @@ Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
 Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
+Fantasy Metals Reforged Forked |
 Farming Expansion   |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
@@ -266,7 +271,8 @@ Grimworld: Melee	|
 GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Hammer of the Imperium |
-GrimWorld 40,000 - Imperial Vehicles of Grimworld |
+Grimworld 40,000 - Heresy Armor Addon   |
+GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
 Gulden Mod  |
 Half Dragons    |
@@ -277,6 +283,7 @@ Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
 Hive Armory |
+Huscarl - Power Armor   |
 Hyena (Continued) |
 Idhale Race	|
 Impact Weaponry	|
@@ -286,6 +293,7 @@ Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
+Integrated Implants |
 Ion Weaponry    |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
@@ -323,12 +331,15 @@ Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
-Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
+Medieval Bowyer   |
+Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medieval Overhaul   |
+Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
 Medieval Overhaul: House Roxmont  |
+Medieval Overhaul: Royalty  |
 Medieval Tailor   |
 Megafauna	|
 Melee Animation	|
@@ -349,6 +360,7 @@ Misc. Turrets   |
 Moa |
 Moonjelly Race  |
 More Archotech Garbage Continued  |
+More Armory! Midworld Arms Pack  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Medieval Helms and Armor	|
@@ -367,7 +379,6 @@ MorrowRim - Just the Animals	|
 Moyo - From the Depth   |
 Moyo - Light in the Abyss   |
 Moyo - The Cartel Arrives   |
-Moyo 2.0-Blood Stained Business |
 Multiplayer |
 Nakin Race  |
 Nanosuit    |
@@ -393,6 +404,10 @@ Outer Rim - Old Republic	|
 Outer Rim - Rebel Alliance	|
 Outer Rim - Separatists	|
 Outer Rim - Tatooine    |
+Outland - Core    |
+Outland - Eastborn Empire    |
+Outland - Motz Coalition  |
+Outland - Redburn Pact  |
 Palm Cats   |
 Paniel the Automata |
 Pawnbold Race   |
@@ -412,6 +427,7 @@ PsiTech	|
 PsyBlasters |
 Pulsefire Turret (Continued)    |
 Pulse Weaponry  |
+RPG Adventure Flavour Pack  |
 Rabbie The Moonrabbit race	|
 Racc Race	|
 Race to the Rim |
@@ -421,6 +437,7 @@ Rah's Vanilla Turrets Expansion |
 Rakkle The Rattle Snake Race Mod  |
 Rambo Weapons Pack (Continued)  |
 Ratkin Apparel+ |
+Ratkin Xenotype |
 Ratnik-3 Prototype Armor    |
 ReBuild - Doors and Corners |
 Red Army (Continued) |
@@ -429,6 +446,7 @@ Recon Mechanoid |
 ReGrowth: Core |
 ReGrowth: Extinct Animals |
 ReGrowth: Wastelands |
+Reinforced Mechanoid 2 (Continued) |
 Remote Detonator	|
 Remove Industrial Stuff |
 Revia Race |
@@ -463,6 +481,8 @@ Rimsenal - Federation Faction Pack |
 Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
 Rimsenal - Spacer Faction Pack  |
+Rimsenal Xenotype Pack - Askbarn    |
+Rimsenal Xenotype Pack - Harana |
 RimTraits - General Traits  |
 RimTraits – Medieval Talents    |
 Rimworld - The Dark Descent |
@@ -472,6 +492,9 @@ Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Robotic Servitude   |
 Rockmen race    |
+Roo Faun    |
+Roo Satyr    |
+Roo Satyr and Faun Xenotype Expanded    |
 Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |
@@ -502,6 +525,7 @@ Starship Troopers Aracnids  |
 Steamworld Uniforms |
 Steves Animals  |
 Stoneborn - Delights  |
+Supernatural Weapons    |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
@@ -519,6 +543,7 @@ Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
 Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
+Tools O'Plenty  |
 TouhouStyle	|
 Tribal Warrior Set! |
 Tsar Armory	|
@@ -546,11 +571,10 @@ Vanilla Factions Expanded - Deserters  |
 Vanilla Factions Expanded - Empire  |
 Vanilla Factions Expanded - Insectoids 2|
 Vanilla Factions Expanded - Mechanoids	|
-Vanilla Factions Expanded - Medieval	|
+Vanilla Factions Expanded - Medieval 2  |
 Vanilla Factions Expanded - Pirates |
 Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Tribals |
-Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Genetics Expanded   |
@@ -559,9 +583,11 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Persona Weapons Expanded   |
 Vanilla Plants Expanded - Mushrooms  |
+Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
+Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
@@ -595,6 +621,7 @@ VFE Pirates unofficial add-on: Warcasket Melee Armory Continued	|
 VFE - Mechanoids : Drones |
 VGP Fabrics |
 VGP Garden Drinks    |
+Victorian Era Apparels!  |
 VRE Android Factions  |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |

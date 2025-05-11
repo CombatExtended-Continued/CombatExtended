@@ -8,6 +8,7 @@ using CombatExtended.AI;
 using CombatExtended.Compatibility;
 using Mono.Unix.Native;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -50,7 +51,7 @@ namespace CombatExtended
 
         public bool shouldBeOn => ShouldBeOn();
 
-        public bool ShouldBeOn(bool failureNotify = false)
+        public virtual bool ShouldBeOn(bool failureNotify = false)
         {
             if (manningRequiredButUnmanned)
             {
@@ -341,12 +342,16 @@ namespace CombatExtended
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
-        public bool TryActiveReload()
+        public virtual List<Thing> TurretsToReload()
         {
             List<Thing> adjThings = new List<Thing>();
             GenAdjFast.AdjacentThings8Way(this, adjThings);
+            return adjThings;
+        }
 
-            foreach (Thing building in adjThings)
+        public bool TryActiveReload()
+        {
+            foreach (Thing building in TurretsToReload())
             {
                 if (building is Building_TurretGunCE turret && (turret.GetAmmo().EmptyMagazine || turret.currentTargetInt == LocalTargetInfo.Invalid) && StartReload(turret.GetAmmo()))
                 {
@@ -438,7 +443,7 @@ namespace CombatExtended
                 int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetAmmoUser.MissingToFullMagazine);
                 TargetAmmoUser.CurMagCount += ammoCount;
                 CompAmmoUser.CurMagCount -= ammoCount;
-            };
+            }
             TargetTurret.SetReloading(false);
             TargetTurret = null;
             TryActiveReload();

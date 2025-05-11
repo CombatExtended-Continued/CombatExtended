@@ -1,10 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using static UnityEngine.UI.Image;
+
 
 namespace CombatExtended
 {
@@ -13,6 +15,8 @@ namespace CombatExtended
         public TravelingShellProperties shellingProps;
 
         // public float armorPenetration = 0;
+        public float speedGain = 0f;
+        public int fuelTicks = 0;
         public int pelletCount = 1;
         public float spreadMult = 1;
         public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
@@ -35,7 +39,6 @@ namespace CombatExtended
         public FloatRange mass = new FloatRange(1f, 1f);
         public FloatRange diameter = new FloatRange(1f, 1f);
 
-        public bool lerpPosition = true;
         public ThingDef detonateMoteDef;
         public FleckDef detonateFleckDef;
         public float detonateEffectsScaleOverride = -1;
@@ -61,6 +64,60 @@ namespace CombatExtended
         public float aimHeightOffset = 0;
 
         public float empShieldBreakChance = 1f;
+        public float collideDistance = 1f;
+        public float impactChance = 1f;
+
         public float Gravity => CE_Utility.GravityConst * gravityFactor;
+        public ThingDef CIWSVersion;
+        public System.Type trajectoryWorker;
+        private BaseTrajectoryWorker trajectoryWorkerInt;
+        public string lerpPosition = "";
+
+        private static LerpedTrajectoryWorker defaultLerpedTrajectoryWorker = new LerpedTrajectoryWorker();
+        public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
+
+        public BaseTrajectoryWorker TrajectoryWorker
+        {
+            get
+            {
+                if (trajectoryWorkerInt == null)
+                {
+                    if (trajectoryWorker != null)
+                    {
+                        if (trajectoryWorker == typeof(BallisticsTrajectoryWorker))
+                        {
+                            trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
+                        }
+                        else if (trajectoryWorker == typeof(LerpedTrajectoryWorker))
+                        {
+                            trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                        }
+                        else
+                        {
+                            trajectoryWorkerInt = (BaseTrajectoryWorker)Activator.CreateInstance(trajectoryWorker);
+                        }
+                    }
+                    else
+                    {
+                        if (lerpPosition != "")
+                        {
+                            if (lerpPosition.ToLower().Trim() == "false")
+                            {
+                                trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
+                            }
+                            else
+                            {
+                                trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                            }
+                        }
+                        else
+                        {
+                            trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                        }
+                    }
+                }
+                return trajectoryWorkerInt;
+            }
+        }
     }
 }

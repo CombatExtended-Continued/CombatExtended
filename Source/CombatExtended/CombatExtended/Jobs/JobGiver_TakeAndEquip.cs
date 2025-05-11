@@ -109,7 +109,7 @@ namespace CombatExtended
                 if (viableAmmoBulk < potentialAmmoBulk)
                 {
                     // There's less ammo [nr] than fits a clip [nr]
-                    if (primaryAmmoUser.MagSize == 0 || viableAmmoCarried < magazineSize.min)
+                    if ((primaryAmmoUser.MagSize == 0 && viableAmmoCarried < primaryAmmoUser.MagSizeOverride) || viableAmmoCarried < magazineSize.min)
                     {
                         return Unload(pawn) ? WorkPriority.Unloading : WorkPriority.LowAmmo;
                     }
@@ -485,8 +485,7 @@ namespace CombatExtended
 
                                             if (closestThing != null)
                                             {
-                                                int numToCarry = 0;
-                                                if (inventory.CanFitInInventory(th, out numToCarry))
+                                                if (inventory.CanFitInInventory(th, out int numToCarry))
                                                 {
                                                     Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, th);
                                                     int maxAmmoToPickup = (primaryAmmoUserWithInventoryCheck.MagSizeOverride > 0) ? primaryAmmoUserWithInventoryCheck.MagSizeOverride * 4 : primaryAmmoUserWithInventoryCheck.MagSize * 4;
@@ -497,8 +496,7 @@ namespace CombatExtended
                                         }
                                         else
                                         {
-                                            int numToCarry = 0;
-                                            if (inventory.CanFitInInventory(th, out numToCarry))
+                                            if (inventory.CanFitInInventory(th, out int numToCarry))
                                             {
                                                 Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, th);
                                                 job.count = Mathf.RoundToInt(numToCarry * 0.8f);

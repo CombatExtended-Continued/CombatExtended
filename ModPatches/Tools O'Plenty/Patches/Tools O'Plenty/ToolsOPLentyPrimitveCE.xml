@@ -1,0 +1,470 @@
+<Patch>
+
+	<!-- Primitive knife -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Primitive_Knife"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.9</cooldownTime>
+						<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>0.8</cooldownTime>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.27</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>0.9</cooldownTime>
+						<armorPenetrationBlunt>0.23</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.31</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Knife"]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Knife"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.5</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Knife"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Mortar and pestle -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mortar_And_Pestle"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.7</cooldownTime>
+						<armorPenetrationBlunt>0.22</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>
+				</tools>	
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mortar_And_Pestle"]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+			<MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mortar_And_Pestle"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.1</MeleeCritChance>
+			<MeleeParryChance>0.1</MeleeParryChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- Mallet -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mallet"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.2</cooldownTime>
+						<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>2.23</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>
+				</tools>	
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mallet"]/statBases</xpath>
+		<value>
+			<Bulk>2.5</Bulk>
+			<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mallet"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.42</MeleeCritChance>
+			<MeleeParryChance>0.24</MeleeParryChance>
+			<MeleeDodgeChance>0.2</MeleeDodgeChance>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mallet"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Primitive pick -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Primitive_Pick"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.2</cooldownTime>
+						<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>2.2</cooldownTime>
+						<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.2</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+				</tools>	
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Pick"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Pick"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.3</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+			<MeleeDodgeChance>0.1</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- Primitive axe -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Primitive_Axe"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>3.5</cooldownTime>
+						<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.2</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					</li>
+				</tools>	
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Axe"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Axe"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.1</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+			<MeleeDodgeChance>0.2</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- Primitive tools set -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Primitive_Tools_Set"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>0.5</power>
+						<cooldownTime>0.7</cooldownTime>
+						<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.2</cooldownTime>
+						<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.4</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+				</tools>	
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Tools_Set"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Tools_Set"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.1</MeleeParryChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- Parchment -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Parchment"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>0.7</cooldownTime>
+						<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+				</tools>	
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Parchment"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Parchment"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.1</MeleeParryChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- Straw Broom -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Sraw_Broom"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1</cooldownTime>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+				</tools>	
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Sraw_Broom"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Sraw_Broom"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.1</MeleeParryChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+	
+	<!-- Primitive comb -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Primitive_Comb"]/tools</xpath>
+			<value>
+				 <tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1</cooldownTime>
+					<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationBlunt>0.22</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.2</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+				</tools>	
+			</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Comb"]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+			<MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Comb"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Comb"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	 <!-- Primitive bandage-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Primitive_Bandage"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>0.1</power>
+					<cooldownTime>1</cooldownTime>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Bandage"]/statBases</xpath>
+		<value>
+			<Bulk>0.25</Bulk>
+			<MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Primitive_Bandage"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.1</MeleeParryChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+</Patch>

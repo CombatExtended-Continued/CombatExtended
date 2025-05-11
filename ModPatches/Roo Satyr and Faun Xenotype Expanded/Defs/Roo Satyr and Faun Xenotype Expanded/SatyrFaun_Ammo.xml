@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Fae Arrow -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SatyrFaunArrow</defName>
+		<label>arrows</label>
+		<ammoTypes>
+			<Ammo_Arrow_Stone>Projectile_SatyrFaunArrow_Stone</Ammo_Arrow_Stone>
+			<Ammo_Arrow_Steel>Projectile_SatyrFaunArrow_Steel</Ammo_Arrow_Steel>
+			<Ammo_Arrow_Plasteel>Projectile_SatyrFaunArrow_Plasteel</Ammo_Arrow_Plasteel>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_SatyrFaunArrow_Stone</defName>
+		<label>fae arrow</label>
+		<graphicData>
+			<texPath>Things/Projectile/RBSFE_FaeBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>40</speed>
+			<damageDef>RBSFE_FaeDamage</damageDef>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>0.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>2.78</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_SatyrFaunArrow_Steel</defName>
+		<label>fae arrow</label>
+		<graphicData>
+			<texPath>Things/Projectile/RBSFE_FaeBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>40</speed>
+			<damageDef>RBSFE_FaeDamage</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>1.0</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.9</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_SatyrFaunArrow_Plasteel</defName>
+		<label>fae arrow</label>
+		<graphicData>
+			<texPath>Things/Projectile/RBSFE_FaeBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>50</speed>
+			<damageDef>RBSFE_FaeDamage</damageDef>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.54</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_Arrow_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+</Defs>

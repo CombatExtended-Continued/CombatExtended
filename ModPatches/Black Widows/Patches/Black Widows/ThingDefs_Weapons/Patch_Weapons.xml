@@ -44,9 +44,6 @@
 					<texPath>Things/Ammo/Medieval/Bolt/Steel</texPath>
 					<graphicClass>Graphic_StackCount</graphicClass>
 				</graphicData>
-				<statBases>
-					<MarketValue>1.32</MarketValue>
-				</statBases>
 				<ammoClass>SteelArrow</ammoClass>
 			</ThingDef>
 			<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBlackWidowArrowBase">
@@ -56,9 +53,6 @@
 					<texPath>Things/Ammo/Medieval/Bolt/Plasteel</texPath>
 					<graphicClass>Graphic_StackCount</graphicClass>
 				</graphicData>
-				<statBases>
-					<MarketValue>6.12</MarketValue>
-				</statBases>
 				<ammoClass>PlasteelArrow</ammoClass>
 				<generateAllowChance>0.5</generateAllowChance>
 			</ThingDef>
@@ -73,6 +67,7 @@
 					<speed>30</speed>
 				</projectile>
 			</ThingDef>
+
 			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBlackWidowArrowProjectile">
 				<defName>Projectile_BlackWidowArrow_Steel</defName>
 				<label>black widow arrow (steel)</label>
@@ -87,7 +82,16 @@
 					<preExplosionSpawnChance>0.8</preExplosionSpawnChance>
 					<preExplosionSpawnThingDef>Ammo_BlackWidowArrow_Steel</preExplosionSpawnThingDef>
 				</projectile>
+				<modExtensions>
+					<li Class="ProjectileImpactFX.EffectProjectileExtension">
+						<AutoAssign>false</AutoAssign>
+						<CreateTerrainEffects>true</CreateTerrainEffects>
+						<StuckProjectileFleckDef>Fleck_CELandedArrow_Steel</StuckProjectileFleckDef>
+						<StuckProjectileFleckSize>0.65</StuckProjectileFleckSize>
+					</li>
+				</modExtensions>
 			</ThingDef>
+
 			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBlackWidowArrowProjectile">
 				<defName>Projectile_BlackWidowArrow_Plasteel</defName>
 				<label>black widow arrow (plasteel)</label>
@@ -102,7 +106,16 @@
 					<preExplosionSpawnChance>0.9</preExplosionSpawnChance>
 					<preExplosionSpawnThingDef>Ammo_BlackWidowArrow_Plasteel</preExplosionSpawnThingDef>
 				</projectile>
+				<modExtensions>
+					<li Class="ProjectileImpactFX.EffectProjectileExtension">
+						<AutoAssign>false</AutoAssign>
+						<CreateTerrainEffects>true</CreateTerrainEffects>
+						<StuckProjectileFleckDef>Fleck_CELandedArrow_Plasteel</StuckProjectileFleckDef>
+						<StuckProjectileFleckSize>0.65</StuckProjectileFleckSize>
+					</li>
+				</modExtensions>
 			</ThingDef>
+			
 			<!-- ==================== Recipes ========================== -->
 			<RecipeDef ParentName="AmmoRecipeNeolithicBase">
 				<defName>MakeAmmo_BlackWidowArrow_Steel</defName>
@@ -273,6 +286,7 @@
 		</Properties>
 		<AmmoUser>
 			<ammoSet>AmmoSet_BlackWidowArrow</ammoSet>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
 		</AmmoUser>
 		<weaponTags>
 			<li>BWBow</li>

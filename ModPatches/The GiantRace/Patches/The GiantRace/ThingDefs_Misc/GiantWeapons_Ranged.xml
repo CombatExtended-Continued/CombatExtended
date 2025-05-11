@@ -16,7 +16,6 @@
 			<graphicData>
 				<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
 			</graphicData>
-			<menuHidden>False</menuHidden>
 			<destroyOnDrop>False</destroyOnDrop>
 			<thingClass>CombatExtended.AmmoThing</thingClass>
 			<label>unspecified ammunition</label>
@@ -49,7 +48,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="GiantBaseRange"]/comps</xpath>
 		<value>
-			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Forbiddable" />
 			<li>
 				<compClass>CompEquippable</compClass>
 			</li>
@@ -73,7 +72,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Jackstones_limestone"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -89,7 +88,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -105,7 +104,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Javelin"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -121,7 +120,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Scrapmetal"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -137,7 +136,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Rockpillar_granite"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -153,7 +152,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Rockpillar_Marble"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -169,9 +168,16 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Lightningjavelin"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Scrapmetal" or defName="GI_Lightningjavelin"]/smeltable</xpath>
+		<value>
+			<smeltable>false</smeltable>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -225,61 +231,6 @@
 			]/recipeMaker </xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="GI_Jackstones_limestone" or
-			defName="GI_Jackstones_granite" or
-			defName="GI_Javelin" or
-			defName="GI_Scrapmetal" or
-			defName="GI_Rockpillar_granite" or
-			defName="GI_Rockpillar_Marble"
-			]/statBases </xpath>
-		<value>
-			<MarketValue>0.05</MarketValue>
-			<MarketValue>0.18</MarketValue>
-			<MarketValue>0.09</MarketValue>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="GI_Jackstones_limestone" or
-			defName="GI_Jackstones_granite"
-			]/statBases </xpath>
-		<value>
-			<MarketValue>0.05</MarketValue>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="GI_Javelin" or
-			defName="GI_Scrapmetal"
-			]/statBases </xpath>
-		<value>
-			<MarketValue>0.18</MarketValue>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="GI_Rockpillar_granite" or
-			defName="GI_Rockpillar_Marble"
-			]/statBases </xpath>
-		<value>
-			<MarketValue>0.09</MarketValue>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="GI_Lightningjavelin"
-			]/statBases </xpath>
-		<value>
-			<MarketValue>75</MarketValue>
-		</value>
-	</Operation>
-
 	<!-- Compat -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -287,7 +238,6 @@
 		<statBases>
 			<Mass>8</Mass>
 			<Bulk>5</Bulk>
-			<MarketValue>0.09</MarketValue>
 			<SightsEfficiency>0.8</SightsEfficiency>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<ShotSpread>1.5</ShotSpread>
@@ -304,10 +254,6 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-		</FireModes>
-		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -332,7 +278,6 @@
 		<statBases>
 			<Mass>8</Mass>
 			<Bulk>5</Bulk>
-			<MarketValue>0.09</MarketValue>
 			<SightsEfficiency>0.8</SightsEfficiency>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<ShotSpread>1.5</ShotSpread>
@@ -349,8 +294,6 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
-		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -375,7 +318,6 @@
 		<statBases>
 			<Mass>10.2</Mass>
 			<Bulk>12</Bulk>
-			<MarketValue>0.09</MarketValue>
 			<SightsEfficiency>1.0</SightsEfficiency>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<ShotSpread>1.5</ShotSpread>
@@ -392,8 +334,6 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
-		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -431,7 +371,6 @@
 		<statBases>
 			<Mass>6.6</Mass>
 			<Bulk>5</Bulk>
-			<MarketValue>0.09</MarketValue>
 			<SightsEfficiency>0.8</SightsEfficiency>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<ShotSpread>10</ShotSpread>
@@ -448,7 +387,6 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -473,7 +411,6 @@
 		<statBases>
 			<Mass>18</Mass>
 			<Bulk>14</Bulk>
-			<MarketValue>0.09</MarketValue>
 			<SightsEfficiency>0.8</SightsEfficiency>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<ShotSpread>1.5</ShotSpread>
@@ -489,8 +426,6 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
-		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -515,7 +450,6 @@
 		<statBases>
 			<Mass>18</Mass>
 			<Bulk>14</Bulk>
-			<MarketValue>0.09</MarketValue>
 			<SightsEfficiency>0.8</SightsEfficiency>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<ShotSpread>1.5</ShotSpread>
@@ -531,8 +465,6 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<AllowWithRunAndGun>false</AllowWithRunAndGun>
-		<FireModes/>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -557,7 +489,6 @@
 		<statBases>
 			<Mass>10.2</Mass>
 			<Bulk>12</Bulk>
-			<MarketValue>0.09</MarketValue>
 			<SightsEfficiency>1.0</SightsEfficiency>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<ShotSpread>1.5</ShotSpread>
@@ -574,8 +505,6 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
-		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -613,7 +542,6 @@
 		<statBases>
 			<Mass>8.6</Mass>
 			<Bulk>12</Bulk>
-			<MarketValue>0.09</MarketValue>
 			<SightsEfficiency>1.0</SightsEfficiency>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<ShotSpread>1.5</ShotSpread>
@@ -630,8 +558,6 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
-		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -688,7 +614,7 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>RangedBlunt</damageDef>
 					<damageAmountBase>39</damageAmountBase>
-					<speed>8</speed>
+					<speed>12</speed>
 					<armorPenetrationBlunt>24</armorPenetrationBlunt>
 					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<preExplosionSpawnChance>0.75</preExplosionSpawnChance><!-- 4 javelins per resource -->
@@ -714,7 +640,7 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>RangedBlunt</damageDef>
 					<damageAmountBase>39</damageAmountBase>
-					<speed>8</speed>
+					<speed>12</speed>
 					<armorPenetrationBlunt>24</armorPenetrationBlunt>
 					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<preExplosionSpawnChance>0.75</preExplosionSpawnChance><!-- 4 javelins per resource -->
@@ -737,7 +663,7 @@
 				</graphicData>
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageAmountBase>45</damageAmountBase>
-					<speed>8</speed>
+					<speed>12</speed>
 					<armorPenetrationBlunt>67.5</armorPenetrationBlunt>
 					<armorPenetrationSharp>5</armorPenetrationSharp>
 					<preExplosionSpawnChance>0.50</preExplosionSpawnChance><!-- 4 javelins per resource -->
@@ -762,7 +688,7 @@
 					<pelletCount>12</pelletCount>
 					<spreadMult>2</spreadMult>
 					<damageAmountBase>12</damageAmountBase>
-					<speed>8</speed>
+					<speed>12</speed>
 					<armorPenetrationBlunt>3.12</armorPenetrationBlunt>
 					<armorPenetrationSharp>2</armorPenetrationSharp>
 				</projectile>
@@ -785,7 +711,7 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>RangedBlunt</damageDef>
 					<damageAmountBase>57</damageAmountBase>
-					<speed>8</speed>
+					<speed>12</speed>
 					<armorPenetrationBlunt>72</armorPenetrationBlunt>
 					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<preExplosionSpawnChance>0.25</preExplosionSpawnChance><!-- 4 javelins per resource -->
@@ -810,7 +736,7 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>RangedBlunt</damageDef>
 					<damageAmountBase>57</damageAmountBase>
-					<speed>8</speed>
+					<speed>12</speed>
 					<armorPenetrationBlunt>72</armorPenetrationBlunt>
 					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<preExplosionSpawnChance>0.25</preExplosionSpawnChance><!-- 4 javelins per resource -->
@@ -833,7 +759,7 @@
 				</graphicData>
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageAmountBase>45</damageAmountBase>
-					<speed>8</speed>
+					<speed>12</speed>
 					<armorPenetrationBlunt>40</armorPenetrationBlunt>
 					<armorPenetrationSharp>28</armorPenetrationSharp>
 				</projectile>

@@ -61,30 +61,32 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>BotchJob_DivineOrderPistol</defName>
 		<statBases>
-			<Bulk>7</Bulk>
-			<SwayFactor>1.22</SwayFactor>
-			<ShotSpread>0.36</ShotSpread>
-			<SightsEfficiency>0.85</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+			<Mass>1.5</Mass>
+			<Bulk>3.5</Bulk>
+			<SwayFactor>1.58</SwayFactor>
+			<ShotSpread>0.42</ShotSpread>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
-			<warmupTime>1.66</warmupTime>
+			<warmupTime>0.9</warmupTime>
 			<range>12</range>
-			<soundCast>Shot_Shotgun_NoRack</soundCast>
+			<recoilAmount>3.59</recoilAmount>
+			<soundCast>Shot_CE_Musket</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
-			<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>4</magazineSize>
-			<reloadTime>5.1</reloadTime>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+			<reloadTime>5.9</reloadTime>
 			<ammoSet>AmmoSet_SlowMusketBall</ammoSet>
 		</AmmoUser>
 		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
+			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
 		<weaponTags>
 			<li>NeolithicRangedHeavy</li>
