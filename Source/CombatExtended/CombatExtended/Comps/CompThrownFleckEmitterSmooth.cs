@@ -58,12 +58,11 @@ namespace CombatExtended
             Vector3 delta = lastPos - parent.DrawPos;
             foreach (ProjectileFleckDataCE data in Props.FleckDatas)
             {
-                if ((data.cutoffTickRange.max < 0 || age < data.cutoffTickRange.max) 
+                if ((data.cutoffTickRange.max < 0 || age < data.cutoffTickRange.max)
                     && (data.startDelayTick < 0 || age > data.startDelayTick)
                     && data.shouldEmit(age))
                 {
                     float scaleoffset = 0;
-
                     Vector3 diff = Vector3.zero;
                     for (int i = 0; i < data.emissionAmount; i++)
                     {
