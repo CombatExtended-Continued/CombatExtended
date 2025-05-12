@@ -58,7 +58,9 @@ namespace CombatExtended
             Vector3 delta = lastPos - parent.DrawPos;
             foreach (ProjectileFleckDataCE data in Props.FleckDatas)
             {
-                if ((data.cutoffTickRange.max < 0 || age < data.cutoffTickRange.max) && data.shouldEmit(age))
+                if ((data.cutoffTickRange.max < 0 || age < data.cutoffTickRange.max) 
+                    && (data.startDelayTick < 0 || age > data.startDelayTick)
+                    && data.shouldEmit(age))
                 {
                     float scaleoffset = 0;
                     Vector3 diff = Vector3.zero;
@@ -111,6 +113,8 @@ namespace CombatExtended
         public FloatRange scale = new FloatRange(1, 1);
 
         public IntRange cutoffTickRange = new IntRange(-1, -1);
+
+        public int startDelayTick = 1;
 
         public float originOffset = 0.7f;
 
