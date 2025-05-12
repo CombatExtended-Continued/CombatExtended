@@ -183,6 +183,12 @@ namespace CombatExtended
         #region Position
         private Vector3 exactPosition;
 
+        public virtual Vector2 Vec2Position()
+        {
+            Log.ErrorOnce($"{this}.Vec2Position() is deprecated and will be removed in 1.6", 50021 + def.projectile.GetHashCode());
+            return new Vector2(ExactPosition.x, ExactPosition.z);
+        }
+
         /// <summary>
         /// Exact x,y,z (x,height,y) position in terms of Vec2Position.x, .y (lerped origin to Destination) and Height.
         /// </summary>
@@ -1193,7 +1199,7 @@ namespace CombatExtended
             }
             if (lerpPosition != (TrajectoryWorker is LerpedTrajectoryWorker))
             {
-                Log.Warning($"ProjectileCE.lerpPosition value changed in {this}. Setting or referencing this field is deprecated. Please report this.");
+                Log.WarningOnce($"ProjectileCE.lerpPosition value changed in {this}. Setting or referencing this field is deprecated. Please report this.", 50004 + def.projectile.GetHashCode());
             }
             if (TrajectoryWorker is BallisticsTrajectoryWorker && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
             {
