@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- PAWN: Empire_Fighter_Trooper -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Trooper"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Trooper"]</xpath>
+			<value>
+				<weaponTags Inherit="False">
+					<li>DankPyon_Crossbow</li>
+					<li>DankPyon_ArmingSword</li>
+					<li>CE_XBow</li>
+				</weaponTags>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Trooper"]/weaponTags</xpath>
+			<value>
+				<weaponTags Inherit="False">
+					<li>DankPyon_Crossbow</li>
+					<li>DankPyon_ArmingSword</li>
+					<li>CE_XBow</li>
+				</weaponTags>
+			</value>
+		</match>
+	</Operation>
+
+	<!-- === Give shields === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldKite</li>
+				</shieldTags>
+				<shieldChance>0.8</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="Empire_Fighter_Trooper" or defName="Empire_Fighter_Grenadier" or
+			defName="Empire_Fighter_StellicGuardRanged"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>12~20</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>100~200</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldKite</li>
+				</shieldTags>
+				<shieldChance>0.5</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

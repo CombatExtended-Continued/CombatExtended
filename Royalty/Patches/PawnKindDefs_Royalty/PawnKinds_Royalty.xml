@@ -94,8 +94,11 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Janissary"]/specificApparelRequirements/li[bodyPartGroup="UpperHead"]/alternateTagChoices/li[tag="Gunlink"]</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Janissary"]/specificApparelRequirements/li[bodyPartGroup="UpperHead"]/alternateTagChoices/li[tag="Gunlink"]</xpath>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -182,22 +185,42 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]</xpath>
-		<value>
-			<specificApparelRequirements>
-				<li>
-					<bodyPartGroup>Torso</bodyPartGroup>
-					<apparelLayer>Shell</apparelLayer>
-					<stuff>Plasteel</stuff>
-				</li>
-				<li>
-					<bodyPartGroup>FullHead</bodyPartGroup>
-					<apparelLayer>Overhead</apparelLayer>
-					<stuff>Plasteel</stuff>
-				</li>
-			</specificApparelRequirements>
-		</value>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]/specificApparelRequirements</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]/specificApparelRequirements</xpath>
+			<value>
+				<specificApparelRequirements>
+					<li>
+						<bodyPartGroup>Torso</bodyPartGroup>
+						<apparelLayer>Shell</apparelLayer>
+						<stuff>Plasteel</stuff>
+					</li>
+					<li>
+						<bodyPartGroup>FullHead</bodyPartGroup>
+						<apparelLayer>Overhead</apparelLayer>
+						<stuff>Plasteel</stuff>
+					</li>
+				</specificApparelRequirements>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]</xpath>
+			<value>
+				<specificApparelRequirements>
+					<li>
+						<bodyPartGroup>Torso</bodyPartGroup>
+						<apparelLayer>Shell</apparelLayer>
+						<stuff>Plasteel</stuff>
+					</li>
+					<li>
+						<bodyPartGroup>FullHead</bodyPartGroup>
+						<apparelLayer>Overhead</apparelLayer>
+						<stuff>Plasteel</stuff>
+					</li>
+				</specificApparelRequirements>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ====== Grenadier ====== -->
@@ -209,13 +232,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]/weaponTags</xpath>
-		<value>
-			<weaponTags>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]/weaponTags/li[.="EmpireGrenadeDestructive"]</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]/weaponTags/li[.="EmpireGrenadeDestructive"]</xpath>
+			<value>
 				<li>GunHeavy</li>
-			</weaponTags>
-		</value>
+			</value>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
