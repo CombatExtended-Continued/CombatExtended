@@ -14,7 +14,10 @@
 		<defName>AmmoSet_20mmPhoenix</defName>
 		<label>20mm Phoenix</label>
 		<ammoTypes>
-			<Ammo_20mmPhoenix>Bullet_20mmPhoenix</Ammo_20mmPhoenix>
+			<Ammo_20mmPhoenix_APHEF>Bullet_20mmPhoenix_APHEF</Ammo_20mmPhoenix_APHEF>
+			<Ammo_20mmPhoenix_APEM>Bullet_20mmPhoenix_APEM</Ammo_20mmPhoenix_APEM>
+			<Ammo_20mmPhoenix_APHEI>Bullet_20mmPhoenix_APHEI</Ammo_20mmPhoenix_APHEI>
+			<Ammo_20mmPhoenix_HvAP>Bullet_20mmPhoenix_HvAP</Ammo_20mmPhoenix_HvAP>
 		</ammoTypes>
 		<similarTo>AmmoSet_AntiMateriel</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -22,7 +25,7 @@
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20mmPhoenixBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
-		<description>Fin-stabilized rocket-propelled tungsten carbide penetrator with explosive core, designed for special purpose weapons.</description>
+		<description>Fin-stabilized rocket-propelled tungsten carbide penetrator with variable ordnance core, designed for special purpose weapons.</description>
 		<statBases>
 			<Mass>0.051</Mass>
 			<Bulk>0.04</Bulk>
@@ -38,13 +41,43 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20mmPhoenixBase">
-		<defName>Ammo_20mmPhoenix</defName>
-		<label>20mm Phoenix</label>
+		<defName>Ammo_20mmPhoenix_APHEF</defName>
+		<label>20mm Phoenix APHEF</label>
+		<graphicData>
+			<texPath>ThirdParty/VanillaXCOM/Railgun/APHE/HighCaliber</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>MiniRocketAPHEF</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20mmPhoenixBase">
+		<defName>Ammo_20mmPhoenix_APEM</defName>
+		<label>20mm Phoenix APEM</label>
+		<graphicData>
+			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/HighCaliber</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>MiniRocketEMP</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20mmPhoenixBase">
+		<defName>Ammo_20mmPhoenix_APHEI</defName>
+		<label>20mm Phoenix APHEI</label>
+		<graphicData>
+			<texPath>ThirdParty/VanillaXCOM/Railgun/API/HighCaliber</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>MiniRocketIncendiary</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20mmPhoenixBase">
+		<defName>Ammo_20mmPhoenix_HvAP</defName>
+		<label>20mm Phoenix HvAP</label>
 		<graphicData>
 			<texPath>Things/Ammo/Railgun/HighCaliber</texPath>
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
-		<ammoClass>MiniRocketFrag</ammoClass>
+		<ammoClass>MiniRocketPierce</ammoClass>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -56,20 +89,19 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>114</speed>
+			<speed>50</speed>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="Base20mmPhoenixBullet">
-		<defName>Bullet_20mmPhoenix</defName>
-		<label>20mm JAR Phoenix</label>
+		<defName>Bullet_20mmPhoenix_APHEF</defName>
+		<label>20mm JAR Phoenix APHEF</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>21</damageAmountBase>
 			<armorPenetrationSharp>35</armorPenetrationSharp>
 			<armorPenetrationBlunt>908.38</armorPenetrationBlunt>
-			<speed>50</speed>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -87,13 +119,64 @@
 		</comps>
 	</ThingDef>
 
+	<ThingDef ParentName="Base20mmPhoenixBullet">
+		<defName>Bullet_20mmPhoenix_APEM</defName>
+		<label>20mm JAR Phoenix AP-EM</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>21</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>31</amount>
+				</li>
+			</secondaryDamage>
+			<empShieldBreakChance>1</empShieldBreakChance>
+			<armorPenetrationSharp>35</armorPenetrationSharp>
+			<armorPenetrationBlunt>908.38</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base20mmPhoenixBullet">
+		<defName>Bullet_20mmPhoenix_APHEI</defName>
+		<label>20mm JAR Phoenix APHEI</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>35</armorPenetrationSharp>
+			<armorPenetrationBlunt>908.38</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>10</damageAmountBase>
+				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+				<explosiveRadius>3.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<postExplosionSpawnThingDef>FilthPrometheum</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base20mmPhoenixBullet">
+		<defName>Bullet_20mmPhoenix_HvAP</defName>
+		<label>20mm JAR Phoenix</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>52</damageAmountBase>
+			<armorPenetrationSharp>42.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>908.38</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_20mmPhoenix</defName>
-		<label>make 20mm Phoenix x50</label>
-		<description>Craft 50 20mm Phoenix rounds.</description>
-		<jobString>Making 20mm Phoenix rounds.</jobString>
+		<defName>MakeAmmo_20mmPhoenix_APHEF</defName>
+		<label>make 20mm Phoenix APHEF x50</label>
+		<description>Craft 50 20mm Phoenix APHEF rounds.</description>
+		<jobString>Making 20mm Phoenix APHEF rounds.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -128,7 +211,139 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_RS422RailgunSpike>50</Ammo_RS422RailgunSpike>
+			<Ammo_20mmPhoenix_APHEF>50</Ammo_20mmPhoenix_APHEF>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20mmPhoenix_APEM</defName>
+		<label>make 20mm Phoenix APEM x50</label>
+		<description>Craft 50 20mm Phoenix APEM rounds.</description>
+		<jobString>Making 20mm Phoenix APEM rounds.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20mmPhoenix_APEM>50</Ammo_20mmPhoenix_APEM>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20mmPhoenix_APHEI</defName>
+		<label>make 20mm Phoenix APHEI x50</label>
+		<description>Craft 50 20mm Phoenix APHEI rounds.</description>
+		<jobString>Making 20mm Phoenix APHEI rounds.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20mmPhoenix_APHEI>50</Ammo_20mmPhoenix_APHEI>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20mmPhoenix_HvAP</defName>
+		<label>make 20mm Phoenix HvAP x50</label>
+		<description>Craft 50 20mm Phoenix HvAP rounds.</description>
+		<jobString>Making 20mm Phoenix HvAP rounds.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20mmPhoenix_HvAP>50</Ammo_20mmPhoenix_HvAP>
 		</products>
 		<workAmount>2000</workAmount>
 	</RecipeDef>
