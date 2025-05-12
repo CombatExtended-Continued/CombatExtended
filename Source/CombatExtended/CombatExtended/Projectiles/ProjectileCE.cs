@@ -34,6 +34,9 @@ namespace CombatExtended
         public int fuelTicks;
         public Vector3 velocity;
         public float initialSpeed;
+
+        // Deprecated: Remove in 1.6
+        public bool lerpPosition = true;
         #endregion
 
         #region Drawing
@@ -1188,6 +1191,10 @@ namespace CombatExtended
             {
                 return;
             }
+            if (lerpPosition != (TrajectoryWorker is LerpedTrajectoryWorker))
+            {
+                Log.Warning($"ProjectileCE.lerpPosition value changed in {this}. Setting or referencing this field is deprecated. Please report this.");
+            }
             if (TrajectoryWorker is BallisticsTrajectoryWorker && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
             {
                 Destroy(DestroyMode.Vanish);
@@ -1581,6 +1588,7 @@ namespace CombatExtended
                         Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
                         forcedTrajectoryWorker = new LerpedTrajectoryWorker();
                     }
+                    lerpPosition = forcedTrajectoryWorker is LerpedTrajectoryWorker;
                 }
                 return forcedTrajectoryWorker;
             }
