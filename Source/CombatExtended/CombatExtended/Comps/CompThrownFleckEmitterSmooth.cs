@@ -63,6 +63,7 @@ namespace CombatExtended
                     && data.shouldEmit(age))
                 {
                     float scaleoffset = 0;
+
                     Vector3 diff = Vector3.zero;
                     for (int i = 0; i < data.emissionAmount; i++)
                     {
