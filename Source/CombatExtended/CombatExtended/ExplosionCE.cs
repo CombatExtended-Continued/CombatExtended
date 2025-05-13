@@ -16,8 +16,8 @@ namespace CombatExtended
         public bool radiusChange = false;
         public bool toBeMerged = false;
         private const int DamageAtEdge = 2;      // Synch these with spreadsheet
-        private const float PenAtEdge = 0.6f;
-        private const float PressurePerDamage = 0.3f;
+        private static float PenAtEdge => 0.6f * Controller.settings.ExplosionPenMultiplier;
+        private static float PressurePerDamage => 0.3f * Controller.settings.ExplosionPenMultiplier;
         private const float MaxMergeTicks = 3f;
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
@@ -410,7 +410,7 @@ namespace CombatExtended
                 return damAmount;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.333f);
+            t = Mathf.Pow(t, 0.333f * Controller.settings.ExplosionDamageFalloffFactor);
             return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t)), 1);
         }
 
@@ -422,7 +422,7 @@ namespace CombatExtended
                 return basePen;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.55f);
+            t = Mathf.Pow(t, 0.55f * Controller.settings.ExplosionDamageFalloffFactor);
             return Mathf.Lerp(basePen, PenAtEdge, t);
         }
     }

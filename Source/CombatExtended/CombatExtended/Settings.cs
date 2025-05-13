@@ -40,6 +40,9 @@ namespace CombatExtended
 
         private bool fasterRepeatShots = true;
 
+        private float explosionPenMultiplier = 1.0f;
+        private float explosionDamageFalloffFactor = 1.0f;
+
         public bool ShowCasings => showCasings;
 
         public bool BipodMechanics => bipodMechanics;
@@ -133,6 +136,9 @@ namespace CombatExtended
 
         public bool FasterRepeatShots => fasterRepeatShots;
 
+        public float ExplosionPenMultiplier => explosionPenMultiplier;
+        public float ExplosionDamageFalloffFactor => explosionDamageFalloffFactor;
+
         public bool CreateCasingsFilth => createCasingsFilth;
 
         public bool RecoilAnim => recoilAnim;
@@ -208,6 +214,8 @@ namespace CombatExtended
 
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
+            Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
+            Scribe_Values.Look(ref explosionDamageFalloffFactor, "explosionDamageFalloffFactor", 1.0f);
 
             //CIWS
             Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
@@ -237,6 +245,8 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_EnableExtraEffects_Title".Translate(), ref enableExtraEffects, "CE_Settings_EnableExtraEffects_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
+            explosionPenMultiplier = list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate(), explosionPenMultiplier, 0.1f, 10f, tooltip:"CE_Settings_ExplosionPenMultiplier_Desc".Translate());
+            explosionDamageFalloffFactor = list.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate(), explosionDamageFalloffFactor, 0.1f, 10f, tooltip:"CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate());
 
             list.GapLine(); Text.Font = GameFont.Medium;
             list.Label("CE_Settings_Rendering_Title".Translate(), tooltip: "CE_Settings_Rendering_Desc".Translate());

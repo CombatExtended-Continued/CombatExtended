@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     public class SecondaryDamage
     {
-        private const float SecExplosionPenPerDmg = 0.8f; // 2x ExplosiveArmorPenetrationMultiplier
+        private static float SecExplosionPenPerDmg => 0.8f * Controller.settings.ExplosionPenMultiplier; // 2x ExplosiveArmorPenetrationMultiplier
 
         public DamageDef def;
         public int amount;

@@ -9,7 +9,7 @@ namespace CombatExtended
         /// <summary>
         /// Multiplier used to scale the armor penetration of a given projectile's explosion
         /// </summary>
-        private const float ExplosiveArmorPenetrationMultiplier = 0.4f;
+        private static float ExplosiveArmorPenetrationMultiplier => 0.4f * Controller.settings.ExplosionPenMultiplier;
 
         /// <summary>
         ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for
