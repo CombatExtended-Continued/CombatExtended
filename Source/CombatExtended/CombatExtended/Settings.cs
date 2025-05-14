@@ -41,6 +41,7 @@ namespace CombatExtended
         private bool fasterRepeatShots = true;
 
         private float explosionPenMultiplier = 1.0f;
+        private float explosionFalloffFactor = 1.0f;
 
         public bool ShowCasings => showCasings;
 
@@ -134,6 +135,7 @@ namespace CombatExtended
         public bool FasterRepeatShots => fasterRepeatShots;
 
         public float ExplosionPenMultiplier => explosionPenMultiplier;
+        public float ExplosionFalloffFactor => explosionFalloffFactor;
 
         public bool CreateCasingsFilth => createCasingsFilth;
 
@@ -210,6 +212,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
             Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
+            Scribe_Values.Look(ref explosionFalloffFactor, "explosionFalloffFactor", 1.0f);
 
             //CIWS
             Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
@@ -245,7 +248,13 @@ namespace CombatExtended
             
             list.Gap();
             explosionPenMultiplier = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + " " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip:"CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f; //Rounding to 1 decimal point
+            explosionFalloffFactor = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate() + " " + explosionFalloffFactor.ToString("F1"), explosionFalloffFactor, 0.1f, 2f, tooltip:"CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
             list.Gap();
+            if (list.ButtonText("CE_Settings_ResetDefault".Translate(), widthPct: 0.4f))
+            {
+                explosionPenMultiplier = 1.0f;
+                explosionFalloffFactor = 1.0f;
+            }
 
             list.GapLine(); Text.Font = GameFont.Medium;
             list.Label("CE_Settings_Rendering_Title".Translate(), tooltip: "CE_Settings_Rendering_Desc".Translate());
