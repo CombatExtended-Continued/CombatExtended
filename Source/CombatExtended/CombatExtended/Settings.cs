@@ -240,11 +240,12 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
             
             list.GapLine(); Text.Font = GameFont.Medium;
-            list.Label("CE_Settings_Value_Tweaks".Translate(), tooltip: "CE_Settings_Value_Tweaks_Desc".Translate());
+            list.Label("CE_Settings_Value_Tweaks_Title".Translate(), tooltip: "CE_Settings_Value_Tweaks_Desc".Translate());
             Text.Font = GameFont.Small;
             
             list.Gap();
-            explosionPenMultiplier = list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate(), explosionPenMultiplier, 0.1f, 10f, tooltip:"CE_Settings_ExplosionPenMultiplier_Desc".Translate());
+            explosionPenMultiplier = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + " " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip:"CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f; //Rounding to 1 decimal point
+            list.Gap();
 
             list.GapLine(); Text.Font = GameFont.Medium;
             list.Label("CE_Settings_Rendering_Title".Translate(), tooltip: "CE_Settings_Rendering_Desc".Translate());
