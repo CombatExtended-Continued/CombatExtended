@@ -25,7 +25,8 @@ namespace CombatExtended
             {1.5f, 1f},
             {2.5f, 0.5f},
             {5f, 0.25f},
-            {8f, 0.1f}
+            {8f, 0.1f},
+            {12f, 0.05f}
         };
         private SimpleCurve _falloffCurve;
 
