@@ -429,7 +429,7 @@ namespace CombatExtended
                 return damAmount;
             }
             var distFromCenter = c.DistanceTo(Position);
-            return Mathf.Max(GenMath.RoundRandom(damAmount * FalloffCurve.Evaluate(distFromCenter)), 1);
+            return Mathf.Max(GenMath.RoundRandom(damAmount * FalloffCurve.Evaluate(distFromCenter) * Controller.settings.ExplosionPenMultiplier), 1);
         }
         public float GetArmorPenetrationAtCE(IntVec3 c)
         {
@@ -439,7 +439,7 @@ namespace CombatExtended
                 return basePen;
             }
             var distFromCenter = c.DistanceTo(Position);
-            return basePen * FalloffCurve.Evaluate(distFromCenter);
+            return basePen * FalloffCurve.Evaluate(distFromCenter) * Controller.settings.ExplosionPenMultiplier;
         }
     }
 }
