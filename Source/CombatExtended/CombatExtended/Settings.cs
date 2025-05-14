@@ -241,11 +241,11 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_EnableExtraEffects_Title".Translate(), ref enableExtraEffects, "CE_Settings_EnableExtraEffects_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
-            
+
             list.GapLine(); Text.Font = GameFont.Medium;
             list.Label("CE_Settings_Value_Tweaks_Title".Translate(), tooltip: "CE_Settings_Value_Tweaks_Desc".Translate());
             Text.Font = GameFont.Small;
-            
+
             list.Gap();
             explosionPenMultiplier = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + " " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip:"CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f; //Rounding to 1 decimal point
             explosionFalloffFactor = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate() + " " + explosionFalloffFactor.ToString("F1"), explosionFalloffFactor, 0.1f, 2f, tooltip:"CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
