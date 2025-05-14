@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--===== Twin Las Cannon =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalastrusTank_Lasgun"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>600</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalastrusTank_Lasgun"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalastrusTank_Lasgun"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Lasgun_Cannon</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalastrusTank_Lasgun"]/maxRange</xpath>
+					<value>
+						<maxRange>75</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalastrusTank_Lasgun"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_LasgunPowerPack</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalastrusTank_Lasgun"]</xpath>
+					<value>
+						<chargePerAmmoCount>5</chargePerAmmoCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalastrusTank_Lasgun"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Lasgun_Cannon</ammoSet>
+							<shotHeight>2</shotHeight>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Twin Heavy Bolter Turret =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalstrusTank_twinBolter"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Bolter998_Standard</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalstrusTank_twinBolter"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>12.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalstrusTank_twinBolter"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalstrusTank_twinBolter"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalstrusTank_twinBolter"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalstrusTank_twinBolter"]/maxRange</xpath>
+					<value>
+						<maxRange>62</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalstrusTank_twinBolter"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_Bolter998_Standard</li>
+							<li>Ammo_Bolter998_MetalStorm</li>
+							<li>Ammo_Bolter998_Kraken</li>
+							<li>Ammo_Bolter998_Inferno</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_CalstrusTank_twinBolter"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Bolter998</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>229</speed>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!--===== Caladius =====-->
+
+				<!-- Vehicle -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>44</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>21</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/vehicleStats/CargoCapacity</xpath>
+					<value>
+						<CargoCapacity>3100</CargoCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="FrontArmorPlating"]/health</xpath>
+					<value>
+						<health>1250</health>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>60</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>30</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="LeftArmorPlating"]/health</xpath>
+					<value>
+						<health>1100</health>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>48</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>24</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="RightArmorPlating"]/health</xpath>
+					<value>
+						<health>1100</health>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>48</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>24</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="BackArmorPlating"]/health</xpath>
+					<value>
+						<health>950</health>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="BackArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>36</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="BackArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="Roof"]/health</xpath>
+					<value>
+						<health>750</health>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="Roof"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>32</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="GW_CalastrusTank"]/components/li[key="Roof"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
