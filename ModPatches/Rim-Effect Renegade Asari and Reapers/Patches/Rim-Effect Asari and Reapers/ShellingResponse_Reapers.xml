@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Let the Reapers respond to anyone stupid enough to shell their landing site. -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/FactionDef[defName="RE_Reapers"]</xpath>
+		<value>
+			<li Class="CombatExtended.FactionDefExtensionCE">
+				<shellingResponse>CE_ShellingPreset_Reapers</shellingResponse>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Increase Reaper landing site health and negation chance. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WorldObjectDef[defName="RE_Reaper"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Health">
+				<healthModifier>8</healthModifier>
+				<techLevelNoImpact>true</techLevelNoImpact>
+				<chanceToNegateDamage>0.33</chanceToNegateDamage>
+			</li>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Hostility"/>
+		</value>
+	</Operation>
+
+</Patch>
