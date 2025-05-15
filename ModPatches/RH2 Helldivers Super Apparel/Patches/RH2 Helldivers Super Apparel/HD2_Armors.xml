@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!-- Shared -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-				@Name="RH2ApparelHD2_LightArmorBase" or
-				@Name="RH2ApparelHD2_MediumArmorBase" or
-				@Name="RH2ApparelHD2_HeavyArmorBase"
-				]/apparel/bodyPartGroups
-			</xpath>
-		<value>
-			<li>Hands</li>
-			<li>Feet</li>
-		</value>
-	</Operation>
 
 	<!-- Helmets -->
 	<Operation Class="PatchOperationReplace">
@@ -97,7 +83,71 @@
 			</li>
 		</value>
 	</Operation>
-	
+
+	<!-- Shared -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				@Name="RH2ApparelHD2_LightArmorBase" or
+				@Name="RH2ApparelHD2_MediumArmorBase" or
+				@Name="RH2ApparelHD2_HeavyArmorBase"
+				]/apparel/bodyPartGroups
+			</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[
+			@Name="RH2ApparelHD2_LightArmorBase" or
+			@Name="RH2ApparelHD2_MediumArmorBase" or
+			@Name="RH2ApparelHD2_HeavyArmorBase"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- Light Armour -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_LightArmorBase"]/statBases/ArmorRating_Sharp</xpath>
@@ -117,7 +167,7 @@
 		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_LightArmorBase"]/statBases</xpath>
 		<value>
 			<Bulk>80</Bulk>
-			<WornBulk>12</WornBulk>
+			<WornBulk>10</WornBulk>
 		</value>
 	</Operation>
 
@@ -131,64 +181,18 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_LightArmorBase"]</xpath>
-		<value>
-			<li Class="CombatExtended.PartialArmorExt">
-				<stats>
-					<li>
-						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-				</stats>
-			</li>
-		</value>
-	</Operation>
-
 	<!-- Medium Armour -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+			<ArmorRating_Sharp>18</ArmorRating_Sharp>
 		</value>
 	</Operation>
 	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -196,7 +200,7 @@
 		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]/statBases</xpath>
 		<value>
 			<Bulk>100</Bulk>
-			<WornBulk>15</WornBulk>
+			<WornBulk>12</WornBulk>
 		</value>
 	</Operation>
 
@@ -212,57 +216,19 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_MediumArmorBase"]</xpath>
-		<value>
-			<li Class="CombatExtended.PartialArmorExt">
-				<stats>
-					<li>
-						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-				</stats>
-			</li>
-		</value>
-	</Operation>
-
 	<!-- Heavy Armour -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -273,13 +239,6 @@
 			<WornBulk>15</WornBulk>
 		</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>45</ArmorRating_Blunt>
-		</value>
-	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]/equippedStatOffsets</xpath>
@@ -288,52 +247,6 @@
 			<CarryBulk>50</CarryBulk>
 			<ReloadSpeed>0.1</ReloadSpeed>
 			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[@Name="RH2ApparelHD2_HeavyArmorBase"]</xpath>
-		<value>
-			<li Class="CombatExtended.PartialArmorExt">
-				<stats>
-					<li>
-						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-				</stats>
-			</li>
 		</value>
 	</Operation>
 
@@ -375,7 +288,10 @@
 
 	<!-- Unflinching -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RH2ApparelHD2_UF16Armor" or defName="RH2ApparelHD2_UF50Armor" or defName="RH2ApparelHD2_UF84Armor"]</xpath>
+		<xpath>Defs/ThingDef[
+			defName="RH2ApparelHD2_UF16Armor" or
+			defName="RH2ApparelHD2_UF50Armor" or
+			defName="RH2ApparelHD2_UF84Armor"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<Suppressability>-0.50</Suppressability>
