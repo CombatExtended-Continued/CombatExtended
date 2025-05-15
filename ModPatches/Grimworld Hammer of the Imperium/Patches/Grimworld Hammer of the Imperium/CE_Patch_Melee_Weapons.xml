@@ -275,6 +275,219 @@
 		</value>
 	</Operation>
 
+	<!--===== Power Sabre =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerSaber"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handguard</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.3</cooldownTime>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>66</power>
+					<cooldownTime>0.8</cooldownTime>
+					<armorPenetrationSharp>26</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetrationSharp>34</armorPenetrationSharp>
+					<armorPenetrationBlunt>5.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerSaber"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerSaber"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerSaber"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.05</MeleeCritChance>
+			<MeleeParryChance>0.55</MeleeParryChance>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerSaber"]/statBases</xpath>
+		<value>
+			<Bulk>6.3</Bulk>
+			<MeleeCounterParryBonus>0.55</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!--===== Power Glaive =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerGlaive"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.5</cooldownTime>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>60</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetrationSharp>24</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.64</cooldownTime>
+					<armorPenetrationSharp>31</armorPenetrationSharp>
+					<armorPenetrationBlunt>5.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerGlaive"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerGlaive"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerGlaive"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.0</MeleeCritChance>
+				<MeleeParryChance>1.25</MeleeParryChance>
+				<MeleeDodgeChance>0.5</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_PowerGlaive"]/statBases</xpath>
+		<value>
+			<Bulk>8.5</Bulk>
+			<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!--===== Omnissian Axe =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_OmniAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.5</cooldownTime>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>60</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetrationSharp>24</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.64</cooldownTime>
+					<armorPenetrationSharp>31</armorPenetrationSharp>
+					<armorPenetrationBlunt>5.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_OmniAxe"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_OmniAxe"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_OmniAxe"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.0</MeleeCritChance>
+			<MeleeParryChance>1.25</MeleeParryChance>
+			<MeleeDodgeChance>0.5</MeleeDodgeChance>
+			<ConstructionSpeed>0.2</ConstructionSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_OmniAxe"]/statBases</xpath>
+		<value>
+			<Bulk>8.5</Bulk>
+			<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
 	<!--===== Power Fist =====-->
 
 	<Operation Class="PatchOperationReplace">

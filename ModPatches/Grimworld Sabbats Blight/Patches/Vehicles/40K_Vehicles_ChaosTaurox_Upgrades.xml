@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--===== Pintle Stubber =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BP_Vehicle_HeavyStubber"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_3006Springfield_FMJ</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BP_Vehicle_HeavyStubber"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BP_Vehicle_HeavyStubber"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BP_Vehicle_HeavyStubber"]/maxRange</xpath>
+					<value>
+						<maxRange>62</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BP_Vehicle_HeavyStubber"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<shotsPerBurst>1</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>24</ticksBetweenBursts>
+								<label>Single</label>
+								<texPath>UI/Gizmos/FireRate_Single</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>6</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>24</ticksBetweenBursts>
+								<label>Burst</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>12</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>24</ticksBetweenBursts>
+								<label>Auto</label>
+								<texPath>UI/Gizmos/FireRate_Auto</texPath>
+							</li>
+						</fireModes>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BP_Vehicle_HeavyStubber"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_3006Springfield_FMJ</li>
+							<li>Ammo_3006Springfield_AP</li>
+							<li>Ammo_3006Springfield_HP</li>
+							<li>Ammo_3006Springfield_Incendiary</li>
+							<li>Ammo_3006Springfield_HE</li>
+							<li>Ammo_3006Springfield_Sabot</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BP_Vehicle_HeavyStubber"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_3006Springfield</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>163</speed>
+							<sway>1.5</sway>
+							<spread>0.12</spread>
+						</li>
+					</value>
+				</li>		
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
