@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Add groups entry if it doesn't exist already -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/parts/li[def="Pronotum"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/parts/li[def="Pronotum"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/parts/li[def="InsectLeg"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/parts/li[def="InsectLeg"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Add armor coverage -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/parts/li[def="Pronotum"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/parts/li[def="InsectMouth"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_BeetleLike"]/corePart/parts/li[def="InsectLeg"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>
