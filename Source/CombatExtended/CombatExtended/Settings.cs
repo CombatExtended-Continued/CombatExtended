@@ -242,8 +242,8 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
 
             list.Gap();
-            explosionPenMultiplier = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + ": " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip:"CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f; //Rounding to 1 decimal point
-            explosionFalloffFactor = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate() + ": " + explosionFalloffFactor.ToString("F1"), explosionFalloffFactor, 0.1f, 2f, tooltip:"CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
+            explosionPenMultiplier = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + ": " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip: "CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f; //Rounding to 1 decimal point
+            explosionFalloffFactor = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate() + ": " + explosionFalloffFactor.ToString("F1"), explosionFalloffFactor, 0.1f, 2f, tooltip: "CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
             list.Gap();
             if (list.ButtonTextLabeledPct("", "CE_Settings_ResetDefault".Translate(), labelPct: 0.6f)) // Aligns the reset button to the right
             {
