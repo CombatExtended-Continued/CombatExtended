@@ -1588,7 +1588,7 @@ namespace CombatExtended
             try
             {
                 var vec2position_m = type.GetMethod("Vec2Position", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                v2p = vec2position_m.GetBaseDefinition() != vec2position_m;
+                v2p = vec2position_m.GetBaseDefinition().DeclaringType != vec2position_m.DeclaringType;
             }
             catch (System.Reflection.AmbiguousMatchException) // Still using 1.3 era code
             {
