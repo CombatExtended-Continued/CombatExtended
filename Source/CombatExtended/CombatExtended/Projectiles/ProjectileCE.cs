@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -1575,13 +1576,52 @@ namespace CombatExtended
         #endregion
 
         #region Ballistics
+
+        private LegacyTrajectoryWorker CheckForLegacyProjectile()
+        {
+            Type type = this.GetType();
+            if (type == typeof(ProjectileCE) || type == typeof(BulletCE)) // early out for most common case
+            {
+                return null;
+            }
+            bool v2p;
+            try
+            {
+                var vec2position_m = type.GetMethod(nameof(Vec2Position), BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                v2p = vec2position_m.GetBaseDefinition().DeclaringType != vec2position_m.DeclaringType;
+            }
+            catch (System.Reflection.AmbiguousMatchException) // Still using 1.3 era code
+            {
+                v2p = true;
+            }
+            if (!v2p)
+            {
+                return null;
+            }
+
+            var exactPosition_m = type.GetProperty("ExactPosition", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var exactPosition_gm = exactPosition_m.GetGetMethod();
+            var ep = exactPosition_gm.GetBaseDefinition() != exactPosition_gm;
+
+            if (v2p)
+            {
+                return new LegacyTrajectoryWorker(this, v2p, ep);
+            }
+            return null;
+        }
+
         public BaseTrajectoryWorker TrajectoryWorker
         {
             get
             {
                 if (forcedTrajectoryWorker == null)
                 {
-                    if (!lerpPosition)
+                    if (CheckForLegacyProjectile() is LegacyTrajectoryWorker worker)
+                    {
+                        Log.WarningOnce($"{this} uses legacy collision code. Falling back to legacy TrajectoryWorker", this.def.GetHashCode());
+                        forcedTrajectoryWorker = worker;
+                    }
+                    else if (!lerpPosition)
                     {
                         Log.ErrorOnce($"Setting lerpPosition in ProjectileCE directly for {this} is deprecated, set the trajectoryWorker instead", 50003 + def.projectile.GetHashCode());
                         forcedTrajectoryWorker = ProjectilePropertiesCE.defaultBallisticTrajectoryWorker;
