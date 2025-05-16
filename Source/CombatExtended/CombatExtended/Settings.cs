@@ -152,6 +152,8 @@ namespace CombatExtended
 
         #endregion
 
+        public int LastSelectedTab;
+
         #region Methods
 
         public override void ExposeData()
@@ -223,76 +225,96 @@ namespace CombatExtended
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
-        public void DoWindowContents(Listing_Standard list)
+        private void DoSettingsWindowContents_Mechanics(Listing_Standard list)
         {
-            // Do general settings
-            Text.Font = GameFont.Medium;
             list.Label("CE_Settings_HeaderGeneral".Translate());
-            Text.Font = GameFont.Small;
             list.Gap();
             list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_CreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_CreateCasingsFilth_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_StuckArrowsAsFlecks_Title".Translate(), ref stuckArrowsAsFlecks, "CE_Settings_StuckArrowsAsFlecks_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_RecoilAnim_Title".Translate(), ref recoilAnim, "CE_Settings_RecoilAnim_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
+
             list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_EnableExtraEffects_Title".Translate(), ref enableExtraEffects, "CE_Settings_EnableExtraEffects_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
-
-            list.GapLine(); Text.Font = GameFont.Medium;
-            list.Label("CE_Settings_Value_Tweaks_Title".Translate(), tooltip: "CE_Settings_Value_Tweaks_Desc".Translate());
-            Text.Font = GameFont.Small;
-
             list.Gap();
+            list.GapLine();
+            list.Gap();
+            list.Label("CE_Settings_BipodSettings".Translate());
+            list.Gap();
+            list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
             explosionPenMultiplier = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + ": " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip: "CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f; //Rounding to 1 decimal point
             explosionFalloffFactor = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate() + ": " + explosionFalloffFactor.ToString("F1"), explosionFalloffFactor, 0.1f, 2f, tooltip: "CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
             list.Gap();
-            if (list.ButtonTextLabeledPct("", "CE_Settings_ResetDefault".Translate(), labelPct: 0.6f)) // Aligns the reset button to the right
-            {
-                explosionPenMultiplier = 1.0f;
-                explosionFalloffFactor = 1.0f;
-            }
-
-            list.GapLine(); Text.Font = GameFont.Medium;
-            list.Label("CE_Settings_Rendering_Title".Translate(), tooltip: "CE_Settings_Rendering_Desc".Translate());
-            Text.Font = GameFont.Small;
-
+            list.GapLine();
             list.Gap();
-            list.CheckboxLabeled("CE_Settings_ShowBackpacks_Title".Translate(), ref showBackpacks, "CE_Settings_ShowBackpacks_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_ShowWebbing_Title".Translate(), ref showTacticalVests, "CE_Settings_ShowWebbing_Desc".Translate());
-
+            list.Label("CE_Settings_BipodSettings".Translate());
+            list.Gap();
+            list.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
             list.Gap();
             list.GapLine();
-            Text.Font = GameFont.Medium;
-            list.Label("CE_Settings_HeaderAutopatcher".Translate());
-            Text.Font = GameFont.Small;
             list.Gap();
-
+            if (list.ButtonText("Reset to Defaults"))
+            {
+                ResetToDefault_Mechanics();
+            }
+        }
+        private void DoSettingsWindowContents_Misc(Listing_Standard list)
+        {
+            list.Label("CE_Settings_HeaderGeneral".Translate());
+            list.Gap();
+            list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
+            list.Gap();
+            list.GapLine();
+            list.Gap();
+            list.Label("CE_Settings_HeaderAutopatcher".Translate());
+            list.Gap();
             list.CheckboxLabeled("CE_Settings_VerboseAutopatcher_Title".Translate(), ref debugAutopatcherLogger, "CE_Settings_VerboseAutopatcher_Desc".Translate());
-
             list.CheckboxLabeled("CE_Settings_ApparelAutopatcher_Title".Translate(), ref enableApparelAutopatcher, "CE_Settings_ApparelAutopatcher_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_RaceAutopatcher_Title".Translate(), ref enableRaceAutopatcher, "CE_Settings_RaceAutopatcher_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_WeaponAutopatcher_Title".Translate(), ref enableWeaponAutopatcher, "CE_Settings_WeaponAutopatcher_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ToughnessAutopatcher_Title".Translate(), ref enableWeaponToughnessAutopatcher, "CE_Settings_ToughnessAutopatcher_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_PawnkindAutopatcher_Title".Translate(), ref enablePawnKindAutopatcher, "CE_Settings_PawnkindAutopatcher_Desc".Translate());
-
-            // Do ammo settings
-            list.NewColumn();
-
-            Text.Font = GameFont.Medium;
-            list.Label("CE_Settings_HeaderAmmo".Translate());
-            Text.Font = GameFont.Small;
+            #if DEBUG
             list.Gap();
-
+            list.GapLine();
+            list.Label("Debug");
+            list.Gap();
+            Text.Font = GameFont.Small;
+            list.CheckboxLabeled("Enable debugging", ref debuggingMode, "This will enable all debugging features.");
+            if (debuggingMode)
+            {
+                list.GapLine();
+                list.CheckboxLabeled("Verbose", ref debugVerbose, "Enable logging for internel states and many other things.");
+                list.CheckboxLabeled("Display result of GenStep_Attrition", ref debugDisplayAttritionInfo);
+                list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
+                list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
+                list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);
+                list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
+                list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
+                list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
+                list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
+                list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
+                list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
+                list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
+            }
+            #endif
+            list.Gap();
+            list.GapLine();
+            list.Gap();
+            if (list.ButtonText("Reset to Defaults"))
+            {
+                ResetToDefault_Misc();
+            }
+        }
+        
+        private void DoSettingsWindowContents_Ammo(Listing_Standard list)
+        {
+            list.Label("CE_Settings_HeaderAmmo".Translate());
+            list.Gap();
             list.CheckboxLabeled("CE_Settings_EnableAmmoSystem_Title".Translate(), ref enableAmmoSystem, "CE_Settings_EnableAmmoSystem_Desc".Translate());
             list.GapLine();
             if (enableAmmoSystem)
@@ -317,43 +339,17 @@ namespace CombatExtended
 
                 GUI.contentColor = Color.white;
             }
-
-            Text.Font = GameFont.Medium;
-            list.Label("CE_Settings_BipodSettings".Translate());
-            Text.Font = GameFont.Small;
-            list.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
-#if DEBUG
-            // Do Debug settings
-            list.GapLine();
-            Text.Font = GameFont.Medium;
-            list.Label("Debug");
+            LastAmmoSystemStatusChanged();
             list.Gap();
-            Text.Font = GameFont.Small;
-            list.CheckboxLabeled("Enable debugging", ref debuggingMode, "This will enable all debugging features.");
-            if (debuggingMode)
+            list.GapLine();
+            list.Gap();
+            if (list.ButtonText("Reset to Defaults"))
             {
-                list.GapLine();
-                list.CheckboxLabeled("Verbose", ref debugVerbose, "Enable logging for internel states and many other things.");
-                list.CheckboxLabeled("Display result of GenStep_Attrition", ref debugDisplayAttritionInfo);
-                list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
-                list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
-                list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);
-                list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
-                list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
-                list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
-                list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
-                list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
-                list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
-                list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
+                ResetToDefault_Ammo();
             }
-            //else
-            //{
-            //    list.Gap();
-            //}
-#endif
-
-            // Update ammo if setting changes
+        }
+        private void LastAmmoSystemStatusChanged()
+        {
             if (lastAmmoSystemStatus != enableAmmoSystem)
             {
                 AmmoInjector.Inject();
@@ -366,7 +362,146 @@ namespace CombatExtended
                 AmmoInjector.AddRemoveCaliberFromGunRecipes();
             }
         }
+        private void DoSettingsWindowContents_Graphic(Listing_Standard list)
+        {
+            list.Label("CE_Settings_HeaderAmmo".Translate());
+            list.Gap();
+            
+            list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_CreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_CreateCasingsFilth_Desc".Translate());
+			list.CheckboxLabeled("CE_Settings_StuckArrowsAsFlecks_Title".Translate(), ref stuckArrowsAsFlecks, "CE_Settings_StuckArrowsAsFlecks_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_RecoilAnim_Title".Translate(), ref recoilAnim, "CE_Settings_RecoilAnim_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_EnableExtraEffects_Title".Translate(), ref enableExtraEffects, "CE_Settings_EnableExtraEffects_Desc".Translate());
+            
+            list.CheckboxLabeled("CE_Settings_ShowBackpacks_Title".Translate(), ref showBackpacks, "CE_Settings_ShowBackpacks_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_ShowWebbing_Title".Translate(), ref showTacticalVests, "CE_Settings_ShowWebbing_Desc".Translate());
+            
+            list.Gap();
+            list.GapLine();
+            list.Gap();
+            if (list.ButtonText("Reset to Defaults"))
+            {
+                ResetToDefault_Graphics();
+            }
+        }
+        
+        #region Reset To Defaults
+        private void ResetToDefault_Mechanics()
+        {
+            partialstats = true;
+            allowMeleeHunting = false;
+            smokeEffects = true;
+            turretsBreakShields = true;
+            fasterRepeatShots = true;
+            enableCIWS = true;
+            fragmentsFromWalls = false;
+            mergeExplosions = true;
+            explosionPenMultiplier = 1.0f;
+            explosionFalloffFactor = 1.0f;
+            bipodMechanics = true;
+            autosetup = true;
+        }
+        private void ResetToDefault_Ammo()
+        {
+            enableAmmoSystem = true;
+            rightClickAmmoSelect = true;
+            autoReloadOnChangeAmmo = true;
+            autoTakeAmmo = true;
+            showCaliberOnGuns = true;
+            reuseNeolithicProjectiles = true;
+            realisticCookOff = true;
+            genericammo = false;
+            LastAmmoSystemStatusChanged();
+
+        }
+        private void ResetToDefault_Graphics()
+        {
+            showCasings = true;
+            createCasingsFilth = true;
+            recoilAnim = true;
+            showTaunts = true;
+            enableExtraEffects = true;
+            showBackpacks = true;
+            showTacticalVests = true;
+        }
+        private void ResetToDefault_Misc()
+        {
+            // Extra Tooltips
+            showExtraTooltips = false;
+            showExtraStats = false;
+            
+            // AutoPatcher Settings
+            debugAutopatcherLogger = false;
+            enableApparelAutopatcher = false;
+            enableWeaponAutopatcher = false;
+            enableWeaponToughnessAutopatcher = true;
+            enableRaceAutopatcher = true;
+            enablePawnKindAutopatcher = true;
+            
+            #if DEBUG
+            debuggingMode = false;
+            debugDisplayAttritionInfo = false;
+            debugDrawInterceptChecks = false;
+            debugDrawPartialLoSChecks = false;
+            debugGenClosetPawn = false;
+            debugDrawTargetCoverChecks = false;
+            debugEnableInventoryValidation = false;
+            debugShowTreeCollisionChance = false;
+            debugShowSuppressionBuildup = false;
+            debugMuzzleFlash = false;
+            debugDisplayDangerBuildup = false;
+            debugDisplayCellCoverRating = false;
+            #endif
+        }
+        #endregion
+        
+        public void DoWindowContents(Listing_Standard list)
+        {
+            switch (Controller.SelectedTab)
+            {
+                case 0:
+                    DoSettingsWindowContents_Mechanics(list);
+                    break;
+                case 1:
+                    DoSettingsWindowContents_Ammo(list);
+                    break;
+                case 2:
+                    DoSettingsWindowContents_Graphic(list);
+                    break;
+                case 3:
+                    DoSettingsWindowContents_Misc(list);
+                    break;
+                
+            }
+        }
+       
+        public void DoWindowContentss(Listing_Standard list)
+        {
+            list.Gap();
+            list.GapLine();
+            Text.Font = GameFont.Medium;
+            
+
+            // Do ammo settings
+            list.NewColumn();
+
+#if DEBUG
+            // Do Debug settings
+            list.GapLine();
+            Text.Font = GameFont.Medium;
+           
+            //else
+            //{
+            //    list.Gap();
+            //}
+#endif
+
+            // Update ammo if setting changes
+            
+        }
 
         #endregion
     }
+    
 }
