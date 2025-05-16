@@ -27,15 +27,19 @@ namespace CombatExtended
         private static bool genericState;
         private static Patches patches;
         private Vector2 scrollPosition;
+        private static readonly string[] TabNames = ["Mechanics", "Ammunition", "Graphics", "Misc"];
+        public static int SelectedTab;
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
+            Rect tabBarRect = new Rect(inRect.x, inRect.y, inRect.width, 30f);
+            DrawTabs(tabBarRect);
             Rect inner = inRect.ContractedBy(20f);
             inner.height = 900f;
             inner.x += 10f;
-            Widgets.BeginScrollView(inRect, ref this.scrollPosition, inner, true);
+            Rect scrollRect = new Rect(inRect.x, inRect.y + tabBarRect.height + 5f, inRect.width, inRect.height - tabBarRect.height - 5f);
+            Widgets.BeginScrollView(scrollRect, ref this.scrollPosition, inner, true);
             Listing_Standard list = new Listing_Standard();
-            list.ColumnWidth = (inner.width - 17) / 2; // Subtract 17 for gap between columns
             list.Begin(inner);
 
             foreach (ISettingsCE settings in settingList)
@@ -44,7 +48,27 @@ namespace CombatExtended
             }
             list.End();
             Widgets.EndScrollView();
+            
         }
+        private static void DrawTabs(Rect rect)
+        {
+            float tabWidth = rect.width / TabNames.Length;
+            for (int i = 0; i < TabNames.Length; i++)
+            {
+                TextAnchor originalAnchor = Text.Anchor;
+
+                // Center the text
+                Text.Anchor = TextAnchor.MiddleCenter;
+                Rect tabRect = new Rect(rect.x + (i * tabWidth), rect.y, tabWidth, rect.height);
+                if (Widgets.ButtonText(tabRect, TabNames[i], true, true, new Color(0.8f, 0.85f, 1f), true, null))
+                {
+                    SelectedTab = i;
+                    settings.LastSelectedTab = i;
+                }
+                Text.Anchor = originalAnchor;
+            }
+        }
+        
 
         public Controller(ModContentPack content) : base(content)
         {
