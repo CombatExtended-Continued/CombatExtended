@@ -1178,7 +1178,7 @@ namespace CombatExtended
             {
                 if (cachedPredictedPositions == null)
                 {
-                    cachedPredictedPositions = TrajectoryWorker.PredictPositions(this, GenTicks.TicksPerRealSecond).ToList();
+                    cachedPredictedPositions = TrajectoryWorker.PredictPositions(this, GenTicks.TicksPerRealSecond, false).ToList();
                 }
                 return cachedPredictedPositions;
             }

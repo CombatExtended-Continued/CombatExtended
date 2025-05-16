@@ -13,7 +13,7 @@ namespace CombatExtended
     {
         public abstract Vector3 MoveForward(ProjectileCE projectile);
 
-        public abstract IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount);
+        public abstract IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount, bool drawPos);
 
         public virtual void NotifyTicked(ProjectileCE projectile)
         {
