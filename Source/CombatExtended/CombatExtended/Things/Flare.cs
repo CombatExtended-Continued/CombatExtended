@@ -21,8 +21,8 @@ namespace CombatExtended
         public const float WATERSPLASH_VELOCITY = 5.0f;
         public const float WATERSPLASH_SIZE = 2.5f;
 
-        private const int SMOKE_MIN_INTERVAL = 7;
-        private const int SMOKE_MAX_INTERVAL = 21;
+        private const int SMOKE_MIN_INTERVAL = 18;
+        private const int SMOKE_MAX_INTERVAL = 25;
 
         private const float SMOKE_MIN_SIZE = 0.15f;
         private const float SMOKE_MAX_SIZE = 1.25f;
