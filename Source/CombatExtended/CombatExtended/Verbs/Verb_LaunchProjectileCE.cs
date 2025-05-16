@@ -1006,14 +1006,37 @@ namespace CombatExtended
         {
         }
 
+        public virtual float CalculateDarknessWarmupPenalty()
+        {
+            if (Shooter != null && currentTarget.Cell != null)
+            {
+                float darknessPercent = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, currentTarget.Cell));
+                //cause penalty only for cells below 50%
+                if (darknessPercent > 0.5f)
+                {
+                    return 1 + Mathf.Max(0, darknessPercent);
+                }
+            }
+            return 1f;
+        }
+
         public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false, bool nonInterruptingSelfCast = false)
         {
             bool startedCasting = base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
             if (startedCasting)
             {
-                if (this.repeating && this.verbProps.warmupTime > 0f) // now warming up
+                if (this.verbProps.warmupTime > 0f) // now warming up
                 {
-                    this.RecalculateWarmupTicks();
+                    if (this.repeating)
+                    {
+                        this.RecalculateWarmupTicks();
+                    }
+
+                    float darknessPenalty = CalculateDarknessWarmupPenalty();
+                    if (darknessPenalty > 1.0f)
+                    {
+                        this.BurstWarmupTicksLeft = (int)(BurstWarmupTicksLeft * darknessPenalty);
+                    }
                 }
             }
             return startedCasting;
