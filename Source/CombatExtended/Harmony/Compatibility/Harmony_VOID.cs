@@ -16,10 +16,11 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 return AccessTools.TypeByName("EncounterFramework.Utils");
             }
         }
+
         [HarmonyPatch]
         public static class Harmony_Utils_Patch
         {
-            
+
             public static bool Prepare()
             {
                 return Utils_Patch_HarmonyPatches != null;
@@ -29,10 +30,9 @@ namespace CombatExtended.HarmonyCE.Compatibility
             {
                 return AccessTools.Method("EncounterFramework.Utils:DoGeneration");
             }
-            
+
             public static void Postfix(Map map)
             {
-                Log.Message("EncounterFramework.Utils:DoGeneration");
                 var buildingList = map.listerBuildings.allBuildingsNonColonist.ToList();
                 foreach (var thing in buildingList)
                 {
@@ -42,27 +42,27 @@ namespace CombatExtended.HarmonyCE.Compatibility
                     }
                 }
             }
-            
+
             private static void ReplaceTurret(Thing oldThing)
             {
-                // Saving all the old turrets information
+                //Saving all the old turrets information
                 var map = oldThing.Map;
                 var position = oldThing.Position;
                 var stuff = oldThing.Stuff;
                 var faction = oldThing.Faction;
                 var def = oldThing.def;
-                
+
                 oldThing.Destroy();
-                
-                // Make new Turret
+
+                //Make new Turret
                 if (ThingMaker.MakeThing(def, stuff) is not Building_TurretGunCE newThing)
                 {
                     return;
                 }
                 GenPlace.TryPlaceThing(newThing, position, map, ThingPlaceMode.Direct);
                 newThing.SetFaction(faction);
-                
-                // Turret Ammo
+
+                //Turret Ammo
                 var ammoComp = newThing.CompAmmo;
                 var ammoTypes = ammoComp.Props.ammoSet.ammoTypes;
                 foreach (var ammoType in ammoTypes)
@@ -73,8 +73,8 @@ namespace CombatExtended.HarmonyCE.Compatibility
                     }
                 }
                 ammoComp.CurMagCount = ammoComp.MagSize;
-                
-                // Force power on
+
+                //Force power on
                 var newPowerTrader = newThing.TryGetComp<CompPowerTrader>();
                 if (newPowerTrader != null)
                 {
