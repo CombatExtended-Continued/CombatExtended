@@ -43,8 +43,8 @@ namespace CombatExtended
             {
                 return;
             }
-            var toolList = pawn.def.tools;
-            if (toolList.Count == 0)
+            var toolList = pawn.def?.tools;
+            if (toolList == null || toolList.Count == 0)
             {
                 return;
             }
