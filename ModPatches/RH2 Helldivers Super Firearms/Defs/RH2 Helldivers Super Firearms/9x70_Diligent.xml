@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo9x70mmDiligent</defName>
+		<label>9x70mm Diligent</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_9x70mmDiligent</defName>
+		<label>9x70mm Diligent</label>
+		<ammoTypes>
+			<Ammo_9x70mmDiligent_FMJ>Bullet_9x70mmDiligent_FMJ</Ammo_9x70mmDiligent_FMJ>
+			<Ammo_9x70mmDiligent_AP>Bullet_9x70mmDiligent_AP</Ammo_9x70mmDiligent_AP>
+			<Ammo_9x70mmDiligent_HP>Bullet_9x70mmDiligent_HP</Ammo_9x70mmDiligent_HP>
+			<Ammo_9x70mmDiligent_Incendiary>Bullet_9x70mmDiligent_Incendiary</Ammo_9x70mmDiligent_Incendiary>
+			<Ammo_9x70mmDiligent_HE>Bullet_9x70mmDiligent_HE</Ammo_9x70mmDiligent_HE>
+			<Ammo_9x70mmDiligent_Sabot>Bullet_9x70mmDiligent_Sabot</Ammo_9x70mmDiligent_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="9x70mmDiligentBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Large rifle bullet used in machine guns, sniper rifles and the occasional assault rifle.</description>
+		<statBases>
+			<Mass>0.028</Mass>
+			<Bulk>0.03</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo9x70mmDiligent</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x70mmDiligentBase">
+		<defName>Ammo_9x70mmDiligent_FMJ</defName>
+		<label>9x70mm Diligent (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_9x70mmDiligent_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x70mmDiligentBase">
+		<defName>Ammo_9x70mmDiligent_AP</defName>
+		<label>9x70mm Diligent (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_9x70mmDiligent_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x70mmDiligentBase">
+		<defName>Ammo_9x70mmDiligent_HP</defName>
+		<label>9x70mm Diligent (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_9x70mmDiligent_HP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x70mmDiligentBase">
+		<defName>Ammo_9x70mmDiligent_Incendiary</defName>
+		<label>9x70mm Diligent (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_9x70mmDiligent_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x70mmDiligentBase">
+		<defName>Ammo_9x70mmDiligent_HE</defName>
+		<label>9x70mm Diligent (AP-HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_9x70mmDiligent_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x70mmDiligentBase">
+		<defName>Ammo_9x70mmDiligent_Sabot</defName>
+		<label>9x70mm Diligent (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.023</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_9x70mmDiligent_Sabot</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base9x70mmDiligentBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>158</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x70mmDiligentBullet">
+		<defName>Bullet_9x70mmDiligent_FMJ</defName>
+		<label>8mm Diligent bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>27</damageAmountBase>
+			<armorPenetrationSharp>7.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x70mmDiligentBullet">
+		<defName>Bullet_9x70mmDiligent_AP</defName>
+		<label>8mm Diligent bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>17</damageAmountBase>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x70mmDiligentBullet">
+		<defName>Bullet_9x70mmDiligent_HP</defName>
+		<label>8mm Diligent bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>34</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x70mmDiligentBullet">
+		<defName>Bullet_9x70mmDiligent_Incendiary</defName>
+		<label>9x70mm Diligent bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>17</damageAmountBase>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>9</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x70mmDiligentBullet">
+		<defName>Bullet_9x70mmDiligent_HE</defName>
+		<label>9x70mm Diligent bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>27</damageAmountBase>
+			<armorPenetrationSharp>7.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>12</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x70mmDiligentBullet">
+		<defName>Bullet_9x70mmDiligent_Sabot</defName>
+		<label>9x70mm Diligent bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>26</armorPenetrationSharp>
+			<armorPenetrationBlunt>100.92</armorPenetrationBlunt>
+			<speed>170</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x70mmDiligent_FMJ</defName>
+		<label>make 9x70mm Diligent (FMJ) cartridge x500</label>
+		<description>Craft 500 9x70mm Diligent (FMJ) cartridges.</description>
+		<jobString>Making 9x70mm Diligent (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x70mmDiligent_FMJ>500</Ammo_9x70mmDiligent_FMJ>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x70mmDiligent_AP</defName>
+		<label>make 9x70mm Diligent (AP) cartridge x500</label>
+		<description>Craft 500 9x70mm Diligent (AP) cartridges.</description>
+		<jobString>Making 9x70mm Diligent (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x70mmDiligent_AP>500</Ammo_9x70mmDiligent_AP>
+		</products>
+		<workAmount>3600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x70mmDiligent_HP</defName>
+		<label>make 9x70mm Diligent (HP) cartridge x500</label>
+		<description>Craft 500 9x70mm Diligent (HP) cartridges.</description>
+		<jobString>Making 9x70mm Diligent (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x70mmDiligent_HP>500</Ammo_9x70mmDiligent_HP>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_9x70mmDiligent_Incendiary</defName>
+		<label>make 9x70mm Diligent (AP-I) cartridge x500</label>
+		<description>Craft 500 9x70mm Diligent (AP-I) cartridges.</description>
+		<jobString>Making 9x70mm Diligent (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x70mmDiligent_Incendiary>500</Ammo_9x70mmDiligent_Incendiary>
+		</products>
+		<workAmount>4200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_9x70mmDiligent_HE</defName>
+		<label>make 9x70mm Diligent (AP-HE) cartridge x500</label>
+		<description>Craft 500 9x70mm Diligent (AP-HE) cartridges.</description>
+		<jobString>Making 9x70mm Diligent (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x70mmDiligent_HE>500</Ammo_9x70mmDiligent_HE>
+		</products>
+		<workAmount>5800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_9x70mmDiligent_Sabot</defName>
+		<label>make 9x70mm Diligent (Sabot) cartridge x500</label>
+		<description>Craft 500 9x70mm Diligent (Sabot) cartridges.</description>
+		<jobString>Making 9x70mm Diligent (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x70mmDiligent_Sabot>500</Ammo_9x70mmDiligent_Sabot>
+		</products>
+		<workAmount>4200</workAmount>
+	</RecipeDef>
+
+</Defs>
