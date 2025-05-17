@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="AA_MatureFleshbeast"]</xpath>
 		<value>
@@ -7,11 +8,6 @@
 				<bodyShape>Quadruped</bodyShape>
 			</li>
 		</value>
-	</Operation>
-
-	<!-- Remove the 'Swallow Whole' attack, since it doesn't work in CE and insta-kills instead. -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="AA_MatureFleshbeast"]/thingClass</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -26,6 +22,15 @@
 		<xpath>Defs/ThingDef[defName="AA_MatureFleshbeast"]/tools</xpath>
 		<value>
 			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>AA_SwallowWhole</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.85</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<chanceFactor>0.6</chanceFactor>
+				</li>
 				<li Class="CombatExtended.ToolCE">
 					<capacities>
 						<li>Bite</li>
@@ -51,4 +56,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>
