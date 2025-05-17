@@ -6,26 +6,60 @@ using Verse;
 
 namespace CombatExtended
 {
+    public class FlareModExtensionCE : DefModExtension
+    {
+        public ThingDef SmokeMote = CE_ThingDefOf.Mote_FlareSmoke;
+        public ThingDef FireMote = CE_ThingDefOf.Mote_FlareGlow;
+        public FleckDef LandglowFleck = FleckDefOf.FireGlow;
+        public ThingDef FlareThingDef = CE_ThingDefOf.Flare;
+
+        public float BurnSeconds = 35;
+        public float AltitudeDrawFactor = 0.7f;
+        public float FlyoverStartAltitude = 30;
+        public float FlyoverFinalAltitude = 4;
+        public float DirectAltitude = 0;
+
+        public float LandglowMinAltitude = 20;
+        public float LandglowScale = 4.0f;
+
+        //Note: watersplash has been disabled in RW since 1.3, but still exists in code
+        public float WaterSplashMinAltitude = 6;
+        public float WatersplashVelocity = 5.0f;
+        public float WatersplashSize = 2.5f;
+
+        public int SmokeMinInterval = 18;
+        public int SmokeMaxInterval = 25;
+
+        public float SmokeMinSize = 0.15f;
+        public float SmokeMaxSize = 1.25f;
+    }
+
     public class Flare : ThingWithComps
     {
-        public const float BURN_TICKS = 35 * GenTicks.TicksPerRealSecond;
-        public const float ALTITUDE_DRAW_FACTOR = 0.7f;
-        public const float DEFAULT_FLYOVER_START_ALT = 30;
-        public const float DEFAULT_FLYOVER_FINAL_ALT = 4;
-        public const float DEFAULT_DIRECT_ALT = 0;
+        public FlareModExtensionCE modExtension;
 
-        public const float LANDGLOW_MIN_ALTITUDE = 20;
-        public const float LANDGLOW_SCALE = 4.0f;
+        public ThingDef FlareSmokeMote = CE_ThingDefOf.Mote_FlareSmoke;
+        public ThingDef FlareGlowMote = CE_ThingDefOf.Mote_FlareGlow;
+        public FleckDef LandglowFleck = FleckDefOf.FireGlow;
 
-        public const float WATERSPLASH_MIN_ALTITUDE = 6;
-        public const float WATERSPLASH_VELOCITY = 5.0f;
-        public const float WATERSPLASH_SIZE = 2.5f;
-
-        private const int SMOKE_MIN_INTERVAL = 18;
-        private const int SMOKE_MAX_INTERVAL = 25;
-
-        private const float SMOKE_MIN_SIZE = 0.15f;
-        private const float SMOKE_MAX_SIZE = 1.25f;
+        public float BURN_TICKS = 35 * GenTicks.TicksPerRealSecond;
+        public float ALTITUDE_DRAW_FACTOR = 0.7f;
+        public float DEFAULT_FLYOVER_START_ALT = 30;
+        public float DEFAULT_FLYOVER_FINAL_ALT = 4;
+        public float DEFAULT_DIRECT_ALT = 0;
+               
+        public float LANDGLOW_MIN_ALTITUDE = 20;
+        public float LANDGLOW_SCALE = 4.0f;
+               
+        public float WATERSPLASH_MIN_ALTITUDE = 6;
+        public float WATERSPLASH_VELOCITY = 5.0f;
+        public float WATERSPLASH_SIZE = 2.5f;
+               
+        private int SMOKE_MIN_INTERVAL = 18;
+        private int SMOKE_MAX_INTERVAL = 25;
+               
+        private float SMOKE_MIN_SIZE = 0.15f;
+        private float SMOKE_MAX_SIZE = 1.25f;
 
         public enum FlareDrawMode
         {
@@ -177,6 +211,32 @@ namespace CombatExtended
                 Log.Error($"CE: Tried to draw a miss configured flare {this} at {Position} with unknown FlareDrawMode. Defaulting to flyover");
                 DrawMode = FlareDrawMode.FlyOver;
             }
+
+            if (modExtension !=null) 
+            {
+                FlareSmokeMote = modExtension.SmokeMote ?? FlareSmokeMote;
+                FlareGlowMote = modExtension.FireMote ?? FlareGlowMote;
+                LandglowFleck = modExtension.LandglowFleck ?? LandglowFleck;
+                BURN_TICKS = modExtension.BurnSeconds * GenTicks.TicksPerRealSecond;
+                
+                ALTITUDE_DRAW_FACTOR = modExtension.AltitudeDrawFactor;
+                DEFAULT_FLYOVER_START_ALT = modExtension.FlyoverStartAltitude;
+                DEFAULT_FLYOVER_FINAL_ALT = modExtension.FlyoverFinalAltitude;
+                DEFAULT_DIRECT_ALT = modExtension.DirectAltitude;
+
+                LANDGLOW_MIN_ALTITUDE = modExtension.LandglowMinAltitude;
+                LANDGLOW_SCALE = modExtension.LandglowScale;
+                WATERSPLASH_MIN_ALTITUDE = modExtension.WaterSplashMinAltitude;
+                WATERSPLASH_VELOCITY = modExtension.WatersplashVelocity;
+                WATERSPLASH_SIZE = modExtension.WatersplashSize;
+
+                SMOKE_MIN_INTERVAL = modExtension.SmokeMinInterval;
+                SMOKE_MAX_INTERVAL = modExtension.SmokeMaxInterval;
+
+                SMOKE_MIN_SIZE = modExtension.SmokeMinSize;
+                SMOKE_MAX_SIZE = modExtension.SmokeMaxSize;
+            }
+
             base.SpawnSetup(map, respawningAfterLoad);
         }
 
@@ -206,7 +266,7 @@ namespace CombatExtended
                 {
                     Rand.PushState();
                 }
-                MoteThrownCE smokeMote = (MoteThrownCE)ThingMaker.MakeThing(CE_ThingDefOf.Mote_FlareSmoke);
+                MoteThrownCE smokeMote = (MoteThrownCE)ThingMaker.MakeThing(FlareSmokeMote);
                 smokeMote.Scale = Rand.Range(1.5f, 2.5f) * Rand.Range(SMOKE_MIN_SIZE, SMOKE_MAX_SIZE) * HeightDrawScale;
                 smokeMote.rotationRate = Rand.Range(-30f, 30f);
                 smokeMote.SetVelocity(Rand.Range(30, 40), Rand.Range(0.5f, 0.7f));
@@ -216,7 +276,7 @@ namespace CombatExtended
                 smokeMote.attachedAltitudeThing = this;
                 smokeMote.SpawnSetup(Map, false);
 
-                MoteThrownCE glowMote = (MoteThrownCE)ThingMaker.MakeThing(CE_ThingDefOf.Mote_FlareGlow);
+                MoteThrownCE glowMote = (MoteThrownCE)ThingMaker.MakeThing(FlareGlowMote);
                 glowMote.Scale = Rand.Range(4f, 6f) * 0.6f * HeightDrawScale;
                 glowMote.rotationRate = Rand.Range(-3f, 3f);
                 glowMote.SetVelocity(Rand.Range(0, 360), 0.12f);
@@ -228,7 +288,13 @@ namespace CombatExtended
 
                 if (CurAltitude < LANDGLOW_MIN_ALTITUDE)
                 {
-                    FleckMaker.ThrowFireGlow(DrawPos, Map, LANDGLOW_SCALE * (1f - (CurAltitude - FinalAltitude) / (LANDGLOW_MIN_ALTITUDE - FinalAltitude)));
+                    //parameters of ThrowFireGlow() method adapted to use any fleck
+                    float size = LANDGLOW_SCALE * (1f - (CurAltitude - FinalAltitude) / (LANDGLOW_MIN_ALTITUDE - FinalAltitude));
+                    FleckCreationData dataStatic = FleckMaker.GetDataStatic(DrawPos + size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f), Map, LandglowFleck, Rand.Range(4f, 6f) * size);
+                    dataStatic.rotationRate = Rand.Range(-3f, 3f);
+                    dataStatic.velocityAngle = Rand.Range(0, 360f);
+                    dataStatic.velocitySpeed = 0.12f;
+                    Map.flecks.CreateFleck(dataStatic);
                 }
                 if (CurAltitude < WATERSPLASH_MIN_ALTITUDE)
                 {
