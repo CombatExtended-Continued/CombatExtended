@@ -1,54 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!--BP Melee rifles Non Bayonet-->
+	<!-- Melee Tools - Pistols -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-				defName="GW_BP_Autocarbine" or
-				defName="GW_BP_Heavystubber" or
-				defName="GW_BP_MissileLauncher" or
-				defName="GW_BP_Flamer" 
-			]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-					<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-					<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_BP_Autopistol"]/tools </xpath>
+		defName="GW_BP_Autopistol" or
+		defName="GW_BP_Laspistol" or
+		defName="GW_BP_PlasmaPistol"
+		]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -76,14 +36,14 @@
 		</value>
 	</Operation>
 
-	<!--BP Las Melee Nonbayonet-->
+	<!-- Melee Tools - Rifles (No Bayonet) -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName = "GW_BP_longLasgun" or
-			defName = "GW_BP_PlasmaGun" or
-			defName = "GW_BP_Melta" 
-			]/tools </xpath>
+			defName="GW_BP_Autocarbine" or
+			defName="GW_BP_longLasgun" or
+			defName="GW_BP_PlasmaGun"
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -96,7 +56,7 @@
 					<chanceFactor>1.5</chanceFactor>
 					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-					</li>
+				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>barrel</label>
 					<capacities>
@@ -106,7 +66,7 @@
 					<cooldownTime>2.02</cooldownTime>
 					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-					</li>
+				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>muzzle</label>
 					<capacities>
@@ -121,45 +81,10 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName = "GW_BP_Laspistol" or
-			defName = "GW_BP_PlasmaPistol"
-			]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>1.54</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>1.54</cooldownTime>
-					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-	
-	<!-- BP Bayonet Melee Tools -->
+	<!-- Melee Tools - Rifles (Bayonet) -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName = "GW_BP_Gun_Flashlight" or
-			defName = "GW_BP_Autogun"
-			]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_BP_Gun_Flashlight" or defName="GW_BP_Autogun"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -172,44 +97,58 @@
 					<chanceFactor>1.5</chanceFactor>
 					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-					</li>
+				</li>
 				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
+					<label>bayonet</label>
 					<capacities>
-						<li>Blunt</li>
+						<li>Cut</li>
 					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<power>17</power>
+					<cooldownTime>2.14</cooldownTime>
+					<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.17</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-					</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>                
+				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>bayonet</label>
 					<capacities>
 						<li>Stab</li>
 					</capacities>
-					<power>18</power>
-					<cooldownTime>1.79</cooldownTime>
-					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
-					<armorPenetrationSharp>2.25</armorPenetrationSharp>
+					<power>6</power>
+					<cooldownTime>1.49</cooldownTime>
+					<armorPenetrationBlunt>2.16</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.44</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-                </li>
+				</li>
 			</tools>
 		</value>
 	</Operation>
 
+	<!-- Melee Tools - Heavy Weapons -->
 
-	<!-- ============ Blood Pact Autopistol ============ -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="GW_BP_Heavystubber" or
+			defName="GW_BP_MissileLauncher" or
+			defName="GW_BP_Flamer"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Blood Pact Autopistol -->
 
 	<Operation Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="GW_BP_Autopistol"]/weaponTags</xpath>
@@ -220,52 +159,43 @@
 				</value>
 			</nomatch>
 	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>GW_BP_Autopistol</defName>
 		<statBases>
-			<Mass>2.5</Mass>
-			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<Bulk>1.8</Bulk>
+			<Mass>0.80</Mass>
+			<RangedWeapon_Cooldown>0.41</RangedWeapon_Cooldown>
 			<SightsEfficiency>0.7</SightsEfficiency>
-			<ShotSpread>0.17</ShotSpread>
-			<SwayFactor>1.14</SwayFactor>
-			<Bulk>2.5</Bulk>
-			<WorkToMake>11000</WorkToMake>
+			<SwayFactor>0.26</SwayFactor>
+			<ShotSpread>0.19</ShotSpread>
 		</statBases>
 		<Properties>
+			<recoilAmount>3.35</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_44Magnum_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
 			<range>12</range>
-			<burstShotCount>3</burstShotCount>
-			<soundCast>Shot_Revolver</soundCast>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<soundCast>Shot_Autopistol</soundCast>
 			<soundCastTail>GunTail_Light</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
-			<recoilAmount>1.7</recoilAmount>
-			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>12</magazineSize>
+			<magazineSize>20</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_44Magnum</ammoSet>
+			<ammoSet>AmmoSet_45ACP</ammoSet>
 		</AmmoUser>
 		<FireModes>
-			<aiAimMode>Snapshot</aiAimMode>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
-		<weaponTags>
-			<li>CE_OneHandedWeapon</li>
-			<li>CE_Sidearm</li>
-			<li>ShortShots</li>
-		</weaponTags>
-    </Operation>    
+	</Operation>
 
-	<!-- ============ Blood Pact Las ============ -->
+	<!-- Blood Pact Las -->
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_BP_Gun_Flashlight"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -290,7 +220,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_Lasgun_Rifle_Khorne</defaultProjectile>
+			<defaultProjectile>Bullet_Lasgun_Rifle</defaultProjectile>
 			<warmupTime>1.1</warmupTime>
 			<range>52</range>
 			<burstShotCount>5</burstShotCount>
@@ -306,7 +236,7 @@
 		<AmmoUser>
 			<magazineSize>60</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_Lasgun_Rifle_Khorne</ammoSet>
+			<ammoSet>AmmoSet_Lasgun_Rifle</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -318,7 +248,7 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- ============ BP Longlas ============ -->
+	<!-- BP Longlas -->
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_BP_longLasgun"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -343,7 +273,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_Lasgun_HellGun_Khorne</defaultProjectile>
+			<defaultProjectile>Bullet_Lasgun_HellGun</defaultProjectile>
 			<warmupTime>1.8</warmupTime>
 			<range>75</range>
 			<burstShotCount>1</burstShotCount>
@@ -359,7 +289,7 @@
 		<AmmoUser>
 			<magazineSize>8</magazineSize>
 			<reloadTime>4.5</reloadTime>
-			<ammoSet>AmmoSet_Lasgun_HellGun_Khorne</ammoSet>
+			<ammoSet>AmmoSet_Lasgun_HellGun</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -370,7 +300,7 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- ============ Blood Pact Autogun ============ -->
+	<!-- Blood Pact Autogun -->
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_BP_Autogun"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -399,7 +329,7 @@
 			<warmupTime>1</warmupTime>
 			<range>55</range>
 			<burstShotCount>8</burstShotCount>
-			<soundCast>GW_AM_Gun_Agripinaamkii</soundCast>
+			<soundCast>Shot_AssaultRifle</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 			<recoilAmount>1.45</recoilAmount>
@@ -424,7 +354,7 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- ============ BP Autocarbine ============ -->
+	<!-- BP Autocarbine -->
 					
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_BP_Autocarbine"]/weaponTags</xpath>
@@ -454,7 +384,7 @@
 			<warmupTime>0.6</warmupTime>
 			<range>25</range>
 			<burstShotCount>8</burstShotCount>
-			<soundCast>GW_AM_Gun_Agripinaamkii</soundCast>
+			<soundCast>Shot_AssaultRifle</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 			<recoilAmount>1.7</recoilAmount>
@@ -480,7 +410,7 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- ============ BP Heavy Stubber ============ -->
+	<!-- BP Heavy Stubber -->
 					
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_BP_Heavystubber"]/weaponTags</xpath>
@@ -536,7 +466,7 @@
 	</Operation>
 
 	
-	<!-- ============ Blood Pact Laspistol ============ -->
+	<!-- Blood Pact Laspistol -->
 	
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_BP_Laspistol"]/weaponTags</xpath>
@@ -561,7 +491,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_Lasgun_Pistol_Khorne</defaultProjectile>
+			<defaultProjectile>Bullet_Lasgun_Pistol</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
 			<range>12</range>
 			<burstShotCount>6</burstShotCount>
@@ -576,7 +506,7 @@
 		<AmmoUser>
 			<magazineSize>36</magazineSize>
 			<reloadTime>3.5</reloadTime>
-			<ammoSet>AmmoSet_Lasgun_Pistol_Khorne</ammoSet>
+			<ammoSet>AmmoSet_Lasgun_Pistol</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -639,7 +569,8 @@
 		</FireModes>
 	</Operation>
 
-	<!-- ============ Plasma Gun ============ -->
+	<!-- Plasma Gun -->
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_BP_PlasmaGun"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -744,7 +675,7 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- ============ Melta Gun ============ -->
+	<!-- Melta Gun -->
 
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_BP_Melta"]/weaponTags</xpath>

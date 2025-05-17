@@ -57,15 +57,31 @@
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
 					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+							<li>Hand</li>
+						</parts>
+					</li>				
+					<li>
 						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
 						<parts>
 							<li>Leg</li>
+							<li>Foot</li>
 						</parts>
 					</li>
 					<li>
 						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
 						<parts>
 							<li>Leg</li>
+							<li>Foot</li>
 						</parts>
 					</li>
 					<li>
@@ -108,6 +124,30 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BP_FlakArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+							<li>Shoulder</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+							<li>Shoulder</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- Sirdar Armor -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="BP_SirdarArmorA" or defName="BP_SirdarArmorB"]/statBases</xpath>
@@ -131,202 +171,168 @@
 		</value>
 	</Operation>
 
-	<!-- -->
-
-		<Operation Class="PatchOperationAddModExtension">
-			<xpath>Defs/ThingDef[defName="BP_Arnogaur"]</xpath>
-			<value>
-				<li Class="CombatExtended.PartialArmorExt">
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BP_SirdarArmorA" or defName="BP_SirdarArmorB"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
 					<li>
-						<ArmorRating_Sharp>0.9</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
 						<parts>
-						<li>Leg</li>
+							<li>Neck</li>
+							<li>Shoulder</li>
 						</parts>
 					</li>
 					<li>
-						<ArmorRating_Blunt>0.9</ArmorRating_Blunt>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
 						<parts>
-						<li>Leg</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
-						<parts>
-						<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.8</ArmorRating_Blunt>
-						<parts>
-						<li>Arm</li>
+							<li>Neck</li>
+							<li>Shoulder</li>
 						</parts>
 					</li>
 				</stats>
-				</li>
-			</value>
-		</Operation>
-	
-		<Operation Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="BP_DBArmorA"]/statBases</xpath>
-			<value>
-				<statBases>
-				<MaxHitPoints>280</MaxHitPoints>
-				<Flammability>0.6</Flammability>
-				<DeteriorationRate>2</DeteriorationRate>
-				<Beauty>-3</Beauty>
-				<WorkToMake>12000</WorkToMake>
-				<Mass>6</Mass>
-				<ArmorRating_Sharp>14</ArmorRating_Sharp>
-				<ArmorRating_Blunt>22</ArmorRating_Blunt>
-				<ArmorRating_Heat>0.62</ArmorRating_Heat>
-				<Insulation_Cold>28</Insulation_Cold>
-				<Insulation_Heat>7</Insulation_Heat>
-				<EquipDelay>6</EquipDelay>
-				<Bulk>15</Bulk>
-				<WornBulk>5</WornBulk>
-				</statBases>
-			</value>
-		</Operation>
-		<Operation Class="PatchOperationAddModExtension">
-			<xpath>Defs/ThingDef[defName="BP_DBArmorA"]</xpath>
-			<value>
-				<li Class="CombatExtended.PartialArmorExt">
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Arnogaur Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BP_Arnogaur"]/statBases</xpath>
+		<value>
+			<Bulk>14</Bulk>
+			<WornBulk>6</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BP_Arnogaur"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BP_Arnogaur"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorPowerBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
 					<li>
-						<ArmorRating_Sharp>0.9</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
 						<parts>
-						<li>Leg</li>
+							<li>Neck</li>
 						</parts>
 					</li>
 					<li>
-						<ArmorRating_Blunt>0.9</ArmorRating_Blunt>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
 						<parts>
-						<li>Leg</li>
+							<li>Neck</li>
 						</parts>
 					</li>
 					<li>
-						<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
 						<parts>
-						<li>Arm</li>
+							<li>Arm</li>
 						</parts>
 					</li>
 					<li>
-						<ArmorRating_Blunt>0.8</ArmorRating_Blunt>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
 						<parts>
-						<li>Arm</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
 						</parts>
 					</li>
 				</stats>
-				</li>
-			</value>
-		</Operation>
+			</li>
+		</value>
+	</Operation>
 
-		<Operation Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="BP_Flakhelm"]/statBases</xpath>
-			<value>
-				<statBases>
-				<MaxHitPoints>150</MaxHitPoints>
-				<Flammability>0.25</Flammability>
-				<DeteriorationRate>2</DeteriorationRate>
-				<Beauty>-3</Beauty>
-				<Insulation_Cold>0.5</Insulation_Cold>
-				<Insulation_Heat>0</Insulation_Heat>
-				<WorkToMake>2500</WorkToMake>
-				<Mass>1.2</Mass>
-				<ArmorRating_Sharp>6</ArmorRating_Sharp>
-				<ArmorRating_Blunt>9.75</ArmorRating_Blunt>
-				<ArmorRating_Heat>0.6</ArmorRating_Heat>
-				<EquipDelay>1.5</EquipDelay>
-				<Bulk>4</Bulk>
-				<WornBulk>1</WornBulk>
-				</statBases>
-			</value>
-		</Operation>
-		<Operation Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="BP_Flakghelm"]/statBases</xpath>
-			<value>
-				<statBases>
-				<MaxHitPoints>150</MaxHitPoints>
-				<Flammability>0.25</Flammability>
-				<DeteriorationRate>2</DeteriorationRate>
-				<Beauty>-3</Beauty>
-				<Insulation_Cold>0.5</Insulation_Cold>
-				<Insulation_Heat>0</Insulation_Heat>
-				<WorkToMake>2500</WorkToMake>
-				<Mass>1.2</Mass>
-				<ArmorRating_Sharp>6.5</ArmorRating_Sharp>
-				<ArmorRating_Blunt>9.75</ArmorRating_Blunt>
-				<ArmorRating_Heat>0.6</ArmorRating_Heat>
-				<EquipDelay>1.5</EquipDelay>
-				<Bulk>4</Bulk>
-				<WornBulk>1</WornBulk>
-				</statBases>
-			</value>
-		</Operation>
-		<Operation Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="BP_Goremagesuit"]/statBases</xpath>
-			<value>
-				<statBases>
-				<MaxHitPoints>250</MaxHitPoints>
-				<Flammability>0.6</Flammability>
-				<DeteriorationRate>2</DeteriorationRate>
-				<Beauty>-3</Beauty>
-				<WorkToMake>9000</WorkToMake>
-				<Mass>5</Mass>
-				<ArmorRating_Sharp>12</ArmorRating_Sharp>
-				<ArmorRating_Blunt>18</ArmorRating_Blunt>
-				<ArmorRating_Heat>0.6</ArmorRating_Heat>
-				<Insulation_Cold>1</Insulation_Cold>
-				<EquipDelay>3</EquipDelay>
-				<Bulk>10</Bulk>
-				<WornBulk>5</WornBulk>
-				</statBases>
-			</value>
-		</Operation>
+	<!-- Goremage Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BP_Goremagesuit"]/statBases</xpath>
+		<value>
+			<Bulk>18</Bulk>
+			<WornBulk>7</WornBulk>
+		</value>
+	</Operation>
 
-		<Operation Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="BP_KhornemarineT"]/statBases</xpath>
-			<value>
-				<statBases>
-				<MaxHitPoints>1000</MaxHitPoints>
-				<Flammability>0.2</Flammability>
-				<DeteriorationRate>2</DeteriorationRate>
-				<Beauty>-3</Beauty>
-				<WorkToMake>25000</WorkToMake>
-				<Mass>11</Mass>
-				<ArmorRating_Sharp>36</ArmorRating_Sharp>
-				<ArmorRating_Blunt>350</ArmorRating_Blunt>
-				<ArmorRating_Heat>1</ArmorRating_Heat>
-				<Insulation_Cold>20</Insulation_Cold>
-				<Insulation_Heat>20</Insulation_Heat>
-				<EquipDelay>4</EquipDelay>
-				<Bulk>200</Bulk>
-				<WornBulk>20</WornBulk>
-				</statBases>
-			</value>
-		</Operation>
-		<Operation Class="PatchOperationAddModExtension">
-			<xpath>Defs/ThingDef[defName="BP_KhornemarineT"]</xpath>
-			<value>
-				<li Class="CombatExtended.PartialArmorExt">
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BP_Goremagesuit"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BP_Goremagesuit"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>28</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BP_Goremagesuit"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
 					<li>
-						<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
 						<parts>
-						<li>Hand</li>
+							<li>Neck</li>
+							<li>Shoulder</li>
 						</parts>
 					</li>
 					<li>
-						<ArmorRating_Blunt>0.8</ArmorRating_Blunt>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
 						<parts>
-						<li>Hand</li>
+							<li>Neck</li>
+							<li>Shoulder</li>
 						</parts>
 					</li>
 				</stats>
-				</li>
-			</value>
-		</Operation>
-		
+			</li>
+		</value>
+	</Operation>
+=		
+	<!-- ========== Khornate ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BP_KhornemarineT"]/statBases</xpath>
+		<value>
+			<Bulk>85</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BP_KhornemarineT"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BP_KhornemarineT"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>150</ArmorRating_Blunt>
+		</value>
+	</Operation>
 
 </Patch>
