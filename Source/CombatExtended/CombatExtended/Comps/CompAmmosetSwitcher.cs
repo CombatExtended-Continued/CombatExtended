@@ -141,7 +141,7 @@ namespace CombatExtended
                     CompAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
                 }
             }
-            CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.propsFireModesUnderBarrel.aimedBurstShotCount;
+            CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.verbPropsUnderBarrel.burstShotCount;
             usingUnderBarrel = true;
             CompFireModes.InitAvailableFireModes();
         }
