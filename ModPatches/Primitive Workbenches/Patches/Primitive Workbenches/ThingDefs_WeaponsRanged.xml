@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-
-<!-- === Boomerang === -->
+	<!-- === Boomerang === -->
 	<!-- == Projectile == -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VBY_BoomerangProjectile"]</xpath>
@@ -27,8 +26,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
-	
-	
+
 	<!-- == Weapon == -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VBY_Boomerang"]</xpath>
@@ -36,19 +34,19 @@
 			<stackLimit>25</stackLimit>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VBY_Boomerang"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VBY_Boomerang"]/graphicData</xpath>
 		<attribute>graphicClass</attribute>
 		<value>Graphic_StackCount</value>
 	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VBY_Boomerang</defName>
 		<statBases>
@@ -90,11 +88,9 @@
 		</value>
 	</Operation>
 
-
-<!-- === Rabbit Stick === -->
+	<!-- === Rabbit Stick === -->
 	<!-- == Projectile == -->
-	
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VBY_RabbitStick_Projectile"]</xpath>
 		<value>
@@ -118,8 +114,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
-	
-	
+
 	<!-- == Weapon == -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VBY_RabbitStick"]</xpath>
@@ -127,19 +122,19 @@
 			<stackLimit>25</stackLimit>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VBY_RabbitStick"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VBY_RabbitStick"]/graphicData</xpath>
 		<attribute>graphicClass</attribute>
 		<value>Graphic_StackCount</value>
 	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VBY_RabbitStick</defName>
 		<statBases>
@@ -180,11 +175,10 @@
 			</tools>
 		</value>
 	</Operation>
-	
-<!-- === Throwing Rock === -->
+
+	<!-- === Throwing Rock === -->
 	<!-- == Projectile == -->
-	
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VBY_ThrownRockProjectile"]</xpath>
 		<value>
@@ -208,8 +202,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
-	
-	
+
 	<!-- == Weapon == -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VBY_ThrowingRocks"]</xpath>
@@ -217,19 +210,19 @@
 			<stackLimit>25</stackLimit>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VBY_ThrowingRocks"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VBY_ThrowingRocks"]/graphicData</xpath>
 		<attribute>graphicClass</attribute>
 		<value>Graphic_StackCount</value>
 	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VBY_ThrowingRocks</defName>
 		<statBases>
@@ -270,12 +263,9 @@
 			</tools>
 		</value>
 	</Operation>
-	
-	
-	
-<!-- === Atlatl === -->
-	<!-- == Projectile == -->	
-	
+
+	<!-- === Atlatl === -->
+	<!-- == Projectile == -->
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VBY_Atlatl</defName>
@@ -287,7 +277,7 @@
 			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<WoodLog>30</WoodLog>      
+			<WoodLog>30</WoodLog>
 			<VBY_PrimitiveFlint>20</VBY_PrimitiveFlint>
 		</costList>
 		<Properties>
@@ -325,4 +315,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>
