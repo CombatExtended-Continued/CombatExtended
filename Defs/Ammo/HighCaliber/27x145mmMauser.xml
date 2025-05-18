@@ -27,7 +27,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo27x145mmMauserBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>Large caliber cartridge used by autocannons.</description>
 		<statBases>
-			<Mass>0.6</Mass>
+			<Mass>0.516</Mass>
 			<Bulk>0.67</Bulk>
 		</statBases>
 		<tradeTags>
@@ -81,7 +81,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<Mass>0.516</Mass>
+			<Mass>0.403</Mass>
 		</statBases>
 		<ammoClass>Sabot</ammoClass>
 		<cookOffProjectile>Bullet_27x145mmMauser_Sabot</cookOffProjectile>
@@ -90,7 +90,7 @@
 	<!-- ================== Projectile ================== -->
 
 	<ThingDef Name="Base27x145mmMauserBullet" ParentName="BaseBulletCE" Abstract="true">
-	    <graphicData>
+		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
@@ -107,9 +107,9 @@
 		<defName>Bullet_27x145mmMauser_AP</defName>
 		<label>27x145mm Mauser bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>79</damageAmountBase>
+			<damageAmountBase>72</damageAmountBase>
 			<armorPenetrationSharp>60</armorPenetrationSharp>
-			<armorPenetrationBlunt>4162.4</armorPenetrationBlunt>
+			<armorPenetrationBlunt>3146</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -117,15 +117,15 @@
 		<defName>Bullet_27x145mmMauser_Incendiary</defName>
 		<label>27x145mm Mauser bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>79</damageAmountBase>
+			<damageAmountBase>72</damageAmountBase>
 			<armorPenetrationSharp>30</armorPenetrationSharp>
-			<armorPenetrationBlunt>4162.4</armorPenetrationBlunt>
-		    <secondaryDamage>
-                <li>
-                  <def>Flame_Secondary</def>
-                   <amount>48</amount>
-                </li>
-	        </secondaryDamage>
+			<armorPenetrationBlunt>3146</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>41</amount>
+				</li>
+			</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -133,15 +133,15 @@
 		<defName>Bullet_27x145mmMauser_HE</defName>
 		<label>27x145mm Mauser bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>125</damageAmountBase>
+			<damageAmountBase>114</damageAmountBase>
 			<armorPenetrationSharp>30</armorPenetrationSharp>
-			<armorPenetrationBlunt>4162.4</armorPenetrationBlunt>
-		    <secondaryDamage>
+			<armorPenetrationBlunt>3146</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
 					<def>Bomb_Secondary</def>
-					<amount>68</amount>
+					<amount>56</amount>
 				</li>
-		    </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -149,9 +149,9 @@
 		<defName>Bullet_27x145mmMauser_Sabot</defName>
 		<label>27x145mm Mauser bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>72</damageAmountBase>
+			<damageAmountBase>59</damageAmountBase>
 			<armorPenetrationSharp>101</armorPenetrationSharp>
-			<armorPenetrationBlunt>7078.5</armorPenetrationBlunt>
+			<armorPenetrationBlunt>4002.08</armorPenetrationBlunt>
 			<speed>259</speed>
 		</projectile>
 	</ThingDef>
@@ -170,7 +170,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>182</count>
+				<count>156</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -181,7 +181,7 @@
 		<products>
 			<Ammo_27x145mmMauser_AP>150</Ammo_27x145mmMauser_AP>
 		</products>
-		<workAmount>21840</workAmount>
+		<workAmount>18720</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -196,7 +196,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>182</count>
+				<count>156</count>
 			</li>
 			<li>
 				<filter>
@@ -204,7 +204,7 @@
 						<li>Prometheum</li>
 					</thingDefs>
 				</filter>
-				<count>25</count>
+				<count>19</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -216,7 +216,7 @@
 		<products>
 			<Ammo_27x145mmMauser_Incendiary>150</Ammo_27x145mmMauser_Incendiary>
 		</products>
-		<workAmount>28200</workAmount>
+		<workAmount>23200</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -231,7 +231,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>182</count>
+				<count>156</count>
 			</li>
 			<li>
 				<filter>
@@ -239,7 +239,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>47</count>
+				<count>37</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -251,7 +251,7 @@
 		<products>
 			<Ammo_27x145mmMauser_HE>150</Ammo_27x145mmMauser_HE>
 		</products>
-		<workAmount>37000</workAmount>
+		<workAmount>30400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -274,7 +274,7 @@
 						<li>Uranium</li>
 					</thingDefs>
 				</filter>
-				<count>39</count>
+				<count>23</count>
 			</li>
 			<li>
 				<filter>
@@ -282,7 +282,7 @@
 						<li>Chemfuel</li>
 					</thingDefs>
 				</filter>
-				<count>39</count>
+				<count>23</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -295,7 +295,7 @@
 		<products>
 			<Ammo_27x145mmMauser_Sabot>150</Ammo_27x145mmMauser_Sabot>
 		</products>
-		<workAmount>31200</workAmount>
+		<workAmount>21600</workAmount>
 	</RecipeDef>
 
 </Defs>

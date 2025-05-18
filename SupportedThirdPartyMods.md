@@ -172,6 +172,7 @@ CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Cybernetic Warfare and Special Weapons (Continued)  |
+Dark Ages : Beasts and Monsters  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
@@ -234,6 +235,7 @@ Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
 Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
+Fantasy Metals Reforged Forked |
 Farming Expansion   |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
@@ -270,7 +272,7 @@ GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Hammer of the Imperium |
 Grimworld 40,000 - Heresy Armor Addon   |
-GrimWorld 40,000 - Imperial Vehicles of Grimworld |
+GrimWorld 40,000 - Sabbat's Blight |
 GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
 Gulden Mod  |
@@ -338,6 +340,7 @@ Medieval Overhaul   |
 Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
 Medieval Overhaul: House Roxmont  |
+Medieval Overhaul: Royalty  |
 Medieval Tailor   |
 Megafauna	|
 Melee Animation	|
@@ -358,6 +361,7 @@ Misc. Turrets   |
 Moa |
 Moonjelly Race  |
 More Archotech Garbage Continued  |
+More Armory! Midworld Arms Pack  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Medieval Helms and Armor	|
