@@ -1006,18 +1006,17 @@ namespace CombatExtended
         {
         }
 
-        public virtual float CalculateDarknessWarmupPenalty()
+        public virtual void ApplyDarknessWarmupPenalty()
         {
-            if (Shooter != null && currentTarget.Cell != null)
+            if (Controller.settings.SlowerDarknessAiming && Shooter != null && currentTarget.Cell != null)
             {
                 float darknessPercent = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, currentTarget.Cell));
-                //cause penalty only for cells below 50%
-                if (darknessPercent > 0.5f)
+
+                if (darknessPercent > 0f)
                 {
-                    return 1 + Mathf.Max(0, darknessPercent);
+                    this.BurstWarmupTicksLeft = (int)(BurstWarmupTicksLeft * (1 + darknessPercent));
                 }
             }
-            return 1f;
         }
 
         public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false, bool nonInterruptingSelfCast = false)
@@ -1032,11 +1031,7 @@ namespace CombatExtended
                         this.RecalculateWarmupTicks();
                     }
 
-                    float darknessPenalty = CalculateDarknessWarmupPenalty();
-                    if (darknessPenalty > 1.0f)
-                    {
-                        this.BurstWarmupTicksLeft = (int)(BurstWarmupTicksLeft * darknessPenalty);
-                    }
+                    ApplyDarknessWarmupPenalty();
                 }
             }
             return startedCasting;

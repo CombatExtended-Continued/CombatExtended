@@ -72,6 +72,7 @@ namespace CombatExtended
         private bool reuseNeolithicProjectiles = true;
         private bool realisticCookOff = true;
         private bool stuckArrowsAsFlecks = true;
+        private bool slowerDarknessAiming = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
         public bool RightClickAmmoSelect => rightClickAmmoSelect;
@@ -82,6 +83,7 @@ namespace CombatExtended
         public bool RealisticCookOff => realisticCookOff;
         public bool StuckArrowsAsFlecks => stuckArrowsAsFlecks;
 
+        public bool SlowerDarknessAiming => slowerDarknessAiming;
         // Debug settings - make sure all of these default to false for the release build
         private bool debuggingMode = false;
         private bool debugVerbose = false;
@@ -198,6 +200,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
             Scribe_Values.Look(ref stuckArrowsAsFlecks, "stuckArrowsAsFlecks", true);
+            Scribe_Values.Look(ref slowerDarknessAiming, "slowerDarknessAiming", false);
             Scribe_Values.Look(ref genericammo, "genericAmmo", false);
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
@@ -225,6 +228,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_CreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_CreateCasingsFilth_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_StuckArrowsAsFlecks_Title".Translate(), ref stuckArrowsAsFlecks, "CE_Settings_StuckArrowsAsFlecks_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_SlowerDarknessAiming_Title".Translate(), ref slowerDarknessAiming, "CE_Settings_SlowerDarknessAiming_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_RecoilAnim_Title".Translate(), ref recoilAnim, "CE_Settings_RecoilAnim_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
