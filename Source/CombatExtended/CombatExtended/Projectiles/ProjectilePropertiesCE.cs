@@ -73,7 +73,7 @@ namespace CombatExtended
         private BaseTrajectoryWorker trajectoryWorkerInt;
         public string lerpPosition = "";
 
-        private static LerpedTrajectoryWorker defaultLerpedTrajectoryWorker = new LerpedTrajectoryWorker();
+        public static LerpedTrajectoryWorker defaultLerpedTrajectoryWorker = new LerpedTrajectoryWorker();
         public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
 
         public SimpleCurve explosionFalloffCurve;
