@@ -40,7 +40,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
                     {
                         list.InsertRange(i + 1, new CodeInstruction[]
                         {
-                            new CodeInstruction(OpCodes.Ldloc_S,6),
+                            new CodeInstruction(OpCodes.Ldloc_S, 6),
                             new CodeInstruction(OpCodes.Call, overrideMethod),
                         });
                         break;
@@ -53,6 +53,6 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 CE_ThingSetMakerUtility.GenerateAmmoForWeapon(outThings, true, true, new IntRange(1, 3));
             }
         }
-       
+
     }
 }
