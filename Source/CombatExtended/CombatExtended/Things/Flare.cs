@@ -8,10 +8,10 @@ namespace CombatExtended
 {
     public class FlareModExtensionCE : DefModExtension
     {
-        public ThingDef SmokeMote = CE_ThingDefOf.Mote_FlareSmoke;
-        public ThingDef FireMote = CE_ThingDefOf.Mote_FlareGlow;
-        public FleckDef LandglowFleck = FleckDefOf.FireGlow;
-        public ThingDef FlareThingDef = CE_ThingDefOf.Flare;
+        public ThingDef SmokeMote;
+        public ThingDef FireMote;
+        public FleckDef LandglowFleck;
+        public ThingDef FlareThingDef;
 
         public float BurnSeconds = 35;
         public float AltitudeDrawFactor = 0.7f;
@@ -38,9 +38,9 @@ namespace CombatExtended
     {
         public FlareModExtensionCE modExtension;
 
-        public ThingDef FlareSmokeMote = CE_ThingDefOf.Mote_FlareSmoke;
-        public ThingDef FlareGlowMote = CE_ThingDefOf.Mote_FlareGlow;
-        public FleckDef LandglowFleck = FleckDefOf.FireGlow;
+        public ThingDef FlareSmokeMote;
+        public ThingDef FlareGlowMote;
+        public FleckDef LandglowFleck;
 
         public float BURN_TICKS = 35 * GenTicks.TicksPerRealSecond;
         public float ALTITUDE_DRAW_FACTOR = 0.7f;
@@ -212,11 +212,15 @@ namespace CombatExtended
                 DrawMode = FlareDrawMode.FlyOver;
             }
 
+            FlareSmokeMote = CE_ThingDefOf.Mote_FlareSmoke;
+            FlareGlowMote = CE_ThingDefOf.Mote_FlareGlow;
+            LandglowFleck = FleckDefOf.FireGlow;
+
             if (modExtension != null)
             {
-                FlareSmokeMote = modExtension.SmokeMote ?? FlareSmokeMote;
-                FlareGlowMote = modExtension.FireMote ?? FlareGlowMote;
-                LandglowFleck = modExtension.LandglowFleck ?? LandglowFleck;
+                FlareSmokeMote = modExtension.SmokeMote ?? CE_ThingDefOf.Mote_FlareSmoke;
+                FlareGlowMote = modExtension.FireMote ?? CE_ThingDefOf.Mote_FlareGlow;
+                LandglowFleck = modExtension.LandglowFleck ?? FleckDefOf.FireGlow;
                 BURN_TICKS = modExtension.BurnSeconds * GenTicks.TicksPerRealSecond;
 
                 ALTITUDE_DRAW_FACTOR = modExtension.AltitudeDrawFactor;
