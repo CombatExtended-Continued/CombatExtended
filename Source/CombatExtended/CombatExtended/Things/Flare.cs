@@ -47,17 +47,17 @@ namespace CombatExtended
         public float DEFAULT_FLYOVER_START_ALT = 30;
         public float DEFAULT_FLYOVER_FINAL_ALT = 4;
         public float DEFAULT_DIRECT_ALT = 0;
-               
+
         public float LANDGLOW_MIN_ALTITUDE = 20;
         public float LANDGLOW_SCALE = 4.0f;
-               
+
         public float WATERSPLASH_MIN_ALTITUDE = 6;
         public float WATERSPLASH_VELOCITY = 5.0f;
         public float WATERSPLASH_SIZE = 2.5f;
-               
+
         private int SMOKE_MIN_INTERVAL = 18;
         private int SMOKE_MAX_INTERVAL = 25;
-               
+
         private float SMOKE_MIN_SIZE = 0.15f;
         private float SMOKE_MAX_SIZE = 1.25f;
 
@@ -212,13 +212,13 @@ namespace CombatExtended
                 DrawMode = FlareDrawMode.FlyOver;
             }
 
-            if (modExtension !=null) 
+            if (modExtension != null)
             {
                 FlareSmokeMote = modExtension.SmokeMote ?? FlareSmokeMote;
                 FlareGlowMote = modExtension.FireMote ?? FlareGlowMote;
                 LandglowFleck = modExtension.LandglowFleck ?? LandglowFleck;
                 BURN_TICKS = modExtension.BurnSeconds * GenTicks.TicksPerRealSecond;
-                
+
                 ALTITUDE_DRAW_FACTOR = modExtension.AltitudeDrawFactor;
                 DEFAULT_FLYOVER_START_ALT = modExtension.FlyoverStartAltitude;
                 DEFAULT_FLYOVER_FINAL_ALT = modExtension.FlyoverFinalAltitude;
