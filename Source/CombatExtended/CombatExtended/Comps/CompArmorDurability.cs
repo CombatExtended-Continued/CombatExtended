@@ -181,7 +181,7 @@ namespace CombatExtended
                 yield break;
             }
 
-            if (this.curDurability >= maxDurability + durabilityProps.MaxOverHeal)
+            if (this.curDurability >= maxDurability)
             {
                 yield return new FloatMenuOption("CE_ArmorDurability_CannotRepairUndamaged".Translate(), null);
                 yield break;
@@ -277,8 +277,12 @@ namespace CombatExtended
 
         public float RepairValue;
 
+        //TO-DO: To be removed in RimWorld 1.6
+        [Obsolete("This field is deprecated and no longer functions. Will be removed in future versions.")]
         public bool CanOverHeal;
 
+        //TO-DO: To be removed in RimWorld 1.6
+        [Obsolete("This field is deprecated and no longer functions. Will be removed in future versions.")]
         public float MaxOverHeal;
 
         public float MinArmorValueSharp = -1;
@@ -421,28 +425,9 @@ namespace CombatExtended
                     second?.SplitOff(countC).Destroy();
 
                     natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                    if (natArmor.durabilityProps.CanOverHeal)
+                    if (natArmor.curDurability > natArmor.maxDurability)
                     {
-                        if (natArmor.curDurability > natArmor.durabilityProps.MaxOverHeal + natArmor.maxDurability)
-                        {
-                            natArmor.curDurability = natArmor.maxDurability + natArmor.durabilityProps.MaxOverHeal;
-                        }
-                        else
-                        {
-                            natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                        }
-
-                    }
-                    else
-                    {
-                        if (natArmor.curDurability > natArmor.maxDurability)
-                        {
-                            natArmor.curDurability = natArmor.maxDurability;
-                        }
-                        else
-                        {
-                            natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                        }
+                        natArmor.curDurability = natArmor.maxDurability;
                     }
                 }
 

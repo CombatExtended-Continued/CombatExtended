@@ -56,7 +56,9 @@ namespace CombatExtended.Lasers
             graphic.ticksToDetonation = this.def.projectile.explosionDelay;
             graphic.projDef = laserBeamDef;
             graphic.Setup(launcher, equipment, a, b);
-            GenSpawn.Spawn(graphic, Origin.ToIntVec3(), Map, WipeMode.Vanish);
+
+            bool inView = Find.CameraDriver.CurrentViewRect.Contains(Origin.ToIntVec3());
+            GenSpawn.Spawn(graphic, inView ? Origin.ToIntVec3() : b.ToIntVec3(), Map, WipeMode.Vanish);
         }
 
         void SpawnBeamReflections(Vector3 a, Vector3 b, int count)

@@ -16,6 +16,7 @@ namespace CombatExtended
 
         // public float armorPenetration = 0;
         public float speedGain = 0f;
+        public int fuelTicks = 0;
         public int pelletCount = 1;
         public float spreadMult = 1;
         public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
@@ -38,7 +39,6 @@ namespace CombatExtended
         public FloatRange mass = new FloatRange(1f, 1f);
         public FloatRange diameter = new FloatRange(1f, 1f);
 
-        public bool lerpPosition = true;
         public ThingDef detonateMoteDef;
         public FleckDef detonateFleckDef;
         public float detonateEffectsScaleOverride = -1;
@@ -71,6 +71,11 @@ namespace CombatExtended
         public ThingDef CIWSVersion;
         public System.Type trajectoryWorker;
         private BaseTrajectoryWorker trajectoryWorkerInt;
+        public string lerpPosition = "";
+
+        public static LerpedTrajectoryWorker defaultLerpedTrajectoryWorker = new LerpedTrajectoryWorker();
+        public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
+
         public BaseTrajectoryWorker TrajectoryWorker
         {
             get
@@ -79,15 +84,36 @@ namespace CombatExtended
                 {
                     if (trajectoryWorker != null)
                     {
-                        trajectoryWorkerInt = (BaseTrajectoryWorker)Activator.CreateInstance(trajectoryWorker);
-                    }
-                    else if (lerpPosition)
-                    {
-                        trajectoryWorkerInt = new LerpedTrajectoryWorker();
+                        if (trajectoryWorker == typeof(BallisticsTrajectoryWorker))
+                        {
+                            trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
+                        }
+                        else if (trajectoryWorker == typeof(LerpedTrajectoryWorker))
+                        {
+                            trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                        }
+                        else
+                        {
+                            trajectoryWorkerInt = (BaseTrajectoryWorker)Activator.CreateInstance(trajectoryWorker);
+                        }
                     }
                     else
                     {
-                        trajectoryWorkerInt = new BallisticsTrajectoryWorker();
+                        if (lerpPosition != "")
+                        {
+                            if (lerpPosition.ToLower().Trim() == "false")
+                            {
+                                trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
+                            }
+                            else
+                            {
+                                trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                            }
+                        }
+                        else
+                        {
+                            trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                        }
                     }
                 }
                 return trajectoryWorkerInt;

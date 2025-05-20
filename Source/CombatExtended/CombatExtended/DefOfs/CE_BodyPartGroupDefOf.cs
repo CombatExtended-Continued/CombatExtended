@@ -14,5 +14,6 @@ namespace CombatExtended
         public static BodyPartGroupDef RightArm;
         public static BodyPartGroupDef LeftArm;
         public static BodyPartGroupDef LeftShoulder;
+        public static BodyPartGroupDef HeadAttackTool;
     }
 }

@@ -19,7 +19,7 @@
 		<defName>Ammo_Arrow_Iron</defName>
 		<label>arrow (iron)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Neolithic/Arrow/Steel</texPath>
+			<texPath>Things/Ammo/Neolithic/Arrow/Iron</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -34,7 +34,7 @@
 		<defName>Projectile_Arrow_Iron</defName>
 		<label>arrow (iron)</label>
 		<graphicData>
-			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<texPath>Things/Projectile/Arrows/Arrow_Iron</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -45,6 +45,14 @@
 			<preExplosionSpawnChance>0.666</preExplosionSpawnChance><!-- 29.94 arrows per resource -->
 			<preExplosionSpawnThingDef>Ammo_Arrow_Iron</preExplosionSpawnThingDef>
 		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Iron</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.65</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
 	</ThingDef>
 
 	<!-- ================== Projectiles (Recurve Bow) ================== -->
@@ -53,7 +61,7 @@
 		<defName>Projectile_StreamlinedArrow_Iron</defName>
 		<label>streamlined arrow (iron)</label>
 		<graphicData>
-			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<texPath>Things/Projectile/Arrows/Arrow_Iron</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -64,6 +72,14 @@
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
 			<preExplosionSpawnThingDef>Ammo_Arrow_Iron</preExplosionSpawnThingDef>
 		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Iron</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.65</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -109,7 +125,7 @@
 		<defName>Ammo_GreatArrow_Iron</defName>
 		<label>great arrow (iron)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Neolithic/Arrow/Steel</texPath>
+			<texPath>Things/Ammo/Neolithic/GreatArrow/Iron</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -122,7 +138,7 @@
 		<defName>Projectile_GreatArrow_Iron</defName>
 		<label>great arrow (iron)</label>
 		<graphicData>
-			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<texPath>Things/Projectile/Arrows/Arrow_Iron</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -132,6 +148,14 @@
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 arrows per resource -->
 			<preExplosionSpawnThingDef>Ammo_GreatArrow_Iron</preExplosionSpawnThingDef>
 		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Iron</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.75</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
 	</ThingDef>
 
 	<RecipeDef ParentName="AmmoRecipeNeolithicBase">

@@ -55,7 +55,6 @@ namespace CombatExtended
                 projectile.logMisses = false;
                 float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
 
-
                 projectile.Launch(
                     instigator,
                     exactOrigin,
@@ -67,6 +66,8 @@ namespace CombatExtended
                 );
 
                 projectile.castShadow = (Rand.Value < fragShadowChance); // moved after Launch due to it assigning shadow
+
+                projectile.Tick(); // fragments often impact something immediately, so this culls them before they need to filter out other fragments
 
                 fragSpawnedInTick++;
                 if (fragSpawnedInTick >= fragPerTick)

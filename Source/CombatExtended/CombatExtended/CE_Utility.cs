@@ -2,13 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Reflection;
 using RimWorld;
 using Verse;
 using Verse.AI;
-using Verse.Sound;
 using UnityEngine;
-using System.Runtime.CompilerServices;
 using RimWorld.Planet;
 
 namespace CombatExtended
@@ -433,126 +430,6 @@ namespace CombatExtended
             }
             return null;
         }
-
-        /// <summary>
-        /// Gets the true rating of armor with partial stats taken into account
-        /// </summary>
-        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part)
-        {
-            if (!apparel.def.apparel.CoversBodyPart(part))
-            {
-                return 0;
-            }
-
-            float result = apparel.GetStatValue(stat);
-
-            if (Controller.settings.PartialStat)
-            {
-                if (apparel.def.HasModExtension<PartialArmorExt>())
-                {
-                    foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
-                    {
-                        if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
-                        {
-
-                            if (partial.staticValue > 0f)
-                            {
-                                return partial.staticValue;
-                            }
-                            result *= partial.mult;
-                            break;
-
-                        }
-                    }
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Gets the true rating of armor with partial stats taken into account
-        /// </summary>
-        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part, float damage = 0f, float AP = 0f)
-        {
-            float result = pawn.GetStatValue(stat);
-
-            if (Controller.settings.PartialStat)
-            {
-                if (pawn.def.HasModExtension<PartialArmorExt>())
-                {
-                    foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
-                    {
-                        if (partial.stat == stat)
-                        {
-                            if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
-                            {
-
-                                if (partial.staticValue > 0f)
-                                {
-                                    return partial.staticValue;
-                                }
-                                result *= partial.mult;
-                                break;
-
-                            }
-                        }
-                    }
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// version of PartialStat used for display in StatWorker_ArmorPartial
-        /// </summary>
-        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartDef part)
-        {
-            float result = apparel.GetStatValue(stat);
-            if (apparel.def.HasModExtension<PartialArmorExt>())
-            {
-                foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
-                {
-                    if ((partial?.parts?.Contains(part) ?? false))
-                    {
-
-                        if (partial.staticValue > 0f)
-                        {
-                            return partial.staticValue;
-                        }
-                        result *= partial.mult;
-                        break;
-
-                    }
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// version of PartialStat used for display in StatWorker_ArmorPartial
-        /// </summary>
-        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartDef part)
-        {
-            float result = pawn.GetStatValue(stat);
-            if (pawn.def.HasModExtension<PartialArmorExt>())
-            {
-                foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
-                {
-                    if ((partial?.parts?.Contains(part) ?? false))
-                    {
-                        if (partial.staticValue > 0f)
-                        {
-                            return partial.staticValue;
-                        }
-                        result *= partial.mult;
-                        break;
-
-                    }
-                }
-            }
-            return result;
-        }
-
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
         public static void UpdateLabel(this Def def, string label)
@@ -1646,6 +1523,27 @@ namespace CombatExtended
             return pawn;
         }
 
+        /// <summary>
+        /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.
+        /// </summary>
+        /// <param name="velocity">Projectile velocity in cells per second.</param>
+        /// <param name="range">Cells between shooter and target.</param>
+        /// <param name="heightDifference">Difference between initial shot height and target height in vertical cells.</param>
+        /// <param name="flyOverhead">Whether to take the lower (False) or upper (True) arc angle.</param>
+        /// <returns>Arc angle in radians off the ground.</returns>
+        public static float GetShotAngle(float velocity, float range, float heightDifference, bool flyOverhead, float gravity)
+        {
+            float squareRootCheck = Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)));
+            if (float.IsNaN(squareRootCheck))
+            {
+                //Target is too far to hit with given velocity/range/gravity params
+                //set firing angle for maximum distance
+                Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
+                return 45.0f * Mathf.Deg2Rad;
+            }
+            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
+        }
+
         public static object LaunchProjectileCE(ThingDef projectileDef,
                                                 ThingDef _ammoDef,
                                                 Def _ammosetDef,
@@ -1771,21 +1669,6 @@ namespace CombatExtended
                 current = source.Current;
             }
             return current;
-        }
-        public static Vector3 DrawPosSinceTicks(this Skyfaller thing, int ticksAmount)
-        {
-            thing.ticksToImpact -= ticksAmount;
-            var result = thing.DrawPos;
-            thing.ticksToImpact += ticksAmount;
-            return result;
-        }
-        public static IEnumerable<Vector3> DrawPositions(this Skyfaller skyfaller)
-        {
-            int max = skyfaller.ticksToImpact;
-            for (int i = 1; i <= max; i++)
-            {
-                yield return skyfaller.DrawPosSinceTicks(i);
-            }
         }
     }
 }

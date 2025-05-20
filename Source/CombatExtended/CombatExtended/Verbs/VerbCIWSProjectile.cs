@@ -17,23 +17,9 @@ namespace CombatExtended
 
         protected override bool IsFriendlyTo(ProjectileCE thing) => base.IsFriendlyTo(thing) && !thing.launcher.HostileTo(Caster);
 
-        public override void ShowTrajectories()
+        protected override IEnumerable<Vector3> PredictPositions(ProjectileCE target, int maxTicks)
         {
-            base.ShowTrajectories();
-            (currentTarget.Thing as ProjectileCE)?.DrawNextPositions();
-        }
-
-        protected override IEnumerable<Vector3> TargetNextPositions(ProjectileCE target)
-        {
-            int tickOffset = 1;
-            if (target.IsPredictable(out var nextPositions) || Props.shouldInterceptUnpredictable)
-            {
-                foreach (var exactPos in nextPositions)
-                {
-                    yield return target.TrajectoryWorker.ExactPosToDrawPos(exactPos, target.FlightTicks + tickOffset, target.ticksToTruePosition, target.def.Altitude).WithY(exactPos.y);
-                    tickOffset++;
-                }
-            }
+            return target.TrajectoryWorker.PredictPositions(target, maxTicks);
         }
     }
     public class VerbProperties_CIWSProjectile : VerbProperties_CIWS
