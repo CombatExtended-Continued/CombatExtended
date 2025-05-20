@@ -1008,7 +1008,8 @@ namespace CombatExtended
 
         public virtual void ApplyDarknessWarmupPenalty()
         {
-            if (Controller.settings.SlowerDarknessAiming && Shooter != null && currentTarget.Cell != null)
+            if (Controller.settings.SlowerDarknessAiming && !Projectile.projectile.flyOverhead 
+                && Shooter != null && currentTarget.Cell != null)
             {
                 float darknessPercent = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, currentTarget.Cell));
 
