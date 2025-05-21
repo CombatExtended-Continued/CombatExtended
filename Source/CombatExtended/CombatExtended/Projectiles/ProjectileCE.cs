@@ -1019,6 +1019,11 @@ namespace CombatExtended
             }
 
             var bounds = CE_Utility.GetBoundsFor(thing);
+            if (bounds.Contains(LastPos) || bounds.Contains(ExactPosition))
+            {
+                dist = 0f;
+                return true;
+            }
             if (!bounds.IntersectRay(ShotLine, out dist))
             {
                 return false;
