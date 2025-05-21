@@ -141,6 +141,9 @@ namespace CombatExtended
                     CompAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
                 }
             }
+            // Setting main verbProp burstShotCount equal to the underBarrel's burstShotCount
+            // Ensures that there should be a burstFire option
+            // If set to aimedBurstShotCount, will result in warning and no burst fire mode. Only full auto
             CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.verbPropsUnderBarrel.burstShotCount;
             usingUnderBarrel = true;
             CompFireModes.InitAvailableFireModes();
