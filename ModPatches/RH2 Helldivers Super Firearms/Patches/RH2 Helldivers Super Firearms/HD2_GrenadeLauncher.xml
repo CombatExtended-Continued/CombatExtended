@@ -2,10 +2,7 @@
 <Patch>
 	<!--Melee Attacks for Guns-->
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[
-			defName="RNGun_SEAFG21_GrenadeLauncher"
-			]/tools
+		<xpath>Defs/ThingDef[defName="RNGun_SEAFG21_GrenadeLauncher"]/tools
 		</xpath>
 		<value>
 			<tools>
@@ -35,14 +32,7 @@
 	</Operation>
 
 	<!-- ============ GL ============ -->
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RNGun_SEAFG21_GrenadeLauncher"]/description</xpath>
-		<value>
-			<description>A select-fire 40mm support weapon designed for rapid indirect and saturating fire. Capable of launching a variety of grenades at 160 RPM, it excels at clearing groups of lightly armored enemies and destroying enemy structures. With a 10-round capacity, it provides sustained explosive firepower. While effective against medium armor, it struggles against heavily armored targets. Ideal for area denial and crowd control in hostile environments.</description>
-		</value>
-	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RNGun_SEAFG21_GrenadeLauncher</defName>
 		<statBases>
