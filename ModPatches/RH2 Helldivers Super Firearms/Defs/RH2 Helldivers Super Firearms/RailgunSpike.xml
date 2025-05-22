@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoRS422Railgun</defName>
+		<label>10mm RS422 Railgun</label>
+		<parent>AmmoHighCaliber</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_RS422Railgun</defName>
+		<label>Railgun Spike</label>
+		<ammoTypes>
+			<Ammo_RS422RailgunSpike>Bullet_RS422RailgunSpike</Ammo_RS422RailgunSpike>
+		</ammoTypes>
+		<similarTo>AmmoSet_AntiMateriel</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoRailgunSpikeBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
+		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for large-caliber railgun weapons.</description>
+		<statBases>
+			<Mass>0.051</Mass>
+			<Bulk>0.04</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoRS422Railgun</li>
+		</thingCategories>
+		<stackLimit>200</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoRailgunSpikeBase">
+		<defName>Ammo_RS422RailgunSpike</defName>
+		<label>Railgun Spike</label>
+		<graphicData>
+			<texPath>Things/Ammo/Railgun/HighCaliber</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>RailgunSabot</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletWhite">
+		<defName>Bullet_RS422RailgunSpike</defName>
+		<label>railgun spike</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>48</damageAmountBase>
+			<armorPenetrationBlunt>2000</armorPenetrationBlunt>
+			<armorPenetrationSharp>76</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_RS422RailgunSpike</defName>
+		<label>make RS-422 railgun round x50</label>
+		<description>Craft 50 RS-422 railgun rounds.</description>
+		<jobString>Making RS-422 railgun rounds.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_RS422RailgunSpike>50</Ammo_RS422RailgunSpike>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
+
+</Defs>

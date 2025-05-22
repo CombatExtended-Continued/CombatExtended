@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--Melee Attacks for Guns-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_RS422_Railgun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ============ Annie, get your (rail)gun ============ -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_RS422_Railgun</defName>
+		<statBases>
+			<Mass>4.19</Mass>
+			<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.25</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.68</SwayFactor>
+			<Bulk>12.6</Bulk>
+			<WorkToMake>545000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_RS422RailgunSpike</defaultProjectile>
+			<warmupTime>4.25</warmupTime>
+			<range>75</range>
+			<soundCast>RNShot_RS422RailgunShot</soundCast>
+			<soundAiming>RN_Quasar_Aiming</soundAiming>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>15</muzzleFlashScale>
+			<recoilAmount>2.0</recoilAmount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>1.25</reloadTime>
+			<ammoSet>AmmoSet_RS422Railgun</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

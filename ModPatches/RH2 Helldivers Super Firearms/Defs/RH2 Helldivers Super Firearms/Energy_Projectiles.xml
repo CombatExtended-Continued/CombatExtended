@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef Name="BaseSuperEarthEnergyBolt" ParentName="BaseBulletCE" Abstract="true">
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseSuperEarthEnergyBolt">
+		<defName>Bullet_TalonPulse</defName>
+		<label>talon laser pulse</label>
+		<graphicData>
+			<texPath>Things/Projectile/LasTalon_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>26</damageAmountBase>
+			<speed>217</speed>
+			<armorPenetrationBlunt>2</armorPenetrationBlunt>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseSuperEarthEnergyBolt">
+		<defName>Bullet_SicklePulse</defName>
+		<label>sickle laser pulse</label>
+		<graphicData>
+			<texPath>Things/Projectile/Sickle_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<speed>217</speed>
+			<armorPenetrationBlunt>2</armorPenetrationBlunt>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseSuperEarthEnergyBolt">
+		<defName>Bullet_ScorcherPulse</defName>
+		<label>scorcher plasma pulse</label>
+		<graphicData>
+			<texPath>Things/Projectile/Scorcher_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EnergyBolt</damageDef>
+			<damageAmountBase>28</damageAmountBase>
+			<speed>114</speed>
+			<armorPenetrationBlunt>2</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>4</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>56</damageAmountBase>
+				<explosiveDamageType>EnergyBolt</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseSuperEarthEnergyBolt">
+		<defName>Bullet_QuasarPulse</defName>
+		<label>quasar energy pulse</label>
+		<graphicData>
+			<texPath>Things/Projectile/Quasar_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EnergyBolt</damageDef>
+			<speed>217</speed>
+			<damageAmountBase>248</damageAmountBase>
+			<armorPenetrationSharp>400</armorPenetrationSharp>
+			<armorPenetrationBlunt>33.03</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>56</damageAmountBase>
+				<explosiveDamageType>EnergyBolt</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>
