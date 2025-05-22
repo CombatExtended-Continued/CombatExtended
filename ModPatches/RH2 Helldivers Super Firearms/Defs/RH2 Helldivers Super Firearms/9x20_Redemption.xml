@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo9x20mmRed</defName>
+		<label>9x20mm Redemption</label>
+		<parent>AmmoPistols</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_9x20mmRed</defName>
+		<label>9x20mm Redemption</label>
+		<ammoTypes>
+			<Ammo_9x20mmRed_FMJ>Bullet_9x20mmRed_FMJ</Ammo_9x20mmRed_FMJ>
+			<Ammo_9x20mmRed_AP>Bullet_9x20mmRed_AP</Ammo_9x20mmRed_AP>
+			<Ammo_9x20mmRed_HP>Bullet_9x20mmRed_HP</Ammo_9x20mmRed_HP>
+		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="9x20mmRedBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Common pistol cartridge used by a variety of Super Earth-manufactured handguns and SMGs.</description>
+		<statBases>
+			<Mass>0.012</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo9x20mmRed</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x20mmRedBase">
+		<defName>Ammo_9x20mmRed_FMJ</defName>
+		<label>9x20mm Redemption (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_9x20mmRed_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x20mmRedBase">
+		<defName>Ammo_9x20mmRed_AP</defName>
+		<label>9x20mm Redemption (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_9x20mmRed_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x20mmRedBase">
+		<defName>Ammo_9x20mmRed_HP</defName>
+		<label>9x20mm Redemption (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_9x20mmRed_HP</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base9x20mmRedBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>86</speed>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_PistolAmmoCasings</casingMoteDefname>
+			<casingFilthDefname>Filth_PistolAmmoCasings</casingFilthDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x20mmRedBullet">
+		<defName>Bullet_9x20mmRed_FMJ</defName>
+		<label>9mm Redemption bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.84</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x20mmRedBullet">
+		<defName>Bullet_9x20mmRed_AP</defName>
+		<label>9mm Redemption bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.84</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base9x20mmRedBullet">
+		<defName>Bullet_9x20mmRed_HP</defName>
+		<label>9mm Redemption bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.84</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x20mmRed_FMJ</defName>
+		<label>make 9x20mm Redemption (FMJ) cartridge x500</label>
+		<description>Craft 500 9x20mm Redemption (FMJ) cartridges.</description>
+		<jobString>Making 9x20mm Redemption (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x20mmRed_FMJ>500</Ammo_9x20mmRed_FMJ>
+		</products>
+		<workAmount>1400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x20mmRed_AP</defName>
+		<label>make 9x20mm Redemption (AP) cartridge x500</label>
+		<description>Craft 500 9x20mm Redemption (AP) cartridges.</description>
+		<jobString>Making 9x20mm Redemption (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x20mmRed_AP>500</Ammo_9x20mmRed_AP>
+		</products>
+		<workAmount>1680</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x20mmRed_HP</defName>
+		<label>make 9x20mm Redemption (HP) cartridge x500</label>
+		<description>Craft 500 9x20mm Redemption (HP) cartridges.</description>
+		<jobString>Making 9x20mm Redemption (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x20mmRed_HP>500</Ammo_9x20mmRed_HP>
+		</products>
+		<workAmount>1400</workAmount>
+	</RecipeDef>
+
+</Defs>
