@@ -503,6 +503,10 @@ namespace CombatExtended
 
         public static float GetLightingShift(Thing caster, float glowAtTarget)
         {
+            if (glowAtTarget >= 0.5f)
+            {
+                return 0f;
+            }
             return Mathf.Max((1.0f - glowAtTarget) * (1.0f - caster.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
         }
 
