@@ -632,7 +632,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_Lasgun_HellGun</defaultProjectile>
+			<defaultProjectile>Bullet_Lasgun_Rifle</defaultProjectile>
 			<warmupTime>1.1</warmupTime>
 			<range>65</range>
 			<burstShotCount>1</burstShotCount>
@@ -648,7 +648,7 @@
 		<AmmoUser>
 			<magazineSize>24</magazineSize>
 			<reloadTime>4.5</reloadTime>
-			<ammoSet>AmmoSet_Lasgun_HellGun</ammoSet>
+			<ammoSet>AmmoSet_Lasgun_Rifle</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -657,6 +657,39 @@
 			<li>AdvancedGun</li>
 			<li>CE_AI_SR</li>
 		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_Gun_Lucius"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to overcharged shots</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>24</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_Lasgun_HellGun</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>3.5</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Lasgun_HellGun</defaultProjectile>
+					<warmupTime>3.25</warmupTime>
+					<range>65</range>
+					<soundCast>GW_AM_Gun_Lucius</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
 	</Operation>
 	
 	<!-- ============ Ryza Hellgun ============ -->
