@@ -278,6 +278,39 @@
 		</weaponTags>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_K16BryarBlaster"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to overcharged shots</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>24</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeYellow_Sniper</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>3.0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterSniper_Yellow</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>16</range>
+					<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<ammoConsumedPerShotCount>6</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_IonRifle</defName>
 		<statBases>
