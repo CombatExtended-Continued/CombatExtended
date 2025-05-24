@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
+	<!-- FENRIS -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS" ]</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -9,82 +11,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI" ]</xpath>
-		<value>
-			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>Humanoid</bodyShape>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR" ]</xpath>
-		<value>
-			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>Vehicle</bodyShape>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/race/baseBodySize</xpath>
-		<value>
-			<baseBodySize>2</baseBodySize>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/statBases</xpath>
 		<value>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
 			<MeleeDodgeChance>1</MeleeDodgeChance>
 			<MeleeCritChance>0.28</MeleeCritChance>
 			<MeleeParryChance>0.15</MeleeParryChance>
 			<CarryWeight>50</CarryWeight>
 			<CarryBulk>200</CarryBulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
-			<MeleeDodgeChance>0.5</MeleeDodgeChance>
-			<MeleeCritChance>0.21</MeleeCritChance>
-			<MeleeParryChance>0.2</MeleeParryChance>
-			<CarryWeight>100</CarryWeight>
-			<CarryBulk>250</CarryBulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>1.1</AimingAccuracy>
-			<ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
-			<MeleeDodgeChance>0.1</MeleeDodgeChance>
-			<MeleeCritChance>0.8</MeleeCritChance>
-			<MeleeParryChance>0.5</MeleeParryChance>
-			<CarryWeight>400</CarryWeight>
-			<CarryBulk>1000</CarryBulk>
-			<MaxHitPoints>500</MaxHitPoints>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>13</ArmorRating_Blunt>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>9</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -99,20 +33,6 @@
 		<xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>6</ArmorRating_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>75</ArmorRating_Blunt>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>22</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -142,6 +62,63 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- LOKI -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.5</MeleeDodgeChance>
+			<MeleeCritChance>0.21</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<CarryWeight>100</CarryWeight>
+			<CarryBulk>250</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>13</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>9</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/tools</xpath>
 		<value>
@@ -159,6 +136,71 @@
 					<armorPenetrationBlunt>2</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- YMIR -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Vehicle</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>2</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1.1</AimingAccuracy>
+			<ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.1</MeleeDodgeChance>
+			<MeleeCritChance>0.8</MeleeCritChance>
+			<MeleeParryChance>0.5</MeleeParryChance>
+			<CarryWeight>400</CarryWeight>
+			<CarryBulk>1000</CarryBulk>
+			<MaxHitPoints>500</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -181,62 +223,32 @@
 		</value>
 	</Operation>
 
-	<!--Mechs-->
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="RE_Mechanoids_FENRIS"]</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>5</min>
-					<max>6</max>
-				</primaryMagazineCount>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.5</MinArmorPct>
 			</li>
 		</value>
 	</Operation>
 
-	<!--Fireworm-->
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="RE_Mechanoids_LOKI"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>3</min>
-					<max>4</max>
-				</primaryMagazineCount>
-			</li>
-		</value>
-	</Operation>
-
-	<!--Goliath-->
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="RE_Mechanoids_YMIR"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>8</min>
-					<max>10</max>
-				</primaryMagazineCount>
-			</li>
-		</value>
-	</Operation>
-	
 	<!--Adapting the Asimov based mechs to CE-->
 	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="AsimovNonEnergyAutomatonBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 		<value>
 			<li>CombatExtended.ITab_Inventory</li>
-		</value>
-</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Inventory" />
-			<li Class="CombatExtended.CompProperties_TacticalManager" />
 		</value>
 	</Operation>
 	
@@ -272,7 +284,7 @@
 		</value>
 	</Operation>
 	
-		<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/comps</xpath>
 		<value>
 			<li>
@@ -287,7 +299,7 @@
 			</li>			
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/comps/li[@Class="Asimov.CompProperties_Automaton"]/canUseMelee</xpath>
 		<value>
@@ -300,5 +312,6 @@
 		<value>
 			<canUseRanged>false</canUseRanged>
 		</value>
-</Operation>
+	</Operation>
+
 </Patch>

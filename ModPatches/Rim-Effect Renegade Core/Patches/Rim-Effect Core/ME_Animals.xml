@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="RE_SpaceCow" or
+		<xpath>Defs/ThingDef[
+			defName="RE_SpaceCow" or
 			defName="RE_Pyjak" or
-			defName="RE_Varren" ] </xpath>
+			defName="RE_Varren"
+			]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -11,6 +14,7 @@
 		</value>
 	</Operation>
 
+	<!-- Space Cow -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RE_SpaceCow"]/statBases</xpath>
 		<value>
@@ -72,6 +76,7 @@
 		</value>
 	</Operation>
 
+	<!-- Pyjak-->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RE_Pyjak"]/statBases</xpath>
 		<value>
@@ -133,6 +138,7 @@
 		</value>
 	</Operation>
 
+	<!-- Varren -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RE_Varren"]/statBases</xpath>
 		<value>
@@ -216,4 +222,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>
