@@ -85,7 +85,7 @@ namespace CombatExtended
             // Process all pawnKindDefs for shield filter
             foreach (PawnKindDef def in DefDatabase<PawnKindDef>.AllDefs.Where(t => t.HasModExtension<LoadoutPropertiesExtension>()))
             {
-               ProcessLoadoutPropertiesExenstionCE(def);
+                ProcessLoadoutPropertiesExenstionCE(def);
             }
         }
 
@@ -265,7 +265,7 @@ namespace CombatExtended
                 isMenuHiddenArray[def.index] = ext.MenuHidden;
             }
         }
-        
+
         /// <summary>
         /// Process pawnKindDefs loadout properties filters
         /// </summary>
