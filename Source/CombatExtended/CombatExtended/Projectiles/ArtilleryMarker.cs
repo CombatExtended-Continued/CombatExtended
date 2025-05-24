@@ -23,7 +23,7 @@ namespace CombatExtended
         {
             get
             {
-                return string.Concat("CE_MarkedForArtillery".Translate(), " ", ((int)(lifetimeTicks / 60)).ToString(), " ", "LetterSecond".Translate());
+                return string.Concat("CE_MarkedForArtillery".Translate(), " ", ((int)(lifetimeTicks / GenTicks.TicksPerRealSecond)).ToString(), " ", "LetterSecond".Translate());
             }
         }
 
@@ -31,7 +31,7 @@ namespace CombatExtended
         {
             get
             {
-                return string.Concat("CE_MarkedForArtillery".Translate(), " ", ((int)(lifetimeTicks / 60)).ToString(), " ", "LetterSecond".Translate());
+                return string.Concat("CE_MarkedForArtillery".Translate(), " ", ((int)(lifetimeTicks / GenTicks.TicksPerRealSecond)).ToString(), " ", "LetterSecond".Translate());
             }
         }
 
