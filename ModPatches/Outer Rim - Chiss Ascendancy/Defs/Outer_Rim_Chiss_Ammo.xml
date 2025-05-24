@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ================== Base Beam ================== -->
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="LaserBulletChiss" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<graphicData>
+			<color>(3,252,169)</color>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletChiss">
+		<defName>Bullet_ChissMaser_Pistol</defName>
+		<label>maser pistol beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+			<empShieldBreakChance>0.2</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletChiss">
+		<defName>Bullet_ChissMaser_Carbine</defName>
+		<label>maser carbine beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+			<empShieldBreakChance>0.5</empShieldBreakChance>
+		</projectile>
+		<lifetime>45</lifetime>
+		<beamWidth>1.25</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletChiss">
+		<defName>Bullet_ChissMaser_Rifle</defName>
+		<label>maser rifle beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>9</amount>
+				</li>
+			</secondaryDamage>
+			<empShieldBreakChance>0.8</empShieldBreakChance>
+		</projectile>
+		<lifetime>60</lifetime>
+		<beamWidth>1.5</beamWidth>
+	</ThingDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_ChissMaser_Pistol</defName>
+		<label>Pistol Maser Beam</label>
+		<ammoTypes>
+			<Ammo_PlasmaGasCartridge_Standard>Bullet_ChissMaser_Pistol</Ammo_PlasmaGasCartridge_Standard>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_ChissMaser_Rifle</defName>
+		<label>Carbine Maser Beam</label>
+		<ammoTypes>
+			<Ammo_PlasmaGasCartridge_Standard>Bullet_ChissMaser_Carbine</Ammo_PlasmaGasCartridge_Standard>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_ChissMaser_Sniper</defName>
+		<label>Rifle Maser Beam</label>
+		<ammoTypes>
+			<Ammo_PlasmaGasCartridge_Standard>Bullet_ChissMaser_Rifle</Ammo_PlasmaGasCartridge_Standard>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+</Defs>
