@@ -22,7 +22,8 @@ namespace CombatExtended
         public SidearmOption forcedSidearm;
         public List<SidearmOption> sidearms;
         public AmmoCategoryDef forcedAmmoCategory;
-        public List<ThingDef> forcedShieldMaterial;
+        public bool forceShieldMaterial;
+        public ThingFilter shieldMaterialFilter;
 
         private static List<ThingStuffPair> allWeaponPairs;
         private static List<ThingStuffPair> allShieldPairs;
@@ -313,7 +314,7 @@ namespace CombatExtended
                         && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 68715844) <= cur.thing.generateAllowChance)
                         && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing)
                         && ApparelUtility.HasPartsToWear(pawn, cur.thing)
-                        && (forcedShieldMaterial.NullOrEmpty() || forcedShieldMaterial.Contains(cur.stuff)))
+                        && (forceShieldMaterial && shieldMaterialFilter != null && shieldMaterialFilter.Allows(cur.thing)))
                 {
                     workingShields.Add(cur);
                 }
