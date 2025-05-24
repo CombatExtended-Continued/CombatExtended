@@ -314,7 +314,7 @@ namespace CombatExtended
                         && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 68715844) <= cur.thing.generateAllowChance)
                         && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing)
                         && ApparelUtility.HasPartsToWear(pawn, cur.thing)
-                        && (forceShieldMaterial && shieldMaterialFilter != null && shieldMaterialFilter.Allows(cur.thing)))
+                        && (!forceShieldMaterial || (forceShieldMaterial && shieldMaterialFilter != null && shieldMaterialFilter.Allows(cur.stuff))))
                 {
                     workingShields.Add(cur);
                 }

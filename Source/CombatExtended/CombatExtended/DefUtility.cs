@@ -81,6 +81,12 @@ namespace CombatExtended
             {
                 def.PrepareStats();
             }
+
+            // Process all pawnKindDefs for shield filter
+            foreach (PawnKindDef def in DefDatabase<PawnKindDef>.AllDefs.Where(t => t.HasModExtension<LoadoutPropertiesExtension>()))
+            {
+               ProcessLoadoutPropertiesExenstionCE(def);
+            }
         }
 
         /// <summary>
@@ -247,7 +253,7 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Perpare the ThingDefExtensionCE.
+        /// Prepare the ThingDefExtensionCE.
         /// </summary>
         /// <param name="def">ThingDef with </param>
         private static void ProcessThingDefExtensionCE(ThingDef def)
@@ -257,6 +263,20 @@ namespace CombatExtended
             if (ext != null)
             {
                 isMenuHiddenArray[def.index] = ext.MenuHidden;
+            }
+        }
+        
+        /// <summary>
+        /// Process pawnKindDefs loadout properties filters
+        /// </summary>
+        /// <param name="def">PawnKindDef</param>
+        private static void ProcessLoadoutPropertiesExenstionCE(PawnKindDef def)
+        {
+            LoadoutPropertiesExtension ext = def.GetModExtension<LoadoutPropertiesExtension>();
+
+            if (ext != null && ext.shieldMaterialFilter != null)
+            {
+                ext.shieldMaterialFilter.ResolveReferences();
             }
         }
 
