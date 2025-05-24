@@ -51,8 +51,12 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 var stuff = oldThing.Stuff;
                 var faction = oldThing.Faction;
                 var def = oldThing.def;
+                var rot = oldThing.Rotation;
+                var hp = oldThing.HitPoints;
+                var powerComp = oldThing.TryGetComp<CompPowerTrader>();
+                PowerNet net = powerComp?.PowerNet;
 
-                oldThing.Destroy();
+                oldThing.Destroy(DestroyMode.Vanish);
 
                 //Make new Turret
                 if (ThingMaker.MakeThing(def, stuff) is not Building_TurretGunCE newThing)
@@ -61,6 +65,8 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 }
                 GenPlace.TryPlaceThing(newThing, position, map, ThingPlaceMode.Direct);
                 newThing.SetFaction(faction);
+                newThing.HitPoints = hp;
+                newThing.Rotation = rot;
 
                 //Turret Ammo
                 var ammoComp = newThing.CompAmmo;
@@ -78,6 +84,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 var newPowerTrader = newThing.TryGetComp<CompPowerTrader>();
                 if (newPowerTrader != null)
                 {
+                    net?.RegisterConnector(newPowerTrader);
                     newPowerTrader.PowerOn = true;
                 }
 
