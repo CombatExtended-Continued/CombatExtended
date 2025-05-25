@@ -173,6 +173,30 @@
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_PlasmaGasCartridgeIonOnly_Pistol</defName>
+		<label>Pistol Ion Blasts</label>
+		<ammoTypes>
+			<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterPistol_IonOnly</Ammo_PlasmaGasCartridge_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_PlasmaGasCartridgeIonOnly_Rifle</defName>
+		<label>Rifle Ion Blasts</label>
+		<ammoTypes>
+			<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterRifle_IonOnly</Ammo_PlasmaGasCartridge_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_PlasmaGasCartridgeIonOnly_Sniper</defName>
+		<label>Heavy Ion Blasts</label>
+		<ammoTypes>
+			<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterSniper_IonOnly</Ammo_PlasmaGasCartridge_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_PlasmaGasCartridgeStun_Pistol</defName>
 		<label>Nonlethal Pistol Blaster Bolts</label>
 		<ammoTypes>
@@ -283,18 +307,18 @@
 		<graphicData>
 			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>102</speed>
 			<damageDef>OuterRim_Blaster</damageDef>
-			<speed>122</speed>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef Name="BaseBlasterBolt_Pistol" ParentName="BaseBlasterBolt" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.8</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>14</damageAmountBase>
@@ -305,8 +329,7 @@
 
 	<ThingDef Name="BaseBlasterBolt_PistolAP" ParentName="BaseBlasterBolt" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.8</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>11</damageAmountBase>
@@ -317,10 +340,10 @@
 
 	<ThingDef Name="BaseBlasterBolt_Rifle" ParentName="BaseBlasterBolt" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>151</speed>
 			<damageAmountBase>18</damageAmountBase>
 			<armorPenetrationBlunt>3</armorPenetrationBlunt>
 			<armorPenetrationSharp>22</armorPenetrationSharp>
@@ -329,10 +352,10 @@
 
 	<ThingDef Name="BaseBlasterBolt_RifleAP" ParentName="BaseBlasterBolt" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>151</speed>
 			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationBlunt>4</armorPenetrationBlunt>
 			<armorPenetrationSharp>33</armorPenetrationSharp>
@@ -341,11 +364,10 @@
 
 	<ThingDef Name="BaseBlasterBolt_Sniper" ParentName="BaseBlasterBolt" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.2</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>175</speed>
+			<speed>178</speed>
 			<damageAmountBase>30</damageAmountBase>
 			<armorPenetrationBlunt>4</armorPenetrationBlunt>
 			<armorPenetrationSharp>20</armorPenetrationSharp>
@@ -354,11 +376,10 @@
 
 	<ThingDef Name="BaseBlasterBolt_SniperAP" ParentName="BaseBlasterBolt" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.2</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>175</speed>
+			<speed>178</speed>
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationBlunt>6</armorPenetrationBlunt>
 			<armorPenetrationSharp>36</armorPenetrationSharp>
@@ -369,8 +390,6 @@
 		<defName>Bullet_BlasterPistol_Red</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -378,8 +397,6 @@
 		<defName>Bullet_BlasterPistol_RedAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -387,8 +404,6 @@
 		<defName>Bullet_BlasterRifle_Red</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -396,8 +411,6 @@
 		<defName>Bullet_BlasterRifle_RedAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -405,8 +418,6 @@
 		<defName>Bullet_BlasterSniper_Red</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -414,8 +425,6 @@
 		<defName>Bullet_BlasterSniper_RedAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -423,8 +432,6 @@
 		<defName>Bullet_BlasterPistol_Green</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -432,8 +439,6 @@
 		<defName>Bullet_BlasterPistol_GreenAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -441,8 +446,6 @@
 		<defName>Bullet_BlasterRifle_Green</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -450,8 +453,6 @@
 		<defName>Bullet_BlasterRifle_GreenAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -459,8 +460,6 @@
 		<defName>Bullet_BlasterSniper_Green</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -468,8 +467,6 @@
 		<defName>Bullet_BlasterSniper_GreenAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -477,8 +474,6 @@
 		<defName>Bullet_BlasterPistol_Blue</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -486,8 +481,6 @@
 		<defName>Bullet_BlasterPistol_BlueAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -495,8 +488,6 @@
 		<defName>Bullet_BlasterRifle_Blue</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -504,8 +495,6 @@
 		<defName>Bullet_BlasterRifle_BlueAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -513,8 +502,6 @@
 		<defName>Bullet_BlasterSniper_Blue</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -522,8 +509,6 @@
 		<defName>Bullet_BlasterSniper_BlueAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -531,8 +516,6 @@
 		<defName>Bullet_BlasterPistol_Yellow</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -540,8 +523,6 @@
 		<defName>Bullet_BlasterPistol_YellowAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -549,8 +530,6 @@
 		<defName>Bullet_BlasterRifle_Yellow</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -558,8 +537,6 @@
 		<defName>Bullet_BlasterRifle_YellowAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -567,8 +544,6 @@
 		<defName>Bullet_BlasterSniper_Yellow</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -576,8 +551,6 @@
 		<defName>Bullet_BlasterSniper_YellowAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 	</ThingDef>
 
@@ -585,8 +558,6 @@
 		<defName>Bullet_BlasterPistol_Ion</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>4</damageAmountBase>
@@ -604,8 +575,6 @@
 		<defName>Bullet_BlasterRifle_Ion</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>6</damageAmountBase>
@@ -623,8 +592,6 @@
 		<defName>Bullet_BlasterSniper_Ion</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>7</damageAmountBase>
@@ -642,8 +609,7 @@
 		<defName>Bullet_BlasterPistol_Stun</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>0.8</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Neuralizer</damageDef>
@@ -656,8 +622,6 @@
 		<defName>Bullet_BlasterRifle_Stun</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Neuralizer</damageDef>
@@ -670,8 +634,7 @@
 		<defName>Bullet_BlasterSniper_Stun</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.2</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Neuralizer</damageDef>
@@ -684,8 +647,7 @@
 		<defName>Bullet_BlasterBolt_Scatter</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>0.85</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>8</damageAmountBase>
@@ -700,8 +662,6 @@
 		<defName>Bullet_BlasterBolt_DualShot</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>18</damageAmountBase>
@@ -716,8 +676,6 @@
 		<defName>Bullet_BlasterBolt_DualShotAP</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
@@ -732,8 +690,6 @@
 		<defName>Bullet_BlasterBolt_DualShotIon</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>7</damageAmountBase>
@@ -753,8 +709,6 @@
 		<defName>Bullet_TL50_ConcussionBlast</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/ProtonBall</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>25</speed>
@@ -766,7 +720,7 @@
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<damageAmountBase>31</damageAmountBase>
 				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>2.5</explosiveRadius>
+				<explosiveRadius>3.5</explosiveRadius>
 				<explosionSound>Explosion_EMP</explosionSound>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
@@ -777,8 +731,7 @@
 		<defName>Bullet_AmbanDisintegrator</defName>
 		<graphicData>
 			<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.5</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Vaporize</damageDef>
@@ -786,6 +739,54 @@
 			<armorPenetrationSharp>60</armorPenetrationSharp>
 			<armorPenetrationBlunt>6</armorPenetrationBlunt>
 		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBlasterBolt_Pistol">
+		<defName>Bullet_BlasterPistol_IonOnly</defName>
+		<graphicData>
+			<texPath>OuterRim/Projectile/ProtonBall</texPath>
+			<drawSize>0.2</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<damageDef>EMP</damageDef>
+			<empShieldBreakChance>1</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBlasterBolt_Rifle">
+		<defName>Bullet_BlasterRifle_IonOnly</defName>
+		<graphicData>
+			<texPath>OuterRim/Projectile/ProtonBall</texPath>
+			<drawSize>0.35</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<damageDef>EMP</damageDef>
+			<empShieldBreakChance>1</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBlasterBolt_Sniper">
+		<defName>Bullet_BlasterSniper_IonOnly</defName>
+		<graphicData>
+			<texPath>OuterRim/Projectile/ProtonBall</texPath>
+			<drawSize>0.5</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<damageDef>EMP</damageDef>
+			<empShieldBreakChance>1</empShieldBreakChance>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>25</damageAmountBase>
+				<explosiveDamageType>EMP</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<explosionSound>Explosion_EMP</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== Droid/Vambrace Minirockets ========================== -->
