@@ -165,17 +165,11 @@
 		</FireModes>
 	</Operation>
 
-	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="VQE_AncientLandmine"]</xpath>
-		<attribute>ParentName</attribute>
-		<value>TrapIEDBase</value>
-	</Operation>
-
+	<!-- Ancient Landmine, Also it's invisible -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VQE_AncientLandmine"]/building</xpath>
+		<xpath>Defs/ThingDef[defName="VQE_AncientLandmine"]</xpath>
 		<value>
-			<neverBuildable>true</neverBuildable>
-			<deconstructible>false</deconstructible>
+			<fillPercent>0.01</fillPercent>
 		</value>
 	</Operation>
 
