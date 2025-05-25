@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Thing Categories ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoCryptoRifle</defName>
+		<label>crypto rifle</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoCryptoPistol</defName>
+		<label>crypto pistol</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoCryptoShotgun</defName>
+		<label>crypto shotgun</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryptoRifle</defName>
+		<label>Crypto Rifle</label>
+		<ammoTypes>
+			<Ammo_CryptoRifle>Bullet_CryptoRifle</Ammo_CryptoRifle>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryptoPistol</defName>
+		<label>Crypto Pistol</label>
+		<ammoTypes>
+			<Ammo_CryptoPistol>Bullet_CryptoPistol</Ammo_CryptoPistol>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryptoShotgun</defName>
+		<label>Crypto Shotgun</label>
+		<ammoTypes>
+			<Ammo_CryptoShotgun>Bullet_CryptoShotgun</Ammo_CryptoShotgun>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryptoHeavyBolt</defName>
+		<label>Crypto Bolt</label>
+		<ammoTypes>
+			<Ammo_CryptoHeavyBolt>Bullet_CryptoHeavyBolt</Ammo_CryptoHeavyBolt>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="CryptoPistolBase" ParentName="VQEC_CryptoAmmoBase">
+		<defName>Ammo_CryptoRifle</defName>
+		<label>crypto rifle cartridge</label>
+		<graphicData>
+			<drawSize>0.75</drawSize>
+		</graphicData>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>AmmoCryptoRifle</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="VQEC_CryptoAmmoBase">
+		<defName>Ammo_CryptoPistol</defName>
+		<label>crypto pistol cartridge</label>
+		<graphicData>
+			<drawSize>0.70</drawSize>
+		</graphicData>
+		<statBases>
+			<Mass>0.008</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>AmmoCryptoPistol</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="VQEC_CryptoAmmoBase">
+		<defName>Ammo_CryptoShotgun</defName>
+		<label>crypto bolt</label>
+		<graphicData>
+			<drawSize>0.8</drawSize>
+		</graphicData>
+		<statBases>
+			<Mass>0.047</Mass>
+			<Bulk>0.06</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>AmmoCryptoShotgun</li>
+		</thingCategories>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_CryptoRifle</defName>
+		<label>crypto bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/CryptoBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>0.60</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>VQE_CryptoCut</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<speed>122</speed>
+			<armorPenetrationSharp>22.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>26</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x18mmChargedBullet">
+		<defName>Bullet_CryptoPistol</defName>
+		<label>crypto bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>VQE_CryptoCut</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<speed>122</speed>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>18</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12GaugeChargedBullet">
+		<defName>Bullet_CryptoShotgun</defName>
+		<label>crypto pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/CryptoBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.00</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<damageDef>VQE_CryptoCut</damageDef>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+			<pelletCount>6</pelletCount>
+			<spreadMult>8.9</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_CryptoRifle</defName>
+		<label>make crypto rifle cartridge x500</label>
+		<description>Craft 500 crypto rifle cartridge cartridges.</description>
+		<jobString>Making crypto rifle cartridge cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CryptoRifle>500</Ammo_CryptoRifle>
+		</products>
+		<workAmount>8600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_CryptoPistol</defName>
+		<label>make crypto pistol cartridge x500</label>
+		<description>Craft 500 crypto pistol cartridges.</description>
+		<jobString>Making crypto pistol cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CryptoPistol>500</Ammo_CryptoPistol>
+		</products>
+		<workAmount>9800</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_CryptoShotgun</defName>
+		<label>make crypto shotgun shell x200</label>
+		<description>Craft 200 Crypto Shotgun shells.</description>
+		<jobString>Making Crypto Shotgun shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CryptoShotgun>200</Ammo_CryptoShotgun>
+		</products>
+		<workAmount>15000</workAmount>
+	</RecipeDef>
+
+</Defs>

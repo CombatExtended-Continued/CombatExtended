@@ -168,6 +168,7 @@ Communicable Diseases   |
 Cossacks of the Rim |
 Crossbows   |
 Crowns and Regalia  |
+Crypto Weapon Restored  |
 Cupro's Alloys	|
 Cursed Guns |
 CutePenguin	|
