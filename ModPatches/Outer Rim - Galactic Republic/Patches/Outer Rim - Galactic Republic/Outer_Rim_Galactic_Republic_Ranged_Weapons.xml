@@ -78,6 +78,38 @@
 		</AmmoUser>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_DC17mCarbine"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to grenade launcher</underBarrelLabel>
+				<propsUnderBarrel>
+					<magazineSize>1</magazineSize>
+					<reloadTime>2.2</reloadTime>
+					<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>3.28</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_40x46mmGrenade_HEDP</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>44</range>
+					<minRange>5</minRange>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<muzzleFlashScale>14</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_DC15ACarbine</defName>
 		<statBases>
@@ -113,6 +145,37 @@
 			<reloadTime>3.36</reloadTime>
 			<ammoSet>AmmoSet_PlasmaGasCartridgeBlue_Rifle</ammoSet>
 		</AmmoUser>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_DC15ACarbine"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to stun mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>42</magazineSize>
+					<reloadTime>3.36</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeStun_Rifle</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1.2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterRifle_Stun</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>22</range>
+					<soundCast>OuterRim_Shot_SonicBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -151,6 +214,37 @@
 			<reloadTime>7.5</reloadTime>
 			<ammoSet>AmmoSet_PlasmaGasCartridgeBlue_Rifle</ammoSet>
 		</AmmoUser>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_DC15ARifle"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to stun mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>160</magazineSize>
+					<reloadTime>7.5</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeStun_Rifle</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1.16</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterRifle_Stun</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>28</range>
+					<soundCast>OuterRim_Shot_SonicBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">

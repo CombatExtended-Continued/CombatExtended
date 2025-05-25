@@ -259,6 +259,37 @@
 		</AmmoUser>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_E11DBlasterRifle"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to stun mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>70</magazineSize>
+					<reloadTime>3.7</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeStun_Rifle</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1.2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterRifle_Stun</defaultProjectile>
+					<warmupTime>1.44</warmupTime>
+					<range>23</range>
+					<soundCast>OuterRim_Shot_SonicBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_E22BlasterRifle</defName>
 		<statBases>
