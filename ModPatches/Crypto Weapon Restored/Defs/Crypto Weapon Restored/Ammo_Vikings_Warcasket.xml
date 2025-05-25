@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Thing Categories ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoCryptoCannon</defName>
+		<label>crypto cannon</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef MayRequire="OskarPotocki.VFE.Vikings">
+		<defName>AmmoSet_CryptoCannon</defName>
+		<label>Crypto Cannon</label>
+		<ammoTypes>
+			<Ammo_CryptoCannon>Bullet_Flamethrower_CryptoCannon</Ammo_CryptoCannon>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="VQEC_CryptoAmmoBase">
+		<defName>Ammo_CryptoCannon</defName>
+		<label>Crypto Cannon Fuel</label>
+		<statBases>
+			<MarketValue>0.7</MarketValue>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>	
+		<thingCategories>
+			<li>AmmoCryptoCannon</li>
+		</thingCategories>
+		<detonateProjectile>Bullet_Flamethrower_CryptoCannon</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base6x24mmChargedBullet" MayRequire="OskarPotocki.VFE.Vikings">
+		<defName>Bullet_Flamethrower_CryptoCannon</defName>
+		<graphicData>
+			<texPath>Things/Projectile/CryptoBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.50</drawSize>
+		</graphicData>
+		<label>Crygenic stream</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Cryptofuel</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<soundExplode>CE_FlamethrowerExplosion</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>CE_Cryptofuel</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_CryptoCannon</defName>
+		<label>make crypto cannon fuel x200</label>
+		<description>Craft 200 crypto cannon fuel.</description>
+		<jobString>Making crypto cannon fuel.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Chemfuel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CryptoCannon>200</Ammo_CryptoCannon>
+		</products>
+		<workAmount>8600</workAmount>
+	</RecipeDef>
+
+</Defs>
