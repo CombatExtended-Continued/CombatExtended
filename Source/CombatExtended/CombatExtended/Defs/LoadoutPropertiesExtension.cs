@@ -22,6 +22,8 @@ namespace CombatExtended
         public SidearmOption forcedSidearm;
         public List<SidearmOption> sidearms;
         public AmmoCategoryDef forcedAmmoCategory;
+        public bool forceShieldMaterial;
+        public ThingFilter shieldMaterialFilter;
 
         private static List<ThingStuffPair> allWeaponPairs;
         private static List<ThingStuffPair> allShieldPairs;
@@ -311,7 +313,8 @@ namespace CombatExtended
                         && shieldTags.Any(t => cur.thing.apparel.tags.Contains(t))
                         && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 68715844) <= cur.thing.generateAllowChance)
                         && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing)
-                        && ApparelUtility.HasPartsToWear(pawn, cur.thing))
+                        && ApparelUtility.HasPartsToWear(pawn, cur.thing)
+                        && (!forceShieldMaterial || (forceShieldMaterial && shieldMaterialFilter != null && shieldMaterialFilter.Allows(cur.stuff))))
                 {
                     workingShields.Add(cur);
                 }
@@ -320,12 +323,11 @@ namespace CombatExtended
             {
                 return;
             }
-            ThingStuffPair pair;
-            if (workingShields.TryRandomElementByWeight(p => p.Commonality * p.Price, out pair))
+            if (workingShields.TryRandomElementByWeight(p => p.Commonality * p.Price, out ThingStuffPair pair))
             {
                 var shield = (Apparel)ThingMaker.MakeThing(pair.thing, pair.stuff);
-                int count;
-                if (inventory.CanFitInInventory(shield, out count, false, true))
+                shield.SetColor(pawn.kindDef.apparelColor, reportFailure: false);
+                if (inventory.CanFitInInventory(shield, out int count, false, true))
                 {
                     pawn.apparel.Wear(shield);
                 }

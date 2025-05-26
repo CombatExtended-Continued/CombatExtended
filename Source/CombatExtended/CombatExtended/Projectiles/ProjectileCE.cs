@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -34,6 +35,9 @@ namespace CombatExtended
         public int fuelTicks;
         public Vector3 velocity;
         public float initialSpeed;
+
+        // Deprecated: Remove in 1.6
+        public bool lerpPosition = true;
         #endregion
 
         #region Drawing
@@ -179,6 +183,12 @@ namespace CombatExtended
 
         #region Position
         private Vector3 exactPosition;
+
+        public virtual Vector2 Vec2Position()
+        {
+            Log.ErrorOnce($"{this}.Vec2Position() is deprecated and will be removed in 1.6", 50021 + def.projectile.GetHashCode());
+            return new Vector2(ExactPosition.x, ExactPosition.z);
+        }
 
         /// <summary>
         /// Exact x,y,z (x,height,y) position in terms of Vec2Position.x, .y (lerped origin to Destination) and Height.
@@ -1009,6 +1019,11 @@ namespace CombatExtended
             }
 
             var bounds = CE_Utility.GetBoundsFor(thing);
+            if (bounds.Contains(LastPos) || bounds.Contains(ExactPosition))
+            {
+                dist = 0f;
+                return true;
+            }
             if (!bounds.IntersectRay(ShotLine, out dist))
             {
                 return false;
@@ -1187,6 +1202,10 @@ namespace CombatExtended
             if (landed)
             {
                 return;
+            }
+            if (lerpPosition != (TrajectoryWorker is LerpedTrajectoryWorker))
+            {
+                Log.WarningOnce($"ProjectileCE.lerpPosition value changed in {this}. Setting or referencing this field is deprecated. Please report this.", 50004 + def.projectile.GetHashCode());
             }
             if (TrajectoryWorker is BallisticsTrajectoryWorker && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
             {
@@ -1562,13 +1581,57 @@ namespace CombatExtended
         #endregion
 
         #region Ballistics
+
+        private LegacyTrajectoryWorker CheckForLegacyProjectile()
+        {
+            Type type = this.GetType();
+            if (type == typeof(ProjectileCE) || type == typeof(BulletCE)) // early out for most common case
+            {
+                return null;
+            }
+            bool v2p;
+            try
+            {
+                var vec2position_m = type.GetMethod(nameof(Vec2Position), BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                v2p = vec2position_m.GetBaseDefinition().DeclaringType != vec2position_m.DeclaringType;
+            }
+            catch (System.Reflection.AmbiguousMatchException) // Still using 1.3 era code
+            {
+                v2p = true;
+            }
+            if (!v2p)
+            {
+                return null;
+            }
+
+            var exactPosition_m = type.GetProperty("ExactPosition", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var exactPosition_gm = exactPosition_m.GetGetMethod();
+            var ep = exactPosition_gm.GetBaseDefinition() != exactPosition_gm;
+
+            if (v2p)
+            {
+                return new LegacyTrajectoryWorker(this, v2p, ep);
+            }
+            return null;
+        }
+
         public BaseTrajectoryWorker TrajectoryWorker
         {
             get
             {
                 if (forcedTrajectoryWorker == null)
                 {
-                    if (def.projectile is ProjectilePropertiesCE propertiesCE)
+                    if (CheckForLegacyProjectile() is LegacyTrajectoryWorker worker)
+                    {
+                        Log.WarningOnce($"{this} uses legacy collision code. Falling back to legacy TrajectoryWorker", this.def.GetHashCode());
+                        forcedTrajectoryWorker = worker;
+                    }
+                    else if (!lerpPosition)
+                    {
+                        Log.ErrorOnce($"Setting lerpPosition in ProjectileCE directly for {this} is deprecated, set the trajectoryWorker instead", 50003 + def.projectile.GetHashCode());
+                        forcedTrajectoryWorker = ProjectilePropertiesCE.defaultBallisticTrajectoryWorker;
+                    }
+                    else if (def.projectile is ProjectilePropertiesCE propertiesCE)
                     {
                         if (propertiesCE.lerpPosition != "")
                         {
@@ -1579,8 +1642,9 @@ namespace CombatExtended
                     else
                     {
                         Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
-                        forcedTrajectoryWorker = new LerpedTrajectoryWorker();
+                        forcedTrajectoryWorker = ProjectilePropertiesCE.defaultLerpedTrajectoryWorker;
                     }
+                    lerpPosition = forcedTrajectoryWorker is LerpedTrajectoryWorker;
                 }
                 return forcedTrajectoryWorker;
             }
