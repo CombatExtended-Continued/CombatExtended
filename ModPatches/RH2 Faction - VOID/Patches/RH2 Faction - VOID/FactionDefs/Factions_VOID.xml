@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Let VOID respond to anyone stupid enough to shell their landing site. -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/FactionDef[defName="RH_VOID"]</xpath>
+		<value>
+			<li Class="CombatExtended.FactionDefExtensionCE">
+				<shellingResponse>CE_ShellingPreset_VOID</shellingResponse>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

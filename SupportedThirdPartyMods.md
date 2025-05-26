@@ -43,6 +43,8 @@ Mod |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
 [RH2] Faction: V.O.I.D.	|
+[RH2] Helldivers: Super Apparel |
+[RH2] Helldivers: Super Firearms |
 [RH2] Metal Gear Solid  |
 [RH2] Rimmu-Nation² - Clothing	|
 [RH2] Rimmu-Nation² - Security  |
@@ -193,6 +195,7 @@ Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
 Dusk Armory   |
+Dust Bunnies    |
 Eccentric Militors	|
 ED-Shields	|
 Edge of Descension - Hovercraft  |
@@ -272,6 +275,7 @@ GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Hammer of the Imperium |
 Grimworld 40,000 - Heresy Armor Addon   |
+GrimWorld 40,000 - Sabbat's Blight |
 GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
 Gulden Mod  |
