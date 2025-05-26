@@ -3,18 +3,12 @@
 
 	<!-- Remove refuelable property -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-			defName="VQE_AncientShieldedTurret" or
-			defName="VQE_AncientSpacerAutocannon"
-			]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
 	</Operation>
 
 	<!-- Replace VE thingClass -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="VQE_AncientShieldedTurret" or
-			defName="VQE_AncientSpacerAutocannon"
-			]/thingClass </xpath>
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
@@ -22,30 +16,24 @@
 
 	<!-- Remove being stuned by stun -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-			defName="VQE_AncientShieldedTurret" or
-			defName="VQE_AncientSpacerAutocannon"
-			]/comps/li[@Class="CompProperties_Stunnable"]/affectedDamageDefs/li[.="Stun"]</xpath>
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/comps/li[@Class="CompProperties_Stunnable"]/affectedDamageDefs/li[.="Stun"]</xpath>
 	</Operation>
 
 	<!-- Remove vanilla explosive comp -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<!-- Make turrets taller -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName = "VQE_AncientSpacerAutocannon"]/fillPercent</xpath>
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName = "VQE_AncientShieldedTurret" or
-			defName = "VQE_AncientSpacerAutocannon"
-			]/statBases </xpath>
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName = "VQE_AncientSpacerAutocannon"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
 		</value>
@@ -66,31 +54,33 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="VQE_AncientShieldedTurret" or
-			defName="VQE_AncientSpacerAutocannon"
-			]/building/turretBurstCooldownTime </xpath>
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/building/turretBurstCooldownTime </xpath>
 		<value>
 			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
-	<!-- timed HP to 1.35 of the ref, the shielded part is done by thingClass which I patched-->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret"]/statBases/MaxHitPoints</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]</xpath>
 		<value>
-			<MaxHitPoints>165</MaxHitPoints>
+			<damageMultipliers>
+				<li>
+					<damageDef>Bomb</damageDef>
+					<multiplier>0.66</multiplier>
+				</li>
+				<li>
+					<damageDef>Bomb_Secondary</damageDef>
+					<multiplier>0.66</multiplier>
+				</li>
+				<li>
+					<damageDef>Bullet</damageDef>
+					<multiplier>0.66</multiplier>
+				</li>
+			</damageMultipliers>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VQE_AncientSpacerAutocannon"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>500</MaxHitPoints>
-		</value>
-	</Operation>
-
-	<!-- Ancient shielded turret -->
+	<!-- Ancient Shielded Turret -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VQE_AncientShieldedTurret_Gun</defName>
 		<statBases>
@@ -126,7 +116,7 @@
 		</FireModes>
 	</Operation>
 
-	<!-- Ancient "spacer" autocannon, the vanilla version isn't charged-->
+	<!-- Ancient "Spacer" Autocannon, the vanilla version isn't charged-->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VQE_AncientSpacerAutocannon_Gun</defName>
 		<statBases>
@@ -165,7 +155,7 @@
 		</FireModes>
 	</Operation>
 
-	<!-- Ancient Landmine, Also it's invisible -->
+	<!-- Ancient Landmine, also it's invisible -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VQE_AncientLandmine"]</xpath>
 		<value>
@@ -198,4 +188,5 @@
 			</li>
 		</value>
 	</Operation>
+
 </Patch>
