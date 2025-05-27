@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Remove refuelable property -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
+	</Operation>
+
+	<!-- Replace VE thingClass -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- Remove being stuned by stun -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/comps/li[@Class="CompProperties_Stunnable"]/affectedDamageDefs/li[.="Stun"]</xpath>
+	</Operation>
+
+	<!-- Remove vanilla explosive comp -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+	</Operation>
+
+	<!-- Make turrets taller -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName = "VQE_AncientSpacerAutocannon"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.75</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.1</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQE_AncientSpacerAutocannon"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]/building/turretBurstCooldownTime </xpath>
+		<value>
+			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQE_AncientShieldedTurret" or defName="VQE_AncientSpacerAutocannon"]</xpath>
+		<value>
+			<damageMultipliers>
+				<li>
+					<damageDef>Bomb</damageDef>
+					<multiplier>0.66</multiplier>
+				</li>
+				<li>
+					<damageDef>Bomb_Secondary</damageDef>
+					<multiplier>0.66</multiplier>
+				</li>
+				<li>
+					<damageDef>Bullet</damageDef>
+					<multiplier>0.66</multiplier>
+				</li>
+			</damageMultipliers>
+		</value>
+	</Operation>
+
+	<!-- Ancient Shielded Turret -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VQE_AncientShieldedTurret_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>0.78</SwayFactor>
+			<Bulk>10.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.71</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>54</range>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>GunShotA</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>200</magazineSize>
+			<reloadTime>7.5</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+
+	<!-- Ancient "Spacer" Autocannon, the vanilla version isn't charged-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VQE_AncientSpacerAutocannon_Gun</defName>
+		<statBases>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>1.55</SwayFactor>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<Mass>50</Mass>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.50</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+			<warmupTime>2.3</warmupTime>
+			<range>78</range>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>HeavyMG</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>150</magazineSize>
+			<reloadTime>8.8</reloadTime>
+			<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+		</AmmoUser>
+		<weaponTags Inherit="False">
+			<li>TurretGun</li>
+		</weaponTags>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+
+	<!-- Ancient Landmine, also it's invisible -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQE_AncientLandmine"]</xpath>
+		<value>
+			<fillPercent>0.01</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQE_AncientLandmine"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<damageAmountBase>270</damageAmountBase>
+				<explosiveRadius>4.5</explosiveRadius>
+				<startWickOnDamageTaken>
+					<li>Bullet</li>
+					<li>Arrow</li>
+					<li>ArrowHighVelocity</li>
+				</startWickOnDamageTaken>
+				<wickTicks>
+					<min>5</min>
+					<max>30</max>
+				</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>16</Fragment_Large>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
