@@ -18,6 +18,11 @@
 			<Ammo_30x113mmB_Incendiary>Bullet_30x113mmB_Incendiary</Ammo_30x113mmB_Incendiary>
 			<Ammo_30x113mmB_HE>Bullet_30x113mmB_HE</Ammo_30x113mmB_HE>
 			<Ammo_30x113mmB_Sabot>Bullet_30x113mmB_Sabot</Ammo_30x113mmB_Sabot>
+			<Ammo_30x113mmBGrenade_HE>Bullet_30x113mmBGrenade_HE</Ammo_30x113mmBGrenade_HE>
+			<Ammo_30x113mmBGrenade_HE_TFuzed>Bullet_30x113mmBGrenade_HE_TFuzed</Ammo_30x113mmBGrenade_HE_TFuzed>
+			<Ammo_30x113mmBGrenade_HEDP>Bullet_30x113mmBGrenade_HEDP</Ammo_30x113mmBGrenade_HEDP>
+			<Ammo_30x113mmBGrenade_EMP>Bullet_30x113mmBGrenade_EMP</Ammo_30x113mmBGrenade_EMP>
+			<Ammo_30x113mmBGrenade_Smoke>Bullet_30x113mmBGrenade_Smoke</Ammo_30x113mmBGrenade_Smoke>
 		</ammoTypes>
 		<similarTo>AmmoSet_Autocannon</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -73,7 +78,7 @@
 		<cookOffProjectile>Bullet_30x113mmB_HE</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
 		<defName>Ammo_30x113mmB_Sabot</defName>
 		<label>30x113mmB (Sabot)</label>
 		<graphicData>
@@ -85,6 +90,78 @@
 		</statBases>
 		<ammoClass>Sabot</ammoClass>
 		<cookOffProjectile>Bullet_30x113mmB_Sabot</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
+		<defName>Ammo_30x113mmBGrenade_HE</defName>
+		<label>30x113mmB (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.34</Mass>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
+		<defName>Ammo_30x113mmBGrenade_HE_TFuzed</defName>
+		<label>30x113mmB (HE Time-Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/AIR</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.34</Mass>
+		</statBases>
+		<ammoClass>GrenadeHETF</ammoClass>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
+		<defName>Ammo_30x113mmBGrenade_HEDP</defName>
+		<label>30x113mmB (HEDP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/DP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.34</Mass>
+		</statBases>
+		<ammoClass>GrenadeHEDP</ammoClass>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_HEDP</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
+		<defName>Ammo_30x113mmBGrenade_EMP</defName>
+		<label>30x113mmB (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.34</Mass>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<generateAllowChance>0.5</generateAllowChance>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_EMP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
+		<defName>Ammo_30x113mmBGrenade_Smoke</defName>
+		<label>30x113mmB (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/SMK</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.34</Mass>
+		</statBases>
+		<ammoClass>Smoke</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_Smoke</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -156,12 +233,102 @@
 		</projectile>
 	</ThingDef>
 
+	<ThingDef ParentName="Base30x113mmBBullet">
+		<defName>Bullet_30x113mmBGrenade_HE</defName>
+		<label>30x113mmB bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>22</damageAmountBase>
+			<explosionRadius>1.0</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<speed>153</speed>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>23</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x113mmBBullet">
+		<defName>Bullet_30x113mmBGrenade_HE_TFuzed</defName>
+		<label>30x113mmB bullet (HE Time-Fuzed)</label>
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>22</damageAmountBase>
+			<explosionRadius>1.0</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>1.4</aimHeightOffset>
+			<armingDelay>2</armingDelay>
+			<speed>153</speed>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>23</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-89~-5</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x113mmBBullet">
+		<defName>Bullet_30x113mmBGrenade_HEDP</defName>
+		<label>30x113mmB bullet (HEDP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>65</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.23</armorPenetrationBlunt>
+			<speed>153</speed>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>17</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>9</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x113mmBBullet">
+		<defName>Bullet_30x113mmBGrenade_EMP</defName>
+		<label>30x113mmB bullet (EMP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>22</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x113mmBBullet">
+		<defName>Bullet_30x113mmBGrenade_Smoke</defName>
+		<label>30x113mmB bullet (Smoke)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<explosionRadius>2.5</explosionRadius>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_30x113mmB_AP</defName>
-		<label>make 30x113mmB (AP) cartridge x100</label>
-		<description>Craft 100 .30x113mmB (AP) cartridges.</description>
+		<label>make 30x113mmB (AP) cartridge x150</label>
+		<description>Craft 150 .30x113mmB (AP) cartridges.</description>
 		<jobString>Making .30x113mmB (AP) cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -186,8 +353,8 @@
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_30x113mmB_Incendiary</defName>
-		<label>make 30x113mmB (AP-I) cartridge x100</label>
-		<description>Craft 100 .30x113mmB (AP-I) cartridges.</description>
+		<label>make 30x113mmB (AP-I) cartridge x150</label>
+		<description>Craft 150 .30x113mmB (AP-I) cartridges.</description>
 		<jobString>Making .30x113mmB (AP-I) cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -221,8 +388,8 @@
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_30x113mmB_HE</defName>
-		<label>make 30x113mmB (AP-HE) cartridge x100</label>
-		<description>Craft 100 .30x113mmB (AP-HE) cartridges.</description>
+		<label>make 30x113mmB (AP-HE) cartridge x150</label>
+		<description>Craft 150 .30x113mmB (AP-HE) cartridges.</description>
 		<jobString>Making .30x113mmB (AP-HE) cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -256,8 +423,8 @@
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_30x113mmB_Sabot</defName>
-		<label>make 30x113mmB (Sabot) cartridge x100</label>
-		<description>Craft 100 .30x113mmB (Sabot) cartridges.</description>
+		<label>make 30x113mmB (Sabot) cartridge x150</label>
+		<description>Craft 150 .30x113mmB (Sabot) cartridges.</description>
 		<jobString>Making .30x113mmB (Sabot) cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -296,6 +463,222 @@
 			<Ammo_30x113mmB_Sabot>150</Ammo_30x113mmB_Sabot>
 		</products>
 		<workAmount>21000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_30x113mmBGrenade_HE</defName>
+		<label>make 30x113mmB HE cartridge x100</label>
+		<description>Craft 100 30x113mmB HE cartridges.</description>
+		<jobString>Making 30x113mmB HE cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30x113mmBGrenade_HE>100</Ammo_30x113mmBGrenade_HE>
+		</products>
+		<workAmount>11200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_30x113mmBGrenade_HE_TFuzed</defName>
+		<label>make 30x113mmB HE Time-Fuzed cartridge x100</label>
+		<description>Craft 100 30x113mmB HE Time-Fuzed cartridges.</description>
+		<jobString>Making 30x113mmB HE Time-Fuzed cartridges.</jobString>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30x113mmBGrenade_HE_TFuzed>100</Ammo_30x113mmBGrenade_HE_TFuzed>
+		</products>
+		<workAmount>12400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_30x113mmBGrenade_HEDP</defName>
+		<label>make 30x113mmB HEDP cartridge x100</label>
+		<description>Craft 100 30x113mmB HEDP cartridges.</description>
+		<jobString>Making 30x113mmB HEDP cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30x113mmBGrenade_HEDP>100</Ammo_30x113mmBGrenade_HEDP>
+		</products>
+		<workAmount>10400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_30x113mmBGrenade_EMP</defName>
+		<label>make 30x113mmB EMP cartridge x100</label>
+		<description>Craft 100 30x113mmB EMP cartridges.</description>
+		<jobString>Making 30x113mmB EMP cartridges.</jobString>
+		<researchPrerequisites>
+			<li>MicroelectronicsBasics</li>
+			<li>CE_Launchers</li>
+		</researchPrerequisites>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>11</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30x113mmBGrenade_EMP>100</Ammo_30x113mmBGrenade_EMP>
+		</products>
+		<workAmount>13400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_30x113mmBGrenade_Smoke</defName>
+		<label>make 30x113mmB smoke cartridge x100</label>
+		<description>Craft 100 30x113mmB smoke cartridges.</description>
+		<jobString>Making 30x113mmB smoke cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30x113mmBGrenade_Smoke>100</Ammo_30x113mmBGrenade_Smoke>
+		</products>
+		<workAmount>9200</workAmount>
 	</RecipeDef>
 
 </Defs>
