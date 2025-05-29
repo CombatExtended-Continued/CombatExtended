@@ -4,7 +4,7 @@
 	<!-- One-handed Tags -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-		defName = "VBY_FlintKnife" or
+		defName="VBY_FlintKnife" or
 		defName="VBY_FlintSpear" or
 		defName="VBY_SharpStick" or
 		defName="VBY_BambooFlintSpear" or
@@ -576,6 +576,55 @@
 				<MeleeParryChance>0.20</MeleeParryChance>
 				<MeleeDodgeChance>0.27</MeleeDodgeChance>
 			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Sugliin -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_Sugliin"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+						<li>Cut</li>
+						<li>Blunt</li>
+						<li>Scratch</li>
+						<li>Poke</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>4.45</cooldownTime>
+					<armorPenetrationBlunt>15.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.22</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_Sugliin"]/statBases/Mass</xpath>
+		<value>
+			<Mass>12</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_Sugliin"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<MeleeCounterParryBonus>0.58</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_Sugliin"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.25</MeleeCritChance>
+			<MeleeParryChance>0.36</MeleeParryChance>
+			<MeleeDodgeChance>0.07</MeleeDodgeChance>
 		</value>
 	</Operation>
 

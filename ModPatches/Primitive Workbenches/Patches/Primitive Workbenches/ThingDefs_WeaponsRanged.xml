@@ -2,30 +2,6 @@
 <Patch>
 
 	<!-- === Boomerang === -->
-	<!-- == Projectile == -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VBY_BoomerangProjectile"]</xpath>
-		<value>
-			<ThingDef ParentName="BasePilumProjectile">
-				<defName>VBY_BoomerangProjectile</defName>
-				<label>boomerang</label>
-				<graphicData>
-					<texPath>Things/Projectile/HDM_Boomerang_Projectile</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Blunt</damageDef>
-					<damageAmountBase>16</damageAmountBase>
-					<flyOverhead>false</flyOverhead>
-					<speed>12</speed>
-					<armorPenetrationBlunt>14.58</armorPenetrationBlunt>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
-					<preExplosionSpawnChance>0.90</preExplosionSpawnChance>
-					<preExplosionSpawnThingDef>VBY_Boomerang</preExplosionSpawnThingDef>
-				</projectile>
-			</ThingDef>
-		</value>
-	</Operation>
 
 	<!-- == Weapon == -->
 	<Operation Class="PatchOperationAdd">
@@ -59,15 +35,12 @@
 			<label>Throw boomerang</label>
 			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>VBY_BoomerangProjectile</defaultProjectile>
+			<defaultProjectile>VBY_BoomerangProjectile_CE</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>20</range>
 			<soundCast>ThrowMolotovCocktail</soundCast>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes>
-			<aiAimMode>Snapshot</aiAimMode>
-		</FireModes>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -89,31 +62,6 @@
 	</Operation>
 
 	<!-- === Rabbit Stick === -->
-	<!-- == Projectile == -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VBY_RabbitStick_Projectile"]</xpath>
-		<value>
-			<ThingDef ParentName="BasePilumProjectile">
-				<defName>VBY_RabbitStick_Projectile</defName>
-				<label>boomerang</label>
-				<graphicData>
-					<texPath>Things/Projectile/HDM_RabbitStick_Projectile</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Blunt</damageDef>
-					<damageAmountBase>16</damageAmountBase>
-					<flyOverhead>false</flyOverhead>
-					<speed>12</speed>
-					<armorPenetrationBlunt>14.58</armorPenetrationBlunt>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
-					<preExplosionSpawnChance>0.90</preExplosionSpawnChance>
-					<preExplosionSpawnThingDef>VBY_RabbitStick</preExplosionSpawnThingDef>
-				</projectile>
-			</ThingDef>
-		</value>
-	</Operation>
 
 	<!-- == Weapon == -->
 	<Operation Class="PatchOperationAdd">
@@ -147,15 +95,12 @@
 			<label>Throw boomerang</label>
 			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>VBY_RabbitStick_Projectile</defaultProjectile>
+			<defaultProjectile>VBY_RabbitStick_Projectile_CE</defaultProjectile>
 			<warmupTime>1</warmupTime>
-			<range>20</range>
+			<range>16</range>
 			<soundCast>ThrowMolotovCocktail</soundCast>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes>
-			<aiAimMode>Snapshot</aiAimMode>
-		</FireModes>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -177,31 +122,6 @@
 	</Operation>
 
 	<!-- === Throwing Rock === -->
-	<!-- == Projectile == -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VBY_ThrownRockProjectile"]</xpath>
-		<value>
-			<ThingDef ParentName="BasePilumProjectile">
-				<defName>VBY_ThrownRockProjectile</defName>
-				<label>rock</label>
-				<graphicData>
-					<texPath>Things/Projectile/HDM_RockProjectile</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Blunt</damageDef>
-					<damageAmountBase>5</damageAmountBase>
-					<flyOverhead>false</flyOverhead>
-					<speed>8</speed>
-					<armorPenetrationBlunt>0.46</armorPenetrationBlunt>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
-					<preExplosionSpawnChance>0.90</preExplosionSpawnChance>
-					<preExplosionSpawnThingDef>VBY_ThrowingRocks</preExplosionSpawnThingDef>
-				</projectile>
-			</ThingDef>
-		</value>
-	</Operation>
 
 	<!-- == Weapon == -->
 	<Operation Class="PatchOperationAdd">
@@ -235,15 +155,12 @@
 			<label>Throw rock</label>
 			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>VBY_ThrownRockProjectile</defaultProjectile>
+			<defaultProjectile>VBY_ThrownRockProjectile_CE</defaultProjectile>
 			<warmupTime>1</warmupTime>
-			<range>20</range>
+			<range>9</range>
 			<soundCast>ThrowMolotovCocktail</soundCast>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes>
-			<aiAimMode>Snapshot</aiAimMode>
-		</FireModes>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -271,8 +188,8 @@
 		<defName>VBY_Atlatl</defName>
 		<statBases>
 			<SightsEfficiency>0.8</SightsEfficiency>
-			<ShotSpread>2</ShotSpread>
-			<SwayFactor>3</SwayFactor>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
 			<Bulk>4</Bulk>
 			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
 		</statBases>
@@ -283,13 +200,13 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_Arrow_Stone</defaultProjectile>
+			<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
 			<warmupTime>1.5</warmupTime>
 			<range>20</range>
 			<soundCast>ThrowMolotovCocktail</soundCast>
 		</Properties>
 		<AmmoUser>
-			<ammoSet>AmmoSet_Arrow</ammoSet>
+			<ammoSet>AmmoSet_GreatArrow</ammoSet>
 		</AmmoUser>
 		<FireModes/>
 		<weaponTags>
