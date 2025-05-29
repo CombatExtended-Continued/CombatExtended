@@ -425,6 +425,8 @@ phynilla Expanded Mechs Scyther |
 pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
+Primitive Core |
+Primitive Workbenches |
 Project RimFactory - Materials |
 Prostheses+ |
 Protoswords |
