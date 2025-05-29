@@ -6,7 +6,8 @@
 		<xpath>Defs/ThingDef[
 				defName="RE_Gun_AlliancePistol" or
 				defName="RE_Gun_AllianceSMG" or
-				defName="RE_Gun_AllianceHandcannon"]/tools</xpath>
+				defName="RE_Gun_AllianceHandcannon"
+				]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -82,7 +83,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AlliancePistol']/recipeMaker/skillRequirements</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AlliancePistol"]/recipeMaker/skillRequirements</xpath>
 		<value>
 			<skillRequirements>
 				<Crafting>5</Crafting>
@@ -91,7 +92,11 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceShotgun' or defName='RE_Gun_AllianceSMG' or defName='RE_Gun_AllianceHandcannon']/recipeMaker/skillRequirements</xpath>
+		<xpath>Defs/ThingDef[
+		defName="RE_Gun_AllianceShotgun" or
+		defName="RE_Gun_AllianceSMG" or
+		defName="RE_Gun_AllianceHandcannon"
+		]/recipeMaker/skillRequirements</xpath>
 		<value>
 			<skillRequirements>
 				<Crafting>6</Crafting>
@@ -100,7 +105,11 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceSniperRifle'or defName='RE_Gun_AllianceRocketLauncher' or defName='RE_Gun_AllianceAssaultRifle']/recipeMaker/skillRequirements</xpath>
+		<xpath>Defs/ThingDef[
+		defName="RE_Gun_AllianceSniperRifle" or
+		defName="RE_Gun_AllianceRocketLauncher" or
+		defName="RE_Gun_AllianceAssaultRifle"
+		]/recipeMaker/skillRequirements</xpath>
 		<value>
 			<skillRequirements>
 				<Crafting>7</Crafting>
@@ -109,7 +118,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceAntimaterielRifle' or defName='RE_Gun_AllianceBattleRifle']/recipeMaker/skillRequirements</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceAntimaterielRifle" or defName="RE_Gun_AllianceBattleRifle"]/recipeMaker/skillRequirements</xpath>
 		<value>
 			<skillRequirements>
 				<Crafting>8</Crafting>
@@ -163,16 +172,9 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceAssaultRifle']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceAssaultRifle"]/label</xpath>
 		<value>
 			<label>M-8 Avenger</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceAssaultRifle"]/description</xpath>
-		<value>
-			<description>The Avenger is a common, versatile, military-grade assault rifle manufactured by the Elkoss Combine. It's accurate when fired in short bursts, and deadly when fired on full auto. The modular design and inexpensive components of the Avenger make it a favorite of military groups and mercenaries alike. The rifle has a reputation for being tough, reliable, easy to use, and easy to upgrade. This might be the most generic assualt rifle to have ever existed in this corner of the milky way.</description>
 		</value>
 	</Operation>
 
@@ -220,16 +222,9 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceBattleRifle']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceBattleRifle"]/label</xpath>
 		<value>
 			<label>M-15 Vindicator</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceBattleRifle"]/description</xpath>
-		<value>
-			<description>A low recoil battle rifle that fires in three-round bursts. The Vindicator is favored by assassins and elite mercenaries, and deadly at medium to long ranges. Its effectiveness might be outclassed by faster firing weapons at short ranges.</description>
 		</value>
 	</Operation>
 
@@ -278,18 +273,12 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceSMG']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceSMG"]/label</xpath>
 		<value>
 			<label>M-9 Tempest</label>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceSMG"]/description</xpath>
-		<value>
-			<description>The Tempest is an expensive but deadly addition to anyone's personal arsenal. This fully automatic submachine gun is punishing up close, but becomes less accurate at long range.</description>
-		</value>
-	</Operation>
 	<!-- ========== Mantis ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RE_Gun_AllianceSniperRifle</defName>
@@ -332,18 +321,12 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceSniperRifle']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceSniperRifle"]/label</xpath>
 		<value>
 			<label>M-92 Mantis</label>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceSniperRifle"]/description</xpath>
-		<value>
-			<description>The Mantis is a powerful sniper rifle able to take out most targets in a single shot. It's incredibly accurate at long range, but rate of fire is slow due to the need to load a new thermal clip after every shot.</description>
-		</value>
-	</Operation>
 	<!-- ========== M-98 ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RE_Gun_AllianceAntimaterielRifle</defName>
@@ -386,18 +369,12 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceAntimaterielRifle']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceAntimaterielRifle"]/label</xpath>
 		<value>
 			<label>M-98 Widow</label>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceAntimaterielRifle"]/description</xpath>
-		<value>
-			<description>A very heavy anti-material rifle, the Widow is primarily used by sniper teams in assault missions against armored vehicles, mechanoids or krogan. It is very slow to fire but packs a massive punch, any humanoid target is likely to be instantly turned into a bloody pulp upon hit.</description>
-		</value>
-	</Operation>
 	<!-- ========== AllianceShotgun ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RE_Gun_AllianceShotgun</defName>
@@ -439,16 +416,9 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceShotgun']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceShotgun"]/label</xpath>
 		<value>
 			<label>M-23 Katana</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceShotgun"]/description</xpath>
-		<value>
-			<description>The Katana is a common mercenary weapon, and is also popular on colonies with varren infestations. It's deadly at short range, but ineffective at long range. Being a shotgun, it sacrifices its long range and armour piercing capabilities for short range firepower.</description>
 		</value>
 	</Operation>
 
@@ -497,18 +467,12 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceChainShotgun']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceChainShotgun"]/label</xpath>
 		<value>
 			<label>Hydra Shotgun</label>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceChainShotgun"]/description</xpath>
-		<value>
-			<description>A curious weapon not given any given any formal alliance designation, the Hydra is an automatic shotgun that is nearly doubles the firepower of a regular semi-automatic shotgun.</description>
-		</value>
-	</Operation>
 	<!-- ========== Predator ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RE_Gun_AlliancePistol</defName>
@@ -552,18 +516,12 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AlliancePistol']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AlliancePistol"]/label</xpath>
 		<value>
 			<label>M-3 Predator</label>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AlliancePistol"]/description</xpath>
-		<value>
-			<description>A reliable, accurate sidearm. Manufactured by Elanus Risk Control, the Predator is valued as a powerful, deadly, and relatively inexpensive weapon.</description>
-		</value>
-	</Operation>
 	<!-- ========== Phalanx ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RE_Gun_AllianceHandcannon</defName>
@@ -603,23 +561,16 @@
 		<weaponTags>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
-		<!--    <researchPrerequisite>BlowbackOperation</researchPrerequisite> -->
 	</Operation>
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceHandcannon']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceHandcannon"]/label</xpath>
 		<value>
 			<label>M-5 Phalanx</label>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceHandcannon"]/description</xpath>
-		<value>
-			<description>The M-5 Phalanx is the product of the Alliance's Offensive Handgun Project, a close-in weapon to be used with no loss of stopping power in comparison with a soldier's assault rifle. The Phalanx enjoys a ballistics advantage over most heavy pistols. Civilian variants are often purchased by colonists on planets that have particularly dangerous big-game animals.</description>
-		</value>
-	</Operation>
 	<!-- === Rocket Launcher === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RE_Gun_AllianceRocketLauncher</defName>
@@ -664,7 +615,7 @@
 
 	<!-- Name -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName='RE_Gun_AllianceRocketLauncher']/label</xpath>
+		<xpath>Defs/ThingDef[defName="RE_Gun_AllianceRocketLauncher"]/label</xpath>
 		<value>
 			<label>ML-77 (single use)</label>
 		</value>
