@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Damage Type ========================== -->
+
+	<DamageDef ParentName="Bullet">
+		<defName>ME_BigBullet</defName>
+		<buildingDamageFactor>0.7</buildingDamageFactor>
+		<plantDamageFactor>0.7</plantDamageFactor>
+	</DamageDef>
+
+	<DamageDef ParentName="Flame">
+		<defName>ME_SickBurn</defName>
+		<label>prometheum burn</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<minDamageToFragment>99999</minDamageToFragment>
+		<hediff>BurnSecondary</hediff>
+		<additionalHediffs>
+			<li>
+				<hediff>PrometheumSoaked</hediff>
+				<severityPerDamageDealt>0.03</severityPerDamageDealt>
+				<victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+			</li>
+		</additionalHediffs>
+	</DamageDef>
+
+	<DamageDef ParentName="Bullet">
+		<defName>ME_Cryo</defName>
+		<label>Cryo shot</label>
+		<externalViolence>false</externalViolence>
+		<deathMessage>{0} has succumbed to frostbite.</deathMessage>
+		<additionalHediffs>
+			<li>
+				<hediff>ME_Freeze</hediff>
+				<severityPerDamageDealt>0.05</severityPerDamageDealt>
+				<victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+			</li>
+		</additionalHediffs>
+	</DamageDef>
+
+	<DamageDef ParentName="Bullet">
+		<defName>ME_Toxin</defName>
+		<label>Toxin shot</label>
+		<externalViolence>false</externalViolence>
+		<deathMessage>{0} has succumbed to bullet poisoning.</deathMessage>
+		<additionalHediffs>
+			<li>
+				<hediff>ME_Toxic</hediff>
+				<severityPerDamageDealt>0.05</severityPerDamageDealt>
+				<victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+			</li>
+		</additionalHediffs>
+	</DamageDef>
+
+</Defs>
