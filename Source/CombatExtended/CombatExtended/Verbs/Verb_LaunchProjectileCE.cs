@@ -71,6 +71,7 @@ namespace CombatExtended
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
+        public LocalTargetInfo originalTarget; // currentTarget may change in burst
 
         public override int ShotsPerBurst
         {
@@ -101,6 +102,7 @@ namespace CombatExtended
                 return compCharges;
             }
         }
+        public virtual BaseTrajectoryWorker TrajectoryWorker(LocalTargetInfo target) => projectilePropsCE.TrajectoryWorker;
         protected float ShotSpeed
         {
             get
@@ -244,6 +246,7 @@ namespace CombatExtended
         protected void resetRetarget()
         {
             shootingAtDowned = false;
+            originalTarget = null;
             lastTarget = null;
             lastTargetPos = IntVec3.Invalid;
             lastShootLine = null;
@@ -255,6 +258,7 @@ namespace CombatExtended
         {
             base.ExposeData();
             Scribe_Values.Look<bool>(ref this.shootingAtDowned, "shootingAtDowned", false, false);
+            Scribe_TargetInfo.Look(ref originalTarget, nameof(originalTarget));
             Scribe_TargetInfo.Look(ref this.lastTarget, "lastTarget");
             Scribe_Values.Look<IntVec3>(ref this.lastTargetPos, "lastTargetPos", IntVec3.Invalid, false);
             Scribe_Values.Look<bool>(ref this.repeating, "repeating", false, false);
@@ -582,7 +586,7 @@ namespace CombatExtended
         /// <returns>angle in radians</returns>
         protected virtual float ShotAngle(Vector3 source, Vector3 targetPos)
         {
-            return projectilePropsCE.TrajectoryWorker.ShotAngle(projectilePropsCE, source, targetPos, ShotSpeed);
+            return TrajectoryWorker(originalTarget).ShotAngle(projectilePropsCE, source, targetPos, ShotSpeed);
         }
         protected float ShotRotation(Vector3 targetPos)
         {
@@ -594,7 +598,7 @@ namespace CombatExtended
         /// <returns>rotation in degrees</returns>
         protected virtual float ShotRotation(Vector3 source, Vector3 targetPos)
         {
-            return projectilePropsCE.TrajectoryWorker.ShotRotation(projectilePropsCE, source, targetPos);
+            return TrajectoryWorker(originalTarget).ShotRotation(projectilePropsCE, source, targetPos);
         }
         /// <summary>
         /// Calculates the amount of recoil at a given point in a burst, up to a maximum
@@ -1101,6 +1105,10 @@ namespace CombatExtended
                 Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
             }
+            if (!originalTarget.IsValid || !MidBurst)
+            {
+                originalTarget = currentTarget;
+            }
             bool instant = false;
 
             float spreadDegrees = 0;
@@ -1120,6 +1128,7 @@ namespace CombatExtended
             {
 
                 ProjectileCE projectile = SpawnProjectile();
+                projectile.forcedTrajectoryWorker = TrajectoryWorker(originalTarget);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
                 ShiftTarget(report, lastExactPos, pelletMechanicsOnly, instant);
 

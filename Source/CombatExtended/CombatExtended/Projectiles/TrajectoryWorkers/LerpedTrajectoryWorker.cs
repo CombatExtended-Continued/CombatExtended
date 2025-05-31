@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     public class LerpedTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int ticks)
+        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int ticks, bool drawPos)
         {
             List<Vector3> cachedPredictedPositions = projectile.cachedPredictedPositions ?? new List<Vector3>();
             var ticksToImpact = projectile.ticksToImpact;
@@ -21,6 +21,15 @@ namespace CombatExtended
                 {
                     var tick = projectile.FlightTicks + ticksOffset;
                     cachedPredictedPositions.Add(GetPositionAtTick(projectile, tick));
+                }
+            }
+            if (drawPos)
+            {
+                var predictedDrawPositions = new List<Vector3>(cachedPredictedPositions.Count);
+                for (int tickOffset = 0; tickOffset < cachedPredictedPositions.Count; tickOffset++)
+                {
+                    Vector3 exactPosition = cachedPredictedPositions[tickOffset];
+                    predictedDrawPositions.Add(ExactPosToDrawPos(exactPosition, projectile.FlightTicks + tickOffset, projectile.ticksToTruePosition, projectile.def.Altitude));
                 }
             }
             return cachedPredictedPositions;
