@@ -9,6 +9,9 @@ namespace CombatExtended
     {
         public string label;
         public LoadoutSlotConfig[] slots;
+        public bool dropUndefined = true;
+        public bool adHoc = false;
+        public string parentLabel = String.Empty;
     }
 
     [Serializable]

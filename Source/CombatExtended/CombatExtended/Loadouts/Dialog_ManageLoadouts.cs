@@ -325,8 +325,7 @@ namespace CombatExtended
                     dialog.Close();
                 }, CurrentLoadout.label));
             }
-#if DEBUG
-            if (CurrentLoadout != null && Widgets.ButtonText(parentRect, "CE_ParentLoadout".Translate()))
+            if (CurrentLoadout != null && Widgets.ButtonText(parentRect, CurrentLoadout?.ParentLoadout?.label ?? "CE_ParentLoadout".Translate()))
             {
 
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
@@ -337,19 +336,26 @@ namespace CombatExtended
                 }
                 else
                 {
+                    options.Add(new FloatMenuOption("CE_ClearParentLoadout".Translate(), delegate
+                    {
+                        CurrentLoadout.parentID = 0;
+                    }));
                     for (int i = 0; i < loadouts.Count; i++)
                     {
                         int local_i = i;
+                        if (loadouts[i] == CurrentLoadout)
+                        {
+                            continue;
+                        }
                         options.Add(new FloatMenuOption(loadouts[i].LabelCap, delegate
                         {
-                            CurrentLoadout = loadouts[local_i];
+                            CurrentLoadout.parentID = loadouts[local_i].uniqueID;
                         }));
                     }
                 }
 
                 Find.WindowStack.Add(new FloatMenu(options));
             }
-#endif
 
 
             // draw notification if no loadout selected
@@ -378,9 +384,7 @@ namespace CombatExtended
             DrawSlotList(slotListRect);
 
             // extra options
-#if DEBUG
             DrawExtraOptions(optionRect);
-#endif
 
             // bars
             if (CurrentLoadout != null)
@@ -399,8 +403,6 @@ namespace CombatExtended
             }
             // done!
         }
-        private bool ExtraOptionButtonA = false;
-        private bool ExtraOptionButtonB = false;
         private void DrawExtraOptions(Rect rect)
         {
             float checkboxWidth = (rect.width - 10f) / 2f;
@@ -408,13 +410,13 @@ namespace CombatExtended
             Rect leftRect = new Rect(rect.x, rect.y, checkboxWidth, rect.height);
             Listing_Standard listingLeft = new Listing_Standard();
             listingLeft.Begin(leftRect);
-            listingLeft.CheckboxLabeled("CE_LoadOut_ExtraOptionA".Translate(), ref ExtraOptionButtonA, "CE_LoadOut_ExtraOptionA_Desc".Translate());
+            listingLeft.CheckboxLabeled("CE_LoadOut_DropUndefined".Translate(), ref CurrentLoadout.dropUndefined, "CE_LoadOut_DropUndefined_Desc".Translate());
             listingLeft.End();
 
             Rect rightRect = new Rect(rect.x + checkboxWidth + 10f, rect.y, checkboxWidth, rect.height);
             Listing_Standard listingRight = new Listing_Standard();
             listingRight.Begin(rightRect);
-            listingRight.CheckboxLabeled("CE_LoadOut_ExtraOptionB".Translate(), ref ExtraOptionButtonB, "CE_LoadOut_ExtraOptionB_Desc".Translate());
+            listingRight.CheckboxLabeled("CE_LoadOut_AdHoc".Translate(), ref CurrentLoadout.adHoc, "CE_LoadOut_AdHoc_Desc".Translate());
             listingRight.End();
         }
 
@@ -561,7 +563,7 @@ namespace CombatExtended
             {
                 if (Compatibility.Multiplayer.InMultiplayer)
                 {
-                    SetSlotCount(CurrentLoadout, CurrentLoadout.Slots.IndexOf(slot), countInt);
+                    SetSlotCount(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(slot), countInt);
                 }
                 else
                 {
@@ -744,7 +746,7 @@ namespace CombatExtended
                 {
                     if (Compatibility.Multiplayer.InMultiplayer)
                     {
-                        ChangeCountType(CurrentLoadout, CurrentLoadout.Slots.IndexOf(slot));
+                        ChangeCountType(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(slot));
                     }
                     else
                     {
@@ -761,7 +763,7 @@ namespace CombatExtended
             }
             if (Widgets.ButtonImage(deleteRect, _iconClear))
             {
-                RemoveSlot(CurrentLoadout, CurrentLoadout.Slots.IndexOf(slot));
+                RemoveSlot(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(slot));
             }
             TooltipHandler.TipRegion(deleteRect, "CE_DeleteFilter".Translate());
         }
@@ -797,7 +799,7 @@ namespace CombatExtended
                 curY += _rowHeight;
 
                 // if we're dragging, and currently on this row, and this row is not the row being dragged - draw a ghost of the slot here
-                if (Dragging != null && Mouse.IsOver(row) && Dragging != CurrentLoadout.Slots[i])
+                if (Dragging != null && Mouse.IsOver(row) && Dragging != CurrentLoadout.OwnSlots[i])
                 {
                     // draw ghost
                     GUI.color = new Color(.7f, .7f, .7f, .5f);
@@ -809,7 +811,7 @@ namespace CombatExtended
                     {
                         if (Compatibility.Multiplayer.InMultiplayer)
                         {
-                            MoveSlot(CurrentLoadout, CurrentLoadout.Slots.IndexOf(Dragging), i);
+                            MoveSlot(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(Dragging), i);
                         }
                         else
                         {
@@ -830,11 +832,11 @@ namespace CombatExtended
                 }
 
                 // draw the slot - grey out if draggin this, but only when dragged over somewhere else
-                if (Dragging == CurrentLoadout.Slots[i] && !Mouse.IsOver(row))
+                if (Dragging == CurrentLoadout.OwnSlots[i] && !Mouse.IsOver(row))
                 {
                     GUI.color = new Color(.6f, .6f, .6f, .4f);
                 }
-                DrawSlot(row, CurrentLoadout.Slots[i], CurrentLoadout.SlotCount > 1);
+                DrawSlot(row, CurrentLoadout.OwnSlots[i], CurrentLoadout.SlotCount > 1);
                 GUI.color = Color.white;
             }
 
@@ -855,11 +857,11 @@ namespace CombatExtended
                     {
                         if (Compatibility.Multiplayer.InMultiplayer)
                         {
-                            MoveSlot(CurrentLoadout, CurrentLoadout.Slots.IndexOf(Dragging), CurrentLoadout.Slots.Count - 1);
+                            MoveSlot(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(Dragging), CurrentLoadout.OwnSlots.Count - 1);
                         }
                         else
                         {
-                            CurrentLoadout.MoveSlot(Dragging, CurrentLoadout.Slots.Count - 1);
+                            CurrentLoadout.MoveSlot(Dragging, CurrentLoadout.OwnSlots.Count - 1);
                         }
                         Dragging = null;
                     }
@@ -1005,7 +1007,7 @@ namespace CombatExtended
         {
             if (index >= 0)
             {
-                loadout.Slots[index].count = count;
+                loadout.OwnSlots[index].count = count;
             }
         }
 
@@ -1061,7 +1063,7 @@ namespace CombatExtended
         {
             if (index >= 0)
             {
-                var slot = loadout.Slots[index];
+                var slot = loadout.OwnSlots[index];
                 loadout.MoveSlot(slot, moveIndex);
             }
         }
@@ -1071,7 +1073,7 @@ namespace CombatExtended
         {
             if (index >= 0)
             {
-                var slot = loadout.Slots[index];
+                var slot = loadout.OwnSlots[index];
                 slot.countType = slot.countType == LoadoutCountType.dropExcess ? LoadoutCountType.pickupDrop : LoadoutCountType.dropExcess;
             }
         }

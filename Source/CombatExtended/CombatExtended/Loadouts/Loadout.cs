@@ -17,6 +17,12 @@ namespace CombatExtended
         public bool defaultLoadout = false; //NOTE: assumed that there is only ever one loadout which is marked default.
         public string label;
         internal int uniqueID;
+        public bool dropUndefined = true;
+        public bool adHoc = false;
+        private int _parentID = 0;
+#nullable enable
+        private Loadout? _parent = null;
+#nullable disable
         private List<LoadoutSlot> _slots = new List<LoadoutSlot>();
 
         #endregion Fields
@@ -69,12 +75,59 @@ namespace CombatExtended
         #endregion Constructors
 
         #region Properties
+        public int parentID
+        {
+            get
+            {
+                return _parentID;
+            }
+            set
+            {
+                _parent = null;
+                _parentID = value;
+            }
+        }
+
+#nullable enable
+        public Loadout? ParentLoadout
+        {
+            get
+            {
+                if (_parent == null && _parentID > 0)
+                {
+                    _parent = LoadoutManager.GetLoadoutById(parentID);
+                }
+                return _parent;
+            }
+        }
+#nullable disable
+
+        public List<LoadoutSlot> OwnSlots
+        {
+            get
+            {
+                return _slots;
+            }
+        }
+
+        //TODO 1.6: Turn this into an IEnumerable
+        public List<LoadoutSlot> Slots
+        {
+            get
+            {
+                if (ParentLoadout is Loadout parent)
+                {
+                    return _slots.Concat(parent.Slots).ToList();
+                }
+                return _slots;
+            }
+        }
 
         public float Bulk
         {
             get
             {
-                return _slots.Sum(slot => slot.bulk * slot.count);
+                return Slots.Sum(slot => slot.bulk * slot.count);
             }
         }
         public string LabelCap
@@ -91,18 +144,11 @@ namespace CombatExtended
                 return _slots.Count;
             }
         }
-        public List<LoadoutSlot> Slots
-        {
-            get
-            {
-                return _slots;
-            }
-        }
         public float Weight
         {
             get
             {
-                return _slots.Sum(slot => slot.mass * slot.count);
+                return Slots.Sum(slot => slot.mass * slot.count);
             }
         }
         public int UniqueID
@@ -134,6 +180,9 @@ namespace CombatExtended
             Loadout dest = new Loadout(UniqueLabel(source.label));
             dest.defaultLoadout = source.defaultLoadout;
             dest.canBeDeleted = source.canBeDeleted;
+            dest.dropUndefined = source.dropUndefined;
+            dest.adHoc = source.adHoc;
+            dest.parentID = source.parentID;
             dest._slots = new List<LoadoutSlot>();
             foreach (LoadoutSlot slot in source.Slots)
             {
@@ -199,8 +248,11 @@ namespace CombatExtended
                                  : UniqueLabel(loadoutConfig.label);
 
             Loadout loadout = new Loadout(uniqueLabel);
-
             unloadableDefNames = new List<string>();
+            loadout.dropUndefined = loadoutConfig.dropUndefined;
+            loadout.adHoc = loadoutConfig.adHoc;
+            loadout.parentID = LoadoutManager.GetLoadoutByLabel(loadoutConfig.parentLabel)?.uniqueID ?? 0;
+            // TODO: Display warning when there's a parent specified but we don't find it.
 
             // Now create each of the slots
             foreach (LoadoutSlotConfig loadoutSlotConfig in loadoutConfig.slots)
@@ -239,7 +291,10 @@ namespace CombatExtended
             return new LoadoutConfig
             {
                 label = label,
-                slots = loadoutSlotConfigList.ToArray()
+                slots = loadoutSlotConfigList.ToArray(),
+                dropUndefined = dropUndefined,
+                adHoc = adHoc,
+                parentLabel = ParentLoadout?.label ?? String.Empty
             };
         }
 
@@ -253,6 +308,9 @@ namespace CombatExtended
             Scribe_Values.Look(ref uniqueID, "uniqueID");
             Scribe_Values.Look(ref canBeDeleted, "canBeDeleted", true);
             Scribe_Values.Look(ref defaultLoadout, "defaultLoadout", false);
+            Scribe_Values.Look(ref dropUndefined, "dropUndefined", true);
+            Scribe_Values.Look(ref adHoc, "adHoc", false);
+            Scribe_Values.Look(ref _parentID, "parentID", 0);
 
             // slots
             Scribe_Collections.Look(ref _slots, "slots", LookMode.Deep);
@@ -320,6 +378,55 @@ namespace CombatExtended
             // insert at new location
             _slots.Insert(toIndex, temp);
             return toIndex;
+        }
+
+        /// <summary>
+        /// Used to iterate over all slots, including virtual slots, for a specific pawn.
+        /// In the trivial case, where this is not an ad-hoc loadout, we can simply yield from our slots
+        /// </summary>
+        /// <param name="pawn">The pawn to use when generating ad-hoc slots.</param>
+
+        public IEnumerable<LoadoutSlot> GetSlotsFor(Pawn pawn)
+        {
+            bool trivial = true;
+            if (adHoc && ((pawn.Faction?.IsPlayer ?? false) && pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>() is CompAmmoUser primaryAmmoUser))
+            {
+                if (primaryAmmoUser.UseAmmo)
+                {
+                    /// We are an ad-hoc loadout, with an ammo-using primary weapon
+                    /// So figure out what kind of ammo it needs, and check if that ammo is in our slots
+                    /// if it isn't, provide a virtual slot for it
+                    trivial = false;
+                    bool ammoInLoadout = false;
+                    HashSet<ThingDef> ammoTypes = new HashSet<ThingDef>();
+                    foreach (AmmoLink link in primaryAmmoUser.Props.ammoSet.ammoTypes)
+                    {
+                        ammoTypes.Add(link.ammo);
+                    }
+                    foreach (var slot in Slots)
+                    {
+                        yield return slot;
+                        if (!ammoInLoadout)
+                        {
+                            ammoInLoadout = ammoTypes.Contains(slot.thingDef);
+                        }
+                    }
+                    if (!ammoInLoadout)
+                    {
+                        foreach (var ammo in ammoTypes)
+                        {
+                            yield return new LoadoutSlot(ammo, primaryAmmoUser.Props.magazineSize * 3);
+                        }
+                    }
+                }
+            }
+            if (trivial)
+            {
+                foreach (var slot in Slots)
+                {
+                    yield return slot;
+                }
+            }
         }
 
         #endregion Methods

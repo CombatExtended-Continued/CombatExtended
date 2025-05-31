@@ -103,13 +103,13 @@ namespace CombatExtended
             if (inventory != null && inventory.container != null)
             {
                 Loadout loadout = pawn.GetLoadout();
-                if (loadout != null && !loadout.Slots.NullOrEmpty())
+                if (loadout != null)
                 {
                     // Need to generate a dictionary and nibble like when dropping in order to allow for conflicting loadouts to work properly.
                     Dictionary<ThingDef, Integer> listing = pawn.GetStorageByThingDef();
 
                     // process each loadout slot... (While the LoadoutSlot.countType property only really makes sense in the context of genericDef != null, it should be the correct value (pickupDrop) on .thingDef != null.)
-                    foreach (LoadoutSlot curSlot in loadout.Slots.Where(s => s.countType != LoadoutCountType.dropExcess))
+                    foreach (LoadoutSlot curSlot in loadout.GetSlotsFor(pawn).Where(s => s.countType != LoadoutCountType.dropExcess))
                     {
                         Thing curThing = null;
                         ItemPriority curPriority = ItemPriority.None;
