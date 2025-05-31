@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Armor -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="BMT_ApparelArmorCataphract_Chitinphract" or defName="BMT_Apparel_ArmorBeetlephractPrestige"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="BMT_ApparelArmorCataphract_Chitinphract" or defName="BMT_Apparel_ArmorBeetlephractPrestige"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BMT_ApparelArmorCataphract_Chitinphract"]/statBases</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>30</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BMT_ApparelArmorCataphract_Chitinphract" or defName="BMT_Apparel_ArmorBeetlephractPrestige"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>60</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="BMT_ApparelArmorCataphract_Chitinphract"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>250</costStuffCount>
+					</value>
+				</li>
+
+				<!-- Helmets -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						@Name="BMT_ApparelArmorHelmetCataphract_Chitinphract" or 
+						@Name="BMT_ApparelArmorHelmetCataphract_PrestigeChitinphract" or
+						defName="BMT_Apparel_ArmorHelmetBeetlephractPrestige" or
+						defName="BMT_Apparel_ArmorHelmetSpidrephractPrestige"]/statBases/ArmorRating_Sharp
+					</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						@Name="BMT_ApparelArmorHelmetCataphract_Chitinphract" or
+						@Name="BMT_ApparelArmorHelmetCataphract_PrestigeChitinphract" or
+						defName="BMT_Apparel_ArmorHelmetBeetlephractPrestige" or
+						defName="BMT_Apparel_ArmorHelmetSpidrephractPrestige"]/statBases/ArmorRating_Blunt
+					</xpath>
+					<value>
+						<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="BMT_ApparelArmorHelmetCataphract_Chitinphract"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>110</costStuffCount>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BMT_ApparelArmorHelmetCataphract_Chitinphract"]/statBases</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>30</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BMT_ApparelArmorHelmetCataphract_Chitinphract"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>25</DevilstrandCloth>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
