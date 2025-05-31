@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--Melee Attacks for Guns-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_R36_Eruptor"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ============ Eruptor ============ -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_R36_Eruptor</defName>
+		<statBases>
+			<Mass>14.5</Mass>
+			<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>3.2</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.54</SwayFactor>
+			<Bulk>12.5</Bulk>
+			<WorkToMake>38000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20mmPhoenix_APHEF</defaultProjectile>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<warmupTime>3.8</warmupTime>
+			<range>75</range>
+			<soundCast>RNShot_R36Eruptor</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>2.35</recoilAmount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4.7</reloadTime>
+			<ammoSet>AmmoSet_20mmPhoenix</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+</Patch>
