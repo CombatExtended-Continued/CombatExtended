@@ -10,7 +10,7 @@ namespace CombatExtended
     //Cloned from vanilla, completely unmodified
     public class ProjectileCE_Explosive : ProjectileCE
     {
-        private int ticksToDetonation;
+        public int ticksToDetonation;
         public override void ExposeData()
         {
             base.ExposeData();

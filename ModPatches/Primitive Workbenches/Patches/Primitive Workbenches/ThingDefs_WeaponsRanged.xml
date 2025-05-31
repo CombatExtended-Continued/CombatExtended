@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Boomerang === -->
+
+	<!-- == Weapon == -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_Boomerang"]</xpath>
+		<value>
+			<stackLimit>25</stackLimit>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VBY_Boomerang"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VBY_Boomerang"]/graphicData</xpath>
+		<attribute>graphicClass</attribute>
+		<value>Graphic_StackCount</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VBY_Boomerang</defName>
+		<statBases>
+			<SightsEfficiency>0.6</SightsEfficiency>
+			<Bulk>0.38</Bulk>
+			<Mass>2</Mass>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<label>Throw boomerang</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>VBY_BoomerangProjectile_CE</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>20</range>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+		</Properties>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_Boomerang"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>boomerang</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Rabbit Stick === -->
+
+	<!-- == Weapon == -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_RabbitStick"]</xpath>
+		<value>
+			<stackLimit>25</stackLimit>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VBY_RabbitStick"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VBY_RabbitStick"]/graphicData</xpath>
+		<attribute>graphicClass</attribute>
+		<value>Graphic_StackCount</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VBY_RabbitStick</defName>
+		<statBases>
+			<SightsEfficiency>0.6</SightsEfficiency>
+			<Bulk>0.38</Bulk>
+			<Mass>2</Mass>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<label>Throw boomerang</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>VBY_RabbitStick_Projectile_CE</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>16</range>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+		</Properties>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_RabbitStick"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>rabbit stick</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Throwing Rock === -->
+
+	<!-- == Weapon == -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VBY_ThrowingRocks"]</xpath>
+		<value>
+			<stackLimit>25</stackLimit>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VBY_ThrowingRocks"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VBY_ThrowingRocks"]/graphicData</xpath>
+		<attribute>graphicClass</attribute>
+		<value>Graphic_StackCount</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VBY_ThrowingRocks</defName>
+		<statBases>
+			<SightsEfficiency>0.6</SightsEfficiency>
+			<Bulk>0.6</Bulk>
+			<Mass>0.2</Mass>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<label>Throw rock</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>VBY_ThrownRockProjectile_CE</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>9</range>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+		</Properties>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_ThrowingRocks"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>rabbit stick</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Atlatl === -->
+	<!-- == Projectile == -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VBY_Atlatl</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>4</Bulk>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>30</WoodLog>
+			<VBY_PrimitiveFlint>20</VBY_PrimitiveFlint>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>20</range>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_GreatArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>NeolithicRangedBasic</li>
+			<li>NeolithicRangedHeavy</li>
+			<li>CE_Bow</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Tools == -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VBY_Atlatl"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

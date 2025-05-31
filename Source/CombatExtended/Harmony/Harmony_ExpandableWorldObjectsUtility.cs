@@ -58,7 +58,6 @@ namespace CombatExtended.HarmonyCE
                     {
                         if (codes[i].opcode == OpCodes.Callvirt && codes[i].OperandIs(allWorldObjectGetter))
                         {
-                            Log.Message("patched");
                             finished = true;
                             yield return codes[i];
                             yield return new CodeInstruction(OpCodes.Call, getAllWorldObjectCE);

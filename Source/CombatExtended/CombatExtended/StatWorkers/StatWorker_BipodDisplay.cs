@@ -40,7 +40,7 @@ namespace CombatExtended
 
         public VerbPropertiesCE verbPropsCE(StatRequest req)
         {
-            var result = (VerbPropertiesCE)req.Thing?.def.verbs.Find(x => x is VerbPropertiesCE);
+            var result = req.Thing.TryGetComp<CompEquippable>()?.PrimaryVerb?.verbProps as VerbPropertiesCE;
 
             if (result == null)
             {

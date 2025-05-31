@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using RimWorld;
+﻿using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
-using CombatExtended.HarmonyCE;
 
 namespace CombatExtended
 {
@@ -534,7 +532,7 @@ namespace CombatExtended
                         {
                             if (!shield.def.apparel.CoversBodyPart(part))
                             {
-                                var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                                var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear.IsCrouching());
                                 if (shieldCoverage == true)
                                 {
                                     armorValue += shield.GetStatValue(stat);

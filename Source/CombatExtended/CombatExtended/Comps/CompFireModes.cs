@@ -146,7 +146,7 @@ namespace CombatExtended
             availableFireModes.Clear();
             availableAimModes.Add(AimMode.AimedShot);
             // Calculate available fire modes
-            if (parent.GetStatValue(CE_StatDefOf.BurstShotCount) > 1 || Props.noSingleShot)
+            if (Verb.verbProps.burstShotCount > 1 || Props.noSingleShot)
             {
                 availableFireModes.Add(FireMode.AutoFire);
             }

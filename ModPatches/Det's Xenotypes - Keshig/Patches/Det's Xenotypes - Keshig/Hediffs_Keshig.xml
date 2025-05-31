@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="DV_LacerationHediff"]/comps/li[@Class="HediffCompProperties_GetsPermanent"]</xpath>
+		<value>
+			<becomePermanentChanceFactor>0.75</becomePermanentChanceFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="DV_LacerationHediff"]/injuryProps/painPerSeverity</xpath>
+		<value>
+			<painPerSeverity>0.0175</painPerSeverity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="DV_LacerationHediff"]/comps/li[@Class="HediffCompProperties_Infecter"]</xpath>
+		<value>
+			<li Class="CombatExtended.HediffCompProperties_InfecterCE">
+				<infectionChancePerHourUntended>0.05</infectionChancePerHourUntended>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

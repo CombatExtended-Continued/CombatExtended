@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo55x50mmLiberty</defName>
+		<label>5.5x50mm Liberty</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_55x50mmLiberty</defName>
+		<label>5.5x50mm Liberty</label>
+		<ammoTypes>
+			<Ammo_55x50mmLiberty_FMJ>Bullet_55x50mmLiberty_FMJ</Ammo_55x50mmLiberty_FMJ>
+			<Ammo_55x50mmLiberty_AP>Bullet_55x50mmLiberty_AP</Ammo_55x50mmLiberty_AP>
+			<Ammo_55x50mmLiberty_HP>Bullet_55x50mmLiberty_HP</Ammo_55x50mmLiberty_HP>
+			<Ammo_55x50mmLiberty_Incendiary>Bullet_55x50mmLiberty_Incendiary</Ammo_55x50mmLiberty_Incendiary>
+			<Ammo_55x50mmLiberty_HE>Bullet_55x50mmLiberty_HE</Ammo_55x50mmLiberty_HE>
+			<Ammo_55x50mmLiberty_Sabot>Bullet_55x50mmLiberty_Sabot</Ammo_55x50mmLiberty_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="55x50mmLibertyBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Small, high-velocity rifle bullet used in a variety of Super Earth-made assault weapons, primarily the AR-23 family of bullpup assault weapons.</description>
+		<statBases>
+			<Mass>0.013</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo55x50mmLiberty</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55x50mmLibertyBase">
+		<defName>Ammo_55x50mmLiberty_FMJ</defName>
+		<label>5.5x50mm Liberty (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_55x50mmLiberty_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55x50mmLibertyBase">
+		<defName>Ammo_55x50mmLiberty_AP</defName>
+		<label>5.5x50mm Liberty (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_55x50mmLiberty_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55x50mmLibertyBase">
+		<defName>Ammo_55x50mmLiberty_HP</defName>
+		<label>5.5x50mm Liberty (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_55x50mmLiberty_HP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55x50mmLibertyBase">
+		<defName>Ammo_55x50mmLiberty_Incendiary</defName>
+		<label>5.5x50mm Liberty (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_55x50mmLiberty_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55x50mmLibertyBase">
+		<defName>Ammo_55x50mmLiberty_HE</defName>
+		<label>5.5x50mm Liberty (AP-HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_55x50mmLiberty_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55x50mmLibertyBase">
+		<defName>Ammo_55x50mmLiberty_Sabot</defName>
+		<label>5.5x50mm Liberty (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.011</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_55x50mmLiberty_Sabot</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base55x50mmLibertyBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>165</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base55x50mmLibertyBullet">
+		<defName>Bullet_55x50mmLiberty_FMJ</defName>
+		<label>5.56mm Liberty bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>36.46</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base55x50mmLibertyBullet">
+		<defName>Bullet_55x50mmLiberty_AP</defName>
+		<label>5.56mm Liberty bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>36.46</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base55x50mmLibertyBullet">
+		<defName>Bullet_55x50mmLiberty_HP</defName>
+		<label>5.56mm Liberty bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>36.46</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base55x50mmLibertyBullet">
+		<defName>Bullet_55x50mmLiberty_Incendiary</defName>
+		<label>5.56mm Liberty bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>36.46</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>4</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base55x50mmLibertyBullet">
+		<defName>Bullet_55x50mmLiberty_HE</defName>
+		<label>5.56mm Liberty bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>36.46</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>5</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base55x50mmLibertyBullet">
+		<defName>Bullet_55x50mmLiberty_Sabot</defName>
+		<label>5.56mm Liberty bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>21</armorPenetrationSharp>
+			<armorPenetrationBlunt>44.18</armorPenetrationBlunt>
+			<speed>225</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_55x50mmLiberty_FMJ</defName>
+		<label>make 5.5x50mm Liberty (FMJ) cartridge x500</label>
+		<description>Craft 500 5.5x50mm Liberty (FMJ) cartridges.</description>
+		<jobString>Making 5.5x50mm Liberty (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_55x50mmLiberty_FMJ>500</Ammo_55x50mmLiberty_FMJ>
+		</products>
+		<workAmount>1400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_55x50mmLiberty_AP</defName>
+		<label>make 5.5x50mm Liberty (AP) cartridge x500</label>
+		<description>Craft 500 5.5x50mm Liberty (AP) cartridges.</description>
+		<jobString>Making 5.5x50mm Liberty (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_55x50mmLiberty_AP>500</Ammo_55x50mmLiberty_AP>
+		</products>
+		<workAmount>1680</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_55x50mmLiberty_HP</defName>
+		<label>make 5.5x50mm Liberty (HP) cartridge x500</label>
+		<description>Craft 500 5.5x50mm Liberty (HP) cartridges.</description>
+		<jobString>Making 5.5x50mm Liberty (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_55x50mmLiberty_HP>500</Ammo_55x50mmLiberty_HP>
+		</products>
+		<workAmount>1400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_55x50mmLiberty_Incendiary</defName>
+		<label>make 5.5x50mm Liberty (AP-I) cartridge x500</label>
+		<description>Craft 500 5.5x50mm Liberty (AP-I) cartridges.</description>
+		<jobString>Making 5.5x50mm Liberty (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_55x50mmLiberty_Incendiary>500</Ammo_55x50mmLiberty_Incendiary>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_55x50mmLiberty_HE</defName>
+		<label>make 5.5x50mm Liberty (AP-HE) cartridge x500</label>
+		<description>Craft 500 5.5x50mm Liberty (AP-HE) cartridges.</description>
+		<jobString>Making 5.5x50mm Liberty (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_55x50mmLiberty_HE>500</Ammo_55x50mmLiberty_HE>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_55x50mmLiberty_Sabot</defName>
+		<label>make 5.5x50mm Liberty (Sabot) cartridge x500</label>
+		<description>Craft 500 5.5x50mm Liberty (Sabot) cartridges.</description>
+		<jobString>Making 5.5x50mm Liberty (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_55x50mmLiberty_Sabot>500</Ammo_55x50mmLiberty_Sabot>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
+
+</Defs>

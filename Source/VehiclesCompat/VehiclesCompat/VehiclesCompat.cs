@@ -133,7 +133,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             // TODO: Handle cover
             var bounds = CE_Utility.GetBoundsFor(target.Thing);
             float dheight = (bounds.max.y + bounds.min.y) / 2 - shotOrigin.y;
-            float shotAngle = ProjectileCE.GetShotAngle(speed, range, dheight, flyOverhead, gravity);
+            float shotAngle = CE_Utility.GetShotAngle(speed, range, dheight, flyOverhead, gravity);
 
             float dTurretRotation = 0;
             float ticks = (float)(Find.TickManager.TicksAbs + shooter.thingIDNumber);

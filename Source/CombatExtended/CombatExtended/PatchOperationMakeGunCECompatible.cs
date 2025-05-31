@@ -86,6 +86,10 @@ namespace CombatExtended
                     AddRunAndGunExtension(xml, xmlNode);
                 }
             }
+            if (!result)
+            {
+                Log.Warning($"PatchOperationMakeGunCECompatible tried to find def {defName} by defName, but it doesn't exist");
+            }
             return result;
         }
 

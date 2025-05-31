@@ -20,6 +20,8 @@ namespace ProjectileImpactFX
         public FleckDef ImpactGlowFleckDef;
         public float ImpactGlowFleckSize = 1f;
         public FloatRange? ImpactGlowFleckSizeRange;
+        public FleckDef StuckProjectileFleckDef;
+        public float StuckProjectileFleckSize = 1f;
 
         public bool muzzleFlare = false;
         public string muzzleFlareDef = string.Empty;

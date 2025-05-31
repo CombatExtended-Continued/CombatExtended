@@ -147,15 +147,12 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
         {
             if (sync.isWriting)
             {
-                sync.Write(LoadoutManager.Loadouts.IndexOf(loadout));
+                sync.Write(loadout.UniqueID);
             }
             else
             {
-                var index = sync.Read<int>();
-                if (index >= 0)
-                {
-                    loadout = LoadoutManager.Loadouts[index];
-                }
+                var id = sync.Read<int>();
+                loadout = LoadoutManager.GetLoadoutById(id);
             }
         }
 

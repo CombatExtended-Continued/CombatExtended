@@ -11,11 +11,17 @@ namespace CombatExtended
 {
     public class CompCIWSTarget_Skyfaller : CompCIWSTarget
     {
-        public override IEnumerable<Vector3> NextPositions
+        public override IEnumerable<Vector3> PredictedPositions
         {
             get
             {
-                return (parent as Skyfaller).DrawPositions().Select(x => x.WithY(45f));
+                Skyfaller skyfaller = parent as Skyfaller;
+                int end = skyfaller.ticksToImpact;
+                if (skyfaller.def.skyfaller.reversed)
+                {
+                    end = skyfaller.LeaveMapAfterTicks - end;
+                }
+                return skyfaller.PredictPositions(end);
             }
         }
 

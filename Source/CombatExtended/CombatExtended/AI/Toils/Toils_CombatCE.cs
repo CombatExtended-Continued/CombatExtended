@@ -36,7 +36,8 @@ namespace CombatExtended.AI
                     return;
                 }
                 startTick = GenTicks.TicksGame;
-                reloadingTime = Mathf.CeilToInt(compAmmo.parent.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+                WeaponPlatform platform = compAmmo.parent as WeaponPlatform;
+                reloadingTime = Mathf.CeilToInt((platform?.GetStatValue(CE_StatDefOf.ReloadTime) ?? compAmmo.Props.reloadTime).SecondsToTicks() / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             });
             waitToil.tickAction = () =>
             {

@@ -10,28 +10,41 @@ namespace CombatExtended
 {
     public class LerpedTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override IEnumerable<Vector3> NextPositions(ProjectileCE projectile)
+        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int ticks)
         {
+            List<Vector3> cachedPredictedPositions = projectile.cachedPredictedPositions ?? new List<Vector3>();
             var ticksToImpact = projectile.ticksToImpact;
-            var origin = projectile.origin;
-            var destination = projectile.Destination;
-            var startingTicksToImpact = projectile.startingTicksToImpact;
-            var shotHeight = projectile.shotHeight;
-            var shotSpeed = projectile.shotSpeed;
-            var shotAngle = projectile.shotAngle;
-            var gravityFactor = projectile.GravityFactor;
-
-            for (int ticksOffset = 1; ticksOffset <= ticksToImpact; ticksOffset++)
+            var end = (ticksToImpact < ticks) ? ticksToImpact : ticks;
+            if (cachedPredictedPositions.Count < end)
             {
-                var tick = projectile.FlightTicks + ticksOffset;
-                var v = Vec2Position(origin, destination, startingTicksToImpact, tick);
-                yield return new Vector3(v.x, GetHeightAtTicks(shotHeight, shotSpeed, shotAngle, tick, gravityFactor), v.y);
+                for (int ticksOffset = cachedPredictedPositions.Count; ticksOffset < end; ticksOffset++)
+                {
+                    var tick = projectile.FlightTicks + ticksOffset;
+                    cachedPredictedPositions.Add(GetPositionAtTick(projectile, tick));
+                }
             }
+            return cachedPredictedPositions;
         }
-        protected override void MoveForward(ProjectileCE projectile)
+        public override void NotifyTicked(ProjectileCE projectile)
         {
-            base.MoveForward(projectile);
-            projectile.FlightTicks++;
+            // Don't invalidate the cache, as our MoveForward handles dequeing it.
+        }
+
+        public override Vector3 MoveForward(ProjectileCE projectile)
+        {
+            // Someone has asked us to predict our positions before. It's probably faster to just recalculate, but this handles shifting the cached values out without rebuilding the whole cache.
+            if (projectile.cachedPredictedPositions != null && projectile.cachedPredictedPositions.Count > 0)
+            {
+                Vector3 np = projectile.cachedPredictedPositions[0];
+                projectile.cachedPredictedPositions.RemoveAt(0);
+                return np;
+            }
+            return GetPositionAtTick(projectile, projectile.FlightTicks);
+        }
+        protected Vector3 GetPositionAtTick(ProjectileCE projectile, int tick)
+        {
+            var v = Vec2Position(projectile.origin, projectile.Destination, projectile.startingTicksToImpact, tick);
+            return new Vector3(v.x, GetHeightAtTicks(projectile.shotHeight, projectile.shotSpeed, projectile.shotAngle, tick, projectile.GravityFactor), v.y);
         }
         protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks, float gravityFactor)
         {

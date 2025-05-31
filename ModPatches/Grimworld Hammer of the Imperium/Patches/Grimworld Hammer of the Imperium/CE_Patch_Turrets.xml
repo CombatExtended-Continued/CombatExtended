@@ -5,16 +5,16 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="GW_Building_HeavyBolter" or 
-			defName="GW_Building_Autocannon" or 
-			defName="GW_Building_TarantulaHeavyBolter"]/fillPercent</xpath>
+			defName="GW_HOI_Building_HeavyBolter" or 
+			defName="GW_HOI_Building_Autocannon" or 
+			defName="GW_HOI_Building_TarantulaHeavyBolter"]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
 		</value>
 	</Operation>
 	
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon" or defName="GW_Building_TarantulaLascannon"]/fillPercent</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Lascannon" or defName="GW_HOI_Building_TarantulaLascannon"]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.75</fillPercent>
 		</value>
@@ -23,39 +23,39 @@
 	<!--Heavy Bolter-->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_HeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_HeavyBolter"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_HeavyBolter"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_HeavyBolter"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_HeavyBolter"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_HeavyBolter"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>50</Steel>
@@ -67,10 +67,10 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_BuildingGun_HeavyBolter"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_BuildingGun_HeavyBolter"]</xpath>
 		<value>
 			<ThingDef ParentName="BaseTurretGun">
-				<defName>GW_BuildingGun_HeavyBolter</defName>
+				<defName>GW_HOI_BuildingGun_HeavyBolter</defName>
 				<label>Heavy bolter turret</label>
 				<graphicData>
 					<texPath>Things/Building/Emplacement/HeavyBolter</texPath>
@@ -120,39 +120,39 @@
 	<!--Autocannon-->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Autocannon"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Autocannon"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Autocannon"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Autocannon"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Autocannon"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Autocannon"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>260</Steel>
@@ -163,16 +163,16 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_BuildingGun_AutoCannon"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_BuildingGun_AutoCannon"]</xpath>
 		<value>
 			<ThingDef ParentName="BaseTurretGun">
-				<defName>GW_BuildingGun_AutoCannon</defName>
-				<label>Autocannon turret</label>
+				<defName>GW_HOI_BuildingGun_AutoCannon</defName>
+				<label>Autocannon</label>
+        		<description>An autocannon emplaced on a mount for Imperial Guard use.</description>				
 				<graphicData>
 					<texPath>Things/Building/Emplacement/AutoCannon</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
 				</graphicData>
-				<description>A mannable autocannon.</description>
 				<statBases>
 					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.01</ShotSpread>
@@ -216,18 +216,18 @@
 	<!--Lascannon-->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Lascannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Lascannon"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Lascannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -237,28 +237,28 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Lascannon"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Lascannon"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Lascannon"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_Lascannon"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>350</Steel>
@@ -270,10 +270,10 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_BuildingGun_Lascannon"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_BuildingGun_Lascannon"]</xpath>
 		<value>
 			<ThingDef ParentName="BaseTurretGun">
-				<defName>GW_BuildingGun_Lascannon</defName>
+				<defName>GW_HOI_BuildingGun_Lascannon</defName>
 				<label>Lascannon turret cannon</label>
 				<description>The turret portion of a lascannon turret.</description>
 				<soundInteract>Artillery_ShellLoaded</soundInteract>
@@ -323,39 +323,39 @@
 
 	<!--Tarantula Heavy Bolter-->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaHeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaHeavyBolter"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaHeavyBolter"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaHeavyBolter"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaHeavyBolter"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaHeavyBolter"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>50</Steel>
@@ -367,10 +367,10 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_BuildingGun_TarantulaHeavyBolter"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_BuildingGun_TarantulaHeavyBolter"]</xpath>
 		<value>
 			<ThingDef ParentName="BaseTurretGun">
-				<defName>GW_BuildingGun_TarantulaHeavyBolter</defName>
+				<defName>GW_HOI_BuildingGun_TarantulaHeavyBolter</defName>
 				<label>An automated bolter turret</label>
 				<graphicData>
 					<texPath>Things/Building/Emplacement/TarantulaTurret_Top</texPath>
@@ -420,18 +420,18 @@
 	<!--Tarantula Lascannon-->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaLascannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaLascannon"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaLascannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -441,28 +441,28 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaLascannon"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaLascannon"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaLascannon"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Building_TarantulaLascannon"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>350</Steel>
@@ -474,10 +474,10 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_BuildingGun_TarantulaLascannon"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_BuildingGun_TarantulaLascannon"]</xpath>
 		<value>
 			<ThingDef ParentName="BaseTurretGun">
-				<defName>GW_BuildingGun_TarantulaLascannon</defName>
+				<defName>GW_HOI_BuildingGun_TarantulaLascannon</defName>
 				<label>An automated lascannon turret</label>
 				<description>The turret portion of a tarantula lascannon turret.</description>
 				<soundInteract>Artillery_ShellLoaded</soundInteract>

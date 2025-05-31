@@ -10,17 +10,22 @@ namespace CombatExtended
 {
     public class SmartRocketTrajectoryWorker : BallisticsTrajectoryWorker
     {
-        protected override void ReactiveAcceleration(LocalTargetInfo currentTarget, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
+        protected override void ReactiveAcceleration(ProjectileCE projectile)
         {
+            LocalTargetInfo currentTarget = projectile.intendedTarget;
             if (currentTarget.ThingDestroyed)
             {
-                base.ReactiveAcceleration(currentTarget, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
+                base.ReactiveAcceleration(projectile);
                 return;
             }
+            if (projectile.fuelTicks < 1)
+            {
+                return;
+            }
+            projectile.fuelTicks--;
             var targetPos = currentTarget.Thing?.DrawPos ?? currentTarget.Cell.ToVector3Shifted();
-            var velocityChange = GetVelocity(speedGain, exactPosition, targetPos);
-            shotSpeed = Mathf.Max(Mathf.Min(shotSpeed + speedGain, maxSpeed), 0f);
-            velocity = GetVelocity(shotSpeed, Vector3.zero, velocity + velocityChange);
+            var delta = targetPos - projectile.ExactPosition;
+            projectile.velocity += delta.normalized * projectile.Props.speedGain / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
         }
         public override bool GuidedProjectile => true;
     }

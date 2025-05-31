@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo125x100</defName>
+		<label>12.5x100mm Justice</label>
+		<parent>AmmoHighCaliber</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_125x100Justice</defName>
+		<label>12.5x100mm Justice</label>
+		<ammoTypes>
+			<Ammo_125x100_FMJ>Bullet_125x100_FMJ</Ammo_125x100_FMJ>
+			<Ammo_125x100_AP>Bullet_125x100_AP</Ammo_125x100_AP>
+			<Ammo_125x100_Incendiary>Bullet_125x100_Incendiary</Ammo_125x100_Incendiary>
+			<Ammo_125x100_HE>Bullet_125x100_HE</Ammo_125x100_HE>
+			<Ammo_125x100_Sabot>Bullet_125x100_Sabot</Ammo_125x100_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_AntiMateriel</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo125x100Base" ParentName="MediumAmmoBase" Abstract="True">
+		<description>Large caliber bullet used by heavy machine guns and anti-materiel rifles, primarily the MG206 and APW1.</description>
+		<statBases>
+			<Mass>0.118</Mass>
+			<Bulk>0.14</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo125x100</li>
+		</thingCategories>
+		<stackLimit>5000</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo125x100Base">
+		<defName>Ammo_125x100_FMJ</defName>
+		<label>12.5x100 Justice (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_125x100_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo125x100Base">
+		<defName>Ammo_125x100_AP</defName>
+		<label>12.5x100 Justice (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_125x100_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo125x100Base">
+		<defName>Ammo_125x100_Incendiary</defName>
+		<label>12.5x100 Justice (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_125x100_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo125x100Base">
+		<defName>Ammo_125x100_HE</defName>
+		<label>12.5x100 Justice (AP-HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_125x100_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo125x100Base">
+		<defName>Ammo_125x100_Sabot</defName>
+		<label>12.5x100 Justice (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.099</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_125x100_Sabot</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base125x100Bullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>162</speed>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_RifleAmmoCasings_HighCal</casingMoteDefname>
+			<casingFilthDefname>Filth_RifleAmmoCasings_HighCal</casingFilthDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base125x100Bullet">
+		<defName>Bullet_125x100_FMJ</defName>
+		<label>12.5x100 Justice bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>43</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>360.34</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base125x100Bullet">
+		<defName>Bullet_125x100_AP</defName>
+		<label>12.5x100 Justice bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>27</damageAmountBase>
+			<armorPenetrationSharp>28</armorPenetrationSharp>
+			<armorPenetrationBlunt>360.34</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base125x100Bullet">
+		<defName>Bullet_125x100_Incendiary</defName>
+		<label>12.5x100 Justice bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>27</damageAmountBase>
+			<armorPenetrationSharp>28</armorPenetrationSharp>
+			<armorPenetrationBlunt>360.34</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>15</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base125x100Bullet">
+		<defName>Bullet_125x100_HE</defName>
+		<label>12.5x100 Justice bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>360.34</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>21</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base125x100Bullet">
+		<defName>Bullet_125x100_Sabot</defName>
+		<label>12.5x100 Justice bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>17</damageAmountBase>
+			<armorPenetrationSharp>49</armorPenetrationSharp>
+			<armorPenetrationBlunt>462.92</armorPenetrationBlunt>
+			<speed>210</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_125x100_FMJ</defName>
+		<label>make 12.5x100mm Justice (FMJ) cartridge x200</label>
+		<description>Craft 200 12.5x100mm Justice (FMJ) cartridges.</description>
+		<jobString>Making 12.5x100mm Justice (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_125x100_FMJ>200</Ammo_125x100_FMJ>
+		</products>
+		<workAmount>5000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_125x100_AP</defName>
+		<label>make 12.5x100mm Justice (AP) cartridge x200</label>
+		<description>Craft 200 12.5x100mm Justice (AP) cartridges.</description>
+		<jobString>Making 12.5x100mm Justice (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_125x100_AP>200</Ammo_125x100_AP>
+		</products>
+		<workAmount>6000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_125x100_Incendiary</defName>
+		<label>make 12.5x100mm Justice (AP-I) cartridge x200</label>
+		<description>Craft 200 12.5x100mm Justice (AP-I) cartridges.</description>
+		<jobString>Making 12.5x100mm Justice (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_125x100_Incendiary>200</Ammo_125x100_Incendiary>
+		</products>
+		<workAmount>7000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_125x100_HE</defName>
+		<label>make 12.5x100mm Justice (AP-HE) cartridge x200</label>
+		<description>Craft 200 12.5x100mm Justice (AP-HE) cartridges.</description>
+		<jobString>Making 12.5x100mm Justice (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_125x100_HE>200</Ammo_125x100_HE>
+		</products>
+		<workAmount>9000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_125x100_Sabot</defName>
+		<label>make 12.5x100mm Justice (Sabot) cartridge x200</label>
+		<description>Craft 200 12.5x100mm Justice (Sabot) cartridges.</description>
+		<jobString>Making 12.5x100mm Justice (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_125x100_Sabot>200</Ammo_125x100_Sabot>
+		</products>
+		<workAmount>6600</workAmount>
+	</RecipeDef>
+
+</Defs>

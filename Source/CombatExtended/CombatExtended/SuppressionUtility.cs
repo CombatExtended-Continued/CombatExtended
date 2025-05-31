@@ -173,11 +173,19 @@ namespace CombatExtended
                     cover = coverCell.GetCover(pawn.Map);
                 }
                 // Only account for solid cover;
-                if (cover != null && !(cover is Plant || cover is Gas))
+                if (cover != null)
                 {
-                    pawnCrouchFillPercent = Mathf.Clamp(cover.def.fillPercent + pawnVisibleOverCoverFillPercent, pawnLowestCrouchFillPercent, pawnHeightFactor);
-                    var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
-                    cellRating = Mathf.Min(coverRating, 1f) * 10f;
+                    // Landmines would never be used for cover
+                    if (cover is Building_TrapExplosive)
+                    {
+                        return -1000f;
+                    }
+                    if (!(cover is Plant || cover is Gas))
+                    {
+                        pawnCrouchFillPercent = Mathf.Clamp(cover.def.fillPercent + pawnVisibleOverCoverFillPercent, pawnLowestCrouchFillPercent, pawnHeightFactor);
+                        var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
+                        cellRating = Mathf.Min(coverRating, 1f) * 10f;
+                    }
                 }
             }
 

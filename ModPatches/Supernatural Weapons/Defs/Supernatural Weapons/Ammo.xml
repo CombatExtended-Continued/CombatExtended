@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>	
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_44Magnum_Revolver_Cursed</defName>
+		<label>cursed silver bullets</label>
+		<ammoTypes>
+			<Ammo_44Magnum_FMJ>Bullet_44Magnum_FMJ</Ammo_44Magnum_FMJ>
+			<Ammo_44Magnum_AP>Bullet_44Magnum_AP</Ammo_44Magnum_AP>
+			<Ammo_44Magnum_HP>Bullet_44Magnum_HP</Ammo_44Magnum_HP>
+			<Ammo_44SWSpecial_FMJ>Bullet_44SWSpecial_FMJ</Ammo_44SWSpecial_FMJ>
+			<Ammo_44SWSpecial_AP>Bullet_44SWSpecial_AP</Ammo_44SWSpecial_AP>
+			<Ammo_44SWSpecial_HP>Bullet_44SWSpecial_HP</Ammo_44SWSpecial_HP>
+			<Artemiish_SNBulletAmmo>Bullet_Artemiish_SNBulletAmmo</Artemiish_SNBulletAmmo>
+		</ammoTypes>
+		<similarTo>AmmoSet_PistolMagnum</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+	
+	<ThingDef ParentName="Base44MagnumBullet">
+		<defName>Bullet_Artemiish_SNBulletAmmo</defName>
+		<label>.44 Magnum cursed silver bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>1000</armorPenetrationSharp>
+			<armorPenetrationBlunt>10000</armorPenetrationBlunt>
+			<damageDef>Artemiish_SNBullet</damageDef>
+		</projectile>
+	</ThingDef>
+	
+</Defs>

@@ -19,12 +19,30 @@ namespace CombatExtended
 
         private int lifetimeTicks = 1800;
 
+        public override string Label
+        {
+            get
+            {
+                return string.Concat("CE_MarkedForArtillery".Translate(), " ", ((int)(lifetimeTicks / GenTicks.TicksPerRealSecond)).ToString(), " ", "LetterSecond".Translate());
+            }
+        }
+
         public override string InspectStringAddon
         {
             get
             {
-                return "CE_MarkedForArtillery".Translate() + " " + ((int)(lifetimeTicks / 60)).ToString() + " s";
+                return string.Concat("CE_MarkedForArtillery".Translate(), " ", ((int)(lifetimeTicks / GenTicks.TicksPerRealSecond)).ToString(), " ", "LetterSecond".Translate());
             }
+        }
+
+        public override TipSignal GetTooltip()
+        {
+            string text = string.Concat(this.LabelCap,
+                "\n\n", "CE_ArtilleryTarget_MarkerHoverHeader".Translate(),
+                "\n\n", CE_StatDefOf.SightsEfficiency.LabelCap, ": ", sightsEfficiency,
+                "\n", CE_StatDefOf.AimingAccuracy.LabelCap, ": ", aimingAccuracy);
+
+            return new TipSignal(text);
         }
 
         public override void ExposeData()

@@ -53,7 +53,7 @@ namespace CombatExtended
             }
         }
         public abstract bool IsFriendlyTo(Thing thing);
-        public abstract IEnumerable<Vector3> NextPositions { get; }
+        public abstract IEnumerable<Vector3> PredictedPositions { get; }
 
         /// <summary>
         /// Checks if projectile can intersect with this object

@@ -125,7 +125,7 @@ namespace CombatExtended
                 mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
                 mainGunMagCount = CompAmmo.CurMagCount;
                 CompAmmo.CurMagCount = UnderBarrelMagCount;
-                CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo ?? Props.propsUnderBarrel.ammoSet.ammoTypes[0].ammo; //same as AmmoUser's init
                 CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
             }
             CompAmmo.props = this.Props.propsUnderBarrel;
@@ -141,7 +141,10 @@ namespace CombatExtended
                     CompAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
                 }
             }
-            CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.propsFireModesUnderBarrel.aimedBurstShotCount;
+            // Setting main verbProp burstShotCount equal to the underBarrel's burstShotCount
+            // Ensures that there should be a burstFire option
+            // If set to aimedBurstShotCount, will result in warning and no burst fire mode. Only full auto
+            CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.verbPropsUnderBarrel.burstShotCount;
             usingUnderBarrel = true;
             CompFireModes.InitAvailableFireModes();
         }

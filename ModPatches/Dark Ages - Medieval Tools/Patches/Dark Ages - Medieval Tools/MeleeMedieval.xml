@@ -308,4 +308,66 @@
 		</value>
 	</Operation>
 
+  <!-- GuardBaton -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_GuardBaton"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.1</cooldownTime>
+					<chanceFactor>0.6</chanceFactor>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5.0</power>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>5</amount>
+							<chance>0.6</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>1.5</cooldownTime>
+					<chanceFactor>1.12</chanceFactor>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_GuardBaton"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_GuardBaton"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.44</MeleeCritChance>
+			<MeleeParryChance>0.20</MeleeParryChance>
+			<MeleeDodgeChance>0.3</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_GuardBaton"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+  
 </Patch>

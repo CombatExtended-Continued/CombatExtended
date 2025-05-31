@@ -34,6 +34,7 @@ namespace CombatExtended
             return base.ValidateTarget(target, showMessages) && ReloadableUtility.CanUseConsideringQueuedJobs(CasterPawn, EquipmentSource, true);
         }
 
+        [Compatibility.Multiplayer.SyncMethod]
         public override void OrderForceTarget(LocalTargetInfo target)
         {
             Job job = JobMaker.MakeJob(JobDefOf.UseVerbOnThingStatic, target);

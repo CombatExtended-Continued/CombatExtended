@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 	<ToolCapacityDef>
-		<defName>CE_CryptoBlunt</defName>
+		<defName>CE_Kit_CryptoBlunt</defName>
 		<label>blunt</label>
 	</ToolCapacityDef>
 
 	<DamageDef ParentName="BluntBase">
-		<defName>CE_CryptoBlunt</defName>
+		<defName>CE_Kit_CryptoBlunt</defName>
 		<label>the crushing and hypothermic damage of advanced crypto weaponry</label>
 		<additionalHediffs>
 			<li>
-				<hediff>Hypothermia</hediff>
-				<severityPerDamageDealt>0.01</severityPerDamageDealt>
+				<hediff>VQE_CryptoSlowdown</hediff>
+				<severityPerDamageDealt>0.0025</severityPerDamageDealt>
+				<victimSeverityScaling>ArmorRating_Heat</victimSeverityScaling>
+				<inverseStatScaling>true</inverseStatScaling>
 			</li>
 		</additionalHediffs>
 	</DamageDef>
 
 	<ManeuverDef>
 		<defName>CE_Cryptosmash</defName>
-		<requiredCapacity>CE_CryptoBlunt</requiredCapacity>
+		<requiredCapacity>CE_Kit_CryptoBlunt</requiredCapacity>
 		<verb>
 			<verbClass Class="CombatExtended.VerbPropertiesCE">CombatExtended.Verb_MeleeAttackCE</verbClass>
-			<meleeDamageDef>CE_CryptoBlunt</meleeDamageDef>
+			<meleeDamageDef>CE_Kit_CryptoBlunt</meleeDamageDef>
 		</verb>
 		<logEntryDef>MeleeAttack</logEntryDef>
 		<combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>

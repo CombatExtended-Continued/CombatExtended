@@ -36,6 +36,10 @@
 		</FireModes>
 	</Operation>
 
+	<Operation Class="PatchOperationRemove"> <!-- AT_Proty_spawner can't be CE patched via xml the comp break -->
+		<xpath>Defs/ThingDef[defName="AT_Proty_spawner"]/equippedStatOffsets/MoveSpeed </xpath>
+	</Operation>
+
 	<!-- ========== Line Rifle =========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -174,10 +178,12 @@
 
 	<!-- ========== Melee Attacks =========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AT_hydroheliumion_A" or
-			defName="AT_hydroheliumion_C"
-			]/tools </xpath>
+	<Operation Class="PatchOperationReplace"> 
+		<xpath>Defs/ThingDef[
+			defName="AT_hydroheliumion_A" or
+			defName="AT_hydroheliumion_C" or
+			defName="AT_Proty_spawner"
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -319,4 +325,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>

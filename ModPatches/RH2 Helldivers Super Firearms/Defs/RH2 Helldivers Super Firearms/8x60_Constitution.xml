@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo8x60mmConstitution</defName>
+		<label>8x60mm Constitution</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8x60mmConstitution</defName>
+		<label>8x60mm Constitution</label>
+		<ammoTypes>
+			<Ammo_8x60mmConstitution_FMJ>Bullet_8x60mmConstitution_FMJ</Ammo_8x60mmConstitution_FMJ>
+			<Ammo_8x60mmConstitution_AP>Bullet_8x60mmConstitution_AP</Ammo_8x60mmConstitution_AP>
+			<Ammo_8x60mmConstitution_HP>Bullet_8x60mmConstitution_HP</Ammo_8x60mmConstitution_HP>
+			<Ammo_8x60mmConstitution_Incendiary>Bullet_8x60mmConstitution_Incendiary</Ammo_8x60mmConstitution_Incendiary>
+			<Ammo_8x60mmConstitution_HE>Bullet_8x60mmConstitution_HE</Ammo_8x60mmConstitution_HE>
+			<Ammo_8x60mmConstitution_Sabot>Bullet_8x60mmConstitution_Sabot</Ammo_8x60mmConstitution_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="8x60mmConstitutionBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Large rifle bullet used in machine guns, sniper rifles, and the occasional assault rifle.</description>
+		<statBases>
+			<Mass>0.028</Mass>
+			<Bulk>0.03</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo8x60mmConstitution</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x60mmConstitutionBase">
+		<defName>Ammo_8x60mmConstitution_FMJ</defName>
+		<label>8x60mm Constitution (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_8x60mmConstitution_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x60mmConstitutionBase">
+		<defName>Ammo_8x60mmConstitution_AP</defName>
+		<label>8x60mm Constitution (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_8x60mmConstitution_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x60mmConstitutionBase">
+		<defName>Ammo_8x60mmConstitution_HP</defName>
+		<label>8x60mm Constitution (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_8x60mmConstitution_HP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x60mmConstitutionBase">
+		<defName>Ammo_8x60mmConstitution_Incendiary</defName>
+		<label>8x60mm Constitution (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_8x60mmConstitution_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x60mmConstitutionBase">
+		<defName>Ammo_8x60mmConstitution_HE</defName>
+		<label>8x60mm Constitution (AP-HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_8x60mmConstitution_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x60mmConstitutionBase">
+		<defName>Ammo_8x60mmConstitution_Sabot</defName>
+		<label>8x60mm Constitution (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.023</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_8x60mmConstitution_Sabot</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base8x60mmConstitutionBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>154</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x60mmConstitutionBullet">
+		<defName>Bullet_8x60mmConstitution_FMJ</defName>
+		<label>8mm Constitution bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>7.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x60mmConstitutionBullet">
+		<defName>Bullet_8x60mmConstitution_AP</defName>
+		<label>8mm Constitution bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x60mmConstitutionBullet">
+		<defName>Bullet_8x60mmConstitution_HP</defName>
+		<label>8mm Constitution bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>27</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x60mmConstitutionBullet">
+		<defName>Bullet_8x60mmConstitution_Incendiary</defName>
+		<label>8x60mm Constitution bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x60mmConstitutionBullet">
+		<defName>Bullet_8x60mmConstitution_HE</defName>
+		<label>8x60mm Constitution bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>7.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>9</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x60mmConstitutionBullet">
+		<defName>Bullet_8x60mmConstitution_Sabot</defName>
+		<label>8x60mm Constitution bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>26</armorPenetrationSharp>
+			<armorPenetrationBlunt>100.92</armorPenetrationBlunt>
+			<speed>208</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_8x60mmConstitution_FMJ</defName>
+		<label>make 8x60mm Constitution (FMJ) cartridge x500</label>
+		<description>Craft 500 8x60mm Constitution (FMJ) cartridges.</description>
+		<jobString>Making 8x60mm Constitution (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x60mmConstitution_FMJ>500</Ammo_8x60mmConstitution_FMJ>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_8x60mmConstitution_AP</defName>
+		<label>make 8x60mm Constitution (AP) cartridge x500</label>
+		<description>Craft 500 8x60mm Constitution (AP) cartridges.</description>
+		<jobString>Making 8x60mm Constitution (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x60mmConstitution_AP>500</Ammo_8x60mmConstitution_AP>
+		</products>
+		<workAmount>3600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_8x60mmConstitution_HP</defName>
+		<label>make 8x60mm Constitution (HP) cartridge x500</label>
+		<description>Craft 500 8x60mm Constitution (HP) cartridges.</description>
+		<jobString>Making 8x60mm Constitution (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x60mmConstitution_HP>500</Ammo_8x60mmConstitution_HP>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_8x60mmConstitution_Incendiary</defName>
+		<label>make 8x60mm Constitution (AP-I) cartridge x500</label>
+		<description>Craft 500 8x60mm Constitution (AP-I) cartridges.</description>
+		<jobString>Making 8x60mm Constitution (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x60mmConstitution_Incendiary>500</Ammo_8x60mmConstitution_Incendiary>
+		</products>
+		<workAmount>4200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_8x60mmConstitution_HE</defName>
+		<label>make 8x60mm Constitution (AP-HE) cartridge x500</label>
+		<description>Craft 500 8x60mm Constitution (AP-HE) cartridges.</description>
+		<jobString>Making 8x60mm Constitution (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x60mmConstitution_HE>500</Ammo_8x60mmConstitution_HE>
+		</products>
+		<workAmount>5800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_8x60mmConstitution_Sabot</defName>
+		<label>make 8x60mm Constitution (Sabot) cartridge x500</label>
+		<description>Craft 500 8x60mm Constitution (Sabot) cartridges.</description>
+		<jobString>Making 8x60mm Constitution (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x60mmConstitution_Sabot>500</Ammo_8x60mmConstitution_Sabot>
+		</products>
+		<workAmount>4200</workAmount>
+	</RecipeDef>
+
+</Defs>

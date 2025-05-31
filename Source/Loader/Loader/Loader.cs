@@ -46,7 +46,7 @@ namespace CombatExtended.Loader
                 Application.OpenURL("https://github.com/CombatExtended-Continued/CombatExtended#development-version");
             });
 
-            var dialog = new Dialog_MessageBox("CE_UncompiledDevBuild".Translate(), "CE_ContinueAnyway".Translate(), continueAnywayAction, "CE_GetCompiledDevBuild".Translate(), getDevBuildAction, null, true);
+            var dialog = new Dialog_MessageBox("Uncompiled CE dev build\n\nYou're running a development build of Combat Extended that is not intended for gameplay purposes, this will create a large amount of errors if you attempt to play a colony.\n\nEither download an official CE release from GitHub's Releases section, or if you need the latest development snapshot for testing purposes, get it from the link below.", "Continue anyway", continueAnywayAction, "Get development snapshot", getDevBuildAction, null, true);
             Find.WindowStack.Add(dialog);
         }
     }

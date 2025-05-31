@@ -2,7 +2,7 @@
 <Defs>
 
 	<!-- Coil Gun Ammo -->
-	
+
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_8mmRailgun_CoilgunLance</defName>
 		<label>8mm Railgun</label>
@@ -23,11 +23,11 @@
 			<armorPenetrationBlunt>310</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-	
+
 	<!-- ==================== -->
 
 	<!-- Plasma Blaster Ammo -->
-  
+
 	<ThingCategoryDef>
 		<defName>AmmoHotPlasmaCell</defName>
 		<label>Hot Plasma Cell</label>
@@ -35,14 +35,14 @@
 		<iconPath>Spacer Arsenal/PlasmaCell/HotPlasmaCell_c</iconPath>
 	</ThingCategoryDef>
 
-  <!-- ==================== Ammo Category ========================== -->
-  
+	<!-- ==================== Ammo Category ========================== -->
+
 	<CombatExtended.AmmoCategoryDef>
 		<defName>PlasmaBolt</defName>
 		<label>Plasma Bolt</label>
 		<description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
 	</CombatExtended.AmmoCategoryDef>
-  
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -53,7 +53,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-  <!-- ==================== Ammo ========================== -->
+	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="HotPlamsaCellBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
 		<description>A hot plasma cell utilised by spacer tech assault weapons.</description>
@@ -79,9 +79,6 @@
 			<texPath>Spacer Arsenal/PlasmaCell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>0.69</MarketValue>
-		</statBases>
 		<ammoClass>PlasmaBolt</ammoClass>
 		<cookOffProjectile>Bullet_Bolt_PlasmaBlaster</cookOffProjectile>
 	</ThingDef>
@@ -110,10 +107,10 @@
 			<armorPenetrationSharp>15</armorPenetrationSharp>
 			<armorPenetrationBlunt>5</armorPenetrationBlunt>
 			<secondaryDamage>
-			<li>
-				<def>Flame_Secondary</def>
-				<amount>17</amount>
-			</li>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>17</amount>
+				</li>
 			</secondaryDamage>
 		</projectile>
 	</ThingDef>
@@ -181,11 +178,11 @@
 		</products>
 		<workAmount>8400</workAmount>
 	</RecipeDef>
-	
+
 	<!-- ==================== -->
 
 	<!--Photon Blaster Ammo-->
-  
+
 	<ThingCategoryDef>
 		<defName>AmmoPhotonCell</defName>
 		<label>Photon Cell</label>
@@ -193,14 +190,14 @@
 		<iconPath>Spacer Arsenal/PhotonCell/PhotonCell_c</iconPath>
 	</ThingCategoryDef>
 
-  <!-- ==================== Ammo Category ========================== -->
-  
+	<!-- ==================== Ammo Category ========================== -->
+
 	<CombatExtended.AmmoCategoryDef>
 		<defName>PhotonCell</defName>
 		<label>Photon Bolt</label>
 		<description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
 	</CombatExtended.AmmoCategoryDef>
-  
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -211,7 +208,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-  <!-- ==================== Ammo ========================== -->
+	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="PhotonCellBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
 		<description>A charged photon cell utilised by spacer tech assault weapons.</description>
@@ -237,38 +234,35 @@
 			<texPath>Spacer Arsenal/PhotonCell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>0.69</MarketValue>
-		</statBases>
 		<ammoClass>PhotonCell</ammoClass>
-	<cookOffProjectile>Bullet_Bolt_PhotonBlaster</cookOffProjectile>
+		<cookOffProjectile>Bullet_Bolt_PhotonBlaster</cookOffProjectile>
 	</ThingDef>
 
-  <!-- ================== Projectiles ================== -->
+	<!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="BasePhotonBoltBullet" ParentName="BaseBulletCE" Abstract="true">
-	<label>Photon Bullet</label>
-	<graphicData>
-	  <texPath>Things/Projectiles/Bullet_Photon</texPath>
-	  <graphicClass>Graphic_Single</graphicClass>
-	  <shaderType>TransparentPostLight</shaderType>
-	</graphicData>
-	<projectile Class="CombatExtended.ProjectilePropertiesCE">
-	  <damageDef>Photon</damageDef>
-	  <speed>156</speed>
-	  <dropsCasings>false</dropsCasings>
-	</projectile>
-  </ThingDef>
+	<ThingDef Name="BasePhotonBoltBullet" ParentName="BaseBulletCE" Abstract="true">
+		<label>Photon Bullet</label>
+		<graphicData>
+			<texPath>Things/Projectiles/Bullet_Photon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Photon</damageDef>
+			<speed>156</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
 
-  <ThingDef ParentName="BasePhotonBoltBullet">
-	<defName>Bullet_Bolt_PhotonBlaster</defName>
-	<projectile Class="CombatExtended.ProjectilePropertiesCE">
-	  <damageDef>Photon</damageDef>
-	  <damageAmountBase>12</damageAmountBase>
-	  <armorPenetrationSharp>10.5</armorPenetrationSharp>
-	  <armorPenetrationBlunt>7</armorPenetrationBlunt>
-	</projectile>
-  </ThingDef>
+	<ThingDef ParentName="BasePhotonBoltBullet">
+		<defName>Bullet_Bolt_PhotonBlaster</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Photon</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>10.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>7</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -311,7 +305,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-	  <Ammo_PhotonCell>500</Ammo_PhotonCell>
+			<Ammo_PhotonCell>500</Ammo_PhotonCell>
 		</products>
 		<workAmount>8400</workAmount>
 	</RecipeDef>

@@ -14,7 +14,7 @@ namespace CombatExtended
         public List<BodyPartGroupDef> crouchCoverage = new List<BodyPartGroupDef>();
         public bool drawAsTall = false;
 
-        public bool PartIsCoveredByShield(BodyPartRecord part, Pawn pawn)
+        public bool PartIsCoveredByShield(BodyPartRecord part, bool isPawnCrouching)
         {
             if (!shieldCoverage.NullOrEmpty())
             {
@@ -26,7 +26,7 @@ namespace CombatExtended
                     }
                 }
             }
-            if (!crouchCoverage.NullOrEmpty() && pawn.IsCrouching())
+            if (!crouchCoverage.NullOrEmpty() && isPawnCrouching)
             {
                 foreach (BodyPartGroupDef group in crouchCoverage)
                 {

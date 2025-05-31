@@ -17,11 +17,7 @@ namespace CombatExtended.HarmonyCE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Postfix(ApparelLayerDef __instance, ref bool __result)
         {
-            // check the settings to see if backpacks are enabled
-            if (Controller.settings.ShowBackpacks)
-            {
-                __result = __result || __instance == CE_ApparelLayerDefOf.Backpack;
-            }
+            __result = __result || __instance == CE_ApparelLayerDefOf.Backpack;
         }
     }
 }

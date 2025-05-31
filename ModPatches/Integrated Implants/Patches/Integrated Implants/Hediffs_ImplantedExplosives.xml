@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- HE Shell -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DetonateImplantedHighExplosive"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
+		<value>
+			<item>Shell_HighExplosive_Dummy</item>
+		</value>
+	</Operation>
+
+	<!-- Antigrain Shell -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DetonateImplantedAntigrainWarhead"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
+		<value>
+			<item>Shell_Anti_Dummy</item>
+		</value>
+	</Operation>
+
+	<!-- Incendiary Shell -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DetonateImplantedIncendiary"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
+		<value>
+			<item>Shell_Incendiary_Dummy</item>
+		</value>
+	</Operation>
+
+	<!-- Smoke Shell -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DetonateImplantedSmoke"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
+		<value>
+			<item>Shell_Smoke_Dummy</item>
+		</value>
+	</Operation>
+
+	<!-- Firefoam Shell -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DetonateImplantedFirefoam"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
+		<value>
+			<item>Shell_Foam_Dummy</item>
+		</value>
+	</Operation>
+
+	<!-- EMP Shell -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DetonateImplantedEMP"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
+		<value>
+			<item>Shell_EMP_Dummy</item>
+		</value>
+	</Operation>
+
+	<!-- Tox Shell -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DetonateImplantedToxic"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
+		<value>
+			<item>Shell_Toxic_Dummy</item>
+		</value>
+	</Operation>
+
+	<!-- Deadlife Shell -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DetonateImplantedDeadlife"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
+		<value>
+			<item>Shell_Deadlife_Dummy</item>
+		</value>
+	</Operation>
+
+	<!-- Remove patched-out VFED shells. -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/RecipeDef[
+			defName = "LTS_InstallImplantedShrapnel" or
+			defName = "LTS_RemoveImplantedShrapnel" or
+			defName = "LTS_InstallImplantedArmorPiercing" or
+			defName = "LTS_RemoveImplantedArmorPiercing" or
+			defName = "LTS_InstallImplantedCluster" or
+			defName = "LTS_RemoveImplantedCluster"
+			]|
+			Defs/HediffDef[
+			defName = "LTS_ImplantedShrapnel" or
+			defName = "LTS_ImplantedArmorPiercing" or
+			defName = "LTS_ImplantedCluster"
+			]
+		</xpath>	
+	</Operation>
+
+</Patch>

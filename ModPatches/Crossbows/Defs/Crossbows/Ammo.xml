@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_RepeatingCrossbowBolt</defName>
+		<label>crossbow bolts</label>
+		<ammoTypes>
+			<Ammo_CrossbowBolt_Stone>Projectile_RepeatingCrossbowBolt_Stone</Ammo_CrossbowBolt_Stone>
+			<Ammo_CrossbowBolt_Steel>Projectile_RepeatingCrossbowBolt_Steel</Ammo_CrossbowBolt_Steel>
+			<Ammo_CrossbowBolt_Plasteel>Projectile_RepeatingCrossbowBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
+			<Ammo_CrossbowBolt_Venom>Projectile_RepeatingCrossbowBolt_Venom</Ammo_CrossbowBolt_Venom>
+			<Ammo_CrossbowBolt_Flame>Projectile_RepeatingCrossbowBolt_Flame</Ammo_CrossbowBolt_Flame>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="BaseRepeatingCrossbowBoltProjectile" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Arrow_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Arrow</damageDef>
+			<speed>17</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseRepeatingCrossbowBoltProjectile">
+		<defName>Projectile_RepeatingCrossbowBolt_Stone</defName>
+		<label>crossbow bolt (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>12</speed>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBlunt>0.26</armorPenetrationBlunt>
+			<armorPenetrationSharp>0.6</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.1</preExplosionSpawnChance><!-- 11.11 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseRepeatingCrossbowBoltProjectile">
+		<defName>Projectile_RepeatingCrossbowBolt_Steel</defName>
+		<label>crossbow bolt (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBlunt>1.66</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.05</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.333</preExplosionSpawnChance><!-- 14.99 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseRepeatingCrossbowBoltProjectile">
+		<defName>Projectile_RepeatingCrossbowBolt_Plasteel</defName>
+		<label>crossbow bolt (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>19</speed>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBlunt>2.08</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.4</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseRepeatingCrossbowBoltProjectile">
+		<defName>Projectile_RepeatingCrossbowBolt_Venom</defName>
+		<label>crossbow bolt (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ArrowVenom</damageDef>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBlunt>1.66</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.05</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseRepeatingCrossbowBoltProjectile">
+		<defName>Projectile_RepeatingCrossbowBolt_Flame</defName>
+		<label>crossbow bolt (flame)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>0.2</explosionRadius>
+			<damageDef>ArrowFire</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.16</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
+</Defs>

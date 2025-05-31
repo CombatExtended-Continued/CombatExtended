@@ -7,79 +7,49 @@
 		<defName>AmmoSet_DisruptorFlare</defName>
 		<label>disruptor flare shell</label>
 		<ammoTypes>
-			<Ammo_DisruptorFlare>Grenade_DisruptorFlare</Ammo_DisruptorFlare>
+			<Ammo_FlareBioferrite>Bullet_FlareBioferriteDirect</Ammo_FlareBioferrite>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ==================== Ammo ========================== -->
+	<!-- ==================== Projectiles ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="DisruptorFlareBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>A capsule of bioferrite encased in a shotgun shell that creates a bright flash and a local psychic disruption upon impact. This stuns psychically sensitive creatures, revealing those that are invisible, and reduces their consciousness and movement speed for a short while. Afterwards, the flare continues to burn, illuminating a wide area for some time.</description>
-		<statBases>
-			<Mass>0.023</Mass>
-			<Bulk>0.06</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoFlare</li>
-		</thingCategories>
-		<stackLimit>200</stackLimit>
-	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="DisruptorFlareBase">
-		<defName>Ammo_DisruptorFlare</defName>
-		<label>Disruptor flare round</label>
+	<ThingDef ParentName="BaseBulletCE" MayRequire="Ludeon.RimWorld.Anomaly">
+		<defName>Bullet_FlareBioferriteDirect</defName>
+		<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		<label>bioferrite flare</label>
 		<graphicData>
-			<texPath>Things/Ammo/Flare</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-			<drawSize>0.5</drawSize>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>(255, 95, 83)</color>
+			<shaderType>MoteGlow</shaderType>
 		</graphicData>
-		<statBases>
-			<Mass>0.048</Mass>
-			<MarketValue>0.2</MarketValue>
-		</statBases>
-		<ammoClass>DisruptorFlare</ammoClass>
-		<cookOffProjectile>Grenade_DisruptorFlare</cookOffProjectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>1.0</suppressionFactor>
+			<flyOverhead>false</flyOverhead>
+			<dangerFactor>0.0</dangerFactor>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<landedEffecter>DisruptorFlareLanded</landedEffecter>
+			<spawnsThingDef>CE_DisruptorFlareSmall</spawnsThingDef>
+			<speed>60</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CE_BioferriteGlow</fleck>
+						<emissionsPerTick>6</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2.5</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+						<originOffset>-0.5</originOffset>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
-
-	<!-- ==================== Recipes ========================== -->
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_DisruptorFlare</defName>
-		<label>make disruptorflare x4</label>
-		<description>Craft 4 disruptorflare shells.</description>
-		<jobString>Making disruptorflare shells.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Bioferrite</li>
-					</thingDefs>
-				</filter>
-				<count>20</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Prometheum</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Bioferrite</li>
-				<li>Prometheum</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_DisruptorFlare>4</Ammo_DisruptorFlare>
-		</products>
-		<workAmount>500</workAmount>
-	</RecipeDef>
 
 </Defs>

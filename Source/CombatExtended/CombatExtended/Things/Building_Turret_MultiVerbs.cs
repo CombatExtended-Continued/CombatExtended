@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -22,22 +23,38 @@ namespace CombatExtended
             }
         }
         protected IEnumerable<ITargetSearcher> VerbsWithTargetSearcher => cachedVerbsWithTargetSearcher ??= GunCompEq.AllVerbs.OfType<ITargetSearcher>().ToList();
-        public override void DrawExtraSelectionOverlays()
+        protected override void DrawRangeRings()
         {
-            base.DrawExtraSelectionOverlays();
+            var colors = ColorsForRangeRing.GetEnumerator();
+            Color color = Color.white;
             IEnumerable<Verb> verbs = (Controller.settings.EnableCIWS ? GunCompEq.AllVerbs : GunCompEq.AllVerbs.Where(x => !(x is VerbCIWS))).Except(AttackVerb);
             foreach (var verb in verbs)
             {
+                if (colors.MoveNext())
+                {
+                    color = colors.Current;
+                }
+
                 float range = verb.verbProps.range;
                 if (range < 120f)
                 {
-                    GenDraw.DrawRadiusRing(base.Position, range);
+                    GenDraw.DrawRadiusRing(base.Position, range, color);
                 }
                 float num = verb.verbProps.EffectiveMinRange(true);
                 if (num < 90f && num > 0.1f)
                 {
-                    GenDraw.DrawRadiusRing(base.Position, num);
+                    GenDraw.DrawRadiusRing(base.Position, num, color);
                 }
+            }
+        }
+        static IEnumerable<Color> ColorsForRangeRing
+        {
+            get
+            {
+                yield return Color.white;
+                yield return Color.blue;
+                yield return Color.yellow;
+                yield return Color.cyan;
             }
         }
         public override LocalTargetInfo TryFindNewTarget()
