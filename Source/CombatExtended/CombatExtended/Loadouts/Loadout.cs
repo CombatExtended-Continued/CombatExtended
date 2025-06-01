@@ -184,7 +184,7 @@ namespace CombatExtended
             dest.adHoc = source.adHoc;
             dest.parentID = source.parentID;
             dest._slots = new List<LoadoutSlot>();
-            foreach (LoadoutSlot slot in source.Slots)
+            foreach (LoadoutSlot slot in source.OwnSlots)
             {
                 dest.AddSlot(slot.Copy());
             }
