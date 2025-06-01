@@ -6,6 +6,13 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+				<!-- === Bug fix === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="EW_BasePersonaEltexGun"]/comps</xpath>
+					<value>
+						<li Class="CompProperties_Forbiddable" />
+					</value>
+				</li>
 				<!-- === Mod Extensions === -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
