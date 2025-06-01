@@ -431,9 +431,30 @@ namespace CombatExtended
             }
             if (!ammoInLoadout)
             {
-                foreach (var ammo in ammoTypes)
+                // Check if we have ammo in inventory, if so only ask for the same or more of that
+                Dictionary<ThingDef, Integer> inventory = pawn.GetStorageByThingDef();
+                bool haveAmmo = false;
+                foreach (ThingDef def in inventory.Keys)
                 {
-                    yield return new LoadoutSlot(ammo, magSize * 3);
+                    if (ammoTypes.Contains(def))
+                    {
+                        haveAmmo = true;
+                        if (inventory[def].value < magSize * 2 || inventory[def].value >= magSize * 3)
+                        {
+                            yield return new LoadoutSlot(def, magSize * 3);
+                        }
+                        else // have a reasonable number, just sit on it.
+                        {
+                            yield return new LoadoutSlot(def, inventory[def].value);
+                        }
+                    }
+                }
+                if (!haveAmmo) // don't have any ammo, ask for some of everything.
+                {
+                    foreach (var ammo in ammoTypes)
+                    {
+                        yield return new LoadoutSlot(ammo, magSize * 3);
+                    }
                 }
             }
         }
