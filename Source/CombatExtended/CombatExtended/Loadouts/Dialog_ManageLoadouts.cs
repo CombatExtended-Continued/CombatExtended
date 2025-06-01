@@ -25,7 +25,7 @@ namespace CombatExtended
     {
         #region Fields
 
-        private static int[] _dropOptions2 = new int[] { 0, 1 };
+        private static int[] _dropOptions2 = [0, 1];
 
         private static Texture2D
         //_arrowBottom = ContentFinder<Texture2D>.Get("UI/Icons/arrowBottom"),
@@ -177,7 +177,7 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
 
             const int BUTTON_COUNT = 6;
-            const float BUTTON_STRETCH_FACTOR = 0.8f / (float)BUTTON_COUNT;
+            const float BUTTON_STRETCH_FACTOR = 0.8f / BUTTON_COUNT;
             float buttonWidth = canvas.width * BUTTON_STRETCH_FACTOR;
 
             // SET UP RECTS
@@ -557,7 +557,7 @@ namespace CombatExtended
 
             int countInt = slot.count;
             string buffer = countInt.ToString();
-            Widgets.TextFieldNumeric<int>(canvas, ref countInt, ref buffer);
+            Widgets.TextFieldNumeric(canvas, ref countInt, ref buffer);
             TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
             if (slot.count != countInt)
             {
@@ -592,7 +592,7 @@ namespace CombatExtended
             }
         }
 
-        private void DrawSlot(Rect row, LoadoutSlot slot, bool slotDraggable = true)
+        private void DrawSlot(Rect row, LoadoutSlot slot, bool slotDraggable = true, bool usingParent = false)
         {
             // set up rects
             // dragging handle (square) | label (fill) | count (50px) | delete (iconSize)
@@ -632,7 +632,7 @@ namespace CombatExtended
             // prepare attachment config
             if (slot.isWeaponPlatform && Widgets.ButtonImage(editAttachmentsRect, _iconEditAttachments))
             {
-                RocketGUI.GUIUtility.DropDownMenu<int>((i) =>
+                RocketGUI.GUIUtility.DropDownMenu((i) =>
                 {
                     if (i == 0)
                     {
@@ -650,7 +650,7 @@ namespace CombatExtended
                     {
                         if (Find.WindowStack.IsOpen<Window_AttachmentsEditor>())
                         {
-                            Find.WindowStack.TryRemove(typeof(Window_AttachmentsEditor), true);
+                            Find.WindowStack.TryRemove(typeof(Window_AttachmentsEditor));
                         }
                         else
                         {
@@ -698,21 +698,19 @@ namespace CombatExtended
             Text.Anchor = TextAnchor.UpperLeft;
 
             // easy ammo adder, ranged weapons only
-            if (slot.thingDef != null && slot.thingDef.IsRangedWeapon)
+            if (slot.thingDef is { IsRangedWeapon: true })
             {
                 // make sure there's an ammoset defined
                 AmmoSetDef ammoSet = ((slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? null : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().ammoSet);
 
-                bool? temp = !((((ammoSet == null) ? null : ammoSet.ammoTypes)).NullOrEmpty());
-
-                if (temp ?? false)
+                if (ammoSet is { ammoTypes.Count: > 0 })
                 {
                     if (Widgets.ButtonImage(ammoRect, _iconAmmoAdd))
                     {
-                        List<FloatMenuOption> options = new List<FloatMenuOption>();
+                        List<FloatMenuOption> options = [];
                         int magazineSize = (slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? 0 : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().magazineSize;
 
-                        foreach (AmmoLink link in ((ammoSet == null) ? null : ammoSet.ammoTypes))
+                        foreach (AmmoLink link in ammoSet.ammoTypes)
                         {
                             options.Add(new FloatMenuOption(link.ammo.LabelCap, delegate
                             {
@@ -742,7 +740,8 @@ namespace CombatExtended
             {
                 Texture2D curModeIcon = slot.countType == LoadoutCountType.dropExcess ? _iconDropExcess : _iconPickupDrop;
                 string tipString = slot.countType == LoadoutCountType.dropExcess ? "CE_DropExcess".Translate() : "CE_PickupMissingAndDropExcess".Translate();
-                if (Widgets.ButtonImage(countModeRect, curModeIcon))
+                Color color = usingParent ? Color.gray : Color.white;
+                if (Widgets.ButtonImage(countModeRect, curModeIcon, color))
                 {
                     if (Compatibility.Multiplayer.InMultiplayer)
                     {
@@ -757,6 +756,10 @@ namespace CombatExtended
             }
 
             // delete
+            if (usingParent)
+            {
+                return;
+            }
             if (Mouse.IsOver(deleteRect))
             {
                 GUI.DrawTexture(row, TexUI.HighlightTex);
@@ -772,7 +775,20 @@ namespace CombatExtended
         private void DrawSlotList(Rect canvas)
         {
             // set up content canvas
-            Rect viewRect = new Rect(0f, 0f, canvas.width, _rowHeight * CurrentLoadout.SlotCount + 1);
+            int totalSlotCount = CurrentLoadout.SlotCount + 2;
+            var parentLoadout = CurrentLoadout.ParentLoadout;
+            var usingParent = false;
+            if (parentLoadout != null)
+            {
+                usingParent = true;
+            }
+
+            while (parentLoadout != null)
+            {
+                totalSlotCount += parentLoadout.SlotCount;
+                parentLoadout = parentLoadout.ParentLoadout;
+            }
+            Rect viewRect = new Rect(0f, 0f, canvas.width, _rowHeight * totalSlotCount);
 
             // create some extra height if we're dragging
             if (Dragging != null)
@@ -790,9 +806,50 @@ namespace CombatExtended
             GUI.DrawTexture(canvas, _darkBackground);
 
             Widgets.BeginScrollView(canvas, ref _slotScrollPosition, viewRect);
-            int i = 0;
             float curY = 0f;
-            for (; i < CurrentLoadout.SlotCount; i++)
+            GUI.enabled = false;
+            var ancestorLoadout = CurrentLoadout.ParentLoadout;
+            Stack<Loadout> lineage = new();
+
+            while (ancestorLoadout != null)
+            {
+                lineage.Push(ancestorLoadout);
+                ancestorLoadout = ancestorLoadout.ParentLoadout;
+            }
+            int rowIndex = 0;
+            while (lineage.Count > 0)
+            {
+                var loadout = lineage.Pop();
+                for (int i = 0; i < loadout.SlotCount; i++)
+                {
+
+                    Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
+                    curY += _rowHeight;
+                    // alternate row background
+                    if (rowIndex % 2 == 0)
+                    {
+                        GUI.DrawTexture(row, _darkBackground);
+                    }
+                    //GUI.color = Color.blue;
+                    DrawSlot(row, loadout.OwnSlots[i], false, usingParent);
+                    GUI.color = Color.white;
+                    rowIndex++;
+                }
+            }
+            if (usingParent)
+            {
+                Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
+                Widgets.DrawLineHorizontal(0f, curY + (_rowHeight / 2), viewRect.width);
+                if (rowIndex % 2 == 0)
+                {
+                    GUI.DrawTexture(row, _darkBackground);
+                }
+                rowIndex++;
+                curY += _rowHeight;
+            }
+            GUI.enabled = true;
+            
+            for (int i = 0; i < CurrentLoadout.SlotCount; i++)
             {
                 // create row rect
                 Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
@@ -826,7 +883,7 @@ namespace CombatExtended
                 }
 
                 // alternate row background
-                if (i % 2 == 0)
+                if (rowIndex % 2 == 0)
                 {
                     GUI.DrawTexture(row, _darkBackground);
                 }
@@ -838,6 +895,7 @@ namespace CombatExtended
                 }
                 DrawSlot(row, CurrentLoadout.OwnSlots[i], CurrentLoadout.SlotCount > 1);
                 GUI.color = Color.white;
+                rowIndex++;
             }
 
             // if we're dragging, create an extra invisible row to allow moving stuff to the bottom
@@ -1130,9 +1188,9 @@ namespace CombatExtended
 
         private class VisibilityCache
         {
-            public int ticksToRecheck = 0;
+            public int ticksToRecheck;
             public bool check = true;
-            public int position = 0;
+            public int position;
         }
 
         #endregion GenericDrawOptimization
