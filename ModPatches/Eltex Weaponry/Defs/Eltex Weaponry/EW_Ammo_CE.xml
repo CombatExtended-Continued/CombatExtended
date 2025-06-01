@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+	<!-- ==================== Ammo Categories ========================== -->
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>Eltex</defName>
+		<label>eltex</label>
+		<description>Single use psychic capacitors, designed to focus psychic energy into a concentrated blast before being fired from eltex weaponry.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Thing Categories ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoEltex</defName>
+		<label>eltex capacitors</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>Things/CEBullets/Eltex/EltexBullet_c</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_EltexLight</defName>
+		<label>Eltex (Pistol)</label>
+		<ammoTypes>
+			<Ammo_EltexCap>Bullet_EltexLight</Ammo_EltexCap>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_EltexMedium</defName>
+		<label>Eltex (Rifle)</label>
+		<ammoTypes>
+			<Ammo_EltexCap>Bullet_EltexMedium</Ammo_EltexCap>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_EltexHeavy</defName>
+		<label>Eltex (Lance)</label>
+		<ammoTypes>
+			<Ammo_EltexCap>Bullet_EltexHeavy</Ammo_EltexCap>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="EltexAmmoBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+		<description>Single use psychic capacitors, designed to focus psychic energy into a concentrated blast before being fired from eltex weaponry.</description>
+		<graphicData>
+			<texPath>Things/CEBullets/Eltex</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<ammoClass>Eltex</ammoClass>
+		<stackLimit>2500</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="EltexAmmoBase">
+		<defName>Ammo_EltexCap</defName>
+		<label>eltex capacitor</label>
+		<graphicData>
+			<drawSize>0.9</drawSize>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.7</MarketValue>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>AmmoEltex</li>
+		</thingCategories>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base6x18mmPsychicBullet">
+		<defName>Bullet_EltexLight</defName>
+		<label>light eltex bolt</label>
+		<graphicData>
+			<texPath>Projectiles/EltexShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>0.60</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>11</armorPenetrationSharp>
+			<armorPenetrationBlunt>13</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.5</psyDamageMulti>
+				<psyPenMulti>0.5</psyPenMulti>
+				<psyCost>0</psyCost>
+				<entropyCost>0</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmPsychicBullet">
+		<defName>Bullet_EltexMedium</defName>
+		<label>eltex bolt</label>
+		<graphicData>
+			<texPath>Projectiles/EltexShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>0.80</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>24</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.5</psyDamageMulti>
+				<psyPenMulti>0.5</psyPenMulti>
+				<psyCost>0</psyCost>
+				<entropyCost>0</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmPsychicBullet">
+		<defName>Bullet_EltexHeavy</defName>
+		<label>heavy eltex bolt</label>
+		<graphicData>
+			<texPath>Projectiles/EltexLongshot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.00</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>133</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.5</psyDamageMulti>
+				<psyPenMulti>0.5</psyPenMulti>
+				<psyCost>0</psyCost>
+				<entropyCost>0</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_EltexCap</defName>
+		<label>make eltex capacitor x500</label>
+		<description>Craft 500 eltex capacitors.</description>
+		<jobString>Making eltex capacitors.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>12</count><!-- 150% more mat from 8 -->
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>9</count><!-- 150% more mat from 6 -->
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count><!-- 150% more mat from 5 -->
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_EltexCap>500</Ammo_EltexCap>
+		</products>
+		<workAmount>8500</workAmount><!-- 150% more work from 6800 -->
+	</RecipeDef>
+</Defs>
