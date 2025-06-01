@@ -379,7 +379,7 @@ namespace CombatExtended
                             && !(pawn.story != null && pawn.WorkTagIsDisabled(WorkTags.Violent))
                             && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                             && (!pawn.IsItemQuestLocked(pawn.equipment?.Primary))
-                            && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.thingDef == pawn.equipment.Primary.def || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
+                            && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.GetSlotsFor(pawn).Any(s => s.thingDef == pawn.equipment.Primary.def || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
                                     && s.genericDef.lambda(pawn.equipment.Primary.def)))))
                     {
                         doEquip = true;

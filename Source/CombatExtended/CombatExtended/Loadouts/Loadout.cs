@@ -398,6 +398,7 @@ namespace CombatExtended
                     /// if it isn't, provide a virtual slot for it
                     trivial = false;
                     bool ammoInLoadout = false;
+                    bool weaponInLoadout = false;
                     HashSet<ThingDef> ammoTypes = new HashSet<ThingDef>();
                     foreach (AmmoLink link in primaryAmmoUser.Props.ammoSet.ammoTypes)
                     {
@@ -410,6 +411,14 @@ namespace CombatExtended
                         {
                             ammoInLoadout = ammoTypes.Contains(slot.thingDef);
                         }
+                        if (!weaponInLoadout)
+                        {
+                            weaponInLoadout = pawn.equipment.Primary.def == slot.thingDef;
+                        }
+                    }
+                    if (!weaponInLoadout)
+                    {
+                        yield return new LoadoutSlot(pawn.equipment.Primary.def, 1);
                     }
                     if (!ammoInLoadout)
                     {
