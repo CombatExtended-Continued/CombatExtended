@@ -388,52 +388,52 @@ namespace CombatExtended
 
         public IEnumerable<LoadoutSlot> GetSlotsFor(Pawn pawn)
         {
-            bool trivial = true;
-            if (adHoc && ((pawn.Faction?.IsPlayer ?? false) && pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>() is CompAmmoUser primaryAmmoUser))
+            bool weaponInLoadout = true; // assume all needed weapons are already in loadout
+            bool ammoInLoadout = true; // assume all needed ammo is already in loadout
+            int magSize = 1;
+            HashSet<ThingDef> ammoTypes = new HashSet<ThingDef>();
+            if (adHoc && ((pawn.Faction?.IsPlayer ?? false) && pawn.equipment?.Primary is Thing primary))
             {
-                if (primaryAmmoUser.UseAmmo)
+                // ad-hoc, so don't assume the weapon is in the loadout
+                CompAmmoUser primaryAmmoUser = primary.TryGetComp<CompAmmoUser>();
+                weaponInLoadout = false;
+                if (primaryAmmoUser?.UseAmmo ?? false)
                 {
                     /// We are an ad-hoc loadout, with an ammo-using primary weapon
                     /// So figure out what kind of ammo it needs, and check if that ammo is in our slots
                     /// if it isn't, provide a virtual slot for it
-                    trivial = false;
-                    bool ammoInLoadout = false;
-                    bool weaponInLoadout = false;
-                    HashSet<ThingDef> ammoTypes = new HashSet<ThingDef>();
+                    ammoInLoadout = false;
+                    magSize = primaryAmmoUser.Props.magazineSize;
+
                     foreach (AmmoLink link in primaryAmmoUser.Props.ammoSet.ammoTypes)
                     {
                         ammoTypes.Add(link.ammo);
                     }
-                    foreach (var slot in Slots)
-                    {
-                        yield return slot;
-                        if (!ammoInLoadout)
-                        {
-                            ammoInLoadout = ammoTypes.Contains(slot.thingDef);
-                        }
-                        if (!weaponInLoadout)
-                        {
-                            weaponInLoadout = pawn.equipment.Primary.def == slot.thingDef;
-                        }
-                    }
-                    if (!weaponInLoadout)
-                    {
-                        yield return new LoadoutSlot(pawn.equipment.Primary.def, 1);
-                    }
-                    if (!ammoInLoadout)
-                    {
-                        foreach (var ammo in ammoTypes)
-                        {
-                            yield return new LoadoutSlot(ammo, primaryAmmoUser.Props.magazineSize * 3);
-                        }
-                    }
                 }
             }
-            if (trivial)
+
+            foreach (var slot in Slots)
             {
-                foreach (var slot in Slots)
+                yield return slot;
+                if (!ammoInLoadout)
                 {
-                    yield return slot;
+                    ammoInLoadout = ammoTypes.Contains(slot.thingDef);
+                }
+                if (!weaponInLoadout)
+                {
+                    weaponInLoadout = pawn.equipment.Primary.def == slot.thingDef;
+                }
+            }
+
+            if (!weaponInLoadout)
+            {
+                yield return new LoadoutSlot(pawn.equipment.Primary.def, 1);
+            }
+            if (!ammoInLoadout)
+            {
+                foreach (var ammo in ammoTypes)
+                {
+                    yield return new LoadoutSlot(ammo, magSize * 3);
                 }
             }
         }
