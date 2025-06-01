@@ -848,7 +848,7 @@ namespace CombatExtended
                 curY += _rowHeight;
             }
             GUI.enabled = true;
-            
+
             for (int i = 0; i < CurrentLoadout.SlotCount; i++)
             {
                 // create row rect
