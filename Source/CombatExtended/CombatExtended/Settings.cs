@@ -31,6 +31,8 @@ namespace CombatExtended
         private bool partialstats = true;
         private bool enableExtraEffects = true;
 
+        private bool enableArcOfFire = false;
+
         private bool enableCIWS = false;
 
         private bool showExtraTooltips = false;
