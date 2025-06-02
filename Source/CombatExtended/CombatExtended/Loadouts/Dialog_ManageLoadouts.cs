@@ -346,7 +346,7 @@ namespace CombatExtended
                     for (int i = 0; i < loadouts.Count; i++)
                     {
                         int local_i = i;
-                        if (loadouts[i] == CurrentLoadout)
+                        if (loadouts[i] == CurrentLoadout || loadouts[i].Ancestors.Contains(CurrentLoadout))
                         {
                             continue;
                         }
@@ -794,13 +794,11 @@ namespace CombatExtended
         {
             // set up content canvas
             int totalSlotCount = CurrentLoadout.SlotCount + 2;
-            var parentLoadout = CurrentLoadout.ParentLoadout;
-            bool usingParent = parentLoadout != null;
+            bool usingParent = CurrentLoadout.ParentLoadout != null;
 
-            while (parentLoadout != null)
+            foreach (var parentLoadout in CurrentLoadout.Ancestors)
             {
                 totalSlotCount += parentLoadout.SlotCount;
-                parentLoadout = parentLoadout.ParentLoadout;
             }
             Rect viewRect = new Rect(0f, 0f, canvas.width, _rowHeight * totalSlotCount);
 
@@ -822,14 +820,8 @@ namespace CombatExtended
             Widgets.BeginScrollView(canvas, ref _slotScrollPosition, viewRect);
             float curY = 0f;
             GUI.enabled = false;
-            var ancestorLoadout = CurrentLoadout.ParentLoadout;
-            Stack<Loadout> lineage = [];
+            Stack<Loadout> lineage = new Stack<Loadout>(CurrentLoadout.Ancestors);
 
-            while (ancestorLoadout != null)
-            {
-                lineage.Push(ancestorLoadout);
-                ancestorLoadout = ancestorLoadout.ParentLoadout;
-            }
             int rowIndex = 0;
             while (lineage.Count > 0)
             {

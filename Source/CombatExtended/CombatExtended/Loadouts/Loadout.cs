@@ -99,18 +99,56 @@ namespace CombatExtended
             {
                 if (_parent == null && _parentID > 0)
                 {
-                    _parent = LoadoutManager.GetLoadoutById(parentID);
+                    var p = LoadoutManager.GetLoadoutById(parentID);
+                    if (p is Loadout)
+                    {
+                        if (p != this && (p._parent == null || (!p.Ancestors.Contains(this))))
+                        {
+                            _parent = p;
+                        }
+                        else
+                        {
+                            _parentID = 0;
+                        }
+                    }
                 }
                 return _parent;
             }
         }
-#nullable disable
 
         public List<LoadoutSlot> OwnSlots
         {
             get
             {
                 return _slots;
+            }
+        }
+
+        public IEnumerable<Loadout> Ancestors
+        {
+            get
+            {
+                Loadout? parent = ParentLoadout;
+                while (parent is Loadout)
+                {
+                    yield return parent;
+                    parent = parent.ParentLoadout;
+                }
+            }
+        }
+#nullable disable
+
+        public IEnumerable<LoadoutSlot> ParentSlots
+        {
+            get
+            {
+                foreach (Loadout ancestor in Ancestors)
+                {
+                    foreach (var slot in ancestor.OwnSlots)
+                    {
+                        yield return slot;
+                    }
+                }
             }
         }
 
@@ -121,7 +159,7 @@ namespace CombatExtended
             {
                 if (ParentLoadout is Loadout parent)
                 {
-                    return _slots.Concat(parent.Slots).ToList();
+                    return _slots.Concat(ParentSlots).ToList();
                 }
                 return _slots;
             }
@@ -327,7 +365,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref adHocMags, "adHocMags", 3);
             Scribe_Values.Look(ref adHocMass, "adHocMass", 0);
             Scribe_Values.Look(ref adHocBulk, "adHocBulk", 0);
-
+            _parent = null;
             // slots
             Scribe_Collections.Look(ref _slots, "slots", LookMode.Deep);
         }
@@ -449,32 +487,42 @@ namespace CombatExtended
             {
                 // Check if we have ammo in inventory, if so only ask for the same or more of that
                 Dictionary<ThingDef, Integer> inventory = pawn.GetStorageByThingDef();
-                bool haveAmmo = false;
+                Dictionary<ThingDef, int> haveAmmo = new Dictionary<ThingDef, int>();
+                int totalAmmo = 0;
+                
                 foreach (ThingDef def in inventory.Keys)
                 {
                     if (ammoTypes.Contains(def))
                     {
+                        haveAmmo[def] = inventory[def].value;
+                        totalAmmo += inventory[def].value;
+                    }
+                }
+                if (totalAmmo > 0)
+                {
+                    foreach (var ammo in haveAmmo.Keys)
+                    {
                         int magLimit = adHocMags * magSize;
                         if (adHocMass > 0)
                         {
-                            magLimit = Math.Min(magLimit, (int)(adHocMass / def.GetStatValueAbstract(StatDefOf.Mass)));
+                            magLimit = Math.Min(magLimit, (int)(adHocMass / ammo.GetStatValueAbstract(StatDefOf.Mass)));
                         }
                         if (adHocBulk > 0)
                         {
-                            magLimit = Math.Min(magLimit, (int)(adHocBulk / def.GetStatValueAbstract(CE_StatDefOf.Bulk)));
+                            magLimit = Math.Min(magLimit, (int)(adHocBulk / ammo.GetStatValueAbstract(CE_StatDefOf.Bulk)));
                         }
-                        haveAmmo = true;
-                        if (inventory[def].value < (magLimit - magSize) || inventory[def].value >= magLimit)
+                        magLimit -= (totalAmmo - haveAmmo[ammo]); // reduce mag limit by total of all other ammo types we already have
+                        if (haveAmmo[ammo] < magLimit - magSize || haveAmmo[ammo] > magLimit)
                         {
-                            yield return new LoadoutSlot(def, magLimit);
+                            yield return new LoadoutSlot(ammo, magLimit);
                         }
-                        else // have a reasonable number, just sit on it.
+                        else
                         {
-                            yield return new LoadoutSlot(def, inventory[def].value);
+                            yield return new LoadoutSlot(ammo, haveAmmo[ammo]);
                         }
                     }
                 }
-                if (!haveAmmo) // don't have any ammo, ask for some of everything.
+                else
                 {
                     foreach (var ammo in ammoTypes)
                     {
