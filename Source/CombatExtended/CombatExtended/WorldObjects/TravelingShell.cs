@@ -151,20 +151,18 @@ namespace CombatExtended
 
         private void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 200)
         {
-            IntVec3 targetCell = target.Cell;
-            Vector2 source = new Vector2(sourceCell.x, sourceCell.z);
-            Vector2 destination = new Vector2(targetCell.x, targetCell.z);
-            Vector2 w = (destination - source);
+            Vector3 source = new Vector3(sourceCell.x, shotHeight, sourceCell.z);
+            Vector3 targetPos = target.Cell.ToVector3Shifted();
 
             ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(shellDef);
             ProjectilePropertiesCE pprops = projectile.def.projectile as ProjectilePropertiesCE;
-            float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
-            float shotAngle = ProjectileCE.GetShotAngle(shotSpeed, (destination - source).magnitude, -shotHeight, false, pprops.Gravity);
+            float shotRotation = pprops.TrajectoryWorker.ShotRotation(pprops, source, targetPos);
+            float shotAngle = pprops.TrajectoryWorker.ShotAngle(pprops, source, targetPos, shotSpeed);
 
             projectile.canTargetSelf = false;
             projectile.Position = sourceCell;
             projectile.SpawnSetup(map, false);
-            projectile.Launch(launcher, source, shotAngle, shotRotation, shotHeight, shotSpeed);
+            projectile.Launch(launcher, new Vector2(source.x, source.z), shotAngle, shotRotation, shotHeight, shotSpeed);
             //projectile.cameraShakingInit = Rand.Range(0f, 2f);
         }
 

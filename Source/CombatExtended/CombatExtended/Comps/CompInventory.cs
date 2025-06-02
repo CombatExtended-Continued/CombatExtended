@@ -458,6 +458,7 @@ namespace CombatExtended
             }
             else if (useFists)
             {
+                parentPawn.jobs.SuspendCurrentJob(JobCondition.InterruptForced);
                 // Put away current weapon
                 ThingWithComps eq = parentPawn.equipment?.Primary;
                 if (eq != null && !parentPawn.equipment.TryTransferEquipmentToContainer(eq, container))

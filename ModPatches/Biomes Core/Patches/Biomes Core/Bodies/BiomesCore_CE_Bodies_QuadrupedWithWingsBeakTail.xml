@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Add groups entry if it doesn't exist already -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="BMT_Tail"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="BMT_Tail"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="BMT_Osteoderm"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="BMT_Osteoderm"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Neck"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Neck"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/parts/li[def="Leg"]</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Leg"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Add armor coverage -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="BMT_Tail"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="BMT_Tail"]/parts/li[def="BMT_TailWeapon"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="BMT_Osteoderm"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Neck"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="BMT_DinoBeak"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Leg"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Leg"]/parts/li[def="Foot"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Leg"]/parts/li[def="Foot"]/parts/li[def="FrontClaw"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]/corePart/parts/li[def="Leg"]/parts/li[def="Foot"]/parts/li[def="RearClaw"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

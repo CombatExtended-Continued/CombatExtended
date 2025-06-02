@@ -538,8 +538,23 @@
 			<CarryWeight>80</CarryWeight>
 			<CarryBulk>10</CarryBulk>
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorPowerBase"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="ApparelArmorPowerBase"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="ApparelArmorPowerBase"]/equippedStatOffsets</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">

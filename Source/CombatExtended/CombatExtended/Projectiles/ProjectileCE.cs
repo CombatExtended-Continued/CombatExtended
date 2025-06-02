@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -27,18 +28,20 @@ namespace CombatExtended
         protected const int collisionCheckSize = 5;
 
         #region Kinetic Projectiles
-        protected bool lerpPosition = true;
-        protected bool kinit = false;
-        protected float ballisticCoefficient;
-        protected float mass;
-        protected float radius;
-        protected float gravity;
-        protected Vector3 velocity;
-        protected float initialSpeed;
+        public float ballisticCoefficient;
+        public float mass;
+        public float radius;
+        public float gravity;
+        public int fuelTicks;
+        public Vector3 velocity;
+        public float initialSpeed;
+
+        // Deprecated: Remove in 1.6
+        public bool lerpPosition = true;
         #endregion
 
         #region Drawing
-        protected int ticksToTruePosition;
+        public int ticksToTruePosition;
         #endregion
 
         #region Origin destination
@@ -90,15 +93,34 @@ namespace CombatExtended
                     this.damageAmount = def.projectile.GetDamageAmount(weaponDamageMultiplier);
                 }
 
-                if (lerpPosition)
-                {
-                    return (float)this.damageAmount;
-                }
                 return ((float)this.damageAmount) * RemainingKineticEnergyPct;
             }
         }
+        public virtual float PenetrationAmount
+        {
+            get
+            {
+                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
+                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
 
-        public float RemainingKineticEnergyPct => (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
+                float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
+
+                float speedFactor = isSharpDmg ? RemainingSpeedPct : RemainingKineticEnergyPct;
+                return penetrationAmount * speedFactor;
+            }
+        }
+        public virtual DamageInfo DamageInfo => new DamageInfo(
+                    def.projectile.damageDef,
+                    DamageAmount,
+                    PenetrationAmount, //Armor Penetration
+                    ExactRotation.eulerAngles.y,
+                    launcher,
+                    null,
+                    def,
+                    instigatorGuilty: InstigatorGuilty);
+
+        public float RemainingKineticEnergyPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed) : 1f;
+        public float RemainingSpeedPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed) / (initialSpeed) : 1f;
 
         /// <summary>
         /// Reference to the weapon that fired this projectile, may be null.
@@ -160,21 +182,13 @@ namespace CombatExtended
         #endregion
 
         #region Position
-        protected virtual Vector2 Vec2Position(float ticks = -1f)
-        {
-            Log.ErrorOnce("Vec2Position(float) is deprecated and will be removed in 1.5", 50021);
-            if (ticks < 0)
-            {
-                return Vec2Position();
-            }
-            return Vector2.Lerp(origin, Destination, ticks / startingTicksToImpact);
-        }
-        protected virtual Vector2 Vec2Position()
-        {
-            return Vector2.Lerp(origin, Destination, FlightTicks / startingTicksToImpact);
-        }
-
         private Vector3 exactPosition;
+
+        public virtual Vector2 Vec2Position()
+        {
+            Log.ErrorOnce($"{this}.Vec2Position() is deprecated and will be removed in 1.6", 50021 + def.projectile.GetHashCode());
+            return new Vector2(ExactPosition.x, ExactPosition.z);
+        }
 
         /// <summary>
         /// Exact x,y,z (x,height,y) position in terms of Vec2Position.x, .y (lerped origin to Destination) and Height.
@@ -184,7 +198,10 @@ namespace CombatExtended
             set
             {
                 exactPosition = value;
-                Position = ((Vector3)exactPosition).ToIntVec3();
+                if (Map == null || value.InBounds(Map))
+                {
+                    Position = ((Vector3)exactPosition).ToIntVec3();
+                }
             }
             get
             {
@@ -201,16 +218,12 @@ namespace CombatExtended
             }
         }
 
+
         public override Vector3 DrawPos
         {
             get
             {
-                var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
-                if (FlightTicks < ticksToTruePosition)
-                {
-                    sh *= (float)FlightTicks / ticksToTruePosition;
-                }
-                return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
+                return TrajectoryWorker.ExactPosToDrawPos(ExactPosition, FlightTicks, ticksToTruePosition, def.Altitude);
             }
         }
 
@@ -244,10 +257,15 @@ namespace CombatExtended
         /// <summary>
         /// Based on equations of motion
         /// </summary>
-        public Quaternion DrawRotation
+        private Quaternion? _drawRotation = null;
+        public virtual Quaternion DrawRotation
         {
             get
             {
+                if (_drawRotation != null)
+                {
+                    return (Quaternion)_drawRotation;
+                }
                 Vector2 w = (Destination - origin);
 
                 var vx = w.x / startingTicksToImpact;
@@ -291,7 +309,7 @@ namespace CombatExtended
         /// <summary>
         /// Gravity factor in meters(cells) per second squared
         /// </summary>
-        private float GravityFactor = CE_Utility.GravityConst;
+        public float GravityFactor = CE_Utility.GravityConst;
 
         protected Material[] shadowMaterial;
         protected Material ShadowMaterial
@@ -358,8 +376,17 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
-            Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
             Scribe_Values.Look(ref ignoreRoof, "ignoreRoof", true);
+            Scribe_Values.Look(ref ticksToTruePosition, "ticksToTruePosition");
+
+            Scribe_Values.Look(ref ballisticCoefficient, "ballisticCoefficient");
+            Scribe_Values.Look(ref mass, "mass");
+            Scribe_Values.Look(ref radius, "radius");
+            Scribe_Values.Look(ref gravity, "gravity");
+            Scribe_Values.Look(ref fuelTicks, "fuelTicks");
+            Scribe_Values.Look(ref velocity, "velocity");
+            Scribe_Values.Look(ref initialSpeed, "initialSpeed");
+
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
@@ -398,7 +425,18 @@ namespace CombatExtended
             mass = projectileProperties.mass.RandomInRange;
             radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
             gravity = projectileProperties.Gravity;
+            fuelTicks = projectileProperties.fuelTicks;
             initialSpeed = shotSpeed;
+            var worker = (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
+            if (worker is BallisticsTrajectoryWorker)
+            {
+                forcedTrajectoryWorker = worker;
+            }
+            else
+            {
+                Log.ErrorOnce($"Tried setting a non-Ballistic TrajectoryWorker ({worker}) on a projectile being Thrown. Falling back to default.", 50019);
+                forcedTrajectoryWorker = ProjectilePropertiesCE.defaultBallisticTrajectoryWorker;
+            }
         }
         #endregion
 
@@ -564,8 +602,12 @@ namespace CombatExtended
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 this.castShadow = props.castShadow;
-                this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
+                ballisticCoefficient = props.ballisticCoefficient.RandomInRange;
+                mass = props.mass.RandomInRange;
+                radius = props.diameter.RandomInRange / 2000; // half the diameter and mm -> m
+                gravity = props.Gravity;
+                fuelTicks = props.fuelTicks;
             }
             if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Spawned && Position.Roofed(launcher.Map))
             {
@@ -580,16 +622,18 @@ namespace CombatExtended
             this.origin = origin;
             this.OriginIV3 = new IntVec3(origin);
             this.Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
+            velocity = TrajectoryWorker.GetInitialVelocity(shotSpeed, shotRotation, shotAngle);
+            initialSpeed = shotSpeed = velocity.magnitude * GenTicks.TicksPerRealSecond;
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
 
-            if (!def.projectile.soundAmbient.NullOrUndefined())
+            if (Map != null && !def.projectile.soundAmbient.NullOrUndefined())
             {
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
-            this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
+            this.startingTicksToImpact = TrajectoryWorker.GetFlightTime(shotAngle, shotSpeed, GravityFactor, shotHeight) * GenTicks.TicksPerRealSecond;
             this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
             this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
 
@@ -720,7 +764,7 @@ namespace CombatExtended
         }
 
         //Removed minimum collision distance
-        protected bool CheckForCollisionBetween()
+        protected virtual bool CheckForCollisionBetween()
         {
             bool collided = false;
             Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
@@ -962,7 +1006,7 @@ namespace CombatExtended
             Impact(null);
             return true;
         }
-        protected bool CanCollideWith(Thing thing, out float dist)
+        protected virtual bool CanCollideWith(Thing thing, out float dist)
         {
             dist = -1f;
             if (globalTargetInfo.IsValid)
@@ -975,6 +1019,11 @@ namespace CombatExtended
             }
 
             var bounds = CE_Utility.GetBoundsFor(thing);
+            if (bounds.Contains(LastPos) || bounds.Contains(ExactPosition))
+            {
+                dist = 0f;
+                return true;
+            }
             if (!bounds.IntersectRay(ShotLine, out dist))
             {
                 return false;
@@ -998,8 +1047,12 @@ namespace CombatExtended
                 return false;
             }
             // Trees and bushes have RNG chance to collide
-            if (thing is Plant)
+            if (thing is Plant plant)
             {
+                if (plant.positionInt == LastPos.ToIntVec3())
+                {
+                    return false;
+                }
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
                 var chance = thing.def.fillPercent * accuracyFactor;
@@ -1123,58 +1176,25 @@ namespace CombatExtended
             }
         }
 
-        // If anyone wants to override how projectiles move, this can be made virtual.
-        // For now, it is non-virtual for performance.
+        public List<Vector3> cachedPredictedPositions;
+        public virtual IEnumerable<Vector3> PredictedPositions
+        {
+            get
+            {
+                if (cachedPredictedPositions == null)
+                {
+                    cachedPredictedPositions = TrajectoryWorker.PredictPositions(this, GenTicks.TicksPerRealSecond).ToList();
+                }
+                return cachedPredictedPositions;
+            }
+        }
+
         protected Vector3 MoveForward()
         {
-            Vector3 curPosition = ExactPosition;
-            float sr = shotRotation * Mathf.Deg2Rad + 3.14159f / 2.0f;
-            if (!kinit)
-            {
-                kinit = true;
-                var projectileProperties = def.projectile as ProjectilePropertiesCE;
-                ballisticCoefficient = projectileProperties.ballisticCoefficient.RandomInRange;
-                mass = projectileProperties.mass.RandomInRange;
-                radius = projectileProperties.diameter.RandomInRange / 2000;
-                gravity = projectileProperties.Gravity;
-                float sspt = shotSpeed / GenTicks.TicksPerRealSecond;
-                velocity = new Vector3(Mathf.Cos(sr) * Mathf.Cos(shotAngle) * sspt, Mathf.Sin(shotAngle) * sspt, Mathf.Sin(sr) * Mathf.Cos(shotAngle) * sspt);
-                initialSpeed = sspt;
-            }
-            Accelerate();
-            Vector3 newPosition = curPosition + velocity;
-            shotSpeed = velocity.magnitude;
-            return newPosition;
+            return TrajectoryWorker.MoveForward(this);
         }
 
-        // This is the ideal entry point for guided ammunition and rockets.
-        protected virtual void Accelerate()
-        {
-            AffectedByDrag();
-            AffectedByGravity();
-        }
-
-        protected void AffectedByGravity()
-        {
-            velocity.y -= gravity / GenTicks.TicksPerRealSecond;
-        }
-
-        protected void AffectedByDrag()
-        {
-            float crossSectionalArea = radius;
-            crossSectionalArea *= crossSectionalArea * 3.14159f;
-            // 2.5f is half the mass of 1m² x 1cell of air.
-            var q = 2.5f * shotSpeed * shotSpeed;
-            var dragForce = q * crossSectionalArea / ballisticCoefficient;
-            // F = mA
-            // A = F / m
-            var a = (float)-dragForce / mass;
-            var normalized = velocity.normalized;
-            velocity.x += a * normalized.x;
-            velocity.y += a * normalized.y;
-            velocity.z += a * normalized.z;
-        }
-
+        protected virtual bool ShouldCollideWithSomething => (TrajectoryWorker is LerpedTrajectoryWorker && ticksToImpact <= 0) || ExactPosition.y <= 0f;
         #region Tick/Draw
         public override void Tick()
         {
@@ -1183,19 +1203,23 @@ namespace CombatExtended
             {
                 return;
             }
+            if (lerpPosition != (TrajectoryWorker is LerpedTrajectoryWorker))
+            {
+                Log.WarningOnce($"ProjectileCE.lerpPosition value changed in {this}. Setting or referencing this field is deprecated. Please report this.", 50004 + def.projectile.GetHashCode());
+            }
+            if (TrajectoryWorker is BallisticsTrajectoryWorker && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
+            {
+                Destroy(DestroyMode.Vanish);
+                return;
+            }
+
+            TrajectoryWorker.NotifyTicked(this);
             LastPos = ExactPosition;
             ticksToImpact--;
             FlightTicks++;
-            Vector3 nextPosition;
-            if (lerpPosition)
-            {
-                var v = Vec2Position();
-                nextPosition = new Vector3(v.x, GetHeightAtTicks(FlightTicks), v.y);
-            }
-            else
-            {
-                nextPosition = MoveForward();
-            }
+            Vector3 nextPosition = MoveForward();
+            _drawRotation = Quaternion.LookRotation(nextPosition - ExactPosition);
+
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
@@ -1240,7 +1264,7 @@ namespace CombatExtended
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
             //TODO : It appears that the final steps in the arc (past ticksToImpact == 0) don't CheckForCollisionBetween.
-            if ((lerpPosition && ticksToImpact <= 0) || nextPosition.y <= 0f)
+            if (ShouldCollideWithSomething)
             {
                 ImpactSomething();
                 return;
@@ -1407,7 +1431,8 @@ namespace CombatExtended
                     var reusableAmmo = ThingMaker.MakeThing(thingDef);
                     reusableAmmo.stackCount = 1;
                     reusableAmmo.SetForbidden(true, false);
-                    GenPlace.TryPlaceThing(reusableAmmo, Position, Map, ThingPlaceMode.Near);
+                    Thing existingStack = Position.GetRegion(Map)?.listerThings.ThingsOfDef(thingDef).FirstOrFallback(thing => thing.stackCount < thing.def.stackLimit, null);
+                    GenPlace.TryPlaceThing(reusableAmmo, existingStack != null ? existingStack.positionInt : Position, Map, ThingPlaceMode.Near);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, reusableAmmo, OpportunityType.GoodToKnow);
                     ignoredThings.Add(reusableAmmo);
                 }
@@ -1466,7 +1491,7 @@ namespace CombatExtended
 
                 var suppressThings = new List<Pawn>();
                 float dangerAmount = 0f;
-                var dir = new float?(origin.AngleTo(Vec2Position()));
+                var dir = new float?(origin.AngleTo(new Vector2(ExactPosition.x, ExactPosition.z)));
 
                 // Opt-out for things without explosionRadius
                 if (def.projectile.explosionRadius > 0f)
@@ -1556,6 +1581,77 @@ namespace CombatExtended
         #endregion
 
         #region Ballistics
+
+        private LegacyTrajectoryWorker CheckForLegacyProjectile()
+        {
+            Type type = this.GetType();
+            if (type == typeof(ProjectileCE) || type == typeof(BulletCE)) // early out for most common case
+            {
+                return null;
+            }
+            bool v2p;
+            try
+            {
+                var vec2position_m = type.GetMethod(nameof(Vec2Position), BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                v2p = vec2position_m.GetBaseDefinition().DeclaringType != vec2position_m.DeclaringType;
+            }
+            catch (System.Reflection.AmbiguousMatchException) // Still using 1.3 era code
+            {
+                v2p = true;
+            }
+            if (!v2p)
+            {
+                return null;
+            }
+
+            var exactPosition_m = type.GetProperty("ExactPosition", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var exactPosition_gm = exactPosition_m.GetGetMethod();
+            var ep = exactPosition_gm.GetBaseDefinition() != exactPosition_gm;
+
+            if (v2p)
+            {
+                return new LegacyTrajectoryWorker(this, v2p, ep);
+            }
+            return null;
+        }
+
+        public BaseTrajectoryWorker TrajectoryWorker
+        {
+            get
+            {
+                if (forcedTrajectoryWorker == null)
+                {
+                    if (CheckForLegacyProjectile() is LegacyTrajectoryWorker worker)
+                    {
+                        Log.WarningOnce($"{this} uses legacy collision code. Falling back to legacy TrajectoryWorker", this.def.GetHashCode());
+                        forcedTrajectoryWorker = worker;
+                    }
+                    else if (!lerpPosition)
+                    {
+                        Log.ErrorOnce($"Setting lerpPosition in ProjectileCE directly for {this} is deprecated, set the trajectoryWorker instead", 50003 + def.projectile.GetHashCode());
+                        forcedTrajectoryWorker = ProjectilePropertiesCE.defaultBallisticTrajectoryWorker;
+                    }
+                    else if (def.projectile is ProjectilePropertiesCE propertiesCE)
+                    {
+                        if (propertiesCE.lerpPosition != "")
+                        {
+                            Log.ErrorOnce($"Setting lerpPosition in ProjectilePropertiesCE for {this} is deprecated, set the trajectoryWorker instead", 50002 + def.projectile.GetHashCode());
+                        }
+                        forcedTrajectoryWorker = propertiesCE.TrajectoryWorker;
+                    }
+                    else
+                    {
+                        Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
+                        forcedTrajectoryWorker = ProjectilePropertiesCE.defaultLerpedTrajectoryWorker;
+                    }
+                    lerpPosition = forcedTrajectoryWorker is LerpedTrajectoryWorker;
+                }
+                return forcedTrajectoryWorker;
+            }
+        }
+
+        internal BaseTrajectoryWorker forcedTrajectoryWorker;
+
         /// <summary>
         /// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
         /// </summary>
@@ -1574,11 +1670,7 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Time in seconds that the projectile will take to traverse the given arc.</returns>
-        protected float GetFlightTime()
-        {
-            //Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
-            return (Mathf.Sin(shotAngle) * shotSpeed + Mathf.Sqrt(Mathf.Pow(Mathf.Sin(shotAngle) * shotSpeed, 2f) + 2f * GravityFactor * shotHeight)) / GravityFactor;
-        }
+
 
         /// <summary>
         /// Calculates the range reachable with a projectile of speed <i>velocity</i> fired at <i>angle</i> from height <i>shotHeight</i>. Does not take into account air resistance.
@@ -1587,28 +1679,8 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
-        protected float DistanceTraveled => CE_Utility.MaxProjectileRange(shotHeight, shotSpeed, shotAngle, GravityFactor);
+        protected float DistanceTraveled => TrajectoryWorker.DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
 
-        /// <summary>
-        /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.
-        /// </summary>
-        /// <param name="velocity">Projectile velocity in cells per second.</param>
-        /// <param name="range">Cells between shooter and target.</param>
-        /// <param name="heightDifference">Difference between initial shot height and target height in vertical cells.</param>
-        /// <param name="flyOverhead">Whether to take the lower (False) or upper (True) arc angle.</param>
-        /// <returns>Arc angle in radians off the ground.</returns>
-        public static float GetShotAngle(float velocity, float range, float heightDifference, bool flyOverhead, float gravity)
-        {
-            float squareRootCheck = Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)));
-            if (float.IsNaN(squareRootCheck))
-            {
-                //Target is too far to hit with given velocity/range/gravity params
-                //set firing angle for maximum distance
-                Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
-                return 45.0f * Mathf.Deg2Rad;
-            }
-            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
-        }
         #endregion
 
         protected static Material[] GetShadowMaterial(Graphic_Collection g)
@@ -1618,7 +1690,7 @@ namespace CombatExtended
 
             return shadows;
         }
-
+        public ProjectilePropertiesCE Props => (ProjectilePropertiesCE)def.projectile;
         #endregion
     }
 }

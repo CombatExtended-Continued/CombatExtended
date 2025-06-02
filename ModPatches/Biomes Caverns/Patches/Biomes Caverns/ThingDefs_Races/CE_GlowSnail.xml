@@ -21,14 +21,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BMT_GlowSnail"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>2.0</ArmorRating_Blunt>
+			<ArmorRating_Blunt>2</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BMT_GlowSnail"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>8.0</ArmorRating_Sharp>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -50,4 +50,28 @@
 			</tools>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BMT_GlowSnail"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BMT_GlowSnail"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BMT_GlowSnail"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>312</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>

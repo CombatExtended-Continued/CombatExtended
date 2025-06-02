@@ -12,29 +12,52 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>15</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>18</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
+					<label>venom fangs</label>
 					<capacities>
-						<li>Bite</li>
+						<li>DankPyon_LindwurmAcid</li>
 					</capacities>
 					<power>32</power>
 					<cooldownTime>2.6</cooldownTime>
 					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0.5</armorPenetrationSharp>
-					<armorPenetrationBlunt>2.7</armorPenetrationBlunt>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>2.4</armorPenetrationSharp>
+					<armorPenetrationBlunt>13.2</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>4</power>
+					<power>9</power>
 					<cooldownTime>0.97</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>0.823</armorPenetrationBlunt>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>left claw</label>
@@ -44,8 +67,8 @@
 					<power>23</power>
 					<cooldownTime>2</cooldownTime>
 					<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0.18</armorPenetrationSharp>
-					<armorPenetrationBlunt>0.823</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.6</armorPenetrationSharp>
+					<armorPenetrationBlunt>12.8</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right claw</label>
@@ -55,8 +78,8 @@
 					<power>23</power>
 					<cooldownTime>2</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0.18</armorPenetrationSharp>
-					<armorPenetrationBlunt>0.823</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.6</armorPenetrationSharp>
+					<armorPenetrationBlunt>12.8</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>tail</label>
@@ -74,7 +97,7 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -85,6 +108,29 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>4000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
 			</li>
 		</value>
 	</Operation>

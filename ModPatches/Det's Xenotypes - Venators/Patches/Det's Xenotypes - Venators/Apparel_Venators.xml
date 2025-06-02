@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_HunterVisage"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4.5</ArmorRating_Blunt>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_HunterVisage"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_HunterVisage"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-0.50</SmokeSensitivity>
+		</value>
+	</Operation>
+
+</Patch>

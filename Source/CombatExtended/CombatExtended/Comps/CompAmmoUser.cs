@@ -59,7 +59,8 @@ namespace CombatExtended
         {
             get
             {
-                return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
+                WeaponPlatform platform = parent as WeaponPlatform;
+                return (int)(platform?.GetStatValue(CE_StatDefOf.MagazineCapacity) ?? Props.magazineSize);
             }
         }
 
@@ -83,7 +84,8 @@ namespace CombatExtended
         {
             get
             {
-                return (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride);
+                WeaponPlatform platform = parent as WeaponPlatform;
+                return (int)(platform?.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride) ?? Props.AmmoGenPerMagOverride);
             }
         }
         public int CurMagCount
@@ -720,7 +722,7 @@ namespace CombatExtended
             return false;
         }
 
-        public void LoadAmmo(Thing ammo = null)
+        public void LoadAmmo(Thing ammo = null, bool emptyMag = false)
         {
             Building_AutoloaderCE AutoLoader = null;
             if (parent is Building_AutoloaderCE)
@@ -772,7 +774,7 @@ namespace CombatExtended
                 else
                 {
                     int newAmmoCount = ammoThing.stackCount;
-                    if (turret != null || AutoLoader != null)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                    if (!emptyMag)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                     {
                         newAmmoCount += curMagCountInt;
                     }
@@ -941,7 +943,7 @@ namespace CombatExtended
 
         public override string TransformLabel(string label)
         {
-            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)Props.ammoSet.LabelCap + ") " : "";
+            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)Props.ammoSet.LabelCap + ")" : "";
             return label + ammoSet;
         }
 

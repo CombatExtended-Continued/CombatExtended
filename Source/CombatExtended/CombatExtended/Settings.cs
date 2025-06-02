@@ -30,7 +30,6 @@ namespace CombatExtended
         private bool genericammo = false;
         private bool partialstats = true;
         private bool enableExtraEffects = true;
-        private bool enableArcOfFire = false;
 
         private bool showExtraTooltips = false;
 
@@ -61,6 +60,7 @@ namespace CombatExtended
         public bool ShowExtraTooltips => showExtraTooltips;
 
         public bool ShowExtraStats => showExtraStats;
+        public bool EnableCIWS => enableCIWS;
 
         public bool ShowTutorialPopup = true;
 
@@ -72,6 +72,7 @@ namespace CombatExtended
         private bool showCaliberOnGuns = true;
         private bool reuseNeolithicProjectiles = true;
         private bool realisticCookOff = true;
+        private bool stuckArrowsAsFlecks = true;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
         public bool RightClickAmmoSelect => rightClickAmmoSelect;
@@ -80,6 +81,7 @@ namespace CombatExtended
         public bool ShowCaliberOnGuns => showCaliberOnGuns;
         public bool ReuseNeolithicProjectiles => reuseNeolithicProjectiles;
         public bool RealisticCookOff => realisticCookOff;
+        public bool StuckArrowsAsFlecks => stuckArrowsAsFlecks;
 
         // Debug settings - make sure all of these default to false for the release build
         private bool debuggingMode = false;
@@ -197,6 +199,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
+            Scribe_Values.Look(ref stuckArrowsAsFlecks, "stuckArrowsAsFlecks", true);
             Scribe_Values.Look(ref genericammo, "genericAmmo", false);
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
@@ -208,6 +211,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
 
+            //CIWS
+            Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
@@ -221,6 +226,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_CreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_CreateCasingsFilth_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_StuckArrowsAsFlecks_Title".Translate(), ref stuckArrowsAsFlecks, "CE_Settings_StuckArrowsAsFlecks_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_RecoilAnim_Title".Translate(), ref recoilAnim, "CE_Settings_RecoilAnim_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
@@ -232,28 +238,18 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableExtraEffects_Title".Translate(), ref enableExtraEffects, "CE_Settings_EnableExtraEffects_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
-            // Only Allow these settings to be changed in the main menu since doing while a
-            // map is loaded will result in rendering issues.
-            if (Current.Game == null)
-            {
-                list.CheckboxLabeled("CE_Settings_ShowBackpacks_Title".Translate(), ref showBackpacks, "CE_Settings_ShowBackpacks_Desc".Translate());
-                list.CheckboxLabeled("CE_Settings_ShowWebbing_Title".Translate(), ref showTacticalVests, "CE_Settings_ShowWebbing_Desc".Translate());
-                list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
-            }
-            else
-            {
-                // tell the user that he can only change these settings from main menu
-                list.GapLine();
-                Text.Font = GameFont.Medium;
-                list.Label("CE_Settings_MainMenuOnly_Title".Translate(), tooltip: "CE_Settings_MainMenuOnly_Desc".Translate());
-                Text.Font = GameFont.Small;
+            list.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
 
-                list.Gap();
-                list.Label("CE_Settings_ShowBackpacks_Title".Translate(), tooltip: "CE_Settings_ShowBackpacks_Desc".Translate());
-                list.Label("CE_Settings_ShowWebbing_Title".Translate(), tooltip: "CE_Settings_ShowWebbing_Desc".Translate());
-                list.Gap();
-            }
+            list.GapLine(); Text.Font = GameFont.Medium;
+            list.Label("CE_Settings_Rendering_Title".Translate(), tooltip: "CE_Settings_Rendering_Desc".Translate());
+            Text.Font = GameFont.Small;
 
+            list.Gap();
+            list.CheckboxLabeled("CE_Settings_ShowBackpacks_Title".Translate(), ref showBackpacks, "CE_Settings_ShowBackpacks_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_ShowWebbing_Title".Translate(), ref showTacticalVests, "CE_Settings_ShowWebbing_Desc".Translate());
+
+            list.Gap();
             list.GapLine();
             Text.Font = GameFont.Medium;
             list.Label("CE_Settings_HeaderAutopatcher".Translate());

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BMT_PustuleHornet"] </xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BMT_PustuleHornet"]/statBases </xpath>
+		<value>
+			<MeleeDodgeChance>0.95</MeleeDodgeChance>
+			<MeleeCritChance>0.55</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BMT_PustuleHornet"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>3.4</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1.5</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stinger</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<extraMeleeDamages>
+						<li>
+							<def>BMT_Neurotoxin</def>
+							<amount>5</amount>
+						</li>
+					</extraMeleeDamages>
+					<power>2</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>BMT_StingerGroup</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BMT_PustuleHornetQueen"] </xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BMT_PustuleHornetQueen"]/statBases </xpath>
+		<value>
+			<MeleeDodgeChance>1.55</MeleeDodgeChance>
+			<MeleeCritChance>0.45</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BMT_PustuleHornetQueen"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>4.4</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3.5</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stinger</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<extraMeleeDamages>
+						<li>
+							<def>BMT_Neurotoxin</def>
+							<amount>15</amount>
+						</li>
+					</extraMeleeDamages>
+					<power>2</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>BMT_StingerGroup</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

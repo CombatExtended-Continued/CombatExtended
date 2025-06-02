@@ -361,7 +361,7 @@ namespace CombatExtended
             if (Active && (this.mannableComp == null || this.mannableComp.MannedNow) && base.Spawned && !(isReloading && WarmingUp))
             {
                 this.GunCompEq.verbTracker.VerbsTick();
-                if (!IsStunned && this.GunCompEq.PrimaryVerb.state != VerbState.Bursting)
+                if (!IsStunned && AttackVerb.state != VerbState.Bursting)
                 {
                     if (this.WarmingUp && !(NonSnap && burstWarmupTicksLeft == 1 && Mathf.Abs(DeltaAngle) > NonSnapExtension.speed))
                     {
@@ -626,8 +626,7 @@ namespace CombatExtended
             top.DrawTurret(drawLoc, drawOffset, angleOffset);
             base.DrawAt(drawLoc, flip);
         }
-
-        public override void DrawExtraSelectionOverlays()           // Draw at range less than 1.42 tiles
+        protected virtual void DrawRangeRings()
         {
             base.DrawExtraSelectionOverlays();
             float range = this.GunCompEq.PrimaryVerb.verbProps.range;
@@ -640,6 +639,10 @@ namespace CombatExtended
             {
                 GenDraw.DrawRadiusRing(base.Position, minRange);
             }
+        }
+        public override void DrawExtraSelectionOverlays()           // Draw at range less than 1.42 tiles
+        {
+            DrawRangeRings();
             if (this.WarmingUp)
             {
                 int degreesWide = (int)((float)this.burstWarmupTicksLeft * 0.5f);
@@ -837,7 +840,7 @@ namespace CombatExtended
             }
         }
 
-        public void ResetCurrentTarget()               // Core method
+        public virtual void ResetCurrentTarget()               // Core method
         {
             this.currentTargetInt = LocalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;

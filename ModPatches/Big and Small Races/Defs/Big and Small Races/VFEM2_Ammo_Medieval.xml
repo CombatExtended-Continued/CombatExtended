@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ===== Heavy Crossbow Ammo ===== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_BASRHeavyCrossbowBolt</defName>
+		<label>crossbow bolts</label>
+		<ammoTypes>
+			<Ammo_CrossbowBolt_Stone>Projectile_BASRHeavyCrossbowBolt_Stone</Ammo_CrossbowBolt_Stone>
+			<Ammo_CrossbowBolt_Steel>Projectile_BASRHeavyCrossbowBolt_Steel</Ammo_CrossbowBolt_Steel>
+			<Ammo_CrossbowBolt_Plasteel>Projectile_BASRHeavyCrossbowBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
+			<Ammo_CrossbowBolt_Venom>Projectile_BASRHeavyCrossbowBolt_Venom</Ammo_CrossbowBolt_Venom>
+			<Ammo_CrossbowBolt_Flame>Projectile_BASRHeavyCrossbowBolt_Flame</Ammo_CrossbowBolt_Flame>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_BASRHeavyCrossbowBolt_Stone</defName>
+		<label>crossbow bolt (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.85</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.1</preExplosionSpawnChance><!-- 11.11 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
+		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Stone</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.55</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_BASRHeavyCrossbowBolt_Steel</defName>
+		<label>crossbow bolt (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.85</armorPenetrationSharp>
+			<speed>30</speed>
+			<preExplosionSpawnChance>0.333</preExplosionSpawnChance><!-- 14.99 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Steel</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.55</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_BASRHeavyCrossbowBolt_Plasteel</defName>
+		<label>crossbow bolt (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>8.12</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<speed>32</speed>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Plasteel</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.55</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_BASRHeavyCrossbowBolt_Venom</defName>
+		<label>crossbow bolt (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ArrowVenom</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<speed>30</speed>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance> <!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Venom</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.55</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_BASRHeavyCrossbowBolt_Flame</defName>
+		<label>crossbow bolt (flame)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBlunt>3.28</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.24</preExplosionSpawnChance>
+			<speed>30</speed>
+		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Flame</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.75</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+</Defs>

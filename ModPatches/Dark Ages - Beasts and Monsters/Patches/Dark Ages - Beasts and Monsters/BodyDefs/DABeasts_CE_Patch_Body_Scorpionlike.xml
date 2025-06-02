@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ==================== DA_ScorpionLike ==================== -->
+	<!-- ========== Add groups entry if it doesn't exist already ========== -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="Pronotum"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="InsectLeg"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="InsectLeg"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="DA_InsectTail"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="DA_InsectTail"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ========== Add armor coverage ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/parts/li[def="InsectMouth"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="DA_InsectTail"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="DA_InsectTail"]/parts/li[def="DA_InsectStinger"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="InsectLeg"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DA_ScorpionLike"]/corePart/parts/li[def="DA_Pincer"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>
