@@ -600,7 +600,7 @@ namespace CombatExtended
             draggingHandle.width = row.height;
 
             Rect labelRect = new Rect(row);
-            if (slotDraggable)
+            if (slotDraggable || usingParent)
             {
                 labelRect.xMin = draggingHandle.xMax;
             }
@@ -700,7 +700,7 @@ namespace CombatExtended
             // easy ammo adder, ranged weapons only
             if (slot.thingDef is { IsRangedWeapon: true })
             {
-                // make sure there's an ammoset defined
+                // make sure there's an ammoSet defined
                 AmmoSetDef ammoSet = ((slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? null : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().ammoSet);
 
                 if (ammoSet is { ammoTypes.Count: > 0 })
@@ -777,11 +777,7 @@ namespace CombatExtended
             // set up content canvas
             int totalSlotCount = CurrentLoadout.SlotCount + 2;
             var parentLoadout = CurrentLoadout.ParentLoadout;
-            var usingParent = false;
-            if (parentLoadout != null)
-            {
-                usingParent = true;
-            }
+            bool usingParent = parentLoadout != null;
 
             while (parentLoadout != null)
             {
@@ -809,7 +805,7 @@ namespace CombatExtended
             float curY = 0f;
             GUI.enabled = false;
             var ancestorLoadout = CurrentLoadout.ParentLoadout;
-            Stack<Loadout> lineage = new();
+            Stack<Loadout> lineage = [];
 
             while (ancestorLoadout != null)
             {
@@ -839,7 +835,7 @@ namespace CombatExtended
             if (usingParent)
             {
                 Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
-                Widgets.DrawLineHorizontal(0f, curY + (_rowHeight / 2), viewRect.width);
+                Widgets.DrawLineHorizontal(10f, curY + (_rowHeight / 2), row.width - 20f);
                 if (rowIndex % 2 == 0)
                 {
                     GUI.DrawTexture(row, _darkBackground);
@@ -877,7 +873,7 @@ namespace CombatExtended
                         Dragging = null;
                     }
 
-                    // ofset further slots down
+                    // offset further slots down
                     row.y += _rowHeight;
                     curY += _rowHeight;
                 }
@@ -888,7 +884,7 @@ namespace CombatExtended
                     GUI.DrawTexture(row, _darkBackground);
                 }
 
-                // draw the slot - grey out if draggin this, but only when dragged over somewhere else
+                // draw the slot - grey out if dragging this, but only when dragged over somewhere else
                 if (Dragging == CurrentLoadout.OwnSlots[i] && !Mouse.IsOver(row))
                 {
                     GUI.color = new Color(.6f, .6f, .6f, .4f);
@@ -1049,7 +1045,7 @@ namespace CombatExtended
         private static void AddLoadoutSlotSpecific(Loadout loadout, ThingDef def, int count = 1)
         => loadout.AddSlot(new LoadoutSlot(def, count));
 
-        // We prefer syncing loadout and slot index, as it's faster than iterating over all of the loadouts first to find the current one.
+        // We prefer syncing loadout and slot index, as it's faster than iterating overall of the loadouts first to find the current one.
         // We don't have direct reference to Loadout from LoadoutSlot, so we can't really speed up the SyncWorker for it.
         [Compatibility.Multiplayer.SyncMethod]
         private static void RemoveSlot(Loadout loadout, int index)
