@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
+using RimWorld;
 
 namespace CombatExtended
 {
@@ -19,6 +20,9 @@ namespace CombatExtended
         internal int uniqueID;
         public bool dropUndefined = true;
         public bool adHoc = false;
+        public int adHocMags = 3;
+        public int adHocMass = 0;
+        public int adHocBulk = 0;
         private int _parentID = 0;
 #nullable enable
         private Loadout? _parent = null;
@@ -182,6 +186,9 @@ namespace CombatExtended
             dest.canBeDeleted = source.canBeDeleted;
             dest.dropUndefined = source.dropUndefined;
             dest.adHoc = source.adHoc;
+            dest.adHocMags = source.adHocMags;
+            dest.adHocMass = source.adHocMass;
+            dest.adHocBulk = source.adHocBulk;
             dest.parentID = source.parentID;
             dest._slots = new List<LoadoutSlot>();
             foreach (LoadoutSlot slot in source.OwnSlots)
@@ -251,6 +258,9 @@ namespace CombatExtended
             unloadableDefNames = new List<string>();
             loadout.dropUndefined = loadoutConfig.dropUndefined;
             loadout.adHoc = loadoutConfig.adHoc;
+            loadout.adHocMass = loadoutConfig.adHocMass;
+            loadout.adHocMags = loadoutConfig.adHocMags;
+            loadout.adHocBulk = loadoutConfig.adHocBulk;
             loadout.parentID = LoadoutManager.GetLoadoutByLabel(loadoutConfig.parentLabel)?.uniqueID ?? 0;
             // TODO: Display warning when there's a parent specified but we don't find it.
 
@@ -294,6 +304,9 @@ namespace CombatExtended
                 slots = loadoutSlotConfigList.ToArray(),
                 dropUndefined = dropUndefined,
                 adHoc = adHoc,
+                adHocMags = adHocMags,
+                adHocBulk = adHocBulk,
+                adHocMass = adHocMass,
                 parentLabel = ParentLoadout?.label ?? String.Empty
             };
         }
@@ -311,6 +324,9 @@ namespace CombatExtended
             Scribe_Values.Look(ref dropUndefined, "dropUndefined", true);
             Scribe_Values.Look(ref adHoc, "adHoc", false);
             Scribe_Values.Look(ref _parentID, "parentID", 0);
+            Scribe_Values.Look(ref adHocMags, "adHocMags", 3);
+            Scribe_Values.Look(ref adHocMass, "adHocMass", 0);
+            Scribe_Values.Look(ref adHocBulk, "adHocBulk", 0);
 
             // slots
             Scribe_Collections.Look(ref _slots, "slots", LookMode.Deep);
@@ -438,10 +454,19 @@ namespace CombatExtended
                 {
                     if (ammoTypes.Contains(def))
                     {
-                        haveAmmo = true;
-                        if (inventory[def].value < magSize * 2 || inventory[def].value >= magSize * 3)
+                        int magLimit = adHocMags * magSize;
+                        if (adHocMass > 0)
                         {
-                            yield return new LoadoutSlot(def, magSize * 3);
+                            magLimit = Math.Min(magLimit, (int)(adHocMass / def.GetStatValueAbstract(StatDefOf.Mass)));
+                        }
+                        if (adHocBulk > 0)
+                        {
+                            magLimit = Math.Min(magLimit, (int)(adHocBulk / def.GetStatValueAbstract(CE_StatDefOf.Bulk)));
+                        }
+                        haveAmmo = true;
+                        if (inventory[def].value < (magLimit - magSize) || inventory[def].value >= magLimit)
+                        {
+                            yield return new LoadoutSlot(def, magLimit);
                         }
                         else // have a reasonable number, just sit on it.
                         {
@@ -453,7 +478,16 @@ namespace CombatExtended
                 {
                     foreach (var ammo in ammoTypes)
                     {
-                        yield return new LoadoutSlot(ammo, magSize * 3);
+                        int magLimit = adHocMags * magSize;
+                        if (adHocMass > 0)
+                        {
+                            magLimit = Math.Min(magLimit, (int)(adHocMass / ammo.GetStatValueAbstract(StatDefOf.Mass)));
+                        }
+                        if (adHocBulk > 0)
+                        {
+                            magLimit = Math.Min(magLimit, (int)(adHocBulk / ammo.GetStatValueAbstract(CE_StatDefOf.Bulk)));
+                        }
+                        yield return new LoadoutSlot(ammo, magLimit);
                     }
                 }
             }

@@ -11,6 +11,9 @@ namespace CombatExtended
         public LoadoutSlotConfig[] slots;
         public bool dropUndefined = true;
         public bool adHoc = false;
+        public int adHocMags = 3;
+        public int adHocMass = 0;
+        public int adHocBulk = 0;
         public string parentLabel = String.Empty;
     }
 

@@ -60,6 +60,9 @@ namespace CombatExtended
         private LoadoutSlot _draggedSlot;
         private bool _dragging;
         private string _filter = "";
+        private string _adHocMagsEditBuffer = "";
+        private string _adHocMassEditBuffer = "";
+        private string _adHocBulkEditBuffer = "";
         private const float _iconSize = 16f;
         private const float _margin = 6f;
         private const float _rowHeight = 28f;
@@ -405,19 +408,34 @@ namespace CombatExtended
         }
         private void DrawExtraOptions(Rect rect)
         {
-            float checkboxWidth = (rect.width - 10f) / 2f;
+            float checkboxWidth = (rect.width - 10f) / 3f;
 
-            Rect leftRect = new Rect(rect.x, rect.y, checkboxWidth, rect.height);
+            Rect leftRect = new Rect(rect.x, rect.y, checkboxWidth, rect.height / 2);
             Listing_Standard listingLeft = new Listing_Standard();
             listingLeft.Begin(leftRect);
             listingLeft.CheckboxLabeled("CE_LoadOut_DropUndefined".Translate(), ref CurrentLoadout.dropUndefined, "CE_LoadOut_DropUndefined_Desc".Translate());
             listingLeft.End();
 
-            Rect rightRect = new Rect(rect.x + checkboxWidth + 10f, rect.y, checkboxWidth, rect.height);
+            Rect rightRect = new Rect(rect.x + checkboxWidth + 5f, rect.y, checkboxWidth, rect.height / 2);
             Listing_Standard listingRight = new Listing_Standard();
             listingRight.Begin(rightRect);
             listingRight.CheckboxLabeled("CE_LoadOut_AdHoc".Translate(), ref CurrentLoadout.adHoc, "CE_LoadOut_AdHoc_Desc".Translate());
             listingRight.End();
+
+            if (CurrentLoadout.adHoc)
+            {
+                Rect magsRect = new Rect(rect.x, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
+                _adHocMagsEditBuffer = "" + CurrentLoadout.adHocMags;
+                _adHocMassEditBuffer = "" + CurrentLoadout.adHocMass;
+                _adHocBulkEditBuffer = "" + CurrentLoadout.adHocBulk;
+                Widgets.TextFieldNumericLabeled<int>(magsRect, "CE_LoadOut_Mags".Translate(), ref CurrentLoadout.adHocMags, ref _adHocMagsEditBuffer, 0f, 100);
+
+                Rect massRect = new Rect(rect.x + checkboxWidth + 5f, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
+                Widgets.TextFieldNumericLabeled<int>(massRect, "CE_LoadOut_AdHoc_Mass".Translate(), ref CurrentLoadout.adHocMass, ref _adHocMassEditBuffer, 0f, 100);
+
+                Rect bulkRect = new Rect(rect.x + checkboxWidth * 2 + 5f, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
+                Widgets.TextFieldNumericLabeled<int>(bulkRect, "CE_LoadOut_AdHoc_Bulk".Translate(), ref CurrentLoadout.adHocBulk, ref _adHocBulkEditBuffer, 0f, 100);
+            }
         }
 
         public void DrawSourceSelection(Rect canvas)
