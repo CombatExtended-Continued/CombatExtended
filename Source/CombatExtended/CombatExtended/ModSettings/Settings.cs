@@ -341,7 +341,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_WeaponAutopatcher_Title".Translate(), ref enableWeaponAutopatcher, "CE_Settings_WeaponAutopatcher_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ToughnessAutopatcher_Title".Translate(), ref enableWeaponToughnessAutopatcher, "CE_Settings_ToughnessAutopatcher_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_PawnkindAutopatcher_Title".Translate(), ref enablePawnKindAutopatcher, "CE_Settings_PawnkindAutopatcher_Desc".Translate());
-            #if DEBUG
+#if DEBUG
             list.Gap();
             list.GapLine();
             list.Label("Debug");
@@ -369,7 +369,7 @@ namespace CombatExtended
                 list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
                 list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
             }
-            #endif
+#endif
             list.Gap();
             list.GapLine();
             list.Gap();
@@ -404,9 +404,8 @@ namespace CombatExtended
             }
         }
 
-        
-        #region Reset To Defaults
 
+        #region Reset To Defaults
         public void ResetToDefaults()
         {
             switch (Controller.SelectedTab)
@@ -469,7 +468,7 @@ namespace CombatExtended
             // Extra Tooltips
             showExtraTooltips = false;
             showExtraStats = false;
-            
+
             // AutoPatcher Settings
             debugAutopatcherLogger = false;
             enableApparelAutopatcher = false;
@@ -477,8 +476,8 @@ namespace CombatExtended
             enableWeaponToughnessAutopatcher = true;
             enableRaceAutopatcher = true;
             enablePawnKindAutopatcher = true;
-            
-            #if DEBUG
+
+#if DEBUG
             debuggingMode = false;
             debugDisplayAttritionInfo = false;
             debugDrawInterceptChecks = false;
@@ -491,10 +490,9 @@ namespace CombatExtended
             debugMuzzleFlash = false;
             debugDisplayDangerBuildup = false;
             debugDisplayCellCoverRating = false;
-            #endif
+#endif
         }
         #endregion
-
 
         public float GetOrCalculateHeightForTab(int tabIndex, float width)
         {
@@ -518,8 +516,7 @@ namespace CombatExtended
             return height;
         }
 
-
         #endregion
     }
-    
+
 }

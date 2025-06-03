@@ -51,7 +51,7 @@ namespace CombatExtended
             if (Widgets.ButtonText(resetButtonRect, "CE_ResetToDefault".Translate()))
             {
                 settings.ResetToDefaults();
-               // SoundDefOf.Click.PlayOneShotOnCamera();
+                SoundDefOf.Click.PlayOneShotOnCamera();
             }
 
         }
