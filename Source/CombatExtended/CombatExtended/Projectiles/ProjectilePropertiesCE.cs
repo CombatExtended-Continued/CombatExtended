@@ -76,6 +76,8 @@ namespace CombatExtended
         public static LerpedTrajectoryWorker defaultLerpedTrajectoryWorker = new LerpedTrajectoryWorker();
         public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
 
+        public SimpleCurve explosionFalloffCurve;
+
         public BaseTrajectoryWorker TrajectoryWorker
         {
             get

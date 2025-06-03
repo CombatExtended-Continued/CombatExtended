@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 using UnityEngine;
-using RimWorld.Planet;
 using CombatExtended.Loader;
 
 namespace CombatExtended
@@ -42,6 +37,9 @@ namespace CombatExtended
         private bool fragmentsFromWalls = false;
 
         private bool fasterRepeatShots = true;
+
+        private float explosionPenMultiplier = 1.0f;
+        private float explosionFalloffFactor = 1.0f;
 
         public bool ShowCasings => showCasings;
 
@@ -138,6 +136,9 @@ namespace CombatExtended
 
         public bool FasterRepeatShots => fasterRepeatShots;
 
+        public float ExplosionPenMultiplier => explosionPenMultiplier;
+        public float ExplosionFalloffFactor => explosionFalloffFactor;
+
         public bool CreateCasingsFilth => createCasingsFilth;
 
         public bool RecoilAnim => recoilAnim;
@@ -214,6 +215,8 @@ namespace CombatExtended
 
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
+            Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
+            Scribe_Values.Look(ref explosionFalloffFactor, "explosionFalloffFactor", 1.0f);
 
             //CIWS
             Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
@@ -244,6 +247,20 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
+
+            list.GapLine(); Text.Font = GameFont.Medium;
+            list.Label("CE_Settings_Value_Tweaks_Title".Translate(), tooltip: "CE_Settings_Value_Tweaks_Desc".Translate());
+            Text.Font = GameFont.Small;
+
+            list.Gap();
+            explosionPenMultiplier = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + ": " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip: "CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f; //Rounding to 1 decimal point
+            explosionFalloffFactor = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate() + ": " + explosionFalloffFactor.ToString("F1"), explosionFalloffFactor, 0.1f, 2f, tooltip: "CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
+            list.Gap();
+            if (list.ButtonTextLabeledPct("", "CE_Settings_ResetDefault".Translate(), labelPct: 0.6f)) // Aligns the reset button to the right
+            {
+                explosionPenMultiplier = 1.0f;
+                explosionFalloffFactor = 1.0f;
+            }
 
             list.GapLine(); Text.Font = GameFont.Medium;
             list.Label("CE_Settings_Rendering_Title".Translate(), tooltip: "CE_Settings_Rendering_Desc".Translate());
@@ -286,7 +303,7 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
-                list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate()); ;
+                list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate());
             }
             else
             {
