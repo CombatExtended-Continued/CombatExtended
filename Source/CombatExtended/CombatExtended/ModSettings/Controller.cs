@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
 using System.Reflection;
-using System.IO;
 using CombatExtended.HarmonyCE;
 using CombatExtended.Compatibility;
 using CombatExtended.Loader;
+using Verse.Sound;
 
 namespace CombatExtended
 {
@@ -21,54 +20,41 @@ namespace CombatExtended
     public class Controller : Mod
     {
         public static List<ISettingsCE> settingList = new List<ISettingsCE>();
+        public static List<ISettingsCE> otherSettingList = new List<ISettingsCE>();
         public static Settings settings;
         public static Controller instance;
         public static ModContentPack content;
         private static bool genericState;
         private static Patches patches;
         private Vector2 scrollPosition;
-        private static readonly string[] TabNames = ["Mechanics", "Ammunition", "Graphics", "Misc"];
+        private const float ResetButtonWidth = 160f;
+        private const float ResetButtonHeight = 40f;
+        private static TaggedString[] s_tabNames;
+        private static List<TabRecord> s_tabs;
         public static int SelectedTab;
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            Rect tabBarRect = new Rect(inRect.x, inRect.y, inRect.width, 30f);
-            DrawTabs(tabBarRect);
-            Rect inner = inRect.ContractedBy(20f);
-            inner.height = 900f;
-            inner.x += 10f;
-            Rect scrollRect = new Rect(inRect.x, inRect.y + tabBarRect.height + 5f, inRect.width, inRect.height - tabBarRect.height - 5f);
+            Rect windowRect = new Rect(inRect.x, inRect.y + 30f, inRect.width, inRect.height - 40f);
+            Widgets.DrawMenuSection(windowRect);
+            TabDrawer.DrawTabs(windowRect, s_tabs, 200f);
+            Rect scrollRect = windowRect.ContractedBy(10f);
+            float contentHeight = settings.GetOrCalculateHeightForTab(Controller.SelectedTab, scrollRect.width - 16f);
+            Rect inner = new Rect(0f, 0f, scrollRect.width - 16f, contentHeight);
             Widgets.BeginScrollView(scrollRect, ref this.scrollPosition, inner, true);
             Listing_Standard list = new Listing_Standard();
             list.Begin(inner);
-
-            foreach (ISettingsCE settings in settingList)
-            {
-                settings.DoWindowContents(list);
-            }
+            settings.DoWindowContents(list);
             list.End();
             Widgets.EndScrollView();
-            
-        }
-        private static void DrawTabs(Rect rect)
-        {
-            float tabWidth = rect.width / TabNames.Length;
-            for (int i = 0; i < TabNames.Length; i++)
+            Rect resetButtonRect = new Rect(inRect.xMin + 200f, inRect.y + inRect.height + 5f, ResetButtonWidth, ResetButtonHeight);
+            if (Widgets.ButtonText(resetButtonRect, "CE_ResetToDefault".Translate()))
             {
-                TextAnchor originalAnchor = Text.Anchor;
-
-                // Center the text
-                Text.Anchor = TextAnchor.MiddleCenter;
-                Rect tabRect = new Rect(rect.x + (i * tabWidth), rect.y, tabWidth, rect.height);
-                if (Widgets.ButtonText(tabRect, TabNames[i], true, true, new Color(0.8f, 0.85f, 1f), true, null))
-                {
-                    SelectedTab = i;
-                    settings.LastSelectedTab = i;
-                }
-                Text.Anchor = originalAnchor;
+                settings.ResetToDefaults();
+               // SoundDefOf.Click.PlayOneShotOnCamera();
             }
+
         }
-        
 
         public Controller(ModContentPack content) : base(content)
         {
@@ -118,10 +104,12 @@ namespace CombatExtended
                         settings = (ISettingsCE)settingsType.GetConstructor(new Type[] { }).Invoke(new object[] { });
                     }
                     settingList.Add(settings);
+                    otherSettingList.Add(settings);
                 }
 
                 modPart.PostLoad(content, settings);
             }
+            LongEventHandler.QueueLongEvent(InitializeTabs, "CE_LongEvent_CE_InitTabs", true, null);
 
             // Initialize loadout generator
             LongEventHandler.QueueLongEvent(LoadoutPropertiesExtension.Reset, "CE_LongEvent_LoadoutProperties", false, null);
@@ -146,6 +134,29 @@ namespace CombatExtended
             LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
 
             genericState = settings.GenericAmmo;
+
+
+        }
+
+
+        private void InitializeTabs()
+        {
+            s_tabNames =
+            [
+                "CE_Settings_HeaderMechanics".Translate(),
+                "CE_Settings_HeaderAmmo".Translate(),
+                "CE_Settings_HeaderGraphic".Translate(),
+                "CE_Settings_HeaderMisc".Translate()
+            ];
+            s_tabs = [];
+            for (int i = 0; i < s_tabNames.Length; i++)
+            {
+                int capturedIndex = i;
+                s_tabs.Add(new TabRecord(s_tabNames[i], delegate
+                {
+                    Controller.SelectedTab = capturedIndex;
+                }, () => Controller.SelectedTab == capturedIndex));
+            }
         }
 
         public override string SettingsCategory()
