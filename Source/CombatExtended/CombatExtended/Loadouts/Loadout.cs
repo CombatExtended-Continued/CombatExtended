@@ -489,7 +489,7 @@ namespace CombatExtended
                 Dictionary<ThingDef, Integer> inventory = pawn.GetStorageByThingDef();
                 Dictionary<ThingDef, int> haveAmmo = new Dictionary<ThingDef, int>();
                 int totalAmmo = 0;
-                
+
                 foreach (ThingDef def in inventory.Keys)
                 {
                     if (ammoTypes.Contains(def))
