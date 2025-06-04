@@ -65,7 +65,7 @@ namespace CombatExtended
                     Props.damageFalloff,
                     direction,
                     ignoredThings,
-                    screenShakeFactor : Props.screenShakeFactor,
+                    screenShakeFactor: Props.screenShakeFactor,
                     height: pos.y,
                     scaleFactor: scaleFactor);
             }
