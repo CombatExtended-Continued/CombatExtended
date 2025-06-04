@@ -33,7 +33,7 @@ namespace CombatExtended
         public int preExplosionSpawnThingCount = 1;
         public bool damageFalloff = true;
         public float chanceToStartFire;
-		public float screenShakeFactor;
+        public float screenShakeFactor;
 
         /// <summary>
         /// The type of built-in core game gas to spawn on detonation.
