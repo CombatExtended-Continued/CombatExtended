@@ -51,7 +51,7 @@ namespace CombatExtended
             { 1.0f, 14f }
         };
         private float enviromentShiftInt = -1;
-        
+
         public float enviromentShift
         {
             get
