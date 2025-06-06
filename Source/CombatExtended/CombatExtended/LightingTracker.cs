@@ -238,9 +238,12 @@ namespace CombatExtended
         public float CombatGlowAt(IntVec3 position)
         {
             float result = 0f;
+            float centerGlow = GetGlowForCell(position);
             for (int i = 0; i < 9; i++)
             {
-                result += AdjWeights[i] * GetGlowForCell(position + AdjCells[i]) / WEIGHTSSUM;
+                var newPosition = position + AdjCells[i];
+                float glow = newPosition.Impassable(map) ? centerGlow : GetGlowForCell(newPosition);
+                result += AdjWeights[i] * glow / WEIGHTSSUM;
             }
             return Mathf.Min(result, IsNight ? 0.5f : 1.0f);
         }
