@@ -64,6 +64,8 @@ namespace CombatExtended
         private const float _margin = 6f;
         private const float _rowHeight = 28f;
         private const float _topAreaHeight = 30f;
+        private const float _padding = 24;
+        private const float _selectionAreaPadding = 84;
         private Vector2 _slotScrollPosition = Vector2.zero;
         private List<SelectableItem> _source;
         private List<LoadoutGenericDef> _sourceGeneric;
@@ -186,13 +188,14 @@ namespace CombatExtended
             Rect deleteRect = new Rect(copyRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
             Rect loadRect = new Rect(deleteRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
             Rect saveRect = new Rect(loadRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
+            Rect parentRect = new Rect(saveRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
 
             // main areas
             Rect nameRect = new Rect(
                 0f,
                 _topAreaHeight + _margin * 2,
                 (canvas.width - _margin) / 2f,
-                24f);
+                _padding);
 
             Rect slotListRect = new Rect(
                 0f,
@@ -207,14 +210,20 @@ namespace CombatExtended
                 slotListRect.xMax + _margin,
                 _topAreaHeight + _margin * 2,
                 (canvas.width - _margin) / 2f,
-                24f);
+                _padding);
 
             Rect selectionRect = new Rect(
                 slotListRect.xMax + _margin,
                 sourceButtonRect.yMax + _margin,
                 (canvas.width - _margin) / 2f,
-                canvas.height - 24f - _topAreaHeight - _margin * 3);
+                canvas.height - _selectionAreaPadding - _topAreaHeight - _margin * 3);
 
+            Rect optionRect = new Rect(
+                slotListRect.xMax + _margin,
+                selectionRect.yMax + _margin,
+                (canvas.width - _margin) / 2f,
+                _barHeight * 2);
+            //canvas.height - selectionRect.height - _topAreaHeight - _margin * 3);
             LoadoutManager.SortLoadouts();
             List<Loadout> loadouts = LoadoutManager.Loadouts.Where(l => !l.defaultLoadout).ToList();
 
@@ -316,6 +325,32 @@ namespace CombatExtended
                     dialog.Close();
                 }, CurrentLoadout.label));
             }
+            #if DEBUG
+            if (CurrentLoadout != null && Widgets.ButtonText(parentRect, "CE_ParentLoadout".Translate()))
+            {
+
+                List<FloatMenuOption> options = new List<FloatMenuOption>();
+
+                if (loadouts.Count == 0)
+                {
+                    options.Add(new FloatMenuOption("CE_NoLoadouts".Translate(), null));
+                }
+                else
+                {
+                    for (int i = 0; i < loadouts.Count; i++)
+                    {
+                        int local_i = i;
+                        options.Add(new FloatMenuOption(loadouts[i].LabelCap, delegate
+                        {
+                            CurrentLoadout = loadouts[local_i];
+                        }));
+                    }
+                }
+
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+            #endif
+
 
             // draw notification if no loadout selected
             if (CurrentLoadout == null)
@@ -341,6 +376,11 @@ namespace CombatExtended
 
             // current slots
             DrawSlotList(slotListRect);
+            
+            // extra options
+            #if DEBUG
+            DrawExtraOptions(optionRect);
+            #endif
 
             // bars
             if (CurrentLoadout != null)
@@ -358,6 +398,24 @@ namespace CombatExtended
                 Text.Anchor = TextAnchor.UpperLeft;
             }
             // done!
+        }
+        private bool ExtraOptionButtonA = false;
+        private bool ExtraOptionButtonB = false;
+        private void DrawExtraOptions(Rect rect)
+        {
+            float checkboxWidth = (rect.width - 10f) / 2f;
+
+            Rect leftRect = new Rect(rect.x, rect.y, checkboxWidth, rect.height);
+            Listing_Standard listingLeft = new Listing_Standard();
+            listingLeft.Begin(leftRect);
+            listingLeft.CheckboxLabeled("CE_LoadOut_ExtraOptionA".Translate(), ref ExtraOptionButtonA, "CE_LoadOut_ExtraOptionA_Desc".Translate());
+            listingLeft.End();
+
+            Rect rightRect = new Rect(rect.x + checkboxWidth + 10f, rect.y, checkboxWidth, rect.height);
+            Listing_Standard listingRight = new Listing_Standard();
+            listingRight.Begin(rightRect);
+            listingRight.CheckboxLabeled("CE_LoadOut_ExtraOptionB".Translate(), ref ExtraOptionButtonB, "CE_LoadOut_ExtraOptionB_Desc".Translate());
+            listingRight.End();
         }
 
         public void DrawSourceSelection(Rect canvas)
