@@ -73,7 +73,7 @@ namespace CombatExtended
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
             // Stabilize patient
             int duration = (int)(1f / this.pawn.GetStatValue(StatDefOf.MedicalTendSpeed, true) * baseTendDuration);
-            Toil waitToil = Toils_General.WaitWith(TargetIndex.A, duration, maintainPosture:true, maintainSleep: false).WithProgressBarToilDelay(TargetIndex.A).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
+            Toil waitToil = Toils_General.WaitWith(TargetIndex.A, duration, maintainPosture: true, maintainSleep: false).WithProgressBarToilDelay(TargetIndex.A).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
             yield return waitToil;
             Toil stabilizeToil = new Toil();
             stabilizeToil.initAction = delegate
