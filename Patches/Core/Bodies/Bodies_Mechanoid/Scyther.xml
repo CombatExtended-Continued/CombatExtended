@@ -210,6 +210,23 @@
 
 	<!-- ========== Modify coverage ========== -->
 
+  <!-- ========== Change results in: 5% head 30% torso 30%a rms 35% legs  ========== -->
+
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scyther"]/corePart/parts/li[def="MechanicalNeck"]/coverage</xpath>
+		<value>
+      <coverage>0.05</coverage> 	<!-- ========== 0.1 mech /// 0.055 human ========== -->
+    </value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scyther"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="ArtificialBrain"]/coverage</xpath>
+		<value>
+      <coverage>0.20</coverage>   <!-- ========== maintain brainshot chance after neck cov reduction (0.1) ========== -->
+    </value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/BodyDef[defName="Scyther"]/corePart/parts/li[def="MechanicalShoulder"]/coverage</xpath>
 		<value>
@@ -217,11 +234,39 @@
 		</value>
 	</Operation>
 
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scyther"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/parts/li[def="MechanicalHand"]/coverage</xpath>
+		<value>
+      <coverage>0.15</coverage>  <!-- ========== 0.2 mech /// 0.14 human ========== -->
+    </value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/BodyDef[defName="Scyther"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/parts/li[def="Blade"]/coverage</xpath>
 		<value>
 			<coverage>0.2</coverage>
 		</value>
+	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scyther"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/parts/li[def="MechanicalHand"]/parts/li[def="MechanicalFinger"]/coverage</xpath>
+		<value>
+      <coverage>0.10</coverage> <!-- ========== 0.15 mech /// 0.06/0.07/0.08 human ========== -->
+    </value>
+	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scyther"]/corePart/parts/li[def="MechanicalLeg"]/coverage</xpath>
+		<value>
+      <coverage>0.175</coverage>  <!-- ========== 0.20 mech /// 0.14 human ========== -->
+    </value>
+	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scyther"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/coverage</xpath>
+		<value>
+      <coverage>0.15</coverage>   <!-- ========== 0.20 mech /// 0.10 human ========== -->
+    </value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
