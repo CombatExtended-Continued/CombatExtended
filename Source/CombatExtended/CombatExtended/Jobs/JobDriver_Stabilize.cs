@@ -54,7 +54,7 @@ namespace CombatExtended
             this.FailOn(() => Patient == null || Medicine == null);
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             this.FailOnDestroyedNullOrForbidden(TargetIndex.B);
-            this.FailOnNotDowned(TargetIndex.A);
+            this.FailOnAggroMentalState(TargetIndex.A);
             this.AddEndCondition(delegate
             {
                 if (Patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
@@ -71,10 +71,9 @@ namespace CombatExtended
             yield return Toils_Haul.StartCarryThing(TargetIndex.B);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
-
             // Stabilize patient
             int duration = (int)(1f / this.pawn.GetStatValue(StatDefOf.MedicalTendSpeed, true) * baseTendDuration);
-            Toil waitToil = Toils_General.Wait(duration).WithProgressBarToilDelay(TargetIndex.A).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
+            Toil waitToil = Toils_General.WaitWith(TargetIndex.A, duration, maintainPosture:true, maintainSleep: false).WithProgressBarToilDelay(TargetIndex.A).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
             yield return waitToil;
             Toil stabilizeToil = new Toil();
             stabilizeToil.initAction = delegate
@@ -92,7 +91,6 @@ namespace CombatExtended
                 }
 
             };
-
             stabilizeToil.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return stabilizeToil;
             yield return Toils_Jump.Jump(waitToil);
