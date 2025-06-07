@@ -128,14 +128,28 @@
 			<dropsCasings>false</dropsCasings>
 		</projectile>
 		<modExtensions>
-            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+			<li Class="ProjectileImpactFX.EffectProjectileExtension">
 				<AutoAssign>false</AutoAssign>
 				<CreateTerrainEffects>true</CreateTerrainEffects>
 				<ImpactSoundDef>CE_HeavyProjectileImpact</ImpactSoundDef>
 				<explosionFleckDef>Fleck_CECannonball</explosionFleckDef>
 				<explosionFleckSize>0.8</explosionFleckSize>
-            </li>
-        </modExtensions>
+			</li>
+		</modExtensions>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>3~3</cutoffTickRange>
+						<scale>2~2.5</scale>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCannonBall">
@@ -206,6 +220,21 @@
 			<armorPenetrationBlunt>420.68</armorPenetrationBlunt>
 			<spreadMult>26.7</spreadMult>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmoke</fleck>
+						<emissionsPerTick>1</emissionsPerTick>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>2</cutoffTickRange>
+						<scale>2.0~2.5</scale>
+						<originOffset>0.0~2.0</originOffset>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ================== Projectiles - Mortar ================== -->
@@ -223,6 +252,20 @@
 			<dropsCasings>false</dropsCasings>
 			<gravityFactor>5</gravityFactor>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>3~3</cutoffTickRange>
+						<scale>2~2.5</scale>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCannonBall_Mortar">
