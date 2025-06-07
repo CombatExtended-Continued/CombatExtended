@@ -69,6 +69,19 @@
 			<damageDef>Bullet</damageDef>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles (High Velocity) ================== -->
+
+	<ThingDef ParentName="MusketBallBullet">
+		<defName>Bullet_FastMusketBall</defName>
+		<label>musket ball</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>98</speed>
+			<damageAmountBase>26</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>64.8</armorPenetrationBlunt>
+		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ProjectileFleck">
 				<FleckDatas>
@@ -85,19 +98,6 @@
 		</comps>
 	</ThingDef>
 
-	<!-- ================== Projectiles (High Velocity) ================== -->
-
-	<ThingDef ParentName="MusketBallBullet">
-		<defName>Bullet_FastMusketBall</defName>
-		<label>musket ball</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>98</speed>
-			<damageAmountBase>26</damageAmountBase>
-			<armorPenetrationSharp>5</armorPenetrationSharp>
-			<armorPenetrationBlunt>64.8</armorPenetrationBlunt>
-		</projectile>
-	</ThingDef>
-
 	<!-- ================== Projectiles (Low Velocity) ================== -->
 
 	<ThingDef ParentName="MusketBallBullet">
@@ -109,6 +109,20 @@
 			<armorPenetrationSharp>3.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>20</armorPenetrationBlunt>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmokeShort</fleck>
+						<emissionsPerTick>4</emissionsPerTick>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>3~3</cutoffTickRange>
+						<scale>1.7~2.0</scale>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
