@@ -91,13 +91,12 @@ namespace CombatExtended.HarmonyCE
             if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
 #pragma warning disable CS0618 // You're supposed to migrate to GenUI.TargetsAt_NewTemp? But that scares me.
-                foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true)) // !! This needs to be patched into A17
+                foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForTend(pawn), true)) // !! This needs to be patched into A17
 #pragma warning restore CS0618
                 {
                     Pawn patient = (Pawn)curTarget.Thing;
-                    if (patient.Downed
-                            //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                            && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
+                    if (    //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
+                            pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
                             && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
                         if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
