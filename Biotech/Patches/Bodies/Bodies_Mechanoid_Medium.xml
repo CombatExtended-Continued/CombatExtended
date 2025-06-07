@@ -165,11 +165,59 @@
 
 	<!-- ========== Modify coverage ========== -->
 
+  <!-- ==================== Scorcher ==================== -->
+
+  <!-- ========== Same values and reasons of the pikeman changes, but the scorcher depends more on its speed rather than manipulation, making the change beneficial to its role  ========== -->
+  
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scorcher"]/corePart/parts/li[def="MechanicalLeg"]/coverage</xpath>
+		<value><coverage>0.15</coverage></value>
+	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scorcher"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/coverage</xpath>
+		<value>
+      <coverage>0.3</coverage>
+    </value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scorcher"]/corePart/parts/li[def="FluidReprocessor"]/coverage</xpath>
+		<value>
+      <coverage>0.05</coverage>
+    </value>
+	</Operation>
+
+  <!-- ==================== Apocriton ==================== -->
+
+  <!-- ========== Same changes as the pikeman, but the reasoning is mostly consistency with the other quad legged mechanoids, however could be screapped as its a mech boss ========== -->
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Apocriton"]/corePart/parts/li[def="MechanicalLeg"]/coverage</xpath>
+		<value>
+      <coverage>0.15</coverage>
+    </value>
+	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Apocriton"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/coverage</xpath>
+		<value>
+      <coverage>0.3</coverage>
+    </value>
+	</Operation>
+	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/BodyDef[defName="Apocriton"]/corePart/parts/li[def="Reactor"]/coverage</xpath>
 		<value>
 			<coverage>0.08</coverage>
 		</value>
+	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Apocriton"]/corePart/parts/li[def="FluidReprocessor"]/coverage</xpath>
+		<value>
+      <coverage>0.05</coverage>
+    </value>
 	</Operation>
 
 </Patch>

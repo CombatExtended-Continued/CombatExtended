@@ -165,11 +165,34 @@
 
 	<!-- ========== Modify coverage ========== -->
 
+  <!-- ========== Changes result in: Head 10% Torso 30% Legs 60% ========== -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="MechanicalLeg"]/coverage</xpath>
+		<value>
+      <coverage>0.15</coverage>   <!-- ========== (0.18) Experimental change, the pikeman benefits from taking hits to its legs, not to its torso due manipulation reduction, might be too harsh ========== -->
+    </value>
+	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/coverage</xpath>
+		<value>
+      <coverage>0.3</coverage>    <!-- ========== (0.5) 50% foot coverage seemed excessive and makes them prone to get their movility worsened faster as it has less HP than legs  ========== -->
+    </value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="Reactor"]/coverage</xpath>
 		<value>
 			<coverage>0.08</coverage>
 		</value>
+	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="FluidReprocessor"]/coverage</xpath>
+		<value>
+      <coverage>0.05</coverage>  <!-- ========== (0.04) Standardizing Fluid Reprocessor to be 5% cov ========== -->
+    </value>
 	</Operation>
 
 </Patch>
