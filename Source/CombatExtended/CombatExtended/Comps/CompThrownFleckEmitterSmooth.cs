@@ -66,7 +66,7 @@ namespace CombatExtended
                     Vector3 diff = Vector3.zero;
                     for (int i = 0; i < data.emissionAmount; i++)
                     {
-                        FleckCreationData dataStatic = FleckMaker.GetDataStatic(parent.DrawPos - data.originOffsetInternal * delta + diff, parent.MapHeld, data.fleck, (data.scale.RandomInRange + scaleoffset) * data.cutoffScaleOffset(age));
+                        FleckCreationData dataStatic = FleckMaker.GetDataStatic(parent.DrawPos - data.originOffset.RandomInRange * delta + diff, parent.MapHeld, data.fleck, (data.scale.RandomInRange + scaleoffset) * data.cutoffScaleOffset(age));
                         dataStatic.rotation = data.rotation.RandomInRange;
                         for (int j = 0; j < data.flecksPerEmission; j++)
                         {
@@ -116,10 +116,10 @@ namespace CombatExtended
 
         public int startDelayTick = 1;
 
-        public float originOffset = 0.7f;
+        public FloatRange originOffset = new FloatRange(0.7f, 0.7f);
 
         public int emissionAmount => emissionsPerTick > 1 ? (int)emissionsPerTick : 1;
-        public float originOffsetInternal => 1 - originOffset;
+        public float originOffsetInternal => 1 - originOffset.RandomInRange; //deprecated field, left to not break mod xml
         public float scaleOffsetInternal => fleck.growthRate / (emissionsPerTick * 60);
 
         public float cutoffScaleOffset(int age)
