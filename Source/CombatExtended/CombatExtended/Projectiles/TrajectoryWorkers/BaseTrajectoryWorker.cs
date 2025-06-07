@@ -11,21 +11,15 @@ namespace CombatExtended
 {
     public abstract class BaseTrajectoryWorker
     {
-        public bool TryMoveForward(ProjectileCE projectile)
+        public abstract Vector3 MoveForward(ProjectileCE projectile);
+
+        public abstract IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount);
+
+        public virtual void NotifyTicked(ProjectileCE projectile)
         {
-            if (NextPositions(projectile).Any())
-            {
-                MoveForward(projectile);
-                return true;
-            }
-            return false;
+            projectile.cachedPredictedPositions = null;
         }
-        protected virtual void MoveForward(ProjectileCE projectile)
-        {
-            var nextPosition = NextPositions(projectile).First();
-            projectile.ExactPosition = nextPosition;
-        }
-        public abstract IEnumerable<Vector3> NextPositions(ProjectileCE projectile);
+
         public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
         {
             var sh = Mathf.Max(0f, (exactPosition.y) * 0.84f);
@@ -58,14 +52,17 @@ namespace CombatExtended
         /// <summary>
         /// Get initial velocity
         /// </summary>
-        /// <param name="shotSpeed">speed</param>
+        /// <param name="shotSpeed">speed (meters / second)</param>
         /// <param name="rotation">rotation in degrees</param>
         /// <param name="angle">angle in radians</param>
         /// <returns></returns>
-        public virtual Vector3 GetVelocity(float shotSpeed, float rotation, float angle)
+        public virtual Vector3 GetInitialVelocity(float shotSpeed, float rotation, float angle)
         {
-            angle = angle * Mathf.Rad2Deg; // transform to degrees
-            return Vector2.up.RotatedBy(rotation).ToVector3().RotatedBy(angle) * shotSpeed / GenTicks.TicksPerRealSecond;
+            rotation = (rotation + 90) * Mathf.Deg2Rad;
+            var ss = (shotSpeed / GenTicks.TicksPerRealSecond); // Speed in cells / tick
+            return new Vector3(Mathf.Cos(rotation) * Mathf.Cos(angle) * ss,
+                               Mathf.Sin(angle) * ss,
+                               Mathf.Sin(rotation) * Mathf.Cos(angle) * ss);
         }
 
         /// <summary>
@@ -73,8 +70,9 @@ namespace CombatExtended
         /// </summary>
         /// <param name="source">Source shot, including shot height</param>
         /// <param name="targetPos">Target position, including target height</param>
+        /// <param name="speed">speed (cells / second)</param>
         /// <returns>angle in radians</returns>
-        public virtual float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? velocity = null)
+        public virtual float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null)
         {
             var targetHeight = targetPos.y;
             var shotHeight = source.y;
@@ -86,11 +84,11 @@ namespace CombatExtended
             }
             else
             {
-                var _velocity = velocity ?? projectilePropsCE.speed;
+                var _speed = speed ?? projectilePropsCE.speed;
                 var gravity = projectilePropsCE.Gravity;
                 var heightDifference = targetHeight - shotHeight;
                 var range = (newTargetLoc - sourceV2).magnitude;
-                float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_velocity, 2f)));
+                float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_speed, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_speed, 2f)));
                 if (float.IsNaN(squareRootCheck))
                 {
                     //Target is too far to hit with given velocity/range/gravity params
@@ -98,13 +96,40 @@ namespace CombatExtended
                     Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
                     return 45.0f * Mathf.Deg2Rad;
                 }
-                return Mathf.Atan((Mathf.Pow(_velocity, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
+                return Mathf.Atan((Mathf.Pow(_speed, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
             }
         }
         public virtual float ShotRotation(ProjectilePropertiesCE projectilePropertiesCE, Vector3 source, Vector3 targetPos)
         {
             var w = targetPos - source;
             return (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x)) % 360;
+        }
+
+        public virtual bool CanReachPos(ProjectilePropertiesCE props, float speed, Vector3 source, Vector3 pos, out int ticksToReach)
+        {
+            var distance = (pos - source).MagnitudeHorizontal();
+            var heightOffset = pos.y - source.y;
+            var gravity = props.Gravity;
+            var shotAngle = ShotAngle(props, source, pos, speed);
+            var v_xz = speed * Mathf.Sin(shotAngle);
+            var d = v_xz * v_xz - 2 * gravity * heightOffset;
+            if (d < 0) // cannot actually reach the given location, probably too high up
+            {
+                ticksToReach = 0;
+                return false;
+            }
+            var ticksToReachFloat = (v_xz + Mathf.Sqrt(d)) / gravity;
+            if (Mathf.Abs(ticksToReachFloat * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way up, must be after the zenith
+            {
+                ticksToReachFloat = (v_xz - Mathf.Sqrt(d)) / gravity;
+                if (Mathf.Abs(ticksToReachFloat * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, it's probably landed, or otherwise invalid
+                {
+                    ticksToReach = 0;
+                    return false;
+                }
+            }
+            ticksToReach = Mathf.CeilToInt(ticksToReachFloat);
+            return true;
         }
         public virtual bool GuidedProjectile => false;
     }

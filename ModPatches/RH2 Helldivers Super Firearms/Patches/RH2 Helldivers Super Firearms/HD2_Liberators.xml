@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--Melee Attacks for Guns-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="RNGun_AR23ChaosLiberator_Rifle" or
+			defName="RNGun_AR23Liberator_Rifle" or
+			defName="RNGun_AR23LiberatorPenetrator_Rifle" or
+			defName="RNGun_AR23ALiberatorCarbine_Rifle"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ============ Standard Liberator ============ -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AR23Liberator_Rifle</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>5</Bulk>
+			<WorkToMake>30000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>RNShot_AR23Liberator</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.45</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ============ Chaos Liberator; repainted, edgier ============ -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AR23ChaosLiberator_Rifle</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>5</Bulk>
+			<WorkToMake>30000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>RNShot_AR23Liberator</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.45</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ============ Liberator Penetrator; more range, more accuracy, more mass/bulk, actual scope ============ -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AR23LiberatorPenetrator_Rifle</defName>
+		<statBases>
+			<Mass>2.4</Mass>
+			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.25</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>5.25</Bulk>
+			<WorkToMake>31500</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>62</range>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>RNShot_LiberatorPenetrator</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.42</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ============ Liberator Carbine; more brrt, less range and accuracy ============ -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AR23ALiberatorCarbine_Rifle</defName>
+		<statBases>
+			<Mass>1.8</Mass>
+			<RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>4.5</Bulk>
+			<WorkToMake>29000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_55x50mmLiberty_FMJ</defaultProjectile>
+			<warmupTime>0.75</warmupTime>
+			<range>48</range>
+			<burstShotCount>9</burstShotCount>
+			<soundCast>RNShot_LiberatorCarbine</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>1.85</recoilAmount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_55x50mmLiberty</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

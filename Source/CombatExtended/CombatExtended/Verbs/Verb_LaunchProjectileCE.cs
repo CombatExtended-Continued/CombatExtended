@@ -38,6 +38,8 @@ namespace CombatExtended
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
         public CompApparelReloadable compReloadable = null;
+        protected int multiBarrelIndex;
+
         private float shotSpeed = -1;
 
         private float rotationDegrees = 0f;
@@ -64,6 +66,7 @@ namespace CombatExtended
 
         public VerbPropertiesCE VerbPropsCE => verbProps as VerbPropertiesCE;
         public ProjectilePropertiesCE projectilePropsCE => Projectile.projectile as ProjectilePropertiesCE;
+        public MultiBarrelExtension multiBarrelExt => EquipmentSource?.def.GetModExtension<MultiBarrelExtension>();
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
@@ -74,9 +77,10 @@ namespace CombatExtended
             get
             {
                 float shotsPerBurst = base.ShotsPerBurst;
-                if (EquipmentSource != null)
+                WeaponPlatform platform = this.WeaponPlatform;
+                if (platform != null)
                 {
-                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                    float modified = platform.GetStatValue(CE_StatDefOf.BurstShotCount);
                     if (modified > 0)
                     {
                         shotsPerBurst = modified;
@@ -191,14 +195,17 @@ namespace CombatExtended
             }
         }
 
+        public WeaponPlatform WeaponPlatform => EquipmentSource as WeaponPlatform;
+
         public float RecoilAmount
         {
             get
             {
                 float recoil = VerbPropsCE.recoilAmount;
-                if (EquipmentSource != null)
+                WeaponPlatform platform = this.WeaponPlatform;
+                if (platform != null)
                 {
-                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
+                    float modified = platform.GetStatValue(CE_StatDefOf.Recoil);
                     if (modified > 0)
                     {
                         recoil = modified;
@@ -552,6 +559,16 @@ namespace CombatExtended
             shotRotation = (lastShotRotation + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
             distance = (newTargetLoc - sourceLoc).magnitude;
+            sourceLoc += IncrementBarrelCount();
+        }
+
+        /// <summary>
+        /// Add 1 to multi barrel index then returns the barrel offset.
+        /// </summary>
+        protected Vector2 IncrementBarrelCount()
+        {
+            multiBarrelIndex++;
+            return multiBarrelExt?.GetOffsetFor(multiBarrelIndex).RotatedBy(shotRotation) ?? Vector2.zero;
         }
         protected float ShotAngle(Vector3 targetPos)
         {
@@ -577,8 +594,7 @@ namespace CombatExtended
         /// <returns>rotation in degrees</returns>
         protected virtual float ShotRotation(Vector3 source, Vector3 targetPos)
         {
-            var w = targetPos - source;
-            return -90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x);
+            return projectilePropsCE.TrajectoryWorker.ShotRotation(projectilePropsCE, source, targetPos);
         }
         /// <summary>
         /// Calculates the amount of recoil at a given point in a burst, up to a maximum
@@ -793,7 +809,8 @@ namespace CombatExtended
                     if (newCover != null
                             && (targetThing == null || !newCover.Equals(targetThing))
                             && newCover.def.Fillage == FillCategory.Partial
-                            && !newCover.IsPlant())
+                            && !newCover.IsPlant()
+                            && newCover is not Building_TrapExplosive)
                     {
                         float newCoverHeight = new CollisionVertical(newCover).Max;
 
@@ -897,14 +914,31 @@ namespace CombatExtended
             ShootLine shootLine;
             if (!TryFindCEShootLineFromTo(root, targ, out shootLine, out _))
             {
-                float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
+                int lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
                 {
                     report = "CE_BlockedMaxRange".Translate();
                 }
                 else if (lengthHorizontalSquared < verbProps.minRange * verbProps.minRange)
                 {
+                    if (verbProps is VerbPropertiesCE vpce)
+                    {
+                        var mric = vpce.minRangeInCover;
+                        if ((mric > -1) && lengthHorizontalSquared >= (mric * mric)) // Check if we're in or behind cover
+                        {
+                            foreach (var ivc in shootLine.Points().Skip(1).SkipLast(1))
+                            {
+                                Thing cover = ivc.GetFirstPawn(caster.Map) ?? ivc.GetCover(caster.Map);
+                                Bounds bounds = CE_Utility.GetBoundsFor(cover);
+                                if (bounds.size.y >= vpce.minCoverHeight)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
                     report = "CE_BlockedMinRange".Translate();
+                    return false;
                 }
                 else
                 {
@@ -996,6 +1030,11 @@ namespace CombatExtended
             // 5:       Interruptible -> stop shooting
             // 6:       Not interruptible -> shoot along previous line
             // 7:     else -> stop
+            if (lastShootLine == null)
+            {
+                shootLine = default;
+                return false;
+            }
             shootLine = (ShootLine)lastShootLine;
             if (LockRotationAndAngle) // Case 1,2,5,6
             {
@@ -1004,11 +1043,6 @@ namespace CombatExtended
                     return false;
                 }
                 // Case 2, 6
-                if (lastShootLine == null)
-                {
-                    return false;
-                }
-                shootLine = (ShootLine)lastShootLine;
                 currentTarget = new LocalTargetInfo(lastTargetPos);
                 lastExactPos = lastTargetPos.ToVector3Shifted();
             }
@@ -1246,7 +1280,11 @@ namespace CombatExtended
          */
 
         private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
-
+        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        {
+            Vector3 _;
+            return TryFindCEShootLineFromTo(root, targ, out resultingLine, out _);
+        }
         public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
             targetPos = targ.Thing is Pawn ? targ.Thing.TrueCenter() : targ.Cell.ToVector3Shifted();

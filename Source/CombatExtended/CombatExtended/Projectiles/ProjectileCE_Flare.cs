@@ -7,7 +7,9 @@ namespace CombatExtended
     public class ProjectileCE_Flare : ProjectileCE_Explosive
     {
         private const float FLYOVER_FLARING_CHANCE = 0.2f;
-        private const float FLYOVER_FLARING_HEIGHT = Flare.DEFAULT_FLYOVER_START_ALT;
+        private float FLYOVER_FLARING_HEIGHT = 30;
+        private ThingDef FlareThingDefOf = CE_ThingDefOf.Flare;
+        FlareModExtensionCE ModExtension;
 
         private bool decentStarted = false;
 
@@ -49,9 +51,17 @@ namespace CombatExtended
 
         public override void Impact(Thing hitThing)
         {
+            if (this.def.HasModExtension<FlareModExtensionCE>())
+            {
+                ModExtension = def.GetModExtension<FlareModExtensionCE>();
+                FLYOVER_FLARING_HEIGHT = ModExtension.FlyoverStartAltitude;
+                FlareThingDefOf = ModExtension.FlareThingDef;
+            }
+
             landed = true;
             Flare flare;
-            flare = (Flare)ThingMaker.MakeThing(CE_ThingDefOf.Flare, null);
+            flare = (Flare)ThingMaker.MakeThing(FlareThingDefOf, null);
+            flare.modExtension = ModExtension;
             flare.DrawMode = Flare.FlareDrawMode.FlyOver;
             flare.StartingAltitude = ExactPosition.y;
             flare.Position = Position;

@@ -188,7 +188,8 @@ namespace CombatExtended
             bool hasCasing = true;
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = Mathf.CeilToInt(weapon.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            WeaponPlatform platform = weapon as WeaponPlatform;
+            waitToil.defaultDuration = Mathf.CeilToInt((platform?.GetStatValue(CE_StatDefOf.ReloadTime) ?? compReloader.Props.reloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             //If we're 30 ticks through the reload timer or if reload was too fast, before it completes, drop casings if dropcasingwhenreload.
             waitToil.AddPreTickAction(() =>
             {
@@ -199,7 +200,7 @@ namespace CombatExtended
 
             //Actual reloader
             Toil reloadToil = new Toil();
-            reloadToil.AddFinishAction(() => compReloader.LoadAmmo(initAmmo));
+            reloadToil.AddFinishAction(() => DoReload());
             yield return reloadToil;
 
             // If reloading one shot at a time and if possible to reload, jump back to do-nothing toil
@@ -216,6 +217,18 @@ namespace CombatExtended
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
             yield return continueToil;
+        }
+
+        void DoReload()
+        {
+            compReloader.LoadAmmo(initAmmo, true);
+            if (!(compReloader.Props.reloadOneAtATime || compReloader.FullMagazine))
+            {
+                while (!compReloader.FullMagazine && compReloader.TryFindAmmoInInventory(out initAmmo))
+                {
+                    compReloader.LoadAmmo(initAmmo);
+                }
+            }
         }
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)

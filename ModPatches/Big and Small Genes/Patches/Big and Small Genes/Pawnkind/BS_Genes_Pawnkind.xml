@@ -29,4 +29,36 @@
 		<xpath>Defs/PawnKindDef[defName="BS_Ogre_Warrior"]/weaponTags/li[.="NeolithicMeleeBasic"]</xpath>
 	</Operation>
 
+	<!--Give ammo to crosbowman-->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="BS_MedievalBasicArcher"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>100</min>
+						<max>200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="BS_MedievalBasicArcher"] </xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
 </Patch>

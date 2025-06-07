@@ -48,7 +48,7 @@ namespace CombatExtended
             {
                 yield return gizmo;
             }
-            if (Controller.settings.EnableCIWS)
+            if (Controller.settings.EnableCIWS && this.Faction == Faction.OfPlayer)
             {
                 yield return new Command_Action()
                 {

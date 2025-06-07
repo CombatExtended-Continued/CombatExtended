@@ -168,10 +168,10 @@
 						<offset>(0.2,0)</offset>
 					</thin>
 					<hulk>
-						<offset>(0,0)</offset>
+						<offset>(0.1,0)</offset>
 					</hulk>
 					<fat>
-						<offset>(0,0)</offset>
+						<offset>(0.04,0)</offset>
 					</fat>
 					<male>
 						<offset>(0.125,0)</offset>
@@ -186,10 +186,10 @@
 						<offset>(-0.2,0)</offset>
 					</thin>
 					<hulk>
-						<offset>(0,0)</offset>
+						<offset>(-0.1,0)</offset>
 					</hulk>
 					<fat>
-						<offset>(0,0)</offset>
+						<offset>(-0.04,0)</offset>
 					</fat>
 					<male>
 						<offset>(-0.125,0)</offset>
@@ -217,13 +217,13 @@
 					<scale>(1,1)</scale>
 				</female>
 				<thin>
-					<scale>(1,1)</scale>
+					<scale>(0.9,0.95)</scale>
 				</thin>
 				<hulk>
-					<scale>(1,1)</scale>
+					<scale>(1.25,1.25)</scale>
 				</hulk>
 				<fat>
-					<scale>(1,1)</scale>
+					<scale>(1.15,1.15)</scale>
 				</fat>
 			</wornGraphicData>
 		</apparel>
@@ -340,16 +340,16 @@
 						<offset>(0.2,0)</offset>
 					</thin>
 					<hulk>
-						<offset>(0.05,0)</offset>
+						<offset>(0.1,0)</offset>
 					</hulk>
 					<fat>
 						<offset>(0,0)</offset>
 					</fat>
 					<male>
-						<offset>(0.2,0)</offset>
+						<offset>(0.125,0)</offset>
 					</male>
 					<female>
-						<offset>(0.2,0)</offset>
+						<offset>(0.125,0)</offset>
 					</female>
 				</east>
 				<west>
@@ -358,16 +358,16 @@
 						<offset>(-0.2,0)</offset>
 					</thin>
 					<hulk>
-						<offset>(-0.05,0)</offset>
+						<offset>(-0.1,0)</offset>
 					</hulk>
 					<fat>
 						<offset>(0,0)</offset>
 					</fat>
 					<male>
-						<offset>(-0.2,0)</offset>
+						<offset>(-0.125,0)</offset>
 					</male>
 					<female>
-						<offset>(-0.2,0)</offset>
+						<offset>(-0.125,0)</offset>
 					</female>
 				</west>
 				<north>
@@ -389,13 +389,13 @@
 					<scale>(1,1)</scale>
 				</female>
 				<thin>
-					<scale>(1,1)</scale>
+					<scale>(0.9,0.95)</scale>
 				</thin>
 				<hulk>
-					<scale>(1,1)</scale>
+					<scale>(1.25,1.25)</scale>
 				</hulk>
 				<fat>
-					<scale>(1,1)</scale>
+					<scale>(1.15,1.15)</scale>
 				</fat>
 			</wornGraphicData>
 		</apparel>
@@ -550,11 +550,12 @@
 	<ThingDef ParentName="ApparelCarryGearBase">
 		<defName>CE_Apparel_ExoFrame</defName>
 		<label>powered exoframe</label>
-		<description>A powered exoframe with articulated joints, commonly used in industrial settings by workers handling heavy parts.\n\nIncreases lifting capacity, but is quite bulky to wear.</description>
+		<description>A powered exoframe with articulated joints, commonly used in industrial settings by workers handling heavy parts.\n\nIncreases lifting capacity and improves weapon handling, but is quite bulky to wear.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Exoframe/CE_Exoframe</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
+		<techLevel>Industrial</techLevel>
 		<generateCommonality>0.25</generateCommonality>
 		<recipeMaker>
 			<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
@@ -580,6 +581,7 @@
 		</statBases>
 		<equippedStatOffsets>
 			<CarryWeight>50</CarryWeight>
+			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 		</equippedStatOffsets>
 		<costList>
 			<Plasteel>80</Plasteel>
