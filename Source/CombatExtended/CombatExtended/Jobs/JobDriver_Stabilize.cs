@@ -28,6 +28,13 @@ namespace CombatExtended
             }
         }
 
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref didStabilize, "didStabilize", defaultValue: false);
+            Scribe_References.Look(ref _usedMedicine, "_usedMedicine");
+        }
+
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return pawn.Reserve(TargetA, job) && pawn.Reserve(TargetB, job);
