@@ -78,9 +78,13 @@ namespace CombatExtended
                 if (didStabilize)
                 {
                     MakeMedicineFilth(Medicine);
-                    if (_usedMedicine is { stackCount: > 0 })
+                    if (_usedMedicine.stackCount > 1)
                     {
-                        _usedMedicine.SplitOff(1).Destroy();
+                        _usedMedicine.stackCount--;
+                    }
+                    else if (!_usedMedicine.Destroyed)
+                    {
+                        _usedMedicine.Destroy();
                     }
                 }
             });
