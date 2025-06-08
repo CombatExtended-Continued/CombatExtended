@@ -103,6 +103,7 @@ namespace CombatExtended
                 }
             };
             yield return carryMedicine;
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             if (pawn != Patient)
             {
                 pawn.rotationTracker.FaceCell(Patient.Position);
