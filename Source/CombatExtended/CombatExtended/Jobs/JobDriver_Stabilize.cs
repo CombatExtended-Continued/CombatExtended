@@ -115,13 +115,16 @@ namespace CombatExtended
             };
             yield return carryMedicine;
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
-            if (pawn != Patient)
-            {
-                pawn.rotationTracker.FaceCell(Patient.Position);
-            }
             // Stabilize patient
             int duration = (int)(1f / this.pawn.GetStatValue(StatDefOf.MedicalTendSpeed, true) * BaseTendDuration);
             Toil waitToil = Toils_General.WaitWith(TargetIndex.A, duration, maintainPosture: true, maintainSleep: false).WithProgressBarToilDelay(TargetIndex.A).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
+            waitToil.tickAction = delegate
+            {
+                if (pawn != Patient)
+                {
+                    pawn.rotationTracker.FaceCell(Patient.Position);
+                }
+            };
             yield return waitToil;
             Toil stabilizeToil = new Toil
             {
