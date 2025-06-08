@@ -90,7 +90,6 @@ namespace CombatExtended
             });
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             // Stabilize patient
-            int duration = (int)(1f / this.pawn.GetStatValue(StatDefOf.MedicalTendSpeed, true) * baseTendDuration);
             Toil carryMedicine = new Toil
             {
                 initAction = delegate
