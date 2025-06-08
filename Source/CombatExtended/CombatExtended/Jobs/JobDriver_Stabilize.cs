@@ -11,6 +11,7 @@ namespace CombatExtended
     {
         private const float BaseTendDuration = 60f;
         private Thing _usedMedicine;
+        private bool didStabilize = false;
 
         private Pawn Patient
         {
@@ -67,10 +68,13 @@ namespace CombatExtended
             });
             this.AddFinishAction(delegate
             {
-                MakeMedicineFilth(Medicine);
-                if (_usedMedicine is { stackCount: > 0 })
+                if (didStabilize)
                 {
-                    _usedMedicine.SplitOff(1).Destroy();
+                    MakeMedicineFilth(Medicine);
+                    if (_usedMedicine is { stackCount: > 0 })
+                    {
+                        _usedMedicine.SplitOff(1).Destroy();
+                    }
                 }
             });
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
@@ -119,6 +123,7 @@ namespace CombatExtended
                         {
                             HediffComp_Stabilize comp = curInjury.TryGetComp<HediffComp_Stabilize>();
                             comp.Stabilize(pawn, Medicine);
+                            didStabilize = true;
                             break;
                         }
                     }
