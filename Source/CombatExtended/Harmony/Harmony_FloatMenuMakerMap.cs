@@ -156,8 +156,7 @@ namespace CombatExtended.HarmonyCE
                 }
             }
         }
-        const float MaxSearchRadius = 5f;
-        const float MaxDistSq = MaxSearchRadius * MaxSearchRadius;
+
         private readonly static List<Thing> AllMedicine = [];
 
         [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
@@ -192,6 +191,7 @@ namespace CombatExtended.HarmonyCE
         {
             closestMedicine = null;
             float closestDistSq = float.MaxValue;
+            float maxDistance = Controller.settings.MedicineSearchRadiusSquared;
             AllMedicine.Clear();
             AllMedicine.AddRange(pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine));
             for (int i = 0; i < AllMedicine.Count; i++)
@@ -202,7 +202,7 @@ namespace CombatExtended.HarmonyCE
                     continue;
                 }
                 var distance = medicine.Position.DistanceToSquared(position);
-                if (distance <= MaxDistSq && distance < closestDistSq)
+                if (distance <= maxDistance && distance < closestDistSq)
                 {
                     closestDistSq = distance;
                     closestMedicine = medicine;
