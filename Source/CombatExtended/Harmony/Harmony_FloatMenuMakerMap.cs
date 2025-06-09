@@ -197,7 +197,7 @@ namespace CombatExtended.HarmonyCE
             for (int i = 0; i < AllMedicine.Count; i++)
             {
                 Thing medicine = AllMedicine[i];
-                if (!medicine.Spawned || medicine.IsForbidden(pawn) ||  !pawn.CanReserveAndReach(medicine, PathEndMode.ClosestTouch, Danger.Deadly))
+                if (!medicine.Spawned || medicine.IsForbidden(pawn) || !pawn.CanReserveAndReach(medicine, PathEndMode.ClosestTouch, Danger.Deadly))
                 {
                     continue;
                 }
