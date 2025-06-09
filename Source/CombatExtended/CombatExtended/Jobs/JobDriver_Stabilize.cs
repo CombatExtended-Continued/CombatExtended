@@ -10,8 +10,8 @@ namespace CombatExtended
     public class JobDriver_Stabilize : JobDriver
     {
         private const float BaseTendDuration = 60f;
-        private Thing _usedMedicine;
-        private bool didStabilize = false;
+        private bool _didStabilize = false;
+        private static List<Toil> tmpCollectToils = [];
 
         private Pawn Patient
         {
@@ -31,8 +31,7 @@ namespace CombatExtended
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref didStabilize, "didStabilize", defaultValue: false);
-            Scribe_References.Look(ref _usedMedicine, "_usedMedicine");
+            Scribe_Values.Look(ref _didStabilize, "didStabilize", defaultValue: false);
         }
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -75,55 +74,34 @@ namespace CombatExtended
             });
             this.AddFinishAction(delegate
             {
-                if (didStabilize)
+                if (_didStabilize)
                 {
+
                     MakeMedicineFilth(Medicine);
-                    if (_usedMedicine.stackCount > 1)
+                    var usedMedicine = pawn.CurJob.targetB.Thing;
+                    if (usedMedicine.stackCount > 1)
                     {
-                        _usedMedicine.stackCount--;
+                        usedMedicine.stackCount--;
                     }
-                    else if (!_usedMedicine.Destroyed)
+                    else if (!usedMedicine.Destroyed)
                     {
-                        _usedMedicine.Destroy();
+                        usedMedicine.Destroy();
                     }
                 }
             });
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
-            // Stabilize patient
-            Toil carryMedicine = new Toil
+            Toil gotoToil = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
+            List<Toil> list = CollectMedicineToils(pawn, Patient, job, gotoToil);
+            foreach (Toil item in list)
             {
-                initAction = delegate
-                {
-                    var curJob = pawn.jobs.curJob;
-                    if (pawn.carryTracker.CarriedThing != Medicine)
-                    {
-                        int toCarry = Mathf.Min(1, pawn.Map.reservationManager.CanReserveStack(pawn, Medicine, 1));
-                        if (toCarry > 0)
-                        {
-                            pawn.carryTracker.TryStartCarry(Medicine, toCarry);
-                        }
-                    }
-                    curJob.count = 0;
-                    if (Medicine.Spawned)
-                    {
-                        pawn.Map.reservationManager.Release(Medicine, pawn, job);
-                    }
-                    curJob.SetTarget(TargetIndex.B, pawn.carryTracker.CarriedThing);
-                    _usedMedicine = pawn.carryTracker.CarriedThing;
-                }
-            };
+                yield return item;
+            }
+            yield return gotoToil;
+            Toil carryMedicine = PickupMedicine(TargetIndex.B);
             yield return carryMedicine;
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             // Stabilize patient
             int duration = (int)(1f / this.pawn.GetStatValue(StatDefOf.MedicalTendSpeed, true) * BaseTendDuration);
-            Toil waitToil = Toils_General.WaitWith(TargetIndex.A, duration, maintainPosture: true, maintainSleep: false).WithProgressBarToilDelay(TargetIndex.A).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
-            waitToil.tickAction = delegate
-            {
-                if (pawn != Patient)
-                {
-                    pawn.rotationTracker.FaceCell(Patient.Position);
-                }
-            };
+            Toil waitToil = Toils_General.WaitWith(TargetIndex.A, duration, true, true, false, TargetIndex.A).WithProgressBarToilDelay(TargetIndex.A).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
             yield return waitToil;
             Toil stabilizeToil = new Toil
             {
@@ -137,7 +115,7 @@ namespace CombatExtended
                         {
                             HediffComp_Stabilize comp = curInjury.TryGetComp<HediffComp_Stabilize>();
                             comp.Stabilize(pawn, Medicine);
-                            didStabilize = true;
+                            _didStabilize = true;
                             break;
                         }
                     }
@@ -147,6 +125,56 @@ namespace CombatExtended
             };
             yield return stabilizeToil;
             yield return Toils_Jump.Jump(waitToil);
+        }
+
+        // Slightly modified version from JobDriver_Tend
+        private static List<Toil> CollectMedicineToils(Pawn doctor, Pawn patient, Job job, Toil gotoToil)
+        {
+            tmpCollectToils.Clear();
+            Thing medicineUsed = job.targetB.Thing;
+            Pawn_InventoryTracker medicineHolderInventory = medicineUsed?.ParentHolder as Pawn_InventoryTracker;
+            Pawn otherPawnMedicineHolder = job.targetA.Pawn;
+            Toil reserveMedicine = Toils_Tend.ReserveMedicine(TargetIndex.B, patient).FailOnDespawnedNullOrForbidden(TargetIndex.B);
+            // Skips all in List<Toil> if the doctor has the medicine
+            tmpCollectToils.Add(Toils_Jump.JumpIf(gotoToil, () => medicineUsed != null && (doctor.inventory.Contains(medicineUsed)) || doctor.carryTracker.CarriedThing == medicineUsed));
+            Toil toil = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch).FailOn(() => otherPawnMedicineHolder != medicineHolderInventory?.pawn || otherPawnMedicineHolder.IsForbidden(doctor));
+            tmpCollectToils.Add(Toils_Haul.CheckItemCarriedByOtherPawn(medicineUsed, TargetIndex.A, toil));
+            tmpCollectToils.Add(reserveMedicine);
+            tmpCollectToils.Add(Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.B));
+            tmpCollectToils.Add(PickupMedicine(TargetIndex.B).FailOnDestroyedOrNull(TargetIndex.B));
+            tmpCollectToils.Add(Toils_Haul.CheckForGetOpportunityDuplicate(reserveMedicine, TargetIndex.B, TargetIndex.None, takeFromValidStorage: true));
+            tmpCollectToils.Add(Toils_Jump.Jump(gotoToil));
+            tmpCollectToils.Add(toil);
+            tmpCollectToils.Add(Toils_General.Wait(25).WithProgressBarToilDelay(TargetIndex.A));
+            tmpCollectToils.Add(Toils_Haul.TakeFromOtherInventory(medicineUsed, doctor.inventory.innerContainer, medicineHolderInventory?.innerContainer, Medicine.GetMedicineCountToFullyHeal(patient), TargetIndex.B));
+            return tmpCollectToils;
+        }
+
+        private static Toil PickupMedicine(TargetIndex medicine)
+        {
+            Toil toil = ToilMaker.MakeToil("PickupMedicine");
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor.jobs.curJob;
+                Thing thing = curJob.GetTarget(medicine).Thing;
+                if (actor.carryTracker.CarriedThing != thing)
+                {
+                    int toCarry = Mathf.Min(1, actor.Map.reservationManager.CanReserveStack(actor, thing, 1));
+                    if (toCarry > 0)
+                    {
+                        actor.carryTracker.TryStartCarry(thing, toCarry);
+                    }
+                }
+                curJob.count = 0;
+                if (thing.Spawned)
+                {
+                    actor.Map.reservationManager.Release(thing, actor, curJob);
+                }
+                curJob.SetTarget(TargetIndex.B, actor.carryTracker.CarriedThing);
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            return toil;
         }
     }
 }
