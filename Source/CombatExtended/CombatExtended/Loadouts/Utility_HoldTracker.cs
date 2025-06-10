@@ -256,7 +256,7 @@ namespace CombatExtended
             }
 
             Loadout loadout = pawn.GetLoadout();
-            if (loadout == null || !loadout.Slots.Any())
+            if (loadout == null || loadout.defaultLoadout || !loadout.Slots.Any())
             {
                 List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
                 if (recs != null)
