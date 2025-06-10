@@ -168,7 +168,11 @@ namespace CombatExtended.HarmonyCE
 
             if (!pawnHasMedicine && !pawnCarryingMedicine && !patientHasMedicine)
             {
-                if (TryFindNearbyMedicine(pawn, patient.Position, out Thing closestMedicine))
+                if (!TryFindNearbyMedicine(pawn, patient.Position, out Thing closestMedicine))
+                {
+                    TryFindNearbyMedicine(pawn, pawn.Position, out closestMedicine);
+                }
+                if (closestMedicine != null)
                 {
                     AssignStabilizeJob(pawn, patient, closestMedicine);
                 }
