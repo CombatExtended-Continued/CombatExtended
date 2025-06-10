@@ -371,10 +371,13 @@ namespace CombatExtended
             cellsToAffect.Sort((IntVec3 a, IntVec3 b) => GetCellAffectTick(b).CompareTo(GetCellAffectTick(a)));
             RegionTraverser.BreadthFirstTraverse(Position, Map, (Region from, Region to) => true, delegate (Region x)
             {
-                var list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
-                for (var i = list.Count - 1; i >= 0; i--)
+                List<Thing> allThings = x.ListerThings.AllThings;
+                for (int num = allThings.Count - 1; num >= 0; num--)
                 {
-                    ((Pawn)list[i]).mindState.Notify_Explosion(this);
+                    if (allThings[num].Spawned)
+                    {
+                        allThings[num].Notify_Explosion(this);
+                    }
                 }
                 return false;
             }, 25, RegionType.Set_Passable);
