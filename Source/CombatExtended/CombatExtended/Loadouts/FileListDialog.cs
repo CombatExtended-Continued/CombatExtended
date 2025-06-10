@@ -92,13 +92,13 @@ namespace CombatExtended
                 Text.Anchor = TextAnchor.UpperLeft;
                 Text.Font = GameFont.Small;
                 float num4 = vector.x - 2f - vector2.x - vector2.y;
-                Rect rect4 = new Rect(num4, 0f, vector2.x, vector2.y);
-                if (Widgets.ButtonText(rect4, this.interactButLabel, true, false, true))
+                Rect interactionButtonRect = new Rect(num4, 0f, vector2.x, vector2.y);
+                if (Widgets.ButtonText(interactionButtonRect, this.interactButLabel, true, false, true))
                 {
                     fileAction(current, this);
                 }
-                Rect rect5 = new Rect(num4 + vector2.x + 5f, 0f, vector2.y, vector2.y);
-                if (Widgets.ButtonImage(rect5, Texture.DeleteX))
+                Rect deleteXRect = new Rect(num4 + vector2.x + 5f, 0f, vector2.y, vector2.y);
+                if (Widgets.ButtonImage(deleteXRect, Texture.DeleteX))
                 {
                     FileInfo localFile = current;
                     Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("ConfirmDelete".Translate(localFile.Name), delegate
@@ -107,7 +107,7 @@ namespace CombatExtended
                         ReloadFiles();
                     }, destructive: true));
                 }
-                TooltipHandler.TipRegion(rect5, "DeleteThisSavegame".Translate());
+                TooltipHandler.TipRegion(deleteXRect, "DeleteThisSavegame".Translate());
                 GUI.EndGroup();
                 num2 += vector.y + 3f;
                 num3++;
@@ -145,7 +145,7 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleLeft;
             GUI.SetNextControlName("MapNameField");
-            Rect textFieldRect = new Rect(5f, y, 400f, 35f);
+            Rect textFieldRect = new Rect(0f, y, 400f, 35f);
             string str = Widgets.TextField(textFieldRect, this.typingName);
             if (GenText.IsValidFilename(str))
             {
@@ -156,7 +156,7 @@ namespace CombatExtended
                 UI.FocusControl("MapNameField", this);
                 this.focusedNameArea = true;
             }
-            Rect saveButtonRect = new Rect(420f, y, rect.width - 400f - 20f, 35f);
+            Rect saveButtonRect = new Rect(413f, y, rect.width - 400f - 20f, 35f);
             if (Widgets.ButtonText(saveButtonRect, "SaveGameButton".Translate(), true, false, true) || flag)
             {
                 if (this.typingName.NullOrEmpty())
