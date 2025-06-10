@@ -201,7 +201,7 @@ namespace CombatExtended
         {
             Loadout loadout = pawn.GetLoadout();
             dropEquipment = null;
-            if (loadout == null || (loadout != null && (!loadout.dropUndefined || loadout.adHoc)) || pawn.equipment?.Primary == null)
+            if (loadout == null || loadout.defaultLoadout || !loadout.dropUndefined || loadout.adHoc || pawn.equipment?.Primary == null)
             {
                 return false;
             }
@@ -366,7 +366,7 @@ namespace CombatExtended
             dropThing = null;
             dropCount = 0;
 
-            if (inventory == null || inventory.container == null || loadout == null)
+            if (inventory == null || inventory.container == null || loadout == null || loadout.defaultLoadout)
             {
                 return false;
             }

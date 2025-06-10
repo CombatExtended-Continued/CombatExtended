@@ -103,7 +103,7 @@ namespace CombatExtended
             if (inventory != null && inventory.container != null)
             {
                 Loadout loadout = pawn.GetLoadout();
-                if (loadout != null)
+                if (loadout != null && !loadout.defaultLoadout)
                 {
                     // Need to generate a dictionary and nibble like when dropping in order to allow for conflicting loadouts to work properly.
                     Dictionary<ThingDef, Integer> listing = pawn.GetStorageByThingDef();
@@ -335,7 +335,7 @@ namespace CombatExtended
             }
 
             Loadout loadout = pawn.GetLoadout();
-            if (loadout != null)
+            if (loadout != null && !loadout.defaultLoadout)
             {
                 ThingWithComps dropEq;
                 if (pawn.GetExcessEquipment(out dropEq))
