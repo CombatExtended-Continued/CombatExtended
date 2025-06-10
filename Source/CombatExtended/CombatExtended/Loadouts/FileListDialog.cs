@@ -62,6 +62,10 @@ namespace CombatExtended
             float height = (float)this.files.Count * num;
             Rect viewRect = new Rect(0f, 0f, inRect.width - 16f, height);
             Rect outRect = new Rect(inRect.x, inRect.y, inRect.width, inRect.height);
+            if (this.ShouldDoTypeInField)
+            {
+                this.bottomAreaHeight = 40;
+            }
             outRect.height -= this.bottomAreaHeight;
             Widgets.BeginScrollView(outRect, ref this.scrollPosition, viewRect, true);
             float num2 = 0f;
@@ -137,12 +141,12 @@ namespace CombatExtended
         {
             GUI.BeginGroup(rect);
             bool flag = Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return;
-            float y = rect.height - 52f;
+            float y = rect.height - 35f;
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleLeft;
             GUI.SetNextControlName("MapNameField");
-            Rect rect2 = new Rect(5f, y, 400f, 35f);
-            string str = Widgets.TextField(rect2, this.typingName);
+            Rect textFieldRect = new Rect(5f, y, 400f, 35f);
+            string str = Widgets.TextField(textFieldRect, this.typingName);
             if (GenText.IsValidFilename(str))
             {
                 this.typingName = str;
@@ -152,8 +156,8 @@ namespace CombatExtended
                 UI.FocusControl("MapNameField", this);
                 this.focusedNameArea = true;
             }
-            Rect rect3 = new Rect(420f, y, rect.width - 400f - 20f, 35f);
-            if (Widgets.ButtonText(rect3, "SaveGameButton".Translate(), true, false, true) || flag)
+            Rect saveButtonRect = new Rect(420f, y, rect.width - 400f - 20f, 35f);
+            if (Widgets.ButtonText(saveButtonRect, "SaveGameButton".Translate(), true, false, true) || flag)
             {
                 if (this.typingName.NullOrEmpty())
                 {
