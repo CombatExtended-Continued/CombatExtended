@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     public class VerbCIWSSkyfaller : VerbCIWS<Skyfaller>
     {
-        public override IEnumerable<Skyfaller> Targets => Caster.Map?.listerThings.ThingsInGroup(Verse.ThingRequestGroup.ActiveDropPod).OfType<Skyfaller>();
+        public override IEnumerable<Skyfaller> Targets => Caster.Map?.listerThings.ThingsInGroup(Verse.ThingRequestGroup.ActiveTransporter).OfType<Skyfaller>();
 
 
         protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(Caster));
@@ -30,6 +30,6 @@ namespace CombatExtended
             this.holdFireLabel = "HoldCloseInSkyfallersFire";
             this.holdFireDesc = "HoldCloseInSkyfallersFireDesc";
         }
-        protected override IEnumerable<ThingDef> InitAllTargets() => DefDatabase<ThingDef>.AllDefsListForReading.Where(x => (typeof(Skyfaller).IsAssignableFrom(x.thingClass) && typeof(IActiveDropPod).IsAssignableFrom(x.thingClass)));
+        protected override IEnumerable<ThingDef> InitAllTargets() => DefDatabase<ThingDef>.AllDefsListForReading.Where(x => (typeof(Skyfaller).IsAssignableFrom(x.thingClass) && typeof(IActiveTransporter).IsAssignableFrom(x.thingClass)));
     }
 }

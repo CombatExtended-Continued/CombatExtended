@@ -16,7 +16,7 @@ namespace CombatExtended.HarmonyCE
             {
                 try
                 {
-                    if (WorldRendererUtility.WorldRenderedNow && ExpandableWorldObjectsUtility.TransitionPct <= 0.25f)
+                    if (WorldRendererUtility.WorldSelected && ExpandableWorldObjectsUtility.RawTransitionPct <= 0.25f)
                     {
                         WorldHealthGUIUtility.OnGUIWorldObjectHealth();
                     }

@@ -141,7 +141,7 @@ namespace CombatExtended
                             detProps.explosionRadius,
                             detProps.damageDef,
                             instigator: this,
-                            detProps.GetDamageAmount(1),
+                            detProps.GetDamageAmount(1f, null),
                             detProps.GetExplosionArmorPenetration(),
                             detProps.soundExplode,
                             weapon: null,

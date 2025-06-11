@@ -42,7 +42,7 @@ namespace CombatExtended
                 &&
                 preset.RangeRange.Includes(gun.Verbs.FirstOrFallback()?.range ?? 0f)
                 &&
-                preset.DamageRange.Includes(gun.Verbs.FirstOrFallback()?.defaultProjectile.projectile.GetDamageAmount(1f) ?? 0f)
+                preset.DamageRange.Includes(gun.Verbs.FirstOrFallback()?.defaultProjectile.projectile.GetDamageAmount(1f, null) ?? 0f)
                 &&
                 preset.ProjSpeedRange.Includes(gun.Verbs.FirstOrFallback()?.defaultProjectile.projectile.speed ?? 0f)
                 ;
@@ -225,7 +225,7 @@ namespace CombatExtended
                     comp.ammoSet = preset.CaliberRanges.Find
                                    (
                                        x =>
-                                       x.DamageRange.Includes(OldProj.projectile.GetDamageAmount(1f))
+                                       x.DamageRange.Includes(OldProj.projectile.GetDamageAmount(1f, null))
                                        &&
                                        x.SpeedRange.Includes(OldProj.projectile.speed)
                                    )?.AmmoSet ?? comp.ammoSet;

@@ -40,7 +40,7 @@ namespace CombatExtended
             }
             targetList.Add(parent);
         }
-        public override void PostDeSpawn(Map map)
+        public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
         {
             base.PostDeSpawn(map);
             if (CIWSTargets.TryGetValue(map, out var targetList))

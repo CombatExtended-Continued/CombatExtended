@@ -194,7 +194,7 @@ namespace CombatExtended.WorldObjects
             {
                 shell.SetFaction(comp.parent.Faction);
             }
-            shell.tileInt = comp.parent.Tile;
+            shell.Tile = comp.parent.Tile;
             shell.SpawnSetup();
             Find.World.worldObjects.Add(shell);
             if (shooter == null && comp.parent.Faction.def.humanlikeFaction)

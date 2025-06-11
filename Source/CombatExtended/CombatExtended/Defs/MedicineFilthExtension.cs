@@ -6,6 +6,6 @@ namespace CombatExtended
     {
         public ThingDef filthDefName;
         public float filthSpawnChance = 1;
-        public IntRange filthSpawnQuantity = IntRange.one;
+        public IntRange filthSpawnQuantity = IntRange.One;
     }
 }
