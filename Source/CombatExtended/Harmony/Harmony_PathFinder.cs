@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(PathFinder), nameof(PathFinder.FindPath), new[] { typeof(IntVec3), typeof(LocalTargetInfo), typeof(TraverseParms), typeof(PathEndMode), typeof(PathFinderCostTuning) })]
+    [HarmonyPatch(typeof(PathFinder), nameof(PathFinder.FindPath), new[] { typeof(IntVec3), typeof(LocalTargetInfo), typeof(TraverseParms), typeof(PathEndMode), typeof(PathFinderCostTuning) })] // pathfinding is treaded now, not touching it for the time being
     internal static class Harmony_PathFinder_FindPath
     {
         private static Map map;

@@ -345,7 +345,7 @@ namespace CombatExtended
                     {
                         if (droppedEq != null)
                         {
-                            return HaulAIUtility.HaulToStorageJob(pawn, droppedEq);
+                            return HaulAIUtility.HaulToStorageJob(pawn, droppedEq, forced: false);
                         }
                         Log.Error(string.Concat(pawn, " tried dropping ", dropEq, " from loadout but resulting thing is null"));
                     }
@@ -359,7 +359,7 @@ namespace CombatExtended
                     {
                         if (droppedThing != null)
                         {
-                            return HaulAIUtility.HaulToStorageJob(pawn, droppedThing);
+                            return HaulAIUtility.HaulToStorageJob(pawn, droppedThing, forced: false);
                         }
                         Log.Error(string.Concat(pawn, " tried dropping ", dropThing, " from loadout but resulting thing is null"));
                     }

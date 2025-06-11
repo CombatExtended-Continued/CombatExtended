@@ -55,7 +55,7 @@ namespace CombatExtended.HarmonyCE
                         float manhunterOnDamageChance;
                         if (verbCE.IsMeleeAttack)
                         {
-                            manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, 0f, selectedThing);
+                            manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, selectedThing, 0f);
                         }
                         else
                         {

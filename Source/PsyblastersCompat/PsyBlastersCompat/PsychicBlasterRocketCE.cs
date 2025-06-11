@@ -21,7 +21,7 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
                 if (CanConsumeResources(launcher as Pawn))
                 {
                     return def.projectile.GetDamageAmount(
-                               equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) +
+                               equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f, null) +
                            ((((Pawn)launcher).psychicEntropy.MaxPotentialEntropy -
                              ((Pawn)launcher).psychicEntropy.EntropyValue) * _psyBlasterBulletComp.PsyDamageMulti);
                 }

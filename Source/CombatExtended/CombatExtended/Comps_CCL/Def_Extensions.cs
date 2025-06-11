@@ -187,7 +187,7 @@ namespace CombatExtended
         public static Rect CropHorizontalVertical(Color[] array, int width, int height)
         {
             var v = CropVertical(array, width, height);
-            if (v == IntRange.zero)
+            if (v == IntRange.Zero)
             {
                 return Rect.zero;
             }

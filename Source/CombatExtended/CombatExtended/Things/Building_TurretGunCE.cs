@@ -269,9 +269,9 @@ namespace CombatExtended
             BackCompatibility.PostExposeData(this);
         }
 
-        public override bool ClaimableBy(Faction by, StringBuilder reason = null)        // Core method
+        public override AcceptanceReport ClaimableBy(Faction by)        // Core method
         {
-            return base.ClaimableBy(by, reason) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (((this.dormantComp == null || this.dormantComp.Awake) && (this.initiatableComp == null || this.initiatableComp.Initiated)) || (this.powerComp != null && !this.powerComp.PowerOn));
+            return base.ClaimableBy(by) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (((this.dormantComp == null || this.dormantComp.Awake) && (this.initiatableComp == null || this.initiatableComp.Initiated)) || (this.powerComp != null && !this.powerComp.PowerOn));
         }
 
         [Compatibility.Multiplayer.SyncMethod]

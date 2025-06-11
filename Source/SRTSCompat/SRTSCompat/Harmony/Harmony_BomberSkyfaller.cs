@@ -28,7 +28,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
         // unless the bomb isn't an AmmoThing, if so, fall back to SRTS's bombing system.
         public static bool Prefix(BomberSkyfaller __instance)
         {
-            ActiveDropPod srts = (ActiveDropPod)__instance.innerContainer.First();
+            ActiveTransporter srts = (ActiveTransporter)__instance.innerContainer.First();
             if (srts == null)
             {
                 goto FunctionEnd;

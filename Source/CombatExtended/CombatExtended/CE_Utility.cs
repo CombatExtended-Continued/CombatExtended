@@ -1635,13 +1635,13 @@ namespace CombatExtended
             {
                 foreach (var thing in heldThings)
                 {
-                    if (thing is IThingHolder childThingHolder && (thing is Skyfaller || thing is IActiveDropPod))
+                    if (thing is IThingHolder childThingHolder && (thing is Skyfaller || thing is IActiveTransporter))
                     {
                         foreach (var childThing in ContainedThings(childThingHolder))
                         {
                             yield return childThing;
                         }
-                        if (thing is IActiveDropPod dropPod)
+                        if (thing is IActiveTransporter dropPod)
                         {
                             foreach (var childThing in ContainedThings(dropPod.Contents))
                             {

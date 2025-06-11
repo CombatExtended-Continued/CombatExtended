@@ -24,7 +24,7 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
                     damMulti += _psyBlasterBulletComp.PsyDamageMulti;
                 }
 
-                return def.projectile.GetDamageAmount(damMulti);
+                return def.projectile.GetDamageAmount(damMulti, null);
             }
         }
 
