@@ -1015,8 +1015,16 @@ namespace CombatExtended
             }
 
             var bounds = CE_Utility.GetBoundsFor(thing);
-            if (bounds.Contains(LastPos) || bounds.Contains(ExactPosition))
+            
+            if (bounds.Contains(LastPos))
             {
+                point = LastPos;
+                dist = 0f;
+                return true;
+            }
+            else if (bounds.Contains(ExactPosition))
+            {
+                point = ExactPosition;
                 dist = 0f;
                 return true;
             }
