@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(PathFinder), nameof(PathFinder.FindPath), new[] { typeof(IntVec3), typeof(LocalTargetInfo), typeof(TraverseParms), typeof(PathEndMode), typeof(PathFinderCostTuning) })] // pathfinding is treaded now, not touching it for the time being
+    /*[HarmonyPatch(typeof(PathFinder), nameof(PathFinder.FindPath), new[] { typeof(IntVec3), typeof(LocalTargetInfo), typeof(TraverseParms), typeof(PathEndMode), typeof(PathFinderCostTuning) })] // pathfinding is treaded now, not touching it for the time being
     internal static class Harmony_PathFinder_FindPath
     {
         private static Map map;
@@ -48,7 +48,7 @@ namespace CombatExtended.HarmonyCE
          * ((i > 3) ? num9 : num8) + num15;
          *
          * DISABLED: reason is it need a bit more constant tuning but never the less the code is 100% working
-         */
+         #1#
         //public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         //{
         //    List<CodeInstruction> codes = instructions.ToList();
@@ -80,5 +80,5 @@ namespace CombatExtended.HarmonyCE
         //        value += (int)lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 2000;
         //    return value;
         //}
-    }
+    }*/
 }
