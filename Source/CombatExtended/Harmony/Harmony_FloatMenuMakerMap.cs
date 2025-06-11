@@ -120,7 +120,7 @@ namespace CombatExtended.HarmonyCE
                 List<Thing> thingList = c.GetThingList(pawn.Map);
                 foreach (Thing item in thingList)
                 {
-                    if (item is null or Corpse)
+                    if (item is null or Corpse || !item.def.alwaysHaulable)
                     {
                         continue;
                     }
