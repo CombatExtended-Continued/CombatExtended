@@ -217,7 +217,18 @@
 	<!-- ========== VFE Combat, Riot and Raider Mechs ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider" or defName="VFE_Mechanoids_Pyro"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+				<canParry>true</canParry>
+				<maxParry>5</maxParry>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider" or defName="VFE_Mechanoids_Pyro"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
