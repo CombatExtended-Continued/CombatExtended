@@ -68,7 +68,7 @@ namespace CombatExtended.HarmonyCE
 
     }
 
-    [HarmonyPatch(typeof(FloatMenuMakerMap))]
+    /*[HarmonyPatch(typeof(FloatMenuMakerMap))]
     [HarmonyPatch("AddHumanlikeOrders")]
     [HarmonyPatch(new Type[] { typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>) })]
     static class FloatMenuMakerMap_Modify_AddHumanlikeOrders
@@ -80,7 +80,7 @@ namespace CombatExtended.HarmonyCE
          * to always run unmodified.
          * There are two goals for this postfix, to add menu items for stabalizing a target and to add inventory pickup functions for pawns.
          * -Both when right clicking on something with a pawn selected.
-         */
+         #1#
 
         // __instance isn't apt, target is static.
         // __result isn't apt, target return is void.
@@ -434,7 +434,7 @@ namespace CombatExtended.HarmonyCE
          * --Branch false to label remembered in mem2.
          * --Modify the instruction we located, strip the label from it.
          *
-         */
+         #1#
 
         /* The goal of this infix is to add a check for if the pawn is too loaded down with stuff (worn/inventory) before allowing them to wear
          * something.
@@ -444,7 +444,7 @@ namespace CombatExtended.HarmonyCE
          * the code block above (in dev notes) with what Harmony generated to locate the bug.  This patch *should* work fine if the section of
          * FloatMenuMakerMap.AddHumanlikeOrders doesn't change in logic significantly.
          * The label relocation is a little soft.
-         */
+         #1#
         static IEnumerable<CodeInstruction> Modify_ForceWear(IEnumerable<CodeInstruction> instructions)
         {
             int searchPhase = 0;
@@ -557,5 +557,5 @@ namespace CombatExtended.HarmonyCE
             }
             return true;
         }
-    }
+    }*/
 }
