@@ -151,6 +151,8 @@ namespace CombatExtended
                             detProps.postExplosionSpawnChance,
                             detProps.postExplosionSpawnThingCount,
                             detProps.postExplosionGasType,
+                            null,
+                            255,
                             detProps.applyDamageToExplosionCellsNeighbors,
                             detProps.preExplosionSpawnThingDef,
                             detProps.preExplosionSpawnChance,
@@ -171,6 +173,8 @@ namespace CombatExtended
                         detProps.screenShakeFactor,
                         null,
                         null,
+                            detProps.postExplosionSpawnSingleThingDef,
+                            detProps.preExplosionSpawnSingleThingDef,
                         height: 0f,
                         Mathf.Pow(stackCountScale, 0.333f));
                     }
