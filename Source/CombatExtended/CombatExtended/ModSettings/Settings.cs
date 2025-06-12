@@ -42,6 +42,8 @@ namespace CombatExtended
         private float explosionPenMultiplier = 1.0f;
         private float explosionFalloffFactor = 1.0f;
 
+        private float medicineSearchRadius = 5f;
+
         public bool ShowCasings => showCasings;
 
         public bool BipodMechanics => bipodMechanics;
@@ -64,6 +66,8 @@ namespace CombatExtended
 
         public bool ShowExtraStats => showExtraStats;
         public bool EnableCIWS => enableCIWS;
+        
+        public float MedicineSearchRadiusSquared => medicineSearchRadius * medicineSearchRadius;
 
         public bool ShowTutorialPopup = true;
 
@@ -226,6 +230,8 @@ namespace CombatExtended
             //CIWS
             Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
+            
+            Scribe_Values.Look(ref medicineSearchRadius, "medicineSearchRadius", 5f);
         }
         public void DoWindowContents(Listing_Standard list)
         {
@@ -249,32 +255,47 @@ namespace CombatExtended
 
         private void DoSettingsWindowContents_Mechanics(Listing_Standard list)
         {
-            list.Label("CE_Settings_HeaderGeneral".Translate());
-            list.Gap();
-            list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
 
-            list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
-            list.Gap();
-            list.GapLine();
-            list.Gap();
-            list.Label("CE_Settings_ExplosionSettings".Translate());
-            list.Gap();
-            list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
-            explosionPenMultiplier = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + ": " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip: "CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f; //Rounding to 1 decimal point
-            explosionFalloffFactor = Mathf.Round(list.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate() + ": " + explosionFalloffFactor.ToString("F1"), explosionFalloffFactor, 0.1f, 2f, tooltip: "CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
-            list.Gap();
-            list.GapLine();
-            list.Gap();
-            list.Label("CE_Settings_BipodSettings".Translate());
-            list.Gap();
-            list.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+            Rect fullRect = list.GetRect(300f);
+            const float columnPadding = 16f;
+            float columnWidth = (fullRect.width - columnPadding) / 2f;
+
+            Rect leftRect = new Rect(fullRect.x, fullRect.y, columnWidth, fullRect.height);
+            Rect rightRect = new Rect(fullRect.x + columnWidth + columnPadding, fullRect.y, columnWidth, fullRect.height);
+
+            // LEFT COLUMN
+            Listing_Standard left = new Listing_Standard();
+            left.Begin(leftRect);
+            left.Label("CE_Settings_HeaderGeneral".Translate());
+            left.Gap();
+            left.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
+            left.GapLine();
+            left.Label("CE_Settings_BipodSettings".Translate());
+            left.Gap();
+            left.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+            left.End();
+
+            // RIGHT COLUMN
+            Listing_Standard right = new Listing_Standard();
+            right.Begin(rightRect);
+            right.Label("CE_Settings_ExplosionSettings".Translate());
+            right.Gap();
+            right.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
+            explosionPenMultiplier = Mathf.Round(right.SliderLabeled("CE_Settings_ExplosionPenMultiplier_Title".Translate() + ": " + explosionPenMultiplier.ToString("F1"), explosionPenMultiplier, 0.1f, 10f, tooltip: "CE_Settings_ExplosionPenMultiplier_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
+            explosionFalloffFactor = Mathf.Round(right.SliderLabeled("CE_Settings_ExplosionDamageFalloffFactor_Title".Translate() + ": " + explosionFalloffFactor.ToString("F1"), explosionFalloffFactor, 0.1f, 2f, tooltip: "CE_Settings_ExplosionDamageFalloffFactor_Desc".Translate(), labelPct: 0.6f) * 10f) * 0.1f;
+            right.GapLine();
+            right.Label("CE_Settings_StabilizationSettings".Translate());
+            right.Gap();
+            medicineSearchRadius = right.SliderLabeled("CE_Settings_MedicineSearchRadius_Title".Translate() + ": " + medicineSearchRadius.ToString("F0"), medicineSearchRadius, 1f, 100f, tooltip: "CE_Settings_MedicineSearchRadius_Desc".Translate(), labelPct: 0.6f);
+            right.End();
         }
 
         private void DoSettingsWindowContents_Ammo(Listing_Standard list)
@@ -439,6 +460,7 @@ namespace CombatExtended
             explosionFalloffFactor = 1.0f;
             bipodMechanics = true;
             autosetup = true;
+            medicineSearchRadius = 5f;
         }
         private void ResetToDefault_Ammo()
         {
@@ -498,18 +520,27 @@ namespace CombatExtended
         {
             if (!_cachedTabHeights.TryGetValue(tabIndex, out float height) || _dirtyTabs.Contains(tabIndex))
             {
-                Listing_Standard measuringList = new();
-                Rect dummyRect = new(0f, 0f, width, 99999f);
+                Listing_Standard measuringList = new Listing_Standard();
+                Rect dummyRect = new Rect(0f, 0f, width, 99999f);
                 measuringList.Begin(dummyRect);
                 switch (tabIndex)
                 {
-                    case 0: DoSettingsWindowContents_Mechanics(measuringList); break;
+                    case 0:
+                        measuringList.maxOneColumn = false;
+                        measuringList.hasCustomColumnWidth = true;
+                        measuringList.columnWidthInt = (int)(width / 2f - 10f);
+                        DoSettingsWindowContents_Mechanics(measuringList);
+                        break;
                     case 1: DoSettingsWindowContents_Ammo(measuringList); break;
                     case 2: DoSettingsWindowContents_Graphic(measuringList); break;
                     case 3: DoSettingsWindowContents_Misc(measuringList); break;
                 }
                 measuringList.End();
                 height = measuringList.CurHeight + 10f;
+                if (tabIndex == 0)
+                {
+                    height = measuringList.curY + 10f;
+                }
                 _cachedTabHeights[tabIndex] = height;
                 _dirtyTabs.Remove(tabIndex);
             }
