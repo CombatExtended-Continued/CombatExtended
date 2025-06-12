@@ -17,56 +17,56 @@ namespace CombatExtended.HarmonyCE
      * Used dynamic targetting in case the target assemly changes the name of the target class will most certainly change or even shift position (removing the ability to count).
      * Looking for a signature (field by name/type) that identifies the desired class without looking at it's code.
      */
-    [HarmonyPatch]
-    static class FloatMenuMakerMap_PatchKnowledge
-    {
+    // [HarmonyPatch]
+    // static class FloatMenuMakerMap_PatchKnowledge
+    // {
+    //
+    //     private static MethodBase knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
+    //     private static FieldInfo equippingWeapons = AccessTools.Field(typeof(ConceptDefOf), nameof(ConceptDefOf.EquippingWeapons));
 
-        private static MethodBase knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
-        private static FieldInfo equippingWeapons = AccessTools.Field(typeof(ConceptDefOf), nameof(ConceptDefOf.EquippingWeapons));
-
-        static MethodBase TargetMethod()
-        {
-            foreach (var clas in typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all))
-            {
-                var equipmentField = AccessTools.Field(clas, "equipment");
-                if (equipmentField?.FieldType == typeof(ThingWithComps))
-                {
-                    return clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("Equip"));
-                }
-            }
-
-            return null;
-        }
-
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            var instructionsList = instructions.ToList();
-            var knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
-            for (var i = 0; i < instructionsList.Count; i++)
-            {
-                yield return instructionsList[i];
-
-                // Use the vanilla call to KnowledgeDemonstrated() with ConceptDefOf.EquippingWeapons as an anchor
-                // so we can insert our own lesson activation about the aiming system after it.
-                if (instructionsList[i].Calls(knowledgeDemonstrated))
-                {
-                    if (instructionsList[i - 1].opcode == OpCodes.Ldc_I4_6 && instructionsList[i - 2].LoadsField(equippingWeapons))
-                    {
-                        var aimingSystem = AccessTools.Field(typeof(CE_ConceptDefOf), nameof(CE_ConceptDefOf.CE_AimingSystem));
-                        var teachOpportunity = AccessTools.Method(
-                                                   typeof(LessonAutoActivator),
-                                                   nameof(LessonAutoActivator.TeachOpportunity),
-                                                   new Type[] { typeof(ConceptDef), typeof(OpportunityType) }
-                                               );
-                        yield return new CodeInstruction(OpCodes.Ldsfld, aimingSystem);
-                        yield return new CodeInstruction(OpCodes.Ldc_I4, (int)OpportunityType.GoodToKnow);
-                        yield return new CodeInstruction(OpCodes.Call, teachOpportunity);
-                    }
-                }
-            }
-        }
-
-    }
+    //     static MethodBase TargetMethod()
+    //     {
+    //         foreach (var clas in typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all))
+    //         {
+    //             var equipmentField = AccessTools.Field(clas, "equipment");
+    //             if (equipmentField?.FieldType == typeof(ThingWithComps))
+    //             {
+    //                 return clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("Equip"));
+    //             }
+    //         }
+    //
+    //         return null;
+    //     }
+    //
+    //     static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    //     {
+    //         var instructionsList = instructions.ToList();
+    //         var knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
+    //         for (var i = 0; i < instructionsList.Count; i++)
+    //         {
+    //             yield return instructionsList[i];
+    //
+    //             // Use the vanilla call to KnowledgeDemonstrated() with ConceptDefOf.EquippingWeapons as an anchor
+    //             // so we can insert our own lesson activation about the aiming system after it.
+    //             if (instructionsList[i].Calls(knowledgeDemonstrated))
+    //             {
+    //                 if (instructionsList[i - 1].opcode == OpCodes.Ldc_I4_6 && instructionsList[i - 2].LoadsField(equippingWeapons))
+    //                 {
+    //                     var aimingSystem = AccessTools.Field(typeof(CE_ConceptDefOf), nameof(CE_ConceptDefOf.CE_AimingSystem));
+    //                     var teachOpportunity = AccessTools.Method(
+    //                                                typeof(LessonAutoActivator),
+    //                                                nameof(LessonAutoActivator.TeachOpportunity),
+    //                                                new Type[] { typeof(ConceptDef), typeof(OpportunityType) }
+    //                                            );
+    //                     yield return new CodeInstruction(OpCodes.Ldsfld, aimingSystem);
+    //                     yield return new CodeInstruction(OpCodes.Ldc_I4, (int)OpportunityType.GoodToKnow);
+    //                     yield return new CodeInstruction(OpCodes.Call, teachOpportunity);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    // }
 
     /*[HarmonyPatch(typeof(FloatMenuMakerMap))]
     [HarmonyPatch("AddHumanlikeOrders")]

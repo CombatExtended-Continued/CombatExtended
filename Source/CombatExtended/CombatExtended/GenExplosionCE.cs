@@ -31,6 +31,8 @@ namespace CombatExtended
             float postExplosionSpawnChance = 0f,
             int postExplosionSpawnThingCount = 1,
             GasType? postExplosionGasType = null,
+            float? postExplosionGasRadiusOverride = null,
+            int postExplosionGasAmount = 255,
             bool applyDamageToExplosionCellsNeighbors = false,
             ThingDef preExplosionSpawnThingDef = null,
             float preExplosionSpawnChance = 0f,
@@ -48,6 +50,8 @@ namespace CombatExtended
             float screenShakeFactor = 1f,
             SimpleCurve flammabilityChanceCurve = null,
             List<IntVec3> overrideCells = null,
+            ThingDef postExplosionSpawnSingleThingDef = null,
+            ThingDef preExplosionSpawnSingleThingDef = null,
 
             // CE parameters
             float height = 0f, float scaleFactor = 1f, bool destroyAfterwards = false, ThingWithComps explosionParentToDestroy = null)
@@ -117,6 +121,8 @@ namespace CombatExtended
             explosion.needLOSToCell1 = needLOSToCell;
             explosion.needLOSToCell2 = needLOSToCell2;
             explosion.postExplosionGasType = postExplosionGasType;
+            explosion.postExplosionGasRadiusOverride = postExplosionGasRadiusOverride;
+            explosion.postExplosionGasAmount = postExplosionGasAmount;
             explosion.affectedAngle = affectedAngle;
             explosion.doVisualEffects = doVisualEffects;
             explosion.propagationSpeed = propagationSpeed;
@@ -126,6 +132,8 @@ namespace CombatExtended
             explosion.screenShakeFactor = screenShakeFactor;
             explosion.flammabilityChanceCurve = flammabilityChanceCurve;
             explosion.overrideCells = overrideCells;
+            explosion.postExplosionSpawnSingleThingDef = postExplosionSpawnSingleThingDef;
+            explosion.preExplosionSpawnSingleThingDef = preExplosionSpawnSingleThingDef;
             explosion.StartExplosionCE(explosionSound, ignoredThings);
 
             // Needed to allow CompExplosive to use stackCount

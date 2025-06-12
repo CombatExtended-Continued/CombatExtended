@@ -57,6 +57,8 @@ namespace CombatExtended
                     Props.postExplosionSpawnChance,
                     Props.postExplosionSpawnThingCount,
                     Props.postExplosionGasType,
+                    Props.postExplosionGasRadiusOverride,
+                    Props.postExplosionGasAmount,
                     Props.applyDamageToExplosionCellsNeighbors,
                     Props.preExplosionSpawnThingDef,
                     Props.preExplosionSpawnChance,

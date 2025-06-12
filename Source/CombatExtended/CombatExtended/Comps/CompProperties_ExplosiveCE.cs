@@ -40,6 +40,10 @@ namespace CombatExtended
         /// </summary>
         public GasType? postExplosionGasType;
 
+        public float? postExplosionGasRadiusOverride;
+
+        public int postExplosionGasAmount = 255;
+
         public CompProperties_ExplosiveCE()
         {
             compClass = typeof(CompExplosiveCE);
