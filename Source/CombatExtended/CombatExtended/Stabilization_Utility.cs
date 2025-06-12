@@ -43,7 +43,7 @@ public class Stabilization_Utility
     {
         closestMedicine = null;
         float closestDistSq = float.MaxValue;
-        float maxDistance = 5f;  // Controller.settings.MedicineSearchRadiusSquared;
+        float maxDistance = Controller.settings.MedicineSearchRadiusSquared;
         AllMedicine.Clear();
         AllMedicine.AddRange(pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine));
         for (int i = 0; i < AllMedicine.Count; i++)
