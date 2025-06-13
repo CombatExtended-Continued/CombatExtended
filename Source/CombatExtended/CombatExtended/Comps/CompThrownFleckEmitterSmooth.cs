@@ -119,6 +119,8 @@ namespace CombatExtended
         public FloatRange originOffset = new FloatRange(0.7f, 0.7f);
 
         public int emissionAmount => emissionsPerTick > 1 ? (int)emissionsPerTick : 1;
+
+        [Obsolete("This property is obsolete. Use the FloatRange originOffset instead.", true)]
         public float originOffsetInternal => 1 - originOffset.RandomInRange; //deprecated field, left to not break mod xml
         public float scaleOffsetInternal => fleck.growthRate / (emissionsPerTick * 60);
 
