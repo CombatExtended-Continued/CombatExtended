@@ -85,7 +85,7 @@ namespace CombatExtended.HarmonyCE
                 return false;
             }
             var radialPatternNumCells = RadialPatternNumCells; // cache friendly local references
-            var radialPattern = RadialPattern;
+            var radialPatternRadii = RadialPatternRadii;
             if (radius >= MAX_RADIUS)
             {
                 if (radius > MAX_RADIUS)
@@ -108,8 +108,8 @@ namespace CombatExtended.HarmonyCE
             while ((span = max_count - count) > 64)
             {
                 int mid_count = count + span / 2;
-                IntVec3 mid = radialPattern[mid_count];
-                if (mid.x * mid.x + mid.z * mid.z > radsq)
+                float mid = radialPatternRadii[mid_count];
+                if (mid > radius)
                 {
                     max_count = mid_count;
                 }
@@ -119,10 +119,10 @@ namespace CombatExtended.HarmonyCE
                 }
             }
 #endif
-            IntVec3 start = radialPattern[count];
-            while (start.x * start.x + start.z * start.z <= radsq)
+            float start = radialPatternRadii[count];
+            while (start <= radius)
             {
-                start = radialPattern[count++];
+                start = radialPatternRadii[count++];
             }
             __result = count - 1;
             return false;
