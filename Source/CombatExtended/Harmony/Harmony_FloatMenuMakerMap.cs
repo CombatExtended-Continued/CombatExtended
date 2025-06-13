@@ -120,42 +120,47 @@ namespace CombatExtended.HarmonyCE
                 List<Thing> thingList = c.GetThingList(pawn.Map);
                 foreach (Thing item in thingList)
                 {
-                    if (item != null && item.def.alwaysHaulable && !(item is Corpse))
+                    if (item is null or Corpse || !item.def.alwaysHaulable)
                     {
-                        //FloatMenuOption pickUpOption;
-                        int count = 0;
-                        if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
+                        continue;
+                    }
+                    //FloatMenuOption pickUpOption;
+                    if (item is AmmoThing { IsCookingOff: true })
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_CookingOff".Translate() + ")", null));
+                    }
+                    else if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "NoPath".Translate() + ")", null));
+                    }
+                    else if (!compInventory.CanFitInInventory(item, out int count))
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_InventoryFull".Translate() + ")", null));
+                    }
+                    // Pick up x
+                    else if (count == 1)
+                    {
+                        opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpOne".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                    }
+                    else
+                    {
+                        if (count < item.stackCount)
                         {
-                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "NoPath".Translate() + ")", null));
-                        }
-                        else if (!compInventory.CanFitInInventory(item, out count))
-                        {
-                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_InventoryFull".Translate() + ")", null));
-                        }
-                        // Pick up x
-                        else if (count == 1)
-                        {
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpOne".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label, item) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
                         }
                         else
                         {
-                            if (count < item.stackCount)
-                            {
-                                opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label, item) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
-                            }
-                            else
-                            {
-                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), () => PickupAll(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
-                            }
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
-                            {
-                                int to = Mathf.Min(count, item.stackCount);
-                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, (selectCount) => PickupCount(pawn, item, selectCount), -2147483648);
-                                Find.WindowStack.Add(window);
-                                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                            }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), () => PickupAll(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
+                        opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
+                        {
+                            int to = Mathf.Min(count, item.stackCount);
+                            Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, (selectCount) => PickupCount(pawn, item, selectCount), -2147483648);
+                            Find.WindowStack.Add(window);
+                            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+                        }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                     }
+
                 }
             }
         }
