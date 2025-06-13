@@ -16,8 +16,8 @@ namespace CombatExtended.HarmonyCE
 
     internal static class Harmony_GenRadial
     {
-        public static int MAX_RADIUS = 119; // if adjusting this higher than 200, enable the binary search code.
-        public static int RadialPatternCount = 44469; // found by observation
+        public const int MAX_RADIUS = 119; // if adjusting this higher than 200, enable the binary search code.
+        public const int RadialPatternCount = 44469; // found by observation
         public static readonly IntVec3[] RadialPattern = new IntVec3[RadialPatternCount]; // radius -> cells
         public static readonly float[] RadialPatternRadii = new float[RadialPatternCount]; // cell -> radius
         public static readonly int[] RadialPatternNumCells = new int[MAX_RADIUS * MAX_RADIUS + 1]; // index of squared radius to last cell guaranteed inside
