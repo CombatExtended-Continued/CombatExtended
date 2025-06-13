@@ -91,13 +91,12 @@ namespace CombatExtended.HarmonyCE
             if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
 #pragma warning disable CS0618 // You're supposed to migrate to GenUI.TargetsAt_NewTemp? But that scares me.
-                foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true)) // !! This needs to be patched into A17
+                foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForTend(pawn), true)) // !! This needs to be patched into A17
 #pragma warning restore CS0618
                 {
                     Pawn patient = (Pawn)curTarget.Thing;
-                    if (patient.Downed
-                            //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                            && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
+                    if (    //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
+                            pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
                             && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
                         if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
@@ -164,20 +163,45 @@ namespace CombatExtended.HarmonyCE
         [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
         private static void Stabilize(Pawn pawn, Pawn patient)
         {
-            if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
+            bool pawnHasMedicine = (pawn.inventory?.innerContainer?.Any(t => t.def.IsMedicine) ?? false);
+            bool pawnCarryingMedicine = pawn.carryTracker.CarriedThing?.def.IsMedicine ?? false;
+            if (!pawnHasMedicine && !pawnCarryingMedicine)
             {
                 Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
                 return;
             }
-            // Drop medicine from inventory
-            Medicine medicine = (Medicine)pawn.inventory.innerContainer.OrderByDescending(t => t.GetStatValue(StatDefOf.MedicalPotency)).FirstOrDefault();
-            Thing medThing;
-            if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
+            Medicine bestMedicine = null;
+            float bestPotency = -1f;
+            if (pawnCarryingMedicine)
             {
-                Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
+                TryUpdateBestMedicine(pawn.carryTracker.CarriedThing, ref bestPotency, ref bestMedicine);
+            }
+            if (pawnHasMedicine)
+            {
+                foreach (Thing thing in pawn.inventory.innerContainer)
+                {
+                    TryUpdateBestMedicine(thing, ref bestPotency, ref bestMedicine);
+                }
+            }
+            if (bestMedicine != null)
+            {
+                Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, bestMedicine);
                 job.count = 1;
                 pawn.jobs.TryTakeOrderedJob(job);
                 PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
+            }
+        }
+
+        private static void TryUpdateBestMedicine(Thing source, ref float bestPotency, ref Medicine bestMedicine)
+        {
+            if (source is Medicine medicine)
+            {
+                float potency = medicine.GetStatValue(StatDefOf.MedicalPotency);
+                if (potency > bestPotency)
+                {
+                    bestPotency = potency;
+                    bestMedicine = medicine;
+                }
             }
         }
 
