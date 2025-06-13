@@ -55,7 +55,7 @@ namespace CombatExtended.HarmonyCE
             // Manual patches
             PatchThingOwner();
             PatchHediffWithComps(instance);
-            Harmony_GenRadial_RadialPatternCount.Patch();
+            Harmony_GenRadial.Patch();
             PawnColumnWorkers_Resize.Patch();
             PawnColumnWorkers_SwapButtons.Patch();
         }

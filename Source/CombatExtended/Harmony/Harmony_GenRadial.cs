@@ -16,7 +16,7 @@ namespace CombatExtended.HarmonyCE
      */
 
     // NOTE: When using a complex patch (where Patch()) must be used, do not include any Harmony class Attributes.  Method Attributes are optional as the Patch() handles what type of patch something is.
-    internal static class Harmony_GenRadial_RadialPatternCount
+    internal static class Harmony_GenRadial
     {
         // used for debug outputs (probably not used much).
         static readonly string logPrefix = "Combat Extended :: " + typeof(Harmony_GenRadial_RadialPatternCount).Name + " :: ";
