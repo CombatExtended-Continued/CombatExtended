@@ -66,7 +66,7 @@ namespace CombatExtended
 
         public bool ShowExtraStats => showExtraStats;
         public bool EnableCIWS => enableCIWS;
-        
+
         public float MedicineSearchRadiusSquared => medicineSearchRadius * medicineSearchRadius;
 
         public bool ShowTutorialPopup = true;
@@ -230,7 +230,7 @@ namespace CombatExtended
             //CIWS
             Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
-            
+
             Scribe_Values.Look(ref medicineSearchRadius, "medicineSearchRadius", 5f);
         }
         public void DoWindowContents(Listing_Standard list)

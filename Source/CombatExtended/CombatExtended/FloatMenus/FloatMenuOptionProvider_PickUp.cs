@@ -23,7 +23,7 @@ public class FloatMenuOptionProvider_PickUp : FloatMenuOptionProvider
         if (!context.FirstSelectedPawn.CanReach(clickedThing, PathEndMode.Touch, Danger.Deadly))
         {
             yield return new FloatMenuOption("CannotPickUp".Translate(clickedThing.LabelShort, clickedThing) + " (" + "NoPath".Translate() + ")", null);
-        } 
+        }
         else if (!inventory.CanFitInInventory(clickedThing, out count))
         {
             yield return new FloatMenuOption("CannotPickUp".Translate(clickedThing.LabelShort, clickedThing) + " (" + "CE_InventoryFull".Translate() + ")", null);

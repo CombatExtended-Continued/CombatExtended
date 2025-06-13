@@ -16,7 +16,7 @@ public class Pickup_Utility
         pawn.Notify_HoldTrackerItem(item, 1);
         PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
     }
-    
+
     [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
     public static void PickupAll(Pawn pawn, Thing item)
     {
@@ -27,7 +27,7 @@ public class Pickup_Utility
         pawn.Notify_HoldTrackerItem(item, item.stackCount);
         PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
     }
-    
+
     [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
     public static void PickupCount(Pawn pawn, Thing item, int selectCount)
     {
