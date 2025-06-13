@@ -49,7 +49,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power" or defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power" or defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VEF.Apparels.CompProperties_Shield"]</xpath>
 	</Operation>
 
 	<!--Add apparel node if not exist-->
@@ -239,14 +239,14 @@
 
 	<!--Adjust shield bubble value-->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VEF.Apparels.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
 		<value>
 			<EnergyShieldEnergyMax>265</EnergyShieldEnergyMax> <!-- about 2.65x from base value -->
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VEF.Apparels.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
 		<value>
 			<EnergyShieldRechargeRate>1.2</EnergyShieldRechargeRate> <!-- about 6 hours for 265hp full recharge -->
 		</value>
