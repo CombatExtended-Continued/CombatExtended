@@ -8,9 +8,9 @@ namespace CombatExtended;
 
 public class Stabilization_Utility
 {
-    
+
     private readonly static List<Thing> AllMedicine = [];
-    
+
     [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
     public static void Stabilize(Pawn pawn, Pawn patient)
     {
@@ -37,7 +37,7 @@ public class Stabilization_Utility
             AssignStabilizeJob(pawn, patient, bestMedicine);
         }
     }
-    
+
     [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
     private static bool TryFindNearbyMedicine(Pawn pawn, IntVec3 position, out Thing closestMedicine)
     {
@@ -62,7 +62,7 @@ public class Stabilization_Utility
         }
         return closestMedicine != null;
     }
-    
+
     [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
     private static Medicine FindBestMedicine(Pawn pawn, Pawn patient, bool doctorHas, bool patientHas, bool doctorCarrying)
     {
@@ -89,7 +89,7 @@ public class Stabilization_Utility
         }
         return best;
     }
-    
+
     [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
     private static void AssignStabilizeJob(Pawn pawn, Pawn patient, Thing medicine)
     {
@@ -98,7 +98,7 @@ public class Stabilization_Utility
         pawn.jobs.TryTakeOrderedJob(job);
         PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
     }
-    
+
     [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
     private static void TryUpdateBestMedicine(Thing source, ref float bestPotency, ref Medicine bestMedicine)
     {
