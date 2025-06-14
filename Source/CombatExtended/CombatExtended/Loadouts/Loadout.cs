@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
+using RimWorld;
 
 namespace CombatExtended
 {
@@ -17,6 +18,15 @@ namespace CombatExtended
         public bool defaultLoadout = false; //NOTE: assumed that there is only ever one loadout which is marked default.
         public string label;
         internal int uniqueID;
+        public bool dropUndefined = true;
+        public bool adHoc = false;
+        public int adHocMags = 4;
+        public int adHocMass = 0;
+        public int adHocBulk = 0;
+        private int _parentID = 0;
+#nullable enable
+        private Loadout? _parent = null;
+#nullable disable
         private List<LoadoutSlot> _slots = new List<LoadoutSlot>();
 
         #endregion Fields
@@ -69,12 +79,97 @@ namespace CombatExtended
         #endregion Constructors
 
         #region Properties
+        public int parentID
+        {
+            get
+            {
+                return _parentID;
+            }
+            set
+            {
+                _parent = null;
+                _parentID = value;
+            }
+        }
+
+#nullable enable
+        public Loadout? ParentLoadout
+        {
+            get
+            {
+                if (_parent == null && _parentID > 0)
+                {
+                    var p = LoadoutManager.GetLoadoutById(parentID);
+                    if (p is Loadout)
+                    {
+                        if (p != this && (p._parent == null || (!p.Ancestors.Contains(this))))
+                        {
+                            _parent = p;
+                        }
+                        else
+                        {
+                            _parentID = 0;
+                        }
+                    }
+                }
+                return _parent;
+            }
+        }
+
+        public List<LoadoutSlot> OwnSlots
+        {
+            get
+            {
+                return _slots;
+            }
+        }
+
+        public IEnumerable<Loadout> Ancestors
+        {
+            get
+            {
+                Loadout? parent = ParentLoadout;
+                while (parent is Loadout)
+                {
+                    yield return parent;
+                    parent = parent.ParentLoadout;
+                }
+            }
+        }
+#nullable disable
+
+        public IEnumerable<LoadoutSlot> ParentSlots
+        {
+            get
+            {
+                foreach (Loadout ancestor in Ancestors)
+                {
+                    foreach (var slot in ancestor.OwnSlots)
+                    {
+                        yield return slot;
+                    }
+                }
+            }
+        }
+
+        //TODO 1.6: Turn this into an IEnumerable
+        public List<LoadoutSlot> Slots
+        {
+            get
+            {
+                if (ParentLoadout is Loadout parent)
+                {
+                    return _slots.Concat(ParentSlots).ToList();
+                }
+                return _slots;
+            }
+        }
 
         public float Bulk
         {
             get
             {
-                return _slots.Sum(slot => slot.bulk * slot.count);
+                return Slots.Sum(slot => slot.bulk * slot.count);
             }
         }
         public string LabelCap
@@ -91,18 +186,11 @@ namespace CombatExtended
                 return _slots.Count;
             }
         }
-        public List<LoadoutSlot> Slots
-        {
-            get
-            {
-                return _slots;
-            }
-        }
         public float Weight
         {
             get
             {
-                return _slots.Sum(slot => slot.mass * slot.count);
+                return Slots.Sum(slot => slot.mass * slot.count);
             }
         }
         public int UniqueID
@@ -134,8 +222,14 @@ namespace CombatExtended
             Loadout dest = new Loadout(UniqueLabel(source.label));
             dest.defaultLoadout = source.defaultLoadout;
             dest.canBeDeleted = source.canBeDeleted;
+            dest.dropUndefined = source.dropUndefined;
+            dest.adHoc = source.adHoc;
+            dest.adHocMags = source.adHocMags;
+            dest.adHocMass = source.adHocMass;
+            dest.adHocBulk = source.adHocBulk;
+            dest.parentID = source.parentID;
             dest._slots = new List<LoadoutSlot>();
-            foreach (LoadoutSlot slot in source.Slots)
+            foreach (LoadoutSlot slot in source.OwnSlots)
             {
                 dest.AddSlot(slot.Copy());
             }
@@ -199,8 +293,14 @@ namespace CombatExtended
                                  : UniqueLabel(loadoutConfig.label);
 
             Loadout loadout = new Loadout(uniqueLabel);
-
             unloadableDefNames = new List<string>();
+            loadout.dropUndefined = loadoutConfig.dropUndefined;
+            loadout.adHoc = loadoutConfig.adHoc;
+            loadout.adHocMass = loadoutConfig.adHocMass;
+            loadout.adHocMags = loadoutConfig.adHocMags;
+            loadout.adHocBulk = loadoutConfig.adHocBulk;
+            loadout.parentID = LoadoutManager.GetLoadoutByLabel(loadoutConfig.parentLabel)?.uniqueID ?? 0;
+            // TODO: Display warning when there's a parent specified but we don't find it.
 
             // Now create each of the slots
             foreach (LoadoutSlotConfig loadoutSlotConfig in loadoutConfig.slots)
@@ -239,7 +339,13 @@ namespace CombatExtended
             return new LoadoutConfig
             {
                 label = label,
-                slots = loadoutSlotConfigList.ToArray()
+                slots = loadoutSlotConfigList.ToArray(),
+                dropUndefined = dropUndefined,
+                adHoc = adHoc,
+                adHocMags = adHocMags,
+                adHocBulk = adHocBulk,
+                adHocMass = adHocMass,
+                parentLabel = ParentLoadout?.label ?? String.Empty
             };
         }
 
@@ -253,7 +359,13 @@ namespace CombatExtended
             Scribe_Values.Look(ref uniqueID, "uniqueID");
             Scribe_Values.Look(ref canBeDeleted, "canBeDeleted", true);
             Scribe_Values.Look(ref defaultLoadout, "defaultLoadout", false);
-
+            Scribe_Values.Look(ref dropUndefined, "dropUndefined", true);
+            Scribe_Values.Look(ref adHoc, "adHoc", false);
+            Scribe_Values.Look(ref _parentID, "parentID", 0);
+            Scribe_Values.Look(ref adHocMags, "adHocMags", 3);
+            Scribe_Values.Look(ref adHocMass, "adHocMass", 0);
+            Scribe_Values.Look(ref adHocBulk, "adHocBulk", 0);
+            _parent = null;
             // slots
             Scribe_Collections.Look(ref _slots, "slots", LookMode.Deep);
         }
@@ -320,6 +432,125 @@ namespace CombatExtended
             // insert at new location
             _slots.Insert(toIndex, temp);
             return toIndex;
+        }
+
+        /// <summary>
+        /// Used to iterate over all slots, including virtual slots, for a specific pawn.
+        /// In the trivial case, where this is not an ad-hoc loadout, we can simply yield from our slots
+        /// </summary>
+        /// <param name="pawn">The pawn to use when generating ad-hoc slots.</param>
+
+        public IEnumerable<LoadoutSlot> GetSlotsFor(Pawn pawn)
+        {
+            bool weaponInLoadout = true; // assume all needed weapons are already in loadout
+            bool ammoInLoadout = true; // assume all needed ammo is already in loadout
+            int magSize = 1;
+            HashSet<ThingDef> ammoTypes = new HashSet<ThingDef>();
+            if (adHoc && ((pawn.Faction?.IsPlayer ?? false) && pawn.equipment?.Primary is Thing primary))
+            {
+                // ad-hoc, so don't assume the weapon is in the loadout
+                CompAmmoUser primaryAmmoUser = primary.TryGetComp<CompAmmoUser>();
+                weaponInLoadout = false;
+                if (primaryAmmoUser?.UseAmmo ?? false)
+                {
+                    /// We are an ad-hoc loadout, with an ammo-using primary weapon
+                    /// So figure out what kind of ammo it needs, and check if that ammo is in our slots
+                    /// if it isn't, provide a virtual slot for it
+                    ammoInLoadout = false;
+                    magSize = primaryAmmoUser.Props.magazineSize;
+
+                    foreach (AmmoLink link in primaryAmmoUser.Props.ammoSet.ammoTypes)
+                    {
+                        ammoTypes.Add(link.ammo);
+                    }
+                }
+            }
+
+            foreach (var slot in Slots)
+            {
+                yield return slot;
+                if (!ammoInLoadout)
+                {
+                    ammoInLoadout = ammoTypes.Contains(slot.thingDef);
+                }
+                if (!weaponInLoadout)
+                {
+                    weaponInLoadout = pawn.equipment.Primary.def == slot.thingDef;
+                }
+            }
+
+            if (!weaponInLoadout)
+            {
+                yield return new LoadoutSlot(pawn.equipment.Primary.def, 1);
+            }
+            if (!ammoInLoadout)
+            {
+                // Check if we have ammo in inventory, if so only ask for the same or more of that
+                Dictionary<ThingDef, Integer> inventory = pawn.GetStorageByThingDef();
+                Dictionary<ThingDef, int> haveAmmo = new Dictionary<ThingDef, int>();
+                int totalAmmo = 0;
+
+                foreach (ThingDef def in inventory.Keys)
+                {
+                    if (ammoTypes.Contains(def))
+                    {
+                        haveAmmo[def] = inventory[def].value;
+                        totalAmmo += inventory[def].value;
+                    }
+                }
+                if (totalAmmo > 0)
+                {
+                    foreach (var ammo in haveAmmo.Keys)
+                    {
+                        int magLimit = adHocMags * magSize;
+                        if (adHocMass > 0)
+                        {
+                            magLimit = Math.Min(magLimit, (int)(adHocMass / ammo.GetStatValueAbstract(StatDefOf.Mass)));
+                        }
+                        if (adHocBulk > 0)
+                        {
+                            magLimit = Math.Min(magLimit, (int)(adHocBulk / ammo.GetStatValueAbstract(CE_StatDefOf.Bulk)));
+                        }
+                        magLimit -= (totalAmmo - haveAmmo[ammo]); // reduce mag limit by total of all other ammo types we already have
+
+                        int magCount = magLimit / magSize;
+                        int minMags = (int)(magCount * 0.75f); // works out to 3 out of 4 mags with default settings
+                        int minAmmo = minMags * magSize;
+                        if (magCount < 2)
+                        {
+                            minAmmo = magSize;
+                        }
+                        else if (minMags < 4)
+                        {
+                            minAmmo = (magCount - 1) * magSize;
+                        }
+                        if (haveAmmo[ammo] < minAmmo || haveAmmo[ammo] > magLimit)
+                        {
+                            yield return new LoadoutSlot(ammo, magLimit);
+                        }
+                        else
+                        {
+                            yield return new LoadoutSlot(ammo, haveAmmo[ammo]);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var ammo in ammoTypes)
+                    {
+                        int magLimit = adHocMags * magSize;
+                        if (adHocMass > 0)
+                        {
+                            magLimit = Math.Min(magLimit, (int)(adHocMass / ammo.GetStatValueAbstract(StatDefOf.Mass)));
+                        }
+                        if (adHocBulk > 0)
+                        {
+                            magLimit = Math.Min(magLimit, (int)(adHocBulk / ammo.GetStatValueAbstract(CE_StatDefOf.Bulk)));
+                        }
+                        yield return new LoadoutSlot(ammo, magLimit);
+                    }
+                }
+            }
         }
 
         #endregion Methods

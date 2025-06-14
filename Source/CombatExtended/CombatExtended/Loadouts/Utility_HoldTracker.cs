@@ -201,7 +201,7 @@ namespace CombatExtended
         {
             Loadout loadout = pawn.GetLoadout();
             dropEquipment = null;
-            if (loadout == null || (loadout != null && loadout.Slots.NullOrEmpty()) || pawn.equipment?.Primary == null)
+            if (loadout == null || loadout.defaultLoadout || !loadout.dropUndefined || loadout.adHoc || pawn.equipment?.Primary == null)
             {
                 return false;
             }
@@ -212,7 +212,7 @@ namespace CombatExtended
             }
 
             //Check if equipment is part of the loadout
-            LoadoutSlot eqSlot = loadout.Slots.FirstOrDefault(s => s.count >= 1 && ((s.thingDef != null && s.thingDef == pawn.equipment.Primary.def)
+            LoadoutSlot eqSlot = loadout.GetSlotsFor(pawn).FirstOrDefault(s => s.count >= 1 && ((s.thingDef != null && s.thingDef == pawn.equipment.Primary.def)
                                  || (s.genericDef != null && s.genericDef.lambda(pawn.equipment.Primary.def))));
 
             //Check if equipment is in the forced pick-up items list
@@ -256,7 +256,7 @@ namespace CombatExtended
             }
 
             Loadout loadout = pawn.GetLoadout();
-            if (loadout == null || loadout.Slots.NullOrEmpty())
+            if (loadout == null || loadout.defaultLoadout || !loadout.Slots.Any())
             {
                 List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
                 if (recs != null)
@@ -366,15 +366,16 @@ namespace CombatExtended
             dropThing = null;
             dropCount = 0;
 
-            if (inventory == null || inventory.container == null || loadout == null || loadout.Slots.NullOrEmpty())
+            if (inventory == null || inventory.container == null || loadout == null || loadout.defaultLoadout)
             {
                 return false;
             }
 
             Dictionary<ThingDef, Integer> listing = GetStorageByThingDef(pawn);
+            HashSet<ThingDef> inLoadout = new HashSet<ThingDef>();
 
             // iterate over specifics and generics and Chip away at the dictionary.
-            foreach (LoadoutSlot slot in loadout.Slots)
+            foreach (LoadoutSlot slot in loadout.GetSlotsFor(pawn))
             {
                 if (slot.thingDef != null && listing.ContainsKey(slot.thingDef))
                 {
@@ -382,6 +383,10 @@ namespace CombatExtended
                     if (listing[slot.thingDef].value <= 0)
                     {
                         listing.Remove(slot.thingDef);
+                    }
+                    else
+                    {
+                        inLoadout.Add(slot.thingDef);
                     }
                 }
                 if (slot.genericDef != null)
@@ -399,6 +404,7 @@ namespace CombatExtended
                         }
                         else
                         {
+                            inLoadout.Add(def);
                             break; // we have satisifed this loadout so no need to keep enumerating.
                         }
                     }
@@ -409,6 +415,8 @@ namespace CombatExtended
                     }
                 }
             }
+
+
 
             // if there is something left in the dictionary, that is what is to be dropped.
             // Complicated by the fact that we now consider ammo in guns as part of the inventory...
@@ -422,12 +430,16 @@ namespace CombatExtended
                         HoldRecord rec = records.FirstOrDefault(r => r.thingDef == def);
                         if (rec == null)
                         {
-                            // the item we have extra of has no HoldRecord, drop it.
-                            dropThing = inventory.container.FirstOrDefault(t => t.def == def && !pawn.IsItemQuestLocked(t));
-                            if (dropThing != null)
+                            // the item we have extra of has no HoldRecord,
+                            if (loadout.dropUndefined || inLoadout.Contains(def))
                             {
-                                dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
-                                return true;
+                                // It is in our loadout or we're configured to drop undefined items
+                                dropThing = inventory.container.FirstOrDefault(t => t.def == def && !pawn.IsItemQuestLocked(t));
+                                if (dropThing != null)
+                                {
+                                    dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
+                                    return true;
+                                }
                             }
                         }
                         else if (rec.count < listing[def].value)
@@ -445,7 +457,16 @@ namespace CombatExtended
                 }
                 else
                 {
-                    foreach (ThingDef def in listing.Keys)
+                    IEnumerable<ThingDef> droppable;
+                    if (loadout.dropUndefined) // consider every remaining thing for dropping
+                    {
+                        droppable = listing.Keys;
+                    }
+                    else // only consider things that are in our loadout, but held in excess
+                    {
+                        droppable = inLoadout;
+                    }
+                    foreach (ThingDef def in droppable)
                     {
                         dropThing = inventory.container.FirstOrDefault(t => t.GetInnerIfMinified().def == def && !pawn.IsItemQuestLocked(t));
                         if (dropThing != null)

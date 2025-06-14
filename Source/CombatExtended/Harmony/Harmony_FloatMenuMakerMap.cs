@@ -90,15 +90,11 @@ namespace CombatExtended.HarmonyCE
             // Stabilize
             if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
-#pragma warning disable CS0618 // You're supposed to migrate to GenUI.TargetsAt_NewTemp? But that scares me.
-                foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true)) // !! This needs to be patched into A17
-#pragma warning restore CS0618
+
+                foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForTend(pawn), true))
                 {
                     Pawn patient = (Pawn)curTarget.Thing;
-                    if (patient.Downed
-                            //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                            && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                            && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
+                    if (pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly) && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
                         if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
                         {
@@ -121,63 +117,152 @@ namespace CombatExtended.HarmonyCE
                 List<Thing> thingList = c.GetThingList(pawn.Map);
                 foreach (Thing item in thingList)
                 {
-                    if (item != null && item.def.alwaysHaulable && !(item is Corpse))
+                    if (item is null or Corpse || !item.def.alwaysHaulable)
                     {
-                        //FloatMenuOption pickUpOption;
-                        int count = 0;
-                        if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
+                        continue;
+                    }
+                    //FloatMenuOption pickUpOption;
+                    if (item is AmmoThing { IsCookingOff: true })
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_CookingOff".Translate() + ")", null));
+                    }
+                    else if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "NoPath".Translate() + ")", null));
+                    }
+                    else if (!compInventory.CanFitInInventory(item, out int count))
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_InventoryFull".Translate() + ")", null));
+                    }
+                    // Pick up x
+                    else if (count == 1)
+                    {
+                        opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpOne".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                    }
+                    else
+                    {
+                        if (count < item.stackCount)
                         {
-                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "NoPath".Translate() + ")", null));
-                        }
-                        else if (!compInventory.CanFitInInventory(item, out count))
-                        {
-                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_InventoryFull".Translate() + ")", null));
-                        }
-                        // Pick up x
-                        else if (count == 1)
-                        {
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpOne".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label, item) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
                         }
                         else
                         {
-                            if (count < item.stackCount)
-                            {
-                                opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label, item) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
-                            }
-                            else
-                            {
-                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), () => PickupAll(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
-                            }
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
-                            {
-                                int to = Mathf.Min(count, item.stackCount);
-                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, (selectCount) => PickupCount(pawn, item, selectCount), -2147483648);
-                                Find.WindowStack.Add(window);
-                                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                            }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), () => PickupAll(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
+                        opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
+                        {
+                            int to = Mathf.Min(count, item.stackCount);
+                            Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, (selectCount) => PickupCount(pawn, item, selectCount), -2147483648);
+                            Find.WindowStack.Add(window);
+                            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+                        }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                     }
+
                 }
             }
         }
 
+        private readonly static List<Thing> AllMedicine = [];
+
         [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
         private static void Stabilize(Pawn pawn, Pawn patient)
         {
-            if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
+            bool pawnHasMedicine = pawn.inventory?.innerContainer?.Any(t => t.def.IsMedicine) ?? false;
+            bool patientHasMedicine = patient.inventory?.innerContainer?.Any(t => t.def.IsMedicine) ?? false;
+            bool pawnCarryingMedicine = pawn.carryTracker.CarriedThing?.def.IsMedicine ?? false;
+
+            if (!pawnHasMedicine && !pawnCarryingMedicine && !patientHasMedicine)
             {
-                Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
+                if (TryFindNearbyMedicine(pawn, patient.Position, out Thing closestMedicine) || TryFindNearbyMedicine(pawn, pawn.Position, out closestMedicine))
+                {
+                    AssignStabilizeJob(pawn, patient, closestMedicine);
+                }
+                else
+                {
+                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
+                }
                 return;
             }
-            // Drop medicine from inventory
-            Medicine medicine = (Medicine)pawn.inventory.innerContainer.OrderByDescending(t => t.GetStatValue(StatDefOf.MedicalPotency)).FirstOrDefault();
-            Thing medThing;
-            if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
+
+            Medicine bestMedicine = FindBestMedicine(pawn, patient, pawnHasMedicine, patientHasMedicine, pawnCarryingMedicine);
+            if (bestMedicine != null)
             {
-                Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
-                job.count = 1;
-                pawn.jobs.TryTakeOrderedJob(job);
-                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
+                AssignStabilizeJob(pawn, patient, bestMedicine);
+            }
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static bool TryFindNearbyMedicine(Pawn pawn, IntVec3 position, out Thing closestMedicine)
+        {
+            closestMedicine = null;
+            float closestDistSq = float.MaxValue;
+            float maxDistance = Controller.settings.MedicineSearchRadiusSquared;
+            AllMedicine.Clear();
+            AllMedicine.AddRange(pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine));
+            for (int i = 0; i < AllMedicine.Count; i++)
+            {
+                Thing medicine = AllMedicine[i];
+                if (!medicine.Spawned || medicine.IsForbidden(pawn) || !pawn.CanReserveAndReach(medicine, PathEndMode.ClosestTouch, Danger.Deadly))
+                {
+                    continue;
+                }
+                var distance = medicine.Position.DistanceToSquared(position);
+                if (distance <= maxDistance && distance < closestDistSq)
+                {
+                    closestDistSq = distance;
+                    closestMedicine = medicine;
+                }
+            }
+            return closestMedicine != null;
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static Medicine FindBestMedicine(Pawn pawn, Pawn patient, bool doctorHas, bool patientHas, bool doctorCarrying)
+        {
+            Medicine best = null;
+            float potency = -1f;
+
+            if (patientHas)
+            {
+                foreach (Thing t in patient.inventory.innerContainer)
+                {
+                    TryUpdateBestMedicine(t, ref potency, ref best);
+                }
+            }
+            if (doctorCarrying)
+            {
+                TryUpdateBestMedicine(pawn.carryTracker.CarriedThing, ref potency, ref best);
+            }
+            if (doctorHas)
+            {
+                foreach (Thing t in pawn.inventory.innerContainer)
+                {
+                    TryUpdateBestMedicine(t, ref potency, ref best);
+                }
+            }
+            return best;
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static void AssignStabilizeJob(Pawn pawn, Pawn patient, Thing medicine)
+        {
+            var job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medicine);
+            job.count = 1;
+            pawn.jobs.TryTakeOrderedJob(job);
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static void TryUpdateBestMedicine(Thing source, ref float bestPotency, ref Medicine bestMedicine)
+        {
+            if (source is Medicine medicine)
+            {
+                float potency = medicine.GetStatValue(StatDefOf.MedicalPotency);
+                if (potency > bestPotency)
+                {
+                    bestPotency = potency;
+                    bestMedicine = medicine;
+                }
             }
         }
 

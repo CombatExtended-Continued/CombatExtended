@@ -15,12 +15,32 @@ namespace CombatExtended
         public float height;
         public bool radiusChange = false;
         public bool toBeMerged = false;
-        private const int DamageAtEdge = 2;      // Synch these with spreadsheet
-        private const float PenAtEdge = 0.6f;
         private const float PressurePerDamage = 0.3f;
         private const float MaxMergeTicks = 3f;
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
+
+        private readonly SimpleCurve defaultCurve = new SimpleCurve
+        {
+            {1.5f, 1f},
+            {2.5f, 0.5f},
+            {5f, 0.25f},
+            {8f, 0.1f},
+            {12f, 0.05f}
+        };
+        private SimpleCurve _falloffCurve;
+
+        public SimpleCurve FalloffCurve
+        {
+            get
+            {
+                if (_falloffCurve != null) { return _falloffCurve; }
+                ProjectilePropertiesCE props = projectile?.projectile as ProjectilePropertiesCE;
+                _falloffCurve = props?.explosionFalloffCurve ?? defaultCurve;
+                return _falloffCurve;
+            }
+            set { _falloffCurve = value; }
+        }
 
         // New method
         public virtual bool MergeWith(ExplosionCE other, out ExplosionCE merged, out ExplosionCE nonMerged)
@@ -351,10 +371,13 @@ namespace CombatExtended
             cellsToAffect.Sort((IntVec3 a, IntVec3 b) => GetCellAffectTick(b).CompareTo(GetCellAffectTick(a)));
             RegionTraverser.BreadthFirstTraverse(Position, Map, (Region from, Region to) => true, delegate (Region x)
             {
-                var list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
-                for (var i = list.Count - 1; i >= 0; i--)
+                List<Thing> allThings = x.ListerThings.AllThings;
+                for (int num = allThings.Count - 1; num >= 0; num--)
                 {
-                    ((Pawn)list[i]).mindState.Notify_Explosion(this);
+                    if (allThings[num].Spawned)
+                    {
+                        allThings[num].Notify_Explosion(this);
+                    }
                 }
                 return false;
             }, 25, RegionType.Set_Passable);
@@ -403,27 +426,24 @@ namespace CombatExtended
         }
 
         //New methods
-        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(0.333f)
+        public int GetDamageAmountAtCE(IntVec3 c)
         {
             if (!damageFalloff)
             {
                 return damAmount;
             }
-            var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.333f);
-            return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t)), 1);
+            var distFromCenter = c.DistanceTo(Position) * Controller.settings.ExplosionFalloffFactor;
+            return Mathf.Max(GenMath.RoundRandom(damAmount * FalloffCurve.Evaluate(distFromCenter) * Controller.settings.ExplosionPenMultiplier), 1);
         }
-
-        public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(0.55f), penetrationAmount => damAmount * PressurePerDamage
+        public float GetArmorPenetrationAtCE(IntVec3 c)
         {
             var basePen = Mathf.Max(damAmount * PressurePerDamage, armorPenetration);
             if (!damageFalloff)
             {
                 return basePen;
             }
-            var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.55f);
-            return Mathf.Lerp(basePen, PenAtEdge, t);
+            var distFromCenter = c.DistanceTo(Position) * Controller.settings.ExplosionFalloffFactor;
+            return basePen * FalloffCurve.Evaluate(distFromCenter) * Controller.settings.ExplosionPenMultiplier;
         }
     }
 }

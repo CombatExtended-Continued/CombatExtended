@@ -214,9 +214,9 @@ namespace CombatExtended
 
             //Log.Message(pawn.ThingID +  " - priority:" + (GetPriorityWork(pawn)).ToString() + " capacityWeight: " + pawn.TryGetComp<CompInventory>().capacityWeight.ToString() + " currentWeight: " + pawn.TryGetComp<CompInventory>().currentWeight.ToString() + " capacityBulk: " + pawn.TryGetComp<CompInventory>().capacityBulk.ToString() + " currentBulk: " + pawn.TryGetComp<CompInventory>().currentBulk.ToString());
 
-            var brawler = (pawn.story != null && pawn.story.traits != null && pawn.story.traits.HasTrait(TraitDefOf.Brawler));
+            var brawler = (pawn.story is { traits: not null } && pawn.story.traits.HasTrait(TraitDefOf.Brawler));
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
-            bool hasPrimary = (pawn.equipment != null && pawn.equipment.Primary != null);
+            bool hasPrimary = pawn.equipment is { Primary: not null };
             CompAmmoUser primaryAmmoUser = hasPrimary ? pawn.equipment.Primary.TryGetComp<CompAmmoUser>() : null;
             CompAmmoUser primaryAmmoUserWithInventoryCheck = hasPrimary ? pawn.equipment.Primary.TryGetComp<CompAmmoUser>() : hasWeaponInInventory(pawn) ? weaponInInventory(pawn) : null;
             if (inventory != null)
@@ -392,10 +392,10 @@ namespace CombatExtended
                                     List<ThingDef> thingDefAmmoList = thing.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes.Select(g => g.ammo as ThingDef).ToList();
 
                                     Predicate<Thing> validatorA = (Thing t) => t.def.category == ThingCategory.Item
-                                                                  && t is AmmoThing && pawn.CanReserve(t, 1)
-                                                                  && pawn.Position.InHorDistOf(t.Position, 25f)
-                                                                  && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
-                                                                  && (pawn.Faction.HostileTo(Faction.OfPlayer) || pawn.Faction == Faction.OfPlayer || !pawn.Map.areaManager.Home[t.Position]);
+                                            && t is AmmoThing { IsCookingOff: false } && pawn.CanReserve(t, 1)
+                                            && pawn.Position.InHorDistOf(t.Position, 25f)
+                                            && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
+                                            && (pawn.Faction.HostileTo(Faction.OfPlayer) || pawn.Faction == Faction.OfPlayer || !pawn.Map.areaManager.Home[t.Position]);
 
                                     List<Thing> thingAmmoList = (
                                                                     from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
@@ -421,7 +421,7 @@ namespace CombatExtended
                         }
 
                         // else if no ranged weapons with nearby ammo was found, lets consider a melee weapon.
-                        if (allWeapons != null && allWeapons.Count > 0)
+                        if (allWeapons is { Count: > 0 })
                         {
                             // since we don't need to worry about ammo, just pick one.
                             Thing meleeWeapon = allWeapons.FirstOrDefault(w => !w.def.IsRangedWeapon && w.def.IsMeleeWeapon);
@@ -443,10 +443,10 @@ namespace CombatExtended
 
                     if (curAmmoList.Count > 0)
                     {
-                        Predicate<Thing> validator = (Thing t) => t is AmmoThing && pawn.CanReserve(t, 1)
-                                                     && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
-                                                     && ((pawn.Faction.IsPlayer && !ForbidUtility.IsForbidden(t, pawn)) || (!pawn.Faction.IsPlayer && pawn.Position.InHorDistOf(t.Position, 35f)))
-                                                     && (pawn.Faction.HostileTo(Faction.OfPlayer) || pawn.Faction == Faction.OfPlayer || !pawn.Map.areaManager.Home[t.Position]);
+                        Predicate<Thing> validator = (Thing t) => t is AmmoThing { IsCookingOff: false } && pawn.CanReserve(t, 1)
+                                && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
+                                && ((pawn.Faction.IsPlayer && !ForbidUtility.IsForbidden(t, pawn)) || (!pawn.Faction.IsPlayer && pawn.Position.InHorDistOf(t.Position, 35f)))
+                                && (pawn.Faction.HostileTo(Faction.OfPlayer) || pawn.Faction == Faction.OfPlayer || !pawn.Map.areaManager.Home[t.Position]);
                         List<Thing> curThingList = (
                                                        from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
                                                        where validator(t)
