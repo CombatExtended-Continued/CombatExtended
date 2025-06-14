@@ -107,7 +107,7 @@ namespace CombatExtended
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
             CompAmmoUser tmpComp;
             Loadout loadout = pawn.GetLoadout();
-            bool pawnHasLoadout = loadout != null && !loadout.Slots.NullOrEmpty();
+            bool pawnHasLoadout = loadout != null && !loadout.defaultLoadout && loadout.Slots.Any();
 
             if (inventory == null)
             {
@@ -186,7 +186,7 @@ namespace CombatExtended
             // first check loadouts...
             Loadout loadout = pawn.GetLoadout();
 
-            foreach (LoadoutSlot slot in loadout.Slots)
+            foreach (LoadoutSlot slot in loadout.GetSlotsFor(pawn))
             {
                 if (slot.thingDef != null)
                 {

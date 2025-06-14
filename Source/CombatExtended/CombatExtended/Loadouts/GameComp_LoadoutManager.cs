@@ -319,6 +319,16 @@ namespace CombatExtended
             }
             return Loadouts.Find(x => x.uniqueID == id);
         }
+
+        public static Loadout GetLoadoutByLabel(string label)
+        {
+            if (_current == null)
+            {
+                return null;
+            }
+            return Loadouts.Find(x => x.label == label);
+        }
+
         #endregion Methods
     }
 }
