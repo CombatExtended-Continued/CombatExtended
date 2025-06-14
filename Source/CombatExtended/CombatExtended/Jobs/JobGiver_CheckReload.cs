@@ -186,7 +186,7 @@ namespace CombatExtended
             // first check loadouts...
             Loadout loadout = pawn.GetLoadout();
 
-            foreach (LoadoutSlot slot in loadout.Slots)
+            foreach (LoadoutSlot slot in loadout.GetSlotsFor(pawn))
             {
                 if (slot.thingDef != null)
                 {

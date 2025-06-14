@@ -212,7 +212,7 @@ namespace CombatExtended
             }
 
             //Check if equipment is part of the loadout
-            LoadoutSlot eqSlot = loadout.Slots.FirstOrDefault(s => s.count >= 1 && ((s.thingDef != null && s.thingDef == pawn.equipment.Primary.def)
+            LoadoutSlot eqSlot = loadout.GetSlotsFor(pawn).FirstOrDefault(s => s.count >= 1 && ((s.thingDef != null && s.thingDef == pawn.equipment.Primary.def)
                                  || (s.genericDef != null && s.genericDef.lambda(pawn.equipment.Primary.def))));
 
             //Check if equipment is in the forced pick-up items list
@@ -375,7 +375,7 @@ namespace CombatExtended
             HashSet<ThingDef> inLoadout = new HashSet<ThingDef>();
 
             // iterate over specifics and generics and Chip away at the dictionary.
-            foreach (LoadoutSlot slot in loadout.Slots)
+            foreach (LoadoutSlot slot in loadout.GetSlotsFor(pawn))
             {
                 if (slot.thingDef != null && listing.ContainsKey(slot.thingDef))
                 {
