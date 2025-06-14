@@ -422,13 +422,13 @@ namespace CombatExtended
             if (CurrentLoadout.adHoc)
             {
                 Rect magsRect = new Rect(rect.x, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
-                CustomWidgets.DrawIntOptionWithSpinners(magsRect, "CE_LoadOut_Mags".Translate(), "CE_LoadOut_Mags_Desc".Translate(), ref CurrentLoadout.adHocMags, 0f, 100, 1);
+                CustomWidgets.DrawIntOptionWithSpinners(magsRect, "CE_LoadOut_Mags".Translate(), "CE_LoadOut_Mags_Desc".Translate(), ref CurrentLoadout.adHocMags, 0f, 999, 1);
 
                 Rect massRect = new Rect(rect.x + checkboxWidth + 5f, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
-                CustomWidgets.DrawIntOptionWithSpinners(massRect, "CE_Weight".Translate(), "CE_LoadOut_Weight_Desc".Translate(), ref CurrentLoadout.adHocMass, 0f, 100, 1);
+                CustomWidgets.DrawIntOptionWithSpinners(massRect, "CE_Weight".Translate(), "CE_LoadOut_Weight_Desc".Translate(), ref CurrentLoadout.adHocMass, 0f, 999, 1);
 
                 Rect bulkRect = new Rect(rect.x + checkboxWidth * 2 + 5f, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
-                CustomWidgets.DrawIntOptionWithSpinners(bulkRect, "CE_Bulk".Translate(), "CE_LoadOut_Bulk_Desc".Translate(), ref CurrentLoadout.adHocBulk, 0f, 100, 1);
+                CustomWidgets.DrawIntOptionWithSpinners(bulkRect, "CE_Bulk".Translate(), "CE_LoadOut_Bulk_Desc".Translate(), ref CurrentLoadout.adHocBulk, 0f, 999, 1);
             }
         }
 
