@@ -20,14 +20,7 @@ namespace CombatExtended
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
 
-        private readonly SimpleCurve defaultCurve = new SimpleCurve
-        {
-            {1.5f, 1f},
-            {2.5f, 0.5f},
-            {5f, 0.25f},
-            {8f, 0.1f},
-            {12f, 0.05f}
-        };
+        internal static SimpleCurve defaultCurve = new SimpleCurve(); // Populated on game start from a SetupStepDef
         private SimpleCurve _falloffCurve;
 
         public SimpleCurve FalloffCurve
@@ -431,6 +424,7 @@ namespace CombatExtended
             }
             var distFromCenter = c.DistanceTo(Position) * Controller.settings.ExplosionFalloffFactor;
             return Mathf.Max(GenMath.RoundRandom(damAmount * FalloffCurve.Evaluate(distFromCenter) * Controller.settings.ExplosionPenMultiplier), 1);
+            
         }
         public float GetArmorPenetrationAtCE(IntVec3 c)
         {
