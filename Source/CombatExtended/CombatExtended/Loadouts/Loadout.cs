@@ -20,7 +20,7 @@ namespace CombatExtended
         internal int uniqueID;
         public bool dropUndefined = true;
         public bool adHoc = false;
-        public int adHocMags = 3;
+        public int adHocMags = 4;
         public int adHocMass = 0;
         public int adHocBulk = 0;
         private int _parentID = 0;
