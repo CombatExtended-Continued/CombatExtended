@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Anti-Tank Mine -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Trap_plasmaMine"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<damageAmountBase>320</damageAmountBase>
+				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+				<startWickOnDamageTaken>
+					<li>Bomb</li>
+				</startWickOnDamageTaken>
+				<wickTicks>5</wickTicks>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
