@@ -13,7 +13,7 @@ namespace CombatExtended
 
         public float statValue = 1f;
 
-        public bool isStatValueStatic = false;
+        public bool isStatValueStatic;
 
         public float GetStatValue(float baseValue)
         {
@@ -23,7 +23,14 @@ namespace CombatExtended
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
             int index = 0;
-            if (xmlRoot.FirstChild.Name.Contains("use"))
+            foreach (XmlNode xmlPart in xmlRoot.ChildNodes)
+            {
+                if (xmlPart is XmlComment)
+                {
+                    xmlRoot.RemoveChild(xmlPart);
+                }
+            }
+            if (xmlRoot.FirstChild.Name == "useStatic")
             {
                 isStatValueStatic = ParseHelper.FromString<bool>(xmlRoot.FirstChild.InnerText);
                 index = 1;
@@ -32,10 +39,7 @@ namespace CombatExtended
             DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "stat", xmlRoot.ChildNodes[index].Name, null, null);
             this.statValue = ParseHelper.FromString<float>(xmlRoot.ChildNodes[index].InnerText);
 
-            if (parts == null)
-            {
-                parts = new List<BodyPartDef>();
-            }
+            parts ??= [];
             foreach (XmlNode node in xmlRoot.LastChild.ChildNodes)
             {
                 DirectXmlCrossRefLoader.RegisterListWantsCrossRef(parts, node.InnerText);
