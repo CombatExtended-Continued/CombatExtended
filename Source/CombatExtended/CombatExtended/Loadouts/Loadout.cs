@@ -512,7 +512,19 @@ namespace CombatExtended
                             magLimit = Math.Min(magLimit, (int)(adHocBulk / ammo.GetStatValueAbstract(CE_StatDefOf.Bulk)));
                         }
                         magLimit -= (totalAmmo - haveAmmo[ammo]); // reduce mag limit by total of all other ammo types we already have
-                        if (haveAmmo[ammo] < magLimit - magSize || haveAmmo[ammo] > magLimit)
+
+                        int magCount = magLimit / magSize;
+                        int minMags = (int)(magCount * 0.75f); // works out to 3 out of 4 mags with default settings
+                        int minAmmo = minMags * magSize;
+                        if (magCount < 2)
+                        {
+                            minAmmo = magSize;
+                        }
+                        else if (minMags < 4)
+                        {
+                            minAmmo = (magCount - 1) * magSize;
+                        }
+                        if (haveAmmo[ammo] < minAmmo || haveAmmo[ammo] > magLimit)
                         {
                             yield return new LoadoutSlot(ammo, magLimit);
                         }
