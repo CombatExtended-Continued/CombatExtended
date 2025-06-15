@@ -271,10 +271,11 @@ namespace CombatExtended
             {
                 return false;
             }
+
             if (CasterIsPawn)
             {
                 if (CasterPawn.Faction != Faction.OfPlayer
-                    && CasterPawn.mindState.MeleeThreatStillThreat 
+                    && CasterPawn.mindState.MeleeThreatStillThreat
                     && !this.verbProps.ai_ProjectileLaunchingIgnoresMeleeThreats
                     && CasterPawn.mindState.meleeThreat.Position.AdjacentTo8WayOrInside(CasterPawn.Position))
                 {
@@ -1190,13 +1191,15 @@ namespace CombatExtended
         {
             if (CasterPawn != null
                 && !this.verbProps.IsMeleeAttack
-                && CasterPawn.mindState.MeleeThreatStillThreat 
+                && CasterPawn.mindState.MeleeThreatStillThreat
                 && !this.verbProps.ai_ProjectileLaunchingIgnoresMeleeThreats
                 && CasterPawn.mindState.meleeThreat.Position.AdjacentTo8WayOrInside(CasterPawn.Position))
             {
-                Messages.Message("MessageCantShootInMelee".Translate(), this.CasterPawn, MessageTypeDefOf.RejectInput, false);
+                Messages.Message("MessageCantShootInMelee".Translate(), this.CasterPawn, MessageTypeDefOf.RejectInput,
+                    false);
                 return;
             }
+
             base.OrderForceTarget(target);
         }
 
