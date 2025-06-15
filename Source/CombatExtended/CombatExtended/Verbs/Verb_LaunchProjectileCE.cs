@@ -1188,7 +1188,8 @@ namespace CombatExtended
 
         public override void OrderForceTarget(LocalTargetInfo target)
         {
-            if (CasterPawn.Faction == Faction.OfPlayer
+            if (CasterPawn != null
+                && !this.verbProps.IsMeleeAttack
                 && CasterPawn.mindState.MeleeThreatStillThreat 
                 && !this.verbProps.ai_ProjectileLaunchingIgnoresMeleeThreats
                 && CasterPawn.mindState.meleeThreat.Position.AdjacentTo8WayOrInside(CasterPawn.Position))
