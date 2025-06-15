@@ -6,10 +6,12 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
+				<canParry>true</canParry>
+				<maxParry>4</maxParry>
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/race/baseHealthScale</xpath>
 		<value>
@@ -53,7 +55,7 @@
 			<MeleeHitChance>1.5</MeleeHitChance>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -63,7 +65,7 @@
 			</value>
 		</nomatch>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/comps</xpath>
 		<value>
@@ -79,7 +81,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]</xpath>
 		<value>
@@ -160,7 +162,7 @@
 			</tools>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/PawnKindDef[@Name="BaseMechKind"]/ignoresPainShock</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -170,4 +172,5 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 </Patch>
