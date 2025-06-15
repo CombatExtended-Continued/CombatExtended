@@ -113,7 +113,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            LoadoutSlot slot = loadout.Slots.FirstOrFallback(s => s.weaponPlatformDef == platform.Platform);
+            LoadoutSlot slot = loadout.GetSlotsFor(pawn).FirstOrFallback(s => s.weaponPlatformDef == platform.Platform);
             // if no slot mention this or it allows everything return false
             if (slot == null || slot.allowAllAttachments)
             {

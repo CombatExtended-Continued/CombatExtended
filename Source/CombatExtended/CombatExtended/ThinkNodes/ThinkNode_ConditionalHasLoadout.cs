@@ -14,7 +14,7 @@ namespace CombatExtended
         public override bool Satisfied(Pawn pawn)
         {
             var loadout = pawn.GetLoadout();
-            return loadout != null && !loadout.Slots.NullOrEmpty();
+            return loadout != null && !loadout.defaultLoadout && loadout.Slots.Any();
         }
     }
 }
