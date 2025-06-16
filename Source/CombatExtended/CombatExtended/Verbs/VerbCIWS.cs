@@ -91,7 +91,6 @@ namespace CombatExtended
             {
                 var def = Projectile;
                 var thing = new ProjectileCE_CIWS();
-                thing.forcedTrajectoryWorker = TrajectoryWorker;
                 thing.def = def;
                 thing.PostMake();
                 thing.PostPostMake();
@@ -100,25 +99,15 @@ namespace CombatExtended
             var projectile = base.SpawnProjectile();
             return projectile;
         }
-        static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker();
-        protected BaseTrajectoryWorker TrajectoryWorker
-        {
-            get
-            {
-                if (!typeof(ProjectileCE_CIWS).IsAssignableFrom(Projectile.thingClass) && projectilePropsCE.TrajectoryWorker.GetType() == typeof(LerpedTrajectoryWorker))
-                {
-                    return lerpedTrajectoryWorker;
-                }
-                return projectilePropsCE.TrajectoryWorker;
-            }
-        }
+        protected static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
+
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {
         public abstract IEnumerable<TargetType> Targets { get; }
-        protected abstract IEnumerable<Vector3> PredictPositions(TargetType target, int maxTicks);
+        protected abstract IEnumerable<Vector3> PredictPositions(TargetType target, int maxTicks, bool drawPos);
 
-
+        protected virtual bool ShouldAimDrawPos(TargetType target) => Props.forceUseDrawPos;
 
 
         public override bool TryFindNewTarget(out LocalTargetInfo target)
@@ -167,7 +156,8 @@ namespace CombatExtended
             var maxDistSqr = Props.range * Props.range;
             var originV3 = Caster.Position.ToVector3Shifted();
             int maxTicks = (int)(this.verbProps.range / ShotSpeed) + 5;
-            if (TrajectoryWorker.GuidedProjectile)
+            var tworker = TrajectoryWorker(originalTarget);
+            if (tworker.GuidedProjectile)
             {
                 if ((originV3 - target.DrawPos).MagnitudeHorizontalSquared() > maxDistSqr)
                 {
@@ -175,7 +165,7 @@ namespace CombatExtended
                     targetPos = default;
                     return false;
                 }
-                var y = PredictPositions(target, 1).FirstOrDefault().y;
+                var y = PredictPositions(target, 1, ShouldAimDrawPos(target)).FirstOrDefault().y;
                 targetPos = target.DrawPos;
                 resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)targetPos.x, (int)y, (int)targetPos.z));
                 return true;
@@ -185,7 +175,7 @@ namespace CombatExtended
             var instant = projectilePropsCE.isInstant;
             if (instant)
             {
-                var to = PredictPositions(target, ticksToSkip + 1).Skip(ticksToSkip).FirstOrFallback(Vector3.negativeInfinity);
+                var to = PredictPositions(target, ticksToSkip + 1, ShouldAimDrawPos(target)).Skip(ticksToSkip).FirstOrFallback(Vector3.negativeInfinity);
                 if (to == Vector3.negativeInfinity)
                 {
                     resultingLine = default;
@@ -198,9 +188,8 @@ namespace CombatExtended
             }
             int i = 1;
             var speed = ShotSpeed;
-            var tworker = TrajectoryWorker;
             var source = new Vector3(originV3.x, ShotHeight, originV3.z);
-            foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks).Skip(ticksToSkip))
+            foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks, ShouldAimDrawPos(target)).Skip(ticksToSkip))
             {
                 var targetPos2 = new Vector2(pos.x, pos.z);
                 var dhs = (pos - originV3).MagnitudeHorizontalSquared();
@@ -263,7 +252,7 @@ namespace CombatExtended
         public override IEnumerable<Thing> Targets => CompCIWSTarget.Targets<TargetType>(Caster.Map);
         protected override bool IsFriendlyTo(Thing thing) => thing.TryGetComp<TargetType>()?.IsFriendlyTo(thing) ?? base.IsFriendlyTo(thing);
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.HasThing && target.Thing.HasComp<TargetType>() && base.ValidateTarget(target, showMessages);
-        protected override IEnumerable<Vector3> PredictPositions(Thing target, int maxTicks)
+        protected override IEnumerable<Vector3> PredictPositions(Thing target, int maxTicks, bool drawPos)
         {
             return target.TryGetComp<CompCIWSTarget>().PredictedPositions;
         }
@@ -274,6 +263,8 @@ namespace CombatExtended
         public string holdFireIcon = "UI/Commands/HoldFire";
         public string holdFireLabel = "HoldFire";
         public string holdFireDesc;
+
+        public bool forceUseDrawPos = false;
         public List<ThingDef> ignored = new List<ThingDef>();
         public IEnumerable<ThingDef> Ignored => ignored;
         public virtual bool Interceptable(ThingDef targetDef) => true;

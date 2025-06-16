@@ -33,7 +33,7 @@ namespace CombatExtended
             return new Vector3(v2p.x, this.projectile.Height, v2p.y);
         }
 
-        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)
+        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount, bool drawPos)
         {
             return new List<Vector3>();
         }
