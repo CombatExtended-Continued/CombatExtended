@@ -26,11 +26,10 @@ namespace CombatExtended.HarmonyCE
                 MethodInfo additionalMethod = AccessTools.Method(typeof(Harmony_ToxicUtility), nameof(Harmony_ToxicUtility.TryNotify_ShouldEquipGasMask));
                 for (int i = 0; i < codes.Count; i++)
                 {
-
-                    if (codes[i].opcode == OpCodes.Call && codes[i].operand as MethodInfo == targetMethod)
+                    if (codes[i].Calls(targetMethod))
                     {
-                        codes.Insert(i, new CodeInstruction(OpCodes.Call, additionalMethod));
-                        codes.Insert(i, new CodeInstruction(OpCodes.Dup));
+                        codes.Insert(i - 1, new CodeInstruction(OpCodes.Call, additionalMethod));
+                        codes.Insert(i - 1, new CodeInstruction(OpCodes.Dup));
                         break;
                     }
                 }
@@ -52,11 +51,10 @@ namespace CombatExtended.HarmonyCE
                 MethodInfo additionalMethod = AccessTools.Method(typeof(Harmony_ToxicUtility), nameof(Harmony_ToxicUtility.TryNotify_ShouldEquipGasMask));
                 for (int i = 0; i < codes.Count; i++)
                 {
-
-                    if (codes[i].opcode == OpCodes.Call && codes[i].operand as MethodInfo == targetMethod)
+                    if (codes[i].Calls(targetMethod))
                     {
-                        codes.Insert(i, new CodeInstruction(OpCodes.Call, additionalMethod));
-                        codes.Insert(i, new CodeInstruction(OpCodes.Dup));
+                        codes.Insert(i - 1, new CodeInstruction(OpCodes.Call, additionalMethod));
+                        codes.Insert(i - 1, new CodeInstruction(OpCodes.Dup));
                         break;
                     }
                 }

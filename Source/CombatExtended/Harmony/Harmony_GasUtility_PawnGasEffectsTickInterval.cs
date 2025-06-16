@@ -27,7 +27,7 @@ namespace CombatExtended.HarmonyCE
                 for (int i = 0; i < codes.Count; i++)
                 {
                     // Injecting this before the target method, so that pawns can put the gas mask on to avoid the debilitating exposure hediff.
-                    if (codes[i].opcode == OpCodes.Call && codes[i].operand as MethodInfo == targetMethod)
+                    if (codes[i].Calls(targetMethod))
                     {
                         codes.Insert(i, new CodeInstruction(OpCodes.Call, additionalMethod));
                         codes.Insert(i, new CodeInstruction(OpCodes.Dup));
