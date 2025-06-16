@@ -26,14 +26,15 @@ namespace CombatExtended.HarmonyCE
                 MethodInfo additionalMethod = AccessTools.Method(typeof(Harmony_ToxicUtility), nameof(Harmony_ToxicUtility.TryNotify_ShouldEquipGasMask));
                 for (int i = 0; i < codes.Count; i++)
                 {
-                    yield return codes[i];
 
                     if (codes[i].opcode == OpCodes.Call && codes[i].operand as MethodInfo == targetMethod)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldarg_0);
-                        yield return new CodeInstruction(OpCodes.Call, additionalMethod);
+                        codes.Insert(i, new CodeInstruction(OpCodes.Call, additionalMethod));
+                        codes.Insert(i, new CodeInstruction(OpCodes.Dup));
+                        break;
                     }
                 }
+                return codes;
             }
         }
         /// <summary>
@@ -51,14 +52,15 @@ namespace CombatExtended.HarmonyCE
                 MethodInfo additionalMethod = AccessTools.Method(typeof(Harmony_ToxicUtility), nameof(Harmony_ToxicUtility.TryNotify_ShouldEquipGasMask));
                 for (int i = 0; i < codes.Count; i++)
                 {
-                    yield return codes[i];
 
                     if (codes[i].opcode == OpCodes.Call && codes[i].operand as MethodInfo == targetMethod)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldarg_0);
-                        yield return new CodeInstruction(OpCodes.Call, additionalMethod);
+                        codes.Insert(i, new CodeInstruction(OpCodes.Call, additionalMethod));
+                        codes.Insert(i, new CodeInstruction(OpCodes.Dup));
+                        break;
                     }
                 }
+                return codes;
             }
         }
         public static void TryNotify_ShouldEquipGasMask(Pawn pawn)
