@@ -37,6 +37,7 @@ namespace CombatExtended
 
         private bool fragmentsFromWalls = false;
 
+        private bool midBurstRetarget = true;
         private bool fasterRepeatShots = true;
 
         private float explosionPenMultiplier = 1.0f;
@@ -140,6 +141,7 @@ namespace CombatExtended
         public bool FragmentsFromWalls => fragmentsFromWalls;
 
         public bool FasterRepeatShots => fasterRepeatShots;
+        public bool MidBurstRetarget => midBurstRetarget;
 
         public float ExplosionPenMultiplier => explosionPenMultiplier;
         public float ExplosionFalloffFactor => explosionFalloffFactor;
@@ -224,6 +226,7 @@ namespace CombatExtended
 
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
+            Scribe_Values.Look(ref midBurstRetarget, "midBurstRetarget", true);
             Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
             Scribe_Values.Look(ref explosionFalloffFactor, "explosionFalloffFactor", 1.0f);
 
@@ -273,6 +276,7 @@ namespace CombatExtended
             left.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
             left.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
             left.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
+            left.CheckboxLabeled("CE_Settings_MidBurstRetarget_Title".Translate(), ref midBurstRetarget, "CE_Settings_MidBurstRetarget_Desc".Translate());
             left.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
             left.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
             left.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
@@ -453,6 +457,7 @@ namespace CombatExtended
             smokeEffects = true;
             turretsBreakShields = true;
             fasterRepeatShots = true;
+            midBurstRetarget = true;
             enableCIWS = true;
             fragmentsFromWalls = false;
             mergeExplosions = true;
