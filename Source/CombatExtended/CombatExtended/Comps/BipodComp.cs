@@ -12,6 +12,7 @@ namespace CombatExtended
         #region Fields
         public bool ShouldSetUpint;
         private bool _missingComp;
+        private CompFireModes compFireMode;
 
         public bool IsSetUpRn;
 
@@ -24,14 +25,8 @@ namespace CombatExtended
         {
             get
             {
-                if (Controller.settings.AutoSetUp)
+                if (Controller.settings.AutoSetUp && !_missingComp)
                 {
-                    CompFireModes compFireMode = this.parent.TryGetComp<CompFireModes>();
-                    if (compFireMode == null)
-                    {
-                        _missingComp = true;
-                        return ShouldSetUpint && !IsSetUpRn;
-                    }
                     Pawn pawn = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
                     return (((compFireMode.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && compFireMode.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn && !pawn.IsCarryingPawn());
                 }
@@ -41,6 +36,16 @@ namespace CombatExtended
         #endregion
 
         #region Methods
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            compFireMode = this.parent.TryGetComp<CompFireModes>();
+            if (compFireMode == null)
+            {
+                _missingComp = true;
+            }
+
+        }
         public override void PostExposeData()
         {
             Scribe_Values.Look(ref IsSetUpRn, "isBipodSetUp");
