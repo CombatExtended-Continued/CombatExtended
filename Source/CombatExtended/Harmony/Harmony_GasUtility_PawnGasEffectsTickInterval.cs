@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using CombatExtended.AI;
 using HarmonyLib;
+using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE
@@ -22,16 +24,25 @@ namespace CombatExtended.HarmonyCE
             {
                 List<CodeInstruction> codes = instructions.ToList();
 
-                MethodInfo targetMethod = AccessTools.Method(typeof(GasUtility), nameof(GasUtility.ShouldGetGasExposureHediff));
+                MethodInfo firstInjectionSite = AccessTools.Method(typeof(GasUtility), nameof(GasUtility.ShouldGetGasExposureHediff));
                 MethodInfo additionalMethod = AccessTools.Method(typeof(Harmony_GasUtility), nameof(Harmony_GasUtility.TryNotify_ShouldEquipGasMask));
-                for (int i = 0; i < codes.Count; i++)
+                FieldInfo secondInjectionSite = AccessTools.Field(typeof(HediffDefOf), nameof(HediffDefOf.LungRotExposure));
+                bool firstInjectionFound = false;
+                bool secondInjectionFound = false;
+                for (int i = 0; i < codes.Count - 2; i++)
                 {
                     // Injecting this before the target method, so that pawns can put the gas mask on to avoid the debilitating exposure hediff.
-                    if (codes[i].Calls(targetMethod))
+                    if (codes[i].Calls(firstInjectionSite) && !firstInjectionFound)
                     {
                         codes.Insert(i, new CodeInstruction(OpCodes.Call, additionalMethod));
                         codes.Insert(i, new CodeInstruction(OpCodes.Dup));
-                        break;
+                        firstInjectionFound = true;
+                    }
+                    if (codes[i].opcode == OpCodes.Ldarg_0 && codes[i + 2].operand is FieldInfo fieldInfo && fieldInfo == secondInjectionSite && !secondInjectionFound)
+                    {
+                        codes.Insert(i + 1 , new CodeInstruction(OpCodes.Call, additionalMethod));
+                        codes.Insert(i + 1 , new CodeInstruction(OpCodes.Dup));
+                        secondInjectionFound = true;
                     }
                 }
                 return codes;
