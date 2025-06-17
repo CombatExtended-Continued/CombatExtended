@@ -953,7 +953,7 @@ namespace CombatExtended
 
         protected bool Retarget()
         {
-            if (!doRetarget)
+            if (!Controller.settings.MidBurstRetarget || !doRetarget)
             {
                 return false;
             }
