@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CombatExtended;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -15,7 +10,9 @@ namespace CombatExtended
     public class BipodComp : CompRangedGizmoGiver
     {
         #region Fields
-        public bool ShouldSetUpint = false;
+        public bool ShouldSetUpint;
+        private bool _missingComp;
+        private CompFireModes compFireMode;
 
         public bool IsSetUpRn;
 
@@ -28,31 +25,30 @@ namespace CombatExtended
         {
             get
             {
-                bool result = false;
-                if (Controller.settings.AutoSetUp)
+                if (Controller.settings.AutoSetUp && !_missingComp)
                 {
-                    var varA = this.parent.TryGetComp<CompFireModes>();
                     Pawn pawn = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
-                    result = (((varA.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && varA.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn && !PawnUtility.IsCarryingPawn(pawn));
+                    return (((compFireMode.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && compFireMode.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn && !pawn.IsCarryingPawn());
                 }
-                else
-                {
-                    result = ShouldSetUpint && !IsSetUpRn;
-                }
-
-                return result;
-            }
-            set
-            {
-
+                return ShouldSetUpint && !IsSetUpRn;
             }
         }
         #endregion
 
         #region Methods
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            compFireMode = this.parent.TryGetComp<CompFireModes>();
+            if (compFireMode == null)
+            {
+                _missingComp = true;
+            }
+
+        }
         public override void PostExposeData()
         {
-            Scribe_Values.Look<bool>(ref IsSetUpRn, "isBipodSetUp");
+            Scribe_Values.Look(ref IsSetUpRn, "isBipodSetUp");
             base.PostExposeData();
         }
 
@@ -69,72 +65,48 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (Controller.settings.BipodMechanics)
+            if (!Controller.settings.BipodMechanics || this.ParentHolder is not Pawn_EquipmentTracker tracker)
             {
-                if (Controller.settings.AutoSetUp)
+                yield break;
+            }
+            Pawn dad = tracker.pawn;
+            if (!dad.Drafted)
+            {
+                yield break;
+            }
+            if (Controller.settings.AutoSetUp)
+            {
+                if (_missingComp)
                 {
-                    if (this.ParentHolder is Pawn_EquipmentTracker)
+                    yield return new Command_Action
                     {
-                        Pawn dad = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
-                        if (dad.Drafted)
-                        {
-                            if (IsSetUpRn)
-                            {
-                                yield return new Command_Action
-                                {
-                                    action = delegate { },
-                                    defaultLabel = "CE_Bipod_Set_Up".Translate(),
-                                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
-                                };
-                            }
-                            else
-                            {
-                                yield return new Command_Action
-                                {
-                                    action = delegate { },
-                                    defaultLabel = "CE_Bipod_Not_Set_Up".Translate(),
-                                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
-                                };
-                            }
-                        }
-                    }
+                        action = ShouldSetUpint ? CloseBipod : DeployUpBipod,
+                        defaultLabel = ShouldSetUpint ? "CE_Close_Bipod".Translate() : "CE_Deploy_Bipod".Translate(),
+                        icon = ContentFinder<Texture2D>.Get(ShouldSetUpint ? "UI/Buttons/closed_bipod" : "UI/Buttons/open_bipod")
+                    };
+
                 }
                 else
                 {
-                    if (this.ParentHolder is Pawn_EquipmentTracker)
+                    yield return new Command_Action
                     {
-                        Pawn dad = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
-                        if (dad.Drafted)
-                        {
-                            if (!ShouldSetUpint)
-                            {
-                                yield return new Command_Action
-                                {
-                                    action = DeployUpBipod,
-                                    defaultLabel = "CE_Deploy_Bipod".Translate(),
-                                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
-                                };
-                            }
-                            else
-                            {
-                                yield return new Command_Action
-                                {
-                                    action = CloseBipod,
-                                    defaultLabel = "CE_Close_Bipod".Translate(),
-                                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
-                                };
-
-                            }
-                        }
-
-                    }
+                        action = delegate { },
+                        defaultLabel = IsSetUpRn ? "CE_Bipod_Set_Up".Translate() : "CE_Bipod_Not_Set_Up".Translate(),
+                        icon = ContentFinder<Texture2D>.Get(IsSetUpRn ? "UI/Buttons/open_bipod" : "UI/Buttons/closed_bipod")
+                    };
                 }
-
             }
-
-
-
+            else
+            {
+                yield return new Command_Action
+                {
+                    action = ShouldSetUpint ? CloseBipod : DeployUpBipod,
+                    defaultLabel = ShouldSetUpint ? "CE_Close_Bipod".Translate() : "CE_Deploy_Bipod".Translate(),
+                    icon = ContentFinder<Texture2D>.Get(ShouldSetUpint ? "UI/Buttons/closed_bipod" : "UI/Buttons/open_bipod")
+                };
+            }
         }
+
         public override void Notify_Unequipped(Pawn pawn)
         {
             IsSetUpRn = false;
@@ -203,7 +175,7 @@ namespace CombatExtended
 
             if (starts == 0)
             {
-                if (pawn != null && (pawn.jobs?.curJob?.def?.HasModExtension<JobDefBipodCancelExtension>() ?? false) && !pawn.pather.MovingNow && ShouldSetUp)
+                if ((pawn.jobs?.curJob?.def?.HasModExtension<JobDefBipodCancelExtension>() ?? false) && !pawn.pather.MovingNow && ShouldSetUp)
                 {
                     pawn.jobs.StopAll();
                     pawn.jobs.StartJob(new Job { def = CE_JobDefOf.JobDef_SetUpBipod, targetA = this.parent }, JobCondition.InterruptForced);

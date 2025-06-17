@@ -138,7 +138,18 @@
 	<!-- ========== VFE Advanced Scyther/Lancer ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedScyther" or defName="VFE_Mech_AdvancedLancer"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedScyther"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+				<canParry>true</canParry>
+				<maxParry>5</maxParry>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedLancer"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
