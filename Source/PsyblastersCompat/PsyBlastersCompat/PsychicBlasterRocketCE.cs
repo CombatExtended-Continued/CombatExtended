@@ -33,8 +33,7 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
                               ((Pawn)launcher).psychicEntropy.EntropyValue) * psyModExtension.psyDamageMultiplier);
 
             Pawn launcherPawn = (Pawn)launcher;
-            Traverse.Create(launcherPawn).Field("psychicEntropy").Field("currentEntropy")
-                .SetValue(launcherPawn.psychicEntropy.MaxPotentialEntropy * 5.5f);
+            launcherPawn.psychicEntropy.currentEntropy = launcherPawn.psychicEntropy.MaxPotentialEntropy * 5.5f;
         }
     }
 
