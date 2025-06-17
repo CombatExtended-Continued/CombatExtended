@@ -56,9 +56,9 @@ namespace CombatExtended
             Scribe_Values.Look(ref this.lifetimeTicks, "lifetimeTicks");
         }
 
-        public override void Tick()
+        public override void TickInterval(int delta)
         {
-            lifetimeTicks--;
+            lifetimeTicks -= delta;
             if (lifetimeTicks <= 0)
             {
                 this.Destroy();
