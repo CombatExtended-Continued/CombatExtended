@@ -159,7 +159,7 @@ namespace CombatExtended
                 // get the loadout so we can make a decision to show a button.
                 bool showMakeLoadout = false;
                 Loadout curLoadout = SelPawnForGear.GetLoadout();
-                if (SelPawnForGear.IsColonist && (curLoadout == null || curLoadout.Slots.NullOrEmpty()) && (SelPawnForGear.inventory.innerContainer.Any() || SelPawnForGear.equipment?.Primary != null))
+                if (SelPawnForGear.IsColonist && (curLoadout == null || !curLoadout.Slots.Any()) && (SelPawnForGear.inventory.innerContainer.Any() || SelPawnForGear.equipment?.Primary != null))
                 {
                     showMakeLoadout = true;
                 }
