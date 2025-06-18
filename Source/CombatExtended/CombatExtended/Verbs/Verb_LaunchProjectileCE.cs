@@ -277,13 +277,13 @@ namespace CombatExtended
             if (CasterIsPawn)
             {
                 if (CasterPawn.Faction != Faction.OfPlayer
-                        && CasterPawn.mindState.MeleeThreatStillThreat
-                        && CasterPawn.mindState.meleeThreat.AdjacentTo8WayOrInside(CasterPawn))
+                    && CasterPawn.mindState.MeleeThreatStillThreat
+                    && !this.verbProps.ai_ProjectileLaunchingIgnoresMeleeThreats
+                    && CasterPawn.mindState.meleeThreat.Position.AdjacentTo8WayOrInside(CasterPawn.Position))
                 {
                     return false;
                 }
             }
-
             return Projectile != null && !VerbPropsCE.disallowedProjectileDefs.Contains(Projectile);
         }
 
@@ -1186,6 +1186,22 @@ namespace CombatExtended
         protected virtual ProjectileCE SpawnProjectile()
         {
             return (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
+        }
+
+        public override void OrderForceTarget(LocalTargetInfo target)
+        {
+            if (CasterPawn != null
+                && !this.verbProps.IsMeleeAttack
+                && CasterPawn.mindState.MeleeThreatStillThreat
+                && !this.verbProps.ai_ProjectileLaunchingIgnoresMeleeThreats
+                && CasterPawn.mindState.meleeThreat.Position.AdjacentTo8WayOrInside(CasterPawn.Position))
+            {
+                Messages.Message("MessageCantShootInMelee".Translate(), this.CasterPawn, MessageTypeDefOf.RejectInput,
+                    false);
+                return;
+            }
+
+            base.OrderForceTarget(target);
         }
 
         /// <summary>
