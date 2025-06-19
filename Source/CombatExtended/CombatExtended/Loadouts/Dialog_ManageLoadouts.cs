@@ -25,7 +25,7 @@ namespace CombatExtended
     {
         #region Fields
 
-        private static int[] _dropOptions2 = new int[] { 0, 1 };
+        private static int[] _dropOptions2 = [0, 1];
 
         private static Texture2D
         //_arrowBottom = ContentFinder<Texture2D>.Get("UI/Icons/arrowBottom"),
@@ -64,6 +64,8 @@ namespace CombatExtended
         private const float _margin = 6f;
         private const float _rowHeight = 28f;
         private const float _topAreaHeight = 30f;
+        private const float _padding = 24;
+        private const float _selectionAreaPadding = 84;
         private Vector2 _slotScrollPosition = Vector2.zero;
         private List<SelectableItem> _source;
         private List<LoadoutGenericDef> _sourceGeneric;
@@ -175,7 +177,7 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
 
             const int BUTTON_COUNT = 6;
-            const float BUTTON_STRETCH_FACTOR = 0.8f / (float)BUTTON_COUNT;
+            const float BUTTON_STRETCH_FACTOR = 0.8f / BUTTON_COUNT;
             float buttonWidth = canvas.width * BUTTON_STRETCH_FACTOR;
 
             // SET UP RECTS
@@ -186,13 +188,14 @@ namespace CombatExtended
             Rect deleteRect = new Rect(copyRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
             Rect loadRect = new Rect(deleteRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
             Rect saveRect = new Rect(loadRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
+            Rect parentRect = new Rect(saveRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
 
             // main areas
             Rect nameRect = new Rect(
                 0f,
                 _topAreaHeight + _margin * 2,
                 (canvas.width - _margin) / 2f,
-                24f);
+                _padding);
 
             Rect slotListRect = new Rect(
                 0f,
@@ -207,14 +210,20 @@ namespace CombatExtended
                 slotListRect.xMax + _margin,
                 _topAreaHeight + _margin * 2,
                 (canvas.width - _margin) / 2f,
-                24f);
+                _padding);
 
             Rect selectionRect = new Rect(
                 slotListRect.xMax + _margin,
                 sourceButtonRect.yMax + _margin,
                 (canvas.width - _margin) / 2f,
-                canvas.height - 24f - _topAreaHeight - _margin * 3);
+                canvas.height - _selectionAreaPadding - _topAreaHeight - _margin * 3);
 
+            Rect optionRect = new Rect(
+                slotListRect.xMax + _margin,
+                selectionRect.yMax + _margin,
+                (canvas.width - _margin) / 2f,
+                _barHeight * 2);
+            //canvas.height - selectionRect.height - _topAreaHeight - _margin * 3);
             LoadoutManager.SortLoadouts();
             List<Loadout> loadouts = LoadoutManager.Loadouts.Where(l => !l.defaultLoadout).ToList();
 
@@ -316,6 +325,38 @@ namespace CombatExtended
                     dialog.Close();
                 }, CurrentLoadout.label));
             }
+            if (CurrentLoadout != null && Widgets.ButtonText(parentRect, CurrentLoadout?.ParentLoadout?.label ?? "CE_ParentLoadout".Translate()))
+            {
+
+                List<FloatMenuOption> options = new List<FloatMenuOption>();
+
+                if (loadouts.Count == 0)
+                {
+                    options.Add(new FloatMenuOption("CE_NoLoadouts".Translate(), null));
+                }
+                else
+                {
+                    options.Add(new FloatMenuOption("CE_ClearParentLoadout".Translate(), delegate
+                    {
+                        CurrentLoadout.parentID = 0;
+                    }));
+                    for (int i = 0; i < loadouts.Count; i++)
+                    {
+                        int local_i = i;
+                        if (loadouts[i] == CurrentLoadout || loadouts[i].Ancestors.Contains(CurrentLoadout))
+                        {
+                            continue;
+                        }
+                        options.Add(new FloatMenuOption(loadouts[i].LabelCap, delegate
+                        {
+                            CurrentLoadout.parentID = loadouts[local_i].uniqueID;
+                        }));
+                    }
+                }
+
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+
 
             // draw notification if no loadout selected
             if (CurrentLoadout == null)
@@ -342,6 +383,9 @@ namespace CombatExtended
             // current slots
             DrawSlotList(slotListRect);
 
+            // extra options
+            DrawExtraOptions(optionRect);
+
             // bars
             if (CurrentLoadout != null)
             {
@@ -358,6 +402,34 @@ namespace CombatExtended
                 Text.Anchor = TextAnchor.UpperLeft;
             }
             // done!
+        }
+        private void DrawExtraOptions(Rect rect)
+        {
+            float checkboxWidth = (rect.width - 10f) / 3f;
+
+            Rect leftRect = new Rect(rect.x, rect.y, checkboxWidth, rect.height / 2);
+            Listing_Standard listingLeft = new Listing_Standard();
+            listingLeft.Begin(leftRect);
+            listingLeft.CheckboxLabeled("CE_LoadOut_DropUndefined".Translate(), ref CurrentLoadout.dropUndefined, "CE_LoadOut_DropUndefined_Desc".Translate());
+            listingLeft.End();
+
+            Rect rightRect = new Rect(rect.x + checkboxWidth + 5f, rect.y, checkboxWidth, rect.height / 2);
+            Listing_Standard listingRight = new Listing_Standard();
+            listingRight.Begin(rightRect);
+            listingRight.CheckboxLabeled("CE_LoadOut_AdHoc".Translate(), ref CurrentLoadout.adHoc, "CE_LoadOut_AdHoc_Desc".Translate());
+            listingRight.End();
+
+            if (CurrentLoadout.adHoc)
+            {
+                Rect magsRect = new Rect(rect.x, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
+                CustomWidgets.DrawIntOptionWithSpinners(magsRect, "CE_LoadOut_Mags".Translate(), "CE_LoadOut_Mags_Desc".Translate(), ref CurrentLoadout.adHocMags, 0f, 999, 1);
+
+                Rect massRect = new Rect(rect.x + checkboxWidth + 5f, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
+                CustomWidgets.DrawIntOptionWithSpinners(massRect, "CE_Weight".Translate(), "CE_LoadOut_Weight_Desc".Translate(), ref CurrentLoadout.adHocMass, 0f, 999, 1);
+
+                Rect bulkRect = new Rect(rect.x + checkboxWidth * 2 + 5f, rect.y + rect.height / 2, checkboxWidth, rect.height / 2);
+                CustomWidgets.DrawIntOptionWithSpinners(bulkRect, "CE_Bulk".Translate(), "CE_LoadOut_Bulk_Desc".Translate(), ref CurrentLoadout.adHocBulk, 0f, 999, 1);
+            }
         }
 
         public void DrawSourceSelection(Rect canvas)
@@ -497,13 +569,13 @@ namespace CombatExtended
 
             int countInt = slot.count;
             string buffer = countInt.ToString();
-            Widgets.TextFieldNumeric<int>(canvas, ref countInt, ref buffer);
+            Widgets.TextFieldNumeric(canvas, ref countInt, ref buffer);
             TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
             if (slot.count != countInt)
             {
                 if (Compatibility.Multiplayer.InMultiplayer)
                 {
-                    SetSlotCount(CurrentLoadout, CurrentLoadout.Slots.IndexOf(slot), countInt);
+                    SetSlotCount(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(slot), countInt);
                 }
                 else
                 {
@@ -532,7 +604,7 @@ namespace CombatExtended
             }
         }
 
-        private void DrawSlot(Rect row, LoadoutSlot slot, bool slotDraggable = true)
+        private void DrawSlot(Rect row, LoadoutSlot slot, bool slotDraggable = true, bool usingParent = false)
         {
             // set up rects
             // dragging handle (square) | label (fill) | count (50px) | delete (iconSize)
@@ -540,7 +612,7 @@ namespace CombatExtended
             draggingHandle.width = row.height;
 
             Rect labelRect = new Rect(row);
-            if (slotDraggable)
+            if (slotDraggable || usingParent)
             {
                 labelRect.xMin = draggingHandle.xMax;
             }
@@ -572,7 +644,7 @@ namespace CombatExtended
             // prepare attachment config
             if (slot.isWeaponPlatform && Widgets.ButtonImage(editAttachmentsRect, _iconEditAttachments))
             {
-                RocketGUI.GUIUtility.DropDownMenu<int>((i) =>
+                RocketGUI.GUIUtility.DropDownMenu((i) =>
                 {
                     if (i == 0)
                     {
@@ -590,7 +662,7 @@ namespace CombatExtended
                     {
                         if (Find.WindowStack.IsOpen<Window_AttachmentsEditor>())
                         {
-                            Find.WindowStack.TryRemove(typeof(Window_AttachmentsEditor), true);
+                            Find.WindowStack.TryRemove(typeof(Window_AttachmentsEditor));
                         }
                         else
                         {
@@ -638,21 +710,19 @@ namespace CombatExtended
             Text.Anchor = TextAnchor.UpperLeft;
 
             // easy ammo adder, ranged weapons only
-            if (slot.thingDef != null && slot.thingDef.IsRangedWeapon)
+            if (slot.thingDef is { IsRangedWeapon: true })
             {
-                // make sure there's an ammoset defined
+                // make sure there's an ammoSet defined
                 AmmoSetDef ammoSet = ((slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? null : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().ammoSet);
 
-                bool? temp = !((((ammoSet == null) ? null : ammoSet.ammoTypes)).NullOrEmpty());
-
-                if (temp ?? false)
+                if (ammoSet is { ammoTypes.Count: > 0 })
                 {
                     if (Widgets.ButtonImage(ammoRect, _iconAmmoAdd))
                     {
-                        List<FloatMenuOption> options = new List<FloatMenuOption>();
+                        List<FloatMenuOption> options = [];
                         int magazineSize = (slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? 0 : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().magazineSize;
 
-                        foreach (AmmoLink link in ((ammoSet == null) ? null : ammoSet.ammoTypes))
+                        foreach (AmmoLink link in ammoSet.ammoTypes)
                         {
                             options.Add(new FloatMenuOption(link.ammo.LabelCap, delegate
                             {
@@ -682,11 +752,12 @@ namespace CombatExtended
             {
                 Texture2D curModeIcon = slot.countType == LoadoutCountType.dropExcess ? _iconDropExcess : _iconPickupDrop;
                 string tipString = slot.countType == LoadoutCountType.dropExcess ? "CE_DropExcess".Translate() : "CE_PickupMissingAndDropExcess".Translate();
-                if (Widgets.ButtonImage(countModeRect, curModeIcon))
+                Color color = usingParent ? Color.gray : Color.white;
+                if (Widgets.ButtonImage(countModeRect, curModeIcon, color))
                 {
                     if (Compatibility.Multiplayer.InMultiplayer)
                     {
-                        ChangeCountType(CurrentLoadout, CurrentLoadout.Slots.IndexOf(slot));
+                        ChangeCountType(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(slot));
                     }
                     else
                     {
@@ -697,13 +768,17 @@ namespace CombatExtended
             }
 
             // delete
+            if (usingParent)
+            {
+                return;
+            }
             if (Mouse.IsOver(deleteRect))
             {
                 GUI.DrawTexture(row, TexUI.HighlightTex);
             }
             if (Widgets.ButtonImage(deleteRect, _iconClear))
             {
-                RemoveSlot(CurrentLoadout, CurrentLoadout.Slots.IndexOf(slot));
+                RemoveSlot(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(slot));
             }
             TooltipHandler.TipRegion(deleteRect, "CE_DeleteFilter".Translate());
         }
@@ -712,7 +787,14 @@ namespace CombatExtended
         private void DrawSlotList(Rect canvas)
         {
             // set up content canvas
-            Rect viewRect = new Rect(0f, 0f, canvas.width, _rowHeight * CurrentLoadout.SlotCount + 1);
+            int totalSlotCount = CurrentLoadout.SlotCount + 2;
+            bool usingParent = CurrentLoadout.ParentLoadout != null;
+
+            foreach (var parentLoadout in CurrentLoadout.Ancestors)
+            {
+                totalSlotCount += parentLoadout.SlotCount;
+            }
+            Rect viewRect = new Rect(0f, 0f, canvas.width, _rowHeight * totalSlotCount);
 
             // create some extra height if we're dragging
             if (Dragging != null)
@@ -730,16 +812,51 @@ namespace CombatExtended
             GUI.DrawTexture(canvas, _darkBackground);
 
             Widgets.BeginScrollView(canvas, ref _slotScrollPosition, viewRect);
-            int i = 0;
             float curY = 0f;
-            for (; i < CurrentLoadout.SlotCount; i++)
+            GUI.enabled = false;
+            Stack<Loadout> lineage = new Stack<Loadout>(CurrentLoadout.Ancestors);
+
+            int rowIndex = 0;
+            while (lineage.Count > 0)
+            {
+                var loadout = lineage.Pop();
+                for (int i = 0; i < loadout.SlotCount; i++)
+                {
+
+                    Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
+                    curY += _rowHeight;
+                    // alternate row background
+                    if (rowIndex % 2 == 0)
+                    {
+                        GUI.DrawTexture(row, _darkBackground);
+                    }
+                    //GUI.color = Color.blue;
+                    DrawSlot(row, loadout.OwnSlots[i], false, usingParent);
+                    GUI.color = Color.white;
+                    rowIndex++;
+                }
+            }
+            if (usingParent)
+            {
+                Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
+                Widgets.DrawLineHorizontal(10f, curY + (_rowHeight / 2), row.width - 20f);
+                if (rowIndex % 2 == 0)
+                {
+                    GUI.DrawTexture(row, _darkBackground);
+                }
+                rowIndex++;
+                curY += _rowHeight;
+            }
+            GUI.enabled = true;
+
+            for (int i = 0; i < CurrentLoadout.SlotCount; i++)
             {
                 // create row rect
                 Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
                 curY += _rowHeight;
 
                 // if we're dragging, and currently on this row, and this row is not the row being dragged - draw a ghost of the slot here
-                if (Dragging != null && Mouse.IsOver(row) && Dragging != CurrentLoadout.Slots[i])
+                if (Dragging != null && Mouse.IsOver(row) && Dragging != CurrentLoadout.OwnSlots[i])
                 {
                     // draw ghost
                     GUI.color = new Color(.7f, .7f, .7f, .5f);
@@ -751,7 +868,7 @@ namespace CombatExtended
                     {
                         if (Compatibility.Multiplayer.InMultiplayer)
                         {
-                            MoveSlot(CurrentLoadout, CurrentLoadout.Slots.IndexOf(Dragging), i);
+                            MoveSlot(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(Dragging), i);
                         }
                         else
                         {
@@ -760,24 +877,25 @@ namespace CombatExtended
                         Dragging = null;
                     }
 
-                    // ofset further slots down
+                    // offset further slots down
                     row.y += _rowHeight;
                     curY += _rowHeight;
                 }
 
                 // alternate row background
-                if (i % 2 == 0)
+                if (rowIndex % 2 == 0)
                 {
                     GUI.DrawTexture(row, _darkBackground);
                 }
 
-                // draw the slot - grey out if draggin this, but only when dragged over somewhere else
-                if (Dragging == CurrentLoadout.Slots[i] && !Mouse.IsOver(row))
+                // draw the slot - grey out if dragging this, but only when dragged over somewhere else
+                if (Dragging == CurrentLoadout.OwnSlots[i] && !Mouse.IsOver(row))
                 {
                     GUI.color = new Color(.6f, .6f, .6f, .4f);
                 }
-                DrawSlot(row, CurrentLoadout.Slots[i], CurrentLoadout.SlotCount > 1);
+                DrawSlot(row, CurrentLoadout.OwnSlots[i], CurrentLoadout.SlotCount > 1);
                 GUI.color = Color.white;
+                rowIndex++;
             }
 
             // if we're dragging, create an extra invisible row to allow moving stuff to the bottom
@@ -797,11 +915,11 @@ namespace CombatExtended
                     {
                         if (Compatibility.Multiplayer.InMultiplayer)
                         {
-                            MoveSlot(CurrentLoadout, CurrentLoadout.Slots.IndexOf(Dragging), CurrentLoadout.Slots.Count - 1);
+                            MoveSlot(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(Dragging), CurrentLoadout.OwnSlots.Count - 1);
                         }
                         else
                         {
-                            CurrentLoadout.MoveSlot(Dragging, CurrentLoadout.Slots.Count - 1);
+                            CurrentLoadout.MoveSlot(Dragging, CurrentLoadout.OwnSlots.Count - 1);
                         }
                         Dragging = null;
                     }
@@ -931,7 +1049,7 @@ namespace CombatExtended
         private static void AddLoadoutSlotSpecific(Loadout loadout, ThingDef def, int count = 1)
         => loadout.AddSlot(new LoadoutSlot(def, count));
 
-        // We prefer syncing loadout and slot index, as it's faster than iterating over all of the loadouts first to find the current one.
+        // We prefer syncing loadout and slot index, as it's faster than iterating overall of the loadouts first to find the current one.
         // We don't have direct reference to Loadout from LoadoutSlot, so we can't really speed up the SyncWorker for it.
         [Compatibility.Multiplayer.SyncMethod]
         private static void RemoveSlot(Loadout loadout, int index)
@@ -947,7 +1065,7 @@ namespace CombatExtended
         {
             if (index >= 0)
             {
-                loadout.Slots[index].count = count;
+                loadout.OwnSlots[index].count = count;
             }
         }
 
@@ -1003,7 +1121,7 @@ namespace CombatExtended
         {
             if (index >= 0)
             {
-                var slot = loadout.Slots[index];
+                var slot = loadout.OwnSlots[index];
                 loadout.MoveSlot(slot, moveIndex);
             }
         }
@@ -1013,7 +1131,7 @@ namespace CombatExtended
         {
             if (index >= 0)
             {
-                var slot = loadout.Slots[index];
+                var slot = loadout.OwnSlots[index];
                 slot.countType = slot.countType == LoadoutCountType.dropExcess ? LoadoutCountType.pickupDrop : LoadoutCountType.dropExcess;
             }
         }
@@ -1070,9 +1188,9 @@ namespace CombatExtended
 
         private class VisibilityCache
         {
-            public int ticksToRecheck = 0;
+            public int ticksToRecheck;
             public bool check = true;
-            public int position = 0;
+            public int position;
         }
 
         #endregion GenericDrawOptimization
