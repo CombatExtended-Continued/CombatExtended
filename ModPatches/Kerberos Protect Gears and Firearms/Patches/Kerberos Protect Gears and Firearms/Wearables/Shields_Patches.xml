@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Wrist Shield ===== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_WristShield"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ReloadSpeed>-0.05</ReloadSpeed>
+				<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+				<AimingAccuracy>-0.15</AimingAccuracy>
+				<Suppressability>-0.4</Suppressability>
+				<MeleeHitChance>-0.7</MeleeHitChance>				
+				<MeleeCritChance>-0.2</MeleeCritChance>
+				<MeleeParryChance>1.0</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_WristShield"]/statBases/Mass</xpath>
+		<value>
+			<Mass>5</Mass>
+			<Bulk>3.5</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_WristShield"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_WristShield"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Layers -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_WristShield"]/apparel/layers</xpath>
+			<value>	
+				<layers>
+					<li>Shield</li>
+				</layers>
+			</value>
+	</Operation>
+
+	<!-- ===== Combat Shield ===== -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_CombatShield"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ShieldBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_CombatShield"]/equippedStatOffsets</xpath>
+		<value>
+			<ReloadSpeed>-0.05</ReloadSpeed>
+			<MeleeHitChance>-1</MeleeHitChance>
+			<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+			<AimingAccuracy>-0.15</AimingAccuracy>
+			<Suppressability>-0.45</Suppressability>
+			<MeleeCritChance>-0.2</MeleeCritChance>
+			<MeleeParryChance>1.0</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_CombatShield"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9</Mass>
+			<Bulk>10</Bulk>
+			<WornBulk>7</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_CombatShield"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_CombatShield"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_CombatShield"]/apparel/drawData</xpath>
+		<value>
+			<renderNodeProperties>
+				<li>
+					<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+					<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+					<texPath>Things/Apparels/RiotShield/KerberosRiotShield</texPath>
+					<shaderTypeDef>CutoutComplex</shaderTypeDef>
+					<parentTagDef>ApparelBody</parentTagDef>
+					<drawData>
+						<scale>0.8</scale>
+						<defaultData>
+							<layer>80</layer>
+						</defaultData>
+						<dataEast>
+							<layer>-5</layer>
+							<offset>(0, 0, -0.1)</offset>
+							<rotationOffset>30</rotationOffset>
+						</dataEast>
+						<dataWest>
+							<rotationOffset>-30</rotationOffset>
+						</dataWest>
+						<dataNorth>
+							<layer>-5</layer>
+							<offset>(0.15, 0, -0.1)</offset>
+						</dataNorth>
+						<dataSouth>
+							<offset>(0.15, 0, -0.1)</offset>
+						</dataSouth>
+					</drawData>
+				</li>
+			</renderNodeProperties>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_CombatShield"]</xpath>
+		<value>
+			<li Class="CombatExtended.ShieldDefExtension">
+				<shieldCoverage>
+					<li>Hands</li>
+					<li>Arms</li>
+					<li>Shoulders</li>
+					<li>Torso</li>
+				</shieldCoverage>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ===== Tower Shield =====-->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_TowerShield"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ShieldBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_TowerShield"]/equippedStatOffsets</xpath>
+		<value>
+			<ReloadSpeed>-0.3</ReloadSpeed>
+			<MeleeHitChance>-4</MeleeHitChance>
+			<ShootingAccuracyPawn>-0.4</ShootingAccuracyPawn>
+			<AimingAccuracy>-0.2</AimingAccuracy>
+			<Suppressability>-0.5</Suppressability>
+			<MeleeCritChance>-0.2</MeleeCritChance>
+			<MeleeParryChance>1.0</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_TowerShield"]/statBases/Mass</xpath>
+		<value>
+			<Mass>13</Mass>
+			<Bulk>15</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_TowerShield"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_TowerShield"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_TowerShield"]/apparel/drawData</xpath>
+		<value>
+			<renderNodeProperties>
+				<li>
+					<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+					<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+					<texPath>Things/Apparels/RiotShield/KerberosTowerShield</texPath>
+					<shaderTypeDef>CutoutComplex</shaderTypeDef>
+					<parentTagDef>ApparelBody</parentTagDef>
+					<drawData>
+						<scale>0.9</scale>
+						<defaultData>
+							<layer>80</layer>
+						</defaultData>
+						<dataEast>
+							<layer>-5</layer>
+							<offset>(0, 0, -0.1)</offset>
+							<rotationOffset>30</rotationOffset>
+						</dataEast>
+						<dataWest>
+							<rotationOffset>-30</rotationOffset>
+						</dataWest>
+						<dataNorth>
+							<layer>-5</layer>
+							<offset>(0.15, 0, 0)</offset>
+						</dataNorth>
+						<dataSouth>
+							<offset>(0.15, 0, 0)</offset>
+						</dataSouth>
+					</drawData>
+				</li>
+			</renderNodeProperties>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Apparel_Kerberos_TowerShield"]</xpath>
+		<value>
+			<li Class="CombatExtended.ShieldDefExtension">
+				<shieldCoverage>
+					<li>Hands</li>
+					<li>Arms</li>
+					<li>Shoulders</li>
+					<li>Torso</li>
+					<li>Neck</li>
+					<li>FullHead</li>
+				</shieldCoverage>
+				<crouchCoverage>
+					<li>Legs</li>
+				</crouchCoverage>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

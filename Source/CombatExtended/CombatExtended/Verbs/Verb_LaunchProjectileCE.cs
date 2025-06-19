@@ -59,6 +59,7 @@ namespace CombatExtended
         protected ShootLine? lastShootLine;
         protected bool repeating = false;
         protected bool doRetarget = true;
+        private bool didRetarget = false;
 
         #endregion
 
@@ -229,7 +230,7 @@ namespace CombatExtended
         }
 
         public bool MidBurst => numShotsFired > 0;
-        protected virtual bool LockRotationAndAngle => MidBurst;
+        protected virtual bool LockRotationAndAngle => !didRetarget && MidBurst;
 
         #endregion
 
@@ -249,6 +250,7 @@ namespace CombatExtended
             lastShootLine = null;
             repeating = false;
             storedShotReduction = null;
+            didRetarget = false;
         }
 
         public override void ExposeData()
@@ -275,13 +277,13 @@ namespace CombatExtended
             if (CasterIsPawn)
             {
                 if (CasterPawn.Faction != Faction.OfPlayer
-                        && CasterPawn.mindState.MeleeThreatStillThreat
-                        && CasterPawn.mindState.meleeThreat.AdjacentTo8WayOrInside(CasterPawn))
+                    && CasterPawn.mindState.MeleeThreatStillThreat
+                    && !this.verbProps.ai_ProjectileLaunchingIgnoresMeleeThreats
+                    && CasterPawn.mindState.meleeThreat.Position.AdjacentTo8WayOrInside(CasterPawn.Position))
                 {
                     return false;
                 }
             }
-
             return Projectile != null && !VerbPropsCE.disallowedProjectileDefs.Contains(Projectile);
         }
 
@@ -951,9 +953,9 @@ namespace CombatExtended
 
         protected bool Retarget()
         {
-            if (!doRetarget)
+            if (!Controller.settings.MidBurstRetarget || !doRetarget)
             {
-                return true;
+                return false;
             }
             doRetarget = false;
             if (currentTarget != lastTarget)
@@ -961,11 +963,11 @@ namespace CombatExtended
                 lastTarget = currentTarget;
                 lastTargetPos = currentTarget.Cell;
                 shootingAtDowned = currentTarget.Pawn?.Downed ?? true;
-                return true;
+                return false;
             }
             if (shootingAtDowned)
             {
-                return true;
+                return false;
             }
             if (currentTarget.Pawn == null || currentTarget.Pawn.Downed || !CanHitFromCellIgnoringRange(Caster.Position, currentTarget, out IntVec3 _))
             {
@@ -999,7 +1001,7 @@ namespace CombatExtended
                 shootingAtDowned = true;
                 return false;
             }
-            return true;
+            return false;
         }
 
         public virtual void RecalculateWarmupTicks()
@@ -1073,7 +1075,7 @@ namespace CombatExtended
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
-            Retarget();
+            didRetarget = Retarget();
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
@@ -1121,7 +1123,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = SpawnProjectile();
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, lastExactPos, pelletMechanicsOnly, instant);
+                ShiftTarget(report, targetLoc, pelletMechanicsOnly, instant);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
@@ -1184,6 +1186,22 @@ namespace CombatExtended
         protected virtual ProjectileCE SpawnProjectile()
         {
             return (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
+        }
+
+        public override void OrderForceTarget(LocalTargetInfo target)
+        {
+            if (CasterPawn != null
+                && !this.verbProps.IsMeleeAttack
+                && CasterPawn.mindState.MeleeThreatStillThreat
+                && !this.verbProps.ai_ProjectileLaunchingIgnoresMeleeThreats
+                && CasterPawn.mindState.meleeThreat.Position.AdjacentTo8WayOrInside(CasterPawn.Position))
+            {
+                Messages.Message("MessageCantShootInMelee".Translate(), this.CasterPawn, MessageTypeDefOf.RejectInput,
+                    false);
+                return;
+            }
+
+            base.OrderForceTarget(target);
         }
 
         /// <summary>

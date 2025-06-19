@@ -1,65 +1,42 @@
-﻿using PsyBlasters;
-using Verse;
+﻿using Verse;
 using RimWorld;
+using UnityEngine;
 
 namespace CombatExtended.Compatibility.PsyBlastersCompat
 {
     public class PsychicBlasterBulletCE : BulletCE //Basically just duplicating the original behavior to the CE class
     {
-        private PsyBlasterBulletComp _psyBlasterBulletComp => GetComp<PsyBlasterBulletComp>();
+        private PsychicProjectileExtension psyModExtension => def.GetModExtension<PsychicProjectileExtension>();
+        private float _damageAmount;
+        private float _penetrationAmount;
 
-        private bool CanConsumeResources(Pawn launcherPawn)
+        private bool CanConsumeResources(Pawn launcherPawn, float amount)
         {
-            return _psyBlasterBulletComp != null &&
-                   launcherPawn is { HasPsylink: true, psychicEntropy.CurrentPsyfocus: > 0 };
+            return psyModExtension != null &&
+                   launcherPawn is { HasPsylink: true, psychicEntropy.CurrentPsyfocus: > 0 } validPawn && !validPawn.psychicEntropy.WouldOverflowEntropy(amount);
         }
 
-        public override float DamageAmount
+        public override float DamageAmount => _damageAmount;
+
+        public override float PenetrationAmount => _penetrationAmount;
+
+        public override void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
         {
-            get
+            base.Launch(launcher, origin, equipment);
+            var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
+            var damageMultiplier = equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
+            var penMultiplier = damageMultiplier;
+            bool isSharp = projectilePropsCE.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+            if (CanConsumeResources(launcher as Pawn, psyModExtension.entropyCost))
             {
-                var damMulti = equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
-                if (CanConsumeResources(launcher as Pawn))
-                {
-                    damMulti += _psyBlasterBulletComp.PsyDamageMulti;
-                }
-
-                return def.projectile.GetDamageAmount(damMulti, null);
+                Pawn launcherPawn = launcher as Pawn;
+                penMultiplier += psyModExtension.psyPenMultiplier * (psyModExtension.scaleFromSensitivity ? launcherPawn.psychicEntropy.PsychicSensitivity : 1f);
+                damageMultiplier += psyModExtension.psyDamageMultiplier * (psyModExtension.scaleFromSensitivity ? launcherPawn.psychicEntropy.PsychicSensitivity : 1f);
+                launcherPawn.psychicEntropy.OffsetPsyfocusDirectly(psyModExtension.psyfocusCost);
+                launcherPawn.psychicEntropy.TryAddEntropy(psyModExtension.entropyCost);
             }
-        }
-
-        public override float PenetrationAmount
-        {
-            get
-            {
-                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-                var isSharp = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                var penMulti = equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
-                if (CanConsumeResources(launcher as Pawn))
-                {
-                    penMulti += _psyBlasterBulletComp.PsyPenMulti;
-                }
-
-                return penMulti *
-                       (isSharp ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
-            }
-        }
-
-        public override void Impact(Thing hitThing)
-        {
-            base.Impact(hitThing);
-
-            if (hitThing is not Pawn && Rand.Chance(0.66f) //don't look at me, it was like that in the original code
-                || launcher is not Pawn launcherPawn
-                || !CanConsumeResources(launcherPawn)
-                || launcherPawn.psychicEntropy.limitEntropyAmount &&
-                launcherPawn.psychicEntropy.WouldOverflowEntropy(_psyBlasterBulletComp.EntropyCost))
-            {
-                return;
-            }
-
-            launcherPawn.psychicEntropy.OffsetPsyfocusDirectly(-_psyBlasterBulletComp.PsyCost);
-            launcherPawn.psychicEntropy.TryAddEntropy(_psyBlasterBulletComp.EntropyCost);
+            _damageAmount = def.projectile.GetDamageAmount(damageMultiplier, null);
+            _penetrationAmount = penMultiplier * (isSharp ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
         }
     }
 }

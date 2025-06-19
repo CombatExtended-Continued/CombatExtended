@@ -6,10 +6,12 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
+				<canParry>true</canParry>
+				<maxParry>3</maxParry>
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[@Name="BaseBion"]</xpath>
 		<value>
@@ -69,7 +71,7 @@
 			<ArmorRating_Heat>1.40</ArmorRating_Heat>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="Bion_Base"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -79,7 +81,7 @@
 			</value>
 		</nomatch>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Bion_Base"]/comps</xpath>
 		<value>
@@ -95,7 +97,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="Bion_Stalker"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -105,7 +107,7 @@
 			</value>
 		</nomatch>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Bion_Stalker"]/comps</xpath>
 		<value>
@@ -135,7 +137,7 @@
 			<SmokeSensitivity>0</SmokeSensitivity>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Bion_Stalker"]/statBases</xpath>
 		<value>
@@ -212,7 +214,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[@Name="BaseBion"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -236,4 +238,5 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 </Patch>
