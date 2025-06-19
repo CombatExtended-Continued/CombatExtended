@@ -54,7 +54,7 @@ namespace CombatExtended
             ThingDef preExplosionSpawnSingleThingDef = null,
 
             // CE parameters
-            float height = 0f, float scaleFactor = 1f, bool destroyAfterwards = false, ThingWithComps explosionParentToDestroy = null)
+            float height = 0f, float scaleFactor = 1f, bool destroyAfterwards = false, ThingWithComps explosionParentToDestroy = null, SimpleCurve falloffCurve = null)
         {
             // Allows destroyed things to be exploded with appropriate scaleFactor
             if (scaleFactor <= 0f)
@@ -134,6 +134,10 @@ namespace CombatExtended
             explosion.overrideCells = overrideCells;
             explosion.postExplosionSpawnSingleThingDef = postExplosionSpawnSingleThingDef;
             explosion.preExplosionSpawnSingleThingDef = preExplosionSpawnSingleThingDef;
+            if (falloffCurve != null)
+            {
+                explosion.FalloffCurve = falloffCurve;
+            }
             explosion.StartExplosionCE(explosionSound, ignoredThings);
 
             // Needed to allow CompExplosive to use stackCount
