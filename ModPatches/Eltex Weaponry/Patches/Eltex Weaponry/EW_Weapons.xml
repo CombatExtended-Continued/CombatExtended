@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- === Mod Extensions === -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName = "EW_Gun_EltexPistol" or
-			defName = "EW_Gun_EltexSMG" or
-			defName = "EW_Gun_EltexRifle" or
-			defName = "EW_Gun_EltexLance"
+			defName="EW_Gun_EltexPistol" or
+			defName="EW_Gun_EltexSMG" or
+			defName="EW_Gun_EltexRifle" or
+			defName="EW_Gun_EltexLance"
 			]/modExtensions/li[@Class="AthenaFramework.DamageModifierExtension"]</xpath>
 	</Operation>
 	<!-- === Tools === -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName ="EW_Gun_EltexPistol" or defName = "EW_Gun_EltexSMG"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName ="EW_Gun_EltexPistol" or defName="EW_Gun_EltexSMG"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -40,7 +41,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName = "EW_Gun_EltexRifle" or defName = "EW_Gun_EltexLance"]/tools</xpath>
+		<xpath>/Defs/ThingDef[defName="EW_Gun_EltexRifle" or defName="EW_Gun_EltexLance"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -329,4 +330,5 @@
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
+
 </Patch>

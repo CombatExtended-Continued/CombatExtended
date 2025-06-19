@@ -6,6 +6,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<!-- === Bug fix === -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name="EW_BasePersonaEltexGun"]/comps</xpath>
@@ -16,15 +17,15 @@
 				<!-- === Mod Extensions === -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-						defName = "EW_Gun_PersonaEltexPistol" or
-						defName = "EW_Gun_PersonaEltexSMG" or
-						defName = "EW_Gun_PersonaEltexRifle" or
-						defName = "EW_Gun_PersonaEltexLance"
+						defName="EW_Gun_PersonaEltexPistol" or
+						defName="EW_Gun_PersonaEltexSMG" or
+						defName="EW_Gun_PersonaEltexRifle" or
+						defName="EW_Gun_PersonaEltexLance"
 						]/modExtensions/li[@Class="AthenaFramework.DamageModifierExtension"]</xpath>
 				</li>
 				<!-- === Tools === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName ="EW_Gun_PersonaEltexPistol" or defName = "EW_Gun_PersonaEltexSMG"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName ="EW_Gun_PersonaEltexPistol" or defName="EW_Gun_PersonaEltexSMG"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -53,7 +54,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName = "EW_Gun_PersonaEltexRifle" or defName = "EW_Gun_PersonaEltexLance"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="EW_Gun_PersonaEltexRifle" or defName="EW_Gun_PersonaEltexLance"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -349,4 +350,5 @@
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
