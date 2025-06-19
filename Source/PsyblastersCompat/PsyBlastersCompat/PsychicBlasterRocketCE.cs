@@ -17,8 +17,6 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
 
         public override float DamageAmount => _damageAmount;
 
-
-
         public override void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
         {
             base.Launch(launcher, origin, equipment);
@@ -28,7 +26,7 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
                 return;
             }
 
-            _damageAmount = def.projectile.GetDamageAmount(equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) +
+            _damageAmount = def.projectile.GetDamageAmount(equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f, null) +
                             ((((Pawn)launcher).psychicEntropy.MaxPotentialEntropy -
                               ((Pawn)launcher).psychicEntropy.EntropyValue) * psyModExtension.psyDamageMultiplier);
 

@@ -54,7 +54,7 @@ namespace CombatExtended
                                 proj.explosionRadius,
                                 proj.damageDef,
                                 null,
-                                proj.GetDamageAmount(1f),
+                                proj.GetDamageAmount(1f, null),
                                 proj.armorPenetrationSharp,
                                 postExplosionSpawnChance: proj.postExplosionSpawnChance,
                                 postExplosionSpawnThingCount: proj.postExplosionSpawnThingCount,

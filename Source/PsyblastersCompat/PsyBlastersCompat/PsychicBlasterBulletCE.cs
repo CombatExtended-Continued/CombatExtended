@@ -20,7 +20,6 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
 
         public override float PenetrationAmount => _penetrationAmount;
 
-
         public override void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
         {
             base.Launch(launcher, origin, equipment);

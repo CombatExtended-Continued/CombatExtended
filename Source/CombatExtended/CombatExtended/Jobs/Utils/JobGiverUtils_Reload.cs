@@ -240,8 +240,9 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
             var cell = thing.Position;
             var pos = pawn.Position;
             var traverseParams = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, false);
+            LocalTargetInfo target = new LocalTargetInfo(cell);
 
-            using (PawnPath path = pawn.Map.pathFinder.FindPath(pos, cell, traverseParams, PathEndMode.Touch))
+            using (PawnPath path = pawn.Map.pathFinder.FindPathNow(pos, target, traverseParams, peMode: PathEndMode.Touch))
             {
                 return path.TotalCost;
             }

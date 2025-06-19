@@ -90,7 +90,7 @@ namespace CombatExtended
                 {
                     // Apply a multiplier to bullet damage based on the quality of the weapon that fired it
                     var weaponDamageMultiplier = equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
-                    this.damageAmount = def.projectile.GetDamageAmount(weaponDamageMultiplier);
+                    this.damageAmount = def.projectile.GetDamageAmount(weaponDamageMultiplier, null);
                 }
 
                 return ((float)this.damageAmount) * RemainingKineticEnergyPct;
@@ -736,7 +736,7 @@ namespace CombatExtended
 
                     // Ensure we reset hit points for Biotech's new shields if broken by EMP
                     interceptorComp.currentHitPoints = 0;
-                    interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
+                    interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
                 }
             }
 
@@ -751,7 +751,7 @@ namespace CombatExtended
                 if (interceptorComp.currentHitPoints <= 0)
                 {
                     interceptorComp.currentHitPoints = 0;
-                    interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
+                    interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
                     interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, this.DamageAmount));
                     return true;
                 }
@@ -1229,7 +1229,7 @@ namespace CombatExtended
                     {
                         shell.SetFaction(launcher.Faction);
                     }
-                    shell.tileInt = Map.Tile;
+                    shell.Tile = Map.Tile;
                     shell.SpawnSetup();
                     Find.World.worldObjects.Add(shell);
                     shell.launcher = launcher;
@@ -1512,6 +1512,8 @@ namespace CombatExtended
                         def.projectile.postExplosionSpawnChance,
                         def.projectile.postExplosionSpawnThingCount,
                         def.projectile.postExplosionGasType,
+                        null,
+                        255,
                         def.projectile.applyDamageToExplosionCellsNeighbors,
                         def.projectile.preExplosionSpawnThingDef,
                         def.projectile.preExplosionSpawnChance,

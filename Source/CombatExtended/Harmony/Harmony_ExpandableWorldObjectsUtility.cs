@@ -38,12 +38,12 @@ namespace CombatExtended.HarmonyCE
             {
                 skip = true;
                 transitionPct = ExpandableWorldObjectsUtility.transitionPct;
-                showExpandingIcons = Find.PlaySettings.showExpandingIcons;
-                if (ExpandableWorldObjectsUtility.TransitionPct == 0)
+                showExpandingIcons = Find.PlaySettings.showImportantExpandingIcons;
+                if (ExpandableWorldObjectsUtility.RawTransitionPct == 0)
                 {
                     skip = false;
                     ExpandableWorldObjectsUtility.transitionPct = 1.0f;
-                    Find.PlaySettings.showExpandingIcons = true;
+                    Find.PlaySettings.showImportantExpandingIcons = true;
                 }
             }
 
@@ -72,7 +72,7 @@ namespace CombatExtended.HarmonyCE
             public static void Postfix()
             {
                 ExpandableWorldObjectsUtility.transitionPct = transitionPct;
-                Find.PlaySettings.showExpandingIcons = showExpandingIcons;
+                Find.PlaySettings.showImportantExpandingIcons = showExpandingIcons;
             }
         }
     }

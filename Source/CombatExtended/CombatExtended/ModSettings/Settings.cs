@@ -465,7 +465,7 @@ namespace CombatExtended
             explosionFalloffFactor = 1.0f;
             bipodMechanics = true;
             autosetup = true;
-            medicineSearchRadius = 5.0f;
+            medicineSearchRadius = 5f;
         }
         private void ResetToDefault_Ammo()
         {

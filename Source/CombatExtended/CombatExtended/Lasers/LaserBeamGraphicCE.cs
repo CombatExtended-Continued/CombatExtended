@@ -289,16 +289,16 @@ namespace CombatExtended.Lasers
                 equipmentDef,
                 def,
                 intendedTarget: null,
-                postExplosionSpawnThingDef,
-                postExplosionSpawnChance,
-                postExplosionSpawnThingCount,
+                postExplosionSpawnThingDef: postExplosionSpawnThingDef,
+                postExplosionSpawnChance: postExplosionSpawnChance,
+                postExplosionSpawnThingCount: postExplosionSpawnThingCount,
                 postExplosionGasType: null,
-                this.def.projectile.applyDamageToExplosionCellsNeighbors,
-                preExplosionSpawnThingDef,
-                this.def.projectile.preExplosionSpawnChance,
-                this.def.projectile.preExplosionSpawnThingCount,
-                this.def.projectile.explosionChanceToStartFire,
-                this.def.projectile.explosionDamageFalloff
+                applyDamageToExplosionCellsNeighbors: this.def.projectile.applyDamageToExplosionCellsNeighbors,
+                preExplosionSpawnThingDef: preExplosionSpawnThingDef,
+                preExplosionSpawnChance: this.def.projectile.preExplosionSpawnChance,
+                preExplosionSpawnThingCount: this.def.projectile.preExplosionSpawnThingCount,
+                chanceToStartFire: this.def.projectile.explosionChanceToStartFire,
+                damageFalloff: this.def.projectile.explosionDamageFalloff
             );
         }
 
