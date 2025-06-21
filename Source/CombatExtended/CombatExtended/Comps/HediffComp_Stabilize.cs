@@ -82,12 +82,12 @@ namespace CombatExtended
             Scribe_Values.Look(ref bleedModifier, "bleedModifier", 1);
         }
 
-        public override void CompPostTick(ref float severityAdjustment)
+        public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
             // Increase bleed modifier once per second
-            if (stabilized && bleedModifier < 1 && parent.ageTicks % 60 == 0)
+            if (stabilized && bleedModifier < 1 && parent.pawn.IsHashIntervalTick(60, delta))
             {
-                bleedModifier = bleedModifier + bleedIncreasePerSec;
+                bleedModifier = bleedModifier + bleedIncreasePerSec * delta;
                 if (bleedModifier >= 1)
                 {
                     bleedModifier = 1;

@@ -12,11 +12,11 @@ namespace CombatExtended
     {
         private const float InternalFireDamage = 2;
 
-        public override void CompPostTick(ref float severityAdjustment)
+        public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
-            base.CompPostTick(ref severityAdjustment);
+            base.CompPostTickInterval(ref severityAdjustment, delta);
 
-            if (Pawn.IsHashIntervalTick(GenTicks.TicksPerRealSecond))
+            if (Pawn.IsHashIntervalTick(GenTicks.TicksPerRealSecond, delta))
             {
                 if (Pawn.Position.GetThingList(Pawn.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam))
                 {
@@ -27,11 +27,11 @@ namespace CombatExtended
                 Fire fire = Pawn.GetAttachment(ThingDefOf.Fire) as Fire;
                 if (fire == null && Pawn.Spawned)
                 {
-                    Pawn.TryAttachFire(parent.Severity * 0.5f, null);
+                    Pawn.TryAttachFire(parent.Severity * 0.5f * delta, null);
                 }
                 else if (fire != null)
                 {
-                    fire.fireSize = Mathf.Min(fire.fireSize + parent.Severity * 0.5f, 1.75f);  // Clamped at max fire size
+                    fire.fireSize = Mathf.Min(fire.fireSize + parent.Severity * 0.5f * delta, 1.75f);  // Clamped at max fire size
                 }
 
                 // Apply to internal parts
@@ -42,7 +42,7 @@ namespace CombatExtended
                     {
                         return;
                     }
-                    Pawn.TakeDamage(new DamageInfo(CE_DamageDefOf.Flame_Secondary, InternalFireDamage * Pawn.BodySize * parent.Severity, 0, -1, null,
+                    Pawn.TakeDamage(new DamageInfo(CE_DamageDefOf.Flame_Secondary, InternalFireDamage * Pawn.BodySize * parent.Severity * delta, 0, -1, null,
                                                    internalPart));
                 }
             }

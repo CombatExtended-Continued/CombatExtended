@@ -18,7 +18,6 @@ namespace CombatExtended
         private const float LethalAirPPM = 10000f;       // Level of PPM where target severity hits 100% (about 2x the WHO/FDA immediately-dangerous-to-everyone threshold).
 
         private float density;
-        private int updateTickOffset;   //Random offset (it looks jarring when smoke clouds all update on the same tick)
 
         private DangerTracker _dangerTracker = null;
         private DangerTracker DangerTracker
@@ -27,12 +26,6 @@ namespace CombatExtended
             {
                 return _dangerTracker ?? (_dangerTracker = Map.GetDangerTracker());
             }
-        }
-
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            updateTickOffset = Rand.Range(0, UpdateIntervalTicks);
-            base.SpawnSetup(map, respawningAfterLoad);
         }
 
         public override void ExposeData()
@@ -60,14 +53,14 @@ namespace CombatExtended
                 );
         }
 
-        public override void Tick()
+        public override void TickInterval(int delta)
         {
             if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
             {
-                destroyTick++;
+                destroyTick += delta;
                 if (Rand.Range(0, 10) == 5)
                 {
-                    float d = density * 0.0001f;
+                    float d = density * 0.0001f * delta;
                     if (density > 300)
                     {
                         if (Rand.Range(0, (int)(MaxDensity)) < d)
@@ -80,7 +73,7 @@ namespace CombatExtended
                 }
             }
 
-            if ((GenTicks.TicksGame + updateTickOffset) % UpdateIntervalTicks == 0)
+            if (this.IsHashIntervalTick(UpdateIntervalTicks, delta))
             {
                 if (!CanMoveTo(Position))   //cloud is in inaccessible cell, probably a recently closed door or vent. Spread to nearby cells and delete.
                 {
@@ -95,12 +88,12 @@ namespace CombatExtended
                 SpreadToAdjacentCells();
                 ApplyHediffs();
             }
-            if (this.IsHashIntervalTick(120))
+            if (this.IsHashIntervalTick(120, delta))
             {
                 DangerTracker?.Notify_SmokeAt(Position, density / MaxDensity);
             }
 
-            base.Tick();
+            base.TickInterval(delta);
         }
 
         private void ApplyHediffs()

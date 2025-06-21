@@ -143,9 +143,9 @@ namespace CombatExtended
             yield break;
         }
 
-        public override void CompTick()
+        public override void CompTickInterval(int delta)
         {
-            if (!parent.IsHashIntervalTick(REFRESH_INTERVAL))
+            if (!parent.IsHashIntervalTick(REFRESH_INTERVAL, delta))
             {
                 return;
             }
