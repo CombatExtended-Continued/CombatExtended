@@ -458,6 +458,7 @@ namespace CombatExtended
             turretsBreakShields = true;
             fasterRepeatShots = true;
             midBurstRetarget = true;
+            enableArcOfFire = false;
             enableCIWS = true;
             fragmentsFromWalls = false;
             mergeExplosions = true;
