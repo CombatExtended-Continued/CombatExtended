@@ -53,6 +53,10 @@ namespace CombatExtended.HarmonyCE
                 absorbed = true;
                 return false;
             }
+            if (dinfo.Def.ignoreShields)
+            {
+                return false;
+            }
             if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
             {
                 absorbed = true;
