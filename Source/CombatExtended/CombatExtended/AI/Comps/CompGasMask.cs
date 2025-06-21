@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace CombatExtended.AI
@@ -30,7 +27,7 @@ namespace CombatExtended.AI
             ticks++;
         }
 
-        public void UpdateGasMask()
+        private void UpdateGasMask()
         {
             if (SelPawn.Faction.IsPlayerSafe())
             {
@@ -61,7 +58,10 @@ namespace CombatExtended.AI
                     && !SelPawn.Downed
                     && SelPawn.apparel?.wornApparel != null)
             {
-                WearMask();
+                if (!maskEquiped)
+                {
+                    WearMask();
+                }
                 lastSmokeTick = GenTicks.TicksGame + SMOKE_TICKS_OFFSET;
             }
         }
@@ -75,53 +75,43 @@ namespace CombatExtended.AI
 
         private void WearMask()
         {
-
-            Apparel mask = null;
-            foreach (Apparel apparel in CompInventory.container.Where(t => t is Apparel).Cast<Apparel>())
+            foreach (Thing thing in CompInventory.container)
             {
-                if (apparel.def.apparel?.tags?.Contains(GASMASK_TAG) ?? false)
+                if (thing is Apparel apparel && (apparel.def.apparel.tags?.Contains(GASMASK_TAG) ?? false))
                 {
-                    mask = apparel;
+                    SelPawn.inventory.innerContainer.Remove(apparel);
+                    SelPawn.apparel.Wear(apparel);
+                    maskEquiped = true;
                     break;
                 }
-            }
-            if (mask != null)
-            {
-                SelPawn.inventory.innerContainer.Remove(mask);
-                SelPawn.apparel.Wear(mask);
             }
         }
 
         private void RemoveMask()
         {
-            Apparel mask = null;
             foreach (Apparel apparel in SelPawn.apparel.wornApparel)
             {
-                if (apparel.def.apparel?.tags?.Contains(GASMASK_TAG) ?? false)
+                if (apparel.def.apparel.tags?.Contains(GASMASK_TAG) ?? false)
                 {
-                    mask = apparel;
+                    SelPawn.apparel.Remove(apparel);
+                    SelPawn.inventory.innerContainer.TryAddOrTransfer(apparel);
                     break;
                 }
-            }
-            if (mask != null)
-            {
-                SelPawn.apparel.Remove(mask);
-                SelPawn.inventory.innerContainer.TryAddOrTransfer(mask);
             }
             maskEquiped = false;
         }
 
         private void CheckForMask()
         {
-            maskEquiped = false;
             foreach (Apparel apparel in SelPawn.apparel.wornApparel)
             {
-                if (apparel.def.apparel?.tags?.Contains(GASMASK_TAG) ?? false)
+                if (apparel.def.apparel.tags?.Contains(GASMASK_TAG) ?? false)
                 {
                     maskEquiped = true;
                     return;
                 }
             }
+            maskEquiped = false;
         }
     }
 }
