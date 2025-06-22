@@ -460,6 +460,7 @@ namespace CombatExtended
             midBurstRetarget = true;
             enableCIWS = true;
             fragmentsFromWalls = false;
+            enableArcOfFire = false;
             mergeExplosions = true;
             explosionPenMultiplier = 1.0f;
             explosionFalloffFactor = 1.0f;
