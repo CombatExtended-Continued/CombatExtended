@@ -259,7 +259,7 @@ namespace CombatExtended
         private void DoSettingsWindowContents_Mechanics(Listing_Standard list)
         {
 
-            Rect fullRect = list.GetRect(300f);
+            Rect fullRect = list.GetRect(500f);
             const float columnPadding = 16f;
             float columnWidth = (fullRect.width - columnPadding) / 2f;
 
@@ -460,6 +460,7 @@ namespace CombatExtended
             midBurstRetarget = true;
             enableCIWS = true;
             fragmentsFromWalls = false;
+            enableArcOfFire = false;
             mergeExplosions = true;
             explosionPenMultiplier = 1.0f;
             explosionFalloffFactor = 1.0f;
