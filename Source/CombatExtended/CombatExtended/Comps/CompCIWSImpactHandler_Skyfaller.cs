@@ -61,7 +61,7 @@ namespace CombatExtended
         }
         private Thing TryDropThing(Thing thingToDrop, Map map, IntVec3 position)
         {
-            var contents = (parent as IActiveDropPod)?.Contents;
+            var contents = (parent as IActiveTransporter)?.Contents;
             Rot4 rot = (contents?.setRotation != null) ? contents.setRotation.Value : Rot4.North;
             if (contents?.moveItemsAsideBeforeSpawning ?? false)
             {
@@ -78,7 +78,7 @@ namespace CombatExtended
             }
             else
             {
-                droppedThing = GenSpawn.Spawn(thingToDrop, position, map, contents.spawnWipeMode.Value);
+                droppedThing = GenSpawn.Spawn(thingToDrop, position, map, thingToDrop.Rotation, contents.spawnWipeMode.Value);
             }
             if (droppedThing is Pawn pawn && pawn.RaceProps.Humanlike)
             {

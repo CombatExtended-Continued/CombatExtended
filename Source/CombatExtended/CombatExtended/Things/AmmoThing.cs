@@ -141,7 +141,7 @@ namespace CombatExtended
                             detProps.explosionRadius,
                             detProps.damageDef,
                             instigator: this,
-                            detProps.GetDamageAmount(1),
+                            detProps.GetDamageAmount(1f, null),
                             detProps.GetExplosionArmorPenetration(),
                             detProps.soundExplode,
                             weapon: null,
@@ -151,6 +151,8 @@ namespace CombatExtended
                             detProps.postExplosionSpawnChance,
                             detProps.postExplosionSpawnThingCount,
                             detProps.postExplosionGasType,
+                            null,
+                            255,
                             detProps.applyDamageToExplosionCellsNeighbors,
                             detProps.preExplosionSpawnThingDef,
                             detProps.preExplosionSpawnChance,
@@ -171,6 +173,8 @@ namespace CombatExtended
                         detProps.screenShakeFactor,
                         null,
                         null,
+                            detProps.postExplosionSpawnSingleThingDef,
+                            detProps.preExplosionSpawnSingleThingDef,
                         height: 0f,
                         Mathf.Pow(stackCountScale, 0.333f));
                     }

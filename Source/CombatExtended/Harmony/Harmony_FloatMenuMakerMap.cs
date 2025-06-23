@@ -17,58 +17,58 @@ namespace CombatExtended.HarmonyCE
      * Used dynamic targetting in case the target assemly changes the name of the target class will most certainly change or even shift position (removing the ability to count).
      * Looking for a signature (field by name/type) that identifies the desired class without looking at it's code.
      */
-    [HarmonyPatch]
-    static class FloatMenuMakerMap_PatchKnowledge
-    {
+    // [HarmonyPatch]
+    // static class FloatMenuMakerMap_PatchKnowledge
+    // {
+    //
+    //     private static MethodBase knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
+    //     private static FieldInfo equippingWeapons = AccessTools.Field(typeof(ConceptDefOf), nameof(ConceptDefOf.EquippingWeapons));
 
-        private static MethodBase knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
-        private static FieldInfo equippingWeapons = AccessTools.Field(typeof(ConceptDefOf), nameof(ConceptDefOf.EquippingWeapons));
+    //     static MethodBase TargetMethod()
+    //     {
+    //         foreach (var clas in typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all))
+    //         {
+    //             var equipmentField = AccessTools.Field(clas, "equipment");
+    //             if (equipmentField?.FieldType == typeof(ThingWithComps))
+    //             {
+    //                 return clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("Equip"));
+    //             }
+    //         }
+    //
+    //         return null;
+    //     }
+    //
+    //     static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    //     {
+    //         var instructionsList = instructions.ToList();
+    //         var knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
+    //         for (var i = 0; i < instructionsList.Count; i++)
+    //         {
+    //             yield return instructionsList[i];
+    //
+    //             // Use the vanilla call to KnowledgeDemonstrated() with ConceptDefOf.EquippingWeapons as an anchor
+    //             // so we can insert our own lesson activation about the aiming system after it.
+    //             if (instructionsList[i].Calls(knowledgeDemonstrated))
+    //             {
+    //                 if (instructionsList[i - 1].opcode == OpCodes.Ldc_I4_6 && instructionsList[i - 2].LoadsField(equippingWeapons))
+    //                 {
+    //                     var aimingSystem = AccessTools.Field(typeof(CE_ConceptDefOf), nameof(CE_ConceptDefOf.CE_AimingSystem));
+    //                     var teachOpportunity = AccessTools.Method(
+    //                                                typeof(LessonAutoActivator),
+    //                                                nameof(LessonAutoActivator.TeachOpportunity),
+    //                                                new Type[] { typeof(ConceptDef), typeof(OpportunityType) }
+    //                                            );
+    //                     yield return new CodeInstruction(OpCodes.Ldsfld, aimingSystem);
+    //                     yield return new CodeInstruction(OpCodes.Ldc_I4, (int)OpportunityType.GoodToKnow);
+    //                     yield return new CodeInstruction(OpCodes.Call, teachOpportunity);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    // }
 
-        static MethodBase TargetMethod()
-        {
-            foreach (var clas in typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all))
-            {
-                var equipmentField = AccessTools.Field(clas, "equipment");
-                if (equipmentField?.FieldType == typeof(ThingWithComps))
-                {
-                    return clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("Equip"));
-                }
-            }
-
-            return null;
-        }
-
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            var instructionsList = instructions.ToList();
-            var knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
-            for (var i = 0; i < instructionsList.Count; i++)
-            {
-                yield return instructionsList[i];
-
-                // Use the vanilla call to KnowledgeDemonstrated() with ConceptDefOf.EquippingWeapons as an anchor
-                // so we can insert our own lesson activation about the aiming system after it.
-                if (instructionsList[i].Calls(knowledgeDemonstrated))
-                {
-                    if (instructionsList[i - 1].opcode == OpCodes.Ldc_I4_6 && instructionsList[i - 2].LoadsField(equippingWeapons))
-                    {
-                        var aimingSystem = AccessTools.Field(typeof(CE_ConceptDefOf), nameof(CE_ConceptDefOf.CE_AimingSystem));
-                        var teachOpportunity = AccessTools.Method(
-                                                   typeof(LessonAutoActivator),
-                                                   nameof(LessonAutoActivator.TeachOpportunity),
-                                                   new Type[] { typeof(ConceptDef), typeof(OpportunityType) }
-                                               );
-                        yield return new CodeInstruction(OpCodes.Ldsfld, aimingSystem);
-                        yield return new CodeInstruction(OpCodes.Ldc_I4, (int)OpportunityType.GoodToKnow);
-                        yield return new CodeInstruction(OpCodes.Call, teachOpportunity);
-                    }
-                }
-            }
-        }
-
-    }
-
-    [HarmonyPatch(typeof(FloatMenuMakerMap))]
+    /*[HarmonyPatch(typeof(FloatMenuMakerMap))]
     [HarmonyPatch("AddHumanlikeOrders")]
     [HarmonyPatch(new Type[] { typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>) })]
     static class FloatMenuMakerMap_Modify_AddHumanlikeOrders
@@ -80,7 +80,7 @@ namespace CombatExtended.HarmonyCE
          * to always run unmodified.
          * There are two goals for this postfix, to add menu items for stabalizing a target and to add inventory pickup functions for pawns.
          * -Both when right clicking on something with a pawn selected.
-         */
+         #1#
 
         // __instance isn't apt, target is static.
         // __result isn't apt, target return is void.
@@ -91,14 +91,11 @@ namespace CombatExtended.HarmonyCE
             if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
 #pragma warning disable CS0618 // You're supposed to migrate to GenUI.TargetsAt_NewTemp? But that scares me.
-                foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true)) // !! This needs to be patched into A17
+                foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForTend(pawn), true)) // Likely remove, float menus are now compartmentalized
 #pragma warning restore CS0618
                 {
                     Pawn patient = (Pawn)curTarget.Thing;
-                    if (patient.Downed
-                            //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                            && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                            && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
+                    if (pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly) && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
                         if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
                         {
@@ -121,63 +118,152 @@ namespace CombatExtended.HarmonyCE
                 List<Thing> thingList = c.GetThingList(pawn.Map);
                 foreach (Thing item in thingList)
                 {
-                    if (item != null && item.def.alwaysHaulable && !(item is Corpse))
+                    if (item is null or Corpse || !item.def.alwaysHaulable)
                     {
-                        //FloatMenuOption pickUpOption;
-                        int count = 0;
-                        if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
+                        continue;
+                    }
+                    //FloatMenuOption pickUpOption;
+                    if (item is AmmoThing { IsCookingOff: true })
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_CookingOff".Translate() + ")", null));
+                    }
+                    else if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "NoPath".Translate() + ")", null));
+                    }
+                    else if (!compInventory.CanFitInInventory(item, out int count))
+                    {
+                        opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_InventoryFull".Translate() + ")", null));
+                    }
+                    // Pick up x
+                    else if (count == 1)
+                    {
+                        opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpOne".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                    }
+                    else
+                    {
+                        if (count < item.stackCount)
                         {
-                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "NoPath".Translate() + ")", null));
-                        }
-                        else if (!compInventory.CanFitInInventory(item, out count))
-                        {
-                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_InventoryFull".Translate() + ")", null));
-                        }
-                        // Pick up x
-                        else if (count == 1)
-                        {
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpOne".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label, item) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
                         }
                         else
                         {
-                            if (count < item.stackCount)
-                            {
-                                opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label, item) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
-                            }
-                            else
-                            {
-                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), () => PickupAll(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
-                            }
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
-                            {
-                                int to = Mathf.Min(count, item.stackCount);
-                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, (selectCount) => PickupCount(pawn, item, selectCount), -2147483648);
-                                Find.WindowStack.Add(window);
-                                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                            }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), () => PickupAll(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
+                        opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
+                        {
+                            int to = Mathf.Min(count, item.stackCount);
+                            Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, (selectCount) => PickupCount(pawn, item, selectCount), -2147483648);
+                            Find.WindowStack.Add(window);
+                            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+                        }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                     }
+
                 }
             }
         }
 
+        private readonly static List<Thing> AllMedicine = [];
+
         [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
         private static void Stabilize(Pawn pawn, Pawn patient)
         {
-            if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
+            bool pawnHasMedicine = pawn.inventory?.innerContainer?.Any(t => t.def.IsMedicine) ?? false;
+            bool patientHasMedicine = patient.inventory?.innerContainer?.Any(t => t.def.IsMedicine) ?? false;
+            bool pawnCarryingMedicine = pawn.carryTracker.CarriedThing?.def.IsMedicine ?? false;
+
+            if (!pawnHasMedicine && !pawnCarryingMedicine && !patientHasMedicine)
             {
-                Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
+                if (TryFindNearbyMedicine(pawn, patient.Position, out Thing closestMedicine) || TryFindNearbyMedicine(pawn, pawn.Position, out closestMedicine))
+                {
+                    AssignStabilizeJob(pawn, patient, closestMedicine);
+                }
+                else
+                {
+                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
+                }
                 return;
             }
-            // Drop medicine from inventory
-            Medicine medicine = (Medicine)pawn.inventory.innerContainer.OrderByDescending(t => t.GetStatValue(StatDefOf.MedicalPotency)).FirstOrDefault();
-            Thing medThing;
-            if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
+
+            Medicine bestMedicine = FindBestMedicine(pawn, patient, pawnHasMedicine, patientHasMedicine, pawnCarryingMedicine);
+            if (bestMedicine != null)
             {
-                Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
-                job.count = 1;
-                pawn.jobs.TryTakeOrderedJob(job);
-                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
+                AssignStabilizeJob(pawn, patient, bestMedicine);
+            }
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static bool TryFindNearbyMedicine(Pawn pawn, IntVec3 position, out Thing closestMedicine)
+        {
+            closestMedicine = null;
+            float closestDistSq = float.MaxValue;
+            float maxDistance = Controller.settings.MedicineSearchRadiusSquared;
+            AllMedicine.Clear();
+            AllMedicine.AddRange(pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine));
+            for (int i = 0; i < AllMedicine.Count; i++)
+            {
+                Thing medicine = AllMedicine[i];
+                if (!medicine.Spawned || medicine.IsForbidden(pawn) || !pawn.CanReserveAndReach(medicine, PathEndMode.ClosestTouch, Danger.Deadly))
+                {
+                    continue;
+                }
+                var distance = medicine.Position.DistanceToSquared(position);
+                if (distance <= maxDistance && distance < closestDistSq)
+                {
+                    closestDistSq = distance;
+                    closestMedicine = medicine;
+                }
+            }
+            return closestMedicine != null;
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static Medicine FindBestMedicine(Pawn pawn, Pawn patient, bool doctorHas, bool patientHas, bool doctorCarrying)
+        {
+            Medicine best = null;
+            float potency = -1f;
+
+            if (patientHas)
+            {
+                foreach (Thing t in patient.inventory.innerContainer)
+                {
+                    TryUpdateBestMedicine(t, ref potency, ref best);
+                }
+            }
+            if (doctorCarrying)
+            {
+                TryUpdateBestMedicine(pawn.carryTracker.CarriedThing, ref potency, ref best);
+            }
+            if (doctorHas)
+            {
+                foreach (Thing t in pawn.inventory.innerContainer)
+                {
+                    TryUpdateBestMedicine(t, ref potency, ref best);
+                }
+            }
+            return best;
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static void AssignStabilizeJob(Pawn pawn, Pawn patient, Thing medicine)
+        {
+            var job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medicine);
+            job.count = 1;
+            pawn.jobs.TryTakeOrderedJob(job);
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static void TryUpdateBestMedicine(Thing source, ref float bestPotency, ref Medicine bestMedicine)
+        {
+            if (source is Medicine medicine)
+            {
+                float potency = medicine.GetStatValue(StatDefOf.MedicalPotency);
+                if (potency > bestPotency)
+                {
+                    bestPotency = potency;
+                    bestMedicine = medicine;
+                }
             }
         }
 
@@ -349,7 +435,7 @@ namespace CombatExtended.HarmonyCE
          * --Branch false to label remembered in mem2.
          * --Modify the instruction we located, strip the label from it.
          *
-         */
+         #1#
 
         /* The goal of this infix is to add a check for if the pawn is too loaded down with stuff (worn/inventory) before allowing them to wear
          * something.
@@ -359,7 +445,7 @@ namespace CombatExtended.HarmonyCE
          * the code block above (in dev notes) with what Harmony generated to locate the bug.  This patch *should* work fine if the section of
          * FloatMenuMakerMap.AddHumanlikeOrders doesn't change in logic significantly.
          * The label relocation is a little soft.
-         */
+         #1#
         static IEnumerable<CodeInstruction> Modify_ForceWear(IEnumerable<CodeInstruction> instructions)
         {
             int searchPhase = 0;
@@ -472,5 +558,5 @@ namespace CombatExtended.HarmonyCE
             }
             return true;
         }
-    }
+    }*/
 }

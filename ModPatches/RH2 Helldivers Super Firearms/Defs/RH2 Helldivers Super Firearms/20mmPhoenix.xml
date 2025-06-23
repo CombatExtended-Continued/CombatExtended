@@ -84,14 +84,42 @@
 
 	<ThingDef Name="Base20mmPhoenixBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<texPath>Things/Projectile/RocketSentry_Projectile</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.5</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<speed>50</speed>
 			<dropsCasings>false</dropsCasings>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>2</flecksPerEmission>
+						<scale>0.5</scale>
+						<originOffset>0.4</originOffset>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>1</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>1</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>2</flecksPerEmission>
+						<cutoffTickRange>15~30</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Base20mmPhoenixBullet">
@@ -151,9 +179,9 @@
 				<damageAmountBase>10</damageAmountBase>
 				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 				<explosiveRadius>3.5</explosiveRadius>
-				<explosionSound>MortarBomb_Explode</explosionSound>
-				<postExplosionSpawnThingDef>FilthPrometheum</postExplosionSpawnThingDef>
-				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<explosionSound>MortarIncendiary_Explode</explosionSound>
+				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
 		</comps>

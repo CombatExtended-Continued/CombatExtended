@@ -1,5 +1,4 @@
 ﻿using CombatExtended.CombatExtended;
-using Mono.Unix.Native;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -48,7 +47,7 @@ namespace CombatExtended
             {
                 yield return gizmo;
             }
-            if (Controller.settings.EnableCIWS)
+            if (Controller.settings.EnableCIWS && this.Faction == Faction.OfPlayer)
             {
                 yield return new Command_Action()
                 {

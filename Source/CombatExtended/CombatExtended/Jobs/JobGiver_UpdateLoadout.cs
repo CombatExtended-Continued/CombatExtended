@@ -103,13 +103,13 @@ namespace CombatExtended
             if (inventory != null && inventory.container != null)
             {
                 Loadout loadout = pawn.GetLoadout();
-                if (loadout != null && !loadout.Slots.NullOrEmpty())
+                if (loadout != null && !loadout.defaultLoadout)
                 {
                     // Need to generate a dictionary and nibble like when dropping in order to allow for conflicting loadouts to work properly.
                     Dictionary<ThingDef, Integer> listing = pawn.GetStorageByThingDef();
 
                     // process each loadout slot... (While the LoadoutSlot.countType property only really makes sense in the context of genericDef != null, it should be the correct value (pickupDrop) on .thingDef != null.)
-                    foreach (LoadoutSlot curSlot in loadout.Slots.Where(s => s.countType != LoadoutCountType.dropExcess))
+                    foreach (LoadoutSlot curSlot in loadout.GetSlotsFor(pawn).Where(s => s.countType != LoadoutCountType.dropExcess))
                     {
                         Thing curThing = null;
                         ItemPriority curPriority = ItemPriority.None;
@@ -335,7 +335,7 @@ namespace CombatExtended
             }
 
             Loadout loadout = pawn.GetLoadout();
-            if (loadout != null)
+            if (loadout != null && !loadout.defaultLoadout)
             {
                 ThingWithComps dropEq;
                 if (pawn.GetExcessEquipment(out dropEq))
@@ -345,7 +345,7 @@ namespace CombatExtended
                     {
                         if (droppedEq != null)
                         {
-                            return HaulAIUtility.HaulToStorageJob(pawn, droppedEq);
+                            return HaulAIUtility.HaulToStorageJob(pawn, droppedEq, forced: false);
                         }
                         Log.Error(string.Concat(pawn, " tried dropping ", dropEq, " from loadout but resulting thing is null"));
                     }
@@ -359,7 +359,7 @@ namespace CombatExtended
                     {
                         if (droppedThing != null)
                         {
-                            return HaulAIUtility.HaulToStorageJob(pawn, droppedThing);
+                            return HaulAIUtility.HaulToStorageJob(pawn, droppedThing, forced: false);
                         }
                         Log.Error(string.Concat(pawn, " tried dropping ", dropThing, " from loadout but resulting thing is null"));
                     }
@@ -379,7 +379,7 @@ namespace CombatExtended
                             && !(pawn.story != null && pawn.WorkTagIsDisabled(WorkTags.Violent))
                             && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                             && (!pawn.IsItemQuestLocked(pawn.equipment?.Primary))
-                            && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.thingDef == pawn.equipment.Primary.def || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
+                            && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.GetSlotsFor(pawn).Any(s => s.thingDef == pawn.equipment.Primary.def || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
                                     && s.genericDef.lambda(pawn.equipment.Primary.def)))))
                     {
                         doEquip = true;

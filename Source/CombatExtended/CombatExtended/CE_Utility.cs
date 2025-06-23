@@ -113,7 +113,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            LoadoutSlot slot = loadout.Slots.FirstOrFallback(s => s.weaponPlatformDef == platform.Platform);
+            LoadoutSlot slot = loadout.GetSlotsFor(pawn).FirstOrFallback(s => s.weaponPlatformDef == platform.Platform);
             // if no slot mention this or it allows everything return false
             if (slot == null || slot.allowAllAttachments)
             {
@@ -1635,13 +1635,13 @@ namespace CombatExtended
             {
                 foreach (var thing in heldThings)
                 {
-                    if (thing is IThingHolder childThingHolder && (thing is Skyfaller || thing is IActiveDropPod))
+                    if (thing is IThingHolder childThingHolder && (thing is Skyfaller || thing is IActiveTransporter))
                     {
                         foreach (var childThing in ContainedThings(childThingHolder))
                         {
                             yield return childThing;
                         }
-                        if (thing is IActiveDropPod dropPod)
+                        if (thing is IActiveTransporter dropPod)
                         {
                             foreach (var childThing in ContainedThings(dropPod.Contents))
                             {

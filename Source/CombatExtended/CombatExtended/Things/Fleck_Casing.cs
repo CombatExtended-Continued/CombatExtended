@@ -10,9 +10,6 @@ using Verse.Sound;
 
 namespace CombatExtended
 {
-    public class FleckSystem_Casing : FleckSystemBase<Fleck_Casing>
-    {
-    }
     public struct Fleck_Casing : IFleck
     {
         public FleckStatic baseData;
@@ -161,6 +158,11 @@ namespace CombatExtended
             airTimeLeft = 0f;
             Speed = 0f;
             rotationRate = 0f;
+        }
+
+        public Vector3 GetPosition()
+        {
+            return baseData.position.worldPosition;
         }
     }
 }

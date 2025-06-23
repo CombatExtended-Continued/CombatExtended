@@ -50,7 +50,7 @@ namespace CombatExtended
                 }
                 if (defaultGraphicParts?.node.HasChildNodes ?? false)
                 {
-                    AddOrReplaceDefaultGraphicParts(xml, xmlNode); ;
+                    AddOrReplaceDefaultGraphicParts(xml, xmlNode);
                 }
                 if (statBases?.node.HasChildNodes ?? false)
                 {
@@ -169,6 +169,10 @@ namespace CombatExtended
         {
             foreach (XmlNode current in reference)
             {
+                if (current is XmlComment)
+                {
+                    continue;
+                }
                 if (overrideExisting)
                 {
                     var nodes = destination.SelectNodes(current.Name);
@@ -251,7 +255,6 @@ namespace CombatExtended
                     statBasesElement.RemoveChild(cur);
                 }
             }
-
             Populate(xml, statBases.node, ref statBasesElement, true);
         }
 

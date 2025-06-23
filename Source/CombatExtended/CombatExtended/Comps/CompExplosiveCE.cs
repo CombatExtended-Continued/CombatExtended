@@ -57,6 +57,8 @@ namespace CombatExtended
                     Props.postExplosionSpawnChance,
                     Props.postExplosionSpawnThingCount,
                     Props.postExplosionGasType,
+                    Props.postExplosionGasRadiusOverride,
+                    Props.postExplosionGasAmount,
                     Props.applyDamageToExplosionCellsNeighbors,
                     Props.preExplosionSpawnThingDef,
                     Props.preExplosionSpawnChance,
@@ -65,6 +67,7 @@ namespace CombatExtended
                     Props.damageFalloff,
                     direction,
                     ignoredThings,
+                    screenShakeFactor: Props.screenShakeFactor,
                     height: pos.y,
                     scaleFactor: scaleFactor);
             }

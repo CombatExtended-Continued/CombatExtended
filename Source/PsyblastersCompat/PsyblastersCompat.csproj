@@ -12,7 +12,7 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <OutputPath>..\..\ModPatches\PsyBlasters\Assemblies</OutputPath>
+        <OutputPath>..\..\ModPatches\PsychicAmmo\Assemblies</OutputPath>
         <DebugType>portable</DebugType>
         <DebugSymbols>true</DebugSymbols>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -20,7 +20,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <OutputPath>..\..\ModPatches\PsyBlasters\Assemblies</OutputPath>
+        <OutputPath>..\..\ModPatches\PsychicAmmo\Assemblies</OutputPath>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <DebugType>none</DebugType>
         <DebugSymbols>false</DebugSymbols>
@@ -35,20 +35,14 @@
             <Private>False</Private>
         </ProjectReference>
     </ItemGroup>
-    <ItemGroup>
-        <Reference Include="PsyBlasters">
-            <HintPath>..\packages\PsyBlasters-reference.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.2.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4104" GeneratePathProperty="true" />
-        <PackageReference Include="Lib.Harmony" Version="2.3.3" ExcludeAssets="runtime" />
+        <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4488-beta" GeneratePathProperty="true" />
+        <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
     </ItemGroup>
     <ItemGroup>
         <Publicize Include="Assembly-CSharp" />

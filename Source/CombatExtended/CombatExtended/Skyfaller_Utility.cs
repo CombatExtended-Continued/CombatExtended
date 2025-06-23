@@ -60,7 +60,7 @@ namespace CombatExtended
             for (int i = skyfaller.ticksToImpact; i != end; i += step)
             {
                 var speed = CurrentSpeed(skyfaller, i);
-                Vector3 drawPos = getDrawPos(baseDrawPos, i, angle, speed, offsetComp);
+                Vector3 drawPos = getDrawPos(baseDrawPos, i, angle, speed, false, offsetComp);
                 var x = drawPos.x - groundPos.x;
                 x *= (1 - cameraSin);
                 x += groundPos.x;

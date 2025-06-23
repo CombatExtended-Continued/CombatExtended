@@ -90,7 +90,7 @@ namespace CombatExtended
             {
                 if (grid.arr[i])
                 {
-                    IntVec3 cell = CellIndicesUtility.IndexToCell(i, grid.mapSizeX);
+                    IntVec3 cell = CellIndicesUtility.IndexToCell(i, grid.width);
                     if (Valid(cell))
                     {
                         processedCount++;

@@ -2,7 +2,7 @@
 <Defs>
 
 	<FleckDef ParentName="FleckBase" Name="CE_CasingFleckBase" Abstract="True">
-		<fleckSystemClass>CombatExtended.FleckSystem_Casing</fleckSystemClass>
+		<fleckSystemClass>FleckSystemThrown</fleckSystemClass>
 		<acceleration>(0,0,-5)</acceleration>
 	</FleckDef>
 
@@ -219,6 +219,34 @@
 		<solidTime>0.05</solidTime>
 		<fadeOutTime>1.5</fadeOutTime>
 		<growthRate>2</growthRate>
+	</FleckDef>
+
+	<FleckDef ParentName="FleckBase_Thrown">
+		<defName>Fleck_CEBlackpowderSmoke</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke</texPath>
+			<shaderType>Transparent</shaderType>
+			<color>(1, 1, 1,0.8)</color>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<fadeInTime>0.14</fadeInTime>
+		<solidTime>0.5</solidTime>
+		<fadeOutTime>6.5</fadeOutTime>
+		<growthRate>0.5</growthRate>
+	</FleckDef>
+
+	<FleckDef ParentName="FleckBase_Thrown">
+		<defName>Fleck_CEBlackpowderSmokeShort</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke</texPath>
+			<shaderType>Transparent</shaderType>
+			<color>(1, 1, 1,0.8)</color>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<fadeInTime>0.14</fadeInTime>
+		<solidTime>0.5</solidTime>
+		<fadeOutTime>2.5</fadeOutTime>
+		<growthRate>0.5</growthRate>
 	</FleckDef>
 
 	<FleckDef ParentName="FleckBase_Thrown">

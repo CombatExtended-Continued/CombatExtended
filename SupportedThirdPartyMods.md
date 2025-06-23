@@ -119,6 +119,7 @@ Archotech+ (Continued)  |
 Arasaka Corporation	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
+Asimov  |
 Aspero Race |
 Astoriel Legacy |
 Astra Militarum Regimentum - Cadia  |
@@ -308,6 +309,7 @@ Kaiser Armory	|
 Kemomimihouse |
 Kemomimihouse Kz |
 Kenshi Armory |
+Kerberos Protect Gears and Firearms	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 3.0     	|     
 Kill la Kill Styles Pack    |
@@ -425,6 +427,8 @@ phynilla Expanded Mechs Scyther |
 pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
+Primitive Core |
+Primitive Workbenches |
 Project RimFactory - Materials |
 Prostheses+ |
 Protoswords |
