@@ -24,10 +24,24 @@
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_3030Winchester_SB</defName>
+		<label>.30-30 Winchester</label>
+		<ammoTypes>
+			<Ammo_3030Winchester_FMJ>Bullet_3030Winchester_FMJ_SB</Ammo_3030Winchester_FMJ>
+			<Ammo_3030Winchester_AP>Bullet_3030Winchester_AP_SB</Ammo_3030Winchester_AP>
+			<Ammo_3030Winchester_HP>Bullet_3030Winchester_HP_SB</Ammo_3030Winchester_HP>
+			<Ammo_3030Winchester_Incendiary>Bullet_3030Winchester_Incendiary_SB</Ammo_3030Winchester_Incendiary>
+			<Ammo_3030Winchester_HE>Bullet_3030Winchester_HE_SB</Ammo_3030Winchester_HE>
+			<Ammo_3030Winchester_Sabot>Bullet_3030Winchester_Sabot_SB</Ammo_3030Winchester_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="3030WinchesterBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Among the most popular centerfire cartridges used in lever-action rifles and large bore rifles, its efficacy as a hunting round made it widely used.</description>
+		<description>Among the most popular centerfire cartridges, used mostly in lever-action rifles. Its high efficiency as a medium game hunting round made it widely popular.</description>
 		<statBases>
 			<Mass>0.026</Mass>
 			<Bulk>0.02</Bulk>
@@ -190,12 +204,92 @@
 		<defName>Bullet_3030Winchester_Sabot</defName>
 		<label>.30-30 bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>9</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
 			<armorPenetrationSharp>17.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>67.04</armorPenetrationBlunt>
 			<speed>187</speed>
 		</projectile>
 	</ThingDef>
+
+	<!-- Short barrel (Pistol) -->
+
+	<ThingDef ParentName="Base3030WinchesterBullet">
+		<defName>Bullet_3030Winchester_FMJ_SB</defName>
+		<label>.30-30 Winchester cartridge (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>38.52</armorPenetrationBlunt>
+			<speed>123</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base3030WinchesterBullet">
+		<defName>Bullet_3030Winchester_AP_SB</defName>
+		<label>.30-30 Winchester cartridge (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>38.52</armorPenetrationBlunt>
+			<speed>123</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base3030WinchesterBullet">
+		<defName>Bullet_3030Winchester_HP_SB</defName>
+		<label>.30-30 Winchester cartridge (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>38.52</armorPenetrationBlunt>
+			<speed>123</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base3030WinchesterBullet">
+		<defName>Bullet_3030Winchester_Incendiary_SB</defName>
+		<label>.30-30 bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>38.52</armorPenetrationBlunt>
+			<speed>123</speed>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base3030WinchesterBullet">
+		<defName>Bullet_3030Winchester_HE_SB</defName>
+		<label>.30-30 bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>38.52</armorPenetrationBlunt>
+			<speed>123</speed>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>8</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base3030WinchesterBullet">
+		<defName>Bullet_3030Winchester_Sabot_SB</defName>
+		<label>.30-30 bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>49.48</armorPenetrationBlunt>
+			<speed>167</speed>
+		</projectile>
+	</ThingDef>	
 
 	<!-- ==================== Recipes ========================== -->
 

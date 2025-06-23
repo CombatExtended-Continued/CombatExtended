@@ -23,6 +23,34 @@
 		</ammoTypes>
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_303British_SB</defName>
+		<label>.303 British</label>
+		<ammoTypes>
+			<Ammo_303British_FMJ>Bullet_303British_FMJ_SB</Ammo_303British_FMJ>
+			<Ammo_303British_AP>Bullet_303British_AP_SB</Ammo_303British_AP>
+			<Ammo_303British_HP>Bullet_303British_HP_SB</Ammo_303British_HP>
+			<Ammo_303British_Incendiary>Bullet_303British_Incendiary_SB</Ammo_303British_Incendiary>
+			<Ammo_303British_HE>Bullet_303British_HE_SB</Ammo_303British_HE>
+			<Ammo_303British_Sabot>Bullet_303British_Sabot_SB</Ammo_303British_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_303British_Obrez</defName>
+		<label>.303 British</label>
+		<ammoTypes>
+			<Ammo_303British_FMJ>Bullet_303British_FMJ_Obrez</Ammo_303British_FMJ>
+			<Ammo_303British_AP>Bullet_303British_AP_Obrez</Ammo_303British_AP>
+			<Ammo_303British_HP>Bullet_303British_HP_Obrez</Ammo_303British_HP>
+			<Ammo_303British_Incendiary>Bullet_303British_Incendiary_Obrez</Ammo_303British_Incendiary>
+			<Ammo_303British_HE>Bullet_303British_HE_Obrez</Ammo_303British_HE>
+			<Ammo_303British_Sabot>Bullet_303British_Sabot_Obrez</Ammo_303British_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>	
 
 	<!-- ==================== Ammo ========================== -->
 
@@ -196,6 +224,166 @@
 			<speed>199</speed>
 		</projectile>
 	</ThingDef>
+	
+	<!-- Short barrel (Carbine) -->
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_FMJ_SB</defName>
+		<label>.303 British bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>53.8</armorPenetrationBlunt>
+			<speed>135</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_AP_SB</defName>
+		<label>.303 British bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>53.8</armorPenetrationBlunt>
+			<speed>135</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_HP_SB</defName>
+		<label>.303 British bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>23</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>53.8</armorPenetrationBlunt>
+			<speed>135</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_Incendiary_SB</defName>
+		<label>.303 British bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>53.8</armorPenetrationBlunt>
+			<speed>135</speed>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_HE_SB</defName>
+		<label>.303 British bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>53.8</armorPenetrationBlunt>
+			<speed>135</speed>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>8</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_Sabot_SB</defName>
+		<label>.303 British bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>23</armorPenetrationSharp>
+			<armorPenetrationBlunt>69.62</armorPenetrationBlunt>
+			<speed>183</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- Short barrel (Obrez) -->
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_FMJ_Obrez</defName>
+		<label>.303 British bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>30.56</armorPenetrationBlunt>
+			<speed>109</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_AP_Obrez</defName>
+		<label>.303 British bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>30.56</armorPenetrationBlunt>
+			<speed>109</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_HP_Obrez</defName>
+		<label>.303 British bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>30.56</armorPenetrationBlunt>
+			<speed>199</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_Incendiary_Obrez</defName>
+		<label>.303 British bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>30.56</armorPenetrationBlunt>
+			<speed>109</speed>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_HE_Obrez</defName>
+		<label>.303 British bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>30.56</armorPenetrationBlunt>
+			<speed>109</speed>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>8</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_Sabot_Obrez</defName>
+		<label>.303 British bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>17.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>39.54</armorPenetrationBlunt>
+			<speed>148</speed>
+		</projectile>
+	</ThingDef>		
 
 	<!-- ==================== Recipes ========================== -->
 
