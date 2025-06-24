@@ -67,6 +67,9 @@ namespace CombatExtended
         public float collideDistance = 1f;
         public float impactChance = 1f;
 
+        public FloatRange weaponDeteriorationHP = new FloatRange(1f, 1f);
+        public float weaponDeteriorationChance = 0f;
+
         public float Gravity => CE_Utility.GravityConst * gravityFactor;
         public ThingDef CIWSVersion;
         public System.Type trajectoryWorker;
