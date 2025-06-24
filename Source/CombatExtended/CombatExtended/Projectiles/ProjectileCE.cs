@@ -747,7 +747,12 @@ namespace CombatExtended
             if (interceptorComp.currentHitPoints > 0)
             {
                 float shieldDamage = this.DamageAmount * Props.shieldDamageMultiplier;
-                interceptorComp.currentHitPoints -= Mathf.FloorToInt(shieldDamage);
+                int totalShieldDamage = Mathf.FloorToInt(shieldDamage);
+                if (Rand.Value > shieldDamage - damageAmount)
+                {
+                    totalShieldDamage++;
+                }
+                interceptorComp.currentHitPoints -= totalShieldDamage;
 
                 if (interceptorComp.currentHitPoints <= 0)
                 {
