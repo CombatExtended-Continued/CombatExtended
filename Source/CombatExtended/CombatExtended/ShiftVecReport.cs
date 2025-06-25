@@ -44,12 +44,9 @@ namespace CombatExtended
         // Visibility variables
         public float lightingShift = 0f;
         public float weatherShift = 0f;
-        static readonly SimpleCurve LightingShiftCurve = new SimpleCurve()
-        {
-            { 0.5f, 0f },
-            { 0.8f, 10f },
-            { 1.0f, 14f }
-        };
+
+        internal static SimpleCurve LightingShiftCurve = [];
+
         private float enviromentShiftInt = -1;
 
         public float enviromentShift
