@@ -8,6 +8,7 @@ namespace CombatExtended.AI
         private const string GASMASK_TAG = "GasMask";
 
         private const int SMOKE_TICKS_OFFSET = 800;
+        private const int LONG_GAS_TICKS_OFFSET = 3500; // Just over the check interval of 3451 in Vanilla
 
         private int lastSmokeTick = -1;
 
@@ -51,18 +52,27 @@ namespace CombatExtended.AI
             }
         }
 
-        public void Notify_ShouldEquipGasMask()
+        public void Notify_ShouldEquipGasMask(bool longOffset = false)
         {
-            if (lastSmokeTick < GenTicks.TicksGame
-                    && !SelPawn.Faction.IsPlayerSafe()
-                    && !SelPawn.Downed
-                    && SelPawn.apparel?.wornApparel != null)
+            if (SelPawn.Faction.IsPlayerSafe() || SelPawn.Downed || SelPawn.apparel?.wornApparel == null)
             {
-                if (!maskEquiped)
+                return;
+            }
+            if (lastSmokeTick < GenTicks.TicksGame && !maskEquiped)
+            {
+                WearMask();
+            }
+            if (maskEquiped)
+            {
+                int newTick = GenTicks.TicksGame + (longOffset ? LONG_GAS_TICKS_OFFSET : SMOKE_TICKS_OFFSET);
+                if (longOffset || newTick > lastSmokeTick)
                 {
-                    WearMask();
+                    lastSmokeTick = newTick;
                 }
-                lastSmokeTick = GenTicks.TicksGame + SMOKE_TICKS_OFFSET;
+            }
+            else
+            {
+                lastSmokeTick = -1;
             }
         }
 
@@ -82,7 +92,7 @@ namespace CombatExtended.AI
                     SelPawn.inventory.innerContainer.Remove(apparel);
                     SelPawn.apparel.Wear(apparel);
                     maskEquiped = true;
-                    break;
+                    return;
                 }
             }
         }

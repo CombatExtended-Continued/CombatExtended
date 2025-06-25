@@ -65,7 +65,7 @@ namespace CombatExtended.HarmonyCE
         {
             if (pawn.RaceProps.Humanlike && !pawn.IsSubhuman)
             {
-                pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask();
+                pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask(true);
             }
         }
     }

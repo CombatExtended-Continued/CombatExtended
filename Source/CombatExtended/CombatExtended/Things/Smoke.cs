@@ -126,7 +126,7 @@ namespace CombatExtended
                 }
                 if (pawn.RaceProps.Humanlike && !pawn.IsSubhuman)
                 {
-                    pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask();
+                    pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask(false);
                 }
                 var sensitivity = pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
                 var breathing = PawnCapacityUtility.CalculateCapacityLevel(pawn.health.hediffSet, PawnCapacityDefOf.Breathing);
