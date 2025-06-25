@@ -40,8 +40,8 @@ namespace CombatExtended.HarmonyCE
                     }
                     if (codes[i].opcode == OpCodes.Ldarg_0 && codes[i + 2].operand is FieldInfo fieldInfo && fieldInfo == secondInjectionSite && !secondInjectionFound)
                     {
-                        codes.Insert(i + 1 , new CodeInstruction(OpCodes.Call, additionalMethod));
-                        codes.Insert(i + 1 , new CodeInstruction(OpCodes.Dup));
+                        codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, additionalMethod));
+                        codes.Insert(i + 1, new CodeInstruction(OpCodes.Dup));
                         secondInjectionFound = true;
                     }
                 }
