@@ -16,10 +16,10 @@ namespace CombatExtended
     {
         private static RulePackDef cookOffDamageEvent = null;
 
-        public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));
+        public static RulePackDef CookOff => cookOffDamageEvent ??= CE_RulePackDefOf.DamageEvent_CookOff;
         private static RulePackDef shellingDamageEvent = null;
 
-        public static RulePackDef Shelling => shellingDamageEvent ?? (shellingDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_Shelling"));
+        public static RulePackDef Shelling => shellingDamageEvent ??= CE_RulePackDefOf.DamageEvent_Shelling;
 
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
