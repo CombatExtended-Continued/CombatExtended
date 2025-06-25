@@ -1,13 +1,8 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
-using VFECore;
+using VEF.Apparels;
 namespace CombatExtended.Compatibility
 {
     public class VanillaExpandedFramework : IPatch
