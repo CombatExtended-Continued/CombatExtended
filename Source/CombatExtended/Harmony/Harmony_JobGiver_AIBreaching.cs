@@ -24,6 +24,7 @@ namespace CombatExtended.HarmonyCE
             MethodInfo pIsMechanoid = AccessTools.DeclaredPropertyGetter(typeof(RaceProperties), nameof(RaceProperties.IsMechanoid));
 
             Label checkNoDesignatedSoloAttackerExistsLabel = generator.DefineLabel();
+            bool foundInjection = false;
 
             for (int i = 0; i < instructionsList.Count; i++)
             {
@@ -39,11 +40,16 @@ namespace CombatExtended.HarmonyCE
                     yield return new CodeInstruction(OpCodes.Callvirt, pRaceProps);
                     yield return new CodeInstruction(OpCodes.Callvirt, pIsMechanoid);
                     yield return new CodeInstruction(OpCodes.Brfalse_S, (Label)checkPawnIsSoloAttackerLabel);
+                    foundInjection = true;
                 }
                 else
                 {
                     yield return instructionsList[i];
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

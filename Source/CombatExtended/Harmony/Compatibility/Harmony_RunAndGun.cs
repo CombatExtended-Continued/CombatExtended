@@ -55,7 +55,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
 
         internal static IEnumerable<CodeInstruction> Transpiler(ILGenerator gen, IEnumerable<CodeInstruction> instructions)
         {
-            bool patched = false;
+            bool foundInjection = false;
             bool ready = false;
 
             List<CodeInstruction> patch = new List<CodeInstruction>
@@ -68,7 +68,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
             foreach (var code in instructions)
             {
                 yield return code;
-                if (!patched)
+                if (!foundInjection)
                 {
                     if (code.opcode == OpCodes.Isinst && ReferenceEquals(code.operand, Stance_RunAndGun))
                     {
@@ -81,9 +81,13 @@ namespace CombatExtended.HarmonyCE.Compatibility
                         {
                             yield return c;
                         }
-                        patched = true;
+                        foundInjection = true;
                     }
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
 

@@ -1,10 +1,8 @@
-﻿using System;
-using RimWorld.Planet;
+﻿using RimWorld.Planet;
 using HarmonyLib;
 using Verse;
 using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -51,20 +49,24 @@ namespace CombatExtended.HarmonyCE
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 var codes = instructions.ToList();
-                var finished = false;
+                bool foundInjection = false;
                 for (int i = 0; i < codes.Count; i++)
                 {
-                    if (!finished)
+                    if (!foundInjection)
                     {
                         if (codes[i].opcode == OpCodes.Callvirt && codes[i].OperandIs(allWorldObjectGetter))
                         {
-                            finished = true;
                             yield return codes[i];
                             yield return new CodeInstruction(OpCodes.Call, getAllWorldObjectCE);
+                            foundInjection = true;
                             continue;
                         }
                     }
                     yield return codes[i];
+                }
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
                 }
             }
 

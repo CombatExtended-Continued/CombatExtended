@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -94,20 +90,24 @@ namespace CombatExtended.HarmonyCE
                                     new CodeInstruction(OpCodes.Ldloc_2),
                                     new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)))
             };
-            bool foundRecoil = false;
             int index = 0;
+            bool foundInjection = false;
             for (int i = 0; i < codes.Count; i++)
             {
                 CodeInstruction code = codes[i];
-                if (foundRecoil && code.opcode == OpCodes.Stloc_1)
+                if (foundInjection && code.opcode == OpCodes.Stloc_1)
                 {
                     index = i + 1;
                     break;
                 }
                 else if (code.opcode == OpCodes.Call && ReferenceEquals(code.operand, typeof(EquipmentUtility).GetMethod(nameof(EquipmentUtility.Recoil))))
                 {
-                    foundRecoil = true;
+                    foundInjection = true;
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
             codes.InsertRange(index, recoil_opcodes);
             codes[codes.Count - 2].operand =

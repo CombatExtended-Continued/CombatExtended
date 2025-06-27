@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Reflection.Emit;
 using HarmonyLib;
 using Verse;
@@ -21,6 +18,7 @@ namespace CombatExtended.HarmonyCE
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            bool foundInjection = false;
             foreach (CodeInstruction code in instructions)
             {
                 if (code.opcode == OpCodes.Ldc_R4 && code.operand is float && (float)code.operand == 150f)
@@ -33,8 +31,12 @@ namespace CombatExtended.HarmonyCE
                     yield return new CodeInstruction(OpCodes.Ldloca, 0);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_DoFireDamage), nameof(ApplySizeMult)));
                     yield return new CodeInstruction(OpCodes.Ldloc_1);
+                    foundInjection = true;
                 }
-
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+                }
                 yield return code;
             }
         }
@@ -45,17 +47,23 @@ namespace CombatExtended.HarmonyCE
     {
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            bool foundInjection = false;
             foreach (CodeInstruction code in instructions)
             {
                 //Log.Message($"OpCode {code.opcode}, operand {code.operand}, type {code.operand.GetType()}");
                 if (code.opcode == OpCodes.Ldc_I4_S && code.operand is sbyte && (sbyte)code.operand == 15)
                 {
                     yield return new CodeInstruction(OpCodes.Ldc_I4, 1500);
+                    foundInjection = true;
                 }
                 else
                 {
                     yield return code;
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
 
@@ -71,13 +79,19 @@ namespace CombatExtended.HarmonyCE
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            bool foundInjection = false;
             foreach (CodeInstruction code in instructions)
             {
                 if (code.opcode == OpCodes.Ldc_R4 && code.operand is float && (float)code.operand == 1f)
                 {
                     code.operand = 0.6f;
+                    foundInjection = true;
                 }
                 yield return code;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
 
@@ -112,17 +126,23 @@ namespace CombatExtended.HarmonyCE
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            bool foundInjection = false;
             foreach (CodeInstruction code in instructions)
             {
                 if (code.opcode == OpCodes.Ldc_R4 && code.operand is float && (float)code.operand == 0.00055f)
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_DoComplexCalcs), nameof(GetWindGrowthAdjust)));
+                    foundInjection = true;
                 }
                 else
                 {
                     yield return code;
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
         internal static void Postfix(Fire __instance)
@@ -221,6 +241,7 @@ namespace CombatExtended.HarmonyCE
             var delete = false;
             var passedRadPattern = false;
             var codes = new List<CodeInstruction>();
+            bool foundInjection = false;
 
             foreach (var code in instructions)
             {
@@ -255,12 +276,16 @@ namespace CombatExtended.HarmonyCE
                     codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_TrySpread), nameof(GetWindMult))));
 
                     codes.Add(new CodeInstruction(OpCodes.Sub));
+                    foundInjection = true;
                     continue;
                 }
 
                 codes.Add(code);
             }
-
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            }
             return codes;
         }
     }

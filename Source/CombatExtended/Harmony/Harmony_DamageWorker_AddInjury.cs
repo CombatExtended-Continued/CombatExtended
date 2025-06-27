@@ -151,6 +151,7 @@ namespace CombatExtended.HarmonyCE
                 var getItem = AccessTools.PropertyGetter(typeof(List<BodyPartRecord>), "Item");
                 var setHitPart = AccessTools.Method(typeof(DamageInfo), "SetHitPart");
                 var callHelper = AccessTools.Method(typeof(Patch_DamageWorker_Cut), "ApplyCECleavedDamage");
+                bool foundInjection = false;
 
                 for (int i = 0; i < code.Count - 12; i++)
                 {
@@ -176,8 +177,13 @@ namespace CombatExtended.HarmonyCE
                             new CodeInstruction(OpCodes.Call, callHelper)
                         };
                         code.InsertRange(i, injected);
+                        foundInjection = true;
                         break;
                     }
+                }
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
                 }
                 return code;
             }
@@ -225,6 +231,7 @@ namespace CombatExtended.HarmonyCE
                 });
                 var setHitPart = AccessTools.Method(typeof(DamageInfo), nameof(DamageInfo.SetHitPart));
                 var callHelper = AccessTools.Method(typeof(Patch_DamageWorker_Scratch), "ApplyCEScratchedDamage");
+                bool foundInjection = false;
                 for (int i = 0; i < code.Count - 15; i++)
                 {
                     if (code[i].opcode == OpCodes.Ldloc_0 &&
@@ -255,9 +262,14 @@ namespace CombatExtended.HarmonyCE
                                 new CodeInstruction(OpCodes.Call, callHelper)
                             };
                             code.InsertRange(i, injected);
+                            foundInjection = true;
                             break;
                         }
                     }
+                }
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
                 }
                 return code;
             }
@@ -287,6 +299,7 @@ namespace CombatExtended.HarmonyCE
                 var callHelper = AccessTools.Method(typeof(Patch_DamageWorker_Blunt), "ApplyCEBluntDamage");
                 var type = typeof(DamageWorker_Blunt).GetNestedType("<>c__DisplayClass1_0", BindingFlags.NonPublic);
                 var lastInfo = AccessTools.Field(type, "lastInfo");
+                bool foundInjection = false;
 
                 for (int i = 0; i < code.Count - 10; i++)
                 {
@@ -310,10 +323,14 @@ namespace CombatExtended.HarmonyCE
                             new CodeInstruction(OpCodes.Sub),
                             new CodeInstruction(OpCodes.Stloc_3),
                         };
-
+                        foundInjection = true;
                         code.InsertRange(i, injected);
                         break;
                     }
+                }
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
                 }
                 return code;
             }

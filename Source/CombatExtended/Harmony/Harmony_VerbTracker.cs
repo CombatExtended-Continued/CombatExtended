@@ -59,6 +59,8 @@ namespace CombatExtended.HarmonyCE
             var verb = il.DeclareLocal(typeof(VerbTracker));
             var verbCE = il.DeclareLocal(typeof(Verb_LaunchProjectileCE));
             var failBranch = il.DefineLabel();
+            bool foundInjection = false;
+            bool secondInjection = false;
 
             foreach (CodeInstruction instruction in instructions)
             {
@@ -83,6 +85,7 @@ namespace CombatExtended.HarmonyCE
 
                     // modify the current instruction (should be ldloc.0) to have the label for fail condition.
                     instruction.labels.Add(failBranch);
+                    foundInjection = true;
 
                     // done
                     patchPhase = 2;
@@ -95,11 +98,20 @@ namespace CombatExtended.HarmonyCE
                     yield return new CodeInstruction(OpCodes.Stloc, verb);
                     // push the JUST stored local variable back onto the stack for use by the next instruction.
                     yield return new CodeInstruction(OpCodes.Ldloc, verb);
+                    secondInjection = true;
                     patchPhase = 1;
                 }
 
 
                 yield return instruction;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find first injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            }
+            if (!secondInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find second injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Runtime.InteropServices;
 using HarmonyLib;
 using CombatExtended.AI;
 using Verse;
-using Verse.AI;
 
 /*
  * Initial notes:
@@ -32,15 +30,15 @@ namespace CombatExtended.HarmonyCE
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {
             List<CodeInstruction> codes = instructions.ToList();
-            bool finished = false;
+            bool foundInjection = false;
             Label l1 = generator.DefineLabel();
 
             for (int i = 0; i < codes.Count; i++)
             {
                 CodeInstruction code = codes[i];
-                if (!finished && codes[i].OperandIs(mCausesTimeSlowdown))
+                if (!foundInjection && codes[i].OperandIs(mCausesTimeSlowdown))
                 {
-                    finished = true;
+                    foundInjection = true;
                     yield return new CodeInstruction(OpCodes.Ldarg_0).MoveLabelsFrom(code);
                     yield return new CodeInstruction(OpCodes.Ldarg_1);
                     yield return new CodeInstruction(OpCodes.Ldarg_2);
@@ -54,6 +52,10 @@ namespace CombatExtended.HarmonyCE
                     code.labels.Add(l1);
                 }
                 yield return code;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using Verse;
@@ -18,6 +19,7 @@ namespace CombatExtended.HarmonyCE
             {
                 var patchPhase = 0;
                 var emitOriginal = true;
+                bool foundInjection = false;
 
                 foreach (var instruction in instructions)
                 {
@@ -42,6 +44,7 @@ namespace CombatExtended.HarmonyCE
                                 patchPhase = 2;
                                 yield return instruction;
                                 yield return new CodeInstruction(OpCodes.Nop);
+                                foundInjection = true;
                             }
 
                             break;
@@ -59,6 +62,10 @@ namespace CombatExtended.HarmonyCE
                     {
                         yield return instruction;
                     }
+                }
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
                 }
             }
         }

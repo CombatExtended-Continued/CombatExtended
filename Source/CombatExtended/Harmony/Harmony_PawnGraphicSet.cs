@@ -1,10 +1,8 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace CombatExtended.HarmonyCE
@@ -20,6 +18,7 @@ namespace CombatExtended.HarmonyCE
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var write = false;
+            bool foundInjection = false;
 
             foreach (var code in instructions)
             {
@@ -32,12 +31,17 @@ namespace CombatExtended.HarmonyCE
                 if (code.opcode == OpCodes.Ldsfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Overhead))))
                 {
                     write = true;
+                    foundInjection = true;
                     yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnGraphicSet), nameof(RenderSpecial)));
                 }
                 else
                 {
                     yield return code;
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

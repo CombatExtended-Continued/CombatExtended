@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using RimWorld;
@@ -12,6 +13,7 @@ namespace CombatExtended.HarmonyCE
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var write = false;
+            bool foundInjection = false;
             foreach (CodeInstruction code in instructions)
             {
                 if (write)
@@ -19,6 +21,7 @@ namespace CombatExtended.HarmonyCE
                     if (code.opcode == OpCodes.Ldc_I4_1)
                     {
                         code.opcode = OpCodes.Ldc_I4_M1;
+                        foundInjection = true;
                     }
 
                     write = false;
@@ -28,6 +31,10 @@ namespace CombatExtended.HarmonyCE
                     write = true;
                 }
                 yield return code;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

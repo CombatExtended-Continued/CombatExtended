@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using HarmonyLib;
@@ -33,6 +34,7 @@ namespace CombatExtended.HarmonyCE
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var write = false;
+            bool foundInjection = false;
 
             foreach (var code in instructions)
             {
@@ -46,11 +48,17 @@ namespace CombatExtended.HarmonyCE
                 {
                     write = true;
                     yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_ApparelGraphicRecordGetter), nameof(IsHeadwear)));
+                    foundInjection = true;
+
                 }
                 else
                 {
                     yield return code;
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }
