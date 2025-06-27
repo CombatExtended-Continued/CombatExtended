@@ -84,7 +84,5 @@ namespace CombatExtended.Utilities
                 yield return iterInstructions.Current;
             }
         }
-
-
     }
 }
