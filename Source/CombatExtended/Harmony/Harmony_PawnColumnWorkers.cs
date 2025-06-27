@@ -62,11 +62,11 @@ namespace CombatExtended.HarmonyCE
                     instruction.operand = PawnColumnWorker_Loadout._MinWidth;
                     foundInjection = true;
                 }
-                if (!foundInjection)
-                {
-                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
-                }
                 yield return instruction;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
 

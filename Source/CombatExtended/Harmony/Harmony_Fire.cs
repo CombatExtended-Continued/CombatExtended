@@ -33,11 +33,11 @@ namespace CombatExtended.HarmonyCE
                     yield return new CodeInstruction(OpCodes.Ldloc_1);
                     foundInjection = true;
                 }
-                if (!foundInjection)
-                {
-                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
-                }
                 yield return code;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }
