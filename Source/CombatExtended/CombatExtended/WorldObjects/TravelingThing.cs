@@ -69,12 +69,12 @@ namespace CombatExtended
 
         protected abstract void Arrived();
 
-        public override void Tick()
+        public override void TickInterval(int delta)
         {
             try
             {
-                base.Tick();
-                distanceTraveled += this.tilesPerTick;
+                base.TickInterval(delta);
+                distanceTraveled += this.tilesPerTick * delta;
                 if (TraveledPtc >= 1.0f)
                 {
                     Tile = destinationTile;

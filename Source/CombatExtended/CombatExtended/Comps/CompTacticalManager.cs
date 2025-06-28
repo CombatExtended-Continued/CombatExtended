@@ -115,10 +115,10 @@ namespace CombatExtended
             TargetIndex.C,
         };
 
-        public override void CompTick()
+        public override void CompTickInterval(int delta)
         {
-            base.CompTick();
-            if (parent.IsHashIntervalTick(120) && Active)
+            base.CompTickInterval(delta);
+            if (parent.IsHashIntervalTick(120, delta) && Active)
             {
                 /*
                  * Clear the cache if it's very outdated to allow GC to take over

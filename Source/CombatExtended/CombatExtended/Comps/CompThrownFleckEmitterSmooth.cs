@@ -40,7 +40,7 @@ namespace CombatExtended
             }
         }
 
-        public override void CompTick()
+        public override void CompTickInterval(int delta)
         {
             if (!IsOn)
             {

@@ -621,21 +621,21 @@ namespace CombatExtended
             }
         }
 
-        public override void CompTick()
+        public override void CompTickInterval(int delta)
         {
             /*
              * Need to update this to avoid calling IsColonist too soon after spawning
              */
-            age++;
+            age += delta;
             /*
              * Routin cleanup
              */
-            if ((parentPawn.thingIDNumber + GenTicks.TicksGame) % CLEANUPTICKINTERVAL == 0)
+            if (parentPawn.IsHashIntervalTick(CLEANUPTICKINTERVAL, delta))
             {
                 // Ask HoldTracker to clean itself up...
                 parentPawn.HoldTrackerCleanUp();
             }
-            base.CompTick();
+            base.CompTickInterval(delta);
             // Remove items from inventory if we're over the bulk limit
             /*
             while (availableBulk < 0 && container.Count > 0)

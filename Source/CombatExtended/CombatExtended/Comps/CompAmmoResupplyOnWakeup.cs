@@ -128,9 +128,9 @@ namespace CombatExtended
             return false;
         }
 
-        public override void CompTick()
+        public override void CompTickInterval(int delta)
         {
-            if (parent.IsHashIntervalTick(ticksBetweenChecks))
+            if (parent.IsHashIntervalTick(ticksBetweenChecks, delta))
             {
                 TickRareWorker();
             }

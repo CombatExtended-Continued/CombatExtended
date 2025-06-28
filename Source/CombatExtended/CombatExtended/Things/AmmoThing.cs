@@ -54,7 +54,7 @@ namespace CombatExtended
             }
         }
 
-        public override void Tick()
+        public override void TickInterval(int delta)
         {
             // Self-destruct if ammo is disabled
             if (ShouldDestroy)
@@ -66,20 +66,23 @@ namespace CombatExtended
             base.Tick();
 
             // Cook off ammo based on how much damage we've taken so far
-            if (numToCookOff > 0 && Rand.Chance((float)numToCookOff / def.stackLimit))
+            for (int i = 0; i < delta; i++) // Might feel weird in practice, could be reverted to regular ticks
             {
-                if (TryLaunchCookOffProjectile() || TryDetonate())
+                if (numToCookOff > 0 && Rand.Chance((float)numToCookOff / def.stackLimit))
                 {
-                    // Reduce stack count
-                    if (stackCount > 1)
+                    if (TryLaunchCookOffProjectile() || TryDetonate())
                     {
-                        numToCookOff--;
-                        stackCount--;
-                    }
-                    else
-                    {
-                        numToCookOff = 0;
-                        Destroy(DestroyMode.KillFinalize);
+                        // Reduce stack count
+                        if (stackCount > 1)
+                        {
+                            numToCookOff--;
+                            stackCount--;
+                        }
+                        else
+                        {
+                            numToCookOff = 0;
+                            Destroy(DestroyMode.KillFinalize);
+                        }
                     }
                 }
             }

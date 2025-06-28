@@ -112,7 +112,7 @@ namespace CombatExtended
 
         public int timer;
 
-        public override void CompTick()
+        public override void CompTickInterval(int delta)
         {
             if (durabilityProps.Regenerates)
             {
@@ -120,13 +120,13 @@ namespace CombatExtended
                 {
                     if (curDurability < maxDurability)
                     {
-                        curDurability += Math.Min(durabilityProps.RegenValue, maxDurability - curDurability);
+                        curDurability += Math.Min(durabilityProps.RegenValue * delta, maxDurability - curDurability);
                     }
                     timer = 0;
                 }
-                timer++;
+                timer += delta;
             }
-            base.CompTick();
+            base.CompTickInterval(delta);
         }
 
         public override void PostPostMake()
