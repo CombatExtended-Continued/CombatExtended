@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using HarmonyLib;
 using Verse;
 using RimWorld;
@@ -39,6 +37,7 @@ namespace CombatExtended.HarmonyCE
             MethodInfo pnonInterruptingSelfCast = AccessTools.PropertyGetter(typeof(Verb), nameof(Verb.NonInterruptingSelfCast));
             MethodInfo pCasterPawn = AccessTools.PropertyGetter(typeof(Verb), nameof(Verb.CasterPawn));
             MethodInfo pSpawned = AccessTools.PropertyGetter(typeof(Pawn), nameof(Pawn.Spawned));
+            bool foundInjection = false;
 
             bool ticksBetweenBurstShotsFinished = false;
 
@@ -65,9 +64,14 @@ namespace CombatExtended.HarmonyCE
                     yield return new CodeInstruction(OpCodes.Callvirt, pCasterPawn);
                     yield return new CodeInstruction(OpCodes.Callvirt, pSpawned);
                     yield return new CodeInstruction(OpCodes.Brfalse_S, blockEndLabel);
+                    foundInjection = true;
                     continue;
                 }
                 yield return codes[i];
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
 

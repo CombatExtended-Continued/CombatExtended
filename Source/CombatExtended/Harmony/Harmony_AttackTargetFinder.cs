@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using CombatExtended.AI;
-using CombatExtended.Utilities;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -34,6 +33,7 @@ namespace CombatExtended.HarmonyCE
             internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 var codes = instructions.ToList();
+                bool foundInjection = false;
                 for (int i = 0; i < instructions.Count(); i++)
                 {
                     if (codes[i].opcode == OpCodes.Call && ReferenceEquals(codes[i].operand, AccessTools.Method(typeof(VerbUtility), nameof(VerbUtility.IsEMP))))
@@ -85,9 +85,14 @@ namespace CombatExtended.HarmonyCE
                         codes.InsertRange(blockStart, instructionsToInsert);
 
                         blockStartInstr.MoveLabelsTo(codes[blockStart]);
+                        foundInjection = true;
 
                         break;
                     }
+                }
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
                 }
 
                 return codes;

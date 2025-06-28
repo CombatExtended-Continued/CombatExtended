@@ -34,6 +34,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
             {
                 var list = instructions.ToList();
                 MethodInfo overrideMethod = typeof(Harmony_WeaponPod_Patch).GetMethod("InsertMethod", BindingFlags.Static | BindingFlags.Public);
+                bool foundInjection = false;
                 for (int i = list.Count - 1; i >= 0; --i)
                 {
                     if (list[i].opcode == OpCodes.Brtrue_S)
@@ -43,8 +44,13 @@ namespace CombatExtended.HarmonyCE.Compatibility
                             new CodeInstruction(OpCodes.Ldloc_S, 6),
                             new CodeInstruction(OpCodes.Call, overrideMethod),
                         });
+                        foundInjection = true;
                         break;
                     }
+                }
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
                 }
                 return list;
             }

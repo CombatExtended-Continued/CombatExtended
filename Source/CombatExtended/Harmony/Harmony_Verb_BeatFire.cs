@@ -1,10 +1,8 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace CombatExtended.HarmonyCE
@@ -16,13 +14,19 @@ namespace CombatExtended.HarmonyCE
         {
             internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
+                bool foundInjection = false;
                 foreach (var instruction in instructions)
                 {
                     if (instruction.opcode == OpCodes.Ldc_R4 && instruction.operand is float amount && amount == 32f)
                     {
                         instruction.operand = 48f;
+                        foundInjection = true;
                     }
                     yield return instruction;
+                }
+                if (!foundInjection)
+                {
+                    Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
                 }
             }
         }

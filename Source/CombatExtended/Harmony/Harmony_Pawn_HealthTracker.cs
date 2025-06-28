@@ -25,6 +25,7 @@ namespace CombatExtended.HarmonyCE
             Label deathOnDownLabel = generator.DefineLabel();
 
             bool flag = false;
+            bool foundInjection = false;
 
             List<CodeInstruction> codes = instructions.ToList();
             for (int i = 0; i < codes.Count; i++)
@@ -48,13 +49,19 @@ namespace CombatExtended.HarmonyCE
                         {
                             deathOnDownLabel
                         };
+                    foundInjection = true;
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
             return Transpilers.MethodReplacer(
                        codes,
                        AccessTools.Method(typeof(Rand), nameof(Rand.Chance)),
                        AccessTools.Method(typeof(Harmony_Pawn_HealthTracker_CheckForStateChange), nameof(Harmony_Pawn_HealthTracker_CheckForStateChange.NoChance))
                    );
+
         }
 
         static bool NoChance(float unusedChance)

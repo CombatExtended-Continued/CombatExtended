@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using HarmonyLib;
-using Mono.Cecil.Cil;
 using RimWorld;
 using Verse;
-using Verse.Noise;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -165,7 +162,7 @@ namespace CombatExtended.HarmonyCE
             var code = new List<CodeInstruction>(instructions);
             int startIndex = -1;
             int endIndex = -1;
-            bool foundCovers = false;
+            bool foundInjection = false;
 
             for (int i = 0; i < code.Count; i++)
             {
@@ -178,12 +175,12 @@ namespace CombatExtended.HarmonyCE
                     {
                         if (code[j].opcode == OpCodes.Ldstr && code[j].operand as string == "Covers")
                         {
-                            foundCovers = true;
+                            foundInjection = true;
                         }
 
                         if (code[j].opcode == OpCodes.Pop)
                         {
-                            if (foundCovers)
+                            if (foundInjection)
                             {
                                 endIndex = j;
                                 break;
@@ -213,6 +210,10 @@ namespace CombatExtended.HarmonyCE
                 code.Insert(startIndex + 1, new CodeInstruction(OpCodes.Ldarg_0));
                 code.Insert(startIndex + 2, new CodeInstruction(OpCodes.Ldloc_0));
                 code.Insert(startIndex + 3, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingDef_DescriptionDetailed), "AddShieldCover", null, null)));
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
             foreach (var c in code)
             {

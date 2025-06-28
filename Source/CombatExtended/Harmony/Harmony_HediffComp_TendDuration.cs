@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using Verse;
@@ -19,14 +20,20 @@ namespace CombatExtended.HarmonyCE
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             int countReplace = 0;
+            bool foundInjection = false;
             foreach (CodeInstruction instruction in instructions)
             {
                 if (countReplace < 2 && instruction.opcode == OpCodes.Ldc_R4 && (instruction.OperandIs(-0.25f) || instruction.OperandIs(0.25f)))
                 {
                     instruction.operand = countReplace == 0 ? -0.15f : 0.15f;
+                    foundInjection = true;
                     countReplace++;
                 }
                 yield return instruction;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using HarmonyLib;
-using RimWorld;
 using Verse;
-using Verse.AI;
-using Verse.AI.Group;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -20,6 +15,7 @@ namespace CombatExtended.HarmonyCE
         {
             var instructionsList = instructions.ToList();
             var notProjectileLabel = generator.DefineLabel();
+            bool foundInjection = false;
 
             for (int i = 0; i < instructionsList.Count(); i++)
             {
@@ -44,9 +40,14 @@ namespace CombatExtended.HarmonyCE
                     yield return instructionsList[i - 3].Clone(); // ldloc
                     yield return instructionsList[i - 2].Clone(); // ldloc
                     yield return instructionsList[i - 1].Clone(); // callvirt
+                    foundInjection = true;
                 }
 
                 yield return instructionsList[i];
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

@@ -7,7 +7,6 @@ using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
-using Verse.AI;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -55,13 +54,19 @@ namespace CombatExtended.HarmonyCE
         [HarmonyTranspiler]
         static IEnumerable<CodeInstruction> MinWidth(IEnumerable<CodeInstruction> instructions)
         {
+            bool foundInjection = false;
             foreach (CodeInstruction instruction in instructions)
             {
                 if (instruction.opcode == OpCodes.Ldc_R4 && (instruction.operand as float?).HasValue && (instruction.operand as float?).Value.Equals(orgMinWidth))
                 {
                     instruction.operand = PawnColumnWorker_Loadout._MinWidth;
+                    foundInjection = true;
                 }
                 yield return instruction;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
 
@@ -71,13 +76,19 @@ namespace CombatExtended.HarmonyCE
         [HarmonyTranspiler]
         static IEnumerable<CodeInstruction> OptWidth(IEnumerable<CodeInstruction> instructions)
         {
+            bool foundInjection = false;
             foreach (CodeInstruction instruction in instructions)
             {
                 if (instruction.opcode == OpCodes.Ldc_R4 && (instruction.operand as float?).HasValue && (instruction.operand as float?).Value.Equals(orgOptimalWidth))
                 {
                     instruction.operand = PawnColumnWorker_Loadout._OptimalWidth;
+                    foundInjection = true;
                 }
                 yield return instruction;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

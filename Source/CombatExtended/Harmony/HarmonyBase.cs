@@ -362,6 +362,17 @@ namespace CombatExtended.HarmonyCE
             }
             return -1;
         }
+
+        // This gets the clean class name without trailing +Transpiler..etc
+        public static string GetClassName(Type declaringType)
+        {
+            while (declaringType?.DeclaringType != null)
+            {
+                declaringType = declaringType.DeclaringType;
+            }
+
+            return declaringType?.Name ?? "UnknownClass";
+        }
         #endregion Utility_Methods
     }
 }
