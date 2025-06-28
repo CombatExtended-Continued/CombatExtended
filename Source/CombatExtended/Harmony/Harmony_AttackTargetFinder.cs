@@ -73,7 +73,7 @@ namespace CombatExtended.HarmonyCE
 
                 for (var i = 0; i < codes.Count; i++)
                 {
-                    if (codes[i].Branches(out Label? label) && codes[i - 1].Calls(hasRangedAttack))
+                    if (codes[i].Branches(out Label? label) && codes[i - 3].Calls(hasRangedAttack))
                     {
                         var blockEnd = codes.FindIndex(instr => instr.labels.Contains(label.Value));
                         var blockEndInstr = codes[blockEnd];
