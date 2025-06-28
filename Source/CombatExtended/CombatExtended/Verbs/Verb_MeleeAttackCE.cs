@@ -168,7 +168,7 @@ namespace CombatExtended
 
             // Award XP as per vanilla
             bool targetImmobile = IsTargetImmobile(currentTarget);
-            if (!targetImmobile && casterPawn.skills != null && currentTarget.Pawn == null || !currentTarget.Pawn.IsColonyMech)
+            if (!targetImmobile && casterPawn.skills != null && (currentTarget.Pawn == null || !currentTarget.Pawn.IsColonyMech))
             {
                 casterPawn.skills.Learn(SkillDefOf.Melee, HitXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
             }
