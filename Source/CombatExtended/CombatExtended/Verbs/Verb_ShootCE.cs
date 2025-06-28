@@ -233,7 +233,7 @@ namespace CombatExtended
             _isAiming = false;
 
             // Award XP
-            if (ShooterPawn?.skills != null && currentTarget.Thing is Pawn)
+            if (ShooterPawn?.skills != null && currentTarget.Thing is Pawn { Downed: false, IsColonyMech: false} )
             {
                 var time = verbProps.AdjustedFullCycleTime(this, ShooterPawn);
                 time += aimTicks.TicksToSeconds();
