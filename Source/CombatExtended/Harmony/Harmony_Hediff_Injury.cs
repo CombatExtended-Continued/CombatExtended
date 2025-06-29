@@ -37,7 +37,7 @@ namespace CombatExtended.HarmonyCE
                             break;
                         // search for greater than check
                         case 1:
-                            if (instruction.opcode == OpCodes.Bgt_Un)
+                            if (instruction.opcode == OpCodes.Bgt_Un_S)
                             {
                                 // blank all instructions until the return
                                 emitOriginal = false;
