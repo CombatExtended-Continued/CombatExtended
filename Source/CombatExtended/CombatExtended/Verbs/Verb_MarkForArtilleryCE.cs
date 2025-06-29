@@ -27,14 +27,6 @@ namespace CombatExtended
         {
             _lastConditionsCheckedAt = -1;
         }
-        public override void WarmupComplete()
-        {
-            base.WarmupComplete();
-            if (ShooterPawn != null && ShooterPawn.skills != null)
-            {
-                ShooterPawn.skills.Learn(SkillDefOf.Shooting, 200);
-            }
-        }
 
         public override bool TryCastShot()
         {

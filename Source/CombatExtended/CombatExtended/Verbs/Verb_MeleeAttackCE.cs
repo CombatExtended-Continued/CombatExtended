@@ -168,7 +168,7 @@ namespace CombatExtended
 
             // Award XP as per vanilla
             bool targetImmobile = IsTargetImmobile(currentTarget);
-            if (!targetImmobile && casterPawn.skills != null)
+            if (!targetImmobile && casterPawn.skills != null && (currentTarget.Pawn == null || !currentTarget.Pawn.IsColonyMech))
             {
                 casterPawn.skills.Learn(SkillDefOf.Melee, HitXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
             }
@@ -260,7 +260,10 @@ namespace CombatExtended
                             isCrit = true;
                             damageResult = ApplyMeleeDamageToTarget(currentTarget);
                             moteText = casterPawn.def.race.Animal ? null : "CE_TextMote_CriticalHit".Translate();
-                            casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
+                            if (!defender.IsColonyMech)
+                            {
+                                casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
+                            }
                         }
                         else
                         {
