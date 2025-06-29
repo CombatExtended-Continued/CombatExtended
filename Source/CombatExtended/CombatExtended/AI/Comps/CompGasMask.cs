@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace CombatExtended.AI
@@ -11,6 +8,7 @@ namespace CombatExtended.AI
         private const string GASMASK_TAG = "GasMask";
 
         private const int SMOKE_TICKS_OFFSET = 800;
+        private const int LONG_GAS_TICKS_OFFSET = 3500; // Just over the check interval of 3451 in Vanilla
 
         private int lastSmokeTick = -1;
 
@@ -30,7 +28,7 @@ namespace CombatExtended.AI
             ticks++;
         }
 
-        public void UpdateGasMask()
+        private void UpdateGasMask()
         {
             if (SelPawn.Faction.IsPlayerSafe())
             {
@@ -54,15 +52,27 @@ namespace CombatExtended.AI
             }
         }
 
-        public void Notify_ShouldEquipGasMask()
+        public void Notify_ShouldEquipGasMask(bool longOffset = false)
         {
-            if (lastSmokeTick < GenTicks.TicksGame
-                    && !SelPawn.Faction.IsPlayerSafe()
-                    && !SelPawn.Downed
-                    && SelPawn.apparel?.wornApparel != null)
+            if (SelPawn.Faction.IsPlayerSafe() || SelPawn.Downed || SelPawn.apparel?.wornApparel == null)
+            {
+                return;
+            }
+            if (lastSmokeTick < GenTicks.TicksGame && !maskEquiped)
             {
                 WearMask();
-                lastSmokeTick = GenTicks.TicksGame + SMOKE_TICKS_OFFSET;
+            }
+            if (maskEquiped)
+            {
+                int newTick = GenTicks.TicksGame + (longOffset ? LONG_GAS_TICKS_OFFSET : SMOKE_TICKS_OFFSET);
+                if (longOffset || newTick > lastSmokeTick)
+                {
+                    lastSmokeTick = newTick;
+                }
+            }
+            else
+            {
+                lastSmokeTick = -1;
             }
         }
 
@@ -75,53 +85,43 @@ namespace CombatExtended.AI
 
         private void WearMask()
         {
-
-            Apparel mask = null;
-            foreach (Apparel apparel in CompInventory.container.Where(t => t is Apparel).Cast<Apparel>())
+            foreach (Thing thing in CompInventory.container)
             {
-                if (apparel.def.apparel?.tags?.Contains(GASMASK_TAG) ?? false)
+                if (thing is Apparel apparel && (apparel.def.apparel.tags?.Contains(GASMASK_TAG) ?? false))
                 {
-                    mask = apparel;
-                    break;
+                    SelPawn.inventory.innerContainer.Remove(apparel);
+                    SelPawn.apparel.Wear(apparel);
+                    maskEquiped = true;
+                    return;
                 }
-            }
-            if (mask != null)
-            {
-                SelPawn.inventory.innerContainer.Remove(mask);
-                SelPawn.apparel.Wear(mask);
             }
         }
 
         private void RemoveMask()
         {
-            Apparel mask = null;
             foreach (Apparel apparel in SelPawn.apparel.wornApparel)
             {
-                if (apparel.def.apparel?.tags?.Contains(GASMASK_TAG) ?? false)
+                if (apparel.def.apparel.tags?.Contains(GASMASK_TAG) ?? false)
                 {
-                    mask = apparel;
+                    SelPawn.apparel.Remove(apparel);
+                    SelPawn.inventory.innerContainer.TryAddOrTransfer(apparel);
                     break;
                 }
-            }
-            if (mask != null)
-            {
-                SelPawn.apparel.Remove(mask);
-                SelPawn.inventory.innerContainer.TryAddOrTransfer(mask);
             }
             maskEquiped = false;
         }
 
         private void CheckForMask()
         {
-            maskEquiped = false;
             foreach (Apparel apparel in SelPawn.apparel.wornApparel)
             {
-                if (apparel.def.apparel?.tags?.Contains(GASMASK_TAG) ?? false)
+                if (apparel.def.apparel.tags?.Contains(GASMASK_TAG) ?? false)
                 {
                     maskEquiped = true;
                     return;
                 }
             }
+            maskEquiped = false;
         }
     }
 }

@@ -124,7 +124,10 @@ namespace CombatExtended
                     }
                     continue;
                 }
-                pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask();
+                if (pawn.RaceProps.Humanlike && !pawn.IsSubhuman)
+                {
+                    pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask(false);
+                }
                 var sensitivity = pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
                 var breathing = PawnCapacityUtility.CalculateCapacityLevel(pawn.health.hediffSet, PawnCapacityDefOf.Breathing);
                 float curSeverity = pawn.health.hediffSet.GetFirstHediffOfDef(CE_HediffDefOf.SmokeInhalation, false)?.Severity ?? 0f;
