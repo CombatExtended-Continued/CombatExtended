@@ -24,6 +24,20 @@
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_4570Gov_SB</defName>
+		<label>.45-70 Government</label>
+		<ammoTypes>
+			<Ammo_4570Gov_FMJ>Bullet_4570Gov_FMJ_SB</Ammo_4570Gov_FMJ>
+			<Ammo_4570Gov_AP>Bullet_4570Gov_AP_SB</Ammo_4570Gov_AP>
+			<Ammo_4570Gov_HP>Bullet_4570Gov_HP_SB</Ammo_4570Gov_HP>
+			<Ammo_4570Gov_Incendiary>Bullet_4570Gov_Incendiary_SB</Ammo_4570Gov_Incendiary>
+			<Ammo_4570Gov_HE>Bullet_4570Gov_HE_SB</Ammo_4570Gov_HE>
+			<Ammo_4570Gov_Sabot>Bullet_4570Gov_Sabot_SB</Ammo_4570Gov_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="4570GovBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -194,6 +208,86 @@
 			<armorPenetrationSharp>21</armorPenetrationSharp>
 			<armorPenetrationBlunt>99.54</armorPenetrationBlunt>
 			<speed>171</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- Short barrel (Pistol) -->
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_FMJ_SB</defName>
+		<label>.45-70 Government cartridge (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>24.6</armorPenetrationBlunt>
+			<speed>73</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_AP_SB</defName>
+		<label>.45-70 Government cartridge (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>24.6</armorPenetrationBlunt>
+			<speed>73</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_HP_SB</defName>
+		<label>.45-70 Government cartridge (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>24.6</armorPenetrationBlunt>
+			<speed>73</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_Incendiary_SB</defName>
+		<label>.45-70 bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>24.6</armorPenetrationBlunt>
+			<speed>73</speed>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>9</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_HE_SB</defName>
+		<label>.45-70 bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>24.6</armorPenetrationBlunt>
+			<speed>73</speed>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>12</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_Sabot_SB</defName>
+		<label>.45-70 bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>17.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>30.84</armorPenetrationBlunt>
+			<speed>99</speed>
 		</projectile>
 	</ThingDef>
 

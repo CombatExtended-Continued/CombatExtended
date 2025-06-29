@@ -24,10 +24,24 @@
 		<similarTo>AmmoSet_RifleIntermediate</similarTo>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_44-40Winchester_SB</defName>
+		<label>.44-40 Winchester</label>
+		<ammoTypes>
+			<Ammo_44-40Winchester_FMJ>Bullet_44-40Winchester_FMJ_SB</Ammo_44-40Winchester_FMJ>
+			<Ammo_44-40Winchester_AP>Bullet_44-40Winchester_AP_SB</Ammo_44-40Winchester_AP>
+			<Ammo_44-40Winchester_HP>Bullet_44-40Winchester_HP_SB</Ammo_44-40Winchester_HP>
+			<Ammo_44-40Winchester_Incendiary>Bullet_44-40Winchester_Incendiary_SB</Ammo_44-40Winchester_Incendiary>
+			<Ammo_44-40Winchester_HE>Bullet_44-40Winchester_HE_SB</Ammo_44-40Winchester_HE>
+			<Ammo_44-40Winchester_Sabot>Bullet_44-40Winchester_Sabot_SB</Ammo_44-40Winchester_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>
+	</CombatExtended.AmmoSetDef>	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="44-40WinchesterBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Ancient mid-late 19th century bullet traditionally loaded with 40 grains of blackpowder, typically used in repeating arms.</description>
+		<description>Ancient mid-late 19th century bullet, originally loaded with 40 grains of blackpowder. Used in various repeating rifles and revolvers.</description>
 		<statBases>
 			<Mass>0.024</Mass>
 			<Bulk>0.02</Bulk>
@@ -119,7 +133,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>86</speed>
+			<speed>101</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -128,9 +142,9 @@
 		<defName>Bullet_44-40Winchester_FMJ</defName>
 		<label>.44-40 Winchester bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
+			<damageAmountBase>16</damageAmountBase>
 			<armorPenetrationSharp>5</armorPenetrationSharp>
-			<armorPenetrationBlunt>18.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>28.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -138,9 +152,9 @@
 		<defName>Bullet_44-40Winchester_AP</defName>
 		<label>.44-40 Winchester bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>9</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
 			<armorPenetrationSharp>10</armorPenetrationSharp>
-			<armorPenetrationBlunt>18.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>28.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -148,9 +162,9 @@
 		<defName>Bullet_44-40Winchester_HP</defName>
 		<label>.44-40 Winchester bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationSharp>3</armorPenetrationSharp>
-			<armorPenetrationBlunt>18.68</armorPenetrationBlunt>
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>28.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -158,9 +172,9 @@
 		<defName>Bullet_44-40Winchester_Incendiary</defName>
 		<label>.44-40 Winchester bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>9</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
 			<armorPenetrationSharp>10</armorPenetrationSharp>
-			<armorPenetrationBlunt>18.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>28.5</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 					<def>Flame_Secondary</def>
@@ -174,9 +188,9 @@
 		<defName>Bullet_44-40Winchester_HE</defName>
 		<label>.44-40 Winchester bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
+			<damageAmountBase>16</damageAmountBase>
 			<armorPenetrationSharp>5</armorPenetrationSharp>
-			<armorPenetrationBlunt>18.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>28.5</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 					<def>Bomb_Secondary</def>
@@ -190,12 +204,92 @@
 		<defName>Bullet_44-40Winchester_Sabot</defName>
 		<label>.44-40 Winchester bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>7</damageAmountBase>
+			<damageAmountBase>9</damageAmountBase>
 			<armorPenetrationSharp>17.5</armorPenetrationSharp>
-			<armorPenetrationBlunt>23.94</armorPenetrationBlunt>
+			<armorPenetrationBlunt>46.68</armorPenetrationBlunt>
 			<speed>117</speed>
 		</projectile>
 	</ThingDef>
+
+	<!-- Short barrel (Pistol) -->
+
+	<ThingDef ParentName="Base44-40WinchesterBullet">
+		<defName>Bullet_44-40Winchester_FMJ_SB</defName>
+		<label>.44-40 Winchester bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>11.66</armorPenetrationBlunt>
+			<speed>73</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base44-40WinchesterBullet">
+		<defName>Bullet_44-40Winchester_AP_SB</defName>
+		<label>.44-40 Winchester bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>11.66</armorPenetrationBlunt>
+			<speed>73</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base44-40WinchesterBullet">
+		<defName>Bullet_44-40Winchester_HP_SB</defName>
+		<label>.44-40 Winchester bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>11.66</armorPenetrationBlunt>
+			<speed>73</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base44-40WinchesterBullet">
+		<defName>Bullet_44-40Winchester_Incendiary_SB</defName>
+		<label>.44-40 Winchester bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>11.66</armorPenetrationBlunt>
+			<speed>73</speed>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>7</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base44-40WinchesterBullet">
+		<defName>Bullet_44-40Winchester_HE_SB</defName>
+		<label>.44-40 Winchester bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>11.66</armorPenetrationBlunt>
+			<speed>73</speed>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>9</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base44-40WinchesterBullet">
+		<defName>Bullet_44-40Winchester_Sabot_SB</defName>
+		<label>.44-40 Winchester bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.12</armorPenetrationBlunt>
+			<speed>98</speed>
+		</projectile>
+	</ThingDef>	
 
 	<!-- ==================== Recipes ========================== -->
 

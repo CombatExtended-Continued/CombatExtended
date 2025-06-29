@@ -24,6 +24,20 @@
 		<similarTo>AmmoSet_RifleIntermediate</similarTo>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_30Carbine_SB</defName>
+		<label>.30 Carbine</label>
+		<ammoTypes>
+			<Ammo_30Carbine_FMJ>Bullet_30Carbine_FMJ_SB</Ammo_30Carbine_FMJ>
+			<Ammo_30Carbine_AP>Bullet_30Carbine_AP_SB</Ammo_30Carbine_AP>
+			<Ammo_30Carbine_HP>Bullet_30Carbine_HP_SB</Ammo_30Carbine_HP>
+			<Ammo_30Carbine_Incendiary>Bullet_30Carbine_Incendiary_SB</Ammo_30Carbine_Incendiary>
+			<Ammo_30Carbine_HE>Bullet_30Carbine_HE_SB</Ammo_30Carbine_HE>
+			<Ammo_30Carbine_Sabot>Bullet_30Carbine_Sabot_SB</Ammo_30Carbine_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>
+	</CombatExtended.AmmoSetDef>	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="30CarbineBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -196,6 +210,86 @@
 			<speed>166</speed>
 		</projectile>
 	</ThingDef>
+
+	<!-- Short barrel (Pistol) -->
+
+	<ThingDef ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_FMJ_SB</defName>
+		<label>.30 Carbine bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.78</armorPenetrationBlunt>
+			<speed>109</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_AP_SB</defName>
+		<label>.30 Carbine bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.78</armorPenetrationBlunt>
+			<speed>109</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_HP_SB</defName>
+		<label>.30 Carbine bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.78</armorPenetrationBlunt>
+			<speed>109</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_Incendiary_SB</defName>
+		<label>.30 Carbine bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.78</armorPenetrationBlunt>
+			<speed>109</speed>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>5</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_HE_SB</defName>
+		<label>.30 Carbine bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.78</armorPenetrationBlunt>
+			<speed>109</speed>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_Sabot_SB</defName>
+		<label>.30 Carbine bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>24.08</armorPenetrationBlunt>
+			<speed>148</speed>
+		</projectile>
+	</ThingDef>	
 
 	<!-- ==================== Recipes ========================== -->
 
