@@ -21,6 +21,8 @@ namespace CombatExtended
 
         public static RulePackDef Shelling => shellingDamageEvent ??= CE_RulePackDefOf.DamageEvent_Shelling;
 
+        public override bool AnimalsFleeImpact => true;
+
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
             var ed = equipmentDef ?? ThingDef.Named("Gun_Autopistol");
