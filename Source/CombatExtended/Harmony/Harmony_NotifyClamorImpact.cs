@@ -14,6 +14,7 @@ public class Harmony_NotifyClamorImpact
             (__instance.pawn.playerSettings == null || __instance.pawn.playerSettings.Master == null) &&
             Rand.Chance(0.6f) && FleeUtility.ShouldAnimalFleeDanger(__instance.pawn))
         {
+            __instance.canSleepTick = Find.TickManager.TicksGame + 1000;
             __instance.StartFleeingBecauseOfPawnAction(proj);
             return false;
         }
