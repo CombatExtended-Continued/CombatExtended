@@ -157,7 +157,7 @@ namespace CombatExtended
 
 
         protected Sustainer ambientSustainer;
-        
+
         public virtual bool AnimalsFleeImpact => false;
 
         #endregion

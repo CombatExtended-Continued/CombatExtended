@@ -10,6 +10,9 @@ namespace CombatExtended
 {
     public class ProjectileCE_SpawnsThing : ProjectileCE
     {
+
+        public override bool AnimalsFleeImpact => false;
+
         public override void Impact(Thing hitThing)
         {
             Map map = Map;
