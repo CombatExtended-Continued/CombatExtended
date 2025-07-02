@@ -424,7 +424,6 @@ namespace CombatExtended
             }
             var distFromCenter = c.DistanceTo(Position) * Controller.settings.ExplosionFalloffFactor;
             return Mathf.Max(GenMath.RoundRandom(damAmount * FalloffCurve.Evaluate(distFromCenter) * Controller.settings.ExplosionPenMultiplier), 1);
-            
         }
         public float GetArmorPenetrationAtCE(IntVec3 c)
         {
