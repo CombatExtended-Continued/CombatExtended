@@ -63,7 +63,7 @@ namespace CombatExtended
             }
 
             //Calls CompExplosive _first_
-            base.Tick();
+            base.TickInterval(delta);
 
             // Cook off ammo based on how much damage we've taken so far
             for (int i = 0; i < delta; i++) // Might feel weird in practice, could be reverted to regular ticks
