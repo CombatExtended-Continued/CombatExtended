@@ -77,6 +77,7 @@ namespace CombatExtended.HarmonyCE
                     yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(CompExplosive), nameof(CompExplosive.destroyedThroughDetonation)));    //Send along whether the thing should be destroyed
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingComp), nameof(ThingComp.parent)));                //Send along parent, e.g the thing that should be destroyed
+                    yield return new CodeInstruction(OpCodes.Ldnull);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GenExplosionCE), nameof(GenExplosionCE.DoExplosion)));
 
                     // Fragment part
