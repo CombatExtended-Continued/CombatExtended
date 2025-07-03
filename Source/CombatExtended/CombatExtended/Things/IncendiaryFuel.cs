@@ -39,7 +39,7 @@ namespace CombatExtended
             }
         }
 
-        public override void Tick()
+        public override void TickInterval(int delta)
         {
             if (Position.GetThingList(base.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam) || Position.GetTerrain(base.Map).IsWater)
             {

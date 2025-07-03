@@ -249,9 +249,9 @@ namespace CombatExtended
             return BlockerRegistry.PawnUnsuppressableFromCallback(parent as Pawn, origin) || SuppressionUtility.InterceptorZonesFor((Pawn)parent).Where(x => x.Contains(parent.Position)).Any(x => !x.Contains(origin));
         }
 
-        public override void CompTick()
+        public override void CompTickInterval(int delta)
         {
-            base.CompTick();
+            base.CompTickInterval(delta);
 
             // Update suppressed tick counter and check for mental breaks
             if (!isSuppressed)
@@ -260,7 +260,7 @@ namespace CombatExtended
             }
             else if (IsHunkering)
             {
-                ticksHunkered++;
+                ticksHunkered += delta;
             }
 
             if (ticksHunkered > MinTicksUntilMentalBreak && Rand.Chance(ChanceBreakPerTick))
@@ -279,7 +279,7 @@ namespace CombatExtended
             //Apply decay once per second
             if (ticksUntilDecay > 0)
             {
-                ticksUntilDecay--;
+                ticksUntilDecay -= delta;
             }
             else if (currentSuppression > 0)
             {
@@ -288,7 +288,7 @@ namespace CombatExtended
                 {
                     MoteMakerCE.ThrowText(parent.DrawPos, parent.Map, "-" + (SuppressionDecayRate * 30), Color.red);
                 }
-                currentSuppression -= Mathf.Min(SuppressionDecayRate, currentSuppression);
+                currentSuppression -= Mathf.Min(SuppressionDecayRate * delta, currentSuppression);
                 isSuppressed = currentSuppression > 0;
 
                 // Clear crouch-walking
@@ -298,11 +298,11 @@ namespace CombatExtended
                 }
 
                 //Decay location suppression
-                locSuppressionAmount -= Mathf.Min(SuppressionDecayRate, locSuppressionAmount);
+                locSuppressionAmount -= Mathf.Min(SuppressionDecayRate * delta, locSuppressionAmount);
             }
 
             // Throw mote at set interval
-            if (parent.IsHashIntervalTick(TicksPerMote) && CanReactToSuppression)
+            if (parent.IsHashIntervalTick(TicksPerMote, delta) && CanReactToSuppression)
             {
                 if (this.IsHunkering)
                 {
@@ -314,7 +314,7 @@ namespace CombatExtended
                 }
             }
             if (!parent.Faction.IsPlayerSafe()
-                    && parent.IsHashIntervalTick(120)
+                    && parent.IsHashIntervalTick(120, delta)
                     && isSuppressed
                     && GenTicks.TicksGame - lastHelpRequestAt > HelpRequestCooldown)
             {

@@ -20,14 +20,14 @@ namespace CombatExtended
             _lifetime = Rand.Range(Props.MinTicks, Props.MaxTicks);
         }
 
-        public override void CompPostTick(ref float severityAdjustment)
+        public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
             _isPermanent ??= parent.IsPermanent();
 
-            base.CompPostTick(ref severityAdjustment);
+            base.CompPostTickInterval(ref severityAdjustment, delta);
             if (parent.ageTicks < _lifetime && !_isPermanent.Value)
             {
-                HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.VenomBuildup, _venomPerTick);
+                HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.VenomBuildup, _venomPerTick * delta);
             }
         }
 

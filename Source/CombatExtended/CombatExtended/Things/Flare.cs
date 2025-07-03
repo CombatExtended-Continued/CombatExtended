@@ -256,9 +256,9 @@ namespace CombatExtended
 
         private static readonly Vector3 _moteDrawOffset = new Vector3(0, 0, -0.5f);
 
-        public override void Tick()
+        public override void TickInterval(int delta)
         {
-            base.Tick();
+            base.TickInterval(delta);
             if (nextSmokePuff <= 0)
             {
                 /*
@@ -316,7 +316,7 @@ namespace CombatExtended
 
                 nextSmokePuff = Rand.Range(SMOKE_MIN_INTERVAL, SMOKE_MAX_INTERVAL);
             }
-            nextSmokePuff--;
+            nextSmokePuff -= delta;
             if (Progress >= 0.99f)
             {
                 Destroy();

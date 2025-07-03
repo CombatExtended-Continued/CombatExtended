@@ -97,17 +97,17 @@ namespace CombatExtended
             }
         }
 
-        public override void CompPostTick(ref float severityAdjustment)
+        public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
             if (!(_tendedOutside && IsInternal) && parent.TryGetComp<HediffComp_TendDuration>().IsTended)
             {
-                _ticksTended++;
+                _ticksTended += delta;
             }
 
             if (!_alreadyCausedInfection && _ticksUntilInfect > 0)
             {
-                _ticksUntilInfect--;
-                if (_ticksUntilInfect == 0)
+                _ticksUntilInfect -= delta;
+                if (_ticksUntilInfect <= 0)
                 {
                     CheckMakeInfection();
                 }
