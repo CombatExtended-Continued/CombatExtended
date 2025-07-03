@@ -17,6 +17,7 @@ namespace CombatExtended
 
             if (hitThing is Building)
             {
+                GenClamor.DoClamor(this, 12f, ClamorDefOf.Impact);
                 var props = (ProjectilePropertiesCE)this.def.projectile;
 
                 float tiles_penetration = props.fuze_delay;

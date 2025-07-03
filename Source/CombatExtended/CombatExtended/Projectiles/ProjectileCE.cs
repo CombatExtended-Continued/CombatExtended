@@ -158,6 +158,8 @@ namespace CombatExtended
 
         protected Sustainer ambientSustainer;
 
+        public virtual bool AnimalsFleeImpact => false;
+
         #endregion
 
         protected float suppressionAmount;
@@ -1403,6 +1405,7 @@ namespace CombatExtended
             //{
             //    Find.CameraDriver.shaker.DoShake(cameraShakingInit);
             //}
+            GenClamor.DoClamor(this, 12f, ClamorDefOf.Impact);
             if (Controller.settings.EnableExtraEffects)
             {
                 ImpactFleckThrower.ThrowFleck(ExactPosition,

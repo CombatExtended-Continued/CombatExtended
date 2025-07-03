@@ -33,6 +33,8 @@ namespace CombatExtended
             }
         }
 
+        public override bool AnimalsFleeImpact => false;
+
         public override void Tick()
         {
             base.Tick();
