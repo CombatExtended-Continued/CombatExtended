@@ -77,24 +77,6 @@ namespace CombatExtended.HarmonyCE
     {
         private const float SmokeDensityPerInterval = 900f;
 
-        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            bool foundInjection = false;
-            foreach (CodeInstruction code in instructions)
-            {
-                if (code.opcode == OpCodes.Ldc_R4 && code.operand is float && (float)code.operand == 1f)
-                {
-                    code.operand = 0.6f;
-                    foundInjection = true;
-                }
-                yield return code;
-            }
-            if (!foundInjection)
-            {
-                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
-            }
-        }
-
         internal static void Postfix(Fire __instance)
         {
             if (__instance.Spawned
@@ -111,6 +93,28 @@ namespace CombatExtended.HarmonyCE
                     var newSmoke = (Smoke)GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
                     newSmoke.UpdateDensityBy(SmokeDensityPerInterval);
                 }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(Fire), "TickInterval")]
+    internal static class Harmony_Fire_TickInterval
+    {
+        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            bool foundInjection = false;
+            foreach (CodeInstruction code in instructions)
+            {
+                if (code.opcode == OpCodes.Ldc_R4 && code.operand is float operand && Mathf.Approximately(operand, 1f))
+                {
+                    code.operand = 0.6f;
+                    foundInjection = true;
+                }
+                yield return code;
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }
