@@ -24,6 +24,20 @@
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8x50mmRLebel_SB</defName>
+		<label>8x50mmR Lebel</label>
+		<ammoTypes>
+			<Ammo_8x50mmRLebel_FMJ>Bullet_8x50mmRLebel_FMJ_SB</Ammo_8x50mmRLebel_FMJ>
+			<Ammo_8x50mmRLebel_AP>Bullet_8x50mmRLebel_AP_SB</Ammo_8x50mmRLebel_AP>
+			<Ammo_8x50mmRLebel_HP>Bullet_8x50mmRLebel_HP_SB</Ammo_8x50mmRLebel_HP>
+			<Ammo_8x50mmRLebel_Incendiary>Bullet_8x50mmRLebel_Incendiary_SB</Ammo_8x50mmRLebel_Incendiary>
+			<Ammo_8x50mmRLebel_HE>Bullet_8x50mmRLebel_HE_SB</Ammo_8x50mmRLebel_HE>
+			<Ammo_8x50mmRLebel_Sabot>Bullet_8x50mmRLebel_Sabot_SB</Ammo_8x50mmRLebel_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="8x50mmRLebelBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -196,6 +210,86 @@
 			<speed>191</speed>
 		</projectile>
 	</ThingDef>
+
+	<!-- Short barrel (Carbine) -->
+
+	<ThingDef ParentName="Base8x50mmRLebelBullet">
+		<defName>Bullet_8x50mmRLebel_FMJ_SB</defName>
+		<label>8mmR Lebel bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>51.94</armorPenetrationBlunt>
+			<speed>127</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmRLebelBullet">
+		<defName>Bullet_8x50mmRLebel_AP_SB</defName>
+		<label>8mmR Lebel bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>51.94</armorPenetrationBlunt>
+			<speed>127</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmRLebelBullet">
+		<defName>Bullet_8x50mmRLebel_HP_SB</defName>
+		<label>8mmR Lebel bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>23</damageAmountBase>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>51.94</armorPenetrationBlunt>
+			<speed>127</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmRLebelBullet">
+		<defName>Bullet_8x50mmRLebel_Incendiary_SB</defName>
+		<label>8mmR Lebel bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>51.94</armorPenetrationBlunt>
+			<speed>127</speed>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>7</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmRLebelBullet">
+		<defName>Bullet_8x50mmRLebel_HE_SB</defName>
+		<label>8mmR Lebel bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>51.94</armorPenetrationBlunt>
+			<speed>127</speed>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>9</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmRLebelBullet">
+		<defName>Bullet_8x50mmRLebel_Sabot_SB</defName>
+		<label>8mmR Lebel bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>17.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>66.64</armorPenetrationBlunt>
+			<speed>177</speed>
+		</projectile>
+	</ThingDef>	
 
 	<!-- ==================== Recipes ========================== -->
 
