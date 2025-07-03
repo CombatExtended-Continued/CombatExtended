@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Psycasts Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="VREA_PsychicWarp" or defName="VREA_PsychicThrow"]/range</xpath>
+					<value>
+						<range>28</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="VREA_PsychicLance"]/range</xpath>
+					<value>
+						<range>55</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_PsychicThrow"]/projectile/armorPenetrationBase</xpath>
+					<value>
+						<armorPenetrationBase>10</armorPenetrationBase>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_PsychicWarp"]/projectile/armorPenetrationBase</xpath>
+					<value>
+						<armorPenetrationBase>22</armorPenetrationBase>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
