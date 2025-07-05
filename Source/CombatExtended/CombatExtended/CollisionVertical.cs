@@ -84,6 +84,11 @@ namespace CombatExtended
 
                 shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
 
+                if (pawn.Flying)
+                {
+                    heightAdjust += 0.5f * pawn.flight.PositionOffsetFactor;
+                }
+
                 // Humanlikes in combat crouch to reduce their profile
                 if (pawn.IsCrouching())
                 {
