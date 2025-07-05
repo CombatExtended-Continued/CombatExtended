@@ -124,7 +124,7 @@ namespace CombatExtended.HarmonyCE
             {
                 start = radialPatternRadii[count++];
             }
-            __result = count - 1;
+            __result = count;
             return false;
 
         }
