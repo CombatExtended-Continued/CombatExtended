@@ -120,11 +120,11 @@ namespace CombatExtended.HarmonyCE
             }
 #endif
             float start = radialPatternRadii[count];
-            while (start <= radius)
+            while (start <= radius && count < RadialPatternCount)
             {
                 start = radialPatternRadii[count++];
             }
-            __result = count - 1;
+            __result = count;
             return false;
 
         }
