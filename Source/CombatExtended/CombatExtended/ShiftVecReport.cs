@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using RimWorld;
 using Verse;
@@ -44,14 +45,17 @@ namespace CombatExtended
         public float lightingShift = 0f;
         public float weatherShift = 0f;
 
+        internal static SimpleCurve LightingShiftCurve = [];
+
         private float enviromentShiftInt = -1;
+
         public float enviromentShift
         {
             get
             {
                 if (enviromentShiftInt < 0)
                 {
-                    enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 7f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
+                    enviromentShiftInt = LightingShiftCurve.Evaluate(((blindFiring ? 1 : lightingShift)) + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
                 }
                 return enviromentShiftInt;
             }
@@ -71,6 +75,10 @@ namespace CombatExtended
                         se = 0.02f;
                     }
                     visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
+                    if (lightingShift >= 1f)
+                    {
+                        visibilityShiftInt += 1.5f;
+                    }
                 }
                 return visibilityShiftInt;
             }
