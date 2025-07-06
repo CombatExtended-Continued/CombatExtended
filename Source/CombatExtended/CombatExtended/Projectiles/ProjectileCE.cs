@@ -311,7 +311,7 @@ namespace CombatExtended
         /// <summary>
         /// Gravity factor in meters(cells) per second squared
         /// </summary>
-        public float GravityFactor = CE_Utility.GravityConst;
+        public float GravityFactor = CE_Utility.GravityConst / CE_Utility.MetersPerCellWidth;
 
         protected Material[] shadowMaterial;
         protected Material ShadowMaterial
@@ -392,7 +392,7 @@ namespace CombatExtended
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
-            Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
+            Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst / CE_Utility.MetersPerCellWidth);
             Scribe_Values.Look(ref LastPos, "lastPosition");
             Scribe_Values.Look(ref FlightTicks, "flightTicks");
             Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));

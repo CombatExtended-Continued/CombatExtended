@@ -56,7 +56,7 @@ namespace CombatExtended
 
         protected void AffectedByGravity(ProjectileCE projectile)
         {
-            projectile.velocity.y -= projectile.gravity / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
+            projectile.velocity.y -= projectile.gravity / CE_Utility.MetersPerCellHeight / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
         }
 
         protected void AffectedByDrag(ProjectileCE projectile)
