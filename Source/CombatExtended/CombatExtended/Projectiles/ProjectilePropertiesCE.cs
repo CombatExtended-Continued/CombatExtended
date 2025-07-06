@@ -67,7 +67,9 @@ namespace CombatExtended
         public float collideDistance = 1f;
         public float impactChance = 1f;
 
-        public float Gravity => CE_Utility.GravityConst * gravityFactor;
+        public double Gravity => CE_Utility.GravityConst * gravityFactor;
+        public float GravityPerHeight => (float)Gravity / CE_Utility.MetersPerCellHeight;
+        public float GravityPerWidth => (float)Gravity / CE_Utility.MetersPerCellWidth;
         public ThingDef CIWSVersion;
         public System.Type trajectoryWorker;
         private BaseTrajectoryWorker trajectoryWorkerInt;

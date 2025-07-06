@@ -29,15 +29,15 @@ namespace CombatExtended
             }
             return new Vector3(exactPosition.x, altitude, exactPosition.z + sh);
         }
-        public virtual Vector2 Destination(Vector2 origin, float shotRotation, float shotHeight, float shotSpeed, float shotAngle, float GravityFactor) => origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
-        public virtual float DistanceTraveled(float shotHeight, float shotSpeed, float shotAngle, float GravityFactor)
+        public virtual Vector2 Destination(Vector2 origin, float shotRotation, float shotHeight, float shotSpeed, float shotAngle, float gravityPerWidth) => origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled(shotHeight, shotSpeed, shotAngle, gravityPerWidth);
+        public virtual float DistanceTraveled(float shotHeight, float shotSpeed, float shotAngle, float gravityPerWidth)
         {
-            return CE_Utility.MaxProjectileRange(shotHeight, shotSpeed, shotAngle, GravityFactor);
+            return CE_Utility.MaxProjectileRange(shotHeight, shotSpeed, shotAngle, gravityPerWidth);
         }
-        public virtual float GetFlightTime(float shotAngle, float shotSpeed, float GravityFactor, float shotHeight)
+        public virtual float GetFlightTime(float shotAngle, float shotSpeed, float gravityPerWidth, float shotHeight)
         {
             //Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
-            return (Mathf.Sin(shotAngle) * shotSpeed + Mathf.Sqrt(Mathf.Pow(Mathf.Sin(shotAngle) * shotSpeed, 2f) + 2f * GravityFactor * shotHeight)) / GravityFactor;
+            return (Mathf.Sin(shotAngle) * shotSpeed + Mathf.Sqrt(Mathf.Pow(Mathf.Sin(shotAngle) * shotSpeed, 2f) + 2f * gravityPerWidth * shotHeight)) / gravityPerWidth;
         }
 
         public virtual float GetSpeed(Vector3 velocity)
@@ -85,10 +85,10 @@ namespace CombatExtended
             else
             {
                 var _speed = speed ?? projectilePropsCE.speed;
-                var gravity = projectilePropsCE.Gravity;
+                var gravityPerWidth = projectilePropsCE.GravityPerWidth;
                 var heightDifference = targetHeight - shotHeight;
                 var range = (newTargetLoc - sourceV2).magnitude;
-                float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_speed, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_speed, 2f)));
+                float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_speed, 4f) - gravityPerWidth * (gravityPerWidth * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_speed, 2f)));
                 if (float.IsNaN(squareRootCheck))
                 {
                     //Target is too far to hit with given velocity/range/gravity params
@@ -96,7 +96,7 @@ namespace CombatExtended
                     Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
                     return 45.0f * Mathf.Deg2Rad;
                 }
-                return Mathf.Atan((Mathf.Pow(_speed, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
+                return Mathf.Atan((Mathf.Pow(_speed, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravityPerWidth * range));
             }
         }
         public virtual float ShotRotation(ProjectilePropertiesCE projectilePropertiesCE, Vector3 source, Vector3 targetPos)
@@ -109,19 +109,19 @@ namespace CombatExtended
         {
             var distance = (pos - source).MagnitudeHorizontal();
             var heightOffset = pos.y - source.y;
-            var gravity = props.Gravity;
+            var gravityPerWidth = props.GravityPerWidth;
             var shotAngle = ShotAngle(props, source, pos, speed);
             var v_xz = speed * Mathf.Sin(shotAngle);
-            var d = v_xz * v_xz - 2 * gravity * heightOffset;
+            var d = v_xz * v_xz - 2 * gravityPerWidth * heightOffset;
             if (d < 0) // cannot actually reach the given location, probably too high up
             {
                 ticksToReach = 0;
                 return false;
             }
-            var ticksToReachFloat = (v_xz + Mathf.Sqrt(d)) / gravity;
+            var ticksToReachFloat = (v_xz + Mathf.Sqrt(d)) / gravityPerWidth;
             if (Mathf.Abs(ticksToReachFloat * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way up, must be after the zenith
             {
-                ticksToReachFloat = (v_xz - Mathf.Sqrt(d)) / gravity;
+                ticksToReachFloat = (v_xz - Mathf.Sqrt(d)) / gravityPerWidth;
                 if (Mathf.Abs(ticksToReachFloat * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, it's probably landed, or otherwise invalid
                 {
                     ticksToReach = 0;

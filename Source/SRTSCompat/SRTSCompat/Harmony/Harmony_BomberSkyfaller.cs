@@ -92,7 +92,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
                     bombProjectileCE.intendedTarget = null;
                     bombProjectileCE.AccuracyFactor = 1f;
 
-                    float freefallTime = Mathf.Sqrt(2 * shotHeight / bombPropsCE.Gravity / CE_Utility.MetersPerCellWidth); // Meters Per Cell Width is what the math had originally there prior to the constant change
+                    float freefallTime = Mathf.Sqrt(2 * shotHeight / bombPropsCE.GravityPerWidth); // Meters Per Cell Width is what the math had originally there prior to the constant change
                     float maxShotSpeed = targetingRadius / freefallTime;
 
                     bombProjectileCE.Launch(launcher: __instance,

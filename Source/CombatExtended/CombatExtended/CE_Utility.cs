@@ -1159,14 +1159,14 @@ namespace CombatExtended
             return thing.def.category == ThingCategory.Plant;
         }
 
-        public static float MaxProjectileRange(float shotHeight, float shotSpeed, float shotAngle, float gravityFactor)
+        public static float MaxProjectileRange(float shotHeight, float shotSpeed, float shotAngle, float gravityPerWidth)
         {
             //Fragment at 0f height early opt-out
             if (shotHeight < 0.001f)
             {
-                return (Mathf.Pow(shotSpeed, 2f) / gravityFactor) * Mathf.Sin(2f * shotAngle);
+                return (Mathf.Pow(shotSpeed, 2f) / gravityPerWidth) * Mathf.Sin(2f * shotAngle);
             }
-            return ((shotSpeed * Mathf.Cos(shotAngle)) / gravityFactor) * (shotSpeed * Mathf.Sin(shotAngle) + Mathf.Sqrt(Mathf.Pow(shotSpeed * Mathf.Sin(shotAngle), 2f) + 2f * gravityFactor * shotHeight));
+            return ((shotSpeed * Mathf.Cos(shotAngle)) / gravityPerWidth) * (shotSpeed * Mathf.Sin(shotAngle) + Mathf.Sqrt(Mathf.Pow(shotSpeed * Mathf.Sin(shotAngle), 2f) + 2f * gravityPerWidth * shotHeight));
         }
 
         #endregion Physics

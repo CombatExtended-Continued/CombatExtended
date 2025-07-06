@@ -44,12 +44,12 @@ namespace CombatExtended
         protected Vector3 GetPositionAtTick(ProjectileCE projectile, int tick)
         {
             var v = Vec2Position(projectile.origin, projectile.Destination, projectile.startingTicksToImpact, tick);
-            return new Vector3(v.x, GetHeightAtTicks(projectile.shotHeight, projectile.shotSpeed, projectile.shotAngle, tick, projectile.GravityFactor), v.y);
+            return new Vector3(v.x, GetHeightAtTicks(projectile.shotHeight, projectile.shotSpeed, projectile.shotAngle, tick, projectile.GravityPerWidth), v.y);
         }
-        protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks, float gravityFactor)
+        protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks, float gravityPerWidth)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
-            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (gravityFactor * seconds * seconds) / 2f, 3);
+            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (gravityPerWidth * seconds * seconds) / 2f, 3);
         }
         public Vector2 Vec2Position(Vector2 origin, Vector2 destination, float startingTicksToImpact, int ticks)
         {
