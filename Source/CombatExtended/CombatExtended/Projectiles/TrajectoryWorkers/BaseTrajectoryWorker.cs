@@ -85,7 +85,7 @@ namespace CombatExtended
             else
             {
                 var _speed = speed ?? projectilePropsCE.speed;
-                var gravity = projectilePropsCE.Gravity / CE_Utility.MetersPerCellHeight;
+                var gravity = projectilePropsCE.Gravity;
                 var heightDifference = targetHeight - shotHeight;
                 var range = (newTargetLoc - sourceV2).magnitude;
                 float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_speed, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_speed, 2f)));
