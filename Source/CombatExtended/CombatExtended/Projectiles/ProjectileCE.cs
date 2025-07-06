@@ -31,7 +31,9 @@ namespace CombatExtended
         public float ballisticCoefficient;
         public float mass;
         public float radius;
-        public float gravity;
+        public double gravity;
+        public float GravityPerWidth;
+        public float GravityPerHeight;
         public int fuelTicks;
         public Vector3 velocity;
         public float initialSpeed;
@@ -274,7 +276,7 @@ namespace CombatExtended
 
                 var vy = (w.y - shotHeight) / startingTicksToImpact
                          + shotSpeed * Mathf.Sin(shotAngle) / GenTicks.TicksPerRealSecond
-                         - (GravityFactor * FlightTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
+                         - (GravityPerWidth * FlightTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
 
                 return Quaternion.AngleAxis(
                            Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
@@ -307,11 +309,6 @@ namespace CombatExtended
         /// The assigned shot speed [cells/s] (not speed in y axis or x-z plane), in general equal to the projectile.def.speed value.
         /// </summary>
         public float shotSpeed = -1f;
-
-        /// <summary>
-        /// Gravity factor in meters(cells) per second squared
-        /// </summary>
-        public float GravityFactor = CE_Utility.GravityConst;
 
         protected Material[] shadowMaterial;
         protected Material ShadowMaterial
@@ -392,12 +389,18 @@ namespace CombatExtended
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
-            Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
+            // Scribe_Values.Look(ref GravityPerWidth, "gravityFactor", CE_Utility.GravityConst / CE_Utility.MetersPerCellWidth);
             Scribe_Values.Look(ref LastPos, "lastPosition");
             Scribe_Values.Look(ref FlightTicks, "flightTicks");
             Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
             Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
             // To insure saves don't get affected..
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+
+                GravityPerHeight = this.Props.GravityPerHeight;
+                GravityPerWidth = this.Props.GravityPerWidth;
+            }
         }
         #endregion
 
@@ -427,6 +430,8 @@ namespace CombatExtended
             mass = projectileProperties.mass.RandomInRange;
             radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
             gravity = projectileProperties.Gravity;
+            GravityPerWidth = projectileProperties.GravityPerWidth;
+            GravityPerHeight = projectileProperties.GravityPerHeight;
             fuelTicks = projectileProperties.fuelTicks;
             initialSpeed = shotSpeed;
             var worker = (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
@@ -604,11 +609,12 @@ namespace CombatExtended
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 this.castShadow = props.castShadow;
-                this.GravityFactor = props.Gravity;
                 ballisticCoefficient = props.ballisticCoefficient.RandomInRange;
                 mass = props.mass.RandomInRange;
                 radius = props.diameter.RandomInRange / 2000; // half the diameter and mm -> m
                 gravity = props.Gravity;
+                GravityPerWidth = props.GravityPerWidth;
+                GravityPerHeight = props.GravityPerHeight;
                 fuelTicks = props.fuelTicks;
             }
             if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Spawned && Position.Roofed(launcher.Map))
@@ -635,7 +641,7 @@ namespace CombatExtended
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
-            this.startingTicksToImpact = TrajectoryWorker.GetFlightTime(shotAngle, shotSpeed, GravityFactor, shotHeight) * GenTicks.TicksPerRealSecond;
+            this.startingTicksToImpact = TrajectoryWorker.GetFlightTime(shotAngle, shotSpeed, GravityPerWidth, shotHeight) * GenTicks.TicksPerRealSecond;
             this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
             this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
 
@@ -1665,7 +1671,7 @@ namespace CombatExtended
         protected float GetHeightAtTicks(int ticks)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
-            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);
+            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityPerWidth * seconds * seconds) / 2f, 3);
         }
 
         /// <summary>
@@ -1684,7 +1690,7 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
-        protected float DistanceTraveled => TrajectoryWorker.DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
+        protected float DistanceTraveled => TrajectoryWorker.DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityPerWidth);
 
         #endregion
 

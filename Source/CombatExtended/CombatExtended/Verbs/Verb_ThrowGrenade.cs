@@ -97,7 +97,7 @@ namespace CombatExtended
                 X = new Vector2(tc.x - target.Cell.x, tc.z - target.Cell.z).magnitude;
             }
             //TODO: Allow different gravity for SOS2 and similar
-            float gravity = 1.96f / GenTicks.TicksPerRealSecond;
+            float gravity = projectilePropsCE.GravityPerHeight / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
 
             for (int i = 0; i < endCell; i++)
             {

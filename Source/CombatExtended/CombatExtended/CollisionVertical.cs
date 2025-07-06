@@ -13,7 +13,6 @@ namespace CombatExtended
     {
         public const float ThickRoofThicknessMultiplier = 2f;
         public const float NaturalRoofThicknessMultiplier = 2f;
-        public const float MeterPerCellHeight = 1.75f;
         public const float WallCollisionHeight = 2f;       // Walls are this tall
         public const float BodyRegionBottomHeight = 0.45f;  // Hits below this percentage will impact the corresponding body region
         public const float BodyRegionMiddleHeight = 0.85f;  // This also sets the altitude at which pawns hold their guns

@@ -108,7 +108,7 @@ namespace CombatExtended
             {
                 if (CompCharges != null)
                 {
-                    if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, ShotHeight, projectilePropsCE.Gravity, out var bracket))
+                    if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, ShotHeight, projectilePropsCE.GravityPerWidth, out var bracket))
                     {
                         shotSpeed = bracket.x;
                     }

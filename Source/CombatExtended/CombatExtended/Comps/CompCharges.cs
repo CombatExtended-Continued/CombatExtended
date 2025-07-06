@@ -15,7 +15,7 @@ namespace CombatExtended
 
         public CompProperties_Charges Props => (CompProperties_Charges)props;
 
-        public bool GetChargeBracket(float range, float shotHeight, float gravityFactor, out Vector2 bracket)
+        public bool GetChargeBracket(float range, float shotHeight, float gravityPerWidth, out Vector2 bracket)
         {
             bracket = new Vector2(0, 0);
             if (Props.chargeSpeeds.Count <= 0)
@@ -25,7 +25,7 @@ namespace CombatExtended
             }
             foreach (var speed in Props.chargeSpeeds)
             {
-                var curRange = CE_Utility.MaxProjectileRange(shotHeight, speed, MaxRangeAngle, gravityFactor);
+                var curRange = CE_Utility.MaxProjectileRange(shotHeight, speed, MaxRangeAngle, gravityPerWidth);
                 if (range <= curRange)
                 {
                     bracket = new Vector2(speed, curRange);
