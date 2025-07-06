@@ -70,16 +70,17 @@ namespace CombatExtended
         {
             if (req.HasThing && req.Thing != null)
             {
-                var BipodCompProps = bipodComp(req);
-                var VerbPropsCE = verbPropsCE(req);
-                string result = "CE_BipodSetupTime".Translate() + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)";
+                CompProperties_BipodComp bipodCompProps = bipodComp(req);
+                bool bipodSetup = req.Thing?.TryGetComp<BipodComp>()?.IsSetUpRn ?? false;
+                VerbPropertiesCE verbPropsCe = verbPropsCE(req);
+                string result = "CE_BipodSetupTime".Translate() + bipodCompProps.ticksToSetUp + " ticks (" + (bipodCompProps.ticksToSetUp / 60) + "s)";
 
                 if (Controller.settings.AutoSetUp)
                 {
                     result += "\n" + "CE_BipodAutoSetupMode".Translate() + "\n";
-                    if (BipodCompProps.catDef.useAutoSetMode)
+                    if (bipodCompProps.catDef.useAutoSetMode)
                     {
-                        result += "- " + BipodCompProps.catDef.autosetMode.ToString() + "\n";
+                        result += "- " + bipodCompProps.catDef.autosetMode.ToString() + "\n";
                     }
                     else
                     {
@@ -88,90 +89,118 @@ namespace CombatExtended
                     }
 
                 }
-
                 result += "\n" + "CE_BipodStatWhenSetUp".Translate().Colorize(ColorLibrary.Green) + "\n";
+                if (bipodSetup)
+                {
+                    result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount), 2);
+                    result += "\n";
 
-                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
-                result += "\n";
+                    result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * bipodCompProps.swayMult), 2);
+                    result += "\n";
 
-                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
-                result += "\n";
+                    result += "CE_BipodStatRange".Translate() + ": " + (verbPropsCe.range);
+                    result += "\n";
 
-                result += "CE_BipodStatRange".Translate() + ": " + (BipodCompProps.additionalrange + VerbPropsCE.range);
-                result += "\n";
+                    result += "CE_BipodStatWarmUp".Translate() + ": " + (verbPropsCe.warmupTime);
+                    result += "\n" + "\n";
 
-                result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupMult * VerbPropsCE.warmupTime);
-                result += "\n" + "\n";
+                    result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(ColorLibrary.LogError) + "\n";
 
-                result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(ColorLibrary.LogError) + "\n";
+                    result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMultoff / bipodCompProps.recoilMulton), 2);
 
-                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff), 2);
+                    result += "\n";
 
-                result += "\n";
+                    result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * bipodCompProps.swayPenalty), 2);
 
-                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty), 2);
+                    result += "\n";
 
-                result += "\n";
+                    result += "CE_BipodStatRange".Translate() + ": " + (verbPropsCe.range - bipodCompProps.additionalrange);
 
-                result += "CE_BipodStatRange".Translate() + ": " + (VerbPropsCE.range);
+                    result += "\n";
 
-                result += "\n";
+                    result += "CE_BipodStatWarmUp".Translate() + ": " + (bipodCompProps.warmupPenalty * verbPropsCe.warmupTime / bipodCompProps.warmupMult);
+                }
+                else
+                {
 
-                result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupPenalty * VerbPropsCE.warmupTime);
+                    result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMulton), 2);
+                    result += "\n";
 
+                    result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * bipodCompProps.swayMult), 2);
+                    result += "\n";
+
+                    result += "CE_BipodStatRange".Translate() + ": " + (bipodCompProps.additionalrange + verbPropsCe.range);
+                    result += "\n";
+
+                    result += "CE_BipodStatWarmUp".Translate() + ": " + (bipodCompProps.warmupMult * verbPropsCe.warmupTime);
+                    result += "\n" + "\n";
+
+                    result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(ColorLibrary.LogError) + "\n";
+
+                    result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMultoff), 2);
+
+                    result += "\n";
+
+                    result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * bipodCompProps.swayPenalty), 2);
+
+                    result += "\n";
+
+                    result += "CE_BipodStatRange".Translate() + ": " + (verbPropsCe.range);
+
+                    result += "\n";
+
+                    result += "CE_BipodStatWarmUp".Translate() + ": " + (bipodCompProps.warmupPenalty * verbPropsCe.warmupTime);
+                }
                 return result;
             }
-            else if (req.Def != null)
+            if (req.Def != null)
             {
-                var BipodCompProps = bipodCompDef(req);
+                CompProperties_BipodComp bipodCompProps = bipodCompDef(req);
 
-                var VerbPropsCE = verbPropsDef(req);
+                VerbPropertiesCE verbPropsCe = verbPropsDef(req);
 
-                if (VerbPropsCE == null | BipodCompProps == null)
+                if (verbPropsCe == null | bipodCompProps == null)
                 {
                     return base.GetExplanationFinalizePart(req, numberSense, finalVal);
                 }
 
-                string result = "CE_BipodSetupTime".Translate() + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "Stats when set up: ".Colorize(ColorLibrary.Green) + "\n";
+                string result = "CE_BipodSetupTime".Translate() + bipodCompProps.ticksToSetUp + " ticks (" + (bipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "Stats when set up: ".Colorize(ColorLibrary.Green) + "\n";
 
-                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
-
-                result += "\n";
-
-                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
+                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMulton), 2);
 
                 result += "\n";
 
-                result += "CE_BipodStatRange".Translate() + ": " + (BipodCompProps.additionalrange + VerbPropsCE.range);
+                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * bipodCompProps.swayMult), 2);
 
                 result += "\n";
 
-                result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupMult * VerbPropsCE.warmupTime);
+                result += "CE_BipodStatRange".Translate() + ": " + (bipodCompProps.additionalrange + verbPropsCe.range);
+
+                result += "\n";
+
+                result += "CE_BipodStatWarmUp".Translate() + ": " + (bipodCompProps.warmupMult * verbPropsCe.warmupTime);
 
                 result += "\n" + "\n";
 
                 result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(ColorLibrary.LogError) + "\n";
 
-                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff), 2);
+                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMultoff), 2);
 
                 result += "\n";
 
-                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty), 2);
+                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * bipodCompProps.swayPenalty), 2);
 
                 result += "\n";
 
-                result += "CE_BipodStatRange".Translate() + ": " + (VerbPropsCE.range);
+                result += "CE_BipodStatRange".Translate() + ": " + (verbPropsCe.range);
 
                 result += "\n";
 
-                result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupPenalty * VerbPropsCE.warmupTime);
+                result += "CE_BipodStatWarmUp".Translate() + ": " + (bipodCompProps.warmupPenalty * verbPropsCe.warmupTime);
 
                 return result;
             }
-            else
-            {
-                return base.GetExplanationFinalizePart(req, numberSense, finalVal);
-            }
+            return base.GetExplanationFinalizePart(req, numberSense, finalVal);
         }
 
         public override string ValueToString(float val, bool finalized, ToStringNumberSense numberSense = ToStringNumberSense.Absolute)
