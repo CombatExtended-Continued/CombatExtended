@@ -6,15 +6,13 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+[DefOf]
+public class CE_BodyPartTagDefOf
 {
-    [DefOf]
-    public class CE_BodyPartTagDefOf
+    static CE_BodyPartTagDefOf()
     {
-        static CE_BodyPartTagDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(CE_BodyPartTagDefOf));
-        }
-        public static BodyPartTagDef OutsideSquishy;
+        DefOfHelper.EnsureInitializedInCtor(typeof(CE_BodyPartTagDefOf));
     }
+    public static BodyPartTagDef OutsideSquishy;
 }

@@ -6,166 +6,164 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class AmmoDef : ThingDef
 {
-    public class AmmoDef : ThingDef
+    public AmmoCategoryDef ammoClass;
+    public int defaultAmmoCount = 1;
+    public float cookOffSpeed = 1f;
+    public float cookOffFlashScale = 1;
+    public float worldTilesPerTick = 0.2f;
+    public bool menuHidden;
+    public ThingDef cookOffProjectile = null;
+    public SoundDef cookOffSound = null;
+    public SoundDef cookOffTailSound = null;
+    public ThingDef detonateProjectile = null;
+
+    // mortar ammo should still availabe when the ammo system is off        
+    public bool isMortarAmmo = false;
+    public bool spawnAsSiegeAmmo = true;
+
+    public int ammoCount = 1;
+    public ThingDef partialUnloadAmmoDef = null;
+
+    public List<string> ammoTags;
+
+    private List<DefHyperlink> originalHyperlinks;
+
+    private List<ThingDef> users;
+    public List<ThingDef> Users
     {
-        public AmmoCategoryDef ammoClass;
-        public int defaultAmmoCount = 1;
-        public float cookOffSpeed = 1f;
-        public float cookOffFlashScale = 1;
-        public float worldTilesPerTick = 0.2f;
-        public bool menuHidden;
-        public ThingDef cookOffProjectile = null;
-        public SoundDef cookOffSound = null;
-        public SoundDef cookOffTailSound = null;
-        public ThingDef detonateProjectile = null;
-
-        // mortar ammo should still availabe when the ammo system is off        
-        public bool isMortarAmmo = false;
-        public bool spawnAsSiegeAmmo = true;
-
-        public int ammoCount = 1;
-        public ThingDef partialUnloadAmmoDef = null;
-
-        public List<string> ammoTags;
-
-        private List<DefHyperlink> originalHyperlinks;
-
-        private List<ThingDef> users;
-        public List<ThingDef> Users
+        get
         {
-            get
+            if (users == null)
             {
-                if (users == null)
+                users = CE_Utility.allWeaponDefs.FindAll(delegate (ThingDef def)
                 {
-                    users = CE_Utility.allWeaponDefs.FindAll(delegate (ThingDef def)
+                    CompProperties_AmmoUser props = def.GetCompProperties<CompProperties_AmmoUser>();
+                    if (props?.ammoSet?.ammoTypes != null)
                     {
-                        CompProperties_AmmoUser props = def.GetCompProperties<CompProperties_AmmoUser>();
-                        if (props?.ammoSet?.ammoTypes != null)
-                        {
-                            return props.ammoSet.ammoTypes.Any(x => x.ammo == this);
-                        }
-                        return false;
-                    });
-
-                    if (users != null && !users.Any())
-                    {
-                        return users;
+                        return props.ammoSet.ammoTypes.Any(x => x.ammo == this);
                     }
+                    return false;
+                });
 
-                    if (descriptionHyperlinks.NullOrEmpty())
+                if (users != null && !users.Any())
+                {
+                    return users;
+                }
+
+                if (descriptionHyperlinks.NullOrEmpty())
+                {
+                    descriptionHyperlinks = new List<DefHyperlink>();
+                }
+                else
+                {
+                    if (originalHyperlinks.NullOrEmpty())
                     {
-                        descriptionHyperlinks = new List<DefHyperlink>();
+                        originalHyperlinks = new List<DefHyperlink>();
+
+                        foreach (var i in descriptionHyperlinks)
+                        {
+                            originalHyperlinks.Add(i);
+                        }
                     }
                     else
                     {
-                        if (originalHyperlinks.NullOrEmpty())
+                        var exceptList = descriptionHyperlinks.Except(originalHyperlinks).ToList();
+                        foreach (var i in exceptList)
                         {
-                            originalHyperlinks = new List<DefHyperlink>();
-
-                            foreach (var i in descriptionHyperlinks)
-                            {
-                                originalHyperlinks.Add(i);
-                            }
-                        }
-                        else
-                        {
-                            var exceptList = descriptionHyperlinks.Except(originalHyperlinks).ToList();
-                            foreach (var i in exceptList)
-                            {
-                                descriptionHyperlinks.Remove(i);
-                                i.def.descriptionHyperlinks.Remove(this);
-                            }
+                            descriptionHyperlinks.Remove(i);
+                            i.def.descriptionHyperlinks.Remove(this);
                         }
                     }
+                }
 
-                    foreach (var user in users)
+                foreach (var user in users)
+                {
+                    descriptionHyperlinks.Add(user);
+
+                    if (user.descriptionHyperlinks.NullOrEmpty())
                     {
-                        descriptionHyperlinks.Add(user);
-
-                        if (user.descriptionHyperlinks.NullOrEmpty())
-                        {
-                            user.descriptionHyperlinks = new List<DefHyperlink>();
-                        }
-
-                        user.descriptionHyperlinks.Add(this);
+                        user.descriptionHyperlinks = new List<DefHyperlink>();
                     }
 
-                }
-                return users;
-            }
-        }
-
-        private List<AmmoSetDef> ammoSetDefs;
-        public List<AmmoSetDef> AmmoSetDefs
-        {
-            get
-            {
-                if (ammoSetDefs == null)
-                {
-                    ammoSetDefs = Users.Select(x => x.GetCompProperties<CompProperties_AmmoUser>().ammoSet).Distinct().ToList();
+                    user.descriptionHyperlinks.Add(this);
                 }
 
-                return ammoSetDefs;
             }
+            return users;
         }
+    }
 
-        [NoTranslate]
-        private string oldDescription;
-        public void AddDescriptionParts()
+    private List<AmmoSetDef> ammoSetDefs;
+    public List<AmmoSetDef> AmmoSetDefs
+    {
+        get
         {
-            if (ammoClass != null)
+            if (ammoSetDefs == null)
             {
-                if (oldDescription.NullOrEmpty())
-                {
-                    oldDescription = description;
-                }
-
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.AppendLine(oldDescription);
-
-                // Append ammo class description
-                stringBuilder.AppendLine("\n" + ammoClass.LabelCap + ":");
-                stringBuilder.AppendLine(ammoClass.description);
-
-                // Append guns that use this caliber
-                if (!Users.NullOrEmpty())
-                {
-                    stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
-                }
-
-                description = stringBuilder.ToString().TrimEndNewlines();
+                ammoSetDefs = Users.Select(x => x.GetCompProperties<CompProperties_AmmoUser>().ammoSet).Distinct().ToList();
             }
+
+            return ammoSetDefs;
         }
+    }
 
-        public override IEnumerable<string> ConfigErrors()
+    [NoTranslate]
+    private string oldDescription;
+    public void AddDescriptionParts()
+    {
+        if (ammoClass != null)
         {
-            foreach (string s in base.ConfigErrors())
+            if (oldDescription.NullOrEmpty())
             {
-                yield return s;
+                oldDescription = description;
             }
-            if (HasComp(typeof(CompApparelReloadable)) && stackLimit > 1)
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(oldDescription);
+
+            // Append ammo class description
+            stringBuilder.AppendLine("\n" + ammoClass.LabelCap + ":");
+            stringBuilder.AppendLine(ammoClass.description);
+
+            // Append guns that use this caliber
+            if (!Users.NullOrEmpty())
             {
-                yield return "has compreloadable and a stack limit higher than 1. this is not recommended.";
+                stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
             }
+
+            description = stringBuilder.ToString().TrimEndNewlines();
         }
+    }
 
-        public override void ResolveReferences()
+    public override IEnumerable<string> ConfigErrors()
+    {
+        foreach (string s in base.ConfigErrors())
         {
-            base.ResolveReferences();
+            yield return s;
+        }
+        if (HasComp(typeof(CompApparelReloadable)) && stackLimit > 1)
+        {
+            yield return "has compreloadable and a stack limit higher than 1. this is not recommended.";
+        }
+    }
 
-            if (detonateProjectile != null)
+    public override void ResolveReferences()
+    {
+        base.ResolveReferences();
+
+        if (detonateProjectile != null)
+        {
+            foreach (var comp in detonateProjectile.comps)
             {
-                foreach (var comp in detonateProjectile.comps)
+                if (!comps.Any(x => x.compClass == comp.compClass)
+                        && (comp.compClass == typeof(CompFragments)
+                            || comp.compClass == typeof(CompExplosive)
+                            || comp.compClass == typeof(CompExplosiveCE)))
                 {
-                    if (!comps.Any(x => x.compClass == comp.compClass)
-                            && (comp.compClass == typeof(CompFragments)
-                                || comp.compClass == typeof(CompExplosive)
-                                || comp.compClass == typeof(CompExplosiveCE)))
-                    {
-                        comps.Add(comp);
-                    }
+                    comps.Add(comp);
                 }
             }
         }

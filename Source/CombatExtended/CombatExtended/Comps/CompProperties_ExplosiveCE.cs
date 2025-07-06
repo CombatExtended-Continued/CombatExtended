@@ -6,79 +6,77 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+/// <summary>
+/// Version of CompPropertes_Explosive that does not use the wicker
+/// </summary>
+public class CompProperties_ExplosiveCE : CompProperties
 {
+    public float damageAmountBase = -1;
+    public List<ThingDefCountClass> fragments = new List<ThingDefCountClass>();
+    public float fragSpeedFactor = 1f;
+
+    /// <summary>Default value 1.9f as for CompProperties_Explosive</summary>
+    public float explosiveRadius = 1.9f;
+    public DamageDef explosiveDamageType;
+    // instigator
+    public SoundDef explosionSound = null;
+    // projectile = parent.def
+    // source = null
+    public ThingDef postExplosionSpawnThingDef = null;
+    public float postExplosionSpawnChance = 0;
+    public int postExplosionSpawnThingCount = 1;
+    public bool applyDamageToExplosionCellsNeighbors = false;
+    public ThingDef preExplosionSpawnThingDef = null;
+    public float preExplosionSpawnChance = 0;
+    public int preExplosionSpawnThingCount = 1;
+    public bool damageFalloff = true;
+    public float chanceToStartFire;
+    public float screenShakeFactor;
+
     /// <summary>
-    /// Version of CompPropertes_Explosive that does not use the wicker
+    /// The type of built-in core game gas to spawn on detonation.
     /// </summary>
-    public class CompProperties_ExplosiveCE : CompProperties
+    public GasType? postExplosionGasType;
+
+    public float? postExplosionGasRadiusOverride;
+
+    public int postExplosionGasAmount = 255;
+
+    public CompProperties_ExplosiveCE()
     {
-        public float damageAmountBase = -1;
-        public List<ThingDefCountClass> fragments = new List<ThingDefCountClass>();
-        public float fragSpeedFactor = 1f;
+        compClass = typeof(CompExplosiveCE);
+    }
 
-        /// <summary>Default value 1.9f as for CompProperties_Explosive</summary>
-        public float explosiveRadius = 1.9f;
-        public DamageDef explosiveDamageType;
-        // instigator
-        public SoundDef explosionSound = null;
-        // projectile = parent.def
-        // source = null
-        public ThingDef postExplosionSpawnThingDef = null;
-        public float postExplosionSpawnChance = 0;
-        public int postExplosionSpawnThingCount = 1;
-        public bool applyDamageToExplosionCellsNeighbors = false;
-        public ThingDef preExplosionSpawnThingDef = null;
-        public float preExplosionSpawnChance = 0;
-        public int preExplosionSpawnThingCount = 1;
-        public bool damageFalloff = true;
-        public float chanceToStartFire;
-        public float screenShakeFactor;
-
-        /// <summary>
-        /// The type of built-in core game gas to spawn on detonation.
-        /// </summary>
-        public GasType? postExplosionGasType;
-
-        public float? postExplosionGasRadiusOverride;
-
-        public int postExplosionGasAmount = 255;
-
-        public CompProperties_ExplosiveCE()
+    public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
+    {
+        foreach (var i in base.ConfigErrors(parentDef))
         {
-            compClass = typeof(CompExplosiveCE);
+            yield return i;
         }
 
-        public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
+        if (explosiveRadius <= 0f)
         {
-            foreach (var i in base.ConfigErrors(parentDef))
-            {
-                yield return i;
-            }
-
-            if (explosiveRadius <= 0f)
-            {
-                yield return "explosiveRadius smaller or equal to zero, this explosion cannot occur";
-            }
-
-            if (parentDef.tickerType != TickerType.Normal)
-            {
-                yield return "CompExplosiveCE requires Normal ticker type";
-            }
-
-            if (fragments.Any())
-            {
-                yield return "fragments is removed from CompExplosiveCE, please use CombatExtended.CompFragments instead";
-            }
+            yield return "explosiveRadius smaller or equal to zero, this explosion cannot occur";
         }
 
-        public override void ResolveReferences(ThingDef parentDef)
+        if (parentDef.tickerType != TickerType.Normal)
         {
-            base.ResolveReferences(parentDef);
-            if (this.explosiveDamageType == null)
-            {
-                this.explosiveDamageType = DamageDefOf.Bomb;
-            }
+            yield return "CompExplosiveCE requires Normal ticker type";
+        }
+
+        if (fragments.Any())
+        {
+            yield return "fragments is removed from CompExplosiveCE, please use CombatExtended.CompFragments instead";
+        }
+    }
+
+    public override void ResolveReferences(ThingDef parentDef)
+    {
+        base.ResolveReferences(parentDef);
+        if (this.explosiveDamageType == null)
+        {
+            this.explosiveDamageType = DamageDefOf.Bomb;
         }
     }
 }

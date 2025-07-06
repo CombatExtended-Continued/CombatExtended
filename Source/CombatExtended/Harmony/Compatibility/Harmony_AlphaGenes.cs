@@ -5,112 +5,110 @@ using System.Reflection.Emit;
 using HarmonyLib;
 using Verse;
 
-namespace CombatExtended.HarmonyCE.Compatibility
+namespace CombatExtended.HarmonyCE.Compatibility;
+
+public static class Harmony_AlphaGenes
 {
-
-    public static class Harmony_AlphaGenes
+    private static Type TypeOfCanCommandTo_Patch_HarmonyPatches
     {
-        private static Type TypeOfCanCommandTo_Patch_HarmonyPatches
+        get
         {
-            get
-            {
-                return AccessTools.TypeByName("AlphaGenes.AlphaGenes_Pawn_MechanitorTracker_CanCommandTo_Patch");
-            }
+            return AccessTools.TypeByName("AlphaGenes.AlphaGenes_Pawn_MechanitorTracker_CanCommandTo_Patch");
         }
-        private static Type TypeOfDrawCommandRadius_Patch_HarmonyPatches
+    }
+    private static Type TypeOfDrawCommandRadius_Patch_HarmonyPatches
+    {
+        get
         {
-            get
-            {
-                return AccessTools.TypeByName("AlphaGenes.AlphaGenes_Pawn_MechanitorTracker_DrawCommandRadius_Patch");
-            }
+            return AccessTools.TypeByName("AlphaGenes.AlphaGenes_Pawn_MechanitorTracker_DrawCommandRadius_Patch");
         }
-        [HarmonyPatch]
-        public static class Harmony_CanCommandTo_Patch
+    }
+    [HarmonyPatch]
+    public static class Harmony_CanCommandTo_Patch
+    {
+        public static bool Prepare()
         {
-            public static bool Prepare()
-            {
-                return TypeOfCanCommandTo_Patch_HarmonyPatches != null;
-            }
-
-            public static MethodBase TargetMethod()
-            {
-                return AccessTools.Method("AlphaGenes.AlphaGenes_Pawn_MechanitorTracker_CanCommandTo_Patch:ModifyRange");
-            }
-
-            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
-            {
-                bool foundInjection = false;
-                bool secondInjection = false;
-                foreach (var instruction in instructions)
-                {
-                    if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 1225f)
-                    {
-                        yield return new CodeInstruction(OpCodes.Ldc_R4, 3469.21f); //Your value here
-                        foundInjection = true;
-                    }
-                    else if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 225f)
-                    {
-                        yield return new CodeInstruction(OpCodes.Ldc_R4, 835.21f); //Your value here
-                        secondInjection = true;
-                    }
-                    else
-                    {
-                        yield return instruction;
-                    }
-                }
-                if (!foundInjection)
-                {
-                    Log.Error($"Combat Extended :: Failed to find first injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
-                }
-                if (!secondInjection)
-                {
-                    Log.Error($"Combat Extended :: Failed to find second injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
-                }
-            }
+            return TypeOfCanCommandTo_Patch_HarmonyPatches != null;
         }
 
-        [HarmonyPatch]
-        public static class Harmony_DrawCommandRadius_Patch
+        public static MethodBase TargetMethod()
         {
-            public static bool Prepare()
-            {
-                return TypeOfDrawCommandRadius_Patch_HarmonyPatches != null;
-            }
+            return AccessTools.Method("AlphaGenes.AlphaGenes_Pawn_MechanitorTracker_CanCommandTo_Patch:ModifyRange");
+        }
 
-            public static MethodBase TargetMethod()
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        {
+            bool foundInjection = false;
+            bool secondInjection = false;
+            foreach (var instruction in instructions)
             {
-                return AccessTools.Method("AlphaGenes.AlphaGenes_Pawn_MechanitorTracker_DrawCommandRadius_Patch:DrawExtraCommandRadius");
+                if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 1225f)
+                {
+                    yield return new CodeInstruction(OpCodes.Ldc_R4, 3469.21f); //Your value here
+                    foundInjection = true;
+                }
+                else if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 225f)
+                {
+                    yield return new CodeInstruction(OpCodes.Ldc_R4, 835.21f); //Your value here
+                    secondInjection = true;
+                }
+                else
+                {
+                    yield return instruction;
+                }
             }
-
-            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+            if (!foundInjection)
             {
-                bool foundInjection = false;
-                bool secondInjection = false;
-                foreach (var instruction in instructions)
+                Log.Error($"Combat Extended :: Failed to find first injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            }
+            if (!secondInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find second injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            }
+        }
+    }
+
+    [HarmonyPatch]
+    public static class Harmony_DrawCommandRadius_Patch
+    {
+        public static bool Prepare()
+        {
+            return TypeOfDrawCommandRadius_Patch_HarmonyPatches != null;
+        }
+
+        public static MethodBase TargetMethod()
+        {
+            return AccessTools.Method("AlphaGenes.AlphaGenes_Pawn_MechanitorTracker_DrawCommandRadius_Patch:DrawExtraCommandRadius");
+        }
+
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        {
+            bool foundInjection = false;
+            bool secondInjection = false;
+            foreach (var instruction in instructions)
+            {
+                if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 35f)
                 {
-                    if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 35f)
-                    {
-                        yield return new CodeInstruction(OpCodes.Ldc_R4, 58.9f); //Your value here
-                        foundInjection = true;
-                    }
-                    else if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 15f)
-                    {
-                        yield return new CodeInstruction(OpCodes.Ldc_R4, 28.9f); //Your value here
-                        secondInjection = true;
-                    }
-                    else
-                    {
-                        yield return instruction;
-                    }
+                    yield return new CodeInstruction(OpCodes.Ldc_R4, 58.9f); //Your value here
+                    foundInjection = true;
                 }
-                if (!foundInjection)
+                else if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 15f)
                 {
-                    Log.Error($"Combat Extended :: Failed to find first injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+                    yield return new CodeInstruction(OpCodes.Ldc_R4, 28.9f); //Your value here
+                    secondInjection = true;
                 }
-                if (!secondInjection)
+                else
                 {
-                    Log.Error($"Combat Extended :: Failed to find second injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+                    yield return instruction;
                 }
+            }
+            if (!foundInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find first injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            }
+            if (!secondInjection)
+            {
+                Log.Error($"Combat Extended :: Failed to find second injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

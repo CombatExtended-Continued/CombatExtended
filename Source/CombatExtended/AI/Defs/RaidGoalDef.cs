@@ -6,10 +6,8 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended.AI
+namespace CombatExtended.AI;
+public class RaidGoalDef : Def
 {
-    public class RaidGoalDef : Def
-    {
-        //RaidGoalFinder finderClass;
-    }
+    //RaidGoalFinder finderClass;
 }

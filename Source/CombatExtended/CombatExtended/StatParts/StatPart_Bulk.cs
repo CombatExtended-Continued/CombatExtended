@@ -6,35 +6,33 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class StatPart_Bulk : StatPart
 {
-    public class StatPart_Bulk : StatPart
+    public bool ValidReq(StatRequest req)
     {
-        public bool ValidReq(StatRequest req)
-        {
-            return req.HasThing && inv(req) != null;
-        }
+        return req.HasThing && inv(req) != null;
+    }
 
-        public CompInventory inv(StatRequest req)
-        {
-            return req.Thing.TryGetComp<CompInventory>();
-        }
+    public CompInventory inv(StatRequest req)
+    {
+        return req.Thing.TryGetComp<CompInventory>();
+    }
 
-        public override string ExplanationPart(StatRequest req)
+    public override string ExplanationPart(StatRequest req)
+    {
+        if (ValidReq(req))
         {
-            if (ValidReq(req))
-            {
-                return "CE_BulkEffect".Translate() + " x" + (MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk) * 100f) + "%";
-            }
-            return null;
+            return "CE_BulkEffect".Translate() + " x" + (MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk) * 100f) + "%";
         }
+        return null;
+    }
 
-        public override void TransformValue(StatRequest req, ref float val)
+    public override void TransformValue(StatRequest req, ref float val)
+    {
+        if (ValidReq(req))
         {
-            if (ValidReq(req))
-            {
-                val *= MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk);
-            }
+            val *= MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk);
         }
     }
 }

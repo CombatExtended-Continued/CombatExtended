@@ -7,69 +7,67 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class CompAmmoExploder : ThingComp
 {
-    public class CompAmmoExploder : ThingComp
+    public DamageDef damageDef;
+
+    public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
     {
-        public DamageDef damageDef;
-
-        public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
+        damageDef = dinfo.Def;
+        base.PostPreApplyDamage(ref dinfo, out absorbed);
+    }
+    public void PostDamageResult(DamageWorker.DamageResult damage)
+    {
+        var damExt = damage?.parts?.Find(x => x.def.HasModExtension<BodyPartExploderExt>())?.def?.GetModExtension<BodyPartExploderExt>() ?? null;
+        if (damExt != null)
         {
-            damageDef = dinfo.Def;
-            base.PostPreApplyDamage(ref dinfo, out absorbed);
-        }
-        public void PostDamageResult(DamageWorker.DamageResult damage)
-        {
-            var damExt = damage?.parts?.Find(x => x.def.HasModExtension<BodyPartExploderExt>())?.def?.GetModExtension<BodyPartExploderExt>() ?? null;
-            if (damExt != null)
+            if (
+                damageDef != null
+                &&
+                Rand.Chance(damExt.triggerChance)
+                &&
+                damExt.allowedDamageDefs.Contains(damageDef)
+            )
             {
-                if (
-                    damageDef != null
-                    &&
-                    Rand.Chance(damExt.triggerChance)
-                    &&
-                    damExt.allowedDamageDefs.Contains(damageDef)
-                )
-                {
-                    DetonateCarriedAmmo();
-                }
+                DetonateCarriedAmmo();
             }
         }
-        public void DetonateCarriedAmmo()
+    }
+    public void DetonateCarriedAmmo()
+    {
+        if (!(((Pawn)this.parent)?.inventory?.innerContainer?.Where(x => x is AmmoThing).EnumerableNullOrEmpty() ?? true))
         {
-            if (!(((Pawn)this.parent)?.inventory?.innerContainer?.Where(x => x is AmmoThing).EnumerableNullOrEmpty() ?? true))
+            foreach (AmmoThing ammo in ((Pawn)this.parent).inventory.innerContainer.Where(x => x is AmmoThing))
             {
-                foreach (AmmoThing ammo in ((Pawn)this.parent).inventory.innerContainer.Where(x => x is AmmoThing))
+                var projdef = ((AmmoDef)ammo.def)?.AmmoSetDefs[0]?.ammoTypes[0]?.projectile ?? null;
+                var proj = (projdef?.projectile ?? null) as ProjectilePropertiesCE;
+                if (proj != null)
                 {
-                    var projdef = ((AmmoDef)ammo.def)?.AmmoSetDefs[0]?.ammoTypes[0]?.projectile ?? null;
-                    var proj = (projdef?.projectile ?? null) as ProjectilePropertiesCE;
-                    if (proj != null)
+                    if (proj.explosionRadius > 0f)
                     {
-                        if (proj.explosionRadius > 0f)
-                        {
-                            GenExplosionCE.DoExplosion
-                            (
-                                this.parent.Position,
-                                this.parent.Map,
-                                proj.explosionRadius,
-                                proj.damageDef,
-                                null,
-                                proj.GetDamageAmount(1f, null),
-                                proj.armorPenetrationSharp,
-                                postExplosionSpawnChance: proj.postExplosionSpawnChance,
-                                postExplosionSpawnThingCount: proj.postExplosionSpawnThingCount,
-                                postExplosionSpawnThingDef: proj.postExplosionSpawnThingDef,
-                                preExplosionSpawnChance: proj.preExplosionSpawnChance,
-                                preExplosionSpawnThingCount: proj.preExplosionSpawnThingCount,
-                                preExplosionSpawnThingDef: proj.preExplosionSpawnThingDef
+                        GenExplosionCE.DoExplosion
+                        (
+                            this.parent.Position,
+                            this.parent.Map,
+                            proj.explosionRadius,
+                            proj.damageDef,
+                            null,
+                            proj.GetDamageAmount(1f, null),
+                            proj.armorPenetrationSharp,
+                            postExplosionSpawnChance: proj.postExplosionSpawnChance,
+                            postExplosionSpawnThingCount: proj.postExplosionSpawnThingCount,
+                            postExplosionSpawnThingDef: proj.postExplosionSpawnThingDef,
+                            preExplosionSpawnChance: proj.preExplosionSpawnChance,
+                            preExplosionSpawnThingCount: proj.preExplosionSpawnThingCount,
+                            preExplosionSpawnThingDef: proj.preExplosionSpawnThingDef
 
-                            );
-                        }
+                        );
                     }
-
                 }
-            }
 
+            }
         }
+
     }
 }

@@ -1,14 +1,12 @@
 ﻿using RimWorld;
 
-namespace CombatExtended
+namespace CombatExtended;
+[DefOf]
+public static class CE_AmmoSetDefOf
 {
-    [DefOf]
-    public static class CE_AmmoSetDefOf
+    static CE_AmmoSetDefOf()
     {
-        static CE_AmmoSetDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(CE_AmmoSetDefOf));
-        }
-        public static AmmoSetDef AmmoSet_81mmMortarShell;
+        DefOfHelper.EnsureInitializedInCtor(typeof(CE_AmmoSetDefOf));
     }
+    public static AmmoSetDef AmmoSet_81mmMortarShell;
 }
