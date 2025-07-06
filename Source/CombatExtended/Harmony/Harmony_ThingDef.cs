@@ -72,7 +72,7 @@ namespace CombatExtended.HarmonyCE
                     var height = def.Fillage == FillCategory.Full
                                  ? CollisionVertical.WallCollisionHeight
                                  : def.fillPercent;
-                    height *= CollisionVertical.MeterPerCellHeight;
+                    height *= CE_Utility.MetersPerCellHeight;
 
                     var newEntry = new StatDrawEntry(entry.category, "CE_CoverHeight".Translate(), height.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " m", (string)"CE_CoverHeightExplanation".Translate(), entry.DisplayPriorityWithinCategory);
 

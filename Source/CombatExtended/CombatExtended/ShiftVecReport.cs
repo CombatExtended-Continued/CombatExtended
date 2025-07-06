@@ -259,12 +259,12 @@ namespace CombatExtended
             {
                 if (cover != null)
                 {
-                    stringBuilder.AppendLine("   " + "CE_CoverHeight".Translate() + "\t" + new CollisionVertical(cover).Max * CollisionVertical.MeterPerCellHeight + " " + "CE_meters".Translate());
+                    stringBuilder.AppendLine("   " + "CE_CoverHeight".Translate() + "\t" + new CollisionVertical(cover).Max * CE_Utility.MetersPerCellHeight + " " + "CE_meters".Translate());
                 }
                 if (target.Thing != null)
                 {
-                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(new CollisionVertical(target.Thing).HeightRange.Span * CollisionVertical.MeterPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
-                    stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * CollisionVertical.MeterPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
+                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(new CollisionVertical(target.Thing).HeightRange.Span * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
+                    stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
                     var pawn = target.Thing as Pawn;
                     if (pawn != null && pawn.IsCrouching())
                     {
