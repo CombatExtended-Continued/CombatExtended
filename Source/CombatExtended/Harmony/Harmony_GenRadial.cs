@@ -136,6 +136,7 @@ namespace CombatExtended.HarmonyCE
         // When (int)radius + (int)diagonal is odd,  the answer is always 8n + 5
         // When (int)radius + (int)diagonal is even, the answer is always 8n + 1
         // Use IEEE-754 bit hacks
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool HasOddCells(float r)
         {
             const float SqrtHalf = 0.707106781f;
