@@ -80,7 +80,7 @@ namespace CombatExtended.HarmonyCE
         public static bool NumCellsInRadius(out int __result, float radius)
         {
             // Special cases
-            if (radius < 2f || radius >= MaxRadius)
+            if (radius < 2f || radius >= MAX_RADIUS)
             {
                 if (radius < 0f)
                     __result = 0;
@@ -92,7 +92,7 @@ namespace CombatExtended.HarmonyCE
                     __result = 9;
                 else
                 {
-                    __result = RadialPatternLength;
+                    __result = RadialPatternCount;
                     CheckRadius(radius);
                 }
                 return false;
@@ -106,8 +106,8 @@ namespace CombatExtended.HarmonyCE
             //   some small radius actually goes above that
             //   but the error is small (< 16) and linear search can fix it
             int upperBound = (radiusSquaredInt * 101) >> 5;
-            if (upperBound > RadialPatternLength)
-                upperBound = RadialPatternLength;
+            if (upperBound > RadialPatternCount)
+                upperBound = RadialPatternCount;
             // If the gap is large, perform binary search
             while (upperBound - lowerBound > 88)
             {
@@ -157,14 +157,14 @@ namespace CombatExtended.HarmonyCE
             return (((mantissar >> shiftr) ^ (mantissad >> shiftd)) & 1) != 0;
         }
         
-        // A separate method to handle when radius exceeds MaxRadius
+        // A separate method to handle when radius exceeds MAX_RADIUS
         // Apparently loading all these strings for formatting is very slow
         // Even when they are not executed, likely due to branch predictions
         // Separating the rare & slow stuff to this method helps a lot
         private static void CheckRadius(float radius)
         {
-            if (radius > MaxRadius)
-                Log.Error($"Not enough squares to get to radius {radius}. Max is {MaxRadius}");
+            if (radius > MAX_RADIUS)
+                Log.Error($"Not enough squares to get to radius {radius}. Max is {MAX_RADIUS}");
         }
     }
 }
