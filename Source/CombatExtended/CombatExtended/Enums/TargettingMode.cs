@@ -8,13 +8,11 @@ using Verse.AI;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public enum TargettingMode
 {
-    public enum TargettingMode
-    {
-        legs,
-        torso,
-        head,
-        automatic
-    }
+    legs,
+    torso,
+    head,
+    automatic
 }

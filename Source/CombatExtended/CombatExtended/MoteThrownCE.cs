@@ -2,84 +2,82 @@
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+/// <summary>
+/// Used to avoid vanilla limitation regarding rendering with DrawPos.y != 1.
+/// </summary>
+public class MoteThrownCE : MoteThrown
 {
-    /// <summary>
-    /// Used to avoid vanilla limitation regarding rendering with DrawPos.y != 1.
-    /// </summary>
-    public class MoteThrownCE : MoteThrown
+    public Thing attachedAltitudeThing = null;
+    public Vector3 drawOffset;
+
+    private Graphic_Mote _moteGraphic = null;
+    private Graphic_Mote MoteGraphic
     {
-        public Thing attachedAltitudeThing = null;
-        public Vector3 drawOffset;
-
-        private Graphic_Mote _moteGraphic = null;
-        private Graphic_Mote MoteGraphic
+        get
         {
-            get
+            if (_moteGraphic == null)
             {
-                if (_moteGraphic == null)
-                {
-                    _moteGraphic = (Graphic_Mote)Graphic;
-                }
-                return _moteGraphic;
+                _moteGraphic = (Graphic_Mote)Graphic;
             }
+            return _moteGraphic;
         }
+    }
 
-        public override Vector3 DrawPos
+    public override Vector3 DrawPos
+    {
+        get
         {
-            get
+            Vector3 pos = base.DrawPos;
+            if (attachedAltitudeThing?.Spawned ?? false)
             {
-                Vector3 pos = base.DrawPos;
-                if (attachedAltitudeThing?.Spawned ?? false)
-                {
-                    pos.y = attachedAltitudeThing.DrawPos.y;
-                }
-                return pos + drawOffset;
+                pos.y = attachedAltitudeThing.DrawPos.y;
             }
+            return pos + drawOffset;
         }
+    }
 
-        public float CurAltitude
+    public float CurAltitude
+    {
+        get
         {
-            get
+            if (attachedAltitudeThing?.Spawned ?? false)
             {
-                if (attachedAltitudeThing?.Spawned ?? false)
-                {
-                    return attachedAltitudeThing.DrawPos.y;
-                }
-                return exactPosition.y;
+                return attachedAltitudeThing.DrawPos.y;
             }
+            return exactPosition.y;
         }
+    }
 
-        public override void DrawAt(Vector3 drawLoc, bool flip = false)
+    public override void DrawAt(Vector3 drawLoc, bool flip = false)
+    {
+        /*
+         * Required to allow rendering without setting y to 0
+         */
+        float alpha = this.Alpha;
+        if (!(alpha <= 0f))
         {
-            /*
-             * Required to allow rendering without setting y to 0
-             */
-            float alpha = this.Alpha;
-            if (!(alpha <= 0f))
+            Color color = MoteGraphic.Color * this.instanceColor;
+            color.a *= alpha;
+            Vector3 exactScale = this.ExactScale;
+            exactScale.x *= MoteGraphic.data.drawSize.x;
+            exactScale.z *= MoteGraphic.data.drawSize.y;
+            Matrix4x4 matrix = default(Matrix4x4);
+            matrix.SetTRS(DrawPos, Quaternion.AngleAxis(this.exactRotation, Vector3.up), exactScale);
+            Material matSingle = Graphic.MatSingle;
+            if (!MoteGraphic.ForcePropertyBlock && color.IndistinguishableFrom(matSingle.color))
             {
-                Color color = MoteGraphic.Color * this.instanceColor;
-                color.a *= alpha;
-                Vector3 exactScale = this.ExactScale;
-                exactScale.x *= MoteGraphic.data.drawSize.x;
-                exactScale.z *= MoteGraphic.data.drawSize.y;
-                Matrix4x4 matrix = default(Matrix4x4);
-                matrix.SetTRS(DrawPos, Quaternion.AngleAxis(this.exactRotation, Vector3.up), exactScale);
-                Material matSingle = Graphic.MatSingle;
-                if (!MoteGraphic.ForcePropertyBlock && color.IndistinguishableFrom(matSingle.color))
-                {
-                    Graphics.DrawMesh(MeshPool.plane10, matrix, matSingle, 0, null, 0);
-                    return;
-                }
-                Graphic_Mote.propertyBlock.SetColor(ShaderPropertyIDs.Color, color);
-                Graphics.DrawMesh(MeshPool.plane10, matrix, matSingle, 0, null, 0, Graphic_Mote.propertyBlock);
+                Graphics.DrawMesh(MeshPool.plane10, matrix, matSingle, 0, null, 0);
+                return;
             }
+            Graphic_Mote.propertyBlock.SetColor(ShaderPropertyIDs.Color, color);
+            Graphics.DrawMesh(MeshPool.plane10, matrix, matSingle, 0, null, 0, Graphic_Mote.propertyBlock);
         }
+    }
 
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_References.Look<Thing>(ref attachedAltitudeThing, "attachedAltitudeThing");
-        }
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_References.Look<Thing>(ref attachedAltitudeThing, "attachedAltitudeThing");
     }
 }

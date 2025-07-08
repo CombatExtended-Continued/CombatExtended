@@ -2,17 +2,15 @@
 using System.IO;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+class SaveLoadoutDialog : FileListDialog
 {
-    class SaveLoadoutDialog : FileListDialog
+    internal SaveLoadoutDialog(string storageTypeName, Action<FileInfo, FileListDialog> fileAction, string initialSaveFilename) : base(storageTypeName, fileAction)
     {
-        internal SaveLoadoutDialog(string storageTypeName, Action<FileInfo, FileListDialog> fileAction, string initialSaveFilename) : base(storageTypeName, fileAction)
-        {
-            this.interactButLabel = "OverwriteButton".Translate();
-            this.typingName = initialSaveFilename;
-        }
-
-        protected override bool ShouldDoTypeInField => true;
+        this.interactButLabel = "OverwriteButton".Translate();
+        this.typingName = initialSaveFilename;
     }
+
+    protected override bool ShouldDoTypeInField => true;
 }
 

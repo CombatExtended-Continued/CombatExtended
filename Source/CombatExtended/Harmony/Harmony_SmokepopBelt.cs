@@ -2,21 +2,19 @@ using HarmonyLib;
 using Verse;
 using RimWorld;
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+[HarmonyPatch(typeof(SmokepopBelt), "Notify_BulletImpactNearby")]
+internal static class Harmony_SmokepopBelt
 {
-    [HarmonyPatch(typeof(SmokepopBelt), "Notify_BulletImpactNearby")]
-    internal static class Harmony_SmokepopBelt
+    internal static bool Prefix(SmokepopBelt __instance)
     {
-        internal static bool Prefix(SmokepopBelt __instance)
+        if (__instance.Wearer == null)
         {
-            if (__instance.Wearer == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 }

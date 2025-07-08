@@ -6,13 +6,11 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class ThinkNode_ConditionalNoJob : ThinkNode_Conditional
 {
-    public class ThinkNode_ConditionalNoJob : ThinkNode_Conditional
+    public override bool Satisfied(Pawn pawn)
     {
-        public override bool Satisfied(Pawn pawn)
-        {
-            return pawn.CurJob == null;
-        }
+        return pawn.CurJob == null;
     }
 }

@@ -5,10 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class QualityConditionalModExt : DefModExtension
 {
-    public class QualityConditionalModExt : DefModExtension
-    {
-        public bool UseQualityMult = true;
-    }
+    public bool UseQualityMult = true;
 }

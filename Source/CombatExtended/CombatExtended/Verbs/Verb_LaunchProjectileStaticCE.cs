@@ -9,37 +9,35 @@ using Verse.AI;
 using Verse.Grammar;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class Verb_LaunchProjectileStaticCE : Verb_LaunchProjectileCE
 {
-    public class Verb_LaunchProjectileStaticCE : Verb_LaunchProjectileCE
+    public override bool MultiSelect
     {
-        public override bool MultiSelect
+        get
         {
-            get
-            {
-                return true;
-            }
+            return true;
         }
+    }
 
-        public override Texture2D UIIcon
+    public override Texture2D UIIcon
+    {
+        get
         {
-            get
-            {
-                return TexCommand.Attack;
-            }
+            return TexCommand.Attack;
         }
+    }
 
-        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
-        {
-            return base.ValidateTarget(target, showMessages) && ReloadableUtility.CanUseConsideringQueuedJobs(CasterPawn, EquipmentSource, true);
-        }
+    public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
+    {
+        return base.ValidateTarget(target, showMessages) && ReloadableUtility.CanUseConsideringQueuedJobs(CasterPawn, EquipmentSource, true);
+    }
 
-        [Compatibility.Multiplayer.SyncMethod]
-        public override void OrderForceTarget(LocalTargetInfo target)
-        {
-            Job job = JobMaker.MakeJob(JobDefOf.UseVerbOnThingStatic, target);
-            job.verbToUse = this;
-            CasterPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-        }
+    [Compatibility.Multiplayer.SyncMethod]
+    public override void OrderForceTarget(LocalTargetInfo target)
+    {
+        Job job = JobMaker.MakeJob(JobDefOf.UseVerbOnThingStatic, target);
+        job.verbToUse = this;
+        CasterPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
     }
 }

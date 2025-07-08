@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using Verse;
 
-namespace CombatExtended.Lasers
+namespace CombatExtended.Lasers;
+public class SpinningLaserGunDef : LaserGunDef
 {
-    public class SpinningLaserGunDef : LaserGunDef
-    {
-        public List<GraphicData> frames;
-        public float rotationSpeed = 1.0f;
-    }
+    public List<GraphicData> frames;
+    public float rotationSpeed = 1.0f;
 }

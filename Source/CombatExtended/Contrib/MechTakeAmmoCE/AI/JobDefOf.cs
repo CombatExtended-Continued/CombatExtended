@@ -8,12 +8,10 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+[DefOf]
+public static class MTAJobDefOf
 {
-    [DefOf]
-    public static class MTAJobDefOf
-    {
-        public static JobDef MTA_TakeAmmo;
-        public static JobDef MTA_UnloadAmmo;
-    }
+    public static JobDef MTA_TakeAmmo;
+    public static JobDef MTA_UnloadAmmo;
 }

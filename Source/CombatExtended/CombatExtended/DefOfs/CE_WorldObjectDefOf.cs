@@ -1,14 +1,12 @@
 ﻿using RimWorld;
 
-namespace CombatExtended
+namespace CombatExtended;
+[DefOf]
+public static class CE_WorldObjectDefOf
 {
-    [DefOf]
-    public static class CE_WorldObjectDefOf
+    static CE_WorldObjectDefOf()
     {
-        static CE_WorldObjectDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(CE_WorldObjectDefOf));
-        }
-        public static WorldObjectDef TravelingShell;
+        DefOfHelper.EnsureInitializedInCtor(typeof(CE_WorldObjectDefOf));
     }
+    public static WorldObjectDef TravelingShell;
 }

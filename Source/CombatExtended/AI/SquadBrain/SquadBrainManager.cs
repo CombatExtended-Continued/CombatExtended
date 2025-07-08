@@ -6,10 +6,8 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended.AI
+namespace CombatExtended.AI;
+public class SquadBrainManager
 {
-    public class SquadBrainManager
-    {
 
-    }
 }

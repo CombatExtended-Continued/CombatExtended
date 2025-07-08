@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class PartialArmorExt : DefModExtension
 {
-    public class PartialArmorExt : DefModExtension
-    {
-        public List<ApparelPartialStat> stats;
-    }
+    public List<ApparelPartialStat> stats;
 }

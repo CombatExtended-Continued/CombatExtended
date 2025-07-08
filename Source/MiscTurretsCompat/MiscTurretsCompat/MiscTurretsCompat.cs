@@ -7,38 +7,36 @@ using CombatExtended.Loader;
 using RimWorld;
 using System.Collections.Generic;
 
-namespace CombatExtended.Compatibility
+namespace CombatExtended.Compatibility;
+public class MiscTurretsCompat : IModPart
 {
-    public class MiscTurretsCompat : IModPart
+    public Type GetSettingsType()
     {
-        public Type GetSettingsType()
+        return null;
+    }
+    public IEnumerable<string> GetCompatList()
+    {
+        yield break;
+    }
+    public void PostLoad(ModContentPack content, ISettingsCE _)
+    {
+        TurretRegistry.RegisterReloadableTurret(
+            typeof(MiscTurrets_CE_TurretWeaponBase),
+            ((Building_Turret t, bool r) =>
         {
-            return null;
-        }
-        public IEnumerable<string> GetCompatList()
+            (t as MiscTurrets_CE_TurretWeaponBase).SetReload(r);
+        }),
+        ((Building_Turret t) =>
         {
-            yield break;
-        }
-        public void PostLoad(ModContentPack content, ISettingsCE _)
+            return (t as MiscTurrets_CE_TurretWeaponBase).GetReload();
+        }),
+        ((Building_Turret t) =>
         {
-            TurretRegistry.RegisterReloadableTurret(
-                typeof(MiscTurrets_CE_TurretWeaponBase),
-                ((Building_Turret t, bool r) =>
-            {
-                (t as MiscTurrets_CE_TurretWeaponBase).SetReload(r);
-            }),
-            ((Building_Turret t) =>
-            {
-                return (t as MiscTurrets_CE_TurretWeaponBase).GetReload();
-            }),
-            ((Building_Turret t) =>
-            {
-                return (t as MiscTurrets_CE_TurretWeaponBase).GetGun();
-            }),
-            ((Building_Turret t) =>
-            {
-                return (t as MiscTurrets_CE_TurretWeaponBase).GetAmmo();
-            }));
-        }
+            return (t as MiscTurrets_CE_TurretWeaponBase).GetGun();
+        }),
+        ((Building_Turret t) =>
+        {
+            return (t as MiscTurrets_CE_TurretWeaponBase).GetAmmo();
+        }));
     }
 }
