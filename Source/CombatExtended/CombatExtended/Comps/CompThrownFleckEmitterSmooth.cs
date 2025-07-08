@@ -39,7 +39,7 @@ public class CompProjectileFleck : ThingComp
         }
     }
 
-    public override void CompTickInterval(int delta)
+    public override void CompTick()
     {
         if (!IsOn)
         {
