@@ -10,53 +10,51 @@ using RimWorld;
 using UnityEngine;
 using CombatExtended;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class JobDriver_TakeAmmo : JobDriver
 {
-    public class JobDriver_TakeAmmo : JobDriver
+    private Thing Ammo
     {
-        private Thing Ammo
+        get
         {
-            get
-            {
-                return this.job.GetTarget(TargetIndex.A).Thing;
-            }
+            return this.job.GetTarget(TargetIndex.A).Thing;
         }
+    }
 
-        public int amount;
+    public int amount;
 
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
+    public override bool TryMakePreToilReservations(bool errorOnFailed)
+    {
+        return pawn.Reserve(Ammo, job, 1, -1, null, errorOnFailed);
+    }
+
+    public override IEnumerable<Toil> MakeNewToils()
+    {
+        this.FailOnDespawnedOrNull(TargetIndex.A);
+        this.FailOnForbidden(TargetIndex.A);
+        CompAmmoUser ammoUser = pawn?.equipment?.Primary?.GetComp<CompAmmoUser>();
+
+        // foreach (Thing thing in pawn.inventory.innerContainer)
+        // {
+        //     if (!(thing.def is AmmoDef ammoDef)) continue;
+        //     if (ammoDef == Ammo.def) continue;
+        //     yield return Toils_Ammo.Drop(thing.def, thing.stackCount);
+        // }
+
+        if (ammoUser == null) { yield break; }
+
+        if (job.count > 0)
         {
-            return pawn.Reserve(Ammo, job, 1, -1, null, errorOnFailed);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
+            yield return Toils_Haul.TakeToInventory(TargetIndex.A, job.count);
         }
-
-        public override IEnumerable<Toil> MakeNewToils()
+        else if (job.count < 0)
         {
-            this.FailOnDespawnedOrNull(TargetIndex.A);
-            this.FailOnForbidden(TargetIndex.A);
-            CompAmmoUser ammoUser = pawn?.equipment?.Primary?.GetComp<CompAmmoUser>();
-
-            // foreach (Thing thing in pawn.inventory.innerContainer)
-            // {
-            //     if (!(thing.def is AmmoDef ammoDef)) continue;
-            //     if (ammoDef == Ammo.def) continue;
-            //     yield return Toils_Ammo.Drop(thing.def, thing.stackCount);
-            // }
-
-            if (ammoUser == null) { yield break; }
-
-            if (job.count > 0)
-            {
-                yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
-                yield return Toils_Haul.TakeToInventory(TargetIndex.A, job.count);
-            }
-            else if (job.count < 0)
-            {
-                yield return Toils_Ammo.Drop(Ammo.def, -job.count);
-            }
-            else
-            {
-                Log.Error("[MechTakeAmmoCE] Trying to start job that no need ammo");
-            }
+            yield return Toils_Ammo.Drop(Ammo.def, -job.count);
+        }
+        else
+        {
+            Log.Error("[MechTakeAmmoCE] Trying to start job that no need ammo");
         }
     }
 }

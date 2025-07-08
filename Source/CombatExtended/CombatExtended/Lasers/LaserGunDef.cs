@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace CombatExtended.Lasers
+namespace CombatExtended.Lasers;
+public class LaserGunDef : ThingDef
 {
-    public class LaserGunDef : ThingDef
-    {
-        public static LaserGunDef defaultObj = new LaserGunDef();
+    public static LaserGunDef defaultObj = new LaserGunDef();
 
-        public float barrelLength = 0.9f;
-        public bool supportsColors = false;
-    }
+    public float barrelLength = 0.9f;
+    public bool supportsColors = false;
 }

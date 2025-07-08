@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CombatExtended.Lasers
+namespace CombatExtended.Lasers;
+interface IDrawnWeaponWithRotation
 {
-    interface IDrawnWeaponWithRotation
+    float RotationOffset
     {
-        float RotationOffset
-        {
-            get;
-            set;
-        }
+        get;
+        set;
     }
 }

@@ -7,12 +7,10 @@ using Verse;
 using UnityEngine;
 using CombatExtended.AI;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class CompSquadBrain : ThingComp
 {
-    public class CompSquadBrain : ThingComp
-    {
-        public SquadBrain squad;
+    public SquadBrain squad;
 
-        CompProperties_SquadBrain Props => props as CompProperties_SquadBrain;
-    }
+    CompProperties_SquadBrain Props => props as CompProperties_SquadBrain;
 }

@@ -9,198 +9,196 @@ using System.Collections.Generic;
 
 using SyncMethodAttribute = global::CombatExtended.Compatibility.Multiplayer.SyncMethodAttribute;
 
-namespace CombatExtended.Compatibility.MultiplayerAPI
+namespace CombatExtended.Compatibility.MultiplayerAPI;
+public class MultiplayerCompat : IModPart
 {
-    public class MultiplayerCompat : IModPart
+    public MultiplayerCompat() { }
+    public Type GetSettingsType()
     {
-        public MultiplayerCompat() { }
-        public Type GetSettingsType()
-        {
-            return null;
+        return null;
 
-        }
+    }
 
-        public IEnumerable<string> GetCompatList()
-        {
-            yield break;
-        }
+    public IEnumerable<string> GetCompatList()
+    {
+        yield break;
+    }
 
-        public void PostLoad(ModContentPack content, ISettingsCE _)
-        {
-            LongEventHandler.QueueLongEvent(() => this.SlowInit(content), "CE_LongEvent_CompatibilityPatches", false, null);
-        }
-        public void SlowInit(ModContentPack content)
-        {
-            var methods = content.assemblies.loadedAssemblies
-                          .SelectMany(a => a.GetTypes())
-                          .SelectMany(t => t.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
-                          .Where(m => !m.IsAbstract)
-                          .Where(m => m.HasAttribute<SyncMethodAttribute>());
+    public void PostLoad(ModContentPack content, ISettingsCE _)
+    {
+        LongEventHandler.QueueLongEvent(() => this.SlowInit(content), "CE_LongEvent_CompatibilityPatches", false, null);
+    }
+    public void SlowInit(ModContentPack content)
+    {
+        var methods = content.assemblies.loadedAssemblies
+                      .SelectMany(a => a.GetTypes())
+                      .SelectMany(t => t.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
+                      .Where(m => !m.IsAbstract)
+                      .Where(m => m.HasAttribute<SyncMethodAttribute>());
 
-            //MP.RegisterSyncMethod(typeof(Building_TurretGunCE), nameof(Building_TurretGunCE.OrderAttack));
-            foreach (var method in methods)
+        //MP.RegisterSyncMethod(typeof(Building_TurretGunCE), nameof(Building_TurretGunCE.OrderAttack));
+        foreach (var method in methods)
+        {
+            if (!method.TryGetAttribute<SyncMethodAttribute>(out var attribute))
             {
-                if (!method.TryGetAttribute<SyncMethodAttribute>(out var attribute))
-                {
-                    continue;
-                }
-
-                var syncMethod = MP.RegisterSyncMethod(method);
-
-                if (attribute.syncContext != -1)
-                {
-                    syncMethod.SetContext((SyncContext)attribute.syncContext);
-                }
-
-                if (attribute.exposeParameters == null)
-                {
-                    continue;
-                }
-
-                foreach (var parameter in attribute.exposeParameters)
-                {
-                    syncMethod.ExposeParameter(parameter);
-                }
+                continue;
             }
 
-            MP.RegisterAll();
+            var syncMethod = MP.RegisterSyncMethod(method);
 
-            global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((() => MP.IsInMultiplayer), (() => MP.IsExecutingSyncCommand), (() => MP.IsExecutingSyncCommandIssuedBySelf));
+            if (attribute.syncContext != -1)
+            {
+                syncMethod.SetContext((SyncContext)attribute.syncContext);
+            }
+
+            if (attribute.exposeParameters == null)
+            {
+                continue;
+            }
+
+            foreach (var parameter in attribute.exposeParameters)
+            {
+                syncMethod.ExposeParameter(parameter);
+            }
         }
 
+        MP.RegisterAll();
+
+        global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((() => MP.IsInMultiplayer), (() => MP.IsExecutingSyncCommand), (() => MP.IsExecutingSyncCommandIssuedBySelf));
+    }
 
 
-        [SyncWorker]
-        private static void SyncCompAmmoUser(SyncWorker sync, ref CompAmmoUser comp)
+
+    [SyncWorker]
+    private static void SyncCompAmmoUser(SyncWorker sync, ref CompAmmoUser comp)
+    {
+        if (sync.isWriting)
         {
-            if (sync.isWriting)
-            {
-                var caster = comp.parent.GetComp<CompEquippable>().PrimaryVerb.Caster;
+            var caster = comp.parent.GetComp<CompEquippable>().PrimaryVerb.Caster;
 
-                // Sync the turret because in that case syncing fails, due to comp.parent.Map being null,
-                // which causes it to be inaccessible in MP for general syncing
-                if (caster is Building_TurretGunCE turret)
-                {
-                    sync.Write(true);
-                    sync.Write(turret);
-                }
-                // Sync the comp itself, as the parent is accessible in MP
-                else
-                {
-                    sync.Write(false);
-                    // Sync using ThingComp worker, not this one
-                    // Prevents infinite iteration
-                    sync.Write(comp as ThingComp);
-                }
+            // Sync the turret because in that case syncing fails, due to comp.parent.Map being null,
+            // which causes it to be inaccessible in MP for general syncing
+            if (caster is Building_TurretGunCE turret)
+            {
+                sync.Write(true);
+                sync.Write(turret);
+            }
+            // Sync the comp itself, as the parent is accessible in MP
+            else
+            {
+                sync.Write(false);
+                // Sync using ThingComp worker, not this one
+                // Prevents infinite iteration
+                sync.Write(comp as ThingComp);
+            }
+        }
+        else
+        {
+            if (sync.Read<bool>())
+            {
+                comp = sync.Read<Building_TurretGunCE>().CompAmmo;
             }
             else
             {
-                if (sync.Read<bool>())
-                {
-                    comp = sync.Read<Building_TurretGunCE>().CompAmmo;
-                }
-                else
-                {
-                    comp = sync.Read<ThingComp>() as CompAmmoUser;
-                }
+                comp = sync.Read<ThingComp>() as CompAmmoUser;
             }
         }
+    }
 
-        [SyncWorker]
-        private static void SyncCompFireMode(SyncWorker sync, ref CompFireModes comp)
+    [SyncWorker]
+    private static void SyncCompFireMode(SyncWorker sync, ref CompFireModes comp)
+    {
+        if (sync.isWriting)
         {
-            if (sync.isWriting)
-            {
-                var caster = comp.Caster;
+            var caster = comp.Caster;
 
-                // Sync the turret because in that case syncing fails, due to comp.parent.Map being null,
-                // which causes it to be inaccessible in MP for general syncing
-                if (caster is Building_TurretGunCE turret)
-                {
-                    sync.Write(true);
-                    sync.Write(turret);
-                }
-                // Sync the comp itself, as the parent is accessible in MP
-                else
-                {
-                    sync.Write(false);
-                    // Sync using ThingComp worker, not this one
-                    // Prevents infinite iteration
-                    sync.Write(comp as ThingComp);
-                }
+            // Sync the turret because in that case syncing fails, due to comp.parent.Map being null,
+            // which causes it to be inaccessible in MP for general syncing
+            if (caster is Building_TurretGunCE turret)
+            {
+                sync.Write(true);
+                sync.Write(turret);
+            }
+            // Sync the comp itself, as the parent is accessible in MP
+            else
+            {
+                sync.Write(false);
+                // Sync using ThingComp worker, not this one
+                // Prevents infinite iteration
+                sync.Write(comp as ThingComp);
+            }
+        }
+        else
+        {
+            if (sync.Read<bool>())
+            {
+                comp = sync.Read<Building_TurretGunCE>().CompFireModes;
             }
             else
             {
-                if (sync.Read<bool>())
-                {
-                    comp = sync.Read<Building_TurretGunCE>().CompFireModes;
-                }
-                else
-                {
-                    comp = sync.Read<ThingComp>() as CompFireModes;
-                }
+                comp = sync.Read<ThingComp>() as CompFireModes;
             }
         }
+    }
 
-        [SyncWorker]
-        private static void SyncLoadout(SyncWorker sync, ref Loadout loadout)
+    [SyncWorker]
+    private static void SyncLoadout(SyncWorker sync, ref Loadout loadout)
+    {
+        if (sync.isWriting)
         {
-            if (sync.isWriting)
-            {
-                sync.Write(loadout.UniqueID);
-            }
-            else
-            {
-                var id = sync.Read<int>();
-                loadout = LoadoutManager.GetLoadoutById(id);
-            }
+            sync.Write(loadout.UniqueID);
         }
-
-        [SyncWorker]
-        private static void SyncLoadoutSlot(SyncWorker sync, ref LoadoutSlot loadoutSlot)
+        else
         {
-            if (sync.isWriting)
+            var id = sync.Read<int>();
+            loadout = LoadoutManager.GetLoadoutById(id);
+        }
+    }
+
+    [SyncWorker]
+    private static void SyncLoadoutSlot(SyncWorker sync, ref LoadoutSlot loadoutSlot)
+    {
+        if (sync.isWriting)
+        {
+            var loadoutIndex = 0;
+            var slotIndex = -1;
+
+            var list = LoadoutManager.Loadouts;
+            for (; loadoutIndex < list.Count; loadoutIndex++)
             {
-                var loadoutIndex = 0;
-                var slotIndex = -1;
-
-                var list = LoadoutManager.Loadouts;
-                for (; loadoutIndex < list.Count; loadoutIndex++)
-                {
-                    var value = list[loadoutIndex];
-                    slotIndex = value.Slots.IndexOf(loadoutSlot);
-                    if (slotIndex >= 0)
-                    {
-                        break;
-                    }
-                }
-
+                var value = list[loadoutIndex];
+                slotIndex = value.Slots.IndexOf(loadoutSlot);
                 if (slotIndex >= 0)
                 {
-                    sync.Write(loadoutIndex);
-                    sync.Write(slotIndex);
+                    break;
                 }
-                else
-                {
-                    sync.Write(-1);
-                }
+            }
+
+            if (slotIndex >= 0)
+            {
+                sync.Write(loadoutIndex);
+                sync.Write(slotIndex);
             }
             else
             {
-                var loadoutIndex = sync.Read<int>();
-                if (loadoutIndex < 0)
-                {
-                    return;
-                }
-
-                loadoutSlot = LoadoutManager.Loadouts[loadoutIndex].Slots[sync.Read<int>()];
+                sync.Write(-1);
             }
         }
+        else
+        {
+            var loadoutIndex = sync.Read<int>();
+            if (loadoutIndex < 0)
+            {
+                return;
+            }
 
-        // Don't sync anything, we just want a blank instance for method calling purposes
-        // We only care about shouldConstruct being true
-        [SyncWorker(shouldConstruct = true)]
-        private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory inventory)
-        { }
+            loadoutSlot = LoadoutManager.Loadouts[loadoutIndex].Slots[sync.Read<int>()];
+        }
     }
+
+    // Don't sync anything, we just want a blank instance for method calling purposes
+    // We only care about shouldConstruct being true
+    [SyncWorker(shouldConstruct = true)]
+    private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory inventory)
+    { }
 }

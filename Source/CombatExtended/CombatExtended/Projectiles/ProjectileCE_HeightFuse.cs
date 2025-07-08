@@ -11,56 +11,54 @@ using CombatExtended.Lasers;
 using ProjectileImpactFX;
 using CombatExtended.Utilities;
 
-namespace CombatExtended
+namespace CombatExtended;
+class ProjectileCE_HeightFuse : ProjectileCE
 {
-    class ProjectileCE_HeightFuse : ProjectileCE
+    float detonationHeight => (def.projectile as ProjectilePropertiesCE).aimHeightOffset;
+
+    bool armed;
+
+    public override void ExposeData()
     {
-        float detonationHeight => (def.projectile as ProjectilePropertiesCE).aimHeightOffset;
+        base.ExposeData();
+        Scribe_Values.Look(ref armed, "armed", false);
+    }
 
-        bool armed;
-
-        public override void ExposeData()
+    public override void Tick()
+    {
+        base.Tick();
+        if (!armed && LastPos.y > detonationHeight)
         {
-            base.ExposeData();
-            Scribe_Values.Look(ref armed, "armed", false);
+            armed = true;
         }
-
-        public override void Tick()
+        if (armed && ExactPosition.y <= detonationHeight)
         {
-            base.Tick();
-            if (!armed && LastPos.y > detonationHeight)
-            {
-                armed = true;
-            }
-            if (armed && ExactPosition.y <= detonationHeight)
-            {
-                HeightFuseAirBurst();
-            }
+            HeightFuseAirBurst();
         }
+    }
 
-        public override void Impact(Thing hitThing)
+    public override void Impact(Thing hitThing)
+    {
+        //intercept impact if it hit something after where height fuse should have triggered
+        if (armed && ExactPosition.y <= detonationHeight)
         {
-            //intercept impact if it hit something after where height fuse should have triggered
-            if (armed && ExactPosition.y <= detonationHeight)
-            {
-                HeightFuseAirBurst();
-            }
-            else
-            {
-                base.Impact(hitThing);
-            }
+            HeightFuseAirBurst();
         }
+        else
+        {
+            base.Impact(hitThing);
+        }
+    }
 
-        void HeightFuseAirBurst()
+    void HeightFuseAirBurst()
+    {
+        float f = (LastPos.y - detonationHeight) / (LastPos.y - ExactPosition.y);
+        ExactPosition += f * (LastPos - ExactPosition);
+        if (!ExactPosition.ToIntVec3().IsValid)
         {
-            float f = (LastPos.y - detonationHeight) / (LastPos.y - ExactPosition.y);
-            ExactPosition += f * (LastPos - ExactPosition);
-            if (!ExactPosition.ToIntVec3().IsValid)
-            {
-                Destroy();
-                return;
-            }
-            base.Impact(null);
+            Destroy();
+            return;
         }
+        base.Impact(null);
     }
 }

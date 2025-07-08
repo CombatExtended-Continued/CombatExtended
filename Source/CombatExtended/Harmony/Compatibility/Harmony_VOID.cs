@@ -5,90 +5,88 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.HarmonyCE.Compatibility
+namespace CombatExtended.HarmonyCE.Compatibility;
+public static class Harmony_VOID
 {
-    public static class Harmony_VOID
+    private static Type Utils_Patch_HarmonyPatches
     {
-        private static Type Utils_Patch_HarmonyPatches
+        get
         {
-            get
+            return AccessTools.TypeByName("EncounterFramework.Utils");
+        }
+    }
+
+    [HarmonyPatch]
+    public static class Harmony_Utils_Patch
+    {
+
+        public static bool Prepare()
+        {
+            return Utils_Patch_HarmonyPatches != null;
+        }
+
+        public static MethodBase TargetMethod()
+        {
+            return AccessTools.Method("EncounterFramework.Utils:DoGeneration");
+        }
+
+        public static void Postfix(Map map)
+        {
+            var buildingList = map.listerBuildings.allBuildingsNonColonist.ToList();
+            foreach (var thing in buildingList)
             {
-                return AccessTools.TypeByName("EncounterFramework.Utils");
+                if (thing is Building_Turret turret)
+                {
+                    ReplaceTurret(turret);
+                }
             }
         }
 
-        [HarmonyPatch]
-        public static class Harmony_Utils_Patch
+        private static void ReplaceTurret(Thing oldThing)
         {
+            //Saving all the old turrets information
+            var map = oldThing.Map;
+            var position = oldThing.Position;
+            var stuff = oldThing.Stuff;
+            var faction = oldThing.Faction;
+            var def = oldThing.def;
+            var rot = oldThing.Rotation;
+            var hp = oldThing.HitPoints;
+            var powerComp = oldThing.TryGetComp<CompPowerTrader>();
+            PowerNet net = powerComp?.PowerNet;
 
-            public static bool Prepare()
+            oldThing.Destroy(DestroyMode.Vanish);
+
+            //Make new Turret
+            if (ThingMaker.MakeThing(def, stuff) is not Building_TurretGunCE newThing)
             {
-                return Utils_Patch_HarmonyPatches != null;
+                return;
             }
+            GenPlace.TryPlaceThing(newThing, position, map, ThingPlaceMode.Direct);
+            newThing.SetFaction(faction);
+            newThing.HitPoints = hp;
+            newThing.Rotation = rot;
 
-            public static MethodBase TargetMethod()
+            //Turret Ammo
+            var ammoComp = newThing.CompAmmo;
+            var ammoTypes = ammoComp.Props.ammoSet.ammoTypes;
+            foreach (var ammoType in ammoTypes)
             {
-                return AccessTools.Method("EncounterFramework.Utils:DoGeneration");
-            }
-
-            public static void Postfix(Map map)
-            {
-                var buildingList = map.listerBuildings.allBuildingsNonColonist.ToList();
-                foreach (var thing in buildingList)
+                if (ammoType.ammo.ammoClass == CE_AmmoCategoryDefOf.ExplosiveAP)
                 {
-                    if (thing is Building_Turret turret)
-                    {
-                        ReplaceTurret(turret);
-                    }
+                    ammoComp.CurrentAmmo = ammoType.ammo;
                 }
             }
+            ammoComp.CurMagCount = ammoComp.MagSize;
 
-            private static void ReplaceTurret(Thing oldThing)
+            //Force power on
+            var newPowerTrader = newThing.TryGetComp<CompPowerTrader>();
+            if (newPowerTrader != null)
             {
-                //Saving all the old turrets information
-                var map = oldThing.Map;
-                var position = oldThing.Position;
-                var stuff = oldThing.Stuff;
-                var faction = oldThing.Faction;
-                var def = oldThing.def;
-                var rot = oldThing.Rotation;
-                var hp = oldThing.HitPoints;
-                var powerComp = oldThing.TryGetComp<CompPowerTrader>();
-                PowerNet net = powerComp?.PowerNet;
-
-                oldThing.Destroy(DestroyMode.Vanish);
-
-                //Make new Turret
-                if (ThingMaker.MakeThing(def, stuff) is not Building_TurretGunCE newThing)
-                {
-                    return;
-                }
-                GenPlace.TryPlaceThing(newThing, position, map, ThingPlaceMode.Direct);
-                newThing.SetFaction(faction);
-                newThing.HitPoints = hp;
-                newThing.Rotation = rot;
-
-                //Turret Ammo
-                var ammoComp = newThing.CompAmmo;
-                var ammoTypes = ammoComp.Props.ammoSet.ammoTypes;
-                foreach (var ammoType in ammoTypes)
-                {
-                    if (ammoType.ammo.ammoClass == CE_AmmoCategoryDefOf.ExplosiveAP)
-                    {
-                        ammoComp.CurrentAmmo = ammoType.ammo;
-                    }
-                }
-                ammoComp.CurMagCount = ammoComp.MagSize;
-
-                //Force power on
-                var newPowerTrader = newThing.TryGetComp<CompPowerTrader>();
-                if (newPowerTrader != null)
-                {
-                    net?.RegisterConnector(newPowerTrader);
-                    newPowerTrader.PowerOn = true;
-                }
-
+                net?.RegisterConnector(newPowerTrader);
+                newPowerTrader.PowerOn = true;
             }
+
         }
     }
 }

@@ -6,21 +6,19 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class CompProperties_AmmoUser : CompProperties
 {
-    public class CompProperties_AmmoUser : CompProperties
-    {
-        public int magazineSize = 0;
-        public int AmmoGenPerMagOverride = 0;
-        public float reloadTime = 1;
-        public bool reloadOneAtATime = false;
-        public bool throwMote = true;
-        public AmmoSetDef ammoSet = null;
-        public float loadedAmmoBulkFactor = 0f;
+    public int magazineSize = 0;
+    public int AmmoGenPerMagOverride = 0;
+    public float reloadTime = 1;
+    public bool reloadOneAtATime = false;
+    public bool throwMote = true;
+    public AmmoSetDef ammoSet = null;
+    public float loadedAmmoBulkFactor = 0f;
 
-        public CompProperties_AmmoUser()
-        {
-            compClass = typeof(CompAmmoUser);
-        }
+    public CompProperties_AmmoUser()
+    {
+        compClass = typeof(CompAmmoUser);
     }
 }

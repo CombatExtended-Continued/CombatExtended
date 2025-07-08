@@ -8,20 +8,18 @@ using Verse;
 using CombatExtended;
 using RimWorld;
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+public static class Harmony_Faction
 {
-    public static class Harmony_Faction
+    [HarmonyPatch(typeof(Faction), nameof(Faction.Notify_LeaderDied))]
+    public static class Harmony_Faction_Notify_LeaderDied
     {
-        [HarmonyPatch(typeof(Faction), nameof(Faction.Notify_LeaderDied))]
-        public static class Harmony_Faction_Notify_LeaderDied
+        public static void Prefix(Faction __instance)
         {
-            public static void Prefix(Faction __instance)
+            FactionStrengthTracker tracker = __instance.GetStrengthTracker();
+            if (tracker != null)
             {
-                FactionStrengthTracker tracker = __instance.GetStrengthTracker();
-                if (tracker != null)
-                {
-                    tracker.Notify_LeaderKilled();
-                }
+                tracker.Notify_LeaderKilled();
             }
         }
     }

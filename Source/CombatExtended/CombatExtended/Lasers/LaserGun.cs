@@ -5,110 +5,108 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended.Lasers
+namespace CombatExtended.Lasers;
+
+public class LaserGun : ThingWithComps, IBeamColorThing, IDrawnWeaponWithRotation
 {
+    public LaserGunDef laserGunDef => base.def as LaserGunDef ?? LaserGunDef.defaultObj;
 
-    public class LaserGun : ThingWithComps, IBeamColorThing, IDrawnWeaponWithRotation
+    public int BeamColor
     {
-        public LaserGunDef laserGunDef => base.def as LaserGunDef ?? LaserGunDef.defaultObj;
-
-        public int BeamColor
+        get
         {
-            get
+            return LaserColor.IndexBasedOnThingQuality(beamColorIndex, this);
+        }
+        set
+        {
+            beamColorIndex = value;
+        }
+    }
+
+    int ticksPreviously = 0;
+    public float RotationOffset
+    {
+        get
+        {
+            int ticks = Find.TickManager.TicksGame;
+            UpdateRotationOffset(ticks - ticksPreviously);
+            ticksPreviously = ticks;
+
+            return rotationOffset;
+        }
+        set
+        {
+            rotationOffset = value;
+            rotationSpeed = 0;
+        }
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+
+        Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
+    }
+
+    public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
+    {
+        foreach (FloatMenuOption o in base.GetFloatMenuOptions(pawn))
+        {
+            if (o != null)
             {
-                return LaserColor.IndexBasedOnThingQuality(beamColorIndex, this);
-            }
-            set
-            {
-                beamColorIndex = value;
+                yield return o;
             }
         }
 
-        int ticksPreviously = 0;
-        public float RotationOffset
+        if (!laserGunDef.supportsColors)
         {
-            get
-            {
-                int ticks = Find.TickManager.TicksGame;
-                UpdateRotationOffset(ticks - ticksPreviously);
-                ticksPreviously = ticks;
-
-                return rotationOffset;
-            }
-            set
-            {
-                rotationOffset = value;
-                rotationSpeed = 0;
-            }
-        }
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-
-            Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
-        }
-
-        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
-        {
-            foreach (FloatMenuOption o in base.GetFloatMenuOptions(pawn))
-            {
-                if (o != null)
-                {
-                    yield return o;
-                }
-            }
-
-            if (!laserGunDef.supportsColors)
-            {
-                yield break;
-            }
-            /*
-            foreach (FloatMenuOption o in LaserColor.GetChangeBeamColorFloatMenuOptions(this, pawn))
-            {
-                if (o != null) yield return o;
-            }
-            */
             yield break;
         }
-
-        void UpdateRotationOffset(int ticks)
+        /*
+        foreach (FloatMenuOption o in LaserColor.GetChangeBeamColorFloatMenuOptions(this, pawn))
         {
-            if (rotationOffset == 0)
-            {
-                return;
-            }
-            if (ticks <= 0)
-            {
-                return;
-            }
-            if (ticks > 30)
-            {
-                ticks = 30;
-            }
+            if (o != null) yield return o;
+        }
+        */
+        yield break;
+    }
 
-            if (rotationOffset > 0)
-            {
-                rotationOffset -= rotationSpeed;
-                if (rotationOffset < 0)
-                {
-                    rotationOffset = 0;
-                }
-            }
-            else if (rotationOffset < 0)
-            {
-                rotationOffset += rotationSpeed;
-                if (rotationOffset > 0)
-                {
-                    rotationOffset = 0;
-                }
-            }
-
-            rotationSpeed += ticks * 0.01f;
+    void UpdateRotationOffset(int ticks)
+    {
+        if (rotationOffset == 0)
+        {
+            return;
+        }
+        if (ticks <= 0)
+        {
+            return;
+        }
+        if (ticks > 30)
+        {
+            ticks = 30;
         }
 
-        private int beamColorIndex = -1;
-        private float rotationSpeed = 0;
-        private float rotationOffset = 0;
+        if (rotationOffset > 0)
+        {
+            rotationOffset -= rotationSpeed;
+            if (rotationOffset < 0)
+            {
+                rotationOffset = 0;
+            }
+        }
+        else if (rotationOffset < 0)
+        {
+            rotationOffset += rotationSpeed;
+            if (rotationOffset > 0)
+            {
+                rotationOffset = 0;
+            }
+        }
+
+        rotationSpeed += ticks * 0.01f;
     }
+
+    private int beamColorIndex = -1;
+    private float rotationSpeed = 0;
+    private float rotationOffset = 0;
 }

@@ -5,100 +5,98 @@ using JetBrains.Annotations;
 using RimWorld.Planet;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public static class CE_Scriber
 {
-    public static class CE_Scriber
+    private static List<ScribingAction> queuedLate = new List<ScribingAction>();
+    private static int idCounter = 13;
+
+    private static string curId;
+
+    private struct ScribingAction
     {
-        private static List<ScribingAction> queuedLate = new List<ScribingAction>();
-        private static int idCounter = 13;
+        public readonly Object owner;
+        public readonly Action<string> scribingAction;
+        public readonly Action<string> postLoadAction;
+        public readonly string id;
 
-        private static string curId;
-
-        private struct ScribingAction
+        public ScribingAction(Object owner, string id, Action<string> action, Action<string> postLoadAction)
         {
-            public readonly Object owner;
-            public readonly Action<string> scribingAction;
-            public readonly Action<string> postLoadAction;
-            public readonly string id;
-
-            public ScribingAction(Object owner, string id, Action<string> action, Action<string> postLoadAction)
-            {
-                this.scribingAction = action;
-                this.postLoadAction = postLoadAction;
-                this.owner = owner;
-                this.id = id;
-            }
+            this.scribingAction = action;
+            this.postLoadAction = postLoadAction;
+            this.owner = owner;
+            this.id = id;
         }
+    }
 
-        public static void Late(Object owner, Action<string> scribingAction, Action<string> postLoadAction = null)
+    public static void Late(Object owner, Action<string> scribingAction, Action<string> postLoadAction = null)
+    {
+        string loadingId = null;
+        if (Scribe.mode == LoadSaveMode.Saving)
         {
-            string loadingId = null;
-            if (Scribe.mode == LoadSaveMode.Saving)
+            loadingId = $"{idCounter++}_{Rand.Range(0, (int)1e5) << Rand.Range(0, 32)}";
+        }
+        Scribe_Values.Look(ref loadingId, "loadingId");
+        if (Scribe.mode != LoadSaveMode.Saving)
+        {
+            ScribingAction r = new ScribingAction(owner, loadingId, scribingAction, postLoadAction);
+            queuedLate.Add(r);
+        }
+        else
+        {
+            curId = loadingId;
+            try
             {
-                loadingId = $"{idCounter++}_{Rand.Range(0, (int)1e5) << Rand.Range(0, 32)}";
+                scribingAction.Invoke(loadingId);
             }
-            Scribe_Values.Look(ref loadingId, "loadingId");
-            if (Scribe.mode != LoadSaveMode.Saving)
+            catch (Exception er)
             {
-                ScribingAction r = new ScribingAction(owner, loadingId, scribingAction, postLoadAction);
-                queuedLate.Add(r);
+                Log.Error($"CE: Error while scribing {owner} (Late) {er}");
             }
-            else
+            curId = null;
+        }
+    }
+
+    public static void ExecuteLateScribe()
+    {
+        Scribe_Values.Look(ref idCounter, "lastscriber_IdCounter", 13);
+        for (int i = 0; i < queuedLate.Count; i++)
+        {
+            if (queuedLate[i].scribingAction != null)
             {
-                curId = loadingId;
                 try
                 {
-                    scribingAction.Invoke(loadingId);
+                    curId = queuedLate[i].id;
+                    queuedLate[i].scribingAction.Invoke(queuedLate[i].id);
+                    curId = null;
                 }
                 catch (Exception er)
                 {
-                    Log.Error($"CE: Error while scribing {owner} (Late) {er}");
+                    Log.Error($"CE: Error while scribing {queuedLate[i].owner} (ExecuteLateScribe) {er}");
                 }
-                curId = null;
             }
         }
+    }
 
-        public static void ExecuteLateScribe()
+    public static void Reset()
+    {
+        for (int i = 0; i < queuedLate.Count; i++)
         {
-            Scribe_Values.Look(ref idCounter, "lastscriber_IdCounter", 13);
-            for (int i = 0; i < queuedLate.Count; i++)
+            if (queuedLate[i].postLoadAction != null)
             {
-                if (queuedLate[i].scribingAction != null)
+                try
                 {
-                    try
-                    {
-                        curId = queuedLate[i].id;
-                        queuedLate[i].scribingAction.Invoke(queuedLate[i].id);
-                        curId = null;
-                    }
-                    catch (Exception er)
-                    {
-                        Log.Error($"CE: Error while scribing {queuedLate[i].owner} (ExecuteLateScribe) {er}");
-                    }
+                    curId = queuedLate[i].id;
+                    queuedLate[i].postLoadAction.Invoke(queuedLate[i].id);
+                    curId = null;
+                }
+                catch (Exception er)
+                {
+                    Log.Error($"CE: Error while scribing {queuedLate[i].owner} (reset) {er}");
                 }
             }
         }
-
-        public static void Reset()
-        {
-            for (int i = 0; i < queuedLate.Count; i++)
-            {
-                if (queuedLate[i].postLoadAction != null)
-                {
-                    try
-                    {
-                        curId = queuedLate[i].id;
-                        queuedLate[i].postLoadAction.Invoke(queuedLate[i].id);
-                        curId = null;
-                    }
-                    catch (Exception er)
-                    {
-                        Log.Error($"CE: Error while scribing {queuedLate[i].owner} (reset) {er}");
-                    }
-                }
-            }
-            queuedLate.Clear();
-        }
+        queuedLate.Clear();
     }
 }
 

@@ -3,59 +3,57 @@ using HarmonyLib;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+[HarmonyPatch(typeof(Command), nameof(Command.DrawIcon))]
+public static class Harmony_Command
 {
-    [HarmonyPatch(typeof(Command), nameof(Command.DrawIcon))]
-    public static class Harmony_Command
+    public static bool Prefix(Command __instance, Rect rect, GizmoRenderParms parms, Material buttonMat)
     {
-        public static bool Prefix(Command __instance, Rect rect, GizmoRenderParms parms, Material buttonMat)
+        if (__instance is Command_VerbTarget command)
         {
-            if (__instance is Command_VerbTarget command)
+            if (command.verb?.EquipmentSource is WeaponPlatform platform)
             {
-                if (command.verb?.EquipmentSource is WeaponPlatform platform)
+                RocketGUI.GUIUtility.ExecuteSafeGUIAction(() =>
                 {
-                    RocketGUI.GUIUtility.ExecuteSafeGUIAction(() =>
+                    rect.position += new Vector2(command.iconOffset.x * rect.size.x, command.iconOffset.y * rect.size.y);
+                    Color color = GUI.color;
+                    if (!command.disabled || parms.lowLight)
                     {
-                        rect.position += new Vector2(command.iconOffset.x * rect.size.x, command.iconOffset.y * rect.size.y);
-                        Color color = GUI.color;
-                        if (!command.disabled || parms.lowLight)
-                        {
-                            color = command.IconDrawColor;
-                        }
-                        else
-                        {
-                            color = command.IconDrawColor.SaturationChanged(0f);
-                        }
-                        if (parms.lowLight)
-                        {
-                            color = GUI.color.ToTransparent(0.6f);
-                        }
-                        float dx = rect.width * 0.15f / 2f;
-                        rect.xMin += dx;
-                        rect.xMax -= dx;
-                        float dy = rect.height * 0.15f / 2f;
-                        rect.yMin += dy;
-                        rect.yMax -= dy;
-                        RocketGUI.GUIUtility.DrawWeaponWithAttachments(rect, platform, null, color, buttonMat);
-                    });
-                    return false;
-                }
+                        color = command.IconDrawColor;
+                    }
+                    else
+                    {
+                        color = command.IconDrawColor.SaturationChanged(0f);
+                    }
+                    if (parms.lowLight)
+                    {
+                        color = GUI.color.ToTransparent(0.6f);
+                    }
+                    float dx = rect.width * 0.15f / 2f;
+                    rect.xMin += dx;
+                    rect.xMax -= dx;
+                    float dy = rect.height * 0.15f / 2f;
+                    rect.yMin += dy;
+                    rect.yMax -= dy;
+                    RocketGUI.GUIUtility.DrawWeaponWithAttachments(rect, platform, null, color, buttonMat);
+                });
+                return false;
             }
-            return true;
         }
+        return true;
     }
-    [HarmonyPatch(typeof(Command), nameof(Command.GizmoOnGUIInt))]
-    public static class Harmony_Command_GizmoOnGUIInt
+}
+[HarmonyPatch(typeof(Command), nameof(Command.GizmoOnGUIInt))]
+public static class Harmony_Command_GizmoOnGUIInt
+{
+    public static void Prefix(Command __instance)
     {
-        public static void Prefix(Command __instance)
+        if (__instance is Command_VerbTarget command)
         {
-            if (__instance is Command_VerbTarget command)
+            if (command.verb is Verb_MarkForArtillery mark && !mark.MarkingConditionsMet())
             {
-                if (command.verb is Verb_MarkForArtillery mark && !mark.MarkingConditionsMet())
-                {
-                    command.disabled = true;
-                    command.disabledReason = "CE_MarkingUnavailableReason".Translate();
-                }
+                command.disabled = true;
+                command.disabledReason = "CE_MarkingUnavailableReason".Translate();
             }
         }
     }

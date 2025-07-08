@@ -6,79 +6,77 @@ using System.Reflection;
 using Verse;
 
 
-namespace CombatExtended.HarmonyCE.Compatibility
+namespace CombatExtended.HarmonyCE.Compatibility;
+
+[HarmonyPatch]
+class GraphicApparelDetour_Disable
 {
+    static List<Assembly> target_asses = new List<Assembly>();
 
-    [HarmonyPatch]
-    class GraphicApparelDetour_Disable
+    static bool Prepare()
     {
-        static List<Assembly> target_asses = new List<Assembly>();
-
-        static bool Prepare()
+        foreach (var ass in AppDomain.CurrentDomain.GetAssemblies())
         {
-            foreach (var ass in AppDomain.CurrentDomain.GetAssemblies())
+            if (ass.FullName.Contains("GraphicApparelDetour"))
             {
-                if (ass.FullName.Contains("GraphicApparelDetour"))
-                {
-                    target_asses.Add(ass);
-                }
+                target_asses.Add(ass);
             }
-            if (target_asses.Any())
-            {
-                return true;
-            }
-            return false;
         }
-
-        static IEnumerable<MethodBase> TargetMethods()
+        if (target_asses.Any())
         {
-            ReportOffendingDetourMods();
-            foreach (var ass in target_asses)
+            return true;
+        }
+        return false;
+    }
+
+    static IEnumerable<MethodBase> TargetMethods()
+    {
+        ReportOffendingDetourMods();
+        foreach (var ass in target_asses)
+        {
+            foreach (var type in ass.GetTypes())
             {
-                foreach (var type in ass.GetTypes())
+                MethodBase method_info = null;
+                if (type.Name.Contains("InjectorThingy"))
                 {
-                    MethodBase method_info = null;
-                    if (type.Name.Contains("InjectorThingy"))
-                    {
-                        method_info = AccessTools.Method(type, "InjectStuff");
-                    }
-                    if (method_info != null)
-                    {
-                        yield return method_info;
-                    }
+                    method_info = AccessTools.Method(type, "InjectStuff");
+                }
+                if (method_info != null)
+                {
+                    yield return method_info;
                 }
             }
         }
+    }
 
-        static bool Prefix()
+    static bool Prefix()
+    {
+        return false;
+    }
+
+    static void ReportOffendingDetourMods()
+    {
+        List<string> offending_mods = new List<string>();
+
+        foreach (var mod in LoadedModManager.RunningMods)
         {
-            return false;
+            foreach (var mod_ass in mod.assemblies.loadedAssemblies)
+            {
+                if (target_asses.Contains(mod_ass))
+                {
+                    offending_mods.Add(mod.Name);
+                }
+            }
         }
-
-        static void ReportOffendingDetourMods()
+        if (offending_mods.Any())
         {
-            List<string> offending_mods = new List<string>();
-
-            foreach (var mod in LoadedModManager.RunningMods)
+            bool pl = offending_mods.Count > 1;
+            Log.Error($"Combat Extended:: An incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
+            foreach (var mod_name in offending_mods)
             {
-                foreach (var mod_ass in mod.assemblies.loadedAssemblies)
-                {
-                    if (target_asses.Contains(mod_ass))
-                    {
-                        offending_mods.Add(mod.Name);
-                    }
-                }
+                Log.Error($"   {mod_name}");
             }
-            if (offending_mods.Any())
-            {
-                bool pl = offending_mods.Count > 1;
-                Log.Error($"Combat Extended:: An incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
-                foreach (var mod_name in offending_mods)
-                {
-                    Log.Error($"   {mod_name}");
-                }
-                Log.Error($"Please ask the developer{(pl ? "s" : "")} of {(pl ? "these mods" : "this mod")} to update {(pl ? "them" : "it")}  with a more compatible patching method, such as the Harmony library.");
-            }
+            Log.Error($"Please ask the developer{(pl ? "s" : "")} of {(pl ? "these mods" : "this mod")} to update {(pl ? "them" : "it")}  with a more compatible patching method, such as the Harmony library.");
         }
     }
 }
