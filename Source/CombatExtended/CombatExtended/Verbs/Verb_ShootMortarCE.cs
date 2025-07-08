@@ -66,16 +66,16 @@ public class Verb_ShootMortarCE : Verb_ShootCE
         }
         return true;
     }
-	
-	public override ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
-	{
-		return ShiftVecReportFor(target, target.Cell);
-	}
 
-	public override ShiftVecReport ShiftVecReportFor(LocalTargetInfo target, IntVec3 targetCell)
-	{
-		ShiftVecReport report = base.ShiftVecReportFor(target, targetCell);
-		report.circularMissRadius = this.GetMissRadiusForDist(report.shotDist);
+    public override ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
+    {
+        return ShiftVecReportFor(target, target.Cell);
+    }
+
+    public override ShiftVecReport ShiftVecReportFor(LocalTargetInfo target, IntVec3 targetCell)
+    {
+        ShiftVecReport report = base.ShiftVecReportFor(target, targetCell);
+        report.circularMissRadius = this.GetMissRadiusForDist(report.shotDist);
 
         // Check for marker
         ArtilleryMarker marker = null;
