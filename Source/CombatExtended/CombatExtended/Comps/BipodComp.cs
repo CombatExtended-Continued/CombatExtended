@@ -6,6 +6,7 @@ using Verse.Sound;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class BipodComp : CompRangedGizmoGiver
 {
     #region Fields
@@ -39,13 +40,27 @@ public class BipodComp : CompRangedGizmoGiver
     {
         base.PostSpawnSetup(respawningAfterLoad);
         compFireMode = this.parent.TryGetComp<CompFireModes>();
+        SetUpInvert(this.parent);
     }
+
     public override void PostExposeData()
     {
         Scribe_Values.Look(ref IsSetUpRn, "isBipodSetUp");
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
             compFireMode = this.parent.TryGetComp<CompFireModes>();
+            if (Controller.settings.BipodMechanics && compFireMode != null)
+            {
+
+                if (IsSetUpRn)
+                {
+                    SetupFromLoad();
+                }
+                else
+                {
+                    SetUpInvert(this.parent);
+                }
+            }
         }
         base.PostExposeData();
     }
@@ -185,8 +200,15 @@ public class BipodComp : CompRangedGizmoGiver
             }
             starts = 5;
         }
+    }
 
-
+    public void SetupFromLoad()
+    {
+        VerbPropertiesCE changed = CopyVerbPropsFromThing(this.parent);
+        changed.range += Props.additionalrange;
+        changed.recoilAmount *= Props.recoilMulton * Props.recoilMultoff;
+        changed.warmupTime *= Props.warmupMult * Props.warmupPenalty;
+        AssignVerbProps(this.parent, changed);
     }
     #endregion
 }
