@@ -8,161 +8,159 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace CombatExtended
+namespace CombatExtended;
+public struct Fleck_Casing : IFleck
 {
-    public struct Fleck_Casing : IFleck
+    public FleckStatic baseData;
+
+    public float airTimeLeft;
+
+    public Vector3 velocity;
+
+    public float rotationRate;
+
+    public float delay;
+
+    public bool Flying => airTimeLeft > 0f;
+
+    public Vector3 Velocity
     {
-        public FleckStatic baseData;
-
-        public float airTimeLeft;
-
-        public Vector3 velocity;
-
-        public float rotationRate;
-
-        public float delay;
-
-        public bool Flying => airTimeLeft > 0f;
-
-        public Vector3 Velocity
+        get
         {
-            get
+            return velocity;
+        }
+        set
+        {
+            velocity = value;
+        }
+    }
+
+    public float MoveAngle
+    {
+        get
+        {
+            return velocity.AngleFlat();
+        }
+        set
+        {
+            SetVelocity(value, Speed);
+        }
+    }
+
+    public float Speed
+    {
+        get
+        {
+            return velocity.MagnitudeHorizontal();
+        }
+        set
+        {
+            if (value == 0f)
             {
-                return velocity;
+                velocity = Vector3.zero;
             }
-            set
+            else if (velocity == Vector3.zero)
             {
-                velocity = value;
+                velocity = new Vector3(value, 0f, 0f);
+            }
+            else
+            {
+                velocity = velocity.normalized * value;
             }
         }
+    }
 
-        public float MoveAngle
+    public void Setup(FleckCreationData creationData)
+    {
+        baseData = default(FleckStatic);
+        baseData.Setup(creationData);
+        airTimeLeft = creationData.airTimeLeft ?? 999999f;
+        baseData.position.worldPosition += creationData.def.attachedDrawOffset;
+        rotationRate = creationData.rotationRate;
+        SetVelocity(creationData.velocityAngle, creationData.velocitySpeed);
+        if (creationData.velocity.HasValue)
         {
-            get
-            {
-                return velocity.AngleFlat();
-            }
-            set
-            {
-                SetVelocity(value, Speed);
-            }
+            velocity += creationData.velocity.Value;
         }
+    }
 
-        public float Speed
+    public bool TimeInterval(float deltaTime, Map map)
+    {
+        if (baseData.TimeInterval(deltaTime, map))
         {
-            get
-            {
-                return velocity.MagnitudeHorizontal();
-            }
-            set
-            {
-                if (value == 0f)
-                {
-                    velocity = Vector3.zero;
-                }
-                else if (velocity == Vector3.zero)
-                {
-                    velocity = new Vector3(value, 0f, 0f);
-                }
-                else
-                {
-                    velocity = velocity.normalized * value;
-                }
-            }
+            return true;
         }
-
-        public void Setup(FleckCreationData creationData)
+        if (!Flying)
         {
-            baseData = default(FleckStatic);
-            baseData.Setup(creationData);
-            airTimeLeft = creationData.airTimeLeft ?? 999999f;
-            baseData.position.worldPosition += creationData.def.attachedDrawOffset;
-            rotationRate = creationData.rotationRate;
-            SetVelocity(creationData.velocityAngle, creationData.velocitySpeed);
-            if (creationData.velocity.HasValue)
-            {
-                velocity += creationData.velocity.Value;
-            }
+            return false;
         }
-
-        public bool TimeInterval(float deltaTime, Map map)
+        Vector3 vector = NextExactPosition(deltaTime);
+        IntVec3 intVec = new IntVec3(vector);
+        if (intVec != new IntVec3(baseData.position.ExactPosition))
         {
-            if (baseData.TimeInterval(deltaTime, map))
+            if (!intVec.InBounds(map))
             {
                 return true;
             }
-            if (!Flying)
+            if (baseData.def.collide && intVec.Filled(map))
             {
+                WallHit();
                 return false;
             }
-            Vector3 vector = NextExactPosition(deltaTime);
-            IntVec3 intVec = new IntVec3(vector);
-            if (intVec != new IntVec3(baseData.position.ExactPosition))
+        }
+        baseData.position.worldPosition = vector;
+        if (baseData.def.speedPerTime != FloatRange.Zero)
+        {
+            Speed = Mathf.Max(Speed + baseData.def.speedPerTime.RandomInRange * deltaTime, 0f);
+        }
+        if (airTimeLeft > 0f)
+        {
+            if (baseData.def.rotateTowardsMoveDirection && velocity != default(Vector3))
             {
-                if (!intVec.InBounds(map))
-                {
-                    return true;
-                }
-                if (baseData.def.collide && intVec.Filled(map))
-                {
-                    WallHit();
-                    return false;
-                }
+                baseData.exactRotation = velocity.AngleFlat() + baseData.def.rotateTowardsMoveDirectionExtraAngle;
             }
-            baseData.position.worldPosition = vector;
-            if (baseData.def.speedPerTime != FloatRange.Zero)
+            else
             {
-                Speed = Mathf.Max(Speed + baseData.def.speedPerTime.RandomInRange * deltaTime, 0f);
+                baseData.exactRotation += rotationRate * deltaTime;
             }
-            if (airTimeLeft > 0f)
+            velocity += baseData.def.acceleration * deltaTime;
+            airTimeLeft -= deltaTime;
+            if (airTimeLeft < 0f)
             {
-                if (baseData.def.rotateTowardsMoveDirection && velocity != default(Vector3))
-                {
-                    baseData.exactRotation = velocity.AngleFlat() + baseData.def.rotateTowardsMoveDirectionExtraAngle;
-                }
-                else
-                {
-                    baseData.exactRotation += rotationRate * deltaTime;
-                }
-                velocity += baseData.def.acceleration * deltaTime;
-                airTimeLeft -= deltaTime;
-                if (airTimeLeft < 0f)
-                {
-                    airTimeLeft = 0f;
-                }
-                if (airTimeLeft <= 0f && !baseData.def.landSound.NullOrUndefined())
-                {
-                    baseData.def.landSound.PlayOneShot(new TargetInfo(new IntVec3(baseData.position.ExactPosition), map));
-                }
+                airTimeLeft = 0f;
             }
-            return false;
+            if (airTimeLeft <= 0f && !baseData.def.landSound.NullOrUndefined())
+            {
+                baseData.def.landSound.PlayOneShot(new TargetInfo(new IntVec3(baseData.position.ExactPosition), map));
+            }
         }
+        return false;
+    }
 
-        private Vector3 NextExactPosition(float deltaTime)
-        {
-            return baseData.position.ExactPosition + velocity * deltaTime;
-        }
+    private Vector3 NextExactPosition(float deltaTime)
+    {
+        return baseData.position.ExactPosition + velocity * deltaTime;
+    }
 
-        public void SetVelocity(float angle, float speed)
-        {
-            velocity = Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward * speed;
-        }
+    public void SetVelocity(float angle, float speed)
+    {
+        velocity = Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward * speed;
+    }
 
-        public void Draw(DrawBatch batch)
-        {
-            baseData.Draw(batch);
-        }
+    public void Draw(DrawBatch batch)
+    {
+        baseData.Draw(batch);
+    }
 
-        private void WallHit()
-        {
-            airTimeLeft = 0f;
-            Speed = 0f;
-            rotationRate = 0f;
-        }
+    private void WallHit()
+    {
+        airTimeLeft = 0f;
+        Speed = 0f;
+        rotationRate = 0f;
+    }
 
-        public Vector3 GetPosition()
-        {
-            return baseData.position.worldPosition;
-        }
+    public Vector3 GetPosition()
+    {
+        return baseData.position.worldPosition;
     }
 }

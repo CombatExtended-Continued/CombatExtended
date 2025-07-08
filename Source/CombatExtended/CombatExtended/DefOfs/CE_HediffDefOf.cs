@@ -1,17 +1,15 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+[DefOf]
+public static class CE_HediffDefOf
 {
-    [DefOf]
-    public static class CE_HediffDefOf
+    static CE_HediffDefOf()
     {
-        static CE_HediffDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(CE_HediffDefOf));
-        }
-        public static HediffDef VenomBuildup;
-        public static HediffDef SmokeInhalation;
-        public static HediffDef MuscleSpasms;
+        DefOfHelper.EnsureInitializedInCtor(typeof(CE_HediffDefOf));
     }
+    public static HediffDef VenomBuildup;
+    public static HediffDef SmokeInhalation;
+    public static HediffDef MuscleSpasms;
 }

@@ -8,129 +8,127 @@ using UnityEngine;
 using Verse;
 using RimWorld;
 
-namespace CombatExtended
+namespace CombatExtended;
+[StaticConstructorOnStartup]
+public class CompFragments : ThingComp
 {
-    [StaticConstructorOnStartup]
-    public class CompFragments : ThingComp
+    private class MonoDummy : MonoBehaviour { }
+
+    private const int TicksToSpawnAllFrag = 10;
+
+    private static MonoDummy _monoDummy;
+
+    static CompFragments()
     {
-        private class MonoDummy : MonoBehaviour { }
+        var dummyGO = new GameObject();
+        UnityEngine.Object.DontDestroyOnLoad(dummyGO);
+        _monoDummy = dummyGO.AddComponent<MonoDummy>();
+    }
 
-        private const int TicksToSpawnAllFrag = 10;
+    public CompProperties_Fragments PropsCE => (CompProperties_Fragments)props;
 
-        private static MonoDummy _monoDummy;
-
-        static CompFragments()
+    public static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange, FloatRange fragXZAngleRange, float minCollisionDistance = 0f, bool canTargetSelf = true)
+    {
+        if (height < 0.001f)
         {
-            var dummyGO = new GameObject();
-            UnityEngine.Object.DontDestroyOnLoad(dummyGO);
-            _monoDummy = dummyGO.AddComponent<MonoDummy>();
+            height = 0.001f;
         }
+        var cell = pos.ToIntVec3();
+        var exactOrigin = new Vector2(pos.x, pos.z);
 
-        public CompProperties_Fragments PropsCE => (CompProperties_Fragments)props;
+        var fragToSpawn = frag.count;
+        var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
+        var fragSpawnedInTick = 0;
 
-        public static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange, FloatRange fragXZAngleRange, float minCollisionDistance = 0f, bool canTargetSelf = true)
+        //fun calculus and trigonometry stuff
+        FloatRange fragAngleSinRange = new FloatRange(Mathf.Sin(fragAngleRange.min * Mathf.Deg2Rad), Mathf.Sin(fragAngleRange.max * Mathf.Deg2Rad));  //Fix fragment distribution being biased towards the poles of the sphere.
+
+
+        while (fragToSpawn-- > 0)
         {
-            if (height < 0.001f)
+            var projectile = (ProjectileCE)ThingMaker.MakeThing(frag.thingDef);
+            GenSpawn.Spawn(projectile, cell, map);
+
+            projectile.canTargetSelf = canTargetSelf;
+            projectile.minCollisionDistance = minCollisionDistance;
+            projectile.logMisses = false;
+            float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
+
+            projectile.Launch(
+                instigator,
+                exactOrigin,
+                elevAngle,
+                (fragXZAngleRange.RandomInRange + 360) % 360,
+                height,
+                fragSpeedFactor * projectile.def.projectile.speed,
+                projectile
+            );
+
+            projectile.castShadow = (Rand.Value < fragShadowChance); // moved after Launch due to it assigning shadow
+
+            projectile.Tick(); // fragments often impact something immediately, so this culls them before they need to filter out other fragments
+
+            fragSpawnedInTick++;
+            if (fragSpawnedInTick >= fragPerTick)
             {
-                height = 0.001f;
-            }
-            var cell = pos.ToIntVec3();
-            var exactOrigin = new Vector2(pos.x, pos.z);
-
-            var fragToSpawn = frag.count;
-            var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
-            var fragSpawnedInTick = 0;
-
-            //fun calculus and trigonometry stuff
-            FloatRange fragAngleSinRange = new FloatRange(Mathf.Sin(fragAngleRange.min * Mathf.Deg2Rad), Mathf.Sin(fragAngleRange.max * Mathf.Deg2Rad));  //Fix fragment distribution being biased towards the poles of the sphere.
-
-
-            while (fragToSpawn-- > 0)
-            {
-                var projectile = (ProjectileCE)ThingMaker.MakeThing(frag.thingDef);
-                GenSpawn.Spawn(projectile, cell, map);
-
-                projectile.canTargetSelf = canTargetSelf;
-                projectile.minCollisionDistance = minCollisionDistance;
-                projectile.logMisses = false;
-                float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
-
-                projectile.Launch(
-                    instigator,
-                    exactOrigin,
-                    elevAngle,
-                    (fragXZAngleRange.RandomInRange + 360) % 360,
-                    height,
-                    fragSpeedFactor * projectile.def.projectile.speed,
-                    projectile
-                );
-
-                projectile.castShadow = (Rand.Value < fragShadowChance); // moved after Launch due to it assigning shadow
-
-                projectile.Tick(); // fragments often impact something immediately, so this culls them before they need to filter out other fragments
-
-                fragSpawnedInTick++;
-                if (fragSpawnedInTick >= fragPerTick)
+                fragSpawnedInTick = 0;
+                yield return new WaitForEndOfFrame();
+                if (Find.Maps.IndexOf(map) < 0)
                 {
-                    fragSpawnedInTick = 0;
-                    yield return new WaitForEndOfFrame();
-                    if (Find.Maps.IndexOf(map) < 0)
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
         }
+    }
 
-        public void Throw(Vector3 pos, Map map, Thing instigator, float scaleFactor = 1)
+    public void Throw(Vector3 pos, Map map, Thing instigator, float scaleFactor = 1)
+    {
+        if (!PropsCE.fragments.NullOrEmpty())
         {
-            if (!PropsCE.fragments.NullOrEmpty())
+            if (map == null)
             {
-                if (map == null)
-                {
-                    Log.Warning("CombatExtended :: Tried to throw fragments in a null map.");
-                    return;
-                }
-                if (!pos.ToIntVec3().InBounds(map))
-                {
-                    Log.Warning("CombatExtended :: Tried to throw fragments out of bounds");
-                    return;
-                }
+                Log.Warning("CombatExtended :: Tried to throw fragments in a null map.");
+                return;
+            }
+            if (!pos.ToIntVec3().InBounds(map))
+            {
+                Log.Warning("CombatExtended :: Tried to throw fragments out of bounds");
+                return;
+            }
 
-                float height;
-                FloatRange fragXZAngleRange;
-                if (parent is ProjectileCE projCE)
+            float height;
+            FloatRange fragXZAngleRange;
+            if (parent is ProjectileCE projCE)
+            {
+                height = projCE.ExactPosition.y;
+                fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
+            }
+            else
+            {
+                height = 0;
+                fragXZAngleRange = PropsCE.fragXZAngleRange;
+            }
+            /*if (pos.ToIntVec3().GetEdifice(map) is Building edifice)
+            {
+            var edificeHeight = new CollisionVertical(edifice).Max;
+            height = Mathf.Max(height, edificeHeight);
+            }*/
+
+            foreach (var fragment in PropsCE.fragments)
+            {
+                var newCount = fragment;
+                newCount.count = Mathf.RoundToInt(newCount.count * scaleFactor);
+
+                var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor, PropsCE.fragShadowChance, PropsCE.fragAngleRange, fragXZAngleRange);
+                if (!Compatibility.Multiplayer.InMultiplayer)
                 {
-                    height = projCE.ExactPosition.y;
-                    fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
+                    _monoDummy.GetComponent<MonoDummy>().StartCoroutine(routine);
                 }
                 else
                 {
-                    height = 0;
-                    fragXZAngleRange = PropsCE.fragXZAngleRange;
-                }
-                /*if (pos.ToIntVec3().GetEdifice(map) is Building edifice)
-                {
-                var edificeHeight = new CollisionVertical(edifice).Max;
-                height = Mathf.Max(height, edificeHeight);
-                }*/
-
-                foreach (var fragment in PropsCE.fragments)
-                {
-                    var newCount = fragment;
-                    newCount.count = Mathf.RoundToInt(newCount.count * scaleFactor);
-
-                    var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor, PropsCE.fragShadowChance, PropsCE.fragAngleRange, fragXZAngleRange);
-                    if (!Compatibility.Multiplayer.InMultiplayer)
-                    {
-                        _monoDummy.GetComponent<MonoDummy>().StartCoroutine(routine);
-                    }
-                    else
-                    {
-                        // Multiplayer really dislikes coroutines
-                        while (routine.MoveNext())
-                        { }
-                    }
+                    // Multiplayer really dislikes coroutines
+                    while (routine.MoveNext())
+                    { }
                 }
             }
         }

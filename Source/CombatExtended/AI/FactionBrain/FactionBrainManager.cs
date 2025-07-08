@@ -6,36 +6,34 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended.AI
+namespace CombatExtended.AI;
+public class FactionBrainManager : MapComponent
 {
-    public class FactionBrainManager : MapComponent
+    private List<FactionBrain> brains = new List<FactionBrain>();
+
+    public FactionBrainManager(Map map) : base(map)
     {
-        private List<FactionBrain> brains = new List<FactionBrain>();
+    }
 
-        public FactionBrainManager(Map map) : base(map)
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Collections.Look(ref brains, "brains", LookMode.Deep);
+        Action action = delegate
         {
-        }
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Collections.Look(ref brains, "brains", LookMode.Deep);
-            Action action = delegate
+            foreach (var brain in brains)
             {
-                foreach (var brain in brains)
-                {
-                    brain.manager = this;
-                }
-            };
-            LongEventHandler.ExecuteWhenFinished(action);
-        }
-
-        public override void MapComponentTick()
-        {
-            foreach(var brain in brains)
-            {
-                brain.BrainTick();
+                brain.manager = this;
             }
+        };
+        LongEventHandler.ExecuteWhenFinished(action);
+    }
+
+    public override void MapComponentTick()
+    {
+        foreach(var brain in brains)
+        {
+            brain.BrainTick();
         }
     }
 }

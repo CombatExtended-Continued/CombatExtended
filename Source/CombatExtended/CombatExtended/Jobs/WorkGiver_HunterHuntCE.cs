@@ -6,29 +6,27 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class WorkGiver_HunterHuntCE : WorkGiver_HunterHunt
 {
-    public class WorkGiver_HunterHuntCE : WorkGiver_HunterHunt
+    public override bool ShouldSkip(Pawn pawn, bool forced = false)
     {
-        public override bool ShouldSkip(Pawn pawn, bool forced = false)
-        {
-            return base.ShouldSkip(pawn, forced) || HasMeleeShieldAndTwoHandedWeapon(pawn);
-        }
+        return base.ShouldSkip(pawn, forced) || HasMeleeShieldAndTwoHandedWeapon(pawn);
+    }
 
-        public static bool HasMeleeShieldAndTwoHandedWeapon(Pawn p)
+    public static bool HasMeleeShieldAndTwoHandedWeapon(Pawn p)
+    {
+        if (p.equipment.Primary != null && !(p.equipment.Primary.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false))
         {
-            if (p.equipment.Primary != null && !(p.equipment.Primary.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false))
+            List<Apparel> wornApparel = p.apparel.WornApparel;
+            foreach (Apparel apparel in wornApparel)
             {
-                List<Apparel> wornApparel = p.apparel.WornApparel;
-                foreach (Apparel apparel in wornApparel)
+                if (apparel is Apparel_Shield)
                 {
-                    if (apparel is Apparel_Shield)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
-            return false;
         }
+        return false;
     }
 }

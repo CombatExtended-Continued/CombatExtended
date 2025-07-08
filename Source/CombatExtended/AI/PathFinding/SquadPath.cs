@@ -6,12 +6,10 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended.AI
+namespace CombatExtended.AI;
+public class SquadPath
 {
-    public class SquadPath
-    {
-        public float fortificationStrength = 0;
-        public float defenderStrength = 0;
-        public List<Region> nodes = new List<Region>();
-    }
+    public float fortificationStrength = 0;
+    public float defenderStrength = 0;
+    public List<Region> nodes = new List<Region>();
 }

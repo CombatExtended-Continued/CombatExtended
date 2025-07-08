@@ -1,28 +1,26 @@
 ﻿using System.Xml;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class PatchOperation_ConditionalGeneric : PatchOperation
 {
-    public class PatchOperation_ConditionalGeneric : PatchOperation
+    public PatchOperation standard;
+    public PatchOperation generic;
+
+    public override bool ApplyWorker(XmlDocument xml)
     {
-        public PatchOperation standard;
-        public PatchOperation generic;
-
-        public override bool ApplyWorker(XmlDocument xml)
+        if (Controller.settings.GenericAmmo)
         {
-            if (Controller.settings.GenericAmmo)
+            if (generic != null)
             {
-                if (generic != null)
-                {
-                    return generic.Apply(xml);
-                }
+                return generic.Apply(xml);
             }
-            else if (standard != null)
-            {
-                return standard.Apply(xml);
-            }
-
-            return true;
         }
+        else if (standard != null)
+        {
+            return standard.Apply(xml);
+        }
+
+        return true;
     }
 }

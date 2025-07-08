@@ -1,11 +1,9 @@
 ﻿using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class GenericLabelExtension : DefModExtension
 {
-    public class GenericLabelExtension : DefModExtension
-    {
-        public string genericLabel;
-        public string genericDescription;
-        public string genericJobString;
-    }
+    public string genericLabel;
+    public string genericDescription;
+    public string genericJobString;
 }
