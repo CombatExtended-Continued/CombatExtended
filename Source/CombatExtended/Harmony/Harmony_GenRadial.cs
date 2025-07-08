@@ -79,54 +79,92 @@ namespace CombatExtended.HarmonyCE
 
         public static bool NumCellsInRadius(out int __result, float radius)
         {
-            if (radius < 1f) // special case since we start scanning from the *previous* index, which would be negative in this instance.
+            // Special cases
+            if (radius < 2f || radius >= MAX_RADIUS)
             {
-                __result = 1;
-                return false;
-            }
-            var radialPatternNumCells = RadialPatternNumCells; // cache friendly local references
-            var radialPatternRadii = RadialPatternRadii;
-            if (radius >= MAX_RADIUS)
-            {
-                if (radius > MAX_RADIUS)
-                {
-                    Log.Error($"Requested radius {radius} is beyond max. Truncating to {Harmony_GenRadial.MAX_RADIUS}.");
-                }
-                __result = RadialPatternCount;
-                return false;
-            }
-            float radsq = radius * radius;
-            int r = (int)radsq;
-            int count = radialPatternNumCells[r - 1];
-            /*
-              If we raise the max radius above about 200, binary search becomes faster.
-              Below 200, the match will reliably be found within 64 tries, where linear memory access dominates.
-            int max_count = RadialPatternNumCells[r];
-            int span;
-            */
-#if BINSEARCH
-            while ((span = max_count - count) > 64)
-            {
-                int mid_count = count + span / 2;
-                float mid = radialPatternRadii[mid_count];
-                if (mid > radius)
-                {
-                    max_count = mid_count;
-                }
+                if (radius < 0f)
+                    __result = 0;
+                else if (radius < 1f)
+                    __result = 1;
+                else if (radius < 1.414213562f)
+                    __result = 5;
+                else if (radius < 2f)
+                    __result = 9;
                 else
                 {
-                    count = mid_count;
+                    __result = RadialPatternCount;
+                    CheckRadius(radius);
                 }
+                return false;
+            }
+
+            int radiusSquaredInt = (int)(radius * radius);
+            // The answer is at least (25/8 * radius * radius - 11)
+            int lowerBound = ((radiusSquaredInt * 25) >> 3) - 11;
+#if BINSEARCH
+            // The upper bound is set to (101/32 * radius * radius)
+            //   some small radius actually goes above that
+            //   but the error is small (< 16) and linear search can fix it
+            int upperBound = (radiusSquaredInt * 101) >> 5;
+            if (upperBound > RadialPatternCount)
+                upperBound = RadialPatternCount;
+            // If the gap is large, perform binary search
+            while (upperBound - lowerBound > 88)
+            {
+                int mid = (lowerBound + upperBound) >> 1;
+                if (RadialPatternRadii[mid] <= radius)
+                    lowerBound = mid;
+                else
+                    upperBound = mid;
             }
 #endif
-            float start = radialPatternRadii[count];
-            while (start <= radius)
-            {
-                start = radialPatternRadii[count++];
-            }
-            __result = count - 1;
+            // Linear search:
+            // When (int)radius + (int)diagonal is odd,  the answer is always 8n + 5
+            // When (int)radius + (int)diagonal is even, the answer is always 8n + 1
+            // So we can set the last three bits of lowerBound
+            // and check only every 8 numbers
+            lowerBound = (lowerBound & -7) | (HasOddCells(radius) ? 5 : 1);
+            while (RadialPatternRadii[lowerBound] <= radius)
+                lowerBound += 8;
+            __result = lowerBound;
             return false;
-
+        }
+        
+        // A helper function for Prefix_NumCellsInRadius()
+        // Evaluates if (int)r + (int)d is an even number (round toward zero)
+        // Where d = r * sqrt(1/2)
+        // When (int)radius + (int)diagonal is odd,  the answer is always 8n + 5
+        // When (int)radius + (int)diagonal is even, the answer is always 8n + 1
+        // Use IEEE-754 bit hacks
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool HasOddCells(float r)
+        {
+            const float SqrtHalf = 0.707106781f;
+            float d = r * SqrtHalf;
+            // bit hack magic
+            int bitr = BitConverter.SingleToInt32Bits(r);
+            int bitd = BitConverter.SingleToInt32Bits(d);
+            // Slightly different from the real IEEE 754 mantissa
+            //   -- we first take the fractional part
+            //   -- then add back the missing starting 1
+            int mantissar = bitr & 0x007F_FFFF | 0x0080_0000;
+            int mantissad = bitd & 0x007F_FFFF | 0x0080_0000;
+            // We want to shift the fractional part out
+            //   -- shift 23, plus or minus the exponent part
+            //   -- the exponenet part itself is offset by 127
+            int shiftr = 23 + 127 - ((bitr >> 23) & 0xFF);
+            int shiftd = 23 + 127 - ((bitd >> 23) & 0xFF);
+            return (((mantissar >> shiftr) ^ (mantissad >> shiftd)) & 1) != 0;
+        }
+        
+        // A separate method to handle when radius exceeds MAX_RADIUS
+        // Apparently loading all these strings for formatting is very slow
+        // Even when they are not executed, likely due to branch predictions
+        // Separating the rare & slow stuff to this method helps a lot
+        private static void CheckRadius(float radius)
+        {
+            if (radius > MAX_RADIUS)
+                Log.Error($"Not enough squares to get to radius {radius}. Max is {MAX_RADIUS}");
         }
     }
 }
