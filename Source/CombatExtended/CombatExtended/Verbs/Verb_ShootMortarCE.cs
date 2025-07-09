@@ -69,7 +69,12 @@ public class Verb_ShootMortarCE : Verb_ShootCE
 
     public override ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
     {
-        ShiftVecReport report = base.ShiftVecReportFor(target);
+        return ShiftVecReportFor(target, target.Cell);
+    }
+
+    public override ShiftVecReport ShiftVecReportFor(LocalTargetInfo target, IntVec3 targetCell)
+    {
+        ShiftVecReport report = base.ShiftVecReportFor(target, targetCell);
         report.circularMissRadius = this.GetMissRadiusForDist(report.shotDist);
 
         // Check for marker
