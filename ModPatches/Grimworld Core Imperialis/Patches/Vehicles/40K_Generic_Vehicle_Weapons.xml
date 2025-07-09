@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--===== Storm Bolter =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Bolter75_Standard</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>5.4</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>1</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/maxRange</xpath>
+					<value>
+						<maxRange>42</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<shotsPerBurst>1</shotsPerBurst>
+								<ticksBetweenShots>12</ticksBetweenShots>
+								<ticksBetweenBursts>36</ticksBetweenBursts>
+								<label>Single</label>
+								<texPath>UI/Gizmos/FireRate_Single</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>6</shotsPerBurst>
+								<ticksBetweenShots>12</ticksBetweenShots>
+								<ticksBetweenBursts>36</ticksBetweenBursts>
+								<label>Burst</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>12</shotsPerBurst>
+								<ticksBetweenShots>12</ticksBetweenShots>
+								<ticksBetweenBursts>36</ticksBetweenBursts>
+								<label>Auto</label>
+								<texPath>UI/Gizmos/FireRate_Auto</texPath>
+							</li>
+						</fireModes>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_Bolter75_Standard</li>
+							<li>Ammo_Bolter75_MetalStorm</li>
+							<li>Ammo_Bolter75_Kraken</li>
+							<li>Ammo_Bolter75_Inferno</li>
+							<li>Ammo_Bolter75_Tempest</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Vehicle_StormBolter"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Bolter75</ammoSet>
+							<shotHeight>1.5</shotHeight>
+							<speed>129</speed>
+							<sway>1.0</sway>
+							<spread>0.06</spread>
+						</li>
+					</value>
+				</li>		
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

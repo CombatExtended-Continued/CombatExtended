@@ -40,17 +40,17 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_AM_VostoyanFirstbornHeadgear"]/statBases/StuffEffectMultiplierArmor</xpath>
-		<value>
-			<StuffEffectMultiplierArmor>3.0</StuffEffectMultiplierArmor>
-		</value>
-	</Operation>
-	
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="GW_AM_VostoyanFirstbornHeadgear"]/equippedStatOffsets</xpath>
 		<value>
 			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_VostoyanFirstbornHeadgear"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.0</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
@@ -255,16 +255,28 @@
 		<xpath>Defs/ThingDef[
 			defName="ODZ_40k_IG_DKOK_GrenadierGasmask" or
 			defName="GW_AM_SL_GasMask" or
-			defName="GW_AM_OgrynMask"
+			defName="GW_AM_OgrynMask" or
+			defName="GW_AM_LuciferBlackMask"
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>2.0</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_LuciferBlackMask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
 
 	<!-- Helmets -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Helmet"]/statBases</xpath>
+		<xpath>Defs/ThingDef[
+			defName="ODZ_40k_IG_Cadian_Helmet" or
+			defName="GW_AM_Elysian_Helmet" or
+			defName="GW_AM_ElysianHelmetOpen"
+			]/statBases</xpath>
 		<value>
 			<Bulk>4</Bulk>
 			<WornBulk>1</WornBulk>
@@ -272,14 +284,22 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[
+			defName="ODZ_40k_IG_Cadian_Helmet" or
+			defName="GW_AM_Elysian_Helmet" or
+			defName="GW_AM_ElysianHelmetOpen"
+			]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>6.5</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[
+			defName="ODZ_40k_IG_Cadian_Helmet" or
+			defName="GW_AM_Elysian_Helmet" or
+			defName="GW_AM_ElysianHelmetOpen"
+			]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>9.75</ArmorRating_Blunt>
 		</value>
@@ -352,7 +372,11 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_Helmet"]/statBases</xpath>
+		<xpath>Defs/ThingDef[
+			defName="ODZ_40k_IM_TempestusScion_Helmet" or
+			defName="GW_AM_LuciferBlackSkull" or
+			defName="GW_AM_LuciferBlackAlt"
+			]/statBases</xpath>
 		<value>
 			<Bulk>4</Bulk>
 			<WornBulk>1</WornBulk>
@@ -360,14 +384,22 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[
+			defName="ODZ_40k_IM_TempestusScion_Helmet" or
+			defName="GW_AM_LuciferBlackSkull" or
+			defName="GW_AM_LuciferBlackAlt"
+			]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>10</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[
+			defName="ODZ_40k_IM_TempestusScion_Helmet" or
+			defName="GW_AM_LuciferBlackSkull" or
+			defName="GW_AM_LuciferBlackAlt"
+			]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>14</ArmorRating_Blunt>
 		</value>
@@ -458,7 +490,7 @@
 
 	<!-- Tempestus Armors -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_CarapaceArmor" or defName="GW_AM_OgrynArmor"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_CarapaceArmor" or defName="GW_AM_OgrynArmor" or defName="GW_AM_LuciferBlack_Armor"]/statBases</xpath>
 		<value>
 			<Bulk>20</Bulk>
 			<WornBulk>5</WornBulk>
@@ -466,21 +498,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_CarapaceArmor" or defName="GW_AM_OgrynArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_CarapaceArmor" or defName="GW_AM_OgrynArmor" or defName="GW_AM_LuciferBlack_Armor"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>16</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_CarapaceArmor" or defName="GW_AM_OgrynArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_CarapaceArmor" or defName="GW_AM_OgrynArmor" or defName="GW_AM_LuciferBlack_Armor"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>24</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_CarapaceArmor" or defName="GW_AM_OgrynArmor"]</xpath>
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IM_TempestusScion_CarapaceArmor" or defName="GW_AM_OgrynArmor" or defName="GW_AM_LuciferBlack_Armor"]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
@@ -513,9 +545,9 @@
 		</value>
 	</Operation>
 
-	<!-- Krieg and Cadian Flak Armor -->
+	<!-- Krieg and Cadian and Elysian Flak Armor -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor" or defName="ODZ_40k_IG_Cadian_FlakArmor" or defName="GW_AM_Valhallan_Armor"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor" or defName="ODZ_40k_IG_Cadian_FlakArmor" or defName="GW_AM_Valhallan_Armor" or defName="GW_AM_Elysian_Armor"]/statBases</xpath>
 		<value>
 			<Bulk>10</Bulk>
 			<WornBulk>5</WornBulk>
@@ -523,14 +555,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor" or defName="ODZ_40k_IG_Cadian_FlakArmor" or defName="GW_AM_Valhallan_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor" or defName="ODZ_40k_IG_Cadian_FlakArmor" or defName="GW_AM_Valhallan_Armor" or defName="GW_AM_Elysian_Armor"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>12</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor" or defName="ODZ_40k_IG_Cadian_FlakArmor" or defName="GW_AM_Valhallan_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor" or defName="ODZ_40k_IG_Cadian_FlakArmor" or defName="GW_AM_Valhallan_Armor" or defName="GW_AM_Elysian_Armor"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>18</ArmorRating_Blunt>
 		</value>
