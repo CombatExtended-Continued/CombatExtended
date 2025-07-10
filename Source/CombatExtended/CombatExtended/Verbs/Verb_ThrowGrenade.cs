@@ -68,20 +68,15 @@ public class Verb_ThrowGrenade : Verb_ShootCEOneUse
         }
     }
 
-    private bool FindAngle(LocalTargetInfo target, out float smokeDensity, out bool roofed, out float launchAngle, out float velocity, out int ticks)
+    private bool FindAngle(LocalTargetInfo target, out float smokeDensity, out bool roofed, out float launchAngle, out float speed, out int ticks)
     {
         Map map = caster.Map;
         Thing targetThing = target.Thing;
         roofed = false;
 
         smokeDensity = 0;
-        launchAngle = 0f;
-        velocity = -1f;
         ticks = 0;
         // Iterate through all cells on line of sight and check for cover and smoke
-        var cells = GenSightCE.AllPointsOnLineOfSight(target.Cell, caster.Position);
-
-        int endCell = cells.Count;
         float X;
         if (targetThing != null)
         {
@@ -93,12 +88,36 @@ public class Verb_ThrowGrenade : Verb_ShootCEOneUse
         else
         {
             var tc = caster.TrueCenter();
-            X = new Vector2(tc.x - target.Cell.x, tc.z - target.Cell.z).magnitude;
+            X = new Vector2(tc.x - target.Cell.x - 0.5f, tc.z - target.Cell.z - 0.5f).magnitude;
         }
         //TODO: Allow different gravity for SOS2 and similar
         float gravity = projectilePropsCE.GravityPerHeight / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
 
-        for (int i = 0; i < endCell; i++)
+        float manip = ShooterPawn?.health?.capacities?.GetLevel(PawnCapacityDefOf.Manipulation) ?? 1.0f;
+        float maxSpeed = ShotSpeed * manip / GenTicks.TicksPerRealSecond;
+        float target_height = 0;
+        if (targetThing != null)
+        {
+            var cv = new CollisionVertical(targetThing);
+            target_height = (cv.HeightRange.max + cv.HeightRange.min) / 2;
+        }
+        float H_offset = target_height - ShotHeight;
+        float discriminant = maxSpeed * maxSpeed * maxSpeed * maxSpeed - gravity * (gravity * X * X + 2 * H_offset * maxSpeed * maxSpeed);
+        if (discriminant < 0) // At max speed, and optimal angle, we can't reach the target
+        {
+            launchAngle = 0f;
+            speed = 0f;
+            return false;
+        }
+
+        launchAngle = Mathf.Atan((maxSpeed * maxSpeed - Mathf.Sqrt(discriminant)) / (gravity * X));
+        speed = maxSpeed;
+        var cells = GenSightCE.AllPointsOnLineOfSight(caster.Position, target.Cell);
+
+        int endCell = cells.Count;
+        bool midway = false;
+
+        for (int i = 1; i < endCell; i++)
         {
             var cell = cells[i];
 
@@ -110,14 +129,13 @@ public class Verb_ThrowGrenade : Verb_ShootCEOneUse
                 smokeDensity += GasUtility.BlindingGasAccuracyPenalty;
             }
             roofed = roofed || map.roofGrid.RoofAt(cell) != null;
-
             Pawn pawn = cell.GetFirstPawn(map);
             if ((pawn == null ? cell.GetCover(map) : pawn) is Thing cover)
             {
                 if (targetThing == null || !cover.Equals(targetThing)) // Something is in the way, so we calculate the minimum angle and velocity needed to clear it.
                 {
-                    bool midway = i >= endCell / 2;
-                    float p_x = (midway ? cover.TrueCenter().y + 0.5f : cover.TrueCenter().y - 0.5f);
+                    midway = midway || i >= endCell / 2;
+                    float p_x = (midway ? i + 0.5f : i - 0.5f);
                     float p_y = new CollisionVertical(cover).Max * 1.1f;
                     float a = p_y / (p_x * (p_x - X));
                     float b = -a * X;
@@ -129,41 +147,18 @@ public class Verb_ThrowGrenade : Verb_ShootCEOneUse
                     if (theta > launchAngle) // If the needed angle for /this/ cover is steeper than the cached angle, use the new angle.
                     {
                         launchAngle = theta;
-                        velocity = v0;
+                        speed = v0;
+                        if (speed > maxSpeed) // Required velocity is higher than we can throw.
+                        {
+                            return false;
+                        }
                     }
                 }
             }
 
         }
-        float manip = ShooterPawn?.health?.capacities?.GetLevel(PawnCapacityDefOf.Manipulation) ?? 1.0f;
-        if (velocity == -1) //No cover required adjusting the angle up, so line-drive it straight, or lob it if we need the distance
-        {
-            float v0 = ShotSpeed * manip / GenTicks.TicksPerRealSecond * 3;
-            float target_height = 0;
-            if (targetThing != null)
-            {
-                var cv = new CollisionVertical(targetThing);
-                target_height = (cv.HeightRange.max + cv.HeightRange.min) / 2;
-            }
-            float H_offset = target_height - ShotHeight;
-            float discriminant = v0 * v0 * v0 * v0 - gravity * (gravity * X * X + 2 * H_offset * v0 * v0);
-            if (discriminant < 0) // At max speed, and optimal angle, we can't reach the target
-            {
-                return false;
-            }
 
-            float positive_angle = Mathf.Atan((v0 * v0 + Mathf.Sqrt(discriminant)) / (gravity * X));
-            float negative_angle = Mathf.Atan((v0 * v0 - Mathf.Sqrt(discriminant)) / (gravity * X));
-
-            launchAngle = Mathf.Min(positive_angle, negative_angle);
-            velocity = v0;
-        }
-
-        if (velocity > ShotSpeed * manip) // Required velocity is higher than we can throw.
-        {
-            return false;
-        }
-        ticks = (int)(X / (Mathf.Cos(launchAngle) * velocity)) + 1;
+        ticks = (int)(X / (Mathf.Cos(launchAngle) * speed)) + 1;
         ProjectilePropertiesCE pprop = Projectile.projectile as ProjectilePropertiesCE;
         ticks = Rand.RangeInclusive(ticks, pprop.explosionDelay);
         //TODO: The pawn should delay ticks equal difference between this value and the default grenade detonation delay, to properly simulate cooking grenades.
