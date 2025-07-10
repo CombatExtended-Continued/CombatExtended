@@ -638,7 +638,7 @@ public class Verb_LaunchProjectileCE : Verb
     public virtual ShiftVecReport ShiftVecReportFor(LocalTargetInfo target, IntVec3 targetCell)
     {
         ShiftVecReport report = new ShiftVecReport();
-        
+
         bool ignoreMalusesFlag = EquipmentSource != null && EquipmentSource.TryGetComp(out CompUniqueWeapon comp) && comp.IgnoreAccuracyMaluses;
 
         report.target = target;

@@ -68,7 +68,7 @@ public abstract class ProjectileCE : ThingWithComps
     protected bool InstigatorGuilty => !(launcher is Pawn launcherPawn && launcherPawn.Drafted);
 
     public DamageDef damageDefOverride;
-    
+
     public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
 
     public Thing intendedTargetThing
@@ -164,9 +164,9 @@ public abstract class ProjectileCE : ThingWithComps
     protected Sustainer ambientSustainer;
 
     public virtual bool AnimalsFleeImpact => false;
-    
+
     public List<ExtraDamage> extraDamages = new List<ExtraDamage>();
-    
+
     public IEnumerable<ExtraDamage> ExtraDamages => extraDamages.Concat(def.projectile.extraDamages ?? Enumerable.Empty<ExtraDamage>());
 
     #endregion
