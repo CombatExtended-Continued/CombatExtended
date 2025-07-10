@@ -67,6 +67,10 @@ public abstract class ProjectileCE : ThingWithComps
     /// </remarks>
     protected bool InstigatorGuilty => !(launcher is Pawn launcherPawn && launcherPawn.Drafted);
 
+    public DamageDef damageDefOverride;
+    
+    public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
+
     public Thing intendedTargetThing
     {
         get
@@ -102,7 +106,7 @@ public abstract class ProjectileCE : ThingWithComps
         get
         {
             var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-            var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+            var isSharpDmg = DamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
 
             float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
 
@@ -111,7 +115,7 @@ public abstract class ProjectileCE : ThingWithComps
         }
     }
     public virtual DamageInfo DamageInfo => new DamageInfo(
-                def.projectile.damageDef,
+                DamageDef,
                 DamageAmount,
                 PenetrationAmount, //Armor Penetration
                 ExactRotation.eulerAngles.y,
@@ -160,6 +164,10 @@ public abstract class ProjectileCE : ThingWithComps
     protected Sustainer ambientSustainer;
 
     public virtual bool AnimalsFleeImpact => false;
+    
+    public List<ExtraDamage> extraDamages = new List<ExtraDamage>();
+    
+    public IEnumerable<ExtraDamage> ExtraDamages => extraDamages.Concat(def.projectile.extraDamages ?? Enumerable.Empty<ExtraDamage>());
 
     #endregion
 
@@ -733,8 +741,8 @@ public abstract class ProjectileCE : ThingWithComps
             // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
             // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
             // may still technically pass the chance check.
-            var empDamageDef = def.projectile.damageDef == DamageDefOf.EMP
-                               ? def.projectile.damageDef
+            var empDamageDef = DamageDef == DamageDefOf.EMP
+                               ? DamageDef
                                : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
 
             if (empDamageDef != null)
@@ -759,7 +767,7 @@ public abstract class ProjectileCE : ThingWithComps
             {
                 interceptorComp.currentHitPoints = 0;
                 interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
-                interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, this.DamageAmount));
+                interceptorComp.BreakShieldHitpoints(new DamageInfo(DamageDef, this.DamageAmount));
                 return true;
             }
         }
@@ -1488,7 +1496,7 @@ public abstract class ProjectileCE : ThingWithComps
         }
 
         //If the comp exists, it'll already call CompFragments
-        if (explodingComp != null || (def.projectile.explosionRadius > 0f && def.projectile.damageDef != null))
+        if (explodingComp != null || (def.projectile.explosionRadius > 0f && DamageDef != null))
         {
             float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
             //Handle anything explosive
@@ -1508,7 +1516,7 @@ public abstract class ProjectileCE : ThingWithComps
                     explodePos.ToIntVec3(),
                     Map,
                     def.projectile.explosionRadius,
-                    def.projectile.damageDef,
+                    DamageDef,
                     launcher,
                     Mathf.FloorToInt(DamageAmount),
                     def.projectile.GetExplosionArmorPenetration(),
