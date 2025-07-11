@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Fish Base ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="FishBase"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+		</value>
+	</Operation>
+
+	<!-- ========== Larger Fish ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="Fish_Frostfish" or
+			defName="Fish_Catfish" or
+			defName="Fish_Dogfish" or
+			defName="Fish_Marlin" or
+			defName="Fish_Tuna" or
+			defName="Fish_Flounder"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+		</value>
+	</Operation>
+
+</Patch>

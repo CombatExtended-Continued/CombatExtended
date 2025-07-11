@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyPartDef[defName="DroneCore"]/hitPoints</xpath>
+		<value>
+			<hitPoints>75</hitPoints>
+		</value>
+	</Operation>
+
+	<!-- ========== Set parts as squishy ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyPartDef[defName="DroneEye"]/tags</xpath>
+		<value>
+			<li>OutsideSquishy</li>
+		</value>
+	</Operation>
+
+</Patch>
