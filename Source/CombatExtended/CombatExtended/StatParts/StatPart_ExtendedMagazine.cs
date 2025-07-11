@@ -6,32 +6,27 @@ namespace CombatExtended;
 
 public class StatPart_ExtendedMagazine : StatPart
 {
-    private int? magazineSizeIncrease;
-
     public override string ExplanationPart(StatRequest req)
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("Magazine Size Increase: " + (magazineSizeIncrease ?? 0));
+        float value = 0;
+        TransformValue(req, ref value);
+        sb.AppendLine("Magazine Size Increase: " + value);
         return sb.ToString();
     }
 
     public override void TransformValue(StatRequest req, ref float val)
     {
-        if (magazineSizeIncrease == null)
+        if (req.Thing is ThingWithComps thingWithComps && thingWithComps.TryGetComp<CompUniqueWeapon>(out var comp))
         {
-            if (req.Thing is ThingWithComps thingWithComps && thingWithComps.TryGetComp<CompUniqueWeapon>(out var comp))
+            foreach (WeaponTraitDef trait in comp.TraitsListForReading)
             {
-                foreach (WeaponTraitDef trait in comp.TraitsListForReading)
+                if (trait is CustomWeaponTraitDef custom)
                 {
-                    if (trait is CustomWeaponTraitDef custom)
-                    {
-                        Log.Message("Test");
-                        magazineSizeIncrease = custom.magazineCapacityIncrease;
-                    }
+                    val += custom.magazineCapacityIncrease;
                 }
             }
         }
-        val += magazineSizeIncrease ?? 0;
     }
 
 }
