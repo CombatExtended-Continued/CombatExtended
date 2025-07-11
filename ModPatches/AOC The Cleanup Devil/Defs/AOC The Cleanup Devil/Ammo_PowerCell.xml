@@ -1,41 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- AOCPOWERCELL -->
-
 	<ThingCategoryDef>
 		<defName>AmmoAOCPowerCell</defName>
-		<label>AOCPOWERCELL</label>
-		<parent>AmmoRifles</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<label>AOC POWERCELL</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
 	</ThingCategoryDef>
-
-	<!-- ==================== Ammo AOCPOWERCELL ========================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="AOCPowerCellBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>A power cell.</description>
-		<statBases>
-			<Mass>0.5</Mass>
-			<Bulk>0.1</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoAOCPowerCell</li>
-		</thingCategories>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AOCPowerCellBase">
-		<defName>Ammo_AOCPowerCell</defName>
-		<label>(AOC) Power cell</label>
-		<graphicData>
-			<texPath>Things/Ammo/Charged/MediumMech</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<ammoClass>Charged</ammoClass>
-	</ThingDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
@@ -43,21 +14,203 @@
 		<defName>AmmoSet_AOCPowerCell</defName>
 		<label>AOC POWER CELL</label>
 		<ammoTypes>
-			<Ammo_AOCPowerCell>Bullet_SuviBusterProjectile</Ammo_AOCPowerCell>
+			<Ammo_AOCPowerCell_HEAT>Bullet_AOCPowerCell_HEAT</Ammo_AOCPowerCell_HEAT>
+			<Ammo_AOCPowerCell_Thermobaric>Bullet_AOCPowerCell_Thermobaric</Ammo_AOCPowerCell_Thermobaric>
+			<Ammo_AOCPowerCell_EMP>Bullet_AOCPowerCell_EMP</Ammo_AOCPowerCell_EMP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ==================== Recipe: AOCELL===================== -->
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_AOCPowerCell</defName>
-		<label>make AOC PowerCell Power Cell x500</label>
-		<description>Craft 500 AOC PowerCell Power Cell.</description>
-		<jobString>Making TE Universal Power Cell.</jobString>
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AOCPowerCellBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
+		<description>Power cells used as ammunition for the AOC Suvi Buster.</description>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoAOCPowerCell</li>
+		</thingCategories>
+		<stackLimit>40</stackLimit>
+		<cookOffFlashScale>40</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AOCPowerCellBase">
+		<defName>Ammo_AOCPowerCell_HEAT</defName>
+		<label>AOC PowerCell (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Ammo/AOCPowerCell/HEAT</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.5</Mass>
+			<Bulk>0.5</Bulk>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<detonateProjectile>Bullet_AOCPowerCell_HEAT</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AOCPowerCellBase">
+		<defName>Ammo_AOCPowerCell_Thermobaric</defName>
+		<label>AOC PowerCell (Thermobaric)</label>
+		<graphicData>
+			<texPath>Things/Ammo/AOCPowerCell/Thermobaric</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.5</Mass>
+			<Bulk>0.5</Bulk>
+		</statBases>
+		<ammoClass>RocketThermobaric</ammoClass>
+		<detonateProjectile>Bullet_AOCPowerCell_Thermobaric</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AOCPowerCellBase">
+		<defName>Ammo_AOCPowerCell_EMP</defName>
+		<label>AOC PowerCell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/AOCPowerCell/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.5</Mass>
+			<Bulk>0.5</Bulk>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<detonateProjectile>Bullet_AOCPowerCell_EMP</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="BaseAOCPowerCell" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>90</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>9</emissionsPerTick>
+						<flecksPerEmission>2</flecksPerEmission>
+						<cutoffTickRange>25~30</cutoffTickRange>
+						<originOffset>0.2</originOffset>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseAOCPowerCell">
+		<defName>Bullet_AOCPowerCell_HEAT</defName>
+		<label>AOC PowerCell (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Projectile/AOCPowerCell/HEAT</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>96</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>248</damageAmountBase>
+			<armorPenetrationSharp>400</armorPenetrationSharp>
+			<armorPenetrationBlunt>26.53</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>88</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.0</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>9</Fragment_Large>
+					<Fragment_Small>5</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseAOCPowerCell">
+		<defName>Bullet_AOCPowerCell_Thermobaric</defName>
+		<label>AOC PowerCell (Thermobaric)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/AOCPowerCell/Thermobaric</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Thermobaric</damageDef>
+			<damageAmountBase>277</damageAmountBase>
+			<explosionRadius>5</explosionRadius>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+
+	<ThingDef ParentName="BaseAOCPowerCell">
+		<defName>Bullet_AOCPowerCell_EMP</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>AOC PowerCell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/AOCPowerCell/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>111</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<explosionRadius>4.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_AOCPowerCell_HEAT</defName>
+		<label>make AOC PowerCell (HEAT) x5</label>
+		<description>Craft 5 AOC PowerCell (HEAT).</description>
+		<jobString>Making AOC PowerCell (HEAT).</jobString>
+		<workAmount>9400</workAmount>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Chemfuel</li>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>45</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
 				<count>15</count>
@@ -65,10 +218,10 @@
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
@@ -76,20 +229,117 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Chemfuel</li>
 				<li>Steel</li>
+				<li>FSX</li>
+				<li>Plasteel</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_AOCPowerCell>500</Ammo_AOCPowerCell>
+			<Ammo_AOCPowerCell_HEAT>5</Ammo_AOCPowerCell_HEAT>
 		</products>
-		<workAmount>19000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_AOCPowerCell_Thermobaric</defName>
+		<label>make AOC PowerCell (Thermobaric) x5</label>
+		<description>Craft 5 AOC PowerCell (Thermobaric).</description>
+		<jobString>Making AOC PowerCell (Thermobaric).</jobString>
+		<workAmount>23800</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AOCPowerCell_Thermobaric>5</Ammo_AOCPowerCell_Thermobaric>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_AOCPowerCell_EMP</defName>
+		<label>make AOC PowerCell (EMP) x5</label>
+		<description>Craft 5 AOC PowerCell (EMP).</description>
+		<jobString>Making AOC PowerCell (EMP).</jobString>
+		<workAmount>12200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>40</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AOCPowerCell_EMP>5</Ammo_AOCPowerCell_EMP>
+		</products>
 	</RecipeDef>
 
 </Defs>
