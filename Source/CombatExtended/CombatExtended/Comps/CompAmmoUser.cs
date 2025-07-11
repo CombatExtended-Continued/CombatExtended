@@ -54,33 +54,13 @@ public class CompAmmoUser : CompRangedGizmoGiver
             return 0;
         }
     }
-    private int? _cachedMagSize;
-
-    public int MagSize => _cachedMagSize ??= CalculateMagSize();
-
-    private int CalculateMagSize()
+    public int MagSize
     {
-        if (parent is WeaponPlatform)
+        get
         {
-            return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
+            return (int)(parent.GetStatValue(CE_StatDefOf.MagazineCapacity));
         }
-
-        int magSize = (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
-
-        if (!parent.TryGetComp<CompUniqueWeapon>(out var comp))
-        {
-            return magSize;
-        }
-        foreach (WeaponTraitDef trait in comp.TraitsListForReading)
-        {
-            if (trait is CustomWeaponTraitDef custom)
-            {
-                magSize += custom.magazineCapacityIncrease;
-            }
-        }
-        return magSize;
     }
-    public void DirtyMagCache() => _cachedMagSize = null;
 
     public int CurAmmoCount
     {

@@ -43,7 +43,7 @@ public class StatWorker_Magazine : StatWorker
     {
         StringBuilder stringBuilder = new StringBuilder();
         var ammoProps = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>();
-        stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(GetMagSize(req), ToStringStyle.Integer));
+        stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(ammoProps.magazineSize, ToStringStyle.Integer));
         stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate());
         return stringBuilder.ToString().TrimEndNewlines();
     }
