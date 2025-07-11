@@ -99,6 +99,37 @@
 		</AmmoUser>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_DH17Pistol"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to stun mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>70</magazineSize>
+					<reloadTime>5.6</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeStun_Rifle</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1.2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterRifle_Stun</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>22</range>
+					<soundCast>OuterRim_Shot_SonicBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OuterRim_DH17Rifle"]/description</xpath>
 		<value>
@@ -141,6 +172,37 @@
 		</AmmoUser>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_DH17Rifle"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to stun mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>40</magazineSize>
+					<reloadTime>3.2</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeStun_Rifle</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1.48</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterRifle_Stun</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<range>31</range>
+					<soundCast>OuterRim_Shot_SonicBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_A280Blaster</defName>
 		<statBases>
@@ -161,7 +223,7 @@
 			<soundCast>OuterRim_Shot_E11BlasterBolt</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
-			<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+			<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
@@ -170,10 +232,41 @@
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 		<AmmoUser>
-			<magazineSize>20</magazineSize>
+			<magazineSize>70</magazineSize>
 			<reloadTime>1.6</reloadTime>
 			<ammoSet>AmmoSet_PlasmaGasCartridgeGreen_Rifle</ammoSet>
 		</AmmoUser>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_A280Blaster"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to stun mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>70</magazineSize>
+					<reloadTime>1.6</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeStun_Rifle</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1.2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterRifle_Stun</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>28</range>
+					<soundCast>OuterRim_Shot_SonicBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
 	</Operation>
 	
 	<!-- === HH12 RL === -->

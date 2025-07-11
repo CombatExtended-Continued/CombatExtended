@@ -113,7 +113,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OuterRim_BARMST12Scattergun"]/description</xpath>
 		<value>
-			<description>The BARM-ST12 scattergun was a type of pump-action scatterblaster, the blaster equivalent of a shotgun. It lacks the ability to make use of concentrated or ionized blaster cells, but can fire a spread of micro-blasts that are almost as powerful as individual pistol bolts - at the cost of consuming a lot of energy (and tibanna) to do so.</description>
+			<description>The BARM-ST12 scattergun was a type of pump-action scatterblaster, the blaster equivalent of a shotgun. It lacks the ability to make use of specialized blaster cells, but can fire a spread of micro-blasts that are almost as powerful as individual pistol bolts - at the cost of consuming a lot of energy (and tibanna) to do so.</description>
 		</value>
 	</Operation>
 	
@@ -278,6 +278,39 @@
 		</weaponTags>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_K16BryarBlaster"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to overcharged shots</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>24</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeYellow_Sniper</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>3.0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterSniper_Yellow</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>16</range>
+					<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<ammoConsumedPerShotCount>6</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_IonRifle</defName>
 		<statBases>
@@ -292,7 +325,7 @@
 			<recoilAmount>1.45</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_BlasterRifle_Ion</defaultProjectile>
+			<defaultProjectile>Bullet_BlasterRifle_IonOnly</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>55</range>
 			<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
@@ -309,7 +342,7 @@
 		<AmmoUser>
 			<magazineSize>20</magazineSize>
 			<reloadTime>3.7</reloadTime>
-			<ammoSet>AmmoSet_PlasmaGasCartridgeIon_Rifle</ammoSet>
+			<ammoSet>AmmoSet_PlasmaGasCartridgeIonOnly_Rifle</ammoSet>
 		</AmmoUser>
 	</Operation>
 
@@ -327,7 +360,7 @@
 			<recoilAmount>1.48</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_BlasterSniper_Ion</defaultProjectile>
+			<defaultProjectile>Bullet_BlasterSniper_IonOnly</defaultProjectile>
 			<warmupTime>2</warmupTime>
 			<range>62</range>
 			<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
@@ -344,7 +377,7 @@
 		<AmmoUser>
 			<magazineSize>15</magazineSize>
 			<reloadTime>3.7</reloadTime>
-			<ammoSet>AmmoSet_PlasmaGasCartridgeIon_Sniper</ammoSet>
+			<ammoSet>AmmoSet_PlasmaGasCartridgeIonOnly_Sniper</ammoSet>
 		</AmmoUser>
 	</Operation>
 
@@ -362,7 +395,7 @@
 			<recoilAmount>1.2</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_BlasterPistol_Ion</defaultProjectile>
+			<defaultProjectile>Bullet_BlasterPistol_IonOnly</defaultProjectile>
 			<warmupTime>0.75</warmupTime>
 			<range>44</range>
 			<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
@@ -378,7 +411,7 @@
 		<AmmoUser>
 			<magazineSize>21</magazineSize>
 			<reloadTime>2.5</reloadTime>
-			<ammoSet>AmmoSet_PlasmaGasCartridgeIon_Pistol</ammoSet>
+			<ammoSet>AmmoSet_PlasmaGasCartridgeIonOnly_Pistol</ammoSet>
 		</AmmoUser>
 	</Operation>
 
@@ -451,6 +484,37 @@
 			<reloadTime>3.36</reloadTime>
 			<ammoSet>AmmoSet_PlasmaGasCartridgeRed_Rifle</ammoSet>
 		</AmmoUser>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_BlasterCarbine"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to stun mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>42</magazineSize>
+					<reloadTime>3.36</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeStun_Rifle</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1.2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterRifle_Stun</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>22</range>
+					<soundCast>OuterRim_Shot_SonicBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
