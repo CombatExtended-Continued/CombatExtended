@@ -58,8 +58,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         get
         {
-            WeaponPlatform platform = parent as WeaponPlatform;
-            return (int)(platform?.GetStatValue(CE_StatDefOf.MagazineCapacity) ?? Props.magazineSize);
+            return (int)(parent.GetStatValue(CE_StatDefOf.MagazineCapacity));
         }
     }
 
