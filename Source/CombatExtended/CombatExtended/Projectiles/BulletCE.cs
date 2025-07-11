@@ -113,6 +113,16 @@ public class BulletCE : ProjectileCE
                         hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
                     }
                 }
+
+                foreach (ExtraDamage damage in base.ExtraDamages)
+                {
+                    if (Rand.Chance(damage.chance))
+                    {
+                        var extraDinfo = new DamageInfo(damage.def, damage.amount, damage.armorPenetration,
+                            angle: ExactRotation.eulerAngles.y, instigator: launcher, weapon: equipmentDef, intendedTarget: intendedTarget.Thing, instigatorGuilty: InstigatorGuilty);
+                        hitThing.TakeDamage(extraDinfo).AssociateWithLog(logEntry);
+                    }
+                }
             }
             catch (Exception e)
             {
