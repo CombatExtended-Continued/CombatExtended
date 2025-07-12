@@ -58,7 +58,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         get
         {
-            return (int)(parent.GetStatValue(CE_StatDefOf.MagazineCapacity));
+            return (int)(parent.GetStatValue(CE_StatDefOf.MagazineCapacity, cacheStaleAfterTicks: 250));
         }
     }
 

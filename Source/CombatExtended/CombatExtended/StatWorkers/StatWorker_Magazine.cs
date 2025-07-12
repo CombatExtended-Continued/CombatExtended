@@ -71,7 +71,7 @@ public class StatWorker_Magazine : StatWorker
         }
         if (req.HasThing)
         {
-            return (int)(compAmmo?.MagSize ?? req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity));
+            return (int)(compAmmo?.MagSize ?? req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity, cacheStaleAfterTicks: 250));
         }
         return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
     }
