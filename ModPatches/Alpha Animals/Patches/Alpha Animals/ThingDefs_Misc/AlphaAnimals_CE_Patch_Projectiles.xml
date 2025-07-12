@@ -40,7 +40,6 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="AA_Bullet_Rock" or
-			defName="AA_ToxicInk" or
 			defName="AA_IncendiaryMote" or
 			defName="AA_FrostBolt"
 			]/thingClass </xpath>
@@ -322,27 +321,6 @@
 				<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
 				<ai_IsIncendiary>true</ai_IsIncendiary>
 				<soundExplode>Interact_Ignite</soundExplode>
-			</projectile>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AA_ToxicInk"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<speed>25</speed>
-				<damageDef>AA_ToxicBolt</damageDef>
-				<damageAmountBase>40</damageAmountBase>
-				<explosionRadius>3</explosionRadius>
-				<suppressionFactor>3.0</suppressionFactor>
-				<dangerFactor>2.0</dangerFactor>
-				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-				<soundAmbient>MortarRound_Ambient</soundAmbient>
-				<postExplosionSpawnThingDef>AA_SmokeInk</postExplosionSpawnThingDef>
-				<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
-				<postExplosionSpawnChance>1</postExplosionSpawnChance>
-				<armorPenetrationSharp>12</armorPenetrationSharp>
 			</projectile>
 		</value>
 	</Operation>
