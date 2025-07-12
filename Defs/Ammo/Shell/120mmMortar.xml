@@ -15,6 +15,7 @@
 		<label>120mm mortar shells</label>
 		<ammoTypes>
 			<Shell_120mmMortar_HE>Bullet_120mmMortarShell_HE</Shell_120mmMortar_HE>
+			<Shell_120mmMortar_HE_HFuzed>Bullet_120mmMortarShell_HE_HFuzed</Shell_120mmMortar_HE_HFuzed>			
 			<Shell_120mmMortar_Incendiary>Bullet_120mmMortarShell_Incendiary</Shell_120mmMortar_Incendiary>
 			<Shell_120mmMortar_EMP>Bullet_120mmMortarShell_EMP</Shell_120mmMortar_EMP>
 			<Shell_120mmMortar_Firefoam>Bullet_120mmMortarShell_Firefoam</Shell_120mmMortar_Firefoam>
@@ -27,6 +28,9 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="120mmMortarShellBase" ParentName="HeavyAmmoBase" Abstract="True">
 		<description>Low-velocity shell designed to be fired from a mortar.</description>
+		<graphicData>
+			<drawSize>1.20</drawSize>
+		</graphicData>
 		<thingCategories>
 			<li>Ammo120mmMortarShells</li>
 		</thingCategories>
@@ -37,8 +41,8 @@
 		</tradeTags>
 		<statBases>
 			<MaxHitPoints>250</MaxHitPoints>
-			<Mass>18</Mass>
-			<Bulk>28.06</Bulk>
+			<Mass>13.7</Mass>
+			<Bulk>24.13</Bulk>
 		</statBases>
 		<cookOffFlashScale>30</cookOffFlashScale>
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
@@ -53,6 +57,17 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_120mmMortarShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="120mmMortarShellBase">
+		<defName>Shell_120mmMortar_HE_HFuzed</defName>
+		<label>120mm mortar shell (Airburst)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Mortar/Airburst</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>GrenadeHETF</ammoClass>
 		<detonateProjectile>Bullet_120mmMortarShell_HE</detonateProjectile>
 	</ThingDef>
 
@@ -134,22 +149,56 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>313</damageAmountBase>
-			<explosionRadius>4</explosionRadius>
+			<damageAmountBase>237</damageAmountBase>
+			<explosionRadius>3.5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>50</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_120mmMortarShell_HE_HFuzed</defName>
+		<label>120mm mortar shell (Airburst)</label>
+		<thingClass>CombatExtended.ProjectileCE_HeightFuse</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Airburst</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<aimHeightOffset>8</aimHeightOffset>
 			<shellingProps>
-				<damage>0.20</damage>
+				<damage>0.013</damage>
 			</shellingProps>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Large>35</Fragment_Large>
-					<Fragment_Small>85</Fragment_Small>
+					<Fragment_Large>57</Fragment_Large>
+					<Fragment_Small>76</Fragment_Small>
 				</fragments>
+				<fragAngleRange>-90~-48</fragAngleRange>
 			</li>
 		</comps>
+		<modExtensions>
+			<li Class="CombatExtended.GenericLabelExtension">
+				<genericLabel>mortar shell (Airburst)</genericLabel>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="Base120mmMortarShell">
@@ -161,14 +210,11 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>PrometheumFlame</damageDef>
-			<damageAmountBase>21</damageAmountBase>
-			<explosionRadius>9.5</explosionRadius>
+			<damageAmountBase>24</damageAmountBase>
+			<explosionRadius>10</explosionRadius>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.17</preExplosionSpawnChance>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
 			<soundExplode>MortarIncendiary_Explode</soundExplode>
-			<shellingProps>
-				<damage>0.20</damage>
-			</shellingProps>
 		</projectile>
 	</ThingDef>
 
@@ -181,11 +227,8 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>EMP</damageDef>
-			<damageAmountBase>313</damageAmountBase>
-			<explosionRadius>8</explosionRadius>
-			<shellingProps>
-				<damage>0.16</damage>
-			</shellingProps>
+			<damageAmountBase>237</damageAmountBase>
+			<explosionRadius>6.5</explosionRadius>
 		</projectile>
 	</ThingDef>
 
@@ -200,7 +243,7 @@
 			<damageDef>Extinguish</damageDef>
 			<suppressionFactor>0.0</suppressionFactor>
 			<dangerFactor>0.0</dangerFactor>
-			<explosionRadius>6.5</explosionRadius>
+			<explosionRadius>5</explosionRadius>
 			<soundExplode>Explosion_EMP</soundExplode>
 			<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
 			<postExplosionSpawnChance>1</postExplosionSpawnChance>
@@ -224,7 +267,7 @@
 			<damageDef>Smoke</damageDef>
 			<suppressionFactor>0.0</suppressionFactor>
 			<dangerFactor>0.0</dangerFactor>
-			<explosionRadius>6</explosionRadius>
+			<explosionRadius>8</explosionRadius>
 			<soundExplode>Explosion_EMP</soundExplode>
 			<postExplosionGasType>BlindSmoke</postExplosionGasType>
 			<preExplosionSpawnChance>1</preExplosionSpawnChance>
@@ -243,7 +286,7 @@
 		<label>make 120mm (HE) mortar shells x2</label>
 		<description>Craft 2 120mm (HE) mortar shells.</description>
 		<jobString>Making 120mm (HE) mortar shells.</jobString>
-		<workAmount>15400</workAmount>
+		<workAmount>10000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -251,7 +294,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>54</count>
+				<count>56</count>
 			</li>
 			<li>
 				<filter>
@@ -259,7 +302,51 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>16</count>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_120mmMortar_HE>2</Shell_120mmMortar_HE>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
+		<defName>MakeShell_120mmMortar_HE_HFuzed</defName>
+		<label>make 120mm (Airburst) mortar shells x2</label>
+		<description>Craft 2 120mm (Airburst) mortar shells.</description>
+		<jobString>Making 120mm (Airbust) mortar shells.</jobString>
+		<workAmount>9600</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>56</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
 			</li>
 			<li>
 				<filter>
@@ -287,7 +374,7 @@
 		<label>make 120mm (Incendiary) mortar shells x2</label>
 		<description>Craft 2 120mm (Incendiary) mortar shells.</description>
 		<jobString>Making 120mm (Incendiary) mortar shells.</jobString>
-		<workAmount>13000</workAmount>
+		<workAmount>9200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -295,7 +382,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>54</count>
+				<count>56</count>
 			</li>
 			<li>
 				<filter>
@@ -303,7 +390,7 @@
 						<li>Prometheum</li>
 					</thingDefs>
 				</filter>
-				<count>5</count>
+				<count>6</count>
 			</li>
 			<li>
 				<filter>
@@ -336,7 +423,7 @@
 			<li>Mortars</li>
 			<li>MicroelectronicsBasics</li>
 		</researchPrerequisites>
-		<workAmount>15400</workAmount>
+		<workAmount>12200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -344,7 +431,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>54</count>
+				<count>56</count>
 			</li>
 			<li>
 				<filter>
@@ -352,7 +439,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>14</count>
+				<count>11</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -376,7 +463,7 @@
 			<li>Mortars</li>
 			<li>Firefoam</li>
 		</researchPrerequisites>
-		<workAmount>13000</workAmount>
+		<workAmount>8800</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -384,7 +471,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>54</count>
+				<count>56</count>
 			</li>
 			<li>
 				<filter>
@@ -400,7 +487,7 @@
 						<li>MeatRaw</li>
 					</categories>
 				</filter>
-				<count>24</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -422,7 +509,7 @@
 		<label>make 120mm (Smoke) mortar shells x2</label>
 		<description>Craft 2 120mm (Smoke) mortar shells.</description>
 		<jobString>Making 120mm (Smoke) mortar shells.</jobString>
-		<workAmount>13000</workAmount>
+		<workAmount>8000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -430,7 +517,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>54</count>
+				<count>56</count>
 			</li>
 			<li>
 				<filter>
