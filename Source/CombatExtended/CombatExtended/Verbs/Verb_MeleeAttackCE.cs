@@ -184,7 +184,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         if (Rand.Chance(GetHitChance(targetThing)))
         {
             // Check for dodge
-            if (!targetImmobile && !surpriseAttack && Rand.Chance(defender.GetStatValue(StatDefOf.MeleeDodgeChance)))
+            if (!targetImmobile && !surpriseAttack && Rand.Chance(GetDodgeChance((defender))))
             {
                 // Attack is evaded
                 result = false;
@@ -542,6 +542,26 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         {
             float chance = CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
 
+            if (ModsConfig.IdeologyActive && target.HasThing)
+            {
+                if (DarknessCombatUtility.IsOutdoorsAndLit(target.Thing))
+                {
+                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsLitOffset);
+                }
+                else if (DarknessCombatUtility.IsOutdoorsAndDark(target.Thing))
+                {
+                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsDarkOffset);
+                }
+                else if (DarknessCombatUtility.IsIndoorsAndDark(target.Thing))
+                {
+                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceIndoorsDarkOffset);
+                }
+                else if (DarknessCombatUtility.IsIndoorsAndLit(target.Thing))
+                {
+                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceIndoorsLitOffset);
+                }
+            }
+
             switch (GetAttackedPartHeightCE())
             {
                 case BodyPartHeight.Bottom:
@@ -559,6 +579,34 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             return chance;
         }
         return DefaultHitChance;
+    }
+
+    private float GetDodgeChance(Pawn defender)
+    {
+        float chance = defender.GetStatValue(StatDefOf.MeleeDodgeChance);
+
+        if (!ModsConfig.IdeologyActive)
+        {
+            return chance;
+        }
+
+        if (DarknessCombatUtility.IsOutdoorsAndLit(defender))
+        {
+            chance += defender.GetStatValue(StatDefOf.MeleeDodgeChanceOutdoorsLitOffset);
+        }
+        else if (DarknessCombatUtility.IsOutdoorsAndDark(defender))
+        {
+            chance += defender.GetStatValue(StatDefOf.MeleeDodgeChanceOutdoorsDarkOffset);
+        }
+        else if (DarknessCombatUtility.IsIndoorsAndDark(defender))
+        {
+            chance += defender.GetStatValue(StatDefOf.MeleeDodgeChanceIndoorsDarkOffset);
+        }
+        else if (DarknessCombatUtility.IsIndoorsAndLit(defender))
+        {
+            chance += defender.GetStatValue(StatDefOf.MeleeDodgeChanceIndoorsLitOffset);
+        }
+        return chance;
     }
 
     /// <summary>
