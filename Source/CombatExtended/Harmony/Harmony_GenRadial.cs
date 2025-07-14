@@ -116,7 +116,8 @@ namespace CombatExtended.HarmonyCE
                 idx = RadialPatternCount - 6;
             }
 
-            /* Since a circle has 8-way symmetry (axis + diagonals, forming the 8 octants)
+            /* 
+             * Since a circle has 8-way symmetry (axis + diagonals, forming the 8 octants)
              *   the final answers are always the sum of the following:
              * - 1, for the center cell
              * - 4*a, where "a = floor(radius)" is the number of cells on the +x axis
@@ -127,15 +128,12 @@ namespace CombatExtended.HarmonyCE
              * We can determine the last three bits of the answer as 1 or 5 (0b101)
              *   and skip every 8 cells when searching
              */
-            {
-                const float SqrtHalf = 0.707106781f;
-                int a = (int)radius;
-                int d = (int)(radius * SqrtHalf);
-                idx = (idx & -7) | (((a + d) % 2 == 0) ? 1 : 5);
-            }
+            const float SqrtHalf = 0.707106781f;
+            int a = (int)radius;
+            int d = (int)(radius * SqrtHalf);
+            idx = (idx & -7) | (((a + d) % 2 == 0) ? 1 : 5);
             
             // Linear search every 8 cells starting from the middle of estimation
-            // Bound check needed to avoid IndexOutOfRangeError
             if (RadialPatternRadii[idx] <= radius)
             {
                 do
