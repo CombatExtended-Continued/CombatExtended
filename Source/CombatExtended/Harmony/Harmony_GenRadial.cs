@@ -76,95 +76,90 @@ namespace CombatExtended.HarmonyCE
                                        new HarmonyMethod(typeof(Harmony_GenRadial), nameof(Harmony_GenRadial.NumCellsInRadius)), null, null);
 
         }
-
+        
+        /*
+         * Calculates the number of cells (lattice points) within radius.
+         * The problem is also called "Gauss's Circle Problem".
+         * Read: https://mathworld.wolfram.com/GausssCircleProblem.html
+         */
         public static bool NumCellsInRadius(out int __result, float radius)
         {
-            // Special cases
-            if (radius < 2f || radius >= MAX_RADIUS)
+            // Handle edge cases
+            if (radius < 0f)
             {
-                if (radius < 0f)
-                    __result = 0;
-                else if (radius < 1f)
-                    __result = 1;
-                else if (radius < 1.414213562f)
-                    __result = 5;
-                else if (radius < 2f)
-                    __result = 9;
-                else
+                __result = 0;
+                return false;
+            }
+            if (radius >= MAX_RADIUS)
+            {
+                if (radius > MAX_RADIUS)
                 {
-                    __result = RadialPatternCount;
-                    CheckRadius(radius);
+                    LogNotEnoughSquaresError(radius);
                 }
+                __result = RadialPatternCount;
                 return false;
             }
 
-            int radiusSquaredInt = (int)(radius * radius);
-            // The answer is at least (25/8 * radius * radius - 11)
-            int lowerBound = ((radiusSquaredInt * 25) >> 3) - 11;
-#if BINSEARCH
-            // The upper bound is set to (101/32 * radius * radius)
-            //   some small radius actually goes above that
-            //   but the error is small (< 16) and linear search can fix it
-            int upperBound = (radiusSquaredInt * 101) >> 5;
-            if (upperBound > RadialPatternCount)
-                upperBound = RadialPatternCount;
-            // If the gap is large, perform binary search
-            while (upperBound - lowerBound > 88)
+            /* 
+             * Estimate the result using area of a circle
+             * This estimation is actually really good, with error <= 100 for all radius <= 200
+             * See: https://www.desmos.com/calculator/qerpfljbgw
+             */
+            int idx = (int)(radius * radius * Mathf.PI);
+            
+            /* 
+             * Apply upper bound to avoid IndexOutOfRangeError
+             * Subtract 6 so the next step can't raise past the upperbound
+             */
+            if (idx >= RadialPatternCount - 6)
             {
-                int mid = (lowerBound + upperBound) >> 1;
-                if (RadialPatternRadii[mid] <= radius)
-                    lowerBound = mid;
-                else
-                    upperBound = mid;
+                idx = RadialPatternCount - 6;
             }
-#endif
-            // Linear search:
-            // When (int)radius + (int)diagonal is odd,  the answer is always 8n + 5
-            // When (int)radius + (int)diagonal is even, the answer is always 8n + 1
-            // So we can set the last three bits of lowerBound
-            // and check only every 8 numbers
-            lowerBound = (lowerBound & -7) | (HasOddCells(radius) ? 5 : 1);
-            while (RadialPatternRadii[lowerBound] <= radius)
-                lowerBound += 8;
-            __result = lowerBound;
+
+            /* Since a circle has 8-way symmetry (axis + diagonals, forming the 8 octants)
+             *   the final answers are always the sum of the following:
+             * - 1, for the center cell
+             * - 4*a, where "a = floor(radius)" is the number of cells on the +x axis
+             * - 4*d, where "d = floor(radius * sqrt(1/2))" is the count on the +x+z diagonal
+             * - 8*i, where "i" is the number of cells inside the x > z > 0 octant
+             * Therefore, if a+d is even, the answer is guaranteed in the form "8n + 1"
+             *         and if a+d is odd, the answer is guaranteed in the form "8n + 5"
+             * We can determine the last three bits of the answer as 1 or 5 (0b101)
+             *   and skip every 8 cells when searching
+             */
+            {
+                const float SqrtHalf = 0.707106781f;
+                int a = (int)radius;
+                int d = (int)(radius * SqrtHalf);
+                idx = (idx & -7) | (((a + d) % 2 == 0) ? 1 : 5);
+            }
+            
+            // Linear search every 8 cells starting from the middle of estimation
+            // Bound check needed to avoid IndexOutOfRangeError
+            if (RadialPatternRadii[idx] <= radius)
+            {
+                do { idx += 8; } // Search Upward
+                while (idx < RadialPatternCount && RadialPatternRadii[idx] <= radius);
+                __result = idx;
+            }
+            else
+            {
+                do { idx -= 8; } // Search Downward
+                while (idx >= 0 && RadialPatternRadii[idx] > radius);
+                __result = idx + 8; // We overshot, so add 8 back
+            }
             return false;
         }
         
-        // A helper function for Prefix_NumCellsInRadius()
-        // Evaluates if (int)r + (int)d is an even number (round toward zero)
-        // Where d = r * sqrt(1/2)
-        // When (int)radius + (int)diagonal is odd,  the answer is always 8n + 5
-        // When (int)radius + (int)diagonal is even, the answer is always 8n + 1
-        // Use IEEE-754 bit hacks
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static bool HasOddCells(float r)
+        /* 
+         * A separate method to handle when radius exceeds MAX_RADIUS
+         * Apparently loading all these strings for formatting is very slow
+         * Even when they are not executed, likely due to branch predictions
+         * Separating the rare & slow stuff to this method helps a lot
+         */
+        private static void LogNotEnoughSquaresError(float radius)
         {
-            const float SqrtHalf = 0.707106781f;
-            float d = r * SqrtHalf;
-            // bit hack magic
-            int bitr = BitConverter.SingleToInt32Bits(r);
-            int bitd = BitConverter.SingleToInt32Bits(d);
-            // Slightly different from the real IEEE 754 mantissa
-            //   -- we first take the fractional part
-            //   -- then add back the missing starting 1
-            int mantissar = bitr & 0x007F_FFFF | 0x0080_0000;
-            int mantissad = bitd & 0x007F_FFFF | 0x0080_0000;
-            // We want to shift the fractional part out
-            //   -- shift 23, plus or minus the exponent part
-            //   -- the exponenet part itself is offset by 127
-            int shiftr = 23 + 127 - ((bitr >> 23) & 0xFF);
-            int shiftd = 23 + 127 - ((bitd >> 23) & 0xFF);
-            return (((mantissar >> shiftr) ^ (mantissad >> shiftd)) & 1) != 0;
-        }
-        
-        // A separate method to handle when radius exceeds MAX_RADIUS
-        // Apparently loading all these strings for formatting is very slow
-        // Even when they are not executed, likely due to branch predictions
-        // Separating the rare & slow stuff to this method helps a lot
-        private static void CheckRadius(float radius)
-        {
-            if (radius > MAX_RADIUS)
-                Log.Error($"Not enough squares to get to radius {radius}. Max is {MAX_RADIUS}");
+            Log.Error($"Not enough squares to get to radius {radius}. Max is {MAX_RADIUS}");
         }
     }
 }
