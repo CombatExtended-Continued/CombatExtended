@@ -111,7 +111,7 @@ namespace CombatExtended.HarmonyCE
              * Apply upper bound to avoid IndexOutOfRangeError
              * Subtract 6 so the next step can't raise past the upperbound
              */
-            if (idx >= RadialPatternCount - 6)
+            if (idx > RadialPatternCount - 6)
             {
                 idx = RadialPatternCount - 6;
             }
@@ -138,13 +138,19 @@ namespace CombatExtended.HarmonyCE
             // Bound check needed to avoid IndexOutOfRangeError
             if (RadialPatternRadii[idx] <= radius)
             {
-                do { idx += 8; } // Search Upward
+                do
+                {
+                    idx += 8; // Search Upward
+                }
                 while (idx < RadialPatternCount && RadialPatternRadii[idx] <= radius);
                 __result = idx;
             }
             else
             {
-                do { idx -= 8; } // Search Downward
+                do
+                {
+                    idx -= 8; // Search Downward
+                }
                 while (idx >= 0 && RadialPatternRadii[idx] > radius);
                 __result = idx + 8; // We overshot, so add 8 back
             }
