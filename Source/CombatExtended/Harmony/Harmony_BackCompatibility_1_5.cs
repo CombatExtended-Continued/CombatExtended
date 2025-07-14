@@ -174,20 +174,20 @@ public class Harmony_BackCompatibility_1_5
                     __result = "Blueprint_Install_CE_Turret_PKM";
                     break;
 
-                case "Gun_PortabletMortar":
-                    __result = "CE_Gun_PortabletMortar";
+                case "Gun_PortableMortar":
+                    __result = "CE_Gun_PortableMortar";
                     break;
-                case "Turret_PortabletMortar":
-                    __result = "CE_Turret_PortabletMortar";
+                case "Turret_PortableMortar":
+                    __result = "CE_Turret_PortableMortar";
                     break;
-                case "Blueprint_Turret_PortabletMortar":
-                    __result = "Blueprint_CE_Turret_PortabletMortar";
+                case "Blueprint_Turret_PortableMortar":
+                    __result = "Blueprint_CE_Turret_PortableMortar";
                     break;
-                case "Frame_Turret_PortabletMortar":
-                    __result = "Frame_CE_Turret_PortabletMortar";
+                case "Frame_Turret_PortableMortar":
+                    __result = "Frame_CE_Turret_PortableMortar";
                     break;
-                case "Blueprint_Install_Turret_PortabletMortar":
-                    __result = "Blueprint_Install_CE_Turret_PortabletMortar";
+                case "Blueprint_Install_Turret_PortableMortar":
+                    __result = "Blueprint_Install_CE_Turret_PortableMortar";
                     break;
 
                 case "Gun_SPGNine":
