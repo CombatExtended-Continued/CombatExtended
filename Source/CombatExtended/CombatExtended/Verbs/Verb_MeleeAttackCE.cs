@@ -188,7 +188,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             {
                 // Attack is evaded
                 result = false;
-                soundDef = SoundMiss();
+                soundDef = SoundDodge(defender);
                 CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDodge, false);
 
                 moteText = "TextMote_Dodge".Translate();
