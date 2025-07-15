@@ -26,10 +26,12 @@
 		<description>Power cells used as ammunition for the AOC Suvi Buster.</description>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
+      <Mass>0.5</Mass>
+			<Bulk>0.5</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
-			<li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
 		</tradeTags>
 		<thingCategories>
 			<li>AmmoAOCPowerCell</li>
@@ -46,10 +48,6 @@
 			<texPath>Things/Ammo/AOCPowerCell/HEAT</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<Mass>0.5</Mass>
-			<Bulk>0.5</Bulk>
-		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<detonateProjectile>Bullet_AOCPowerCell_HEAT</detonateProjectile>
 	</ThingDef>
@@ -61,10 +59,6 @@
 			<texPath>Things/Ammo/AOCPowerCell/Thermobaric</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<Mass>0.5</Mass>
-			<Bulk>0.5</Bulk>
-		</statBases>
 		<ammoClass>RocketThermobaric</ammoClass>
 		<detonateProjectile>Bullet_AOCPowerCell_Thermobaric</detonateProjectile>
 	</ThingDef>
@@ -76,10 +70,6 @@
 			<texPath>Things/Ammo/AOCPowerCell/EMP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<Mass>0.5</Mass>
-			<Bulk>0.5</Bulk>
-		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
 		<detonateProjectile>Bullet_AOCPowerCell_EMP</detonateProjectile>
 	</ThingDef>
@@ -192,7 +182,7 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
 		<defName>MakeAmmo_AOCPowerCell_HEAT</defName>
 		<label>make AOC PowerCell (HEAT) x5</label>
 		<description>Craft 5 AOC PowerCell (HEAT).</description>
@@ -245,7 +235,7 @@
 		</products>
 	</RecipeDef>
 
-	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
 		<defName>MakeAmmo_AOCPowerCell_Thermobaric</defName>
 		<label>make AOC PowerCell (Thermobaric) x5</label>
 		<description>Craft 5 AOC PowerCell (Thermobaric).</description>
@@ -298,7 +288,7 @@
 		</products>
 	</RecipeDef>
 
-	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
 		<defName>MakeAmmo_AOCPowerCell_EMP</defName>
 		<label>make AOC PowerCell (EMP) x5</label>
 		<description>Craft 5 AOC PowerCell (EMP).</description>
