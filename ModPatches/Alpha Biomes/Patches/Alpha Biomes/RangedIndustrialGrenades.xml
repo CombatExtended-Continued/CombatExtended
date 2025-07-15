@@ -3,68 +3,78 @@
 
 	<!-- ========== Poison Dart ========== -->
 
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>AB_WeaponPoisonDart</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-			<SightsEfficiency>0.7</SightsEfficiency>
-			<ShotSpread>0.07</ShotSpread>
-			<SwayFactor>1</SwayFactor>
-			<Bulk>1</Bulk>
-		</statBases>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>AB_WeaponPoisonDartProjectile</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>14</range>
-			<soundCast>ThrowGrenade</soundCast>
-			<muzzleFlashScale>0</muzzleFlashScale>
-		</Properties>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-		</FireModes>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDart"]</xpath>
 		<value>
-			<equippedAngleOffset>60</equippedAngleOffset>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseWeaponAndAmmoNeolithic">
+				<defName>AB_WeaponPoisonDart</defName>
+				<label>dribbling cap poison dart</label>
+				<description>This small poison dart has been filled with the pungent resin flowing from a dribbling cap fungus. It is an extremely potent neurotoxin, causing immediate paralysis, and eventually, death.</description>
+				<graphicData>
+					<texPath>Things/Item/Resource/AB_PoisonDart</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+				</graphicData>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<statBases>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>1.5</ShotSpread>
+					<SwayFactor>2.5</SwayFactor>
+					<Mass>0.014</Mass>
+					<Bulk>0.04</Bulk>
+					<Flammability>1</Flammability>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<MeleeCounterParryBonus>0.06</MeleeCounterParryBonus>
+				</statBases>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.10</MeleeCritChance>
+					<MeleeParryChance>0.10</MeleeParryChance>
+					<MeleeDodgeChance>0.57</MeleeDodgeChance>
+				</equippedStatOffsets>
+				<equippedAngleOffset>60</equippedAngleOffset>
+				<stackLimit>50</stackLimit>
+				<weaponTags>
+					<li>NeolithicRangedBasic</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+				<weaponClasses>
+					<li>Ranged</li>
+				</weaponClasses>
+				<tradeability>Sellable</tradeability>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_Dart_Venom_AB</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>10</range>
+						<!--<soundCast>Interact_BeatFire</soundCast>-->
+					</li>
+				</verbs>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<extraMeleeDamages>
+							<li>
+								<def>AB_ParalysingSting</def>
+								<amount>2</amount>
+								<chance>1</chance>
+							</li>
+						</extraMeleeDamages>
+						<power>4</power>
+						<cooldownTime>1.49</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationSharp>1</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+				</tools>
+				<ammoClass>VenomArrow</ammoClass>
+			</ThingDef>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]/projectile</xpath>
-		<attribute>Class</attribute>
-		<value>CombatExtended.ProjectilePropertiesCE</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]</xpath>
-		<value>
-			<thingClass>CombatExtended.BulletCE</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]/projectile</xpath>
-		<value>
-			<armorPenetrationSharp>1.5</armorPenetrationSharp>
-			<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]/projectile/speed</xpath>
-		<value>
-			<speed>12</speed>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]/projectile/damageAmountBase</xpath>
-		<value>
-			<damageAmountBase>5</damageAmountBase>
-		</value>
-	</Operation>
 </Patch>
