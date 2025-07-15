@@ -5,7 +5,7 @@
 	<!-- Melee -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name = "WeaponSpecializationMeleeBase"]/statAffecters/li[@statDef="MeleeCooldownFactor"]/multiplierCurve/points</xpath>
+		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name = "WeaponSpecializationMeleeBase"]/statAffecters/li[statDef="MeleeCooldownFactor"]/multiplierCurve/points</xpath>
 		<value>
 			<points>
 				<li>(0, 1)</li>
@@ -50,7 +50,7 @@
 	<!-- Ranged -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name = "WeaponSpecializationShootingBase"]/statAffecters/li[@statDef="RangedCooldownFactor"]</xpath>
+		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name = "WeaponSpecializationShootingBase"]/statAffecters/li[statDef="RangedCooldownFactor"]</xpath>
 		<value>
 			<li>
 				<statDef>ReloadSpeed</statDef>
@@ -64,7 +64,7 @@
 		</value>
 	</Operation>
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name = "WeaponSpecializationShootingBase"]/statAffecters/li[@statDef="AimingDelayFactor"]/multiplierCurve/points</xpath>
+		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name = "WeaponSpecializationShootingBase"]/statAffecters/li[statDef="AimingDelayFactor"]/multiplierCurve/points</xpath>
 		<value>
 			<points>
 				<li>(0, 1)</li>
@@ -72,7 +72,7 @@
 			</points>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name = "WeaponSpecializationShootingBase"]/statAffecters</xpath>
 		<value>
 			<li>
