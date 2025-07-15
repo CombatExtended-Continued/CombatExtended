@@ -247,11 +247,8 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                             defender.drawer.jitterer.AddOffset(0.1f, (defender.Position - casterPawn.Position).AngleFlat);
                         }
 
-                        if (parryThing.Stuff != null && parryThing.Stuff.stuffProps.soundMeleeHitSharp != null)
-                        {
-                            parryThing.Stuff.stuffProps.soundMeleeHitSharp.PlayOneShot(new TargetInfo(defender.Position,
-                                defender.Map, false));
-                        }
+                        SoundDef parrySound = parryThing.Stuff?.stuffProps?.soundMeleeHitSharp ?? ThingDefOf.Steel.stuffProps.soundMeleeHitSharp;
+                        parrySound.PlayOneShot(new TargetInfo(defender.Position, defender.Map, false));
 
                         CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); //placeholder
 
