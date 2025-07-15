@@ -316,7 +316,7 @@ public static class ArmorUtilityCE
         // Apply damage to armor
         if (armor != null)
         {
-            var isSoftArmor = armor.Stuff != null && armor.Stuff.stuffProps.categories.Any(s => softStuffs.Contains(s));
+            var isSoftArmor = (armor.Stuff != null && armor.Stuff.stuffProps.categories.Any(s => softStuffs.Contains(s))) || (armor.def.GetModExtension<ApparelDefExtension>()?.isSoftArmor ?? false);
             float armorDamage = 0;
             if (isSoftArmor)
             {
