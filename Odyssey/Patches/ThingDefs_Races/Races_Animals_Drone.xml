@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Larva -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="BaseDrone"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseDrone"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4.4</MoveSpeed>
+			<MeleeDodgeChance>0.00</MeleeDodgeChance>
+			<MeleeCritChance>0.01</MeleeCritChance>
+			<MeleeParryChance>0.01</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseDrone"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shell spike</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<linkedBodyPartsGroup>SpikedShellAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationSharp>0.15</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+				</li>				
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="BaseDrone"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="HiveQueen"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseDrone"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>3575</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Drone_Hunter"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4.0</MoveSpeed>
+		</value>
+	</Operation>
+
+	<!-- Wasp -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Drone_Wasp"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>6.5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Drone_Wasp"]/tools</xpath>
+		<value>
+			<tools Inherit="False">
+				<li Class="CombatExtended.ToolCE">
+					<label>shell spike</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>8</power>
+        <extraMeleeDamages>
+          <li>
+            <def>Stun</def>
+            <amount>3</amount>
+          </li>
+        </extraMeleeDamages>
+					<cooldownTime>1.6</cooldownTime>
+					<linkedBodyPartsGroup>SpikedShellAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationSharp>4</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>				
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>
