@@ -1007,14 +1007,29 @@ public class Verb_LaunchProjectileCE : Verb
     {
     }
 
+    public virtual void ApplyVisibilityWarmupPenalty(LocalTargetInfo destTarg)
+    {
+        if (Controller.settings.VisibilityWarmupPenalty && verbProps.requireLineOfSight)
+        {
+            var report = ShiftVecReportFor(destTarg);
+            
+            //50 is an empirically found multiplier to convert cells into ticks of delay
+            this.BurstWarmupTicksLeft = (int)(report.visibilityShift * 50f);
+        }
+    }
+
     public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false, bool nonInterruptingSelfCast = false)
     {
         bool startedCasting = base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
         if (startedCasting)
         {
-            if (this.repeating && this.verbProps.warmupTime > 0f) // now warming up
+            if (this.verbProps.warmupTime > 0f) // now warming up
             {
-                this.RecalculateWarmupTicks();
+                if (this.repeating)
+                {
+                    this.RecalculateWarmupTicks();
+                }
+                ApplyVisibilityWarmupPenalty(castTarg);
             }
         }
         return startedCasting;
