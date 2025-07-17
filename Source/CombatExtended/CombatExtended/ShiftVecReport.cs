@@ -51,11 +51,6 @@ public class ShiftVecReport
             if (enviromentShiftInt < 0)
             {
                 enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 7f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
-                if (targetPawn != null)
-                {
-                    enviromentShiftInt *= targetPawn.GetStatValue(CE_StatDefOf.VisibilityConcealmentEfficiency);
-                }
-
             }
             return enviromentShiftInt;
         }
@@ -75,6 +70,11 @@ public class ShiftVecReport
                     se = 0.02f;
                 }
                 visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
+                
+                if (targetPawn != null)
+                {
+                    enviromentShiftInt *= targetPawn.GetStatValue(CE_StatDefOf.VisibilityConcealmentEfficiency);
+                }
             }
             return visibilityShiftInt;
         }
