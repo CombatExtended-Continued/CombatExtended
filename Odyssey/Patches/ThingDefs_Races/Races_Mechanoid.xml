@@ -16,7 +16,7 @@
 		<value>
 			<ArmorRating_Blunt>3</ArmorRating_Blunt>
 			<SmokeSensitivity>0</SmokeSensitivity>
-			<NightVisionEfficiency>0.80</NightVisionEfficiency>
+			<NightVisionEfficiency>0.60</NightVisionEfficiency>
 		</value>
 	</Operation>
 
@@ -147,6 +147,38 @@
 	</Operation>
 	
 	<!-- ========== Sentry Drone ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Drone_Sentry"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Drone_Sentry"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+			<SmokeSensitivity>0</SmokeSensitivity>
+			<NightVisionEfficiency>0.80</NightVisionEfficiency>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Drone_Sentry"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Drone_Sentry"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Inventory" />
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="Drone_Sentry"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
