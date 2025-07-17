@@ -1014,12 +1014,13 @@ public class Verb_LaunchProjectileCE : Verb
         if (Controller.settings.VisibilityWarmupPenalty && verbProps.requireLineOfSight)
         {
             var report = ShiftVecReportFor(destTarg);
-            #if DEBUG
+#if DEBUG
             if (Controller.settings.DebugVerbose)
             {
-                Log.Message($"CE: Warmup: {this.BurstWarmupTicksLeft} ticks + {report.visibilityShift * Controller.settings.VisibilityPenaltyMultiplier} ticks visibility penalty");
+                Log.Message(
+                    $"CE: Warmup: {this.BurstWarmupTicksLeft} ticks + {report.visibilityShift * Controller.settings.VisibilityPenaltyMultiplier} ticks visibility penalty");
             }
-            #endif
+#endif
 
             this.BurstWarmupTicksLeft += (int)(report.visibilityShift * Controller.settings.VisibilityPenaltyMultiplier);
         }
