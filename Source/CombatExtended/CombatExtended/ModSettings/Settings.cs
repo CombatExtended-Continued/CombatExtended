@@ -39,6 +39,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool midBurstRetarget = true;
     private bool fasterRepeatShots = true;
     private bool visibilityWarmupPenalty = true;
+    private float visibilityPenaltyMultiplier = 20f;
 
     private float explosionPenMultiplier = 1.0f;
     private float explosionFalloffFactor = 1.0f;
@@ -142,6 +143,7 @@ public class Settings : ModSettings, ISettingsCE
 
     public bool FasterRepeatShots => fasterRepeatShots;
     public bool VisibilityWarmupPenalty => visibilityWarmupPenalty;
+    public float VisibilityPenaltyMultiplier => visibilityPenaltyMultiplier;
     public bool MidBurstRetarget => midBurstRetarget;
 
     public float ExplosionPenMultiplier => explosionPenMultiplier;
@@ -237,6 +239,7 @@ public class Settings : ModSettings, ISettingsCE
         lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
 
         Scribe_Values.Look(ref medicineSearchRadius, "medicineSearchRadius", 5f);
+        Scribe_Values.Look(ref visibilityPenaltyMultiplier, "visibilityPenaltyMultiplier", 20f);
     }
     public void DoWindowContents(Listing_Standard list)
     {
@@ -279,6 +282,8 @@ public class Settings : ModSettings, ISettingsCE
         left.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_VisibilityWarmupPenalty_Title".Translate(), ref visibilityWarmupPenalty, "CE_Settings_VisibilityWarmupPenalty_Desc".Translate());
+        visibilityPenaltyMultiplier = left.SliderLabeled("CE_Settings_VisibilityWarmupSlider_Title".Translate() + ": " + visibilityPenaltyMultiplier.ToString("F0"), visibilityPenaltyMultiplier, 1f, 100f, tooltip: "CE_Settings_VisibilityWarmupSlider_Desc".Translate(), labelPct: 0.6f);
+        left.Gap();
         left.CheckboxLabeled("CE_Settings_MidBurstRetarget_Title".Translate(), ref midBurstRetarget, "CE_Settings_MidBurstRetarget_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
@@ -461,6 +466,7 @@ public class Settings : ModSettings, ISettingsCE
         turretsBreakShields = true;
         fasterRepeatShots = true;
         visibilityWarmupPenalty = true;
+        visibilityPenaltyMultiplier = 20f;
         midBurstRetarget = true;
         enableCIWS = true;
         fragmentsFromWalls = false;

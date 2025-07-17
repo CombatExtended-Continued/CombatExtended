@@ -70,7 +70,6 @@ public class ShiftVecReport
                     se = 0.02f;
                 }
                 visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
-                
                 if (targetPawn != null)
                 {
                     enviromentShiftInt *= targetPawn.GetStatValue(CE_StatDefOf.VisibilityConcealmentEfficiency);

@@ -1014,9 +1014,14 @@ public class Verb_LaunchProjectileCE : Verb
         if (Controller.settings.VisibilityWarmupPenalty && verbProps.requireLineOfSight)
         {
             var report = ShiftVecReportFor(destTarg);
-            
-            //50 is an empirically found multiplier to convert cells into ticks of delay
-            this.BurstWarmupTicksLeft = (int)(report.visibilityShift * 50f);
+            #if DEBUG
+            if (Controller.settings.DebugVerbose)
+            {
+                Log.Message($"CE: Warmup: {this.BurstWarmupTicksLeft} ticks + {report.visibilityShift * Controller.settings.VisibilityPenaltyMultiplier} ticks visibility penalty");
+            }
+            #endif
+
+            this.BurstWarmupTicksLeft += (int)(report.visibilityShift * Controller.settings.VisibilityPenaltyMultiplier);
         }
     }
 
