@@ -652,9 +652,10 @@ public class Verb_LaunchProjectileCE : Verb
         report.maxRange = EffectiveRange;
         report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
+        float environmentPenaltyMultiplier = (1.0f - caster.GetStatValue(CE_StatDefOf.ThermalVisionEfficiency));
         if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
         {
-            report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
+            report.weatherShift = (1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier) * environmentPenaltyMultiplier;
         }
         report.shotSpeed = ShotSpeed;
         report.swayDegrees = SwayAmplitude;
@@ -666,7 +667,7 @@ public class Verb_LaunchProjectileCE : Verb
 
         GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity, out roofed);
         report.cover = cover;
-        report.smokeDensity = smokeDensity;
+        report.smokeDensity = smokeDensity * environmentPenaltyMultiplier;
         report.roofed = roofed;
         return report;
     }
@@ -703,9 +704,10 @@ public class Verb_LaunchProjectileCE : Verb
         float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
         report.spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * spreadmult;
         report.cover = null;
+        float environmentPenaltyMultiplier = (1.0f - caster.GetStatValue(CE_StatDefOf.ThermalVisionEfficiency));
         if (target.Map != null)
         {
-            report.weatherShift = (1f - target.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
+            report.weatherShift = (1f - target.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f * environmentPenaltyMultiplier;
             report.lightingShift = 1f;
             report.smokeDensity = (/*target.Cell.GetGas(target.Map)?.def.gas.accuracyPenalty*/1f/* ?? 0f*/) * 10f;
         }
