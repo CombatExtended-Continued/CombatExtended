@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- === Ammo Sets === -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserRifle</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_BeamRepeater</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Projectiles === -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_BeamRepeater</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Bullet_Small</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>BeamBypassShields</damageDef>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>17.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+</Defs>
