@@ -63,11 +63,15 @@ public class CompMeleeTargettingGizmo : ThingComp
             return heightInt;
         }
 
-        float maxWeaponPen = 1f;
+        float maxWeaponPen = 0f;
 
-        if (primaryWeapon != null)
+        if (primaryWeapon != null && !primaryWeapon.def.tools.NullOrEmpty())
         {
-            maxWeaponPen = primaryWeapon.def.tools.Max(x => { ToolCE y = x as ToolCE; return y == null ? 0f : y.armorPenetrationSharp; }) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
+            maxWeaponPen = primaryWeapon.def.tools.Max(x => { ToolCE y = x as ToolCE; return y?.armorPenetrationSharp ?? 0f; }) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
+        }
+        else
+        {
+            maxWeaponPen = PawnParent.Tools?.Max(x => { ToolCE y = x as ToolCE; return y?.armorPenetrationSharp ?? 0f; }) ?? 0f;
         }
 
         if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 7)
