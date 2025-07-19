@@ -56,6 +56,14 @@ public class CompMeleeTargettingGizmo : ThingComp
         }
     }
 
+    private List<Tool> PawnTools
+    {
+        get
+        {
+            return PawnParent.Tools;
+        }
+    }
+
     public BodyPartHeight finalHeight(Pawn target)
     {
         if (PawnParent.Faction == Faction.OfPlayer && heightInt != BodyPartHeight.Undefined)
@@ -65,23 +73,39 @@ public class CompMeleeTargettingGizmo : ThingComp
 
         float maxWeaponPen = 0f;
 
-        if (primaryWeapon != null && !primaryWeapon.def.tools.NullOrEmpty())
+        if (!primaryWeapon?.def.tools.NullOrEmpty() ?? false)
         {
-            maxWeaponPen = primaryWeapon.def.tools.Max(x => { ToolCE y = x as ToolCE; return y?.armorPenetrationSharp ?? 0f; }) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
+            float maxPen = 0f;
+            foreach (Tool tool in primaryWeapon.def.tools)
+            {
+                if (tool is ToolCE toolCe && toolCe.armorPenetrationSharp > maxPen)
+                {
+                    maxPen = toolCe.armorPenetrationSharp;
+                }
+            }
+
+            maxWeaponPen = maxPen * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
         }
-        else
+        if (!PawnTools.NullOrEmpty())
         {
-            maxWeaponPen = PawnParent.Tools?.Max(x => { ToolCE y = x as ToolCE; return y?.armorPenetrationSharp ?? 0f; }) ?? 0f;
+            foreach (Tool tool in PawnTools)
+            {
+                if (tool is ToolCE toolCe && toolCe.armorPenetrationSharp > maxWeaponPen)
+                {
+                    maxWeaponPen = toolCe.armorPenetrationSharp;
+                }
+            }
         }
 
-        if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 7)
+        int skillLevel = PawnParent.skills.GetSkill(SkillDefOf.Melee).Level;
+        if (skillLevel is < 16 and > 7)
         {
-            var torso = target.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Torso).FirstOrFallback();
+            BodyPartRecord torso = target.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Torso).FirstOrFallback();
 
             //just in case of attacking some weird creature
             if (torso != null)
             {
-                var torsoApparel = target.apparel?.WornApparel?.FindAll(x => x.def.apparel.CoversBodyPart(torso));
+                List<Apparel> torsoApparel = target.apparel?.WornApparel?.FindAll(x => x.def.apparel.CoversBodyPart(torso));
 
                 float overallRHA = target.GetStatValue(StatDefOf.ArmorRating_Sharp);
 
@@ -104,26 +128,23 @@ public class CompMeleeTargettingGizmo : ThingComp
             return BodyPartHeight.Middle;
         }
 
-        if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 16)
+        if (skillLevel >= 16)
         {
-            foreach (var bpd in priorityList)
+            foreach (BodyPartDef bpd in priorityList)
             {
                 targetBodyPart = bpd;
-                var bp = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == bpd).FirstOrFallback();
+                BodyPartRecord bp = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == bpd).FirstOrFallback();
 
                 if (bp != null)
                 {
-                    var bpApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(bp));
+                    Apparel bpApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(bp));
 
                     if (bpApparel != null && maxWeaponPen < bpApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
                     {
                         targetBodyPart = null;
                         return BodyPartHeight.Bottom;
                     }
-                    else
-                    {
-                        targetBodyPart = bp.def;
-                    }
+                    targetBodyPart = bp.def;
                 }
             }
             return BodyPartHeight.Top;
