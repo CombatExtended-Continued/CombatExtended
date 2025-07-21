@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Charge Sniper ==================== -->
+
+	<ThingDef ParentName="CE_Gun_ChargeSniperRifle">
+		<defName>CE_Gun_ChargeSniperRifle_Unique</defName>
+		<label>unique charge sniper rifle</label>
+		<description>Unique charge sniper rifle with customized parts.</description>
+		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<texPath>Things/Weapons/ChargeSniper</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.3,1.3)</drawSize>
+		</graphicData>
+		<costList>
+			<Steel>70</Steel>
+			<Plasteel>35</Plasteel>
+			<Chemfuel>15</Chemfuel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<comps Inherit="False">
+			<li Class="CompProperties_EquippableAbilityReloadable"/><!-- Props are populated by traits -->
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>10</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_8x50mmCharged</ammoSet>
+			</li>
+			<li Class="CombatExtended.CompProperties_FireModes">
+				<aiAimMode>AimedShot</aiAimMode>
+			</li>
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Styleable"/>
+			<li Class="CompProperties_Biocodable"/>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			<li Class="CompProperties_UniqueWeapon">
+				<weaponCategories>
+					<li>Ranged</li>
+					<li>Gun</li>
+					<li>PulseCharge</li>
+				</weaponCategories>
+				<namerLabels>
+					<li>charge sniper</li>
+				</namerLabels>
+			</li>
+		</comps>
+		<generateAllowChance>0</generateAllowChance>
+		<possessionCount>0</possessionCount>
+		<weaponTags Inherit="False">
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+		<thingSetMakerTags Inherit="False">
+			<li>RewardStandardLowFreq</li>
+			<li>UniqueWeapon</li>
+		</thingSetMakerTags>
+		<recipeMaker Inherit="False" IsNull="True"/>
+		<descriptionHyperlinks>
+			<ThingDef>CE_Gun_ChargeSniperRifle</ThingDef>
+		</descriptionHyperlinks>
+	</ThingDef>
+
+</Defs>
