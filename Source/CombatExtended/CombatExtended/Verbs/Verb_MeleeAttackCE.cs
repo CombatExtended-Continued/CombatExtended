@@ -188,10 +188,11 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             {
                 // Attack is evaded
                 result = false;
-                soundDef = SoundMiss();
+                soundDef = SoundDodge(defender);
                 CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDodge, false);
 
                 moteText = "TextMote_Dodge".Translate();
+                defender.drawer.jitterer.AddOffset(1.5f, (defender.Position - casterPawn.Position).AngleFlat + Rand.Range(-90f, 90));
                 defender.skills?.Learn(SkillDefOf.Melee, DodgeXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
             }
             else
@@ -226,6 +227,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                         // Do a riposte
                         DoParry(defender, parryThing, true, deflected);
                         moteText = "CE_TextMote_Riposted".Translate();
+                        defender.drawer.Notify_MeleeAttackOn(casterPawn);
                         CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDeflect, false); //placeholder
 
                         defender.skills?.Learn(SkillDefOf.Melee, (CritXP + ParryXP) * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
@@ -239,6 +241,15 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                         {
                             moteText = "CE_TextMote_Parried".Translate();
                         }
+                        else
+                        {
+                            //play hit received jitter animation
+                            defender.drawer.jitterer.AddOffset(0.1f, (defender.Position - casterPawn.Position).AngleFlat);
+                        }
+
+                        SoundDef parrySound = parryThing.Stuff?.stuffProps?.soundMeleeHitSharp ?? ThingDefOf.Steel.stuffProps.soundMeleeHitSharp;
+                        parrySound.PlayOneShot(new TargetInfo(defender.Position, defender.Map, false));
+
                         CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); //placeholder
 
                         defender.skills?.Learn(SkillDefOf.Melee, ParryXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
