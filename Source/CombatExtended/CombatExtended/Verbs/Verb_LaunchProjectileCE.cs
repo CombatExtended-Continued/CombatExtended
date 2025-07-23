@@ -201,7 +201,7 @@ public class Verb_LaunchProjectileCE : Verb
     {
         get
         {
-            float recoil = VerbPropsCE.recoilAmount;
+            float recoil = VerbPropsCE.recoilAmount * EquipmentSource?.GetStatValue(CE_StatDefOf.CE_RangedWeapon_RecoilMultiplier) ?? 1f;
             WeaponPlatform platform = this.WeaponPlatform;
             if (platform != null)
             {
