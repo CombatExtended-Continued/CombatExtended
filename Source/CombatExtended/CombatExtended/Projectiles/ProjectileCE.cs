@@ -108,7 +108,7 @@ public abstract class ProjectileCE : ThingWithComps
             var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
             var isSharpDmg = DamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
 
-            float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
+            float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_ArmorPenetrationMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
 
             float speedFactor = isSharpDmg ? RemainingSpeedPct : RemainingKineticEnergyPct;
             return penetrationAmount * speedFactor;
