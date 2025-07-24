@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- DV_Apparel_ServiceHeadset  -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_ServiceHeadset"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_ServiceHeadset"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_ServiceHeadset"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelDefExtension">
+				<isRadioPack>true</isRadioPack>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
