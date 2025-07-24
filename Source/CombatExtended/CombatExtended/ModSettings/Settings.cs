@@ -39,7 +39,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool midBurstRetarget = true;
     private bool fasterRepeatShots = true;
     private bool visibilityWarmupPenalty = true;
-    private float visibilityPenaltyMultiplier = 20f;
+    private float visibilityPenaltyMultiplier = 10f;
 
     private float explosionPenMultiplier = 1.0f;
     private float explosionFalloffFactor = 1.0f;
@@ -239,7 +239,7 @@ public class Settings : ModSettings, ISettingsCE
         lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
 
         Scribe_Values.Look(ref medicineSearchRadius, "medicineSearchRadius", 5f);
-        Scribe_Values.Look(ref visibilityPenaltyMultiplier, "visibilityPenaltyMultiplier", 20f);
+        Scribe_Values.Look(ref visibilityPenaltyMultiplier, "visibilityPenaltyMultiplier", 10f);
     }
     public void DoWindowContents(Listing_Standard list)
     {
@@ -466,7 +466,7 @@ public class Settings : ModSettings, ISettingsCE
         turretsBreakShields = true;
         fasterRepeatShots = true;
         visibilityWarmupPenalty = true;
-        visibilityPenaltyMultiplier = 20f;
+        visibilityPenaltyMultiplier = 10f;
         midBurstRetarget = true;
         enableCIWS = true;
         fragmentsFromWalls = false;
