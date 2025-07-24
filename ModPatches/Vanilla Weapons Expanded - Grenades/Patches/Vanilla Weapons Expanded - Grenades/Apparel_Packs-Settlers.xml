@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Settlers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Smoke Grenade Belt -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VWE_Apparel_DynamiteBelt"]/costList</xpath>
+					<value>
+						<costList>
+							<VFES_Weapon_GrenadeDynamite>6</VFES_Weapon_GrenadeDynamite>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VWE_Apparel_DynamiteBelt"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>throw dynamite</label>
+								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<onlyManualCast>True</onlyManualCast>
+								<warmupTime>0.8</warmupTime>
+								<range>10</range>
+								<minRange>3</minRange>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<soundCast>ThrowGrenade</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								<defaultProjectile>VFES_Proj_Dynamite</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

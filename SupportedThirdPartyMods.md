@@ -183,6 +183,7 @@ Darkest Rim: Apparel	|
 Deployable Turret   |
 Det's Energy Weapons    |
 Det's Xenotypes - Boglegs   |
+Det's Xenotypes - Half-foot   |
 Det's Xenotypes - Keshig   |
 Det's Xenotypes - Venators   |
 Devilstrand Animals |

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Smoke Grenade Belt -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeSmokeBelt"]/costList</xpath>
+					<value>
+						<costList>
+							<CE_Weapon_GrenadeSmoke>5</CE_Weapon_GrenadeSmoke>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeSmokeBelt"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>throw smoke grenade</label>
+								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<onlyManualCast>True</onlyManualCast>
+								<warmupTime>0.8</warmupTime>
+								<range>10</range>
+								<minRange>3</minRange>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<soundCast>ThrowGrenade</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								<defaultProjectile>CE_Proj_GrenadeSmoke</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- EMP Grenade Belt -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeFlashBelt"]/costList</xpath>
+					<value>
+						<costList>
+							<CE_Weapon_GrenadeFlashbang>5</CE_Weapon_GrenadeFlashbang>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeFlashBelt"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>throw flashbang grenade</label>
+								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<onlyManualCast>True</onlyManualCast>
+								<warmupTime>0.8</warmupTime>
+								<range>10</range>
+								<minRange>3</minRange>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<soundCast>ThrowGrenade</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								<defaultProjectile>Proj_GrenadeEMP</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
