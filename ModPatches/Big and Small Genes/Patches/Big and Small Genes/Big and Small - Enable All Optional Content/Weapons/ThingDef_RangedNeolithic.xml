@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small - Enable All Optional Content</li>
+			<li>Big and Small - Races</li>
+			<li>Big and Small - Slimes</li>
+			<li>Big and Small - Heaven and Hell</li>
+			<li>Big and Small - Xeno Insectoid Hive</li>
+			<li>Big and Small - Vampires and the Undead</li>
+			<li>Big and Small - Lamias and other Snake-People</li>
+			<li>Big and Small - More Xenotypes</li>
+			<li>Big and Small - Weapons</li>
+			<li>Big and Small - Sapient Animals</li>
+			<li>Big and Small - Yokai</li>
+			<li>Randy Random's Rayguns - Ordinary Spacer Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ====== Giant Javelin ====== -->
+
+				<!-- == Weapon == -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseWeapon</value>
+				</li>
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.AmmoDef</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+					<value>
+						<stackLimit>5</stackLimit>
+						<resourceReadoutPriority>First</resourceReadoutPriority>
+						<techLevel>Medieval</techLevel>
+						<tradeNeverStack>true</tradeNeverStack>
+						<burnableByRecipe>true</burnableByRecipe>
+						<thingCategories>
+							<li>WeaponsRanged</li>
+						</thingCategories>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.AmmoDef</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BS_JotunJavelin</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<Bulk>5</Bulk>
+						<Mass>5</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+						<MeleeCounterParryBonus>0.36</MeleeCounterParryBonus>
+					</statBases>
+					<Properties>
+						<label>Throw huge javelin</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Projectile_GiantThrown</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>20</range>
+						<soundCast>BS_JotunJavelinThrow_Sound</soundCast>
+						<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+					</Properties>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.17</MeleeCritChance>
+							<MeleeDodgeChance>0.6</MeleeDodgeChance>
+							<MeleeParryChance>0.5</MeleeParryChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>2.95</cooldownTime>
+								<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>37</power>
+								<cooldownTime>3.4</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>9</armorPenetrationBlunt>
+								<armorPenetrationSharp>4</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/RecipeDef[defName="BS_OgreThrowinRockRecipe"]/workAmount</xpath>
+					<value>
+						<workAmount>1600</workAmount>
+					</value>
+				</li>
+				
+				<!-- Giant Primitive Bow -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BS_GiantPrimitiveBow</defName>
+					<statBases>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<ShotSpread>1</ShotSpread>
+						<SwayFactor>2</SwayFactor>
+						<Bulk>15.00</Bulk>
+						<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<WoodLog>90</WoodLog>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_BigSmall_GiantArrow_Stone</defaultProjectile>
+						<warmupTime>2</warmupTime>
+						<range>45</range>
+						<soundCast>BS_Bow_Giant</soundCast>
+					</Properties>
+					<AmmoUser>
+						<ammoSet>AmmoSet_BigSmall_GiantArrow</ammoSet>
+						<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
+					</AmmoUser>
+					<FireModes />
+					<weaponTags>
+						<li>RangedMedievalGiant</li>
+						<li>RangedNeolithicAdvancedGiant</li>
+					</weaponTags>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantPrimitiveBow"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.6</cooldownTime>
+								<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
