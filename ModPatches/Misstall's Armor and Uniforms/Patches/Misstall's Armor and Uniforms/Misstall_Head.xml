@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	
+	<!--Eyewear-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MAU_Eye" or 
+		defName="Apparel_MAU_2Mega" or 
+		defName="Apparel_MAU_2Mega"
+		]/statBases</xpath>
+		<value>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Eye"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Eye"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--Glases-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MAU_2Mega" or 
+		defName="Apparel_MAU_2Mega"
+		]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MAU_2Mega" or 
+		defName="Apparel_MAU_2Mega"
+		]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--Mask-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Mask"]/statBases</xpath>
+		<value>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Mask"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Mask"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Mask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MAU_Mask" 
+		]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+	
+	<!--Hat-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MUH_01Beret" or 
+		defName="Apparel_MUG_01Beret"
+		]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+	
+	<!--Headguards-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MAU_Rimk" or 
+		defName="Apparel_MAU_MortarRimk" or 
+		defName="Apparel_MAU_MKNTRimk"
+		]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MAU_Rimk" or 
+		defName="Apparel_MAU_MortarRimk" or 
+		defName="Apparel_MAU_MKNTRimk"
+		]/statBases/Mass</xpath>
+		<value>
+			<Mass>2</Mass>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MAU_Rimk" or 
+		defName="Apparel_MAU_MortarRimk" or 
+		defName="Apparel_MAU_MKNTRimk"
+		]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Apparel_MAU_Rimk" or 
+		defName="Apparel_MAU_MortarRimk" or 
+		defName="Apparel_MAU_MKNTRimk"
+		]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[
+			defName="Apparel_MAU_Rimk" or 
+			defName="Apparel_MAU_MortarRimk" or 
+			defName="Apparel_MAU_MKNTRimk"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelDefExtension">
+				<isRadioPack>true</isRadioPack>
+			</li>
+		</value>
+	</Operation>
+	
+	<!--NV-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Rimk"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Rimk"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>0.3</AimingAccuracy>
+				<ShootingAccuracyPawn>0.75</ShootingAccuracyPawn>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+	
+	<!--Spotter-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_MortarRimk"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Apparel>0.3</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_MortarRimk"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<AimingAccuracy>0.9</AimingAccuracy>
+		</value>
+	</Operation>
+	
+	<!--Mechinator-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_MKNTRimk"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Apparel>0.3</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+	
+	<!--Adv. Headset-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Nekomimi"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>125</MaxHitPoints>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Nekomimi"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2</Mass>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Nekomimi"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>10</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Nekomimi"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Nekomimi"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelDefExtension">
+				<isRadioPack>true</isRadioPack>
+			</li>
+		</value>
+	</Operation>
+	
+	<!--NV-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Nekomimi"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Apparel>0.8</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Nekomimi"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>0.6</AimingAccuracy>
+				<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+	
+	<!--Helmet-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_HelInds"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>125</MaxHitPoints>
+			<WornBulk>1</WornBulk>
+			<Bulk>3</Bulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_HelInds"]/statBases/Mass</xpath>
+		<value>
+			<Mass>3</Mass>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_HelInds"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_HelInds"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--Adv. Helmet-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Helmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WornBulk>2</WornBulk>
+			<Bulk>3</Bulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Helmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>4</Mass>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>18</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--NV-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Helmet"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_MAU_Helmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<AimingAccuracy>0.3</AimingAccuracy>
+			<ShootingAccuracyPawn>0.75</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+	
+</Patch>
