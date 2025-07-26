@@ -216,6 +216,7 @@ Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
 Erin's Chocobos |
 Erin's Final Fantasy Races |
+Erin's Fluffy Fauna |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Lizard Doggo |
