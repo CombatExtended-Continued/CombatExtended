@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -783,6 +784,46 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         var defSkill = stat.Worker.IsDisabledFor(defender) ? 0 : defender.GetStatValue(stat) * defenderSkillMult;
         var chance = Mathf.Clamp01(baseChance + offSkill - defSkill);
         return chance;
+    }
+
+    public string GetTextReadout(Pawn attacker, Pawn target, CompEquippable equipment)
+    {
+        float dodgeChance = GetDodgeChance(target);
+
+        float counterParryBonus = 1 + (equipment?.parent.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 0);
+
+        float deflectChance = GetComparativeChanceAgainst(target, attacker, CE_StatDefOf.MeleeParryChance, BaseParryChance, counterParryBonus);
+        float riposteChance = GetComparativeChanceAgainst(target, attacker, CE_StatDefOf.MeleeCritChance, BaseCritChance);
+        float parryChance = riposteChance;
+        float blockChance = 1 - parryChance;
+
+        float hitChance = GetHitChance(target);
+        float critChance = GetComparativeChanceAgainst(attacker, target, CE_StatDefOf.MeleeCritChance, BaseCritChance);
+
+        float toDamageChance = hitChance * (1 - (dodgeChance + deflectChance));
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.AppendLine("   " + "CE_NonMissChance".Translate() + ":\t\t" + GenText.ToStringByStyle(hitChance, ToStringStyle.PercentZero));
+
+        stringBuilder.AppendLine("\n   " + "CE_IfNotMiss".Translate() + ":");
+        stringBuilder.AppendLine("   " + "CE_TargetDodgeChance".Translate() + ":\t" + GenText.ToStringByStyle(dodgeChance, ToStringStyle.PercentZero));
+
+        stringBuilder.AppendLine("\n   " + "CE_IfNotDodged".Translate() + ":");
+        stringBuilder.AppendLine("   " + "CE_RiposteChance".Translate() + ":\t\t" + GenText.ToStringByStyle(riposteChance, ToStringStyle.PercentZero));
+        stringBuilder.AppendLine("   " + "CE_DeflectedChance".Translate() + ":\t\t" + GenText.ToStringByStyle(deflectChance, ToStringStyle.PercentZero));
+        stringBuilder.AppendLine("   " + "CE_DeflectionType".Translate() + ":");
+        stringBuilder.AppendLine("      " + "CE_ParryChance".Translate() + ":\t\t" + GenText.ToStringByStyle(parryChance, ToStringStyle.PercentZero));
+        stringBuilder.AppendLine("      " + "CE_BlockChance".Translate() + ":\t\t" + GenText.ToStringByStyle(blockChance, ToStringStyle.PercentZero));
+        if (counterParryBonus > 1)
+        {
+            stringBuilder.AppendLine("   " + "CE_CounterParryBonus".Translate() + ":\t" + GenText.ToStringByStyle(counterParryBonus, ToStringStyle.FloatTwo) + "x");
+        }
+
+        stringBuilder.AppendLine("\n   " + "CE_FinalToHitChance".Translate() + ":\t\t" + GenText.ToStringByStyle(toDamageChance, ToStringStyle.PercentZero));
+        stringBuilder.AppendLine("   " + "CE_IfHit".Translate() + ":");
+        stringBuilder.AppendLine("      " + "CE_CritChance".Translate() + ":\t\t" + GenText.ToStringByStyle(critChance, ToStringStyle.PercentZero));
+
+        return stringBuilder.ToString();
     }
 
     #endregion
