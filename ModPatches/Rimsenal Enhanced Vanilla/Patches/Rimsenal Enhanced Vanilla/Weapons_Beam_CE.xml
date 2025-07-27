@@ -3,7 +3,7 @@
 
 	<!-- ========== Melee Tools =========== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_DumbfireRifle" or defName="Gun_DumbfireLance" or defName="Gun_DumbfireBarragegun"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Gun_RSBeamCarbine" or defName="Gun_RSBeamSniper" or defName="Gun_RSBeamShotgun"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -41,43 +41,37 @@
 		</value>
 	</Operation>
 
-	<!-- ========== Dumbfire Rifle =========== -->
+	<!-- ========== Carbine =========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_DumbfireRifle</defName>
+		<defName>Gun_RSBeamCarbine</defName>
 		<statBases>
-			<WorkToMake>39500</WorkToMake>
 			<SightsEfficiency>1.0</SightsEfficiency>
-			<ShotSpread>0.6</ShotSpread>
-			<SwayFactor>1.54</SwayFactor>
-			<Bulk>9.80</Bulk>
-			<Mass>5.60</Mass>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.16</SwayFactor>
+			<Bulk>4.20</Bulk>
 			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>0.11</recoilAmount>
+			<recoilAmount>0.01</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_25mmRocket_HE</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
+			<defaultProjectile>Bullet_Laser_RSBeamCarbine</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
 			<range>40</range>
-			<burstShotCount>3</burstShotCount>
-			<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
-			<soundCast>InfernoCannon_Fire</soundCast>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<soundCast>Shot_BeamRepeater</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>12</magazineSize>
+			<magazineSize>60</magazineSize>
 			<reloadTime>0.65</reloadTime>
-			<ammoSet>AmmoSet_25mmRocket</ammoSet>
-			<reloadOneAtATime>true</reloadOneAtATime>
+			<ammoSet>AmmoSet_RSBeamCarbine</ammoSet>
 		</AmmoUser>
 		<FireModes>
-			<aimedBurstShotCount>2</aimedBurstShotCount>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 		<weaponTags>
@@ -86,35 +80,33 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- ========== Dumbfire Pistol =========== -->
+	<!-- ========== Pistol =========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_DumbfirePistol</defName>
+		<defName>Gun_RSBeamPistol</defName>
 		<statBases>
 			<SightsEfficiency>0.8</SightsEfficiency>
-			<ShotSpread>0.75</ShotSpread>
-			<SwayFactor>1.9</SwayFactor>
-			<Bulk>3.45</Bulk>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.54</SwayFactor>
+			<Bulk>2.45</Bulk>
 			<Mass>2.25</Mass>
 			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>0.24</recoilAmount>
+			<recoilAmount>0.01</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_25mmRocket_HE</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
-			<range>31</range>
-			<soundCast>InfernoCannon_Fire</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
+			<defaultProjectile>Bullet_Laser_RSBeamPistol</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>12</range>
+			<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+			<soundCast>Shot_BeamRepeater</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>3</magazineSize>
-			<reloadTime>4.5</reloadTime>
-			<ammoSet>AmmoSet_25mmRocket</ammoSet>
+			<magazineSize>12</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_RSBeamPistol</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
@@ -127,7 +119,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_DumbfirePistol"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Gun_RSBeamPistol"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -155,88 +147,73 @@
 		</value>
 	</Operation>
 
-	<!-- ========== Dumbfire Barrage Gun =========== -->
+	<!-- ========== Scattergun =========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_DumbfireBarragegun</defName>
+		<defName>Gun_RSBeamShotgun</defName>
 		<statBases>
-			<WorkToMake>37000</WorkToMake>
-			<SightsEfficiency>1.2</SightsEfficiency>
-			<ShotSpread>0.8</ShotSpread>
-			<SwayFactor>3.55</SwayFactor>
-			<Bulk>13.00</Bulk>
-			<Mass>20.0</Mass>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</statBases>
-		<Properties>
-			<recoilAmount>0.16</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_25mmRocket_HE</defaultProjectile>
-			<warmupTime>2.1</warmupTime>
-			<range>40</range>
-			<burstShotCount>20</burstShotCount>
-			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-			<soundCast>InfernoCannon_Fire</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>100</magazineSize>
-			<reloadTime>9.2</reloadTime>
-			<ammoSet>AmmoSet_25mmRocket</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aimedBurstShotCount>10</aimedBurstShotCount>
-			<noSingleShot>true</noSingleShot>
-			<aiAimMode>SuppressFire</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>CE_AI_AssaultWeapon</li>
-			<li>AdvancedGun</li>
-		</weaponTags>
-	</Operation>
-
-	<!-- ========== Dumbfire Lance =========== -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_DumbfireLance</defName>
-		<statBases>
-			<WorkToMake>42500</WorkToMake>
-			<SightsEfficiency>2</SightsEfficiency>
-			<ShotSpread>0.07</ShotSpread>
-			<SwayFactor>2.06</SwayFactor><!--25% reduction from 1.88-->
-			<Bulk>13</Bulk>
-			<Mass>7.6</Mass>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>3.5</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>7.50</Bulk>
 			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>0.25</recoilAmount>
+			<recoilAmount>0.01</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_40mmRocket_HE</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
-			<range>65</range>
-			<soundCast>InfernoCannon_Fire</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>12</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+			<defaultProjectile>Bullet_Laser_RSBeamShotgun</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>16</range>
+			<ammoConsumedPerShotCount>12</ammoConsumedPerShotCount>
+			<soundCast>Shot_BeamRepeater</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>4</magazineSize>
-			<reloadTime>1.0</reloadTime>
-			<ammoSet>AmmoSet_40mmRocket</ammoSet>
-			<reloadOneAtATime>true</reloadOneAtATime>
+			<magazineSize>48</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_RSBeamShotgun</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ==========  Sniper =========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_RSBeamSniper</defName>
+		<statBases>
+			<SightsEfficiency>2.10</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.73</SwayFactor>
+			<Bulk>12</Bulk>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.01</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Laser_RSBeamSniper</defaultProjectile>
+			<warmupTime>1.15</warmupTime>
+			<range>86</range>
+			<ammoConsumedPerShotCount>6</ammoConsumedPerShotCount>
+			<soundCast>Shot_BeamRepeater</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_RSBeamSniper</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 		<weaponTags>
 			<li>CE_Rifle</li>
-			<li>AdvancedGun</li>
 		</weaponTags>
 	</Operation>
 
