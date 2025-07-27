@@ -365,6 +365,7 @@ Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
 Misc. Turrets   |
+Misstall's Armor and Uniforms   |
 Moa |
 Moonjelly Race  |
 More Archotech Garbage Continued  |
