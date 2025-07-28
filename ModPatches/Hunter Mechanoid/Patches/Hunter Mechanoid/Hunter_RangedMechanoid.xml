@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Melee Attacks -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_HunterMechRifle"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11.7</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Mini-Blaster ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_HunterMechRifle</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.06</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>0.6</SwayFactor>
+			<Bulk>7.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.04</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_5x50mmCaseless_Sabot_LV</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>70</range>
+			<soundCast>Shot_NeedleGun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<AmmoGenPerMagOverride>10</AmmoGenPerMagOverride>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_5x50mmCaseless_LV</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>
