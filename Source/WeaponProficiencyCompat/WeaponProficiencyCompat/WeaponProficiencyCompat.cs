@@ -1,42 +1,22 @@
-﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Reflection.Emit;
+﻿using System;
+using CombatExtended;
+using HarmonyLib;
 using Verse;
-using WeaponProficiency.Patches;
 
-namespace CombatExtended.Compatibility.WeaponProficiencyCompat
+namespace CombatExtended.Compatibility.WeaponProficiency
 {
-    [HarmonyPatch(typeof(Pawn_HealthTracker_Notify_UsedVerb_WeaponProficiencyPatch), MethodType.Constructor)]
-    [HarmonyPatch(MethodType.Normal)]
-    internal static class Harmony_VerbLaunchProjectilePatch
+    [HarmonyPatch(typeof(Pawn_HealthTracker_Notify_UsedVerb_WeaponProficiencyPatch), "IsValidVerb")]
+    public static class IsValidVerb_PostfixPatch
     {
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static bool Postfix(Verb verb, ref bool postfix_result)
         {
-            var codes = new List<CodeInstruction>(instructions);
-            var verbLaunchType = typeof(Verb_LaunchProjectile);
-            var verbLaunchCEType = typeof(Verb_LaunchProjectileCE);
-
-            for (int i = 0; i < codes.Count; i++)
+            if (verb is Verb_LaunchProjectileCE)
             {
-                // Replace "is Verb_LaunchProjectile" with "is Verb_LaunchProjectile || is Verb_LaunchProjectileCE"
-                if (codes[i].opcode == OpCodes.Isinst && codes[i].operand as Type == verbLaunchType)
-                {
-                    // Insert additional check for Verb_LaunchProjectileCE
-                    yield return codes[i]; // isinst Verb_LaunchProjectile
-                    yield return new CodeInstruction(OpCodes.Dup); // duplicate result
-                                                                   // Replace the problematic line with the following:
-                    Label labelNext = codes[i].labels.Count > 0 ? codes[i].labels[0] : default(Label);
-                    yield return new CodeInstruction(OpCodes.Brtrue_S, labelNext); // if true, skip next
-                    yield return new CodeInstruction(OpCodes.Pop); // pop null
-                    yield return new CodeInstruction(OpCodes.Ldarg_0); // load verb
-                    yield return new CodeInstruction(OpCodes.Isinst, verbLaunchCEType); // isinst Verb_LaunchProjectileCE
-                }
-                else
-                {
-                    yield return codes[i];
-                }
+                return true;
             }
+
+            // Continue with the original logic or modify as needed.
+            return postfix_result;
         }
     }
 }
