@@ -1,6 +1,4 @@
-﻿using CombatExtended;
-using HarmonyLib;
-using System;
+﻿using HarmonyLib;
 using Verse;
 using WeaponProficiency.Patches;
 
