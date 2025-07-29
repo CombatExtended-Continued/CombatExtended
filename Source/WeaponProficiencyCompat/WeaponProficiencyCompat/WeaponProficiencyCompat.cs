@@ -1,7 +1,8 @@
-﻿using System;
-using CombatExtended;
+﻿using CombatExtended;
 using HarmonyLib;
+using System;
 using Verse;
+using WeaponProficiency.Patches;
 
 namespace CombatExtended.Compatibility.WeaponProficiency
 {
