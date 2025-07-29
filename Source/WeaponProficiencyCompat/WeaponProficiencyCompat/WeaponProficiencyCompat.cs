@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -12,41 +11,31 @@ namespace CombatExtended.Compatibility.WeaponProficiencyCompat
     [HarmonyPatch(MethodType.Normal)]
     internal static class Harmony_VerbLaunchProjectilePatch
     {
-        private static bool Comparer(Verb verb)
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            return verb is Verb;
-        }
+            var codes = new List<CodeInstruction>(instructions);
+            var verbLaunchType = typeof(Verb_LaunchProjectile);
+            var verbLaunchCEType = typeof(Verb_LaunchProjectileCE);
 
-        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il)
-        {
-            bool foundIsInst = false;
-            bool doPatch = false;
-            bool blockFlag = false;
-            object operand = null;
-            foreach (CodeInstruction instruction in instructions)
+            for (int i = 0; i < codes.Count; i++)
             {
-                if (doPatch)
+                // Replace "is Verb_LaunchProjectile" with "is Verb_LaunchProjectile || is Verb_LaunchProjectileCE"
+                if (codes[i].opcode == OpCodes.Isinst && codes[i].operand as Type == verbLaunchType)
                 {
-                    doPatch = false;
-                    yield return new(OpCodes.Ldarg_1);
-                    yield return new(OpCodes.Call, AccessTools.Method(typeof(Harmony_VerbLaunchProjectilePatch), "Comparer"));
-                    CodeInstruction codeInstruction = new(OpCodes.Brtrue_S, operand);
+                    // Insert additional check for Verb_LaunchProjectileCE
+                    yield return codes[i]; // isinst Verb_LaunchProjectile
+                    yield return new CodeInstruction(OpCodes.Dup); // duplicate result
+                                                                   // Replace the problematic line with the following:
+                    Label labelNext = codes[i].labels.Count > 0 ? codes[i].labels[0] : default(Label);
+                    yield return new CodeInstruction(OpCodes.Brtrue_S, labelNext); // if true, skip next
+                    yield return new CodeInstruction(OpCodes.Pop); // pop null
+                    yield return new CodeInstruction(OpCodes.Ldarg_0); // load verb
+                    yield return new CodeInstruction(OpCodes.Isinst, verbLaunchCEType); // isinst Verb_LaunchProjectileCE
                 }
-                if (foundIsInst)
+                else
                 {
-                    if (instruction.opcode == OpCodes.Brtrue_S)
-                    {
-                        doPatch = true;
-                        foundIsInst = false;
-                        operand = instruction.operand;
-                    }
+                    yield return codes[i];
                 }
-                if (!blockFlag && instruction.opcode == OpCodes.Isinst && instruction.operand.GetType() == typeof(Verb_MeleeAttack))
-                {
-                    foundIsInst = true;
-                    blockFlag = true;
-                }
-                yield return instruction;
             }
         }
     }
