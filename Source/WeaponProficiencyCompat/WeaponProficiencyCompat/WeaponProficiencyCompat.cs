@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -9,32 +10,43 @@ namespace CombatExtended.Compatibility.WeaponProficiencyCompat
 {
     [HarmonyPatch(typeof(Pawn_HealthTracker_Notify_UsedVerb_WeaponProficiencyPatch), MethodType.Constructor)]
     [HarmonyPatch(MethodType.Normal)]
-    internal static class Harmony_VerbLaunchProjectilePatch
+    internal static class Harmony_VerbLaunchProjectilePatch_Copy
     {
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static bool Comparer(Verb verb)
         {
-            var codes = new List<CodeInstruction>(instructions);
-            var verbLaunchType = typeof(Verb_LaunchProjectile);
-            var verbLaunchCEType = typeof(Verb_LaunchProjectileCE);
+            return verb is Verb;
+        }
 
-            for (int i = 0; i < codes.Count; i++)
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il)
+        {
+            bool FoundIsInst = false;
+            bool DoPatch = false;
+            bool blockFlag = false;
+            object operand = null;
+            foreach (CodeInstruction instruction in instructions)
             {
-                // Replace "is Verb_LaunchProjectile" with "is Verb_LaunchProjectile || is Verb_LaunchProjectileCE"
-                if (codes[i].opcode == OpCodes.Isinst && codes[i].operand as Type == verbLaunchType)
+                if (DoPatch)
                 {
-                    // Insert additional check for Verb_LaunchProjectileCE
-                    yield return codes[i]; // isinst Verb_LaunchProjectile
-                    yield return new CodeInstruction(OpCodes.Dup); // duplicate result
-                    var labelNext = codes[i].labels.Count > 0 ? codes[i].labels[0] : default; // Simplified 'default' expression
-                    yield return new CodeInstruction(OpCodes.Brtrue_S, labelNext); // if true, skip next
-                    yield return new CodeInstruction(OpCodes.Pop); // pop null
-                    yield return new CodeInstruction(OpCodes.Ldarg_0); // load verb
-                    yield return new CodeInstruction(OpCodes.Isinst, verbLaunchCEType); // isinst Verb_LaunchProjectileCE
+                    DoPatch = false;
+                    yield return new(OpCodes.Ldarg_1);
+                    yield return new(OpCodes.Call, AccessTools.Method(typeof(Harmony_VerbLaunchProjectilePatch_Copy), "Comparer"));
+                    CodeInstruction codeInstruction = new(OpCodes.Brtrue_S, operand);
                 }
-                else
+                if (FoundIsInst)
                 {
-                    yield return codes[i];
+                    if (instruction.opcode == OpCodes.Brtrue_S)
+                    {
+                        DoPatch = true;
+                        FoundIsInst = false;
+                        operand = instruction.operand;
+                    }
                 }
+                if (!blockFlag && instruction.opcode == OpCodes.Isinst && instruction.operand.GetType() == typeof(Verb_MeleeAttack))
+                {
+                    FoundIsInst = true;
+                    blockFlag = true;
+                }
+                yield return instruction;
             }
         }
     }
