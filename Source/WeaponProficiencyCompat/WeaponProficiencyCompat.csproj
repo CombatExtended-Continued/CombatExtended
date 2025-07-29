@@ -35,11 +35,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4535" />
-    <PackageReference Include="Lib.Harmony" Version="2.3.6" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4535" GeneratePathProperty="true" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CombatExtended\CombatExtended.csproj" />
+    <ProjectReference Include="..\CombatExtended\CombatExtended.csproj">
+      <Private>False</Private>
+      <CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+    </ProjectReference>
   </ItemGroup>
     <ItemGroup>
         <Reference Include="WeaponProficiency">
