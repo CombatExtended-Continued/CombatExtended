@@ -392,14 +392,21 @@ public class CompAmmoUser : CompRangedGizmoGiver
     /// available in the inventory.
     /// </remarks>
     /// <returns></returns>
-    public bool TryPrepareShot()
+    public bool TryPrepareShot(int ammoConsumedPerShot = 1)
     {
         if (HasMagazine)
         {
+            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
             // If magazine is empty, return false
             if (curMagCountInt <= 0)
             {
                 CurMagCount = 0;
+                return false;
+            }
+
+            if (curMagCountInt - ammoConsumedPerShot < 0)
+            {
+                TryStartReload();
                 return false;
             }
 
@@ -639,7 +646,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
 
     private void DoOutOfAmmoAction()
     {
-        //Don't stow weapon for player pawns when in god mode, can be ammoying when testing single shot weapons.
+        //Don't stow weapon for player pawns when in god mode, can be annoying when testing single shot weapons.
         if (this.parent.def.weaponTags.Contains("NoSwitch") || (DebugSettings.godMode && Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech)))
         {
             return;

@@ -357,7 +357,8 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
 
     public override bool TryCastShot()
     {
-        if (!CompAmmo?.TryPrepareShot() ?? false)
+        int ammoConsumedPerShot = (CompAmmo.Props.ammoSet?.ammoConsumedPerShot ?? 1) * VerbPropsCE.ammoConsumedPerShotCount;
+        if (!CompAmmo?.TryPrepareShot(ammoConsumedPerShot) ?? false)
         {
             return false;
         }
@@ -392,7 +393,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
         int ammoConsumedPerShot = (CompAmmo.Props.ammoSet?.ammoConsumedPerShot ?? 1) * VerbPropsCE.ammoConsumedPerShotCount;
         CompAmmo.Notify_ShotFired(ammoConsumedPerShot);
 
-        if (ShooterPawn != null && !CompAmmo.CanBeFiredNow)
+        if (ShooterPawn != null && (!CompAmmo.CanBeFiredNow || ammoConsumedPerShot > CompAmmo.CurMagCount))
         {
             CompAmmo.TryStartReload();
             resetRetarget();
