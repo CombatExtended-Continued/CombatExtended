@@ -343,6 +343,7 @@ Mechanoid Master Blaser |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Bowyer   |
+Medieval Coastal Outfits  |
 Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medieval Overhaul   |
 Medieval Overhaul: Arcane Archeologists   |
