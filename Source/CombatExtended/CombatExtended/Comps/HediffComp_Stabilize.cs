@@ -14,6 +14,7 @@ public class HediffComp_Stabilize : HediffComp
 
     private bool stabilized = false;
     private float bleedModifier = 1;
+    private int ticksUntilNextUpdate = 60;              // Once per second
 
     public HediffCompProperties_Stabilize Props
     {
@@ -83,20 +84,26 @@ public class HediffComp_Stabilize : HediffComp
 
     public override void CompPostTickInterval(ref float severityAdjustment, int delta)
     {
-        // Increase bleed modifier once per second
-        if (stabilized && bleedModifier < 1 && parent.pawn.IsHashIntervalTick(60, delta))
+        ticksUntilNextUpdate -= delta;
+        if (ticksUntilNextUpdate <= 0)     // Once in a second
         {
-            bleedModifier = bleedModifier + bleedIncreasePerSec * delta;
-            if (bleedModifier >= 1)
+            if (stabilized && bleedModifier < 1)
             {
-                bleedModifier = 1;
-                //stabilized = false;
+                float secondsPassed = (60 - ticksUntilNextUpdate) / 60f;
+                bleedModifier = bleedModifier + bleedIncreasePerSec * secondsPassed;
+                if (bleedModifier >= 1)
+                {
+                    bleedModifier = 1;
+                    //stabilized = false;
+                }
             }
-        }
-        else if (!stabilized && parent.pawn.Downed)
-        {
-            // Teach about stabilizing
-            LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Stabilizing, parent.pawn, OpportunityType.Important);
+            else if (!stabilized && parent.pawn.Downed)
+            {
+                // Teach about stabilizing
+                LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Stabilizing, parent.pawn, OpportunityType.Important);
+            }
+
+            ticksUntilNextUpdate = 60;
         }
     }
 
