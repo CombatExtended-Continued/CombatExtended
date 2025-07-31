@@ -12,20 +12,20 @@ namespace CombatExtended.HarmonyCE.Compatibility;
 
 public static class Harmony_WeaponProficiency
 {
-    private static MethodInfo Verb_WeaponProficiency_Patch_HarmonyPatches
-    {
-        get
-        {
-            return AccessTools.Method("WeaponProficiency.Patches.Pawn_HealthTracker_Notify_UsedVerb_WeaponProficiencyPatch:IsValidVerb");
-        }
-    }
     [HarmonyPatch]
     public static class Harmony_WeaponProficiency_Apply
     {
+        static MethodInfo TargetMethod()
+        {
+            // Dynamically resolve the method at runtime without loading the assembly directly
+            return AccessTools.Method("WeaponProficiency.Patches.Pawn_HealthTracker_Notify_UsedVerb_WeaponProficiencyPatch:IsValidVerb");
+        }
+
         public static bool Prepare()
         {
-            return Verb_WeaponProficiency_Patch_HarmonyPatches != null;
+            return TargetMethod() != null;
         }
+
         // Correct postfix signature: use __result to modify the return value
         static void Postfix(Verb verb, ref bool __result)
         {
