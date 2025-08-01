@@ -693,12 +693,8 @@ public abstract class ProjectileCE : ThingWithComps
             return false;
         }
 
-        if (interceptorComp.Props.interceptGroundProjectiles && def.projectile.flyOverhead)
-        {
-            return false;
-        }
-
-        if (interceptorComp.Props.interceptAirProjectiles && !def.projectile.flyOverhead)
+        bool isOverhead = def.projectile.flyOverhead;
+        if ((isOverhead && !interceptorComp.Props.interceptAirProjectiles) || (!isOverhead && !interceptorComp.Props.interceptGroundProjectiles))
         {
             return false;
         }
