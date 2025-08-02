@@ -18,8 +18,8 @@ public class Verb_ThrowGrenade : Verb_ShootCEOneUse
     private ShootLine _line;
     private ShootLine _direct;
     private bool hasLine = false;
-    private List<IntVec3> ringDrawCells = null;
-    private int lastCacheTick = 0;
+    //private List<IntVec3> ringDrawCells = null;
+    //private int lastCacheTick = 0;
 
     public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false, bool nonInterruptingSelfCast = false)
     {
@@ -38,25 +38,25 @@ public class Verb_ThrowGrenade : Verb_ShootCEOneUse
         return hasLine;
     }
 
-    public override void DrawHighlight(LocalTargetInfo target)
-    {
-        if (target.IsValid && this.CanHitTarget(target))
-        {
-            GenDraw.DrawTargetHighlightWithLayer(target.CenterVector3, AltitudeLayer.MetaOverlays);
-            base.DrawHighlightFieldRadiusAroundTarget(target);
-        }
-        int thisTick = Find.TickManager.TicksAbs;
-        if (thisTick != lastCacheTick)
-        {
-            GenDraw.DrawRadiusRing(this.caster.Position, this.EffectiveRange, Color.white, (IntVec3 c) => this.CanHitTarget(c));
-            ringDrawCells = new List<IntVec3>(GenDraw.ringDrawCells);
-            lastCacheTick = thisTick;
-        }
-        else
-        {
-            GenDraw.DrawFieldEdges(ringDrawCells, Color.white, null);
-        }
-    }
+    // public override void DrawHighlight(LocalTargetInfo target)
+    // {
+    //     if (target.IsValid && this.CanHitTarget(target))
+    //     {
+    //         GenDraw.DrawTargetHighlightWithLayer(target.CenterVector3, AltitudeLayer.MetaOverlays);
+    //         base.DrawHighlightFieldRadiusAroundTarget(target);
+    //     }
+    //     int thisTick = Find.TickManager.TicksAbs;
+    //     if (thisTick != lastCacheTick)
+    //     {
+    //         GenDraw.DrawRadiusRing(this.caster.Position, this.EffectiveRange, Color.white, (IntVec3 c) => this.CanHitTarget(c));
+    //         ringDrawCells = new List<IntVec3>(GenDraw.ringDrawCells);
+    //         lastCacheTick = thisTick;
+    //     }
+    //     else
+    //     {
+    //         GenDraw.DrawFieldEdges(ringDrawCells, Color.white, null);
+    //     }
+    // }
 
     public override float EffectiveRange
     {

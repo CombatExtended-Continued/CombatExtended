@@ -91,6 +91,7 @@
 		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 				<explosionRadius>1.5</explosionRadius>
 				<damageDef>Bomb</damageDef>
 				<damageAmountBase>56</damageAmountBase>
@@ -208,7 +209,7 @@
 		</statBases>
 		<Properties>
 			<label>throw frag grenade</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<range>10.0</range>
 			<minRange>4</minRange>
@@ -247,6 +248,7 @@
 		<xpath>Defs/ThingDef[defName="Proj_GrenadeMolotov"]</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 				<explosionRadius>1</explosionRadius>
 				<damageDef>PrometheumFlame</damageDef>
 				<damageAmountBase>11</damageAmountBase>
@@ -330,7 +332,7 @@
 		</statBases>
 		<Properties>
 			<label>throw molotov</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<range>10</range>
 			<minRange>1.9</minRange>
@@ -375,6 +377,7 @@
 		<xpath>Defs/ThingDef[defName="Proj_GrenadeEMP"]/projectile</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 				<explosionRadius>3</explosionRadius>
 				<damageDef>EMP</damageDef>
 				<damageAmountBase>56</damageAmountBase>
@@ -457,7 +460,7 @@
 		</statBases>
 		<Properties>
 			<label>throw EMP grenade</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<range>10</range>
 			<minRange>4</minRange>
