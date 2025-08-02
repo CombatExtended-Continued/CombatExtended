@@ -30,6 +30,8 @@ public class CompProperties_ExplosiveCE : CompProperties
     public ThingDef preExplosionSpawnThingDef = null;
     public float preExplosionSpawnChance = 0;
     public int preExplosionSpawnThingCount = 1;
+    public ThingDef preExplosionSpawnSingleThingDef;
+    public ThingDef postExplosionSpawnSingleThingDef;
     public bool damageFalloff = true;
     public float chanceToStartFire;
     public float screenShakeFactor;
