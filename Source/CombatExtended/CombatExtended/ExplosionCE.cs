@@ -373,6 +373,7 @@ public class ExplosionCE : Verse.Explosion
             }
             return false;
         }, 25, RegionType.Set_Passable);
+        this.TrySpawnSingleThing(this.preExplosionSpawnSingleThingDef);
     }
 
     public override void Tick()
@@ -400,6 +401,7 @@ public class ExplosionCE : Verse.Explosion
         }
         if (toBeMerged || !this.cellsToAffect.Any<IntVec3>())
         {
+            this.ExplosionEnded();
             this.Destroy(DestroyMode.Vanish);
         }
     }
