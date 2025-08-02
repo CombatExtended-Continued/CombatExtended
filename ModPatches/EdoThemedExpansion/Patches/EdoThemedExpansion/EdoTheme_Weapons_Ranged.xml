@@ -2,7 +2,7 @@
 <Patch>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="HSTanegashimaRifle" or defName="HSTanegashimaPistol"]/tools </xpath>
+		<xpath>Defs/ThingDef[defName="HSTanegashimaRifle" or defName="HSTanegashimaPistol"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -161,7 +161,7 @@
 			<ammoSet>AmmoSet_GreatArrow</ammoSet>
 			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
 		</AmmoUser>
-		<FireModes />
+		<FireModes/>
 		<weaponTags>
 			<li>CE_Bow</li>
 		</weaponTags>
@@ -189,6 +189,7 @@
 		<xpath>Defs/ThingDef[defName="HS_Thrown_Kunai"]/projectile</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 				<damageDef>Stab</damageDef>
 				<damageAmountBase>5</damageAmountBase>
 				<flyOverhead>false</flyOverhead>
@@ -254,7 +255,7 @@
 		</statBases>
 		<Properties>
 			<label>Throw kunai</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>HS_Thrown_Kunai</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
@@ -329,7 +330,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Proj_BlackpowderBomb"]</xpath>
 			<value>
-				<comps />
+				<comps/>
 			</value>
 		</nomatch>
 	</Operation>
@@ -366,6 +367,10 @@
 				<suppressionFactor>3.0</suppressionFactor>
 				<dangerFactor>2.0</dangerFactor>
 				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
+				<ballisticCoefficient>0.80~1.0</ballisticCoefficient>
+				<mass>600~600</mass>
+				<diameter>60~60</diameter>
 			</projectile>
 		</value>
 	</Operation>
@@ -422,7 +427,7 @@
 		</statBases>
 		<Properties>
 			<label>throw blackpowder bomb</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<range>7.0</range>
 			<warmupTime>1.6</warmupTime>

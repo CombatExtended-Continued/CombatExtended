@@ -9,7 +9,7 @@
 			<RangedWeapon_Cooldown>3.66</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Proj_ARL_ChargeGrenade</defaultProjectile>
 			<warmupTime>0.85</warmupTime>
@@ -78,6 +78,11 @@
 				<postExplosionGasType>BlindSmoke</postExplosionGasType>
 				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
 				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<ai_IsIncendiary>false</ai_IsIncendiary>
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
+				<ballisticCoefficient>0.80~1.0</ballisticCoefficient>
+				<mass>400~400</mass>
+				<diameter>60~60</diameter>
 			</projectile>
 		</value>
 	</Operation>
@@ -124,7 +129,7 @@
 		</statBases>
 		<Properties>
 			<label>throw Smoke grenade</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>ARL_Projectile_SmokeGrenade</defaultProjectile>
 			<range>16</range>
@@ -170,6 +175,10 @@
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
 				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
+				<ballisticCoefficient>0.80~1.0</ballisticCoefficient>
+				<mass>400~400</mass>
+				<diameter>60~60</diameter>
 			</projectile>
 		</value>
 	</Operation>
@@ -216,7 +225,7 @@
 		</statBases>
 		<Properties>
 			<label>throw toxic grenade</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>ARL_Projectile_ToxicGrenade</defaultProjectile>
 			<range>16</range>

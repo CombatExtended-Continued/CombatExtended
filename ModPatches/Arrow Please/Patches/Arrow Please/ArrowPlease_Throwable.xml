@@ -57,7 +57,7 @@
 		</statBases>
 		<Properties>
 			<label>throw tomahawk</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Axe_Tomahawk</defaultProjectile>
 			<warmupTime>1.0</warmupTime>
@@ -73,6 +73,7 @@
 		<xpath>Defs/ThingDef[defName="Axe_Tomahawk"]/projectile</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 				<damageDef>Stab</damageDef>
 				<damageAmountBase>10</damageAmountBase>
 				<speed>12</speed>
@@ -170,7 +171,7 @@
 		</statBases>
 		<Properties>
 			<label>throw torch</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Torch_Torch</defaultProjectile>
 			<warmupTime>1.0</warmupTime>
@@ -211,6 +212,7 @@
 		<xpath>Defs/ThingDef[defName="Torch_Torch"]/projectile</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 				<damageDef>Flame</damageDef>
 				<damageAmountBase>1</damageAmountBase>
 				<speed>12</speed>
