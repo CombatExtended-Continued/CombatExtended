@@ -818,9 +818,9 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         float toDamageChance = hitChance * (1 - (dodgeChance + deflectChance));
 
         StringBuilder stringBuilder = new StringBuilder();
-        if(Controller.settings.DetailedMeleeTooltip)
+        if (Controller.settings.DetailedMeleeTooltip)
         {
-            stringBuilder.AppendLine("   " + "CE_MissChance".Translate() + ":\t\t" + GenText.ToStringByStyle(1-hitChance, ToStringStyle.PercentZero));
+            stringBuilder.AppendLine("   " + "CE_MissChance".Translate() + ":\t\t" + GenText.ToStringByStyle(1 - hitChance, ToStringStyle.PercentZero));
             stringBuilder.AppendLine("   " + "CE_TargetDodgeChance".Translate() + ":\t" + GenText.ToStringByStyle(dodgeChance, ToStringStyle.PercentZero));
             if (canParry)
             {

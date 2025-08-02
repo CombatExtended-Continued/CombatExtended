@@ -78,7 +78,7 @@ public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
                 //if pawn doesn't have a melee weapon equipped, find another source of melee verb
                 if (meleeVerbCE == null)
                 {
-                    List<VerbEntry> verbs = pawn.meleeVerbs.GetUpdatedAvailableVerbsList(false);;
+                    List<VerbEntry> verbs = pawn.meleeVerbs.GetUpdatedAvailableVerbsList(false);
                     foreach (var verbEntry in verbs)
                     {
                         if (verbEntry.verb.IsMeleeAttack || verbEntry.GetSelectionWeight(pawn2) > 0 && verbEntry.verb is Verb_MeleeAttackCE)
