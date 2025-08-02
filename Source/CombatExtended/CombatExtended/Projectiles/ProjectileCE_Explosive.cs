@@ -55,7 +55,13 @@ public class ProjectileCE_Explosive : ProjectileCE
             return;
         }
         landed = true;
-        ticksToDetonation = def.projectile.explosionDelay;
+        // Allows for items that can possibly explode in the air to do so
+        // Grenades which have variable ticksToDetonation depending on how far are thrown
+        // Prevents from resetting with the delay which is accounted for in the ticksToDetonation
+        if (ticksToDetonation <= 0)
+        {
+            ticksToDetonation = def.projectile.explosionDelay;
+        }
         float dangerFactor = (def.projectile as ProjectilePropertiesCE).dangerFactor;
         if (dangerFactor > 0f)
         {

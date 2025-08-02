@@ -29,6 +29,8 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float armorPenetrationSharp;
     public float armorPenetrationBlunt;
     public bool castShadow = true;
+    public int maxTickToDetonate = 100;
+    public float detonateTickError = 10f;
 
     public float suppressionFactor = 1;
     public float airborneSuppressionFactor = 1;

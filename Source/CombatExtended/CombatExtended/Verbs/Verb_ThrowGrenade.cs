@@ -1,16 +1,7 @@
 using System;
-using System.Linq;
 using Verse;
 using RimWorld;
-using CombatExtended.AI;
-
-using System.Collections.Generic;
-using System.Text;
-
-using Verse.AI;
-using Verse.Grammar;
 using UnityEngine;
-using CombatExtended.Utilities;
 
 namespace CombatExtended;
 public class Verb_ThrowGrenade : Verb_ShootCEOneUse
@@ -38,6 +29,7 @@ public class Verb_ThrowGrenade : Verb_ShootCEOneUse
         return hasLine;
     }
 
+    // Commented out while being reworked to utilize caching
     // public override void DrawHighlight(LocalTargetInfo target)
     // {
     //     if (target.IsValid && this.CanHitTarget(target))
@@ -158,9 +150,13 @@ public class Verb_ThrowGrenade : Verb_ShootCEOneUse
 
         }
 
-        ticks = (int)(X / (Mathf.Cos(launchAngle) * speed)) + 1;
+        float estimatedTicks = (X / (Mathf.Cos(launchAngle) * speed)) + 1;
         ProjectilePropertiesCE pprop = Projectile.projectile as ProjectilePropertiesCE;
-        ticks = Rand.RangeInclusive(ticks, pprop.explosionDelay);
+        if (pprop.explosionDelay > 0)
+        {
+            estimatedTicks = Math.Min(estimatedTicks + pprop.explosionDelay, pprop.maxTickToDetonate);
+        }
+        ticks = (int)Rand.Gaussian(estimatedTicks, pprop.detonateTickError);
         //TODO: The pawn should delay ticks equal difference between this value and the default grenade detonation delay, to properly simulate cooking grenades.
         return true;
     }
