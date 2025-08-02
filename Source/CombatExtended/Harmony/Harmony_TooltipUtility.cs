@@ -40,6 +40,7 @@ public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
                 verbCE = turret.AttackVerb as Verb_LaunchProjectileCE;
             }
             Pawn pawn2 = target as Pawn;
+            //ranged tooltip
             if (verbCE != null)
             {
                 stringBuilder.AppendLine();
@@ -70,21 +71,39 @@ public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
                     }
                 }
             }
-            if (meleeVerbCE != null && pawn2 != null)
+            //melee tooltip
+            if (pawn != null && verbCE == null && pawn2 != null
+                && (pawn.Drafted || pawn.Faction != Faction.OfPlayer))
             {
-                stringBuilder.AppendLine();
-                stringBuilder.Append("CE_AttackedBy".Translate(selectedThing.LabelShort, selectedThing) + ":\n");
-
-                stringBuilder.Append(meleeVerbCE.GetTextReadout(pawn, pawn2, pawn.equipment.PrimaryEq));
-
-                if (pawn2.Faction == null && !pawn2.InAggroMentalState && pawn2.AnimalOrWildMan())
+                //if pawn doesn't have a melee weapon equipped, find another source of melee verb
+                if (meleeVerbCE == null)
                 {
-                    float manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, selectedThing, 0f);
+                    List<VerbEntry> verbs = pawn.meleeVerbs.GetUpdatedAvailableVerbsList(false);;
+                    foreach (var verbEntry in verbs)
+                    {
+                        if (verbEntry.verb.IsMeleeAttack || verbEntry.GetSelectionWeight(pawn2) > 0 && verbEntry.verb is Verb_MeleeAttackCE)
+                        {
+                            meleeVerbCE = verbEntry.verb as Verb_MeleeAttackCE;
+                            break;
+                        }
+                    }
+                }
 
-
+                if (meleeVerbCE != null)
+                {
                     stringBuilder.AppendLine();
-                    stringBuilder.AppendLine(string.Format("{0}: {1}", "ManhunterPerHit".Translate(),
-                        manhunterOnDamageChance.ToStringPercent()));
+                    stringBuilder.Append("CE_AttackedBy".Translate(selectedThing.LabelShort, selectedThing) + ":\n");
+
+                    stringBuilder.Append(meleeVerbCE.GetTextReadout(pawn, pawn2, pawn.equipment?.PrimaryEq));
+
+                    if (pawn2.Faction == null && !pawn2.InAggroMentalState && pawn2.AnimalOrWildMan())
+                    {
+                        float manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, selectedThing, 0f);
+
+                        stringBuilder.AppendLine();
+                        stringBuilder.AppendLine(string.Format("{0}: {1}", "ManhunterPerHit".Translate(),
+                            manhunterOnDamageChance.ToStringPercent()));
+                    }
                 }
             }
             __result = stringBuilder.ToString();

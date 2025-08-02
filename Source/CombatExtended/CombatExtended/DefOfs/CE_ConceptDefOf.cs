@@ -30,4 +30,5 @@ public class CE_ConceptDefOf
     public static ConceptDef CE_Hunkering;
     public static ConceptDef CE_WornBulk;
     public static ConceptDef CE_Crouching;
+    public static ConceptDef CE_DetailedMeleeTooltip;
 }
