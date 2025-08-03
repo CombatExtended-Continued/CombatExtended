@@ -128,7 +128,7 @@ internal static class Harmony_GenRadial
             return false;
         }
 
-        for (int i = binaryOutput; i < 44469; i++)
+        for (int i = binaryOutput; i < RadialPatternCount; i++)
         {
             if (radialPatternRadii[i] > searchRadius)
             {
@@ -136,7 +136,7 @@ internal static class Harmony_GenRadial
                 return false;
             }
         }
-        __result = 44469;
+        __result = RadialPatternCount;
         return false;
     }
 }
