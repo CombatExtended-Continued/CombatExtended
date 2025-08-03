@@ -118,13 +118,13 @@ internal static class Harmony_GenRadial
             }
         }
 #endif
+        float searchRadius = radius + float.Epsilon;
         float start = radialPatternRadii[count];
-        while (start <= radius)
+        while (start <= searchRadius)
         {
             start = radialPatternRadii[count++];
         }
-        __result = count - 1;
+        __result = count;
         return false;
-
     }
 }
