@@ -83,6 +83,7 @@ internal static class Harmony_GenRadial
             __result = 1;
             return false;
         }
+
         var radialPatternNumCells = RadialPatternNumCells; // cache friendly local references
         var radialPatternRadii = RadialPatternRadii;
         if (radius >= MAX_RADIUS)
@@ -91,12 +92,13 @@ internal static class Harmony_GenRadial
             {
                 Log.Error($"Requested radius {radius} is beyond max. Truncating to {Harmony_GenRadial.MAX_RADIUS}.");
             }
+
             __result = RadialPatternCount;
             return false;
         }
-        float radsq = radius * radius;
-        int r = (int)radsq;
-        int count = radialPatternNumCells[r - 1];
+        // float radsq = radius * radius;
+        // int r = (int)radsq;
+        // int count = radialPatternNumCells[r - 1];
         /*
           If we raise the max radius above about 200, binary search becomes faster.
           Below 200, the match will reliably be found within 64 tries, where linear memory access dominates.
@@ -119,12 +121,22 @@ internal static class Harmony_GenRadial
         }
 #endif
         float searchRadius = radius + float.Epsilon;
-        float start = radialPatternRadii[count];
-        while (start <= searchRadius)
+        int binaryOutput = Array.BinarySearch(radialPatternRadii, searchRadius);
+        if (binaryOutput < 0)
         {
-            start = radialPatternRadii[count++];
+            __result = ~binaryOutput;
+            return false;
         }
-        __result = count;
+
+        for (int i = binaryOutput; i < 44469; i++)
+        {
+            if (radialPatternRadii[i] > searchRadius)
+            {
+                __result = i;
+                return false;
+            }
+        }
+        __result = 44469;
         return false;
     }
 }
