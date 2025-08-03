@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseBlade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Neuralizer_weak</li>
+					</capacities>
+					<power>1</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.52</cooldownTime>
+					<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Neuralizer_weak</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.24</cooldownTime>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+					<armorPenetrationSharp>22</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>12</amount>
+							<chance>0.1</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Neuralizer_weak</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.14</cooldownTime>
+					<armorPenetrationBlunt>12</armorPenetrationBlunt>
+					<armorPenetrationSharp>10</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>6</amount>
+							<chance>0.05</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseBlade"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseBlade"]/equippedAngleOffset</xpath>
+		<value>
+			<equippedAngleOffset>-75</equippedAngleOffset>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseBlade"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.73</MeleeCritChance>
+				<MeleeParryChance>0.45</MeleeParryChance>
+				<MeleeDodgeChance>0.6</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseBlade"]</xpath>
+		<value>
+			<weaponTags>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</value>
+	</li>
+
+</Patch>

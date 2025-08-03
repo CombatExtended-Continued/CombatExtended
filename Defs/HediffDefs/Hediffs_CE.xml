@@ -436,6 +436,74 @@
 	</HediffDef>
 
 	<HediffDef>
+		<defName>Neuralizer_weak</defName>
+		<label>neuralizer</label>
+		<description>Hit by a powerful but nonlethal energy pulse, disrupting the nervous system.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+		<initialSeverity>0.01</initialSeverity>
+		<minSeverity>0.01</minSeverity>
+		<maxSeverity>1</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<showRemainingTime>True</showRemainingTime>
+				<disappearsAfterTicks>
+					<min>7500</min>
+					<max>15000</max>
+				</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0.01</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<postFactor>0.9</postFactor>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.25</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<postFactor>0.8</postFactor>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<postFactor>0.7</postFactor>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.75</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<postFactor>0.4</postFactor>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.95</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<postFactor>0.1</postFactor>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
 		<defName>Flashbanged</defName>
 		<label>blinded by a flash</label>
 		<description>Vision and hearing temporarily compromised due to a bright flash.</description>
