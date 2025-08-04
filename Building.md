@@ -26,6 +26,14 @@ $ start CombatExtended/Source/CombatExtended.sln
 
 After this, building is just building the solution, references will be pulled from Nuget, and the assemblies should be automatically publicised by the msbuild task. The resulting assembly will be in `$(root)/Assemblies/CombatExtended.dll`.
 
+> **Note:**
+> If you open the NuGet Package Manager and don’t see any packages (e.g. Harmony), it usually means no package sources are configured.  
+> Go to **Tools → NuGet Package Manager → Package Manager Settings → Package Sources**
+> Ensure **nuget.org (https://api.nuget.org/v3/index.json)** is enabled or add the nuget repository.
+> Then reload the NuGet UI so dependencies can be restored.
+>
+> Check `Manage Nuget packages for solution` dialog and able to find `Lib.Harmony`
+
 ### Dotnet Build
 
 If you want to compile without an IDE, you can clone the repo as usual, and then manually call `dotnet build CombatExtended.sln` from the `Source` directory.  
