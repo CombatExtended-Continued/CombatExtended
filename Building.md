@@ -1,13 +1,16 @@
 # Building Instructions
+
 If you want to build CE yourself, pick your platform and preferred build system and follow the instructions.
 
 ## Linux
+
 ### Make.py
+
 This is the build system used for the CI system on github.  It does not execute arbitrary code from `.csproj` files, which makes it suitable for building PRs with repository secrets.  
 It requires `python3.6` or later, `wget`, and `mono` (a recent enough version to have the Roslyn (`csc`) compiler).  
 
 You can get the full usage string via `python3 Make.py --help`.  
-If you want to use it to generate publicized assemblies (required starting with CE for RW 1.3), you need to check out the AssemblyPublicizer ( https://github.com/CombatExtended-Continued/AssemblyPublicizer )
+If you want to use it to generate publicized assemblies (required starting with CE for RW 1.3), you need to check out the AssemblyPublicizer ( <https://github.com/CombatExtended-Continued/AssemblyPublicizer> )
 and tell Make.py where to find it.
 
 The invocation used by CI is about as simple as it gets.
@@ -17,20 +20,23 @@ The invocation used by CI is about as simple as it gets.
 ## Windows
 
 ### Rider or Visual Studio
+
 To install and open in either Rider or Visual Studio.
-```
+
+```bash
 $ git clone https://github.com/CombatExtended-Continued/CombatExtended
 $ start CombatExtended/Source/CombatExtended.sln 
 ```
+
 `start` will open the sln file with whatever IDE you have set to open .sln files by default. You can also just open the sln file normally.
 
 After this, building is just building the solution, references will be pulled from Nuget, and the assemblies should be automatically publicised by the msbuild task. The resulting assembly will be in `$(root)/Assemblies/CombatExtended.dll`.
 
 > **Note:**
 > If you open the NuGet Package Manager and don’t see any packages (e.g. Harmony), it usually means no package sources are configured.  
-> Go to **Tools → NuGet Package Manager → Package Manager Settings → Package Sources**
-> Ensure **nuget.org (https://api.nuget.org/v3/index.json)** is enabled or add the nuget repository.
-> Then reload the NuGet UI so dependencies can be restored.
+> Go to **Tools → NuGet Package Manager → Package Manager Settings → Package Sources**.
+>
+> Ensure **nuget.org (<https://api.nuget.org/v3/index.json>)** is enabled or add the nuget repository.
 >
 > Check `Manage Nuget packages for solution` dialog and able to find `Lib.Harmony`
 
@@ -43,9 +49,8 @@ Simply download the file to your Rimworld/Mods directory and run it.  Running it
 
 This assumes you have `git` and `dotnet` configured to be available from windows batch files.  See the readme file included in its repository for details.
 
-The repository for it is https://github.com/CombatExtended-Continued/CE-AutoInstaller-Updater-Builder 
+The repository for it is <https://github.com/CombatExtended-Continued/CE-AutoInstaller-Updater-Builder>
 
 ## Other options
-
 
 If you have a build system not listed here, please document how to use it.
