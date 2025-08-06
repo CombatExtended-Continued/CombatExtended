@@ -133,8 +133,6 @@ public class Controller : Mod
         LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
 
         genericState = settings.GenericAmmo;
-
-
     }
 
 
