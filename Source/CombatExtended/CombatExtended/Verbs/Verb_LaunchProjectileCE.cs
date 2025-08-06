@@ -231,6 +231,8 @@ public class Verb_LaunchProjectileCE : Verb
     public bool MidBurst => numShotsFired > 0;
     protected virtual bool LockRotationAndAngle => !didRetarget && MidBurst;
 
+    public override float WarmupTime => base.WarmupTime * (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_WarmupMultiplier) ?? 1f);
+
     #endregion
 
     #region Methods
@@ -1014,7 +1016,7 @@ public class Verb_LaunchProjectileCE : Verb
         bool startedCasting = base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
         if (startedCasting)
         {
-            if (this.repeating && this.verbProps.warmupTime > 0f) // now warming up
+            if (this.repeating && this.WarmupTime > 0f) // now warming up
             {
                 this.RecalculateWarmupTicks();
             }
