@@ -112,7 +112,7 @@ public class Controller : Mod
 
         // Initialize loadout generator
         LongEventHandler.QueueLongEvent(LoadoutPropertiesExtension.Reset, "CE_LongEvent_LoadoutProperties", false, null);
-        
+
         // Apply generic mode
         LongEventHandler.QueueLongEvent(AmmoGeneralizer.GeneralizeAmmo, "CE_LongEvent_AmmoGeneralizer", false, null);
 
