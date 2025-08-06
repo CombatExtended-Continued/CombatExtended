@@ -112,6 +112,9 @@ public class Controller : Mod
 
         // Initialize loadout generator
         LongEventHandler.QueueLongEvent(LoadoutPropertiesExtension.Reset, "CE_LongEvent_LoadoutProperties", false, null);
+        
+        // Apply generic mode
+        LongEventHandler.QueueLongEvent(AmmoGeneralizer.GeneralizeAmmo, "CE_LongEvent_AmmoGeneralizer", false, null);
 
         // Inject ammo
         LongEventHandler.QueueLongEvent(AmmoInjector.Inject, "CE_LongEvent_AmmoInjector", false, null);
@@ -120,7 +123,7 @@ public class Controller : Mod
         LongEventHandler.QueueLongEvent(BoundsInjector.Inject, "CE_LongEvent_BoundingBoxes", false, null);
 
         // Initialize the DefUtility (a caching system for common checks on defs)
-        LongEventHandler.QueueLongEvent(DefUtility.Initialize, "CE_LongEvent_BoundingBoxes", false, null);
+        LongEventHandler.QueueLongEvent(DefUtility.Initialize, "CE_LongEvent_DefUtility", false, null);
 
         Log.Message("Combat Extended :: initialized");
 
