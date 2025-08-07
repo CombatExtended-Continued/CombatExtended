@@ -21,21 +21,19 @@ public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
             Verb_LaunchProjectileCE verbCE = null;
             Verb_MeleeAttackCE meleeVerbCE = null;
             Pawn pawn = selectedThing as Pawn;
-            if (pawn != null && pawn != target && pawn.equipment != null &&
-                    pawn.equipment.Primary != null)
+            if (pawn != null && pawn != target && pawn.equipment?.Primary != null)
             {
-                if (pawn.equipment.PrimaryEq.PrimaryVerb is Verb_LaunchProjectileCE)
+                Verb primaryVerb = pawn.equipment.PrimaryEq.PrimaryVerb;
+                if (primaryVerb is Verb_LaunchProjectileCE projectileVerb)
                 {
-                    verbCE = pawn.equipment.PrimaryEq.PrimaryVerb as Verb_LaunchProjectileCE;
+                    verbCE = projectileVerb;
                 }
-                if (pawn.equipment.PrimaryEq.PrimaryVerb is Verb_MeleeAttackCE)
+                else if (primaryVerb is Verb_MeleeAttackCE meleeVerb)
                 {
-                    meleeVerbCE = pawn.equipment.PrimaryEq.PrimaryVerb as Verb_MeleeAttackCE;
+                    meleeVerbCE = meleeVerb;
                 }
-
             }
-            Building_TurretGunCE turret = selectedThing as Building_TurretGunCE;
-            if (turret != null && turret != target)
+            if (selectedThing is Building_TurretGunCE turret && turret != target)
             {
                 verbCE = turret.AttackVerb as Verb_LaunchProjectileCE;
             }
@@ -45,8 +43,7 @@ public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
             {
                 stringBuilder.AppendLine();
                 stringBuilder.Append("ShotBy".Translate(selectedThing.LabelShort, selectedThing) + ":\n");
-                string obstructReport;
-                if (verbCE.CanHitTarget(target, out obstructReport))
+                if (verbCE.CanHitTarget(target, out string obstructReport))
                 {
                     ShiftVecReport report = verbCE.ShiftVecReportFor(new LocalTargetInfo(target));
                     stringBuilder.Append(report.GetTextReadout());
@@ -71,9 +68,8 @@ public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
                     }
                 }
             }
-            //melee tooltip
-            if (pawn != null && verbCE == null && pawn2 != null
-                && (pawn.Drafted || pawn.Faction != Faction.OfPlayer || pawn.InAggroMentalState))
+            // melee tooltip
+            else if (pawn != null && pawn2 != null && (pawn.Drafted || pawn.Faction != Faction.OfPlayer || pawn.InAggroMentalState))
             {
                 //if pawn doesn't have a melee weapon equipped, find another source of melee verb
                 if (meleeVerbCE == null)
@@ -101,8 +97,7 @@ public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
                         float manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, selectedThing, 0f);
 
                         stringBuilder.AppendLine();
-                        stringBuilder.AppendLine(string.Format("{0}: {1}", "ManhunterPerHit".Translate(),
-                            manhunterOnDamageChance.ToStringPercent()));
+                        stringBuilder.AppendLine(string.Format("{0}: {1}", "ManhunterPerHit".Translate(), manhunterOnDamageChance.ToStringPercent()));
                     }
                 }
             }
