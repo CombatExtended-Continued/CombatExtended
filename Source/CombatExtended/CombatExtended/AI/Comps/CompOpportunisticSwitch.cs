@@ -134,10 +134,10 @@ public class CompOpportunisticSwitch : ICompTactics
             return false;
         }
         //TODO 1.5
-        //if (TryUseAOE(verb, castTarg, destTarg))
-        //{
-        //return false;
-        //}
+        if (TryUseAOE(verb, castTarg, destTarg))
+        {
+            return false;
+        }
         return true;
     }
 
@@ -160,14 +160,23 @@ public class CompOpportunisticSwitch : ICompTactics
                     lastOpportunisticSwitch = GenTicks.TicksGame;
 
                     var nextVerb = weapon.def.verbs.First(v => !v.IsMeleeAttack);
-                    var targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, weapon.def.verbs.Max(v => v.range), 4, (pos) =>
+                    VerbProperties rangedVerbProps = weapon.def.verbs.MaxBy(v => v.range);
+                    var targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, rangedVerbProps.range, 4, (pos) =>
                     {
                         return GenSight.LineOfSight(SelPawn.Position, pos, Map, skipFirstCell: true);
                     });
-                    var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon, targtPos.IsValid ? targtPos : castTarg.Cell);
-                    job.maxNumStaticAttacks = 1;
 
-                    SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                    LocalTargetInfo targetInfo = targtPos.IsValid ? targtPos : castTarg.Cell;
+
+                    //if verb cant target ground, target the thing instead to avoid LOS obstruction
+                    if(castTarg.Thing !=null && rangedVerbProps is VerbPropertiesCE verbPropsCE && !verbPropsCE.ignorePartialLoSBlocker)
+                    {
+                        targetInfo.thingInt = castTarg.Thing;
+                    }
+
+                    var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon,  targetInfo);
+                    job.maxNumStaticAttacks = 1;
+                    SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, cancelBusyStances: false);
                     return true;
                 }
             }
@@ -261,6 +270,10 @@ public class CompOpportunisticSwitch : ICompTactics
         int hostiles = 0;
         foreach (Pawn other in pawn.Position.PawnsInRange(pawn.Map, 4))
         {
+            if (other == null)
+            {
+                continue;
+            }
             if (other.Faction == null)
             {
                 continue;
