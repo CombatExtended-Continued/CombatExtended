@@ -169,12 +169,12 @@ public class CompOpportunisticSwitch : ICompTactics
                     LocalTargetInfo targetInfo = targtPos.IsValid ? targtPos : castTarg.Cell;
 
                     //if verb cant target ground, target the thing instead to avoid LOS obstruction
-                    if(castTarg.Thing !=null && rangedVerbProps is VerbPropertiesCE verbPropsCE && !verbPropsCE.ignorePartialLoSBlocker)
+                    if (castTarg.Thing != null && rangedVerbProps is VerbPropertiesCE verbPropsCE && !verbPropsCE.ignorePartialLoSBlocker)
                     {
                         targetInfo.thingInt = castTarg.Thing;
                     }
 
-                    var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon,  targetInfo);
+                    var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon, targetInfo);
                     job.maxNumStaticAttacks = 1;
                     SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, cancelBusyStances: false);
                     return true;
