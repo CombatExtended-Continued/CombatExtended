@@ -133,7 +133,6 @@ public class CompOpportunisticSwitch : ICompTactics
         {
             return false;
         }
-        //TODO 1.5
         if (TryUseAOE(verb, castTarg, destTarg))
         {
             return false;
@@ -159,15 +158,8 @@ public class CompOpportunisticSwitch : ICompTactics
                 {
                     lastOpportunisticSwitch = GenTicks.TicksGame;
 
-                    VerbProperties rangedVerbProps = weapon.def.verbs.MaxBy(v => v.range);
+                    LocalTargetInfo targetInfo = castTarg.Thing;
 
-                    LocalTargetInfo targetInfo = castTarg.Cell;
-
-                    //if verb cant target ground, target the thing instead to avoid LOS obstruction
-                    if (castTarg.Thing != null && rangedVerbProps is VerbPropertiesCE verbPropsCE && !verbPropsCE.ignorePartialLoSBlocker)
-                    {
-                        targetInfo.thingInt = castTarg.Thing;
-                    }
                     var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon, targetInfo);
                     job.maxNumStaticAttacks = 1;
                     SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, cancelBusyStances: false);
