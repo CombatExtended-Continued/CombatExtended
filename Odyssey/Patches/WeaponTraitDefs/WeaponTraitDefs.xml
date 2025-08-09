@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+
+	<!-- Remove Vanilla Accuracy -->
+	<Operation Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[
+				defName="AimAssistance" or
+				defName="CustomGrip" or
+				defName="StabilizerBrace" or
+				defName="PulseCharger" or
+				defName="ImprovedSights"]/statFactors/AccuracyTouch
+			</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[
+				defName="AimAssistance" or
+				defName="CustomGrip" or
+				defName="StabilizerBrace" or
+				defName="PulseCharger" or
+				defName="ImprovedSights"]/statFactors/AccuracyShort
+			</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[
+				defName="AimAssistance" or
+				defName="StabilizerBrace" or
+				defName="PulseCharger" or
+				defName="ImprovedSights" or
+				defName="ShoddySights"]/statFactors/AccuracyMedium
+			</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[
+				defName="AimAssistance" or
+				defName="StabilizerBrace" or
+				defName="PulseCharger" or
+				defName="ImprovedSights" or
+				defName="ShoddySights"]/statFactors/AccuracyLong
+			</xpath>
+	</Operation>
 	
 	<!-- Aim Assistance -->
 	<Operation Class="PatchOperationAdd">
@@ -7,34 +48,6 @@
 		<value>
 			<AimingAccuracy>0.15</AimingAccuracy>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyTouch</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyTouch</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyShort</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyShort</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyMedium</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyMedium</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyLong</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyLong</xpath>
-		</match>
 	</Operation>
 
 	<!-- Custom Grip -->
@@ -47,20 +60,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors/AccuracyTouch</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors/AccuracyTouch</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors/AccuracyShort</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors/AccuracyShort</xpath>
-		</match>
-	</Operation>
-
 	<!-- Stabilizer Brace -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors</xpath>
@@ -69,68 +68,12 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyTouch</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyTouch</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyShort</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyShort</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyMedium</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyMedium</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyLong</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyLong</xpath>
-		</match>
-	</Operation>
-
 	<!-- Pulse Charger -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statOffsets</xpath>
 		<value>
 			<AimingAccuracy>-0.30</AimingAccuracy>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyTouch</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyTouch</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyShort</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyShort</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyMedium</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyMedium</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyLong</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyLong</xpath>
-		</match>
 	</Operation>
 
 	<!-- Toxic Rounds -->
@@ -275,54 +218,12 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyTouch</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyTouch</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyShort</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyShort</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyMedium</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyMedium</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyLong</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyLong</xpath>
-		</match>
-	</Operation>
-
 	<!-- Shoddy Sights -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors</xpath>
 		<value>
 			<SightsEfficiency>0.90</SightsEfficiency>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors/AccuracyMedium</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors/AccuracyMedium</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors/AccuracyLong</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors/AccuracyLong</xpath>
-		</match>
 	</Operation>
 
 	<!-- Attachments -->
