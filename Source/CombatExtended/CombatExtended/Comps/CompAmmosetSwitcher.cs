@@ -179,7 +179,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        if (CompEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode)
+        if (Props.propsUnderBarrel != null && CompEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode)
         {
             if (!usingUnderBarrel)
             {
