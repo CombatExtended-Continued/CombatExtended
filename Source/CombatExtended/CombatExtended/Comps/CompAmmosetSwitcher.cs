@@ -177,7 +177,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
     private static void ClearWeaponCaches(Thing thing)
     {
         StatDef magazineStatDef = DefDatabase<StatDef>.GetNamed(CE_StatDefOf.MagazineCapacity.ToString());
-        magazineStatDef.Worker?.ClearCacheForThing(thing);
+        magazineStatDef?.Worker.ClearCacheForThing(thing);
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
