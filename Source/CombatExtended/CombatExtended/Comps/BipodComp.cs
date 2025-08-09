@@ -5,12 +5,15 @@ using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
 
+#nullable enable
+
 namespace CombatExtended;
+
 public class BipodComp : CompRangedGizmoGiver
 {
     #region Fields
     public bool ShouldSetUpint;
-    private CompFireModes compFireMode;
+    private CompFireModes? compFireMode;
 
     public bool IsSetUpRn;
 
@@ -177,7 +180,7 @@ public class BipodComp : CompRangedGizmoGiver
         CE_SoundDefOf.Interact_Bipod.PlayOneShot(new TargetInfo(source.PositionHeld, source.Map));
     }
 
-    public void SetUpStart(Pawn pawn = null)
+    public void SetUpStart(Pawn? pawn = null)
     {
         if (!(pawn?.Drafted ?? false))
         {
