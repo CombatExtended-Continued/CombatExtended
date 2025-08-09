@@ -17,10 +17,6 @@ namespace CombatExtended.HarmonyCE
                     {
                         CompUnderBarrel compUnderBarrel = __instance.parent.TryGetComp<CompUnderBarrel>();
                         compUnderBarrel.props = customTrait.underBarrelProps;
-                        // if (!fromSave)
-                        // {
-                        //     compUnderBarrel.Notify_PropsChanged();
-                        // }
                     }
                 }
 
