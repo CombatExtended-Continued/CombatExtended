@@ -8,22 +8,25 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
+#nullable enable
+
 namespace CombatExtended;
+
 public class CompTacticalManager : ThingComp
 {
-    private Job curJob = null;
+    private Job? curJob;
     private List<Verse.WeakReference<Pawn>> targetedBy = new List<Verse.WeakReference<Pawn>>();
 
-    private Pawn _pawn = null;
+    private Pawn? _pawn;
     public Pawn SelPawn
     {
         get
         {
-            return _pawn ?? (_pawn = parent as Pawn);
+            return _pawn ??= parent as Pawn ?? throw new InvalidOperationException("CompTacticalManager parent is not Pawn");
         }
     }
 
-    private List<ICompTactics> _tacticalComps = new List<ICompTactics>();
+    private List<ICompTactics>? _tacticalComps = null;
     public List<ICompTactics> TacticalComps
     {
         get
@@ -32,12 +35,12 @@ public class CompTacticalManager : ThingComp
             {
                 ValidateComps();
             }
-            return _tacticalComps;
+            return _tacticalComps ?? throw new InvalidOperationException("TacticalComps is null or empty");
         }
     }
 
-    private CompSuppressable _compSuppressable = null;
-    public virtual CompSuppressable CompSuppressable
+    private CompSuppressable? _compSuppressable = null;
+    public virtual CompSuppressable? CompSuppressable
     {
         get
         {
@@ -49,8 +52,8 @@ public class CompTacticalManager : ThingComp
         }
     }
 
-    private CompInventory _compInventory = null;
-    public virtual CompInventory CompInventory
+    private CompInventory? _compInventory = null;
+    public virtual CompInventory? CompInventory
     {
         get
         {
@@ -129,7 +132,7 @@ public class CompTacticalManager : ThingComp
                 _targetedByTick = -1;
                 _targetedByEnemyTick = -1;
             }
-            Job job;
+            Job? job;
             /*
              * Start scaning for possilbe current targets
              */
@@ -188,6 +191,8 @@ public class CompTacticalManager : ThingComp
                     }
                 }
                 targets.Clear();
+
+                curJob = job; // the `curJub` field was never assigned to anything
             }
         }
     }
@@ -223,12 +228,13 @@ public class CompTacticalManager : ThingComp
 
     public bool TryStartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
     {
-        if (CompSuppressable == null || SelPawn.MentalState != null || CompSuppressable.IsHunkering)
+        var compSup = CompSuppressable;
+        if (compSup == null || SelPawn.MentalState != null || compSup.IsHunkering)
         {
             return true;
         }
 
-        bool AllChecksPassed(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg, out ICompTactics failedComp)
+        bool AllChecksPassed(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg, out ICompTactics? failedComp)
         {
             foreach (ICompTactics comp in TacticalComps)
             {
@@ -242,9 +248,9 @@ public class CompTacticalManager : ThingComp
             return true;
         }
 
-        ICompTactics failedComp = null;
+        ICompTactics? failedComp = null;
 
-        if (!CompSuppressable.IsHunkering && (SelPawn.jobs.curDriver is IJobDriver_Tactical || AllChecksPassed(verb, castTarg, destTarg, out failedComp)))
+        if (!compSup.IsHunkering && (SelPawn.jobs?.curDriver is IJobDriver_Tactical || AllChecksPassed(verb, castTarg, destTarg, out failedComp)))
         {
             foreach (ICompTactics comp in TacticalComps)
             {
@@ -280,9 +286,9 @@ public class CompTacticalManager : ThingComp
         }
     }
 
-    public T GetTacticalComp<T>() where T : ICompTactics
+    public T? GetTacticalComp<T>() where T : ICompTactics
     {
-        return (T)TacticalComps.FirstOrFallback(c => c is T, null);
+        return (T?)TacticalComps.FirstOrFallback(c => c is T, null);
     }
 
     public override void PostExposeData()
@@ -319,7 +325,8 @@ public class CompTacticalManager : ThingComp
 
     private void TryGiveTacticalJobs()
     {
-        if (CompSuppressable == null || CompSuppressable.IsHunkering || !SelPawn.Spawned || SelPawn.Downed)
+        var compSup = CompSuppressable;
+        if (compSup == null || compSup.IsHunkering || !SelPawn.Spawned || SelPawn.Downed)
         {
             return;
         }
@@ -328,7 +335,7 @@ public class CompTacticalManager : ThingComp
             Job job = comp.TryGiveTacticalJob();
             if (job != null)
             {
-                SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                SelPawn.jobs?.StartJob(job, JobCondition.InterruptForced);
                 return;
             }
         }
@@ -342,10 +349,11 @@ public class CompTacticalManager : ThingComp
         }
         foreach (Type type in typeof(ICompTactics).AllSubclassesNonAbstract())
         {
-            ICompTactics comp;
-            if ((comp = _tacticalComps.FirstOrFallback(t => t.GetType() == type)) == null)
+            ICompTactics? comp = _tacticalComps.FirstOrFallback(t => t?.GetType() == type);
+            if (comp == null)
             {
-                _tacticalComps.Add(comp = (ICompTactics)Activator.CreateInstance(type, new object[0]));
+                comp = (ICompTactics)Activator.CreateInstance(type, new object[0]);
+                _tacticalComps.Add(comp);
             }
             comp.Initialize(SelPawn);
         }
