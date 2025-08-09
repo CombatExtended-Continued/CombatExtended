@@ -24,6 +24,7 @@ public class StatPart_ExtendedMagazine : StatPart
                 if (trait is CustomWeaponTraitDef custom)
                 {
                     val += custom.magazineCapacityIncrease;
+                    val *= custom.magazineCapacityFactor;
                 }
             }
         }

@@ -1,6 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+	
+	<!-- Aim Assistance -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.15</AimingAccuracy>
+		</value>
+	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyTouch</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyTouch</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyShort</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyShort</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyMedium</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyMedium</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyLong</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statFactors/AccuracyLong</xpath>
+		</match>
+	</Operation>
+
+	<!-- Custom Grip -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors</xpath>
+		<value>
+			<statFactors>
+				<CE_RangedWeapon_RecoilMultiplier>0.95</CE_RangedWeapon_RecoilMultiplier>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors/AccuracyTouch</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors/AccuracyTouch</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors/AccuracyShort</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors/AccuracyShort</xpath>
+		</match>
+	</Operation>
+
+	<!-- Stabilizer Brace -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors</xpath>
+		<value>
+			<SwayFactor>0.90</SwayFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyTouch</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyTouch</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyShort</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyShort</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyMedium</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyMedium</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyLong</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors/AccuracyLong</xpath>
+		</match>
+	</Operation>
+
+	<!-- Pulse Charger -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statOffsets</xpath>
+		<value>
+			<AimingAccuracy>-0.30</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyTouch</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyTouch</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyShort</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyShort</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyMedium</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyMedium</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyLong</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statFactors/AccuracyLong</xpath>
+		</match>
+	</Operation>
+
+	<!-- Toxic Rounds -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ToxRounds"]/damageDefOverride</xpath>
+		<value>
+			<extraDamages>
+				<li>
+					<def>Bullet_TraitTox</def>
+					<amount>2</amount>
+				</li>
+			</extraDamages>
+		</value>
+	</Operation>
+	
+	<!-- Toxic Pellets -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ToxPellets"]/damageDefOverride</xpath>
+		<value>
+			<extraDamages>
+				<li>
+					<def>Bullet_TraitTox</def>
+					<amount>1</amount>
+				</li>
+			</extraDamages>
+		</value>
+	</Operation>
+
+	<!-- Magazine Size Increase -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.CustomWeaponTraitDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]/burstShotCountMultiplier</xpath>
+		<value>
+			<magazineCapacityFactor>1.20</magazineCapacityFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]/description</xpath>
+		<value>
+			<description>This weapon fires more shots before reloading.</description>
+		</value>
+	</Operation>
+
+	<!-- Armor Penetration Increase -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[defName="OversizedRounds"]/additionalStoppingPower</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="OversizedRounds"]/statOffsets</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>0.1</RangedWeapon_ArmorPenetrationMultiplier>
+		</value>
+	</Operation>
+	
+	<!-- High Power ROunds -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HighPowerRounds"]/statFactors</xpath>
+		<value>
+			<statFactors>
+				<CE_RangedWeapon_RecoilMultiplier>1.2</CE_RangedWeapon_RecoilMultiplier>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<!-- Extra Damage -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/WeaponTraitDef[defName="IncendiaryRounds"]/damageDefOverride</xpath>
 		<value>
@@ -10,15 +212,6 @@
 					<amount>2</amount>
 				</li>
 			</extraDamages>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/WeaponTraitDef[defName="HighPowerRounds"]/statFactors</xpath>
-		<value>
-			<statFactors>
-				<CE_RangedWeapon_RecoilMultiplier>1.2</CE_RangedWeapon_RecoilMultiplier>
-			</statFactors>
 		</value>
 	</Operation>
 
@@ -72,29 +265,103 @@
 			</extraDamages>
 		</value>
 	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/WeaponTraitDef[defName="OversizedRounds"]/additionalStoppingPower</xpath>
-	</Operation>
-
+	
+	<!-- Sights -->
+	<!-- Improved Sights -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/WeaponTraitDef[defName="OversizedRounds"]/statOffsets</xpath>
+		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors</xpath>
 		<value>
-			<RangedWeapon_ArmorPenetrationMultiplier>0.1</RangedWeapon_ArmorPenetrationMultiplier>
+			<SightsEfficiency>1.10</SightsEfficiency>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyTouch</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyTouch</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyShort</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyShort</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyMedium</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyMedium</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyLong</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors/AccuracyLong</xpath>
+		</match>
+	</Operation>
+
+	<!-- Shoddy Sights -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors</xpath>
+		<value>
+			<SightsEfficiency>0.90</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors/AccuracyMedium</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors/AccuracyMedium</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors/AccuracyLong</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors/AccuracyLong</xpath>
+		</match>
+	</Operation>
 	
-	<!-- Magazine Size Increase -->
+	<!-- Attachments -->
+	<!-- Grenade launcher -->
 	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]</xpath>
+		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.CustomWeaponTraitDef</value>
 	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]</xpath>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]/abilityProps</xpath>
 		<value>
-			<magazineCapacityIncrease>10</magazineCapacityIncrease>
+			<underBarrelProps>
+				<propsUnderBarrel>
+					<magazineSize>1</magazineSize>
+					<reloadTime>3</reloadTime>
+					<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+					<warmupTime>0.55</warmupTime>
+					<range>35</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>5</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</underBarrelProps>
 		</value>
 	</Operation>
 
