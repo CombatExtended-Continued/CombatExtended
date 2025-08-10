@@ -14,7 +14,6 @@ namespace CombatExtended;
 
 public class CompTacticalManager : ThingComp
 {
-    private Job? curJob;
     private List<Verse.WeakReference<Pawn>> targetedBy = new List<Verse.WeakReference<Pawn>>();
 
     private Pawn? _pawn;
@@ -137,7 +136,7 @@ public class CompTacticalManager : ThingComp
              * Start scaning for possilbe current targets
              */
             if (parent.Spawned
-                    && curJob != (job = SelPawn.jobs?.curJob)
+                    && null != (job = SelPawn.jobs?.curJob)
                     && job != null && job.def.alwaysShowWeapon == false)
             {
                 if (SelPawn.mindState?.enemyTarget is Pawn target && target.Spawned)
@@ -191,8 +190,6 @@ public class CompTacticalManager : ThingComp
                     }
                 }
                 targets.Clear();
-
-                curJob = job; // the `curJub` field was never assigned to anything
             }
         }
     }
