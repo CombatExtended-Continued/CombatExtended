@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	
+	<!-- ======== Ammotype ======== -->
+	<CombatExtended.AmmoCategoryDef>
+		<defName>ADP</defName>
+		<label>ADP</label>
+		<description>Area Denial Pulse (ADP) is a newer and more effective version of the common EMP charge. It uses far more aggressive electrical targeting, bypassing even the most advanced adaptation systems.\n\nIt renders mechanoids immobile over a wider radius, without any risk being of countered.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ======== Projectiles ======== -->
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_ADP</defName>
+		<label>81mm mortar shell (ADP)</label>
+		<graphicData>
+			<texPath>Things/Item/ADPShell</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_ADP</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<explosionRadius>17.9</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+		</projectile>
+	</ThingDef>
+
+</Defs>

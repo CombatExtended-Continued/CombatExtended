@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== ADP chain pylon ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_Turret_ADP"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_Turret_ADP"]/statBases/Mass</xpath>
+		<value>
+			<Mass>60</Mass>
+			<Bulk>25</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="USH_Turret_ADP"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+	</Operation>
+
+	<!-- ========== ADP pylon core ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_Gun_ADPTurret"]/verbs/li/range</xpath>
+		<value>
+			<range>55</range>
+		</value>
+	</Operation>
+
+	<!-- ========== ADP chain pylon ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_ChainBolt"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/damageDef</xpath>
+		<value>
+			<damageDef>Smoke</damageDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_ChainBolt"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/impactRadius</xpath>
+		<value>
+			<impactRadius>4.9</impactRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_ChainBolt"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/bounceRange</xpath>
+		<value>
+			<bounceRange>12</bounceRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_ChainBolt"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/maxLifetime</xpath>
+		<value>
+			<maxLifetime>25</maxLifetime>
+		</value>
+	</Operation>
+
+</Patch>
