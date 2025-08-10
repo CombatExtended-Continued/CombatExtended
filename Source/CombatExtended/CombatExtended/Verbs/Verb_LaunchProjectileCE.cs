@@ -147,6 +147,8 @@ public class Verb_LaunchProjectileCE : Verb
 
     public virtual CompAmmoUser CompAmmo => compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
 
+    public override float EffectiveRange => base.EffectiveRange * (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_RangeMultiplier) ?? 1f);
+
     public virtual ThingDef Projectile
     {
         get
