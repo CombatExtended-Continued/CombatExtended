@@ -293,7 +293,18 @@
 			<li>TurretGun</li>
 		</weaponTags>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gun_RR"]</xpath>
+		<value>
+			<li Class="CombatExtended.MultiBarrelExtension">
+				<offsets>
+					<li>(0.25,0)</li>
+				</offsets>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_NestRR"]/building/turretBurstCooldownTime</xpath>
 		<value>
