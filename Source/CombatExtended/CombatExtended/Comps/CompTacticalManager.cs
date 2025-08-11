@@ -243,8 +243,7 @@ public class CompTacticalManager : ThingComp
         }
 
         ICompTactics failedComp = null;
-
-        if (!CompSuppressable.IsHunkering && (SelPawn.jobs.curDriver is IJobDriver_Tactical || AllChecksPassed(verb, castTarg, destTarg, out failedComp)))
+        if (!CompSuppressable.IsHunkering && (SelPawn.jobs?.curDriver is IJobDriver_Tactical || AllChecksPassed(verb, castTarg, destTarg, out failedComp)))
         {
             foreach (ICompTactics comp in TacticalComps)
             {
