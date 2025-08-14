@@ -68,7 +68,7 @@
 		</modExtensions>
 	</DamageDef>
 
-	<DamageDef ParentName="Flame">
+	<DamageDef Name="FlameSecondary" ParentName="Flame">
 		<defName>Flame_Secondary</defName>
 		<label>burn</label>
 		<workerClass>DamageWorker_AddInjury</workerClass>
@@ -77,13 +77,8 @@
 		<hediff>BurnSecondary</hediff>
 	</DamageDef>
 
-	<DamageDef ParentName="Flame">
+	<DamageDef ParentName="FlameSecondary">
 		<defName>Flame_Secondary_Incendiary</defName>
-		<label>burn</label>
-		<workerClass>DamageWorker_AddInjury</workerClass>
-		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
-		<minDamageToFragment>99999</minDamageToFragment>
-		<hediff>BurnSecondary</hediff>
 		<igniteChanceByTargetFlammability>
 			<points>
 				<li>(0, 0)</li>
