@@ -18,7 +18,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
             static MethodInfo TargetMethod()
             {
                 // Dynamically resolve the method at runtime without loading the assembly directly
-                return AccessTools.Method("VanillaQuestsExpandedDeadlife.Patches.CompWeaponDeteriorable:Notify_ShotFired");
+                return AccessTools.Method("VanillaQuestsExpandedDeadlife.CompWeaponDeteriorable:Notify_ShotFired");
             }
 
             public static bool Prepare()
