@@ -3,46 +3,54 @@
 
 	<!-- Remove Vanilla Accuracy -->
 	<Operation Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[
-				defName="AimAssistance" or
-				defName="CustomGrip" or
-				defName="StabilizerBrace" or
-				defName="PulseCharger" or
-				defName="ImprovedSights"]/statFactors/AccuracyTouch
-			</xpath>
+		<xpath>Defs/WeaponTraitDef[
+			defName="AimAssistance" or
+			defName="CustomGrip" or
+			defName="StabilizerBrace" or
+			defName="PulseCharger" or
+			defName="ImprovedSights"]/statFactors/AccuracyTouch
+		</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[
-				defName="AimAssistance" or
-				defName="CustomGrip" or
-				defName="StabilizerBrace" or
-				defName="PulseCharger" or
-				defName="ImprovedSights"]/statFactors/AccuracyShort
-			</xpath>
+		<xpath>Defs/WeaponTraitDef[
+			defName="AimAssistance" or
+			defName="CustomGrip" or
+			defName="StabilizerBrace" or
+			defName="PulseCharger" or
+			defName="ImprovedSights"]/statFactors/AccuracyShort
+		</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[
-				defName="AimAssistance" or
-				defName="StabilizerBrace" or
-				defName="PulseCharger" or
-				defName="ImprovedSights" or
-				defName="ShoddySights"]/statFactors/AccuracyMedium
-			</xpath>
+		<xpath>Defs/WeaponTraitDef[
+			defName="AimAssistance" or
+			defName="StabilizerBrace" or
+			defName="PulseCharger" or
+			defName="ImprovedSights" or
+			defName="ShoddySights"]/statFactors/AccuracyMedium
+		</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-			<xpath>Defs/WeaponTraitDef[
-				defName="AimAssistance" or
-				defName="StabilizerBrace" or
-				defName="PulseCharger" or
-				defName="ImprovedSights" or
-				defName="ShoddySights"]/statFactors/AccuracyLong
-			</xpath>
+		<xpath>Defs/WeaponTraitDef[
+			defName="AimAssistance" or
+			defName="StabilizerBrace" or
+			defName="PulseCharger" or
+			defName="ImprovedSights" or
+			defName="ShoddySights"]/statFactors/AccuracyLong
+		</xpath>
 	</Operation>
 	
 	<!-- Aim Assistance -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="QuickReload"]/statOffsets</xpath>
+		<value>
+			<ReloadSpeed>0.1</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<!-- Quick Reload -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statOffsets</xpath>
 		<value>
@@ -64,15 +72,17 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors</xpath>
 		<value>
-			<SwayFactor>0.90</SwayFactor>
+			<SwayFactor>0.85</SwayFactor>
 		</value>
 	</Operation>
 
 	<!-- Pulse Charger -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]/statOffsets</xpath>
+		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]</xpath>
 		<value>
-			<AimingAccuracy>-0.30</AimingAccuracy>
+			<statFactors>
+				<ShotSpread>1.75</ShotSpread>
+			</statFactors>
 		</value>
 	</Operation>
 
@@ -119,7 +129,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]/description</xpath>
 		<value>
-			<description>This weapon's magazine holds 50% more more ammunition than normal.</description>
+			<description>This weapon's magazine holds 50% more ammunition than normal.</description>
 		</value>
 	</Operation>
 
@@ -134,14 +144,43 @@
 			<RangedWeapon_ArmorPenetrationMultiplier>0.1</RangedWeapon_ArmorPenetrationMultiplier>
 		</value>
 	</Operation>
-	
-	<!-- High Power ROunds -->	
+
+	<!-- Hollow-Point Rounds -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HollowPointRounds"]/label</xpath>
+			<value>
+		    	<label>improved terminal ballistics</label>
+			</value>	
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HollowPointRounds"]/description</xpath>
+			<value>
+				<description>This weapon's bullets have been designed for maximum fragmentation after striking a target, dealing more damage than normal.</description>
+			</value>				
+	</Operation>
+
+	<!-- High Power Rounds -->	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/WeaponTraitDef[defName="HighPowerRounds"]/statFactors</xpath>
 		<value>
 			<statFactors>
-				<CE_RangedWeapon_RecoilMultiplier>1.2</CE_RangedWeapon_RecoilMultiplier>
+				<CE_RangedWeapon_RecoilMultiplier>1.3</CE_RangedWeapon_RecoilMultiplier>
 			</statFactors>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HighPowerRounds"]/statOffsets/RangedWeapon_DamageMultiplier</xpath>
+		<value>
+			<RangedWeapon_DamageMultiplier>0.25</RangedWeapon_DamageMultiplier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HighPowerRounds"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>0.2</RangedWeapon_ArmorPenetrationMultiplier>
 		</value>
 	</Operation>
 
@@ -170,6 +209,7 @@
 		</value>
 	</Operation>
 
+	<!-- Birdshot -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/WeaponTraitDef[defName="BirdshotPellets"]/statFactors</xpath>
 		<value>
@@ -197,6 +237,7 @@
 		</value>
 	</Operation>
 
+	<!-- Bows -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/WeaponTraitDef[defName="ParalyticArrows"]/damageDefOverride</xpath>
 		<value>
@@ -208,7 +249,42 @@
 			</extraDamages>
 		</value>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="PiercingArrows"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>0.5</RangedWeapon_ArmorPenetrationMultiplier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="LightweightArrows"]/statOffsets</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>-0.1</RangedWeapon_ArmorPenetrationMultiplier>
+		</value>
+	</Operation>
+
+	<!-- Barrels -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="ExtendedBarrel"]</xpath>
+		<value>
+			<statFactors>
+				<ShotSpread>0.95</ShotSpread>
+				<Bulk>1.1</Bulk>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="ShortenedBarrel"]</xpath>
+		<value>
+			<statFactors>
+				<ShotSpread>1.05</ShotSpread>
+				<Bulk>0.9</Bulk>
+			</statFactors>
+		</value>
+	</Operation>
+
 	<!-- Sights -->
 	<!-- Improved Sights -->
 	<Operation Class="PatchOperationAdd">
@@ -226,8 +302,45 @@
 		</value>
 	</Operation>
 
+	<!-- Scoped -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="PrecisionScope"]/statOffsets</xpath>
+		<value>
+			<SightsEfficiency>0.4</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="RangefinderScope"]/statOffsets</xpath>
+		<value>
+			<SightsEfficiency>0.2</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<!-- Lightweight -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="Lightweight"]/description</xpath>
+		<value>
+    		<description>This weapon is much lighter than normal, lowering its aiming time at the cost of increased recoil.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="Lightweight"]/statFactors</xpath>
+		<value>
+			<CE_RangedWeapon_RecoilMultiplier>1.25</CE_RangedWeapon_RecoilMultiplier>
+		</value>
+	</Operation>
+
 	<!-- Attachments -->
 	<!-- Grenade launcher -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]/description</xpath>
+		<value>
+    		<description>This weapon has an attached grenade launcher capable of firing a variety of different munitions.</description>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]</xpath>
 		<attribute>Class</attribute>
@@ -238,6 +351,7 @@
 		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]/abilityProps</xpath>
 		<value>
 			<underBarrelProps>
+			<underBarrelLabel>switch to grenade launcher</underBarrelLabel>			
 				<propsUnderBarrel>
 					<magazineSize>1</magazineSize>
 					<reloadTime>3</reloadTime>
