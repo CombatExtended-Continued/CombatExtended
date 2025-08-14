@@ -395,6 +395,7 @@ Nakin Race  |
 Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
+Nephilim Xenotype Reborn    |
 New Mech: Mini-Miner    |
 Ni'Hal	|
 Nukes   |
