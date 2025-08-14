@@ -107,13 +107,6 @@
 		</weaponTags>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VQED_Gun_Autopistol_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]/shotsBeforeBreak</xpath>
-		<value>
-			<shotsBeforeBreak>22</shotsBeforeBreak>
-		</value>
-	</Operation>
-
 	<!-- ========== Pump Shotgun ========== -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -149,13 +142,6 @@
 			<li>SimpleGun</li>
 			<li>CE_AI_BROOM</li>
 		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VQED_Gun_Autopistol_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]/shotsBeforeBreak</xpath>
-		<value>
-			<shotsBeforeBreak>11</shotsBeforeBreak>
-		</value>
 	</Operation>
 
 	<!-- ========== Machine pistol ========== -->
@@ -198,13 +184,6 @@
 		</weaponTags>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VQED_Gun_MachinePistol_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]/shotsBeforeBreak</xpath>
-		<value>
-			<shotsBeforeBreak>60</shotsBeforeBreak>
-		</value>
-	</Operation>
-	
 	<!-- ========== LMG ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VQED_Gun_LMG_Ancient</defName>
@@ -256,11 +235,77 @@
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VQED_Gun_LMG_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]/shotsBeforeBreak</xpath>
-		<value>
-			<shotsBeforeBreak>120</shotsBeforeBreak>
-		</value>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VQED_Gun_Autopistol_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VQED_Gun_Autopistol_Ancient"]/comps</xpath>
+			<value>
+				<li Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable">
+					<shotsBeforeBreak>21</shotsBeforeBreak>
+				</li>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VQED_Gun_Autopistol_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]/shotsBeforeBreak</xpath>
+			<value>
+				<shotsBeforeBreak>21</shotsBeforeBreak>
+			</value>
+		</match>
 	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VQED_Gun_MachinePistol_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VQED_Gun_MachinePistol_Ancient"]/comps</xpath>
+			<value>
+				<li Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable">
+					<shotsBeforeBreak>60</shotsBeforeBreak>
+				</li>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VQED_Gun_MachinePistol_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]/shotsBeforeBreak</xpath>
+			<value>
+				<shotsBeforeBreak>60</shotsBeforeBreak>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VQED_Gun_PumpShotgun_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VQED_Gun_PumpShotgun_Ancient"]/comps</xpath>
+			<value>
+				<li Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable">
+					<shotsBeforeBreak>16</shotsBeforeBreak>
+				</li>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VQED_Gun_PumpShotgun_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]/shotsBeforeBreak</xpath>
+			<value>
+				<shotsBeforeBreak>16</shotsBeforeBreak>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VQED_Gun_LMG_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VQED_Gun_LMG_Ancient"]/comps</xpath>
+			<value>
+				<li Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable">
+					<shotsBeforeBreak>150</shotsBeforeBreak>
+				</li>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VQED_Gun_LMG_Ancient"]/comps/li[@Class="VanillaQuestsExpandedDeadlife.CompProperties_WeaponDeteriorable"]/shotsBeforeBreak</xpath>
+			<value>
+				<shotsBeforeBreak>150</shotsBeforeBreak>
+			</value>
+		</match>
+	</Operation>
+
 
 </Patch>
