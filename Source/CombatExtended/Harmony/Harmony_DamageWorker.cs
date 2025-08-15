@@ -70,7 +70,7 @@ internal static class Harmony_DamageWorker_Apply
                     backArc = new FloatRange(dinfo.Angle - 90, dinfo.Angle + 90);
                 }
 
-                Vector3 spawnOffset = Quaternion.Euler(0, dinfo.Angle, 0) * Vector3.forward;
+                Vector3 spawnOffset = Quaternion.Euler(0, dinfo.Angle, 0) * Vector3.forward * Mathf.Max(1, Mathf.Min(victim.RotatedSize.x, victim.RotatedSize.z) / 2f);
                 if (smallFragments > 0)
                 {
                     int reflectedFrags = (int)(smallFragments * (hitPoints / maxHitPoints));
