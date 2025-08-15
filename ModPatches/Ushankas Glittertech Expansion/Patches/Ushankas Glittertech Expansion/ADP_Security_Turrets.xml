@@ -21,46 +21,6 @@
 		<xpath>Defs/ThingDef[defName="USH_Turret_ADP"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
 	</Operation>
 
-	<!-- ========== ADP chain pylon ========== -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<ThingDef ParentName="BaseBullet">
-				<defName>USH_ChainBoltCE</defName>
-				<label>ADP chain bolt</label>
-				<thingClass>VEF.Weapons.TeslaProjectile</thingClass>
-				<drawOffscreen>true</drawOffscreen>
-				<graphicData>
-					<texPath>Effects/Staticlord/ChainBolt</texPath>
-					<graphicClass>Graphic_Flicker</graphicClass>
-					<shaderType>TransparentPostLight</shaderType>
-				</graphicData>
-				<projectile>
-					<damageDef>Stun</damageDef>
-					<damageAmountBase>1</damageAmountBase>
-					<speed>140</speed>
-				</projectile>
-				<comps>
-					<li>
-						<compClass>VEF.Abilities.CompAbilityProjectile</compClass>
-					</li>
-				</comps>
-				<modExtensions>
-					<li Class="VEF.Weapons.TeslaChainingProps">
-						<maxBounceCount>4</maxBounceCount>
-						<damageDef>Smoke</damageDef>
-						<explosionDamageDef>USH_ADP</explosionDamageDef>
-						<impactRadius>3</impactRadius>
-						<targetFriendly>false</targetFriendly>
-						<addFire>true</addFire>
-						<bounceRange>12</bounceRange>
-						<maxLifetime>50</maxLifetime>
-					</li>
-				</modExtensions>
-			</ThingDef>
-		</value>
-	</Operation>
-
 	<!-- ========== ADP pylon core ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="USH_Gun_ADPTurret"]/verbs/li/range</xpath>
@@ -69,11 +29,28 @@
 		</value>
 	</Operation>
 
+	<!-- ========== ADP chain bolt ========== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="USH_Gun_ADPTurret"]/verbs/li/defaultProjectile</xpath>
+		<xpath>Defs/ThingDef[defName="USH_ADP_ChainBolt"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/impactRadius</xpath>
 		<value>
-			<defaultProjectile>USH_ChainBoltCE</defaultProjectile>
+			<impactRadius>4.9</impactRadius>
 		</value>
 	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_ADP_ChainBolt"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/bounceRange</xpath>
+		<value>
+			<bounceRange>12</bounceRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_ADP_ChainBolt"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/maxLifetime</xpath>
+		<value>
+			<maxLifetime>25</maxLifetime>
+		</value>
+	</Operation>
+
 
 </Patch>
