@@ -12,4 +12,27 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ADP rounds -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="USH_ADPRounds"]/damageDefOverride</xpath>
+					<value>
+						<extraDamages>
+							<li>
+								<def>USH_ADP</def>
+								<amount>3</amount>
+							</li>
+						</extraDamages>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
 </Patch>
