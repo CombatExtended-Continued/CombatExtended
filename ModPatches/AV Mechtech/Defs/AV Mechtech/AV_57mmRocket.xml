@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmRocketBase"> <defName>Ammo_57mmRocket_HE</defName> <label>57mm rocket (HE)</label> <graphicData> <texPath>Things/Ammo/Rocket/57mmS5/HE</texPath> <graphicClass>Graphic_StackCount</graphicClass> </graphicData> <statBases> <Mass>4.82</Mass> <Bulk>7.05</Bulk> </statBases> <ammoClass>RocketHE</ammoClass> <detonateProjectile>Bullet_57mmRocket_HE</detonateProjectile> </ThingDef>-->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="BaseAVRocketRocket" ParentName="BaseExplosiveBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>75</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>9</emissionsPerTick>
+						<flecksPerEmission>2</flecksPerEmission>
+						<cutoffTickRange>25~30</cutoffTickRange>
+						<originOffset>0.2</originOffset>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAVRocketRocket">
+		<defName>Bullet_AVRocket_HE</defName>
+		<label>tarantula Rocket (HE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/SPG9/Frag</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>111</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>80</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAVRocketRocket">
+		<defName>Bullet_AVRocket_EMP</defName>
+		<label>tarantula Rocket (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/SPG9/EMP</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>111</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<explosionRadius>4.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAVRocketRocket">
+		<defName>Bullet_AVRocket_Thermobaric</defName>
+		<label>tarantula Rocket (Thermobaric)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/SPG9/Thermobaric</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Thermobaric</damageDef>
+			<damageAmountBase>277</damageAmountBase>
+			<explosionRadius>5</explosionRadius>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAVRocketRocket">
+		<defName>Bullet_AVRocket_Smoke</defName>
+		<label>tarantula Rocket (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/SPG9/Tandem</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAVRocketRocket">
+		<defName>Bullet_AVRocket_Firefoam</defName>
+		<label>tarantula Rocket (Foam)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/SPG9/Tandem</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Extinguish</damageDef>
+			<explosionRadius>8</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<postExplosionGasType>Filth_FireFoam</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+	<RecipeDef>
+		<defName>Make_CE_OmniRocketComponent</defName>
+		<label>make 90 multipurpose rocket components</label>
+		<description>Make 90 multipurpose rocket components</description>
+		<jobString>Making 90 multipurpose rocket components.</jobString>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Machining</soundWorking>
+		<workAmount>10000</workAmount>
+		<unfinishedThingDef>UnfinishedComponent</unfinishedThingDef>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>35</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+		</fixedIngredientFilter>
+		<products>
+			<CE_OmniRocketComponent>90</CE_OmniRocketComponent>
+		</products>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>12</Crafting>
+		</skillRequirements>
+		<workSkill>Crafting</workSkill>
+	</RecipeDef>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>CE_OmniRocketComponent</defName>
+		<label>Multipurpose Rocket Components</label>
+		<description>Solid fuel pallets oxidizers, various components to change warhea type on the go, and rocket casings.</description>
+		<graphicData>
+			<texPath>Things/Ammo/FuelCell/Foam</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.85</drawSize>
+		</graphicData>
+		<stackLimit>75</stackLimit>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<intricate>true</intricate> <!-- Not returned to player when product made of this is smelted. -->
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<MarketValue>10</MarketValue>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2.0</DeteriorationRate>
+			<Mass>0.1</Mass>
+			<Bulk>0.2</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>Manufactured</li>
+		</thingCategories>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>0.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveExpandPerStackcount>1.0</explosiveExpandPerStackcount>
+				<startWickOnDamageTaken>
+					<li>Bomb</li>
+					<li>Flame</li>
+				</startWickOnDamageTaken>
+				<startWickHitPointsPercent>0.5</startWickHitPointsPercent>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>60~90</wickTicks>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

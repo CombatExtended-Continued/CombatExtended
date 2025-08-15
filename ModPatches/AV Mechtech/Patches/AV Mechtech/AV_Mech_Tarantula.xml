@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+			<CarryWeight>75</CarryWeight>
+			<CarryBulk>50</CarryBulk>
+			<AimingAccuracy>1.3</AimingAccuracy>
+			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.03</MeleeDodgeChance>
+			<MeleeCritChance>0.42</MeleeCritChance>
+			<MeleeParryChance>0.64</MeleeParryChance>
+			<MaxHitPoints>600</MaxHitPoints>
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>3.6</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/comps/li[compClass="AV_Framework.CompMechReloadableResourceHolder"]/fixedIngredient</xpath>
+		<value>
+			<fixedIngredient>CE_OmniRocketComponent</fixedIngredient>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/comps/li[compClass="AV_Framework.CompMechReloadableResourceHolder"]/refillGizmoTextPath</xpath>
+		<value>
+			<refillGizmoTextPath>UI/Buttons/CE_AutoLoader_ReplaceOn</refillGizmoTextPath>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Rocketswarm"]/verbProperties/defaultProjectile</xpath>
+		<value>
+			<defaultProjectile>Bullet_AVRocket_HE</defaultProjectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_EMP_Missile"]/verbProperties/defaultProjectile</xpath>
+		<value>
+			<defaultProjectile>Bullet_AVRocket_EMP</defaultProjectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Incendiary_Missile"]/verbProperties/defaultProjectile</xpath>
+		<value>
+			<defaultProjectile>Bullet_AVRocket_Thermobaric</defaultProjectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Smoke_Missile"]/verbProperties/defaultProjectile</xpath>
+		<value>
+			<defaultProjectile>Bullet_AVRocket_Smoke</defaultProjectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Foam_Missile"]/verbProperties/defaultProjectile</xpath>
+		<value>
+			<defaultProjectile>Bullet_AVRocket_Firefoam</defaultProjectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Rocketswarm" or
+			 defName="AV_EMP_Missile" or 
+			 defName="AV_Incendiary_Missile" or 
+			 defName="AV_Smoke_Missile" or 
+			 defName="AV_Foam_Missile"]/verbProperties/minRange</xpath>
+		<value>
+			<minRange>10</minRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Rocketswarm" or
+			 defName="AV_EMP_Missile" or 
+			 defName="AV_Incendiary_Missile" or 
+			 defName="AV_Smoke_Missile" or 
+			 defName="AV_Foam_Missile"]/verbProperties/range</xpath>
+		<value>
+			<range>86</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Incendiary_Missile"]/label</xpath>
+		<value>
+			<label>launch thermobaric missiles</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Rocketswarm"]/description</xpath>
+		<value>
+			<description>Launch a salve of up to 8 rockets at the targeted area.\n&lt;color=#f8f32b&gt;Consumes 15 rocket components per rocket.&lt;/color&gt;</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_EMP_Missile"]/description</xpath>
+		<value>
+			<description>Launch a salve of up to 2 EMP missiles at the targeted area.\n&lt;color=#f8f32b&gt;Consumes 15 rocket components per rocket.&lt;/color&gt;</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Incendiary_Missile"]/description</xpath>
+		<value>
+			<description>Launch a salve of up to 2 thermobaric missiles at the targeted area.\n&lt;color=#f8f32b&gt;Consumes 15 rocket components per rocket.&lt;/color&gt;</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Smoke_Missile"]/description</xpath>
+		<value>
+			<description>Launch a salve of up to 2 smoke missiles at the targeted area.\n&lt;color=#f8f32b&gt;Consumes 15 rocket components per rocket.&lt;/color&gt;</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AV_Foam_Missile"]/description</xpath>
+		<value>
+			<description>Launch a salve of up to 2 fire foam spreading missiles at the targeted area.\n&lt;color=#f8f32b&gt;Consumes 15 rocket components per rocket.&lt;/color&gt;</description>
+		</value>
+	</Operation>
+
+	
+
+</Patch>
