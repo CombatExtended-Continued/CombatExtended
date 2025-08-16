@@ -6,6 +6,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<!-- Remove MVCF Comp -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
@@ -14,6 +15,7 @@
 						defName="CAT_MonoGlaiveBladelink"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]
 					</xpath>
 				</li>
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
 						defName="CAT_MonoChargeLanceBladelink" or
@@ -27,6 +29,7 @@
 						defName="CAT_MonoStellicSwordBladelink" or
 						defName="CAT_MonoStellicSpearBladelink"]/equippedStatOffsets</xpath>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoChargeLance" or
 						defName="CAT_MonoChargeLanceBladelink" or
@@ -43,6 +46,7 @@
 						<equippedStatOffsets />
 					</value>
 				</li>
+
 				<!-- ========== Mono Charge Lance ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>CAT_MonoChargeLanceBladelink</defName>
@@ -78,6 +82,7 @@
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="CAT_MonoChargeLanceBladelink"]/tools</xpath>
 					<value>
@@ -120,6 +125,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoChargeLanceBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -129,13 +135,14 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoChargeLanceBladelink"]/statBases</xpath>
 					<value>
-
 						<MeleeCounterParryBonus>0.55</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoChargeLanceBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -144,6 +151,7 @@
 						<MeleeDodgeChance>0.30</MeleeDodgeChance>
 					</value>
 				</li>
+
 				<!-- ========== Mono Whip ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>CAT_MonoWhipClawBladelink</defName>
@@ -220,6 +228,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoWhipClawBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -229,12 +238,14 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoWhipClawBladelink"]/statBases</xpath>
 					<value>
 						<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoWhipClawBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -243,6 +254,7 @@
 						<MeleeDodgeChance>0.88</MeleeDodgeChance>
 					</value>
 				</li>
+
 				<!-- ========== Mono Glaive ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>CAT_MonoGlaiveBladelink</defName>
@@ -275,6 +287,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="CAT_MonoGlaiveBladelink"]/tools</xpath>
 					<value>
@@ -317,6 +330,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoGlaiveBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -326,12 +340,14 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoGlaiveBladelink"]/statBases</xpath>
 					<value>
 						<MeleeCounterParryBonus>1.71</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoGlaiveBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -340,6 +356,7 @@
 						<MeleeDodgeChance>0.88</MeleeDodgeChance>
 					</value>
 				</li>
+
 				<!-- ========== Mono Bastard ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="CAT_MonoBastardSwordBladelink"]/tools</xpath>
@@ -383,6 +400,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoBastardSwordBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -392,12 +410,14 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoBastardSwordBladelink"]/statBases</xpath>
 					<value>
 						<MeleeCounterParryBonus>0.67</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoBastardSwordBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -406,6 +426,7 @@
 						<MeleeDodgeChance>0.53</MeleeDodgeChance>
 					</value>
 				</li>
+
 				<!-- ========== Mono Buster ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="CAT_MonoBusterSwordBladelink"]/tools</xpath>
@@ -449,6 +470,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoBusterSwordBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -458,12 +480,14 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoBusterSwordBladelink"]/statBases</xpath>
 					<value>
 						<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoBusterSwordBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -472,6 +496,7 @@
 						<MeleeDodgeChance>0.14</MeleeDodgeChance>
 					</value>
 				</li>
+
 				<!-- ========== Mono Spear ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="CAT_MonoWarSpearBladelink"]/tools</xpath>
@@ -515,6 +540,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoWarSpearBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -524,12 +550,14 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoWarSpearBladelink"]/statBases</xpath>
 					<value>
 						<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoWarSpearBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -538,6 +566,7 @@
 						<MeleeDodgeChance>0.88</MeleeDodgeChance>
 					</value>
 				</li>
+
 				<!-- ========== Mono Odachi ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="CAT_MonoOdachiBladelink"]/tools</xpath>
@@ -581,6 +610,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoOdachiBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -590,6 +620,7 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoOdachiBladelink"]/statBases</xpath>
 					<value>
@@ -597,6 +628,7 @@
 						<MeleeCounterParryBonus>0.53</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoOdachiBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -605,6 +637,7 @@
 						<MeleeDodgeChance>0.19</MeleeDodgeChance>
 					</value>
 				</li>
+
 				<!-- ========== Mono Greatsword ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="CAT_MonoGreatswordBladelink"]/tools</xpath>
@@ -647,6 +680,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoGreatswordBladelink"]/statBases</xpath>
 					<value>
@@ -654,6 +688,7 @@
 						<MeleeCounterParryBonus>0.67</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoGreatswordBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -662,8 +697,9 @@
 						<MeleeDodgeChance>0.58</MeleeDodgeChance>
 					</value>
 				</li>
+
+				<!-- ========== Stellic Sword ========== -->
 				<li Class="PatchOperationReplace">
-					<!-- ========== Stellic Sword ========== -->
 					<xpath>/Defs/ThingDef[defName="CAT_MonoStellicSwordBladelink"]/tools</xpath>
 					<value>
 						<tools>
@@ -705,6 +741,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoStellicSwordBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -714,6 +751,7 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoStellicSwordBladelink"]/statBases</xpath>
 					<value>
@@ -721,6 +759,7 @@
 						<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoStellicSwordBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -729,9 +768,9 @@
 						<MeleeDodgeChance>0.58</MeleeDodgeChance>
 						<PsychicEntropyRecoveryRate>0.05</PsychicEntropyRecoveryRate>
 						<VPE_PsyfocusCostFactor MayRequire="VanillaExpanded.VPsycastsE">-.05</VPE_PsyfocusCostFactor>
-
 					</value>
 				</li>
+
 				<!-- ========== Stellic Spear ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="CAT_MonoStellicSpearBladelink"]/tools</xpath>
@@ -775,6 +814,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CAT_MonoStellicSpearBladelink"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
@@ -784,6 +824,7 @@
 						</value>
 					</nomatch>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoStellicSpearBladelink"]/statBases</xpath>
 					<value>
@@ -791,6 +832,7 @@
 						<MeleeCounterParryBonus>1.6</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_MonoStellicSpearBladelink"]/equippedStatOffsets</xpath>
 					<value>
@@ -801,6 +843,7 @@
 						<VPE_PsyfocusCostFactor MayRequire="VanillaExpanded.VPsycastsE">-.05</VPE_PsyfocusCostFactor>
 					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
