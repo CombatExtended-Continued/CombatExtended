@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_6x24mmStellicCharged</defName>
+		<label>6x24mm Stellic Charged</label>
+		<ammoTypes>
+			<Ammo_6x24mmCharged>Bullet_6x24mmChargedStellic</Ammo_6x24mmCharged>
+			<Ammo_6x24mmCharged_AP>Bullet_6x24mmCharged_StellicAP</Ammo_6x24mmCharged_AP>
+			<Ammo_6x24mmCharged_Ion>Bullet_6x24mmCharged_StellicIon</Ammo_6x24mmCharged_Ion>
+		</ammoTypes>
+		<similarTo>AmmoSet_ChargedRifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base6x24mmChargedStellicBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CAT_DeliveranceShot</damageDef>
+			<speed>151</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedStellicBullet">
+		<defName>Bullet_6x24mmChargedStellic</defName>
+		<label>6x24mm Charged bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>4</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedStellicBullet">
+		<defName>Bullet_6x24mmCharged_StellicAP</defName>
+		<label>6x24mm Charged bullet (Conc.)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>2</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>30</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedStellicBullet">
+		<defName>Bullet_6x24mmCharged_StellicIon</defName>
+		<label>6x24mm Charged bullet (Ion)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>22.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+			<empShieldBreakChance>0.2</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>CAT_PunishmentBlast_CE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>Judgment Blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/Proj_Punishment</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<damageDef>CAT_Punishment</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationBlunt>50</armorPenetrationBlunt>
+			<explosionRadius>4.9</explosionRadius>
+			<speed>120</speed>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>20</amount>
+				</li>
+			</secondaryDamage>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+	</ThingDef>
+
+</Defs>
