@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- Remove MVCF Comp -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
@@ -8,6 +9,7 @@
 			defName="CAT_MonoGlaive"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]
 		</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="CAT_MonoChargeLance" or
 			defName="CAT_MonoWhipClaw" or
@@ -18,6 +20,7 @@
 			defName="CAT_MonoOdachi" or
 			defName="CAT_MonoGreatsword"]/equippedStatOffsets</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoChargeLance" or
 			defName="CAT_MonoWhipClaw" or
@@ -31,6 +34,7 @@
 			<equippedStatOffsets />
 		</value>
 	</Operation>
+
 	<!-- ========== Mono Charge Lance ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>CAT_MonoChargeLance</defName>
@@ -66,6 +70,7 @@
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="CAT_MonoChargeLance"]/tools</xpath>
 		<value>
@@ -108,6 +113,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="CAT_MonoChargeLance"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -117,12 +123,14 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoChargeLance"]/statBases</xpath>
 		<value>
 			<MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoChargeLance"]/equippedStatOffsets</xpath>
 		<value>
@@ -131,6 +139,7 @@
 			<MeleeDodgeChance>0.25</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<!-- ========== Mono Whip ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>CAT_MonoWhipClaw</defName>
@@ -165,6 +174,7 @@
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="CAT_MonoWhipClaw"]/tools</xpath>
 		<value>
@@ -206,6 +216,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="CAT_MonoWhipClaw"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -215,12 +226,14 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoWhipClaw"]/statBases</xpath>
 		<value>
 			<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoWhipClaw"]/equippedStatOffsets</xpath>
 		<value>
@@ -229,6 +242,7 @@
 			<MeleeDodgeChance>0.80</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<!-- ========== Mono Glaive ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>CAT_MonoGlaive</defName>
@@ -261,6 +275,7 @@
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="CAT_MonoGlaive"]/tools</xpath>
 		<value>
@@ -303,6 +318,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="CAT_MonoGlaive"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -312,12 +328,14 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoGlaive"]/statBases</xpath>
 		<value>
 			<MeleeCounterParryBonus>1.71</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoGlaive"]/equippedStatOffsets</xpath>
 		<value>
@@ -326,6 +344,7 @@
 			<MeleeDodgeChance>0.80</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<!-- ========== Mono Bastard ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="CAT_MonoBastardSword"]/tools</xpath>
@@ -369,6 +388,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="CAT_MonoBastardSword"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -378,12 +398,14 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoBastardSword"]/statBases</xpath>
 		<value>
 			<MeleeCounterParryBonus>0.67</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoBastardSword"]/equippedStatOffsets</xpath>
 		<value>
@@ -392,6 +414,7 @@
 			<MeleeDodgeChance>0.53</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<!-- ========== Mono Buster ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="CAT_MonoBusterSword"]/tools</xpath>
@@ -435,6 +458,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<!-- ========== Mono Spear ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="CAT_MonoWarSpear"]/tools</xpath>
@@ -478,6 +502,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="CAT_MonoWarSpear"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -487,12 +512,14 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoWarSpear"]/statBases</xpath>
 		<value>
 			<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoWarSpear"]/equippedStatOffsets</xpath>
 		<value>
@@ -501,6 +528,7 @@
 			<MeleeDodgeChance>0.8</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<!-- ========== Mono Odachi ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="CAT_MonoOdachi"]/tools</xpath>
@@ -544,6 +572,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="CAT_MonoOdachi"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -553,6 +582,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoOdachi"]/statBases</xpath>
 		<value>
@@ -560,6 +590,7 @@
 			<MeleeCounterParryBonus>0.53</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoOdachi"]/equippedStatOffsets</xpath>
 		<value>
@@ -568,6 +599,7 @@
 			<MeleeDodgeChance>0.18</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<!-- ========== Mono Greatsword ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="CAT_MonoGreatsword"]/tools</xpath>
@@ -611,6 +643,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoGreatsword"]/statBases</xpath>
 		<value>
@@ -618,6 +651,7 @@
 			<MeleeCounterParryBonus>0.67</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_MonoGreatsword"]/equippedStatOffsets</xpath>
 		<value>
@@ -626,4 +660,5 @@
 			<MeleeDodgeChance>0.53</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 </Patch>
