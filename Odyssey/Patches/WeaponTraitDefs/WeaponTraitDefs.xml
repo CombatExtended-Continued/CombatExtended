@@ -227,6 +227,10 @@
 	</Operation>
 
 	<!-- Attachments -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[defName="EMPLauncher" or defName="SmokeLauncher" or defName="BioferriteBurner"]</xpath>
+	</Operation>
+
 	<!-- Grenade launcher -->
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]</xpath>
@@ -266,8 +270,46 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/WeaponTraitDef[defName="EMPLauncher" or defName="SmokeLauncher" or defName="IncendiaryLauncher" or defName="BioferriteBurner"]</xpath>
+	<!-- Incendiary Launcher -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/WeaponTraitDef[defName="IncendiaryLauncher"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.CustomWeaponTraitDef</value>
 	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="IncendiaryLauncher"]/abilityProps</xpath>
+		<value>
+			<underBarrelProps>
+			<underBarrelLabel>switch to incendiary launcher</underBarrelLabel>			
+				<propsUnderBarrel>
+					<magazineSize>1</magazineSize>
+					<reloadTime>3</reloadTime>
+					<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_30x64mmFuel_Incendiary</defaultProjectile>
+					<warmupTime>0.55</warmupTime>
+					<range>35</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Shot_IncendiaryLauncher</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</underBarrelProps>
+		</value>
+	</Operation>
+
+	
 
 </Patch>
