@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CombatExtended.Compatibility;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using CombatExtended.Utilities;
 
 namespace CombatExtended;
 public class CompUnderBarrel : CompRangedGizmoGiver
@@ -116,6 +110,14 @@ public class CompUnderBarrel : CompRangedGizmoGiver
 
     public bool usingUnderBarrel;
 
+    private FireMode _cachedBarrelFireMode;
+
+    private FireMode _cachedUnderbarrelFireMode;
+
+    private AimMode _cachedBarrelAimMode;
+
+    private AimMode _cachedUnderbarrelAimMode;
+
     [Compatibility.Multiplayer.SyncMethod]
     public void SwitchToUB()
     {
@@ -130,6 +132,8 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         CompAmmo.props = this.Props.propsUnderBarrel;
 
         CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
+        _cachedBarrelFireMode = CompFireModes.CurrentFireMode;
+        _cachedBarrelAimMode = CompFireModes.CurrentAimMode;
         CompFireModes.props = this.Props.propsFireModesUnderBarrel;
         if (CompAmmo.Wielder != null)
         {
@@ -146,6 +150,14 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.verbPropsUnderBarrel.burstShotCount;
         usingUnderBarrel = true;
         CompFireModes.InitAvailableFireModes();
+        if (CompFireModes.AvailableFireModes.Contains(_cachedUnderbarrelFireMode))
+        {
+            CompFireModes.CurrentFireMode = _cachedUnderbarrelFireMode;
+        }
+        if (CompFireModes.AvailableAimModes.Contains(_cachedUnderbarrelAimMode))
+        {
+            CompFireModes.CurrentAimMode = _cachedUnderbarrelAimMode;
+        }
     }
 
     [Compatibility.Multiplayer.SyncMethod]
@@ -162,6 +174,8 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         CompAmmo.props = CompPropsAmmo;
 
         CompEq.PrimaryVerb.verbProps = DefVerbProps.MemberwiseClone();
+        _cachedUnderbarrelFireMode = CompFireModes.CurrentFireMode;
+        _cachedUnderbarrelAimMode = CompFireModes.CurrentAimMode;
         CompFireModes.props = CompPropsFireModes;
         if (CompAmmo.Wielder != null)
         {
@@ -175,6 +189,14 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         CompEq.PrimaryVerb.verbProps.burstShotCount = DefVerbProps.burstShotCount;
         usingUnderBarrel = false;
         CompFireModes.InitAvailableFireModes();
+        if (CompFireModes.AvailableFireModes.Contains(_cachedBarrelFireMode))
+        {
+            CompFireModes.CurrentFireMode = _cachedBarrelFireMode;
+        }
+        if (CompFireModes.AvailableAimModes.Contains(_cachedBarrelAimMode))
+        {
+            CompFireModes.CurrentAimMode = _cachedBarrelAimMode;
+        }
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -248,6 +270,10 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         Scribe_Defs.Look(ref UnderBarrelLoadedAmmo, "UnderBarrelAmmo");
         Scribe_Values.Look(ref mainGunMagCount, "magCountMainGun");
         Scribe_Values.Look(ref UnderBarrelMagCount, "UnderBarrelMagCount");
+        Scribe_Values.Look(ref _cachedBarrelFireMode, "cachedBarrelFireMode");
+        Scribe_Values.Look(ref _cachedUnderbarrelFireMode, "cachedUnderbarrelFireMode");
+        Scribe_Values.Look(ref _cachedBarrelAimMode, "cachedBarrelAimMode");
+        Scribe_Values.Look(ref _cachedUnderbarrelAimMode, "cachedUnderbarrelAimMode");
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
             if (usingUnderBarrel)
