@@ -14,7 +14,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AV_Mech_Fluoid"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>2</ArmorRating_Blunt>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -36,6 +36,25 @@
 			<MeleeCritChance>0.22</MeleeCritChance>
 			<MeleeParryChance>0.64</MeleeParryChance>
 			<MaxHitPoints>400</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AV_LightMechanoid"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>2.0</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
