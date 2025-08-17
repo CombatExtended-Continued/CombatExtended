@@ -57,11 +57,11 @@ internal static class Harmony_DamageWorker_Apply
                 if (victim.Stuff != null)
                 {
                     StuffCategoryDef stuff = victim.Stuff.stuffProps.categories.First() ?? StuffCategoryDefOf.Stony;
-                    if(stuff == StuffCategoryDefOf.Leathery || stuff == StuffCategoryDefOf.Fabric)
+                    if (stuff == StuffCategoryDefOf.Leathery || stuff == StuffCategoryDefOf.Fabric)
                     {
                         fragmentDamage /= 10;
                     }
-                    else if(stuff == StuffCategoryDefOf.Metallic || stuff == StuffCategoryDefOf.Woody)
+                    else if (stuff == StuffCategoryDefOf.Metallic || stuff == StuffCategoryDefOf.Woody)
                     {
                         fragmentDamage /= 2;
                     }
