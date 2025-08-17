@@ -151,6 +151,16 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.verbPropsUnderBarrel.burstShotCount;
         usingUnderBarrel = true;
         CompFireModes.InitAvailableFireModes();
+
+        if (CompFireModes.AvailableFireModes.Contains(_cachedUnderbarrelFireMode))
+        {
+            CompFireModes.CurrentFireMode = _cachedUnderbarrelFireMode;
+        }
+        if (CompFireModes.AvailableAimModes.Contains(_cachedUnderbarrelAimMode))
+        {
+            CompFireModes.CurrentAimMode = _cachedUnderbarrelAimMode;
+        }
+
         ClearWeaponCaches(this.parent);
     }
 
@@ -183,6 +193,16 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         CompEq.PrimaryVerb.verbProps.burstShotCount = DefVerbProps.burstShotCount;
         usingUnderBarrel = false;
         CompFireModes.InitAvailableFireModes();
+
+        if (CompFireModes.AvailableFireModes.Contains(_cachedBarrelFireMode))
+        {
+            CompFireModes.CurrentFireMode = _cachedBarrelFireMode;
+        }
+        if (CompFireModes.AvailableAimModes.Contains(_cachedBarrelAimMode))
+        {
+            CompFireModes.CurrentAimMode = _cachedBarrelAimMode;
+        }
+
         ClearWeaponCaches(this.parent);
     }
 
