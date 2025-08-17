@@ -36,6 +36,8 @@ public class Settings : ModSettings, ISettingsCE
     private bool showExtraStats = false;
 
     private bool fragmentsFromWalls = false;
+    private bool fragmentsFromWallsReflected = false;
+    private float fragmentsFromWallsIntensity = 1.0f;
 
     private bool midBurstRetarget = true;
     private bool fasterRepeatShots = true;
@@ -140,6 +142,8 @@ public class Settings : ModSettings, ISettingsCE
     public bool EnablePawnKindAutopatcher => enablePawnKindAutopatcher;
 
     public bool FragmentsFromWalls => fragmentsFromWalls;
+    public bool FragmentsFromWallsReflected => fragmentsFromWallsReflected;
+    public float FragmentsFromWallsIntensity => fragmentsFromWallsIntensity;
 
     public bool FasterRepeatShots => fasterRepeatShots;
     public bool MidBurstRetarget => midBurstRetarget;
@@ -227,6 +231,8 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref autosetup, "autosetup", true);
 
         Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
+        Scribe_Values.Look(ref fragmentsFromWallsReflected, "fragmentsFromWallsReflected", false);
+        Scribe_Values.Look(ref fragmentsFromWallsIntensity, "fragmentsFromWallsIntensity", 1.0f);
         Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
         Scribe_Values.Look(ref midBurstRetarget, "midBurstRetarget", true);
         Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
@@ -282,6 +288,9 @@ public class Settings : ModSettings, ISettingsCE
         left.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
+        left.CheckboxLabeled("CE_Settings_FragmentsFromWallsReflected_Title".Translate(), ref fragmentsFromWallsReflected, "CE_Settings_FragmentsFromWallsReflected_Desc".Translate());
+        left.Gap();
+        fragmentsFromWallsIntensity = left.SliderLabeled("CE_Settings_FragmentsFromWallsIntensity_Title".Translate() + ": " + fragmentsFromWallsIntensity.ToString("0.0"), fragmentsFromWallsIntensity, 0.1f, 2f, tooltip: "CE_Settings_FragmentsFromWallsIntensity_Desc".Translate(), labelPct: 0.6f);
         left.GapLine();
         left.Label("CE_Settings_BipodSettings".Translate());
         left.Gap();
@@ -463,6 +472,8 @@ public class Settings : ModSettings, ISettingsCE
         midBurstRetarget = true;
         enableCIWS = true;
         fragmentsFromWalls = false;
+        fragmentsFromWallsReflected = false;
+        fragmentsFromWallsIntensity = 1.0f;
         enableArcOfFire = false;
         mergeExplosions = true;
         explosionPenMultiplier = 1.0f;
