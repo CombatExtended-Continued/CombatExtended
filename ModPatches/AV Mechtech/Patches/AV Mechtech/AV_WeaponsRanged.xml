@@ -1,232 +1,363 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>AV_Gun_ChargeBlasterHeavy</defName>
-		<statBases>
-			<Mass>35</Mass>
-			<AccuracyTouch>0.18</AccuracyTouch>
-			<AccuracyShort>0.26</AccuracyShort>
-			<AccuracyMedium>0.26</AccuracyMedium>
-			<AccuracyLong>0.18</AccuracyLong>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.1</SightsEfficiency>
-			<ShotSpread>0.01</ShotSpread>
-			<SwayFactor>1.33</SwayFactor>
-			<Bulk>13</Bulk>
-			<ToughnessRating>7.211102</ToughnessRating>
-			<Recoil>1.08</Recoil>
-			<AmmoGenPerMagOverride>0</AmmoGenPerMagOverride>
-		</statBases>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<warmupTime>0.8</warmupTime>
-			<range>75</range>
-			<burstShotCount>10</burstShotCount>
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-			<muzzleFlashScale>9</muzzleFlashScale>
-			<defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
-			<soundCast>Shot_ChargeBlaster</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>100</magazineSize>
-			<reloadTime>7.2</reloadTime>
-			<ammoSet>AmmoSet_12x64mmCharged</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aimedBurstShotCount>5</aimedBurstShotCount>
-		</FireModes>
-		<weaponTags>
-			<li>MechanoidGunHeavy</li>
-			<li>ChargeBlasterHeavyGun</li>
-			<li>CE_AI_Suppressive</li>
-			<li>NoSwitch</li>
-		</weaponTags>
-	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeBlasterHeavy"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="AV_Gun_ChargeBlasterHeavy"]</xpath>
-			<value>
-				<comps />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeBlasterHeavy"]/tools</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="AV_Gun_ChargeBlasterHeavy"]</xpath>
-			<value>
-				<tools />
-			</value>
-		</nomatch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<ThingDef ParentName="Gun_ChargeBlasterHeavyBase">
+				<defName>Gun_AVTarantula</defName>
+				<label>tarantula missile launcher</label>
+				<description>Multi barrel missile launcher built in the back of tarantula.</description>
+				<graphicData>
+					<texPath>Things/Building/Turrets/Null</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>0.0,0.0</drawSize>
+				</graphicData>
+				<tradeability>None</tradeability>
+				<destroyOnDrop>true</destroyOnDrop>
+				<techLevel>Spacer</techLevel>
+				<relicChance>0</relicChance>
+				<weaponClasses>
+					<li>RangedHeavy</li>
+				</weaponClasses>
+				<statBases>
+					<SightsEfficiency>1.2</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.68</SwayFactor>
+					<Bulk>20</Bulk>
+					<Mass>45.22</Mass>
+					<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+				</statBases>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<recoilAmount>1</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_SPG9Rocket_Frag</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<burstShotCount>2</burstShotCount>
+						<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+						<range>68</range>
+						<minRange>5</minRange>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<soundCast>RocketswarmLauncher_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+					</li>
+				</verbs>
+				<weaponTags>
+					<li>CE_AI_AOE</li>
+					<li>NoSwitch</li>
+					<li>AV_TarantulaHeavyBlaster</li>
+				</weaponTags>
+				<comps>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>4</magazineSize>
+						<reloadTime>18</reloadTime>
+						<ammoSet>AmmoSet_SPG9Rocket</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel">
+						<underBarrelLabel>switch to utility launcher</underBarrelLabel>
+						<propsUnderBarrel>
+							<magazineSize>8</magazineSize>
+							<reloadTime>18</reloadTime>
+							<ammoSet>AmmoSet_81mmMortarShell_Utilitydirectfire</ammoSet>
+						</propsUnderBarrel>
+						<verbPropsUnderBarrel>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_81mmMortarShell_UtilityDirectfire_Firefoam</defaultProjectile>
+							<warmupTime>1.5</warmupTime>
+							<range>45</range>
+							<burstShotCount>2</burstShotCount>
+							<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<soundCast>RocketswarmLauncher_Fire</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>8</muzzleFlashScale>
+						</verbPropsUnderBarrel>
+						<propsFireModesUnderBarrel>
+							<aiUseBurstMode>TRUE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</propsFireModesUnderBarrel>
+					</li>
+				</comps>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>6.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</ThingDef>
+			<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
+				<defName>MakeAV_Shell_Waste</defName>
+				<label>make 81mm (waster) mortar shells x5</label>
+				<description>Craft 5 81mm (waster) mortar shells.</description>
+				<jobString>Making 81mm (waster) mortar shells.</jobString>
+				<workAmount>10600</workAmount>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>54</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>AV_CompressedWaste</li>
+							</thingDefs>
+						</filter>
+						<count>5</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+						<li>AV_CompressedWaste</li>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<AV_Shell_Waste>5</AV_Shell_Waste>
+				</products>
+			</RecipeDef>
+			<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
+				<defName>MakeAV_Shell_Mechanoid_Deployment</defName>
+				<label>make 81mm mechanoid deployment mortar shells x5</label>
+				<description>Craft 5 81mm mechanoid deployment mortar shells.</description>
+				<jobString>Making 81mm mechanoid deployment mortar shells.</jobString>
+				<workAmount>10600</workAmount>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>150</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Chemfuel</li>
+							</thingDefs>
+						</filter>
+						<count>25</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+						<li>Chemfuel</li>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<AV_Shell_Mechanoid_Deployment>5</AV_Shell_Mechanoid_Deployment>
+				</products>
+			</RecipeDef>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeBlasterHeavy"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeBlasterHeavy"]</xpath>
 		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>10</power>
-					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-					<cooldownTime>2.44</cooldownTime>
-				</li>
-			</tools>
+			<ThingDef ParentName="BaseWeaponTurret">
+				<defName>AV_Gun_ChargeBlasterHeavy</defName>
+				<label>spuer heavy charge turret</label>
+				<description>A huge charge turret designed for use on a defense turret.</description>
+				<tradeability>None</tradeability>
+				<destroyOnDrop>true</destroyOnDrop>
+				<techLevel>Spacer</techLevel>
+				<relicChance>0</relicChance>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/AV_ChargeBlasterHeavy</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>(2.5,2.5)</drawSize>
+				</graphicData>
+				<statBases>
+					<Mass>12</Mass>
+					<SightsEfficiency>1.2</SightsEfficiency>
+					<ShotSpread>0.19</ShotSpread><!-- Manually adjusted from 0.08 due to accuracy concerns. -->
+					<SwayFactor>0.56</SwayFactor>
+					<Bulk>20.00</Bulk>
+				</statBases>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_20x105mmCharged</defaultProjectile>
+						<range>55</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Shot_ChargeBlaster</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<defaultCooldownTime>8.5</defaultCooldownTime>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>false</ensureLinkedBodyPartsGroupAlwaysUsable>
+						<ticksBetweenBurstShots>120</ticksBetweenBurstShots>
+					</li>
+				</verbs>
+			</ThingDef>
 		</value>
 	</Operation>
 
-
-	<!-- Ranged weapon patch -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>AV_Gun_ChargeLance</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.5</SightsEfficiency>
-			<ShotSpread>0.05</ShotSpread>
-			<SwayFactor>1</SwayFactor>
-			<Bulk>13.00</Bulk>
-		</statBases>
-		<Properties>
-			<recoilAmount>0.99</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_5x35mmCharged</defaultProjectile>
-			<warmupTime>1.2</warmupTime>
-			<range>70</range>
-			<burstShotCount>3</burstShotCount>
-			<ticksBetweenBurstShots>14</ticksBetweenBurstShots>
-			<soundCast>ChargeLance_Fire</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>30</magazineSize>
-			<reloadTime>3.8</reloadTime>
-			<ammoSet>AmmoSet_5x35mmCharged</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aimedBurstShotCount>2</aimedBurstShotCount>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
-			<aiAimMode>AimedShot</aiAimMode>
-			<noSingleShot>true</noSingleShot>
-		</FireModes>
-		<weaponTags>
-			<li>CE_AI_Rifle</li>
-			<li>NoSwitch</li>
-		</weaponTags>
+	<!-- Shell types -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Shell_Waste"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+				<defName>AV_Shell_Waste</defName>
+				<label>waster shell</label>
+				<description>An artillery shell containing compressed toxic waste. When fired, it will stick into the ground and pollute the area while releasing tox gas for some time before expiring.\n\nTox gas burns the lungs and eyes, causing a temporary shortness of breath and reduction in sight. Continued exposure to tox gas results in toxic buildup that can be lethal.</description>
+				<graphicData>
+					<texPath>Things/Item/Resource/Shell/AV_ShellWaster</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<Mass>5</Mass>
+					<Bulk>8.34</Bulk>
+				</statBases>
+				<ammoClass>AV_Toxic</ammoClass>
+				<detonateProjectile>AV_Bullet_Shell_Waster</detonateProjectile>
+				<comps>
+					<li Class="CompProperties_Dissolution">
+						<dissolutionAfterDays>150</dissolutionAfterDays>
+						<dissolutinFactorIndoors>0.1</dissolutinFactorIndoors>
+						<!-- instantly explodes when on 0-->
+						<dissolutionFactorRain>2</dissolutionFactorRain>
+					</li>
+					<li Class="CompProperties_DissolutionEffectPollution">
+						<cellsToPollutePerDissolution>18</cellsToPollutePerDissolution>
+						<tilePollutionPerDissolution>0.0005</tilePollutionPerDissolution>
+						<waterTilePollutionFactor>24</waterTilePollutionFactor>
+					</li>
+					<li Class="CompProperties_GasOnDamage">
+						<type>ToxGas</type>
+						<damageFactor>6</damageFactor>
+						<useStackCountAsFactor>true</useStackCountAsFactor>
+					</li>
+					<li>
+						<compClass>CompDissolutionEffect_Goodwill</compClass>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="AV_Shell_Mechanoid_Deployment"]</xpath>
 		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>10</power>
-					<cooldownTime>1.85</cooldownTime>
-					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>edge</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>20</power>
-					<cooldownTime>1.68</cooldownTime>
-					<armorPenetrationBlunt>2.1</armorPenetrationBlunt>
-					<armorPenetrationSharp>5</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-				</li>
-			</tools>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+				<defName>AV_Shell_Mechanoid_Deployment</defName>
+				<label>mechanoid deployment shell</label>
+				<description>A shell filled with a sleeping warurchin. On impact it will activate and hunt down any hostile creatures. While this makes a good surprise attack, their data processing is limited which makes them see nearly everybody as hostile.</description>
+				<graphicData>
+					<texPath>Things/Item/Resource/Shell/AV_ShellDeployment</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<Mass>5</Mass>
+					<Bulk>8.34</Bulk>
+				</statBases>
+				<ammoClass>AV_Deployment</ammoClass>
+				<detonateProjectile>AV_Bullet_Shell_Waster</detonateProjectile>
+				<tradeTags>
+					<li>AV_Mechtech</li>
+					<li>AV_Mechtech_Spacer</li>
+				</tradeTags>
+			</ThingDef>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance"]</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
 		<value>
-			<li Class="CombatExtended.ThingDefExtensionCE">
-				<MenuHidden>True</MenuHidden>
-			</li>
+			<AV_Shell_Waste>AV_Bullet_Shell_Waster</AV_Shell_Waste>
+			<AV_Shell_Mechanoid_Deployment>AV_Bullet_Mechanoid_Deployment_Shell</AV_Shell_Mechanoid_Deployment>
 		</value>
 	</Operation>
 
-	<!-- Disable for player - ranged mode -->
 	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance"]</xpath>
+		<xpath>Defs/ThingDef[defName="AV_Bullet_Shell_Waster" or defName="AV_Bullet_Mechanoid_Deployment_Shell"]</xpath>
 		<attribute>ParentName</attribute>
-		<value>BaseGun</value>
+		<value>Base81mmMortarShell</value>
 	</Operation>
 
-	<!-- Melee mode patching -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]/statBases</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Bullet_Shell_Waster" or defName="AV_Bullet_Mechanoid_Deployment_Shell"]/thingClass
+		</xpath>
 		<value>
-			<Bulk>10</Bulk>
-			<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.48</MeleeCritChance>
-				<MeleeParryChance>0.65</MeleeParryChance>
-				<MeleeDodgeChance>0.35</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="AV_Bullet_Shell_Waster"]/projectile</xpath>
 		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>Handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<chanceFactor>0.33</chanceFactor>
-					<cooldownTime>1.78</cooldownTime>
-					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>22</power>
-					<cooldownTime>1.81</cooldownTime>
-					<armorPenetrationBlunt>10.1</armorPenetrationBlunt>
-					<armorPenetrationSharp>20.4</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>edge</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>40</power>
-					<cooldownTime>1.68</cooldownTime>
-					<armorPenetrationBlunt>3.1</armorPenetrationBlunt>
-					<armorPenetrationSharp>5</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-				</li>
-			</tools>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>ToxGas</damageDef>
+				<explosionRadius>0.1</explosionRadius>
+				<flyOverhead>true</flyOverhead>
+				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+				<soundExplode>ToxicShellLanded</soundExplode>
+				<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+				<soundAmbient>MortarRound_Ambient</soundAmbient>
+				<postExplosionSpawnThingDef>AV_Shell_Toxic_Releasing</postExplosionSpawnThingDef>
+				<postExplosionSpawnThingDefWater>AV_Shell_Toxic_Releasing_Water</postExplosionSpawnThingDefWater>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Bullet_Mechanoid_Deployment_Shell"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Smoke</damageDef>
+				<explosionRadius>0.1</explosionRadius>
+				<flyOverhead>true</flyOverhead>
+				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+				<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+				<soundAmbient>MortarRound_Ambient</soundAmbient>
+				<spawnsPawnKind>Mech_WarUrchin</spawnsPawnKind>
+				<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
+				<postExplosionSpawnThingDef>AV_Shell_Deploy_Releasing</postExplosionSpawnThingDef>
+				<postExplosionSpawnThingDefWater>AV_Shell_Deploy_Releasing_Water</postExplosionSpawnThingDefWater>
+			</projectile>
 		</value>
 	</Operation>
 
