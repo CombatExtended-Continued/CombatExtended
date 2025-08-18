@@ -65,45 +65,26 @@
 		</value>
 	</Operation>
 
-	<!-- Shrapnel Shell -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="DetonateImplantedShrapnel"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
-		<value>
-			<item>Shell_HighExplosive_Dummy</item>
-		</value>
-	</Operation>
-
-	<!-- Armor Piercing Shell -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="DetonateImplantedArmorPiercing"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
-		<value>
-			<item>Shell_HighExplosive_Dummy</item>
-		</value>
-	</Operation>
-
-	<!-- Cluster Shell -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="DetonateImplantedCluster"]/comps/li[@Class="LTS_Implants.CompProperties_DetonateImplantedBomb"]/item</xpath>
-		<value>
-			<item>Shell_HighExplosive_Dummy</item>
-		</value>
-	</Operation>
-
 	<!-- Remove patched-out VFED shells. -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>
 			Defs/RecipeDef[
-			defName = "LTS_InstallImplantedShrapnel" or
-			defName = "LTS_RemoveImplantedShrapnel" or
-			defName = "LTS_InstallImplantedArmorPiercing" or
-			defName = "LTS_RemoveImplantedArmorPiercing" or
-			defName = "LTS_InstallImplantedCluster" or
-			defName = "LTS_RemoveImplantedCluster"
+			defName="LTS_InstallImplantedShrapnel" or
+			defName="LTS_RemoveImplantedShrapnel" or
+			defName="LTS_InstallImplantedArmorPiercing" or
+			defName="LTS_RemoveImplantedArmorPiercing" or
+			defName="LTS_InstallImplantedCluster" or
+			defName="LTS_RemoveImplantedCluster"
 			]|
 			Defs/HediffDef[
-			defName = "LTS_ImplantedShrapnel" or
-			defName = "LTS_ImplantedArmorPiercing" or
-			defName = "LTS_ImplantedCluster"
+			defName="LTS_ImplantedShrapnel" or
+			defName="LTS_ImplantedArmorPiercing" or
+			defName="LTS_ImplantedCluster"
+			]|
+			Defs/AbilityDef[
+			defName="DetonateImplantedCluster" or
+			defName="DetonateImplantedArmorPiercing" or
+			defName="DetonateImplantedShrapnel"
 			]
 		</xpath>	
 	</Operation>
