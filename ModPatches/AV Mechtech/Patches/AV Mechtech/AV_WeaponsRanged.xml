@@ -312,16 +312,24 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="AV_Bullet_Shell_Waster" or defName="AV_Bullet_Mechanoid_Deployment_Shell"]</xpath>
+		<xpath>Defs/ThingDef[defName="AV_Bullet_Shell_Waster"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>Base81mmMortarShell</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AV_Bullet_Shell_Waster" or defName="AV_Bullet_Mechanoid_Deployment_Shell"]/thingClass
+		<xpath>Defs/ThingDef[defName="AV_Bullet_Shell_Waster"]/thingClass
 		</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Bullet_Mechanoid_Deployment_Shell"]/thingClass
+		</xpath>
+		<value>
+			<thingClass>Projectile_SpawnsPawnZeroAge</thingClass>
 		</value>
 	</Operation>
 
@@ -342,22 +350,10 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AV_Bullet_Mechanoid_Deployment_Shell"]/projectile</xpath>
 		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>Smoke</damageDef>
-				<explosionRadius>0.1</explosionRadius>
-				<flyOverhead>true</flyOverhead>
-				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-				<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-				<soundAmbient>MortarRound_Ambient</soundAmbient>
-				<spawnsPawnKind>Mech_WarUrchin</spawnsPawnKind>
-				<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
-				<postExplosionSpawnThingDef>AV_Shell_Deploy_Releasing</postExplosionSpawnThingDef>
-				<postExplosionSpawnThingDefWater>AV_Shell_Deploy_Releasing_Water</postExplosionSpawnThingDefWater>
-			</projectile>
+			<spawnsPawnKind>Mech_WarUrchin</spawnsPawnKind>
 		</value>
 	</Operation>
 
