@@ -116,8 +116,39 @@
 		<xpath>Defs/PawnKindDef[defName="AV_Mech_Tarantula"]/abilities</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/comps/li[@Class="AV_Framework.CompProperties_MechReloadableResourceHolder"]</xpath>
+		<value>
+			<li Class="CompProperties_TurretGun">
+				<turretDef>AV_Gun_ChargeBlasterHeavy</turretDef>
+				<angleOffset>-90</angleOffset>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>PawnRenderNode_TurretGun</nodeClass>
+						<workerClass>PawnRenderNodeWorker_TurretGun</workerClass>
+						<parentTagDef>Body</parentTagDef>
+						<overrideMeshSize>(2, 2)</overrideMeshSize>
+						<baseLayer>90</baseLayer>
+						<pawnType>Any</pawnType>
+						<drawData>
+							<dataEast>
+								<offset>(-0.2, 0, 0.8)</offset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>180</rotationOffset>
+								<offset>(0.2, 0, 0.8)</offset>
+							</dataWest>
+							<dataNorth>
+								<offset>(0, 0, 0.5)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0, 0, 0.5)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</li>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
