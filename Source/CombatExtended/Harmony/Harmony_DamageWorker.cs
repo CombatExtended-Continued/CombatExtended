@@ -70,13 +70,14 @@ internal static class Harmony_DamageWorker_Apply
                     backArc = new FloatRange(dinfo.Angle - 90, dinfo.Angle + 90);
                 }
 
+                Vector3 spawnOffset = Quaternion.Euler(0, dinfo.Angle, 0) * Vector3.forward * Mathf.Max(1, Mathf.Min(victim.RotatedSize.x, victim.RotatedSize.z) / 2f);
                 if (smallFragments > 0)
                 {
                     int reflectedFrags = (int)(smallFragments * (hitPoints / maxHitPoints));
                     smallFragments -= reflectedFrags;
                     if (reflectedFrags > 0)
                     {
-                        var fr = CompFragments.FragRoutine(pos,
+                        var fr = CompFragments.FragRoutine(pos - spawnOffset,
                                                            map,
                                                            height,
                                                            dinfo.Instigator,
@@ -90,7 +91,7 @@ internal static class Harmony_DamageWorker_Apply
                         while (fr.MoveNext()) { }
                     }
                     {
-                        var fr = CompFragments.FragRoutine(pos,
+                        var fr = CompFragments.FragRoutine(pos + spawnOffset,
                                                            map,
                                                            height,
                                                            dinfo.Instigator,
@@ -107,7 +108,7 @@ internal static class Harmony_DamageWorker_Apply
                 }
                 if (largeFragments > 0)
                 {
-                    var fr = CompFragments.FragRoutine(pos,
+                    var fr = CompFragments.FragRoutine(pos + spawnOffset,
                                                        map,
                                                        height,
                                                        dinfo.Instigator,
