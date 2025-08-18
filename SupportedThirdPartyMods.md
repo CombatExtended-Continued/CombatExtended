@@ -292,6 +292,7 @@ Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
 Hive Armory |
+Hunter Mechanoid |
 Huscarl - Power Armor   |
 Hyena (Continued) |
 Idhale Race	|
