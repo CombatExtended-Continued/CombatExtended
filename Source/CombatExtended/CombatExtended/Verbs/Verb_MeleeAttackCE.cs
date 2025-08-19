@@ -595,7 +595,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
     private float GetDodgeChance(Pawn defender)
     {
-        if (defender.stances?.stunner?.Stunned == true)
+        if (defender.stances?.stunner?.Stunned ?? false)
         {
             return 0f;
         }
@@ -698,7 +698,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                 || (!pawn.RaceProps.Humanlike && (pawn.def.GetModExtension<RacePropertiesExtensionCE>()?.canParry != true))
                 || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                 || IsTargetImmobile(pawn)
-                || pawn.stances?.stunner?.Stunned == true
+                || (pawn.stances?.stunner?.Stunned ?? false)
                 || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)
         {
             return false;
