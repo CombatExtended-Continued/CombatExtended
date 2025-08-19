@@ -858,7 +858,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
         foreach (AmmoLink link in Props.ammoSet.ammoTypes)
         {
             ammoThing = null;
-            if (MagAmmoCount > 0 && selectedAmmo != link.ammo)
+            if (!EmptyMagazine && selectedAmmo != link.ammo)
             {
                 continue;
             }
