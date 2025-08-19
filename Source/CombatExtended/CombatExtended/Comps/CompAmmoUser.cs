@@ -862,9 +862,9 @@ public class CompAmmoUser : CompRangedGizmoGiver
             {
                 continue;
             }
-            for (int i = 0; i < CompInventory.ammoList.Count; i++)
+            for (int i = 0; i < ammoList.Count; i++)
             {
-                Thing thing = CompInventory.ammoList[i];
+                Thing thing = ammoList[i];
                 if (thing.def == link.ammo)
                 {
                     ammoThing = thing;
