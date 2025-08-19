@@ -46,16 +46,11 @@
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
-	<ThingDef Name="BaseVoltLaser" ParentName="BaseLaserBullet" Abstract="True">
+	<ThingDef Name="BaseVoltLaser" ParentName="BaseLaserBulletTextured" Abstract="True">
 		<label>volt beam</label>
 		<graphicData>
-			<texPath>Things/Mote/WattBeam</texPath>
-			<shaderType>MoteGlow</shaderType>
-			<graphicClass>Graphic_Single</graphicClass>
+			<color>(255,239,85)</color>
 		</graphicData>
-		<textures>
-			<li>Things/Mote/WattBeam</li>
-		</textures>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<isInstant>true</isInstant>
 			<damageDef>DV_WattDamage</damageDef>
