@@ -659,7 +659,10 @@ public class CompAmmoUser : CompRangedGizmoGiver
             }
             if (!Holder.IsColonist || !parent.def.IsAOEWeapon())
             {
-                TryPickupAmmo();
+                if (TryPickupAmmo())
+                {
+                    return;
+                }
             }
         }
         CompInventory?.SwitchToNextViableWeapon(!this.parent.def.weaponTags.Contains("NoSwitch"), !Holder.IsColonist, stopJob: false);
