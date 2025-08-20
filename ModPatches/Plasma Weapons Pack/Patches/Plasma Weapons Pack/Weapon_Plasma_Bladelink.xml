@@ -1,0 +1,1026 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaAxeBladelink" or
+					defName="CAT_PlasmaHalberdBladelink" or
+					defName="CAT_PlasmaKhopeshBladelink" or
+					defName="CAT_PlasmaScytheBladelink" or
+					defName="CAT_PlasmaTwinBladesBladelink" or
+					defName="CAT_PlasmaGreatswordBladelink" or
+					defName="CAT_PrestigePlasmaSwordBladelink" or
+					defName="CAT_PrestigePlasmaGreataxeBladelink" or
+					defName="CAT_PlasmaCleaverBladelink" or
+					defName="CAT_PlasmaSawBladelink"
+					]/equippedStatOffsets</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/DamageDef[defName="CAT_SplitDamage"]</xpath>
+				<value>
+					<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PlasmaAxeBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>CAT_Split</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>2.2</cooldownTime>
+							<armorPenetrationBlunt>9</armorPenetrationBlunt>
+							<armorPenetrationSharp>26</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.7</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>24</power>
+							<cooldownTime>2.0</cooldownTime>
+							<chanceFactor>1.66</chanceFactor>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>20</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.7</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaAxeBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaAxeBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaAxeBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>6</Bulk>
+					<MeleeCounterParryBonus>1.42</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaAxeBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaAxeBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaAxeBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.73</MeleeCritChance>
+					<MeleeParryChance>0.66</MeleeParryChance>
+					<MeleeDodgeChance>0.29</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PlasmaHalberdBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>28</power>
+							<cooldownTime>2.3</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.7</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>30</power>
+							<cooldownTime>2.8</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>30</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.7</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaHalberdBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaHalberdBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaHalberdBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<MeleeCounterParryBonus>1.71</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaHalberdBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaHalberdBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaHalberdBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.21</MeleeCritChance>
+					<MeleeParryChance>1.65</MeleeParryChance>
+					<MeleeDodgeChance>0.91</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PlasmaKhopeshBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>26</power>
+							<cooldownTime>2.0</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>12</amount>
+									<chance>0.98</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>1.2</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>26</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>12</amount>
+									<chance>0.98</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaKhopeshBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaKhopeshBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaKhopeshBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>7</Bulk>
+					<MeleeCounterParryBonus>0.90</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaKhopeshBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaKhopeshBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaKhopeshBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.55</MeleeCritChance>
+					<MeleeParryChance>0.75</MeleeParryChance>
+					<MeleeDodgeChance>0.49</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PlasmaScytheBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.4</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>CAT_PlasmaScytheHead</li>
+							</capacities>
+							<power>34</power>
+							<cooldownTime>2.8</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>30</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<chanceFactor>1.33</chanceFactor>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.63</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaScytheBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaScytheBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaScytheBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaScytheBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaScytheBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaScytheBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.73</MeleeCritChance>
+					<MeleeParryChance>0.55</MeleeParryChance>
+					<MeleeDodgeChance>0.36</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PlasmaTwinBlades"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							<armorPenetrationSharp>22</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.5</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>0.8</cooldownTime>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							<armorPenetrationSharp>28</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<chanceFactor>1.33</chanceFactor>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>8</amount>
+									<chance>0.35</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBlades"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBlades"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBlades"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>1.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBlades"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBlades"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBlades"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.23</MeleeCritChance>
+					<MeleeParryChance>1.55</MeleeParryChance>
+					<MeleeDodgeChance>0.36</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PlasmaTwinBladesBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.4</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>23</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.7</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>0.8</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>30</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<chanceFactor>1.33</chanceFactor>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>8</amount>
+									<chance>0.49</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBladesBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBladesBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBladesBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>1.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBladesBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBladesBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaTwinBladesBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.25</MeleeCritChance>
+					<MeleeParryChance>1.60</MeleeParryChance>
+					<MeleeDodgeChance>0.39</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PlasmaGreatswordBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>32</power>
+							<cooldownTime>2.0</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>26</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.7</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>32</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<armorPenetrationSharp>28</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<chanceFactor>1.33</chanceFactor>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>10</amount>
+									<chance>0.7</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaGreatswordBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaGreatswordBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaGreatswordBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>0.67</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaGreatswordBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaGreatswordBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaGreatswordBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.17</MeleeCritChance>
+					<MeleeParryChance>0.55</MeleeParryChance>
+					<MeleeDodgeChance>0.58</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PrestigePlasmaSwordBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.2</cooldownTime>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>16</armorPenetrationBlunt>
+							<armorPenetrationSharp>32</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>12</amount>
+									<chance>0.75</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							<armorPenetrationSharp>36</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<chanceFactor>1.33</chanceFactor>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>12</amount>
+									<chance>0.75</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaSwordBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaSwordBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaSwordBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>0.67</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaSwordBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaSwordBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaSwordBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.17</MeleeCritChance>
+					<MeleeParryChance>0.55</MeleeParryChance>
+					<MeleeDodgeChance>0.58</MeleeDodgeChance>
+					<PsychicEntropyRecoveryRate>0.05</PsychicEntropyRecoveryRate>
+					<VPE_PsyfocusCostFactor MayRequire="VanillaExpanded.VPsycastsE">-.05</VPE_PsyfocusCostFactor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PrestigePlasmaGreataxeBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.4</cooldownTime>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>cleave</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>54</power>
+							<cooldownTime>2.8</cooldownTime>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							<armorPenetrationSharp>48</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>15</amount>
+									<chance>0.95</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaGreataxeBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaGreataxeBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaGreataxeBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>1.42</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaGreataxeBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaGreataxeBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PrestigePlasmaGreataxeBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>1.53</MeleeCritChance>
+					<MeleeParryChance>1.06</MeleeParryChance>
+					<MeleeDodgeChance>0.29</MeleeDodgeChance>
+					<PsychicEntropyRecoveryRate>0.05</PsychicEntropyRecoveryRate>
+					<VPE_PsyfocusCostFactor MayRequire="VanillaExpanded.VPsycastsE">-.05</VPE_PsyfocusCostFactor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="CAT_PlasmaCleaverBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.4</cooldownTime>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>16</armorPenetrationBlunt>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>12</amount>
+									<chance>0.75</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>cleave</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>54</power>
+							<cooldownTime>2.8</cooldownTime>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							<armorPenetrationSharp>48</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>15</amount>
+									<chance>0.95</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaCleaverBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaCleaverBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaCleaverBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>1.42</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaCleaverBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaCleaverBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaCleaverBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>1.53</MeleeCritChance>
+					<MeleeParryChance>1.06</MeleeParryChance>
+					<MeleeDodgeChance>0.29</MeleeDodgeChance>
+				</value>
+			</li>
+			<!-- ========== PlasmaSaw ========== -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaSawBladelink"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]</xpath>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>CAT_PlasmaSawBladelink</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.25</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>0.88</SwayFactor>
+					<Bulk>13.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.92</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Sawblades_Heat</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>30</range>
+					<soundCast>Interact_PlasmaSword</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>2.05</reloadTime>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags />
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaSawBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>Sawblades</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>0.15</cooldownTime>
+							<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>5.5</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>5</amount>
+									<chance>0.75</chance>
+								</li>
+							</extraMeleeDamages>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaSawBladelink"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaSawBladelink"]</xpath>
+					<value>
+						<statBases />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaSawBladelink"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaSawBladelink"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CAT_PlasmaSawBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAT_PlasmaSawBladelink"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.11</MeleeCritChance>
+					<MeleeParryChance>0.65</MeleeParryChance>
+					<MeleeDodgeChance>0.60</MeleeDodgeChance>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

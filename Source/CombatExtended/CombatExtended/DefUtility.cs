@@ -206,9 +206,9 @@ public static class DefUtility
              * wether this apparel is a radio pack
              */
             isRadioArray[def.index] = extension.isRadioPack;
-            if (Prefs.DevMode && extension.isRadioPack)
+            if (Controller.settings.DebuggingMode && extension.isRadioPack)
             {
-                Log.Message($"{def}");
+                Log.Message($"{def} - Radio pack enabled");
             }
         }
     }

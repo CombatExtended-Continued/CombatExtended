@@ -23,6 +23,7 @@ public class LoadoutPropertiesExtension : DefModExtension
     public AmmoCategoryDef forcedAmmoCategory;
     public bool forceShieldMaterial;
     public ThingFilter shieldMaterialFilter;
+    public List<WeightedAmmoCategory> weightedAmmoCategories;
 
     private static List<ThingStuffPair> allWeaponPairs;
     private static List<ThingStuffPair> allShieldPairs;
@@ -30,7 +31,6 @@ public class LoadoutPropertiesExtension : DefModExtension
     private static List<ThingStuffPair> workingShields = new List<ThingStuffPair>();
     private static List<AttachmentLink> attachmentLinks = new List<AttachmentLink>();
     private static List<AttachmentLink> selectedAttachments = new List<AttachmentLink>();
-
     #endregion
 
     #region Methods
@@ -226,17 +226,45 @@ public class LoadoutPropertiesExtension : DefModExtension
             compAmmo.ResetAmmoCount();
             return;
         }
+
         // Determine ammo
-        IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && (a.ammo.generateAllowChance > 0f || a.ammo.ammoClass == this.forcedAmmoCategory)).Select(a => a.ammo); //Running out of options. alwaysHaulable does exist in xml.
+        IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes
+            .Where(a => a.ammo != null &&
+            a.ammo.alwaysHaulable &&
+            !a.ammo.menuHidden &&
+            (
+                a.ammo.generateAllowChance > 0f ||
+                a.ammo.ammoClass == this.forcedAmmoCategory ||
+                (weightedAmmoCategories != null &&
+                 weightedAmmoCategories.Any(x => x.ammoCategory == a.ammo.ammoClass))
+            ))
+            .Select(a => a.ammo);
 
-        AmmoDef ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generateAllowChance);
+        AmmoDef ammoToLoad = null;
 
-        if (this.forcedAmmoCategory != null)
+        // First choice: try to load with forcedAmmoCategory
+        if (forcedAmmoCategory != null)
         {
-            if (availableAmmo.Any(x => x.ammoClass == this.forcedAmmoCategory))
+            ammoToLoad = availableAmmo.FirstOrDefault(a => a.ammoClass == forcedAmmoCategory);
+        }
+
+        // Second choice: try to load with something in the weightedAmmoCategories
+        if (ammoToLoad == null && !weightedAmmoCategories.NullOrEmpty())
+        {
+            IEnumerable<WeightedAmmoCategory> weightedAmmo = weightedAmmoCategories
+                .Where(w => availableAmmo.Any(a => a.ammoClass == w.ammoCategory));
+
+            if (!weightedAmmo.EnumerableNullOrEmpty())
             {
-                ammoToLoad = availableAmmo.Where(x => x.ammoClass == this.forcedAmmoCategory).FirstOrFallback();
+                WeightedAmmoCategory selection = weightedAmmo.RandomElementByWeight(w => w.chance);
+                ammoToLoad = availableAmmo.FirstOrDefault(a => a.ammoClass == selection.ammoCategory);
             }
+        }
+
+        // Third choice: pick a possible ammo based on generateAllowChance
+        if (ammoToLoad == null)
+        {
+            ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generateAllowChance); // Don't have to worry about generateAllowChance < 0, only way one could be in the IEnumerable is if it matched a weightedAmmoCategories, and thus would have already been picked
         }
 
         compAmmo.ResetAmmoCount(ammoToLoad);

@@ -1536,7 +1536,9 @@ public abstract class ProjectileCE : ThingWithComps
                     ignoredThings,
                     postExplosionSpawnThingDefWater: def.projectile.postExplosionSpawnThingDefWater,
                     screenShakeFactor: def.projectile.screenShakeFactor,
-                    height: explodePos.y);
+                    height: explodePos.y,
+                    preExplosionSpawnSingleThingDef: Props.preExplosionSpawnSingleThingDef,
+                    postExplosionSpawnSingleThingDef: Props.postExplosionSpawnSingleThingDef);
 
                 dangerAmount = def.projectile.damageAmountBase;
 

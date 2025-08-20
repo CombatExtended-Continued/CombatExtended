@@ -68,7 +68,9 @@ public class CompExplosiveCE : ThingComp
                 ignoredThings,
                 screenShakeFactor: Props.screenShakeFactor,
                 height: pos.y,
-                scaleFactor: scaleFactor);
+                scaleFactor: scaleFactor,
+                preExplosionSpawnSingleThingDef: Props.preExplosionSpawnSingleThingDef,
+                postExplosionSpawnSingleThingDef: Props.postExplosionSpawnSingleThingDef);
         }
     }
 }

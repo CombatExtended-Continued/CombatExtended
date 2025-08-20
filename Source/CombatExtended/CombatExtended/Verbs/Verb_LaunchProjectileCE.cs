@@ -1337,8 +1337,7 @@ public class Verb_LaunchProjectileCE : Verb
             return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
         }
         CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
-        float num = cellRect.ClosestDistSquaredTo(root);
-        if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
+        if (OutOfRange(root, targ, cellRect))
         {
             resultingLine = new ShootLine(root, targetPos.ToIntVec3());
             return false;

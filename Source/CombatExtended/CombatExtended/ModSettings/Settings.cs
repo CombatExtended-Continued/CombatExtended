@@ -31,6 +31,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool enableCIWS = false;
 
     private bool showExtraTooltips = false;
+    private bool detailedMeleeTooltip = false;
 
     private bool showExtraStats = false;
 
@@ -63,6 +64,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool PartialStat => partialstats;
     public bool EnableExtraEffects => enableExtraEffects;
     public bool ShowExtraTooltips => showExtraTooltips;
+    public bool DetailedMeleeTooltip => detailedMeleeTooltip;
 
     public bool ShowExtraStats => showExtraStats;
     public bool EnableCIWS => enableCIWS;
@@ -180,6 +182,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref partialstats, "PartialArmor", true);
         Scribe_Values.Look(ref enableExtraEffects, "enableExtraEffects", true);
         Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
+        Scribe_Values.Look(ref detailedMeleeTooltip, "detailedMeleeTooltip", false);
         Scribe_Values.Look(ref enableArcOfFire, "enableArcOfFire", false);
 
         Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
@@ -354,6 +357,7 @@ public class Settings : ModSettings, ISettingsCE
         list.Gap();
         list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
+        list.CheckboxLabeled("CE_Settings_DetailedMeleeTooltip_Title".Translate(), ref detailedMeleeTooltip, "CE_Settings_DetailedMeleeTooltip_Desc".Translate());
         list.Gap();
         list.GapLine();
         list.Gap();
@@ -495,7 +499,7 @@ public class Settings : ModSettings, ISettingsCE
         // Extra Tooltips
         showExtraTooltips = false;
         showExtraStats = false;
-
+        detailedMeleeTooltip = false;
         // AutoPatcher Settings
         debugAutopatcherLogger = false;
         enableApparelAutopatcher = false;
