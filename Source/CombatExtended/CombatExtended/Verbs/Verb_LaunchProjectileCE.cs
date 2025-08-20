@@ -639,6 +639,8 @@ public class Verb_LaunchProjectileCE : Verb
     {
         ShiftVecReport report = new ShiftVecReport();
 
+        bool ignoreMalusesFlag = EquipmentSource != null && EquipmentSource.TryGetComp(out CompUniqueWeapon comp) && comp.IgnoreAccuracyMaluses;
+
         report.target = target;
         report.aimingAccuracy = AimingAccuracy;
         report.sightsEfficiency = SightsEfficiency;
@@ -652,7 +654,7 @@ public class Verb_LaunchProjectileCE : Verb
         report.maxRange = EffectiveRange;
         report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
-        if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
+        if (!ignoreMalusesFlag && (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map)))  //Change to more accurate algorithm?
         {
             report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
         }
@@ -666,7 +668,7 @@ public class Verb_LaunchProjectileCE : Verb
 
         GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity, out roofed);
         report.cover = cover;
-        report.smokeDensity = smokeDensity;
+        report.smokeDensity = ignoreMalusesFlag ? 0 : smokeDensity;
         report.roofed = roofed;
         return report;
     }
@@ -1133,6 +1135,21 @@ public class Verb_LaunchProjectileCE : Verb
             projectile.intendedTarget = currentTarget;
             projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
             projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+
+            if (EquipmentSource.TryGetComp(out CompUniqueWeapon comp))
+            {
+                foreach (WeaponTraitDef trait in comp.TraitsListForReading)
+                {
+                    if (trait.damageDefOverride != null)
+                    {
+                        projectile.damageDefOverride = trait.damageDefOverride;
+                    }
+                    if (!trait.extraDamages.NullOrEmpty())
+                    {
+                        projectile.extraDamages.AddRange(trait.extraDamages);
+                    }
+                }
+            }
 
             if (instant)
             {
