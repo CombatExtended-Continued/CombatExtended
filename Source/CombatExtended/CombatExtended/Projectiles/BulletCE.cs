@@ -113,6 +113,7 @@ public class BulletCE : ProjectileCE
                         hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
                     }
                 }
+<<<<<<< HEAD
 
                 foreach (ExtraDamage damage in base.ExtraDamages)
                 {
@@ -123,6 +124,8 @@ public class BulletCE : ProjectileCE
                         hitThing.TakeDamage(extraDinfo).AssociateWithLog(logEntry);
                     }
                 }
+=======
+>>>>>>> parent of ac864def5 (Merge pull request #6 from CombatExtended-Continued/Odyssey)
             }
             catch (Exception e)
             {

@@ -298,7 +298,6 @@ def main(argv=sys.argv):
         args.extend([f"-refout:{options.refout}"])
     if options.debug:
         args.append('-define:DEBUG')
-        args.append('-debug:embedded')
     if verbose > 2:
         print(libraries)
     if verbose > 6:

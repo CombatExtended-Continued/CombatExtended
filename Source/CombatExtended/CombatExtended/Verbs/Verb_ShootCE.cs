@@ -314,7 +314,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
 
     public override void RecalculateWarmupTicks()
     {
-        if (!Controller.settings.FasterRepeatShots || compAmmo?.HasMagazine == false)
+        if (!Controller.settings.FasterRepeatShots)
         {
             return;
         }

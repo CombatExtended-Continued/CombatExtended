@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 namespace CombatExtended;
-
+[StaticConstructorOnStartup]
 public class AmmoGeneralizer
 {
-    public static void GeneralizeAmmo()
+    static AmmoGeneralizer()
     {
         /*
          * Generic ammosetdefs need projectiles for the code to work, but what the projectiles are doesn't matter

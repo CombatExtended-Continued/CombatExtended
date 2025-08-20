@@ -258,7 +258,7 @@
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="AM_Gun_HeavyLaser"]/comps/li[@Class="VEF.Weapons.CompProperties_LaserCapacitor"]</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Gun_HeavyLaser"]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
 				</li>
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -408,28 +408,21 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AM_Bullet_Tesla"]/projectile/damageAmountBase</xpath>
 					<value>
-						<damageAmountBase>1</damageAmountBase>
+						<damageAmountBase>10</damageAmountBase>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AM_Bullet_Tesla"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/damageDef</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Bullet_Tesla"]/modExtensions/li[@Class="VFEMech.TeslaChainingProps"]/damageDef</xpath>
 					<value>
-						<damageDef>Smoke</damageDef>
+						<damageDef>EMP</damageDef>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AM_Bullet_Tesla"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/maxLifetime</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Bullet_Tesla"]/modExtensions/li[@Class="VFEMech.TeslaChainingProps"]/maxLifetime</xpath>
 					<value>
-						<maxLifetime>15</maxLifetime>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AM_Bullet_Tesla"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/maxBounceCount</xpath>
-					<value>
-						<maxBounceCount>2</maxBounceCount>
+						<maxLifetime>6</maxLifetime>
 					</value>
 				</li>
 

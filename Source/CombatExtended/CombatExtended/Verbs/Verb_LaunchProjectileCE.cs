@@ -643,8 +643,6 @@ public class Verb_LaunchProjectileCE : Verb
     {
         ShiftVecReport report = new ShiftVecReport();
 
-        bool ignoreMalusesFlag = EquipmentSource != null && EquipmentSource.TryGetComp(out CompUniqueWeapon comp) && comp.IgnoreAccuracyMaluses;
-
         report.target = target;
         report.aimingAccuracy = AimingAccuracy;
         report.sightsEfficiency = SightsEfficiency;
@@ -658,7 +656,7 @@ public class Verb_LaunchProjectileCE : Verb
         report.maxRange = EffectiveRange;
         report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
-        if (!ignoreMalusesFlag && (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map)))  //Change to more accurate algorithm?
+        if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
         {
             report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
         }
@@ -672,7 +670,7 @@ public class Verb_LaunchProjectileCE : Verb
 
         GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity, out roofed);
         report.cover = cover;
-        report.smokeDensity = ignoreMalusesFlag ? 0 : smokeDensity;
+        report.smokeDensity = smokeDensity;
         report.roofed = roofed;
         return report;
     }
@@ -1140,21 +1138,6 @@ public class Verb_LaunchProjectileCE : Verb
             projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
             projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
 
-            if (EquipmentSource.TryGetComp(out CompUniqueWeapon comp))
-            {
-                foreach (WeaponTraitDef trait in comp.TraitsListForReading)
-                {
-                    if (trait.damageDefOverride != null)
-                    {
-                        projectile.damageDefOverride = trait.damageDefOverride;
-                    }
-                    if (!trait.extraDamages.NullOrEmpty())
-                    {
-                        projectile.extraDamages.AddRange(trait.extraDamages);
-                    }
-                }
-            }
-
             if (instant)
             {
                 var shotHeight = ShotHeight;
@@ -1337,7 +1320,8 @@ public class Verb_LaunchProjectileCE : Verb
             return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
         }
         CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
-        if (OutOfRange(root, targ, cellRect))
+        float num = cellRect.ClosestDistSquaredTo(root);
+        if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
         {
             resultingLine = new ShootLine(root, targetPos.ToIntVec3());
             return false;

@@ -460,42 +460,6 @@
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GD_ModularRifle"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_UnderBarrel">
-				<propsUnderBarrel>
-					<magazineSize>1</magazineSize>
-					<reloadTime>3</reloadTime>
-					<ammoSet>AmmoSet_25x40mmGrenade</ammoSet>
-				</propsUnderBarrel>
-				<verbPropsUnderBarrel>
-					<recoilAmount>2.51</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_25mmGDMicromissile_HEDP</defaultProjectile>
-					<warmupTime>0.55</warmupTime>
-					<range>51</range>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<soundCast>Shot_IncendiaryLauncher</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>12</muzzleFlashScale>
-					<burstShotCount>1</burstShotCount>
-				</verbPropsUnderBarrel>
-				<propsFireModesUnderBarrel>
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
-					<aiAimMode>AimedShot</aiAimMode>
-					<aimedBurstShotCount>1</aimedBurstShotCount>
-				</propsFireModesUnderBarrel>
-			</li>
-			<li>
-				<compClass>CompEquippable</compClass>
-			</li>
-		</value>
-	</Operation>
 
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GD_ModularRifle"]/weaponTags</xpath>

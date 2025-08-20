@@ -3,34 +3,12 @@
 
 	<!-- === Remove Flashbang / Smoke as they're redundant === -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName = "VWE_Projectile_FlashGrenade" or defName = "VWE_Projectile_SmokeGrenade"]
+		<xpath>
+			Defs/ThingDef[
+			defName = "VWE_Projectile_FlashGrenade" or
+			defName = "VWE_Projectile_SmokeGrenade" or
+			defName = "VWE_FlashGrenade" or
+			defName = "VWE_SmokeGrenade"]
 		</xpath>
 	</Operation>
-
-	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="VWE_FlashGrenade" or defName="VWE_SmokeGrenade"]</xpath>
-		<attribute>ParentName</attribute>
-		<value>ResourceBase</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="VWE_FlashGrenade" or defName="VWE_SmokeGrenade"]/recipeMaker</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="VWE_FlashGrenade" or defName="VWE_SmokeGrenade"]/weaponTags</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="VWE_FlashGrenade" or defName="VWE_SmokeGrenade"]/verbs</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VWE_FlashGrenade" or defName="VWE_SmokeGrenade"]</xpath>
-		<value>
-			<tradeability>None</tradeability>
-			<destroyOnDrop>True</destroyOnDrop>
-		</value>
-	</Operation>
-
 </Patch>

@@ -25,7 +25,8 @@ public static class SuppressionUtility
 
     public static bool TryRequestHelp(Pawn pawn)
     {
-        if (pawn == null)
+        //TODO: 1.5
+        if (pawn != null)
         {
             return false;
         }
@@ -34,10 +35,6 @@ public static class SuppressionUtility
         ThingWithComps grenade = null;
         foreach (Pawn other in pawn.Position.PawnsInRange(map, 8))
         {
-            if (other == null)
-            {
-                continue;
-            }
             if (other.Faction != pawn.Faction)
             {
                 continue;

@@ -214,12 +214,7 @@ public class JobDriver_Hunt : JobDriver
             // If the hunter's shooting skill is below skillThreshold, hunter gets closer to not miss their shots
             // I assumed level 10 is a good enough shooter to stay at maximum distance and don't miss
             const float skillThreshold = 5f;
-            float skillFactor = 0.8f;
-            var shootingSkill = hunter?.skills?.GetSkill(SkillDefOf.Shooting);
-            if (shootingSkill != null)
-            {
-                skillFactor = Mathf.Clamp01(shootingSkill.Level / skillThreshold);
-            }
+            float skillFactor = Mathf.Clamp01(hunter.skills.GetSkill(SkillDefOf.Shooting).Level / skillThreshold);
 
             float weaponRange = curJob.verbToUse.verbProps.range;
 

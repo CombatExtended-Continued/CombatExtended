@@ -2,24 +2,13 @@
 <Patch>
 
 	<!-- === Mod Extensions === -->
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="EW_Gun_EltexPistol"]/modExtensions/li[@Class="AthenaFramework.DamageModifierExtension"]</xpath>
-		<nomatch Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[
-				defName="EW_Gun_EltexPistol" or
-				defName="EW_Gun_EltexSMG" or
-				defName="EW_Gun_EltexRifle" or
-				defName="EW_Gun_EltexLance"
-				]/modExtensions/li[@Class="EltexWeaponry.ModExtension_PsychicDamage"]</xpath>
-		</nomatch>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[
-				defName="EW_Gun_EltexPistol" or
-				defName="EW_Gun_EltexSMG" or
-				defName="EW_Gun_EltexRifle" or
-				defName="EW_Gun_EltexLance"
-				]/modExtensions/li[@Class="AthenaFramework.DamageModifierExtension"]</xpath>
-		</match>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="EW_Gun_EltexPistol" or
+			defName="EW_Gun_EltexSMG" or
+			defName="EW_Gun_EltexRifle" or
+			defName="EW_Gun_EltexLance"
+			]/modExtensions/li[@Class="AthenaFramework.DamageModifierExtension"]</xpath>
 	</Operation>
 	<!-- === Tools === -->
 	<Operation Class="PatchOperationReplace">

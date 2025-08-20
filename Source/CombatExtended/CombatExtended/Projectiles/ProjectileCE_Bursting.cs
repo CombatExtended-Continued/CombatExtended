@@ -29,7 +29,6 @@ class ProjectileCE_Bursting : ProjectileCE
         {
             armingDelay = props.armingDelay;
             this.castShadow = props.castShadow;
-            this.GravityPerWidth = props.GravityPerWidth;
         }
         if (distance > 0)
         {

@@ -11,9 +11,6 @@ using Verse;
 namespace CombatExtended;
 public class PawnRenderNode_Apparel : Verse.PawnRenderNode_Apparel
 {
-    public PawnRenderNode_Apparel(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree) : base(pawn, props, tree)
-    {
-    }
     public PawnRenderNode_Apparel(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree, Apparel apparel) : base(pawn, props, tree, apparel)
     {
     }

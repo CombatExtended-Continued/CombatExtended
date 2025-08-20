@@ -15,7 +15,7 @@ public class VanillaPsycastExpanded : IPatch
     const string ModName = "Vanilla Psycasts Expanded";
     public bool CanInstall()
     {
-        Log.Message("Combat Extended :: Vanilla Psycasts Expanded loaded: " + ModLister.HasActiveModWithName(ModName));
+        Log.Message("Vanilla Psycasts Expanded loaded: " + ModLister.HasActiveModWithName(ModName));
         return ModLister.HasActiveModWithName(ModName);
     }
 
