@@ -1225,7 +1225,11 @@ public abstract class ProjectileCE : ThingWithComps
         ticksToImpact--;
         FlightTicks++;
         Vector3 nextPosition = MoveForward();
-        _drawRotation = Quaternion.LookRotation(nextPosition - ExactPosition);
+        
+        if (!def.projectile.flyOverhead)
+        {
+            _drawRotation = Quaternion.LookRotation(nextPosition - ExactPosition);
+        }
 
         if (!nextPosition.InBounds(Map))
         {
