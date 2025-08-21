@@ -19,7 +19,11 @@ internal static class Harmony_DamageWorker_Apply
         {
             return true;
         }
-        if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null && dinfo.Def != DamageDefOf.Mining)
+        if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null && dinfo.Def != DamageDefOf.Mining 
+            && dinfo.Def != DamageDefOf.Crush 
+            && dinfo.Def != DamageDefOf.Flame
+            && dinfo.Def != CE_DamageDefOf.Beam
+            && dinfo.Def != CE_DamageDefOf.BeamBypassShields)
         {
             if (victim.def.category == ThingCategory.Building)
             {
