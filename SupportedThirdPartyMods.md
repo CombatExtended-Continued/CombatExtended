@@ -643,6 +643,7 @@ VFE - Mechanoids : Drones |
 VGP Fabrics |
 VGP Garden Drinks    |
 Victorian Era Apparels!  |
+Volt Weaponry  |
 VRE Android Factions  |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
