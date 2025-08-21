@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo80mmRocket</defName>
+		<label>80mm S8 Rocket</label>
+		<parent>AmmoRockets</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_80mmRocket_direct</defName>
+		<label>80mm S8 Rocket</label>
+		<ammoTypes>
+			<Ammo_80mmRocket_HE>Bullet_80mmRocket_HE</Ammo_80mmRocket_HE>
+			<Ammo_80mmRocket_HEAT>Bullet_80mmRocket_HEAT</Ammo_80mmRocket_HEAT>
+			<Ammo_80mmRocket_Thermobaric>Bullet_80mmRocket_Thermobaric</Ammo_80mmRocket_Thermobaric>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="80mmRocketBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>An unguided rocket launched from 80mm tubes.</description>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo80mmRocket</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<cookOffFlashScale>25</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="80mmRocketBase">
+		<defName>Ammo_80mmRocket_HE</defName>
+		<label>80mm S8 rocket (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rocket/80mmS8/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>17</Mass>
+			<Bulk>22.62</Bulk>
+		</statBases>
+		<ammoClass>RocketHE</ammoClass>
+		<detonateProjectile>Bullet_80mmRocket_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="80mmRocketBase">
+		<defName>Ammo_80mmRocket_HEAT</defName>
+		<label>80mm S8 rocket (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rocket/80mmS8/HEAT</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>11.3</Mass>
+			<Bulk>23.68</Bulk>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<detonateProjectile>Bullet_80mmRocket_HEAT</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="80mmRocketBase">
+		<defName>Ammo_80mmRocket_Thermobaric</defName>
+		<label>80mm S8 rocket (Thermobaric)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rocket/80mmS8/Thermobaric</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>13.4</Mass>
+			<Bulk>25.34</Bulk>
+		</statBases>
+		<ammoClass>RocketThermobaric</ammoClass>
+		<detonateProjectile>Bullet_80mmRocket_Thermobaric</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base80mmRocket" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>130</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>10</emissionsPerTick>
+						<flecksPerEmission>4</flecksPerEmission>
+						<scale>0.7</scale>
+						<cutoffTickRange>25~30</cutoffTickRange>
+						<originOffset>0.4</originOffset>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>4</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>2</flecksPerEmission>
+						<scale>0.5</scale>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base80mmRocket">
+		<defName>Bullet_80mmRocket_HE</defName>
+		<label>80mm S8 Rocket (HE)</label>
+		<graphicData>
+			<texPath>Things/Projectiles/Rocket/S8/HE</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>123</speed>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>200</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>14</Fragment_Large>
+					<Fragment_Small>26</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base80mmRocket">
+		<defName>Bullet_80mmRocket_HEAT</defName>
+		<label>80mm S8 Rocket (HEAT)</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectiles/Rocket/S8/HEAT</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>222</damageAmountBase>
+			<armorPenetrationSharp>420</armorPenetrationSharp>
+			<armorPenetrationBlunt>47.913</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>108</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.6</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>8</Fragment_Large>
+					<Fragment_Small>10</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base80mmRocket">
+		<defName>Bullet_80mmRocket_Thermobaric</defName>
+		<label>80mm S8 Rocket (Thermobaric)</label>
+		<graphicData>
+			<texPath>Things/Projectiles/Rocket/S8/Thermobaric</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>73</speed>
+			<damageDef>Thermobaric</damageDef>
+			<damageAmountBase>309</damageAmountBase>
+			<explosionRadius>5.5</explosionRadius>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_80mmRocket_HE</defName>
+		<label>make 80mm S8 (HE) rockets x5</label>
+		<description>Craft 5 80mm S8 (HE) rockets.</description>
+		<jobString>Making 80mm S8 (HE) rockets.</jobString>
+		<workAmount>19500</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>80</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>27</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_80mmRocket_HE>5</Ammo_80mmRocket_HE>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_80mmRocket_HEAT</defName>
+		<label>make 80mm S8 (HEAT) rockets x5</label>
+		<description>Craft 5 80mm S8 (HEAT) rockets.</description>
+		<jobString>Making 80mm S8 (HEAT) rockets.</jobString>
+		<workAmount>12900</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>80</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_80mmRocket_HEAT>5</Ammo_80mmRocket_HEAT>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_80mmRocket_Thermobaric</defName>
+		<label>make 80mm S8 (Thermobaric) rockets x5</label>
+		<description>Craft 5 80mm S8 (Thermobaric) rockets.</description>
+		<jobString>Making 80mm S8 (Thermobaric) rockets.</jobString>
+		<workAmount>21000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>80</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>36</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_80mmRocket_Thermobaric>5</Ammo_80mmRocket_Thermobaric>
+		</products>
+	</RecipeDef>
+
+</Defs>
