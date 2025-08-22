@@ -595,6 +595,10 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
     private float GetDodgeChance(Pawn defender)
     {
+        if (defender.stances?.stunner?.Stunned ?? false)
+        {
+            return 0f;
+        }
         float chance = defender.GetStatValue(StatDefOf.MeleeDodgeChance);
 
         if (!ModsConfig.IdeologyActive)
@@ -654,7 +658,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             var pawn = target.Thing as Pawn;
 
             float equivalentTargetWeight = pawn.GetStatValue(StatDefOf.Mass);
-            RacePropertiesExtensionCE bodyShape = pawn.def.GetModExtension<RacePropertiesExtensionCE>();
+            RacePropertiesExtensionCE bodyShape = pawn?.def.GetModExtension<RacePropertiesExtensionCE>();
             if (bodyShape != null)
             {
                 equivalentTargetWeight *= (bodyShape.bodyShape.width / bodyShape.bodyShape.height);
@@ -694,6 +698,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                 || (!pawn.RaceProps.Humanlike && (pawn.def.GetModExtension<RacePropertiesExtensionCE>()?.canParry != true))
                 || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                 || IsTargetImmobile(pawn)
+                || (pawn.stances?.stunner?.Stunned ?? false)
                 || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)
         {
             return false;
