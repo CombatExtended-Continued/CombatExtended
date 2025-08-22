@@ -16,7 +16,4 @@ public class CE_DamageDefOf
     public static DamageDef Bomb;
     public static DamageDef EMP;
     public static DamageDef Demolish;
-    public static DamageDef Beam;
-    [MayRequireOdyssey]
-    public static DamageDef BeamBypassShields;
 }
