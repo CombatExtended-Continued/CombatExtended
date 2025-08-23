@@ -705,6 +705,11 @@ public class CompAmmoUser : CompRangedGizmoGiver
             if (CompInventory.CanFitInInventory(thing, out int count))
             {
                 Thing ammo = thing;
+                int maxAmmoToPickup = (MagSizeOverride > 0) ? MagSizeOverride * 4 : MagSize * 4;
+                if (count > maxAmmoToPickup)
+                {
+                    count = maxAmmoToPickup;
+                }
                 if (!ammo.Position.AdjacentTo8WayOrInside(Holder))
                 {
                     Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, ammo);
