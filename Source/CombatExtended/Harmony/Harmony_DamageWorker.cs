@@ -19,14 +19,10 @@ internal static class Harmony_DamageWorker_Apply
         {
             return true;
         }
-        if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null && dinfo.Def != DamageDefOf.Mining)
+        if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null)
         {
-            if (victim.def.category == ThingCategory.Building)
+            if (victim.def.category == ThingCategory.Building && (dinfo.Def.GetModExtension<DamageDefExtensionCE>()?.canCauseWallFragmentation ?? true))
             {
-                if (dinfo.Def == CE_DamageDefOf.Demolish)
-                {
-                    return true;
-                }
                 bool isSharp = dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp;
                 Vector3 pos;
                 pos = victim.Position.ToVector3Shifted();
