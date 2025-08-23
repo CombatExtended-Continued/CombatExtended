@@ -28,8 +28,7 @@ internal static class Harmony_DamageWorker_Apply
                     return true;
                 }
                 bool isSharp = dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                Vector3 pos;
-                pos = victim.Position.ToVector3Shifted();
+                Vector3 pos = victim.Position.ToVector3Shifted();
                 float num = dinfo.Amount;
 
                 num *= dinfo.Def.buildingDamageFactor;
@@ -43,11 +42,7 @@ internal static class Harmony_DamageWorker_Apply
                 }
                 float hitPoints = victim.HitPoints;
                 float maxHitPoints = victim.MaxHitPoints;
-                bool max = false;
-                if (num > hitPoints)
-                {
-                    max = true;
-                }
+                bool max = num > hitPoints;
                 int fragmentDamage = (int)(Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num));
                 if (isSharp)
                 {
