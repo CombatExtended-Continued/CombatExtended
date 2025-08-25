@@ -24,8 +24,7 @@ internal static class Harmony_DamageWorker_Apply
             if (victim.def.category == ThingCategory.Building && (dinfo.Def.GetModExtension<DamageDefExtensionCE>()?.canCauseWallFragmentation ?? true))
             {
                 bool isSharp = dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                Vector3 pos;
-                pos = victim.Position.ToVector3Shifted();
+                Vector3 pos = victim.Position.ToVector3Shifted();
                 float num = dinfo.Amount;
 
                 num *= dinfo.Def.buildingDamageFactor;
@@ -39,11 +38,7 @@ internal static class Harmony_DamageWorker_Apply
                 }
                 float hitPoints = victim.HitPoints;
                 float maxHitPoints = victim.MaxHitPoints;
-                bool max = false;
-                if (num > hitPoints)
-                {
-                    max = true;
-                }
+                bool max = num > hitPoints;
                 int fragmentDamage = (int)(Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num) * Controller.settings.FragmentsFromWallsIntensity);
                 if (isSharp)
                 {
