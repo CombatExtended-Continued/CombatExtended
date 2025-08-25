@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- === Quickdraw === -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="USH_UpgradeSpeed"]/comps/li[@Class="USH_GE.CompProperties_OverclockUpgrade"]/statOffsets</xpath>
+	<!-- === Spotting === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="USH_UpgradeRange"]/comps/li[@Class="USH_GE.CompProperties_OverclockUpgrade"]/statOffsets</xpath>
 		<value>
-			<statOffsets>
-				<AimingDelayFactor>-0.1</AimingDelayFactor>
-				<ReloadSpeed>0.15</ReloadSpeed>
-			</statOffsets>
+			<SightsEfficiency>0.2</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<!-- === Power === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_UpgradeDamage"]/comps/li[@Class="USH_GE.CompProperties_OverclockUpgrade"]/statOffsets/RangedWeapon_DamageMultiplier</xpath>
+		<value>
+			<RangedWeapon_DamageMultiplier>0.20</RangedWeapon_DamageMultiplier>
+		</value>
+	</Operation>
+
+	<!-- === Piercing === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_UpgradeArmor"]/comps/li[@Class="USH_GE.CompProperties_OverclockUpgrade"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>0.3</RangedWeapon_ArmorPenetrationMultiplier>
 		</value>
 	</Operation>
 
