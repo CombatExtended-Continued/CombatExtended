@@ -19,14 +19,10 @@ internal static class Harmony_DamageWorker_Apply
         {
             return true;
         }
-        if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null && dinfo.Def != DamageDefOf.Mining)
+        if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null)
         {
-            if (victim.def.category == ThingCategory.Building)
+            if (victim.def.category == ThingCategory.Building && (dinfo.Def.GetModExtension<DamageDefExtensionCE>()?.canCauseWallFragmentation ?? true))
             {
-                if (dinfo.Def == CE_DamageDefOf.Demolish)
-                {
-                    return true;
-                }
                 bool isSharp = dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp;
                 Vector3 pos = victim.Position.ToVector3Shifted();
                 float num = dinfo.Amount;
@@ -43,10 +39,23 @@ internal static class Harmony_DamageWorker_Apply
                 float hitPoints = victim.HitPoints;
                 float maxHitPoints = victim.MaxHitPoints;
                 bool max = num > hitPoints;
-                int fragmentDamage = (int)(Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num));
+                int fragmentDamage = (int)(Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num) * Controller.settings.FragmentsFromWallsIntensity);
                 if (isSharp)
                 {
                     fragmentDamage /= 2;
+                }
+
+                if (victim.Stuff != null)
+                {
+                    StuffCategoryDef stuff = victim.Stuff.stuffProps.categories.First() ?? StuffCategoryDefOf.Stony;
+                    if (stuff == StuffCategoryDefOf.Leathery || stuff == StuffCategoryDefOf.Fabric)
+                    {
+                        fragmentDamage /= 10;
+                    }
+                    else if (stuff == StuffCategoryDefOf.Metallic || stuff == StuffCategoryDefOf.Woody)
+                    {
+                        fragmentDamage /= 2;
+                    }
                 }
 
                 int largeFragments = fragmentDamage / 37;
@@ -54,6 +63,9 @@ internal static class Harmony_DamageWorker_Apply
 
                 smallFragments += 4 * ((largeFragments / 2) + largeFragments % 2);
                 largeFragments /= 2;
+
+                smallFragments = Mathf.Min(200, smallFragments);
+                largeFragments = Mathf.Min(100, largeFragments);
 
                 var frontArc = new FloatRange(dinfo.Angle + 90, dinfo.Angle + 270);
                 var backArc = new FloatRange(dinfo.Angle - 60, dinfo.Angle + 60);
@@ -79,7 +91,7 @@ internal static class Harmony_DamageWorker_Apply
                                                            new ThingDefCountClass(CE_ThingDefOf.Fragment_Small, smallFragments),
                                                            1,
                                                            0.2f,
-                                                           new FloatRange(0.5f, 5),
+                                                           new FloatRange(-10f, 10f),
                                                            frontArc,
                                                            1f,
                                                            false);
@@ -93,7 +105,7 @@ internal static class Harmony_DamageWorker_Apply
                                                            new ThingDefCountClass(CE_ThingDefOf.Fragment_Small, smallFragments),
                                                            1,
                                                            0.2f,
-                                                           new FloatRange(0.5f, 5),
+                                                           new FloatRange(-10f, 10f),
                                                            backArc,
                                                            1f,
                                                            false);
@@ -107,10 +119,10 @@ internal static class Harmony_DamageWorker_Apply
                                                        map,
                                                        height,
                                                        dinfo.Instigator,
-                                                       new ThingDefCountClass(CE_ThingDefOf.Fragment_Large, largeFragments),
+                                                       new ThingDefCountClass(CE_ThingDefOf.Fragment_Medium, largeFragments),
                                                        1,
                                                        0.2f,
-                                                       new FloatRange(0.5f, 5),
+                                                       new FloatRange(-10f, 10f),
                                                        backArc,
                                                        1f,
                                                        false);
