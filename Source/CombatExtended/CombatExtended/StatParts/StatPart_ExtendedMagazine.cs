@@ -19,14 +19,16 @@ public class StatPart_ExtendedMagazine : StatPart
     {
         if (req.Thing is ThingWithComps thingWithComps && thingWithComps.TryGetComp<CompUniqueWeapon>(out var comp))
         {
+            int offsetValue = 0;
             foreach (WeaponTraitDef trait in comp.TraitsListForReading)
             {
                 if (trait is CustomWeaponTraitDef custom)
                 {
                     val *= custom.magazineCapacityFactor;
-                    val += custom.magazineCapacityIncrease;
+                    offsetValue += custom.magazineCapacityIncrease;
                 }
             }
+            val += offsetValue;
         }
     }
 
