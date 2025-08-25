@@ -119,7 +119,7 @@ public class BulletCE : ProjectileCE
                     if (Rand.Chance(damage.chance))
                     {
                         var extraDinfo = new DamageInfo(damage.def, damage.amount, damage.armorPenetration,
-                            angle: ExactRotation.eulerAngles.y, instigator: launcher, weapon: equipmentDef, intendedTarget: intendedTarget.Thing, instigatorGuilty: InstigatorGuilty);
+                            angle: ExactRotation.eulerAngles.y, instigator: launcher, weapon: equipmentDef, intendedTarget: intendedTarget.Thing, instigatorGuilty: InstigatorGuilty, hitPart: dinfo.HitPart);
                         hitThing.TakeDamage(extraDinfo).AssociateWithLog(logEntry);
                     }
                 }

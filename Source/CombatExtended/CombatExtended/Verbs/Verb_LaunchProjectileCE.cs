@@ -147,6 +147,8 @@ public class Verb_LaunchProjectileCE : Verb
 
     public virtual CompAmmoUser CompAmmo => compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
 
+    public override float EffectiveRange => base.EffectiveRange * (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_RangeMultiplier) ?? 1f);
+
     public virtual ThingDef Projectile
     {
         get
@@ -201,7 +203,7 @@ public class Verb_LaunchProjectileCE : Verb
     {
         get
         {
-            float recoil = VerbPropsCE.recoilAmount;
+            float recoil = VerbPropsCE.recoilAmount * EquipmentSource?.GetStatValue(CE_StatDefOf.CE_RangedWeapon_RecoilMultiplier) ?? 1f;
             WeaponPlatform platform = this.WeaponPlatform;
             if (platform != null)
             {
@@ -230,6 +232,8 @@ public class Verb_LaunchProjectileCE : Verb
 
     public bool MidBurst => numShotsFired > 0;
     protected virtual bool LockRotationAndAngle => !didRetarget && MidBurst;
+
+    public override float WarmupTime => base.WarmupTime * (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_WarmupMultiplier) ?? 1f);
 
     #endregion
 
@@ -1014,7 +1018,7 @@ public class Verb_LaunchProjectileCE : Verb
         bool startedCasting = base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
         if (startedCasting)
         {
-            if (this.repeating && this.verbProps.warmupTime > 0f) // now warming up
+            if (this.repeating && this.WarmupTime > 0f) // now warming up
             {
                 this.RecalculateWarmupTicks();
             }
