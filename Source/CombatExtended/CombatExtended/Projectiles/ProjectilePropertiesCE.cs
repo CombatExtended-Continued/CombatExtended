@@ -30,6 +30,11 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float armorPenetrationBlunt;
     public bool castShadow = true;
 
+    public float recoilMultiplier = 1;
+    public float warmupMultiplier = 1;
+    public float effectiveRangeMultiplier = 1;
+    public float muzzleFlashModifier = 0f;
+
     public float suppressionFactor = 1;
     public float airborneSuppressionFactor = 1;
     public float dangerFactor = 1;

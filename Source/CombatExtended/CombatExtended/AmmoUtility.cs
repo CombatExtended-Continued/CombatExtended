@@ -96,6 +96,22 @@ public static class AmmoUtility
         {
             stringBuilder.AppendLine("   " + "CE_DescSpreadMult".Translate() + ": " + props.spreadMult.ToStringByStyle(ToStringStyle.PercentZero));
         }
+        if (props.recoilMultiplier != 1)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescRecoilMult".Translate() + ": " + props.recoilMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+        if (props.effectiveRangeMultiplier != 1)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescEffectiveRangeMult".Translate() + ": " + props.effectiveRangeMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+        if (props.warmupMultiplier != 1)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescWarmupMult".Translate() + ": " + props.warmupMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+        if (props.muzzleFlashModifier != 0)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescMuzzleFlashMod".Translate() + ": " + props.muzzleFlashModifier.ToStringByStyle(ToStringStyle.FloatMaxOne));
+        }
 
         // Fragments
         var fragmentComp = projectileDef.GetCompProperties<CompProperties_Fragments>();
