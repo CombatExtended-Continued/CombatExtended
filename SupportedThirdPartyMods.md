@@ -565,7 +565,7 @@ Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
 Useless Clothes |
-Ushankas Glitterworld Uprising  |
+Ushankas Glittertech Expansion  |
 VacSlipsuit |
 Valorant Weapon Pack |
 Vanilla Animals Expanded |
