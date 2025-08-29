@@ -47,6 +47,8 @@ public class Settings : ModSettings, ISettingsCE
 
     private float medicineSearchRadius = 5f;
 
+    private bool suppressionCausesRunning = true;
+
     public bool ShowCasings => showCasings;
 
     public bool BipodMechanics => bipodMechanics;
@@ -74,6 +76,8 @@ public class Settings : ModSettings, ISettingsCE
     public float MedicineSearchRadiusSquared => medicineSearchRadius * medicineSearchRadius;
 
     public bool ShowTutorialPopup = true;
+
+    public bool SuppressionCausesRunning => suppressionCausesRunning;
 
     // Ammo settings
     private bool enableAmmoSystem = true;
@@ -237,7 +241,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref midBurstRetarget, "midBurstRetarget", true);
         Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
         Scribe_Values.Look(ref explosionFalloffFactor, "explosionFalloffFactor", 1.0f);
-
+        Scribe_Values.Look(ref suppressionCausesRunning, "suppressionCausesRunning", true);
         //CIWS
         Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
         lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
@@ -296,6 +300,8 @@ public class Settings : ModSettings, ISettingsCE
         left.Gap();
         left.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+        left.CheckboxLabeled("CE_Settings_SuppressionCausesRunning_Title".Translate(), ref suppressionCausesRunning, "CE_Settings_SuppressionCausesRunning_Desc".Translate());
+
         left.End();
 
         // RIGHT COLUMN
@@ -481,6 +487,7 @@ public class Settings : ModSettings, ISettingsCE
         bipodMechanics = true;
         autosetup = true;
         medicineSearchRadius = 5f;
+        suppressionCausesRunning = true;
     }
     private void ResetToDefault_Ammo()
     {

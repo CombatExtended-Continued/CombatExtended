@@ -214,7 +214,12 @@ public class CompSuppressable : ThingComp
             // If this pawn is not already attempting to run for cover, try to find an appropriate location with cover to run to
             if (curJobDef != CE_JobDefOf.RunForCover)
             {
-                Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                Job reactJob = null;
+                if (Controller.settings.SuppressionCausesRunning || !(pawn.Drafted || (!pawn.IsFreeColonist && pawn.CurJob == null)))
+                {
+                    reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                }
+
                 if (reactJob == null && IsHunkering)
                 {
                     // no good locations with cover found, so hunker down
