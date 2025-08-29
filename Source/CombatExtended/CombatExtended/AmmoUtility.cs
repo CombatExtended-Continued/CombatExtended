@@ -108,9 +108,9 @@ public static class AmmoUtility
         {
             stringBuilder.AppendLine("   " + "CE_DescWarmupMult".Translate() + ": " + props.warmupMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
         }
-        if (props.muzzleFlashModifier != 0)
+        if (props.muzzleFlashOffset != 0)
         {
-            stringBuilder.AppendLine("   " + "CE_DescMuzzleFlashMod".Translate() + ": " + props.muzzleFlashModifier.ToStringByStyle(ToStringStyle.FloatMaxOne));
+            stringBuilder.AppendLine("   " + "CE_DescMuzzleFlashOffset".Translate() + ": " + props.muzzleFlashOffset.ToStringByStyle(ToStringStyle.FloatMaxOne));
         }
 
         // Fragments

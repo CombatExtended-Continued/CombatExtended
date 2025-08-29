@@ -405,7 +405,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
             {
                 if (VerbPropsCE.muzzleFlashScale > 0.01f)
                 {
-                    FleckMakerCE.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale + projectilePropsCE.muzzleFlashModifier);
+                    FleckMakerCE.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale + projectilePropsCE.muzzleFlashOffset);
                 }
                 if (VerbPropsCE.soundCast != null)
                 {

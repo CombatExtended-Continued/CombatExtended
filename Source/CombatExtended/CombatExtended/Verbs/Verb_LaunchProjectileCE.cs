@@ -1190,7 +1190,7 @@ public class Verb_LaunchProjectileCE : Verb
         /*
          * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
          */
-        LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: Mathf.Max(0, VerbPropsCE.muzzleFlashScale + projectilePropsCE.muzzleFlashModifier));
+        LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: Mathf.Max(0, VerbPropsCE.muzzleFlashScale + projectilePropsCE.muzzleFlashOffset));
         pelletMechanicsOnly = false;
         numShotsFired++;
         if (ShooterPawn != null)
