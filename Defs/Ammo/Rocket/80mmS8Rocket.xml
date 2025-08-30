@@ -135,28 +135,13 @@
 		</comps>
 	</ThingDef>
 
-  <ThingDef Name="Base80mmRocket_indirect" ParentName="Base80mmRocket" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>0</speed>
-			<dropsCasings>false</dropsCasings>
-			<flyOverhead>true</flyOverhead>
-			<gravityFactor>5</gravityFactor>
-			<shellingProps>
-				<iconPath>Things/WorldObjects/Munitions/Rocket</iconPath>
-				<tilesPerTick>0.35</tilesPerTick>
-				<range>13</range>
-			</shellingProps>
-		</projectile>
-	</ThingDef>
-
   <!-- direct -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base80mmRocket">
 		<defName>Bullet_80mmRocket_HE</defName>
 		<label>80mm S8 Rocket (HE)</label>
 		<graphicData>
-			<texPath>Things/Projectiles/Rocket/S8/HE</texPath>
+			<texPath>Things/Projectile/Rocket/S8/HE</texPath>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>123</speed>
@@ -180,7 +165,7 @@
 		<label>80mm S8 Rocket (HEAT)</label>
 		<thingClass>CombatExtended.BulletCE</thingClass>
 		<graphicData>
-			<texPath>Things/Projectiles/Rocket/S8/HEAT</texPath>
+			<texPath>Things/Projectile/Rocket/S8/HEAT</texPath>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
@@ -209,7 +194,7 @@
 		<defName>Bullet_80mmRocket_Thermobaric</defName>
 		<label>80mm S8 Rocket (Thermobaric)</label>
 		<graphicData>
-			<texPath>Things/Projectiles/Rocket/S8/Thermobaric</texPath>
+			<texPath>Things/Projectile/Rocket/S8/Thermobaric</texPath>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>73</speed>
@@ -224,6 +209,23 @@
 	</ThingDef>
 
   <!-- indirect -->
+
+  <ThingDef Name="Base80mmRocket_indirect" ParentName="Base80mmRocket" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>0</speed>
+			<dropsCasings>false</dropsCasings>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>			
+			<flyOverhead>true</flyOverhead>
+			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<iconPath>Things/WorldObjects/Munitions/Rocket</iconPath>
+				<tilesPerTick>0.35</tilesPerTick>
+				<range>13</range>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base80mmRocket_indirect">
 		<defName>Bullet_80mmRocket_HE_indirect</defName>
@@ -284,7 +286,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base80mmRocket_indirect">
-		<defName>PB_Bullet_80mmS8_Thermobaric_indirect</defName>
+		<defName>Bullet_80mmRocket_Thermobaric_indirect</defName>
 		<label>80mm S8 Rocket (Thermobaric)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Rocket/S8/Thermobaric</texPath>
