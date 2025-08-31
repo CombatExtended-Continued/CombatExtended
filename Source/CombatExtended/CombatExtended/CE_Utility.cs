@@ -1142,7 +1142,7 @@ public static class CE_Utility
             {
                 Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(), 35000198 + pawn.GetHashCode());
             }
-            
+
             factors.x *= shape.widthLaying / shape.width;
             factors.y *= shape.heightLaying / shape.height;
             if (pawn.Downed)
