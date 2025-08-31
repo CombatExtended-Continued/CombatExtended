@@ -118,8 +118,8 @@ public class HediffComp_InfecterCE : HediffComp
         if (Pawn.Spawned)
         {
             var room = Pawn.GetRoom();
-            _tendedOutside = room == null;
-            _infectionModifier *= room == null ? RoomStatDefOf.InfectionChanceFactor.roomlessScore : RoomStatDefOf.InfectionChanceFactor.Worker.GetScore(room);
+            _tendedOutside = room == null || room.OutdoorsForWork;
+            _infectionModifier *= _tendedOutside || room == null ? RoomStatDefOf.InfectionChanceFactor.roomlessScore : RoomStatDefOf.InfectionChanceFactor.Worker.GetScore(room);
         }
     }
 }
