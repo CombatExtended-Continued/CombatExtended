@@ -62,7 +62,7 @@ class ProjectileCE_Bursting : ProjectileCE
     public override void Tick()
     {
         base.Tick();
-        if (--this.ticksToBurst == 0)
+        if (--this.ticksToBurst == 0 && !Destroyed)
         {
             base.Impact(null);
         }
