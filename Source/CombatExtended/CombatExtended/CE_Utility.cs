@@ -1103,6 +1103,7 @@ public static class CE_Utility
     }
     /// <summary>
     /// Calculates body scale factors based on body type
+    /// RacePropertiesExtensionCE determines any factors for size and can override normal sizegen if needed
     /// </summary>
     /// <param name="pawn">Which pawn to measure for</param>
     /// <returns>Width factor as First, height factor as second</returns>
@@ -1120,11 +1121,20 @@ public static class CE_Utility
             return factors;
         }
 
-        factors = BoundsInjector.ForPawn(pawn);
+        RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
+        if (props.overrideFactors == false)
+        {
+            factors = BoundsInjector.ForPawn(pawn);
+            factors.x *= props.horiScale;
+            factors.y *= props.vertScale;
+        }
+        else
+        {
+            factors = new Vector2(props.horiScale, props.vertScale);
+        }
 
         if (pawn.GetPosture() != PawnPosture.Standing || pawn.Downed)
         {
-            RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
 
             var shape = props.bodyShape ?? CE_BodyShapeDefOf.Invalid;
 
@@ -1132,7 +1142,7 @@ public static class CE_Utility
             {
                 Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(), 35000198 + pawn.GetHashCode());
             }
-
+            
             factors.x *= shape.widthLaying / shape.width;
             factors.y *= shape.heightLaying / shape.height;
             if (pawn.Downed)
