@@ -313,7 +313,7 @@ public static class BoundsInjector
             //slight height increase so that 13 y.o. can aim over embrasures and 8 y.o. can aim over sandbags
             if (height < 1)
             {
-                height = Mathf.Min(height+0.2f, 1);
+                height = Mathf.Min(height + 0.2f, 1);
             }
 
             return new Vector2(pawn.BodySize / 2f, height);
