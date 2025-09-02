@@ -262,13 +262,15 @@ public class ShiftVecReport
             }
             if (target.Thing != null)
             {
-                stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(new CollisionVertical(target.Thing).HeightRange.Span * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
-                stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
                 var pawn = target.Thing as Pawn;
+                bool crouching = false;
                 if (pawn != null && pawn.IsCrouching())
                 {
+                    crouching = true;
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Crouching, OpportunityType.GoodToKnow);
                 }
+                stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(new CollisionVertical(target.Thing).HeightRange.Span * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate() + (string)(crouching ? " " + "CE_Crouched".Translate() : ""));
+                stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
             }
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimingSystem, KnowledgeAmount.FrameDisplayed); // Show we learned about the aiming system
         }
