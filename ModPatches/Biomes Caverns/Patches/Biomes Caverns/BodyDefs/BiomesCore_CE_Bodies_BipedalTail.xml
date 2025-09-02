@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Add groups entry if it doesn't exist already -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Tail"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Tail"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Nose"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Nose"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Arm"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Arm"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Arm"]/parts/li[def="Paw"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Arm"]/parts/li[def="Paw"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Leg"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Leg"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Leg"]/parts/li[def="Paw"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Leg"]/parts/li[def="Paw"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Add armor coverage -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Tail"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="AnimalJaw"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Nose"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Nose"]/parts/li[def="Horn"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Arm"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Arm"]/parts/li[def="Paw"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Leg"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="HunchedBipedWithTail"]/corePart/parts/li[def="Leg"]/parts/li[def="Paw"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

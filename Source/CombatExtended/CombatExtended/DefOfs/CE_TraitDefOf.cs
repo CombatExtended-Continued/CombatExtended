@@ -1,14 +1,12 @@
 ﻿using RimWorld;
 
-namespace CombatExtended
+namespace CombatExtended;
+[DefOf]
+public class CE_TraitDefOf
 {
-    [DefOf]
-    public class CE_TraitDefOf
+    static CE_TraitDefOf()
     {
-        static CE_TraitDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(CE_TraitDefOf));
-        }
-        public static TraitDef Bravery;
+        DefOfHelper.EnsureInitializedInCtor(typeof(CE_TraitDefOf));
     }
+    public static TraitDef Bravery;
 }

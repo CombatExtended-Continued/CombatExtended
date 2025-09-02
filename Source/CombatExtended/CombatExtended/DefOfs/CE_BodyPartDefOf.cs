@@ -2,11 +2,9 @@ using System;
 using Verse;
 using RimWorld;
 
-namespace CombatExtended
+namespace CombatExtended;
+[DefOf]
+public static class CE_BodyPartDefOf
 {
-    [DefOf]
-    public static class CE_BodyPartDefOf
-    {
-        public static BodyPartDef Neck;
-    }
+    public static BodyPartDef Neck;
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+
+	<!-- Melee -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name="WeaponSpecializationMeleeBase"]/statAffecters/li[statDef="MeleeCooldownFactor"]/multiplierCurve/points</xpath>
+		<value>
+			<points>
+				<li>(0, 1)</li>
+				<li>(20, 0.85)</li>
+			</points>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name="WeaponSpecializationMeleeBase"]/statAffecters</xpath>
+		<value>
+			<li>
+				<statDef>MeleeCritChance</statDef>
+				<multiplierCurve>
+					<points>
+						<li>(0, 1)</li>
+						<li>(20, 1.25)</li>
+					</points>
+				</multiplierCurve>
+			</li>
+			<li>
+				<statDef>MeleeParryChance</statDef>
+				<multiplierCurve>
+					<points>
+						<li>(0, 1)</li>
+						<li>(20, 1.25)</li>
+					</points>
+				</multiplierCurve>
+			</li>
+			<li>
+				<statDef>MeleeDodgeChance</statDef>
+				<multiplierCurve>
+					<points>
+						<li>(0, 1)</li>
+						<li>(20, 1.25)</li>
+					</points>
+				</multiplierCurve>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Ranged -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name="WeaponSpecializationShootingBase"]/statAffecters/li[statDef="RangedCooldownFactor"]</xpath>
+		<value>
+			<li>
+				<statDef>ReloadSpeed</statDef>
+				<multiplierCurve>
+					<points>
+						<li>(0, 1)</li>
+						<li>(20, 1.25)</li>
+					</points>
+				</multiplierCurve>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name="WeaponSpecializationShootingBase"]/statAffecters/li[statDef="AimingDelayFactor"]/multiplierCurve/points</xpath>
+		<value>
+			<points>
+				<li>(0, 1)</li>
+				<li>(20, 0.85)</li>
+			</points>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponProficiency.WeaponSpecializationDef[@Name="WeaponSpecializationShootingBase"]/statAffecters</xpath>
+		<value>
+			<li>
+				<statDef>AimingAccuracy</statDef>
+				<multiplierCurve>
+					<points>
+						<li>(0, 1)</li>
+						<li>(20, 1.35)</li>
+					</points>
+				</multiplierCurve>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- Larvae -->
 
+	<!-- Larvae -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoLarvae"]</xpath>
 		<value>
@@ -14,7 +14,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoLarvae"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.00</MeleeDodgeChance>
+			<MeleeDodgeChance>0</MeleeDodgeChance>
 			<MeleeCritChance>0.01</MeleeCritChance>
 			<MeleeParryChance>0.01</MeleeParryChance>
 		</value>
@@ -23,14 +23,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoLarvae"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>5.0</ArmorRating_Sharp>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoLarvae"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>5.0</ArmorRating_Blunt>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -64,7 +64,31 @@
 			</tools>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoLarvae"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoLarvae"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoLarvae"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>425</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Pupae -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoPupa"]</xpath>
 		<value>
@@ -77,26 +101,70 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoPupa"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.00</MeleeDodgeChance>
-			<MeleeCritChance>0.00</MeleeCritChance>
-			<MeleeParryChance>0.00</MeleeParryChance>
+			<MeleeDodgeChance>0</MeleeDodgeChance>
+			<MeleeCritChance>0</MeleeCritChance>
+			<MeleeParryChance>0</MeleeParryChance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoPupa"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>30.0</ArmorRating_Sharp>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoPupa"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>30.0</ArmorRating_Blunt>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoPupa"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Twitching</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1000</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.12</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				</li>
+
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoPupa"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoPupa"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BMT_RoyalRhinoPupa"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>450</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Fully Grown -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhino"]</xpath>
 		<value>
@@ -118,14 +186,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhino"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>25.0</ArmorRating_Sharp>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BMT_RoyalRhino"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>5.0</ArmorRating_Blunt>
+			<ArmorRating_Blunt>20</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -180,4 +248,28 @@
 			</tools>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BMT_RoyalRhino"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BMT_RoyalRhino"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BMT_RoyalRhino"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>2750</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>

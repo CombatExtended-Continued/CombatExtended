@@ -3,9 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<AssemblyName>CombatExtendedLoader</AssemblyName>
-		<AssemblyVersion>15.6.3.0</AssemblyVersion>
-		<FileVersion>15.6.3.0</FileVersion>
-		<Version>15.6.3.0</Version>
+		<AssemblyVersion>15.6.3.1</AssemblyVersion>
+		<FileVersion>15.6.3.1</FileVersion>
+		<Version>15.6.3.1</Version>
 		<Company />
 		<Authors />
 		<Copyright>CC BY-NC-SA 4.0 2025</Copyright>
@@ -16,7 +16,7 @@
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<LangVersion>8.0</LangVersion>
+		<LangVersion>12.0</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -24,7 +24,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
-		<LangVersion>8.0</LangVersion>
+		<LangVersion>12.0</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="Exists('C:\Program Files (x86)\Mono\bin\pdb2mdb.bat')">
@@ -35,7 +35,7 @@
 		<Folder Include="Loader" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4061" GeneratePathProperty="true" />
-		<PackageReference Include="Lib.Harmony" Version="2.3.3" ExcludeAssets="runtime" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4488-beta" GeneratePathProperty="true" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
 	</ItemGroup>
 </Project>

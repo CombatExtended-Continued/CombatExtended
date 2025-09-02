@@ -9,6 +9,7 @@
 			<li Class="CombatExtended.DamageDefExtensionCE">
 				<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
 				<isAmbientDamage>true</isAmbientDamage>
+				<canCauseWallFragmentation>false</canCauseWallFragmentation>
 			</li>
 		</value>
 	</Operation>
@@ -183,6 +184,53 @@
 		<xpath>Defs/DamageDef[defName="AcidBurn"]/armorCategory</xpath>
 		<value>
 			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
+
+  <!-- ========== Disable wall fragmentation ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="Crush"]</xpath>
+		<value>
+		<li Class="CombatExtended.DamageDefExtensionCE">
+			<canCauseWallFragmentation>false</canCauseWallFragmentation>
+		</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="Mining"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<canCauseWallFragmentation>false</canCauseWallFragmentation>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="Beam" or defName="BeamBypassShields"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<canCauseWallFragmentation>false</canCauseWallFragmentation>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="Demolish"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<canCauseWallFragmentation>false</canCauseWallFragmentation>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="Thump"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<canCauseWallFragmentation>false</canCauseWallFragmentation>
+			</li>
 		</value>
 	</Operation>
 

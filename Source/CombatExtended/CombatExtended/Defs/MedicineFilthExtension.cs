@@ -1,11 +1,9 @@
 ﻿using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class MedicineFilthExtension : DefModExtension
 {
-    public class MedicineFilthExtension : DefModExtension
-    {
-        public ThingDef filthDefName;
-        public float filthSpawnChance = 1;
-        public IntRange filthSpawnQuantity = IntRange.one;
-    }
+    public ThingDef filthDefName;
+    public float filthSpawnChance = 1;
+    public IntRange filthSpawnQuantity = IntRange.One;
 }

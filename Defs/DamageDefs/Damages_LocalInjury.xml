@@ -10,6 +10,7 @@
 		<hediffSolid>CrackBeanbag</hediffSolid>
 		<buildingDamageFactor>0.25</buildingDamageFactor>
 		<plantDamageFactor>0.25</plantDamageFactor>
+		<isRanged>true</isRanged>
 	</DamageDef>
 
 	<DamageDef ParentName="CutBase">
@@ -58,7 +59,7 @@
 		<defName>Thermobaric</defName>
 		<label>thermobaric</label>
 		<workerClass>DamageWorker_Flame</workerClass>
-		<buildingDamageFactor>6</buildingDamageFactor>
+		<buildingDamageFactor>2</buildingDamageFactor>
 		<plantDamageFactor>6</plantDamageFactor>
 		<modExtensions>
 			<li Class="CombatExtended.DamageDefExtensionCE">
@@ -142,6 +143,19 @@
 		</additionalHediffs>
 	</DamageDef>
 
+	<DamageDef ParentName="Electrical">
+		<defName>Neuralizer_weak</defName>
+		<label>low power neuralizer</label>
+		<harmsHealth>false</harmsHealth>
+		<additionalHediffs>
+			<li>
+				<hediff>Neuralizer_weak</hediff>
+				<severityPerDamageDealt>0.015</severityPerDamageDealt>
+				<victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+			</li>
+		</additionalHediffs>
+	</DamageDef>
+
 	<DamageDef ParentName="StunBase">
 		<defName>Flashbang</defName>
 		<label>flashbang</label>
@@ -162,5 +176,5 @@
 		<buildingDamageFactor>0.1</buildingDamageFactor>
 		<plantDamageFactor>2</plantDamageFactor>
   </DamageDef>
-	
+
 </Defs>

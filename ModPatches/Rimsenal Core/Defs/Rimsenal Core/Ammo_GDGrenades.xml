@@ -32,6 +32,18 @@
 			</li>
 		</comps>
 	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="25x40mmGrenadeBase">
+		<defName>Ammo_25mmGDMicromissile_HEDP</defName>
+		<label>25mm GD Micromissile (HEDP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/DP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>GrenadeHEDP</ammoClass>
+		<detonateProjectile>Bullet_25mmGDMicromissile_HEDP</detonateProjectile>
+		<generateAllowChance>0.1</generateAllowChance>
+	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
@@ -47,7 +59,7 @@
 			<pelletCount>16</pelletCount>
 			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<armorPenetrationBlunt>5.7</armorPenetrationBlunt>
-			<spreadMult>40</spreadMult>
+			<spreadMult>20</spreadMult>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -63,6 +75,52 @@
 			<preExplosionSpawnChance>1</preExplosionSpawnChance>
 		</projectile>
 	</ThingDef>
+	
+	<ThingDef ParentName="Base25x40mmGrenadeBullet">
+		<defName>Bullet_25mmGDMicromissile_HEDP</defName>
+		<label>25mm micromissile</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Missile_Micro</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationSharp>50</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.818</armorPenetrationBlunt>
+			<trajectoryWorker>CombatExtended.SmartRocketTrajectoryWorker</trajectoryWorker>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>16</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>9</Fragment_Small>
+				</fragments>
+			</li>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>8</emissionsPerTick>
+						<flecksPerEmission>2</flecksPerEmission>
+						<scale>0.35</scale>
+						<originOffset>1</originOffset>
+						<cutoffTickRange>45~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -134,6 +192,51 @@
 			<Ammo_25x40mmGrenade_INC>100</Ammo_25x40mmGrenade_INC>
 		</products>
 		<workAmount>600</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_25mmGDMicromissile_HEDP</defName>
+		<label>make 25mm HEDP micromissile x100</label>
+		<description>Craft 100 25mm HEDP micromissiles.</description>
+		<jobString>Making 25mm HEDP micromissiles.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>32</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<products>
+			<Ammo_25mmGDMicromissile_HEDP>100</Ammo_25mmGDMicromissile_HEDP>
+		</products>
+		<workAmount>22400</workAmount>
 	</RecipeDef>
 
 </Defs>

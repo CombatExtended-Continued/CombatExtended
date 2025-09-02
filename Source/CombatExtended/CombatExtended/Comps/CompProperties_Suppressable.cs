@@ -1,12 +1,10 @@
 ﻿using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class CompProperties_Suppressable : CompProperties
 {
-    public class CompProperties_Suppressable : CompProperties
+    public CompProperties_Suppressable()
     {
-        public CompProperties_Suppressable()
-        {
-            compClass = typeof(CompSuppressable);
-        }
+        compClass = typeof(CompSuppressable);
     }
 }
