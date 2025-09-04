@@ -41,71 +41,25 @@
 	</ThingDef>
 	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="LaserChargePackBase">
-		<defName>Ammo_LaserChargePack_LP</defName>
-		<label>industrial laser pack</label>
+		<defName>Ammo_LaserChargePack_Mech</defName>
+		<label>mechanoid laser pack</label>
 		<tradeTags>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
+			<li>CE_AutoEnableTrade_Sellable</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
 		</tradeTags>
 		<statBases>
-			<Mass>0.080</Mass>
-			<Bulk>0.1</Bulk>
+			<MarketValue>0.05</MarketValue>
 		</statBases>
-		<description>A bulky, industrial tech charge pack capable of powering various laser weapons. Has lower performance compared to more advanced charge packs.</description>
+		<description>A mechanoid manufactured charge pack for laser weapons.</description>
 		<graphicData>
 			<texPath>Things/Ammo/LaserPack</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<ammoClass>Laser_LP</ammoClass>
+		<ammoClass>Laser_Mech</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
-	
-	<RecipeDef ParentName="GrenadeRecipeBase">
-		<defName>MakeAmmo_LaserChargePack_LP</defName>
-		<label>make industrial laser charge pack x500</label>
-		<description>Craft 500 industrial laser charge pack.</description>
-		<jobString>Making industrial laser charge pack.</jobString>
-		<researchPrerequisites>
-			<li>MicroelectronicsBasics</li>
-		</researchPrerequisites>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Plasteel</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>10</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>8</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Plasteel</li>
-				<li>Steel</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_LaserChargePack_LP>500</Ammo_LaserChargePack_LP>
-		</products>
-		<workAmount>8400</workAmount>
-	</RecipeDef>
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase">
 		<defName>MakeAmmo_LaserChargePack</defName>
@@ -147,6 +101,50 @@
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_LaserChargePack>500</Ammo_LaserChargePack>
+		</products>
+		<workAmount>8400</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_LaserChargePack_Mech</defName>
+		<label>make mechanoid laser charge pack x500</label>
+		<description>Craft 500 mechanoid laser charge pack.</description>
+		<jobString>Making mechanoid laser charge pack.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_LaserChargePack_Mech>500</Ammo_LaserChargePack_Mech>
 		</products>
 		<workAmount>8400</workAmount>
 	</RecipeDef>
