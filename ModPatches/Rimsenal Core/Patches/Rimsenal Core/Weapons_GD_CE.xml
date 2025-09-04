@@ -13,10 +13,11 @@
 
 	<!-- Pistols -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GD_MSSH" or
+		<xpath>Defs/ThingDef[
+			defName="GD_MSSH" or
 			defName="GD_MSST" or
 			defName="GD_MSSF"
-			]/tools </xpath>
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -46,13 +47,14 @@
 
 	<!-- Long guns-->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GD_HybridRifle" or
+		<xpath>Defs/ThingDef[
+			defName="GD_HybridRifle" or
 			defName="GD_ModularCarbine" or
 			defName="GD_ModularRifle" or
 			defName="GD_ModularDMR" or
 			defName="GD_ModularLMG" or
 			defName="GD_GrenadeLauncher"
-			]/tools </xpath>
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -105,7 +107,7 @@
 			<recoilAmount>2.00</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66GreydaleHybrid_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_66Greydale_FMJ_Hybrid</defaultProjectile>
 			<warmupTime>1.05</warmupTime>
 			<range>58</range>
 			<burstShotCount>6</burstShotCount>
@@ -117,7 +119,7 @@
 		<AmmoUser>
 			<magazineSize>36</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_66GreydaleHybrid</ammoSet>
+			<ammoSet>AmmoSet_66Greydale_Hybrid</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -133,7 +135,7 @@
 		</value>
 	</Operation>
 
-	<!-- ==========  Hybrid Ocelot =========== -->
+	<!-- ========== Hybrid Ocelot =========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>GD_MSSH</defName>
 		<statBases>
@@ -149,7 +151,7 @@
 			<recoilAmount>2.92</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66GreydaleHybrid_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_66Greydale_FMJ_Hybrid</defaultProjectile>
 			<warmupTime>0.65</warmupTime>
 			<range>23</range>
 			<soundCast>ShotGRH</soundCast>
@@ -159,7 +161,7 @@
 		<AmmoUser>
 			<magazineSize>12</magazineSize>
 			<reloadTime>3.5</reloadTime>
-			<ammoSet>AmmoSet_66GreydaleHybrid</ammoSet>
+			<ammoSet>AmmoSet_66Greydale_Hybrid</ammoSet>
 		</AmmoUser>
 		<FireModes>
 		</FireModes>
@@ -190,7 +192,7 @@
 			<recoilAmount>1.27</recoilAmount><!--Halved from base-->
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66GreydalePistol_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_66Greydale_FMJ_Pistol</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
 			<burstShotCount>3</burstShotCount>
 			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
@@ -203,7 +205,7 @@
 		<AmmoUser>
 			<magazineSize>12</magazineSize>
 			<reloadTime>3.5</reloadTime>
-			<ammoSet>AmmoSet_66GreydalePistol</ammoSet>
+			<ammoSet>AmmoSet_66Greydale_Pistol</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<noSingleShot>true</noSingleShot>
@@ -256,7 +258,7 @@
 					<recoilAmount>2.31</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_66GreydalePistol_FMJ</defaultProjectile>
+					<defaultProjectile>Bullet_66Greydale_FMJ_Pistol</defaultProjectile>
 					<warmupTime>0.6</warmupTime>
 					<burstShotCount>5</burstShotCount>
 					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
@@ -276,7 +278,7 @@
 				<li Class="CombatExtended.CompProperties_AmmoUser">
 					<magazineSize>36</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_66GreydalePistol</ammoSet>
+					<ammoSet>AmmoSet_66Greydale_Pistol</ammoSet>
 				</li>
 				<li Class="CombatExtended.CompProperties_FireModes">
 					<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -406,7 +408,7 @@
 			<recoilAmount>2.06</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66GreydaleSB_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_66Greydale_FMJ_SB</defaultProjectile>
 			<warmupTime>0.85</warmupTime>
 			<range>36</range>
 			<burstShotCount>6</burstShotCount>
@@ -418,7 +420,7 @@
 		<AmmoUser>
 			<magazineSize>36</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_66GreydaleSB</ammoSet>
+			<ammoSet>AmmoSet_66Greydale_SB</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiUseBurstMode>false</aiUseBurstMode>
