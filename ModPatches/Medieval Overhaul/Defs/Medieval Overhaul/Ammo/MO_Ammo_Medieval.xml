@@ -711,7 +711,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<ThingDef ParentName="Bullet_BlunderbussShot">
+	<ThingDef ParentName="BlunderbussShotBullet">
 		<defName>Bullet_Handgonne_Pellet</defName>
 		<label>lead pellet</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -722,9 +722,24 @@
 			<spreadMult>22.5</spreadMult>
 			<speed>64</speed>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmoke</fleck>
+						<emissionsPerTick>1</emissionsPerTick>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>2</cutoffTickRange>
+						<scale>1.5~1.7</scale>
+						<originOffset>0.0~2.5</originOffset>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Bullet_SlowMusketBall">
+	<ThingDef ParentName="MusketBallBullet">
 		<defName>Bullet_Handgonne_Ball</defName>
 		<label>lead ball</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -733,6 +748,20 @@
 			<armorPenetrationBlunt>14</armorPenetrationBlunt>
 			<speed>72</speed>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmokeShort</fleck>
+						<emissionsPerTick>4</emissionsPerTick>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>3~3</cutoffTickRange>
+						<scale>2.0~2.5</scale>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 </Defs>
