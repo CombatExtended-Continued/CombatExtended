@@ -199,21 +199,64 @@
 		<mods>
 			<li>Anomaly</li>
 		</mods>
-		<match Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Gun_HellcatRifle_Unique"]/comps</xpath>
-			<value>
-				<li Class="CombatExtended.CompProperties_AmmoUser">
-					<magazineSize>30</magazineSize>
-					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_556x45mmNATO_SB</ammoSet>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_HellcatRifle_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>30</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_556x45mmNATO_SB</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiUseBurstMode>TRUE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+						</li>
+					</value>
 				</li>
-				<li Class="CombatExtended.CompProperties_FireModes">
-					<aiUseBurstMode>TRUE</aiUseBurstMode>
-					<aiAimMode>AimedShot</aiAimMode>
-					<aimedBurstShotCount>3</aimedBurstShotCount>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Gun_HellcatRifle_Unique"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_UnderBarrel">
+							<standardLabel>switch to rifle</standardLabel>
+							<underBarrelLabel>switch to flamethrower</underBarrelLabel>
+							<propsUnderBarrel>
+								<magazineSize>20</magazineSize>
+								<reloadTime>5</reloadTime>
+								<ammoSet>AmmoSet_Flamethrower</ammoSet>
+							</propsUnderBarrel>
+							<verbPropsUnderBarrel>
+								<recoilAmount>0.35</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+								<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+								<warmupTime>1.1</warmupTime>
+								<range>8</range>
+								<minRange>1</minRange>
+								<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+								<burstShotCount>20</burstShotCount>
+								<soundCast>HissFlamethrower</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</verbPropsUnderBarrel>
+							<propsFireModesUnderBarrel>
+								<aiUseBurstMode>FALSE</aiUseBurstMode>
+								<aiAimMode>AimedShot</aiAimMode>
+								<aimedBurstShotCount>5</aimedBurstShotCount>
+								<noSingleShot>true</noSingleShot>
+							</propsFireModesUnderBarrel>
+						</li>
+						<li>
+							<compClass>CompEquippable</compClass>
+						</li>
+					</value>
 				</li>
-				<li Class="CombatExtended.CompProperties_UnderBarrel"/>
-			</value>
+			</operations>
 		</match>
 	</Operation>
 
