@@ -4,19 +4,17 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class StatPart_StatMinima : StatPart_StatSelect
 {
-    public class StatPart_StatMinima : StatPart_StatSelect
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected override float Select(float first, float second)
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override float Select(float first, float second)
-        {
-            return Mathf.Min(first, second);
-        }
+        return Mathf.Min(first, second);
+    }
 
-        public override string ExplanationPart(StatRequest req)
-        {
-            return "CE_StatPart_MinimaExplanation".Translate() + ": \n\n" + base.ExplanationPart(req);
-        }
+    public override string ExplanationPart(StatRequest req)
+    {
+        return "CE_StatPart_MinimaExplanation".Translate() + ": \n\n" + base.ExplanationPart(req);
     }
 }

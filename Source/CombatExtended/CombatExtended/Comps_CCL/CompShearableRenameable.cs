@@ -1,45 +1,43 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+
+public class CompShearableRenameable : CompShearable
 {
 
-    public class CompShearableRenameable : CompShearable
+    private string growthLabel = "WoolGrowth".Translate();
+
+    private CompProperties_ShearableRenameable properties
     {
-
-        private string growthLabel = "WoolGrowth".Translate();
-
-        private CompProperties_ShearableRenameable properties
+        get
         {
-            get
-            {
-                return props as CompProperties_ShearableRenameable;
-            }
+            return props as CompProperties_ShearableRenameable;
         }
+    }
 
-        public override void Initialize(CompProperties props)
+    public override void Initialize(CompProperties props)
+    {
+        base.Initialize(props);
+        if (properties != null && !properties.growthLabel.NullOrEmpty())
         {
-            base.Initialize(props);
-            if (properties != null && !properties.growthLabel.NullOrEmpty())
-            {
-                growthLabel = properties.growthLabel;
-            }
+            growthLabel = properties.growthLabel;
         }
+    }
 
-        public override string CompInspectStringExtra()
+    public override string CompInspectStringExtra()
+    {
+        if (!Active)
         {
-            if (!Active)
-            {
-                return (string)null;
-            }
-            // Show we learned about explosives
-            if (properties.woolDef == CE_ThingDefOf.FSX)
-            {
-                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_ObtainingFSX, KnowledgeAmount.FrameDisplayed);
-            }
-            return growthLabel + ": " + Fullness.ToStringPercent();
+            return (string)null;
         }
-
+        // Show we learned about explosives
+        if (properties.woolDef == CE_ThingDefOf.FSX)
+        {
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_ObtainingFSX, KnowledgeAmount.FrameDisplayed);
+        }
+        return growthLabel + ": " + Fullness.ToStringPercent();
     }
 
 }
+

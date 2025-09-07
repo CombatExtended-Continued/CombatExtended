@@ -6,13 +6,11 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class HediffCompProperties_Prometheum : HediffCompProperties
 {
-    public class HediffCompProperties_Prometheum : HediffCompProperties
+    public HediffCompProperties_Prometheum()
     {
-        public HediffCompProperties_Prometheum()
-        {
-            compClass = typeof(HediffComp_Prometheum);
-        }
+        compClass = typeof(HediffComp_Prometheum);
     }
 }

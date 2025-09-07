@@ -3,37 +3,35 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended.Compatibility.PsyBlastersCompat
+namespace CombatExtended.Compatibility.PsyBlastersCompat;
+public class PsychicBlasterRocketCE : ProjectileCE_Explosive
 {
-    public class PsychicBlasterRocketCE : ProjectileCE_Explosive
+    PsychicProjectileExtension psyModExtension => def.GetModExtension<PsychicProjectileExtension>();
+    private float _damageAmount;
+
+    private bool CanConsumeResources(Pawn launcherPawn)
     {
-        PsychicProjectileExtension psyModExtension => def.GetModExtension<PsychicProjectileExtension>();
-        private float _damageAmount;
-
-        private bool CanConsumeResources(Pawn launcherPawn)
-        {
-            return psyModExtension != null && launcherPawn is { HasPsylink: true };
-        }
-
-        public override float DamageAmount => _damageAmount;
-
-        public override void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
-        {
-            base.Launch(launcher, origin, equipment);
-            if (!CanConsumeResources(launcher as Pawn))
-            {
-                _damageAmount = 0;
-                return;
-            }
-
-            _damageAmount = def.projectile.GetDamageAmount(equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f, null) +
-                            ((((Pawn)launcher).psychicEntropy.MaxPotentialEntropy -
-                              ((Pawn)launcher).psychicEntropy.EntropyValue) * psyModExtension.psyDamageMultiplier);
-
-            Pawn launcherPawn = (Pawn)launcher;
-            launcherPawn.psychicEntropy.currentEntropy = launcherPawn.psychicEntropy.MaxPotentialEntropy * 5.5f;
-        }
+        return psyModExtension != null && launcherPawn is { HasPsylink: true };
     }
 
+    public override float DamageAmount => _damageAmount;
+
+    public override void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
+    {
+        base.Launch(launcher, origin, equipment);
+        if (!CanConsumeResources(launcher as Pawn))
+        {
+            _damageAmount = 0;
+            return;
+        }
+
+        _damageAmount = def.projectile.GetDamageAmount(equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f, null) +
+                        ((((Pawn)launcher).psychicEntropy.MaxPotentialEntropy -
+                          ((Pawn)launcher).psychicEntropy.EntropyValue) * psyModExtension.psyDamageMultiplier);
+
+        Pawn launcherPawn = (Pawn)launcher;
+        launcherPawn.psychicEntropy.currentEntropy = launcherPawn.psychicEntropy.MaxPotentialEntropy * 5.5f;
+    }
 }
+
 

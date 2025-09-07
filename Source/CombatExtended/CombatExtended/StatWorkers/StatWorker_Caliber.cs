@@ -9,108 +9,106 @@ using HarmonyLib;
 using CombatExtended.Compatibility;
 
 
-namespace CombatExtended
+namespace CombatExtended;
+public class StatWorker_Caliber : StatWorker
 {
-    public class StatWorker_Caliber : StatWorker
+    private ThingDef GunDef(StatRequest req)
     {
-        private ThingDef GunDef(StatRequest req)
+        var def = req.Def as ThingDef;
+
+        if (def?.building?.IsTurret ?? false)
         {
-            var def = req.Def as ThingDef;
-
-            if (def?.building?.IsTurret ?? false)
-            {
-                def = def.building.turretGunDef;
-            }
-
-            return def;
+            def = def.building.turretGunDef;
         }
 
-        private Thing Gun(StatRequest req)
+        return def;
+    }
+
+    private Thing Gun(StatRequest req)
+    {
+        return (req.Thing as Building_Turret)?.GetGun() ?? req.Thing;
+    }
+
+    public override bool ShouldShowFor(StatRequest req)
+    {
+        if (!base.ShouldShowFor(req))
         {
-            return (req.Thing as Building_Turret)?.GetGun() ?? req.Thing;
+            return false;
         }
 
-        public override bool ShouldShowFor(StatRequest req)
+        AmmoSetDef ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+        if (ShouldDisplayAmmoSet(ammoSet))
         {
-            if (!base.ShouldShowFor(req))
-            {
-                return false;
-            }
+            return true;
+        }
+        else
+        {
+            return (GunDef(req)?.Verbs?.Any(x => x.defaultProjectile != null) ?? false);
+        }
+    }
 
-            AmmoSetDef ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
-            if (ShouldDisplayAmmoSet(ammoSet))
+    public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest statRequest)
+    {
+        var ammoSet = GunDef(statRequest)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+        if (ShouldDisplayAmmoSet(ammoSet))
+        {
+            foreach (var ammoType in ammoSet.ammoTypes)
             {
-                return true;
-            }
-            else
-            {
-                return (GunDef(req)?.Verbs?.Any(x => x.defaultProjectile != null) ?? false);
+                yield return new Dialog_InfoCard.Hyperlink(ammoType.ammo);
             }
         }
+    }
 
-        public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest statRequest)
+    public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        var ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+        if (ShouldDisplayAmmoSet(ammoSet))
         {
-            var ammoSet = GunDef(statRequest)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
-            if (ShouldDisplayAmmoSet(ammoSet))
+            // Append various ammo stats
+            stringBuilder.AppendLine(ammoSet.LabelCap);
+            var multiplier = Gun(req)?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
+            if (Mathf.Abs(1f - multiplier) > 0.0001f)
             {
-                foreach (var ammoType in ammoSet.ammoTypes)
-                {
-                    yield return new Dialog_InfoCard.Hyperlink(ammoType.ammo);
-                }
+                stringBuilder.AppendLine("CE_RangedQualityMultiplier".Translate() + ": " + multiplier.ToStringByStyle(ToStringStyle.PercentOne));
+            }
+            stringBuilder.AppendLine();
+            foreach (var cur in ammoSet.ammoTypes)
+            {
+                string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? (string)cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
+                stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout(Gun(req)));   //Is fine handling req.Thing == null, then it sets mult = 1
             }
         }
-
-        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
+        else
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var projectiles = GunDef(req)?.Verbs?.Where(x => x.defaultProjectile != null).Select(x => x.defaultProjectile);
 
-            var ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
-            if (ShouldDisplayAmmoSet(ammoSet))
+            foreach (var cur in projectiles)
             {
-                // Append various ammo stats
-                stringBuilder.AppendLine(ammoSet.LabelCap);
-                var multiplier = Gun(req)?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
-                if (Mathf.Abs(1f - multiplier) > 0.0001f)
-                {
-                    stringBuilder.AppendLine("CE_RangedQualityMultiplier".Translate() + ": " + multiplier.ToStringByStyle(ToStringStyle.PercentOne));
-                }
-                stringBuilder.AppendLine();
-                foreach (var cur in ammoSet.ammoTypes)
-                {
-                    string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? (string)cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
-                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout(Gun(req)));   //Is fine handling req.Thing == null, then it sets mult = 1
-                }
-            }
-            else
-            {
-                var projectiles = GunDef(req)?.Verbs?.Where(x => x.defaultProjectile != null).Select(x => x.defaultProjectile);
-
-                foreach (var cur in projectiles)
-                {
-                    stringBuilder.AppendLine(cur.LabelCap + ":\n" + cur.GetProjectileReadout(Gun(req)));
-                }
-            }
-
-            return stringBuilder.ToString().TrimEndNewlines();
-        }
-
-        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
-        {
-            var ammoSet = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
-            if (ShouldDisplayAmmoSet(ammoSet))
-            {
-                return ammoSet?.LabelCap;
-            }
-            else
-            {
-                var projectiles = GunDef(optionalReq)?.Verbs?.Where(x => x.defaultProjectile != null).Select(x => x.defaultProjectile);
-                return projectiles.First().LabelCap + (projectiles.Count() > 1 ? "(+" + (projectiles.Count() - 1) + ")" : "");
+                stringBuilder.AppendLine(cur.LabelCap + ":\n" + cur.GetProjectileReadout(Gun(req)));
             }
         }
 
-        private bool ShouldDisplayAmmoSet(AmmoSetDef ammoSet)
+        return stringBuilder.ToString().TrimEndNewlines();
+    }
+
+    public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
+    {
+        var ammoSet = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+        if (ShouldDisplayAmmoSet(ammoSet))
         {
-            return ammoSet != null && AmmoUtility.IsAmmoSystemActive(ammoSet);
+            return ammoSet?.LabelCap;
         }
+        else
+        {
+            var projectiles = GunDef(optionalReq)?.Verbs?.Where(x => x.defaultProjectile != null).Select(x => x.defaultProjectile);
+            return projectiles.First().LabelCap + (projectiles.Count() > 1 ? "(+" + (projectiles.Count() - 1) + ")" : "");
+        }
+    }
+
+    private bool ShouldDisplayAmmoSet(AmmoSetDef ammoSet)
+    {
+        return ammoSet != null && AmmoUtility.IsAmmoSystemActive(ammoSet);
     }
 }

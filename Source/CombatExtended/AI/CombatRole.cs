@@ -6,16 +6,14 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended.AI
+namespace CombatExtended.AI;
+public enum CombatRole : byte
 {
-    public enum CombatRole : byte
-    {
-        Undefined,
-        Melee,
-        Assault,
-        Sniper,
-        Suppressor,
-        Grenadier,
-        Rocketeer
-    }
+    Undefined,
+    Melee,
+    Assault,
+    Sniper,
+    Suppressor,
+    Grenadier,
+    Rocketeer
 }
