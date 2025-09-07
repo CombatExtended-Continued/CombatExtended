@@ -61,7 +61,7 @@
 
 	<!--========================= Embrasures =============================-->
 
-	<ThingDef ParentName="BuildingBase">
+	<ThingDef ParentName="Wall" Name="EmbrasureBase">
 		<defName>CE_Embrasure</defName>
 		<label>embrasure</label>
 		<thingClass>Building</thingClass>
@@ -72,25 +72,9 @@
 		</replaceTags>
 		<graphicData>
 			<texPath>Things/Building/Embrasure</texPath>
-			<graphicClass>Graphic_Appearances</graphicClass>
-			<linkType>CornerFiller</linkType>
-			<linkFlags>
-				<li>Wall</li>
-				<li>Rock</li>
-			</linkFlags>
-			<damageData>
-				<cornerTL>Damage/Corner</cornerTL>
-				<cornerTR>Damage/Corner</cornerTR>
-				<cornerBL>Damage/Corner</cornerBL>
-				<cornerBR>Damage/Corner</cornerBR>
-				<edgeTop>Damage/Edge</edgeTop>
-				<edgeBot>Damage/Edge</edgeBot>
-				<edgeLeft>Damage/Edge</edgeLeft>
-				<edgeRight>Damage/Edge</edgeRight>
-			</damageData>
 		</graphicData>
 		<uiIconPath>Things/Building/Embrasure/EmbrasureSmooth_MenuIcon</uiIconPath>
-		<uiIconPathsStuff>
+		<uiIconPathsStuff Inherit="False">
 			<li>
 				<appearance>Planks</appearance>
 				<iconPath>Things/Building/Embrasure/EmbrasurePlanks_MenuIcon</iconPath>
@@ -101,43 +85,16 @@
 			</li>
 		</uiIconPathsStuff>
 		<statBases>
-			<MaxHitPoints>300</MaxHitPoints>
 			<WorkToBuild>150</WorkToBuild>
-			<Flammability>1.0</Flammability>
 		</statBases>
 		<costStuffCount>5</costStuffCount>
-		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
-		<altitudeLayer>Building</altitudeLayer>
-		<passability>Impassable</passability>
-		<castEdgeShadows>true</castEdgeShadows>
 		<fillPercent>0.7</fillPercent>
-		<coversFloor>true</coversFloor>
-		<drawStyleCategory>Walls</drawStyleCategory>
-		<tickerType>Never</tickerType>
-		<rotatable>false</rotatable>
-		<selectable>true</selectable>
-		<neverMultiSelect>true</neverMultiSelect>
-		<useStuffTerrainAffordance>true</useStuffTerrainAffordance>
-		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded><!-- Best affordance needed for stone -->
-		<holdsRoof>true</holdsRoof>
-		<designationCategory>Structure</designationCategory>
-		<staticSunShadowHeight>1</staticSunShadowHeight>
-		<blockLight>false</blockLight>
 		<disableImpassableShotOverConfigError>true</disableImpassableShotOverConfigError>
-		<stuffCategories>
-			<li>Metallic</li>
-			<li>Woody</li>
-			<li>Stony</li>
-		</stuffCategories>
 		<building>
-			<paintable>true</paintable>
-			<ai_chillDestination>false</ai_chillDestination>
-			<isInert>true</isInert>
-			<isPlaceOverableWall>true</isPlaceOverableWall>
-			<canPlaceOverWall>true</canPlaceOverWall>
 			<blueprintGraphicData>
 				<texPath>Things/Building/Embrasure/Embrasure_Blueprint_Atlas</texPath>
 			</blueprintGraphicData>
+			<isStuffableAirtight>false</isStuffableAirtight>
 		</building>
 	</ThingDef>
 

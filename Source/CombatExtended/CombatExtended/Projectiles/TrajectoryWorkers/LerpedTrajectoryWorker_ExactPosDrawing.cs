@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class LerpedTrajectoryWorker_ExactPosDrawing : LerpedTrajectoryWorker
 {
-    public class LerpedTrajectoryWorker_ExactPosDrawing : LerpedTrajectoryWorker
+    public override Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
     {
-        public override Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
-        {
-            return exactPosition.WithY(altitude);
-        }
+        return exactPosition.WithY(altitude);
     }
 }

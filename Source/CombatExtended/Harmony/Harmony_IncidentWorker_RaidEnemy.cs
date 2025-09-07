@@ -7,35 +7,33 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+public static class Harmony_IncidentWorker_RaidEnemy
 {
-    public static class Harmony_IncidentWorker_RaidEnemy
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), nameof(IncidentWorker_RaidEnemy.ResolveRaidPoints))]
+    public static class Harmony_IncidentWorker_RaidEnemy_ResolveRaidPoints
     {
-        [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), nameof(IncidentWorker_RaidEnemy.ResolveRaidPoints))]
-        public static class Harmony_IncidentWorker_RaidEnemy_ResolveRaidPoints
+        public static void Postfix(ref IncidentParms parms)
         {
-            public static void Postfix(ref IncidentParms parms)
+            FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
+            if (tracker != null)
             {
-                FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
-                if (tracker != null)
-                {
-                    parms.points *= tracker.StrengthPointsMultiplier;
-                }
+                parms.points *= tracker.StrengthPointsMultiplier;
             }
         }
+    }
 
-        [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), nameof(IncidentWorker_RaidEnemy.TryExecuteWorker))]
-        public static class Harmony_IncidentWorker_RaidEnemy_TryExecuteWorker
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), nameof(IncidentWorker_RaidEnemy.TryExecuteWorker))]
+    public static class Harmony_IncidentWorker_RaidEnemy_TryExecuteWorker
+    {
+        public static bool Prefix(IncidentParms parms)
         {
-            public static bool Prefix(IncidentParms parms)
+            FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
+            if (tracker != null)
             {
-                FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
-                if (tracker != null)
-                {
-                    return tracker.CanRaid;
-                }
-                return true;
+                return tracker.CanRaid;
             }
+            return true;
         }
     }
 }

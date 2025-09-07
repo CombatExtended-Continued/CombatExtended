@@ -6,22 +6,20 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+///Give melee/ballistic shields a negative apparel score if the pawn has a two-handed weapon.
+///Mimics vanilla behavior regarding shield belts and ranged weapons.
+[HarmonyPatch(typeof(JobGiver_OptimizeApparel), nameof(JobGiver_OptimizeApparel.ApparelScoreGain))]
+internal static class Harmony_JobGiver_OptimizeApparel_ApparelScoreGain
 {
-    ///Give melee/ballistic shields a negative apparel score if the pawn has a two-handed weapon.
-    ///Mimics vanilla behavior regarding shield belts and ranged weapons.
-    [HarmonyPatch(typeof(JobGiver_OptimizeApparel), nameof(JobGiver_OptimizeApparel.ApparelScoreGain))]
-    internal static class Harmony_JobGiver_OptimizeApparel_ApparelScoreGain
+    internal static bool Prefix(Pawn pawn, Apparel ap, ref float __result)
     {
-        internal static bool Prefix(Pawn pawn, Apparel ap, ref float __result)
+        var hasOneHandedWeapon = pawn?.equipment?.Primary?.def?.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false;
+        if (ap is Apparel_Shield && pawn?.equipment?.Primary != null && !hasOneHandedWeapon)
         {
-            var hasOneHandedWeapon = pawn?.equipment?.Primary?.def?.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false;
-            if (ap is Apparel_Shield && pawn?.equipment?.Primary != null && !hasOneHandedWeapon)
-            {
-                __result = -1000f;
-                return false;
-            }
-            return true;
+            __result = -1000f;
+            return false;
         }
+        return true;
     }
 }

@@ -6,10 +6,8 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class JobDefExtensionCE : DefModExtension
 {
-    public class JobDefExtensionCE : DefModExtension
-    {
-        public bool isCrouchJob = false;
-    }
+    public bool isCrouchJob = false;
 }

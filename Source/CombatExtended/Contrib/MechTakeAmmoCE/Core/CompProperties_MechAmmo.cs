@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class CompProperties_MechAmmo : CompProperties
 {
-    public class CompProperties_MechAmmo : CompProperties
-    {
-        [NoTranslate]
-        public string gizmoIconSetMagCount;
-        [NoTranslate]
-        public string gizmoIconTakeAmmoNow;
+    [NoTranslate]
+    public string gizmoIconSetMagCount;
+    [NoTranslate]
+    public string gizmoIconTakeAmmoNow;
 
-        public CompProperties_MechAmmo()
-        {
-            this.compClass = typeof(CompMechAmmo);
-        }
+    public CompProperties_MechAmmo()
+    {
+        this.compClass = typeof(CompMechAmmo);
     }
 }
