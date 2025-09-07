@@ -31,8 +31,12 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public bool castShadow = true;
 
     public float recoilMultiplier = 1;
+    public float recoilOffset = 0f;
     public float warmupMultiplier = 1;
+    public float warmupOffset = 0f;
     public float effectiveRangeMultiplier = 1;
+    public float effectiveRangeOffset = 0f;
+    public float muzzleFlashMultiplier = 1;
     public float muzzleFlashOffset = 0f;
 
     public float suppressionFactor = 1;
