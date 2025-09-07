@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended;
-public class CompCIWSImpactHandler_Projectile : CompCIWSImpactHandler
+namespace CombatExtended
 {
-    public override void OnImpact(ProjectileCE projectile, DamageInfo dinfo)
+    public class CompCIWSImpactHandler_Projectile : CompCIWSImpactHandler
     {
-        projectile.ExactPosition = parent.DrawPos;
-        base.OnImpact(projectile, dinfo);
+        public override void OnImpact(ProjectileCE projectile, DamageInfo dinfo)
+        {
+            projectile.ExactPosition = parent.DrawPos;
+            base.OnImpact(projectile, dinfo);
+        }
     }
 }

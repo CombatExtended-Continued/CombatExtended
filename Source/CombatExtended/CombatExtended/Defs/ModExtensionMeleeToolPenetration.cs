@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended;
-public class ModExtensionMeleeToolPenetration : DefModExtension
+namespace CombatExtended
 {
-    public bool canHitInternal = false;
+    public class ModExtensionMeleeToolPenetration : DefModExtension
+    {
+        public bool canHitInternal = false;
+    }
 }

@@ -5,24 +5,26 @@ using Verse;
 using RimWorld;
 using CombatExtended.WorldObjects;
 
-namespace CombatExtended.HarmonyCE;
-public static class Harmony_WorldInterface
+namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(WorldInterface), nameof(WorldInterface.WorldInterfaceOnGUI))]
-    public static class Harmony_WorldInterface_WorldInterfaceOnGUI
+    public static class Harmony_WorldInterface
     {
-        public static void Postfix()
+        [HarmonyPatch(typeof(WorldInterface), nameof(WorldInterface.WorldInterfaceOnGUI))]
+        public static class Harmony_WorldInterface_WorldInterfaceOnGUI
         {
-            try
+            public static void Postfix()
             {
-                if (WorldRendererUtility.WorldSelected && ExpandableWorldObjectsUtility.RawTransitionPct <= 0.25f)
+                try
                 {
-                    WorldHealthGUIUtility.OnGUIWorldObjectHealth();
+                    if (WorldRendererUtility.WorldSelected && ExpandableWorldObjectsUtility.RawTransitionPct <= 0.25f)
+                    {
+                        WorldHealthGUIUtility.OnGUIWorldObjectHealth();
+                    }
                 }
-            }
-            catch (Exception er)
-            {
-                Log.Error($"CE: Harmony_WorldInterface {er}");
+                catch (Exception er)
+                {
+                    Log.Error($"CE: Harmony_WorldInterface {er}");
+                }
             }
         }
     }

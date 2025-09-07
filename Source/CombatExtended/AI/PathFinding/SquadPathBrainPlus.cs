@@ -7,239 +7,241 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 
-namespace CombatExtended.AI;
-public class SquadBrainPlus
+namespace CombatExtended.AI
 {
-    private readonly Map map;
-    private readonly Faction fac;
-
-    private long tick_count;
-
-    private List<Pawn> squadPawns;
-
-    private Dictionary<Pawn, IntVec3> targets;
-
-    private SquadPath path;
-
-    private Region target;
-
-    private enum states
+    public class SquadBrainPlus
     {
-        moving = 1, ideal = 2, findingPath = 3
-    }
+        private readonly Map map;
+        private readonly Faction fac;
 
-    private states state =
-        states.ideal;
+        private long tick_count;
 
-    public SquadBrainPlus(Map map, Faction fac)
-    {
-        this.map
-            = map;
-        this.tick_count
-            = 0;
-        this.fac
-            = fac;
+        private List<Pawn> squadPawns;
 
-        this.squadPawns
-            = map.mapPawns
-              .AllPawnsSpawned.FindAll((obj) => obj.Faction == Faction.OfPlayer);
-        this.targets
-            = new Dictionary<Pawn, IntVec3>();
+        private Dictionary<Pawn, IntVec3> targets;
 
-        Log.Message("Pawn number is " +  squadPawns.Count);
-    }
+        private SquadPath path;
 
-    public void Tick()
-    {
-        if (tick_count % 100 == 0)
+        private Region target;
+
+        private enum states
         {
-            Log.Message("state number is " + state);
+            moving = 1, ideal = 2, findingPath = 3
         }
 
-        if(tick_count++ % 10 == 0)
+        private states state =
+            states.ideal;
+
+        public SquadBrainPlus(Map map, Faction fac)
         {
-            this.SearchForTarget();
+            this.map
+                = map;
+            this.tick_count
+                = 0;
+            this.fac
+                = fac;
+
+            this.squadPawns
+                = map.mapPawns
+                  .AllPawnsSpawned.FindAll((obj) => obj.Faction == Faction.OfPlayer);
+            this.targets
+                = new Dictionary<Pawn, IntVec3>();
+
+            Log.Message("Pawn number is " +  squadPawns.Count);
         }
 
-        if (state == states.findingPath)
+        public void Tick()
         {
-            this.FindPath();
-
-            this.state
-                = states.moving;
-        }
-
-        if (tick_count % 6 == 0)
-        {
-
-        }
-
-        if (tick_count % 5 != 0)
-        {
-            return;
-        }
-
-        if (state == states.ideal)
-        {
-            this.Ideal();
-        }
-
-        if (state == states.moving)
-        {
-            this.Move();
-        }
-    }
-
-    private void SearchForTarget()
-    {
-        var targetbed = map.listerThings
-                        .AllThings
-                        .Find(
-                            (obj) =>
-                            obj.def.IsBed
-                        );
-
-        this.target
-            = targetbed.GetRegion();
-
-        if (path == null)
-        {
-            this.state
-                = states.findingPath;
-
-            return;
-        }
-
-        if (path.nodes.Count == 0)
-        {
-            this.state
-                = states.findingPath;
-        }
-
-        if (this.target == targetbed.GetRegion())
-        {
-            return;
-        }
-    }
-
-    private void Move()
-    {
-        if (path.nodes.Count == 0)
-        {
-            this.state
-                = states.ideal;
-
-            return;
-        }
-
-        if (path.nodes[0] == null)
-        {
-            path.nodes.RemoveAt(0);
-            return;
-        }
-
-        foreach (Pawn pawn in squadPawns)
-        {
-            try
+            if (tick_count % 100 == 0)
             {
-                if (pawn.Position.GetRegion(map) != path.nodes[0])
-                {
-                    if (pawn.CurJob == null)
-                    {
-                        var region = path.nodes[0];
-
-                        var targetCell =
-                            region.RandomCell;
-
-                        while (!targetCell.Walkable(map))
-                        {
-                            targetCell = region.AnyCell;
-                        }
-
-                        pawn.jobs.StartJob(
-                            new Job(JobDefOf.Goto, targetCell)
-                        );
-                    }
-                    else if (pawn.CurJob.def != JobDefOf.Goto ||
-                             pawn.CurJob.targetA.Cell.GetRegion(map) != path.nodes[0])
-                    {
-
-                        var region = path.nodes[0];
-
-                        var targetCell =
-                            region.RandomCell;
-
-                        while (!targetCell.Walkable(map))
-                        {
-                            targetCell = region.RandomCell;
-                        }
-
-                        pawn.jobs.StartJob(
-                            new Job(JobDefOf.Goto, targetCell)
-                        );
-
-                    }
-                }
+                Log.Message("state number is " + state);
             }
-            catch (Exception er)
+
+            if(tick_count++ % 10 == 0)
             {
-                Log.Message(er.ToString());
+                this.SearchForTarget();
+            }
+
+            if (state == states.findingPath)
+            {
+                this.FindPath();
+
+                this.state
+                    = states.moving;
+            }
+
+            if (tick_count % 6 == 0)
+            {
+
+            }
+
+            if (tick_count % 5 != 0)
+            {
+                return;
+            }
+
+            if (state == states.ideal)
+            {
+                this.Ideal();
+            }
+
+            if (state == states.moving)
+            {
+                this.Move();
             }
         }
 
-        foreach (Pawn pawn in squadPawns)
+        private void SearchForTarget()
         {
-            if (pawn.Position.GetRegion(map) != path.nodes[0])
+            var targetbed = map.listerThings
+                            .AllThings
+                            .Find(
+                                (obj) =>
+                                obj.def.IsBed
+                            );
+
+            this.target
+                = targetbed.GetRegion();
+
+            if (path == null)
+            {
+                this.state
+                    = states.findingPath;
+
+                return;
+            }
+
+            if (path.nodes.Count == 0)
+            {
+                this.state
+                    = states.findingPath;
+            }
+
+            if (this.target == targetbed.GetRegion())
             {
                 return;
             }
         }
 
-        path.nodes.RemoveAt(0);
-    }
-
-    private void Ideal()
-    {
-
-    }
-
-    private void FindPath()
-    {
-
-        this.squadPawns
-            = map.mapPawns
-              .AllPawnsSpawned.FindAll((obj) => obj.Faction == Faction.OfPlayer);
-
-        Log.Message("Starting PathFinding");
-
-        SquadPather pather =
-            new SquadPather(map);
-
-
-        Log.Message("Starting PathFinding" + squadPawns[0]
-                    .Position.GetRegion(map)
-                    .Equals(this.target)
-                   );
-
-        this.path = pather.GetSquadPathFromTo(
-                        squadPawns[0].Position.GetRegion(map),
-                        this.target,
-                        this.fac,
-                        100
-                    );
-
-        Log.Message("nodes Counts " + this.path.nodes.Count);
-    }
-
-    private void AssignJobToPawn(Job job, Pawn pawn)
-    {
-        if (pawn.drafter != null)
+        private void Move()
         {
-            pawn.jobs.TryTakeOrderedJob(job);
+            if (path.nodes.Count == 0)
+            {
+                this.state
+                    = states.ideal;
+
+                return;
+            }
+
+            if (path.nodes[0] == null)
+            {
+                path.nodes.RemoveAt(0);
+                return;
+            }
+
+            foreach (Pawn pawn in squadPawns)
+            {
+                try
+                {
+                    if (pawn.Position.GetRegion(map) != path.nodes[0])
+                    {
+                        if (pawn.CurJob == null)
+                        {
+                            var region = path.nodes[0];
+
+                            var targetCell =
+                                region.RandomCell;
+
+                            while (!targetCell.Walkable(map))
+                            {
+                                targetCell = region.AnyCell;
+                            }
+
+                            pawn.jobs.StartJob(
+                                new Job(JobDefOf.Goto, targetCell)
+                            );
+                        }
+                        else if (pawn.CurJob.def != JobDefOf.Goto ||
+                                 pawn.CurJob.targetA.Cell.GetRegion(map) != path.nodes[0])
+                        {
+
+                            var region = path.nodes[0];
+
+                            var targetCell =
+                                region.RandomCell;
+
+                            while (!targetCell.Walkable(map))
+                            {
+                                targetCell = region.RandomCell;
+                            }
+
+                            pawn.jobs.StartJob(
+                                new Job(JobDefOf.Goto, targetCell)
+                            );
+
+                        }
+                    }
+                }
+                catch (Exception er)
+                {
+                    Log.Message(er.ToString());
+                }
+            }
+
+            foreach (Pawn pawn in squadPawns)
+            {
+                if (pawn.Position.GetRegion(map) != path.nodes[0])
+                {
+                    return;
+                }
+            }
+
+            path.nodes.RemoveAt(0);
         }
-        else
+
+        private void Ideal()
         {
-            ExternalPawnDrafter.TakeOrderedJob(pawn, job);
+
+        }
+
+        private void FindPath()
+        {
+
+            this.squadPawns
+                = map.mapPawns
+                  .AllPawnsSpawned.FindAll((obj) => obj.Faction == Faction.OfPlayer);
+
+            Log.Message("Starting PathFinding");
+
+            SquadPather pather =
+                new SquadPather(map);
+
+
+            Log.Message("Starting PathFinding" + squadPawns[0]
+                        .Position.GetRegion(map)
+                        .Equals(this.target)
+                       );
+
+            this.path = pather.GetSquadPathFromTo(
+                            squadPawns[0].Position.GetRegion(map),
+                            this.target,
+                            this.fac,
+                            100
+                        );
+
+            Log.Message("nodes Counts " + this.path.nodes.Count);
+        }
+
+        private void AssignJobToPawn(Job job, Pawn pawn)
+        {
+            if (pawn.drafter != null)
+            {
+                pawn.jobs.TryTakeOrderedJob(job);
+            }
+            else
+            {
+                ExternalPawnDrafter.TakeOrderedJob(pawn, job);
+            }
         }
     }
 }

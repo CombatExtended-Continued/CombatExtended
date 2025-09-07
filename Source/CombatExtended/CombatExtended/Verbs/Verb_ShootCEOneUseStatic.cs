@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended;
-public class Verb_ShootCEOneUseStatic : Verb_ShootCEOneUse
+namespace CombatExtended
 {
-    [Compatibility.Multiplayer.SyncMethod]
-    public override void OrderForceTarget(LocalTargetInfo target)
+    public class Verb_ShootCEOneUseStatic : Verb_ShootCEOneUse
     {
-        Job job = JobMaker.MakeJob(JobDefOf.UseVerbOnThingStaticReserve, target);
-        job.verbToUse = this;
-        this.CasterPawn.jobs.TryTakeOrderedJob(job, new JobTag?(JobTag.Misc), false);
+        [Compatibility.Multiplayer.SyncMethod]
+        public override void OrderForceTarget(LocalTargetInfo target)
+        {
+            Job job = JobMaker.MakeJob(JobDefOf.UseVerbOnThingStaticReserve, target);
+            job.verbToUse = this;
+            this.CasterPawn.jobs.TryTakeOrderedJob(job, new JobTag?(JobTag.Misc), false);
+        }
     }
 }

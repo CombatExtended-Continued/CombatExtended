@@ -1,14 +1,16 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace CombatExtended;
-[DefOf]
-public static class CE_SoundDefOf
+namespace CombatExtended
 {
-    static CE_SoundDefOf()
+    [DefOf]
+    public static class CE_SoundDefOf
     {
-        DefOfHelper.EnsureInitializedInCtor(typeof(CE_SoundDefOf));
+        static CE_SoundDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(CE_SoundDefOf));
+        }
+        public static SoundDef CE_AutoLoaderAmbient;
+        public static SoundDef Interact_Bipod;
     }
-    public static SoundDef CE_AutoLoaderAmbient;
-    public static SoundDef Interact_Bipod;
 }

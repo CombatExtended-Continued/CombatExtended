@@ -5,89 +5,91 @@ using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
-namespace CombatExtended;
-public class WorldStrengthTracker : WorldComponent
+namespace CombatExtended
 {
-    private bool initialized = false;
-    private List<FactionStrengthTracker> trackers = new List<FactionStrengthTracker>();
-
-    public WorldStrengthTracker(World world) : base(world)
+    public class WorldStrengthTracker : WorldComponent
     {
-    }
+        private bool initialized = false;
+        private List<FactionStrengthTracker> trackers = new List<FactionStrengthTracker>();
 
-    public override void WorldComponentTick()
-    {
-        base.WorldComponentTick();
-        if (!initialized)
+        public WorldStrengthTracker(World world) : base(world)
         {
-            Rebuild();
         }
-        if (GenTicks.TicksGame % 30000 == 0)
-        {
-            Rebuild();
-        }
-    }
 
-    public override void ExposeData()
-    {
-        base.ExposeData();
-        try
+        public override void WorldComponentTick()
         {
-            Scribe_Collections.Look(ref trackers, "trackers", LookMode.Deep);
-        }
-        catch (Exception er)
-        {
-            Log.Error($"CE: WorldStrengthTracker failed to scribe, rebuilding.");
-            Log.Error($"CE: {er}");
-            trackers.Clear();
-        }
-        trackers ??= new List<FactionStrengthTracker>();
-    }
-
-    public FactionStrengthTracker GetFactionTracker(Faction faction)
-    {
-        if (faction == null)
-        {
-            return null;
-        }
-        if (faction.defeated || faction.IsPlayer)
-        {
-            return null;
-        }
-        FactionStrengthTracker tracker = trackers.FirstOrDefault(t => t.Faction == faction);
-        if (tracker != null)
-        {
-            return tracker;
-        }
-        Rebuild();
-        return trackers.FirstOrDefault(t => t.Faction == faction);
-    }
-
-    public void Rebuild()
-    {
-        trackers.RemoveAll(t => t.Faction?.defeated ?? true);
-        foreach (Faction faction in world.factionManager.AllFactions)
-        {
-            if (faction.IsPlayer)
+            base.WorldComponentTick();
+            if (!initialized)
             {
-                continue;
+                Rebuild();
             }
-            if (faction.defeated)
+            if (GenTicks.TicksGame % 30000 == 0)
             {
-                continue;
+                Rebuild();
             }
-            var tracker = trackers.FirstOrDefault(s => s.Faction == faction);
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            try
+            {
+                Scribe_Collections.Look(ref trackers, "trackers", LookMode.Deep);
+            }
+            catch (Exception er)
+            {
+                Log.Error($"CE: WorldStrengthTracker failed to scribe, rebuilding.");
+                Log.Error($"CE: {er}");
+                trackers.Clear();
+            }
+            trackers ??= new List<FactionStrengthTracker>();
+        }
+
+        public FactionStrengthTracker GetFactionTracker(Faction faction)
+        {
+            if (faction == null)
+            {
+                return null;
+            }
+            if (faction.defeated || faction.IsPlayer)
+            {
+                return null;
+            }
+            FactionStrengthTracker tracker = trackers.FirstOrDefault(t => t.Faction == faction);
             if (tracker != null)
             {
-                tracker.TickLonger();
+                return tracker;
             }
-            else
-            {
-                tracker = new FactionStrengthTracker(faction);
-                trackers.Add(tracker);
-            }
+            Rebuild();
+            return trackers.FirstOrDefault(t => t.Faction == faction);
         }
-        initialized = true;
+
+        public void Rebuild()
+        {
+            trackers.RemoveAll(t => t.Faction?.defeated ?? true);
+            foreach (Faction faction in world.factionManager.AllFactions)
+            {
+                if (faction.IsPlayer)
+                {
+                    continue;
+                }
+                if (faction.defeated)
+                {
+                    continue;
+                }
+                var tracker = trackers.FirstOrDefault(s => s.Faction == faction);
+                if (tracker != null)
+                {
+                    tracker.TickLonger();
+                }
+                else
+                {
+                    tracker = new FactionStrengthTracker(faction);
+                    trackers.Add(tracker);
+                }
+            }
+            initialized = true;
+        }
     }
 }
 

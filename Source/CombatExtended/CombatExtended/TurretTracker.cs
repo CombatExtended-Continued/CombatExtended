@@ -5,51 +5,53 @@ using Verse;
 using RimWorld;
 using Verse.AI;
 
-namespace CombatExtended;
-public class TurretTracker : MapComponent
+namespace CombatExtended
 {
-    public HashSet<Building_Turret> Turrets = new HashSet<Building_Turret>();
-    public HashSet<Building_CIWS_CE> CIWS = new HashSet<Building_CIWS_CE>();
+    public class TurretTracker : MapComponent
+    {
+        public HashSet<Building_Turret> Turrets = new HashSet<Building_Turret>();
+        public HashSet<Building_CIWS_CE> CIWS = new HashSet<Building_CIWS_CE>();
 
-    public TurretTracker(Map map) : base(map)
-    {
-    }
+        public TurretTracker(Map map) : base(map)
+        {
+        }
 
-    public void Register(Building_Turret t)
-    {
-        if (!Turrets.Contains(t))
+        public void Register(Building_Turret t)
         {
-            Turrets.Add(t);
+            if (!Turrets.Contains(t))
+            {
+                Turrets.Add(t);
+            }
         }
-    }
-    public void Register(Building_CIWS_CE ciws)
-    {
-        if (!CIWS.Contains(ciws))
+        public void Register(Building_CIWS_CE ciws)
         {
-            CIWS.Add(ciws);
+            if (!CIWS.Contains(ciws))
+            {
+                CIWS.Add(ciws);
+            }
         }
-    }
-    public void Unregister(Building_Turret t)
-    {
-        if (Turrets.Contains(t))
+        public void Unregister(Building_Turret t)
         {
-            Turrets.Remove(t);
+            if (Turrets.Contains(t))
+            {
+                Turrets.Remove(t);
+            }
         }
-    }
-    public void Unregister(Building_CIWS_CE ciws)
-    {
-        if (CIWS.Contains(ciws))
+        public void Unregister(Building_CIWS_CE ciws)
         {
-            CIWS.Remove(ciws);
+            if (CIWS.Contains(ciws))
+            {
+                CIWS.Remove(ciws);
+            }
         }
-    }
 
-    // Returns the closest turret to `position` on the which matches the criteria set in `validator`
-    public Thing ClosestTurret(IntVec3 position, PathEndMode pathEndMode, TraverseParms parms, float maxDist,
-                               Predicate<Thing> validator = null)
-    {
-        return GenClosest.ClosestThingReachable(
-                   position, map, ThingRequest.ForUndefined(), pathEndMode,
-                   parms, maxDist, validator, Turrets);
+        // Returns the closest turret to `position` on the which matches the criteria set in `validator`
+        public Thing ClosestTurret(IntVec3 position, PathEndMode pathEndMode, TraverseParms parms, float maxDist,
+                                   Predicate<Thing> validator = null)
+        {
+            return GenClosest.ClosestThingReachable(
+                       position, map, ThingRequest.ForUndefined(), pathEndMode,
+                       parms, maxDist, validator, Turrets);
+        }
     }
 }

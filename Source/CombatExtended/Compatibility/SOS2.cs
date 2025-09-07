@@ -1,22 +1,24 @@
 using System.Collections.Generic;
 using Verse;
 
-namespace CombatExtended.Compatibility;
-public class SOS2 : IPatch
+namespace CombatExtended.Compatibility
 {
-    const string ModName = "Save Our Ship 2";
-    bool IPatch.CanInstall()
+    public class SOS2 : IPatch
     {
-        Log.Message("Combat Extended :: Checking SOS2");
-        if (!ModLister.HasActiveModWithName(ModName))
+        const string ModName = "Save Our Ship 2";
+        bool IPatch.CanInstall()
         {
-            return false;
+            Log.Message("Combat Extended :: Checking SOS2");
+            if (!ModLister.HasActiveModWithName(ModName))
+            {
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
 
-    public void Install()
-    {
-        Log.Message("Combat Extended :: Installing SOS2");
+        public void Install()
+        {
+            Log.Message("Combat Extended :: Installing SOS2");
+        }
     }
 }

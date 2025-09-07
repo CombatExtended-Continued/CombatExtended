@@ -4,69 +4,71 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace CombatExtended.Lasers;
-class SpinningLaserGun : SpinningLaserGunBase
+namespace CombatExtended.Lasers
 {
-    bool IsBrusting(Pawn pawn)
+    class SpinningLaserGun : SpinningLaserGunBase
     {
-        if (pawn.CurrentEffectiveVerb == null)
+        bool IsBrusting(Pawn pawn)
         {
-            return false;
-        }
-        return pawn.CurrentEffectiveVerb.Bursting;
-    }
-
-    public override void UpdateState()
-    {
-        var holder = ParentHolder as Pawn_EquipmentTracker;
-        if (holder == null)
-        {
-            return;
+            if (pawn.CurrentEffectiveVerb == null)
+            {
+                return false;
+            }
+            return pawn.CurrentEffectiveVerb.Bursting;
         }
 
-        Stance stance = holder.pawn.stances.curStance;
-        Stance_Warmup warmup;
-
-        switch (state)
+        public override void UpdateState()
         {
-            case State.Idle:
-                warmup = stance as Stance_Warmup;
-                if (warmup != null)
-                {
-                    state = State.Spinup;
-                    ReachRotationSpeed(def.rotationSpeed, warmup.ticksLeft);
-                }
-                break;
-            case State.Spinup:
-                if (IsBrusting(holder.pawn))
-                {
-                    state = State.Spinning;
-                }
-                else
-                {
+            var holder = ParentHolder as Pawn_EquipmentTracker;
+            if (holder == null)
+            {
+                return;
+            }
+
+            Stance stance = holder.pawn.stances.curStance;
+            Stance_Warmup warmup;
+
+            switch (state)
+            {
+                case State.Idle:
                     warmup = stance as Stance_Warmup;
-                    if (warmup == null)
+                    if (warmup != null)
                     {
-                        state = State.Idle;
-                        ReachRotationSpeed(0.0f, 30);
+                        state = State.Spinup;
+                        ReachRotationSpeed(def.rotationSpeed, warmup.ticksLeft);
                     }
-                }
-                break;
-            case State.Spinning:
-                if (!IsBrusting(holder.pawn))
-                {
-                    state = State.Idle;
-                    Stance_Cooldown cooldown = stance as Stance_Cooldown;
-                    if (cooldown != null)
+                    break;
+                case State.Spinup:
+                    if (IsBrusting(holder.pawn))
                     {
-                        ReachRotationSpeed(0.0f, cooldown.ticksLeft);
+                        state = State.Spinning;
                     }
                     else
                     {
-                        ReachRotationSpeed(0.0f, 0);
+                        warmup = stance as Stance_Warmup;
+                        if (warmup == null)
+                        {
+                            state = State.Idle;
+                            ReachRotationSpeed(0.0f, 30);
+                        }
                     }
-                }
-                break;
+                    break;
+                case State.Spinning:
+                    if (!IsBrusting(holder.pawn))
+                    {
+                        state = State.Idle;
+                        Stance_Cooldown cooldown = stance as Stance_Cooldown;
+                        if (cooldown != null)
+                        {
+                            ReachRotationSpeed(0.0f, cooldown.ticksLeft);
+                        }
+                        else
+                        {
+                            ReachRotationSpeed(0.0f, 0);
+                        }
+                    }
+                    break;
+            }
         }
     }
 }

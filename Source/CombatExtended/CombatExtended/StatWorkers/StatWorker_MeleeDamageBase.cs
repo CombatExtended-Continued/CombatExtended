@@ -6,59 +6,61 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class StatWorker_MeleeDamageBase : StatWorker_MeleeStats
+namespace CombatExtended
 {
-    #region Constants
-
-    public const float damageVariationMin = 0.5f;
-    public const float damageVariationMax = 1.5f;
-    public const float damageVariationPerSkillLevel = 0.025f;
-
-    #endregion
-
-    #region Methods
-
-    public static float GetDamageVariationMin(Pawn pawn)
+    public class StatWorker_MeleeDamageBase : StatWorker_MeleeStats
     {
-        float unskilledReturnValue = damageVariationMin;
-        if (!ShouldUseSkillVariation(pawn, ref unskilledReturnValue))
+        #region Constants
+
+        public const float damageVariationMin = 0.5f;
+        public const float damageVariationMax = 1.5f;
+        public const float damageVariationPerSkillLevel = 0.025f;
+
+        #endregion
+
+        #region Methods
+
+        public static float GetDamageVariationMin(Pawn pawn)
         {
-            return unskilledReturnValue;
+            float unskilledReturnValue = damageVariationMin;
+            if (!ShouldUseSkillVariation(pawn, ref unskilledReturnValue))
+            {
+                return unskilledReturnValue;
+            }
+            return damageVariationMin + (damageVariationPerSkillLevel * pawn.skills.GetSkill(SkillDefOf.Melee).Level);
         }
-        return damageVariationMin + (damageVariationPerSkillLevel * pawn.skills.GetSkill(SkillDefOf.Melee).Level);
-    }
 
-    public static float GetDamageVariationMax(Pawn pawn)
-    {
-        float unskilledReturnValue = damageVariationMax;
-        if (!ShouldUseSkillVariation(pawn, ref unskilledReturnValue))
+        public static float GetDamageVariationMax(Pawn pawn)
         {
-            return unskilledReturnValue;
+            float unskilledReturnValue = damageVariationMax;
+            if (!ShouldUseSkillVariation(pawn, ref unskilledReturnValue))
+            {
+                return unskilledReturnValue;
+            }
+            return damageVariationMax - (damageVariationPerSkillLevel * (20 - pawn.skills.GetSkill(SkillDefOf.Melee).Level));
         }
-        return damageVariationMax - (damageVariationPerSkillLevel * (20 - pawn.skills.GetSkill(SkillDefOf.Melee).Level));
-    }
 
-    public static bool ShouldUseSkillVariation(Pawn pawn, ref float unskilledReturnValue)
-    {
-        if (pawn == null)       //Info windows for when weapon isn't equipped
+        public static bool ShouldUseSkillVariation(Pawn pawn, ref float unskilledReturnValue)
         {
-            return false;
+            if (pawn == null)       //Info windows for when weapon isn't equipped
+            {
+                return false;
+            }
+            if ((pawn?.skills?.GetSkill(SkillDefOf.Melee) ?? null) == null)     //Pawns that can equip weapons but don't use skill (mechanoids, custom races)
+            {
+                //No damage variation applied (same as animals for unarmed damage)
+                unskilledReturnValue = 1.0f;
+                return false;
+            }
+            return true;
         }
-        if ((pawn?.skills?.GetSkill(SkillDefOf.Melee) ?? null) == null)     //Pawns that can equip weapons but don't use skill (mechanoids, custom races)
+
+        public static float GetAdjustedDamage(ToolCE tool, Thing thingOwner)
         {
-            //No damage variation applied (same as animals for unarmed damage)
-            unskilledReturnValue = 1.0f;
-            return false;
+            return tool.AdjustedBaseMeleeDamageAmount(thingOwner, tool.capacities?.First()?.VerbsProperties?.First()?.meleeDamageDef);
         }
-        return true;
+
+        #endregion
+
     }
-
-    public static float GetAdjustedDamage(ToolCE tool, Thing thingOwner)
-    {
-        return tool.AdjustedBaseMeleeDamageAmount(thingOwner, tool.capacities?.First()?.VerbsProperties?.First()?.meleeDamageDef);
-    }
-
-    #endregion
-
 }

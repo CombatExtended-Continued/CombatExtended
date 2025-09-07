@@ -11,54 +11,56 @@ using CombatExtended.Lasers;
 using ProjectileImpactFX;
 using CombatExtended.Utilities;
 
-namespace CombatExtended;
-class ProjectileCE_HeightFuse : ProjectileCE
+namespace CombatExtended
 {
-    float detonationHeight => (def.projectile as ProjectilePropertiesCE).aimHeightOffset;
-
-    bool armed;
-
-    public override void ExposeData()
+    class ProjectileCE_HeightFuse : ProjectileCE
     {
-        base.ExposeData();
-        Scribe_Values.Look(ref armed, "armed", false);
-    }
+        float detonationHeight => (def.projectile as ProjectilePropertiesCE).aimHeightOffset;
 
-    public override void Tick()
-    {
-        base.Tick();
-        if (!armed && LastPos.y > detonationHeight)
-        {
-            armed = true;
-        }
-        if (armed && ExactPosition.y <= detonationHeight)
-        {
-            HeightFuseAirBurst();
-        }
-    }
+        bool armed;
 
-    public override void Impact(Thing hitThing)
-    {
-        //intercept impact if it hit something after where height fuse should have triggered
-        if (armed && ExactPosition.y <= detonationHeight)
+        public override void ExposeData()
         {
-            HeightFuseAirBurst();
+            base.ExposeData();
+            Scribe_Values.Look(ref armed, "armed", false);
         }
-        else
-        {
-            base.Impact(hitThing);
-        }
-    }
 
-    void HeightFuseAirBurst()
-    {
-        float f = (LastPos.y - detonationHeight) / (LastPos.y - ExactPosition.y);
-        ExactPosition += f * (LastPos - ExactPosition);
-        if (!ExactPosition.ToIntVec3().IsValid)
+        public override void Tick()
         {
-            Destroy();
-            return;
+            base.Tick();
+            if (!armed && LastPos.y > detonationHeight)
+            {
+                armed = true;
+            }
+            if (armed && ExactPosition.y <= detonationHeight)
+            {
+                HeightFuseAirBurst();
+            }
         }
-        base.Impact(null);
+
+        public override void Impact(Thing hitThing)
+        {
+            //intercept impact if it hit something after where height fuse should have triggered
+            if (armed && ExactPosition.y <= detonationHeight)
+            {
+                HeightFuseAirBurst();
+            }
+            else
+            {
+                base.Impact(hitThing);
+            }
+        }
+
+        void HeightFuseAirBurst()
+        {
+            float f = (LastPos.y - detonationHeight) / (LastPos.y - ExactPosition.y);
+            ExactPosition += f * (LastPos - ExactPosition);
+            if (!ExactPosition.ToIntVec3().IsValid)
+            {
+                Destroy();
+                return;
+            }
+            base.Impact(null);
+        }
     }
 }

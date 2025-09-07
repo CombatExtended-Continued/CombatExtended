@@ -6,17 +6,20 @@ using HarmonyLib;
 using Verse;
 using CombatExtended;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(Verb), "TryFindShootLineFromTo")]
-internal static class Verb_LaunchProjectileCE_RerouteTryFindShootLineFromTo
+namespace CombatExtended.HarmonyCE
+
 {
-    internal static bool Prefix(Verb __instance, ref bool __result, IntVec3 root, LocalTargetInfo targ, ref ShootLine resultingLine)
+    [HarmonyPatch(typeof(Verb), "TryFindShootLineFromTo")]
+    internal static class Verb_LaunchProjectileCE_RerouteTryFindShootLineFromTo
     {
-        if (__instance is Verb_LaunchProjectileCE launchVerbCE)
+        internal static bool Prefix(Verb __instance, ref bool __result, IntVec3 root, LocalTargetInfo targ, ref ShootLine resultingLine)
         {
-            __result = (launchVerbCE as Verb_LaunchProjectileCE).TryFindCEShootLineFromTo(root, targ, out resultingLine, out _);
-            return false;
+            if (__instance is Verb_LaunchProjectileCE launchVerbCE)
+            {
+                __result = (launchVerbCE as Verb_LaunchProjectileCE).TryFindCEShootLineFromTo(root, targ, out resultingLine, out _);
+                return false;
+            }
+            return true;
         }
-        return true;
     }
 }

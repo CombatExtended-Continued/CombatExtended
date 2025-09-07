@@ -7,17 +7,19 @@ using CombatExtended.Loader;
 using RimWorld;
 using System.Collections.Generic;
 
-namespace CombatExtended.Compatibility;
-public class MiscTurrets : IPatch
+namespace CombatExtended.Compatibility
 {
-    public bool CanInstall()
+    public class MiscTurrets : IPatch
     {
-        Log.Message("Combat Extended :: Checking Misc Turrets");
-        return ModLister.HasActiveModWithName("Misc. TurretBase, Objects");
-    }
+        public bool CanInstall()
+        {
+            Log.Message("Combat Extended :: Checking Misc Turrets");
+            return ModLister.HasActiveModWithName("Misc. TurretBase, Objects");
+        }
 
-    public void Install()
-    {
-        Log.Message("Combat Extended :: Installing Misc Turrets");
+        public void Install()
+        {
+            Log.Message("Combat Extended :: Installing Misc Turrets");
+        }
     }
 }

@@ -6,27 +6,29 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-class ThoughtWorker_Suppressed : ThoughtWorker
+namespace CombatExtended
 {
-    public override ThoughtState CurrentStateInternal(Pawn p)
+    class ThoughtWorker_Suppressed : ThoughtWorker
     {
-        CompSuppressable comp = p.TryGetComp<CompSuppressable>();
-        if (comp != null)
+        public override ThoughtState CurrentStateInternal(Pawn p)
         {
-            if (comp.IsHunkering)
+            CompSuppressable comp = p.TryGetComp<CompSuppressable>();
+            if (comp != null)
             {
-                return ThoughtState.ActiveAtStage(2);
+                if (comp.IsHunkering)
+                {
+                    return ThoughtState.ActiveAtStage(2);
+                }
+                else if (comp.isSuppressed)
+                {
+                    return ThoughtState.ActiveAtStage(1);
+                }
+                else if (comp.CurrentSuppression > 0)
+                {
+                    return ThoughtState.ActiveAtStage(0);
+                }
             }
-            else if (comp.isSuppressed)
-            {
-                return ThoughtState.ActiveAtStage(1);
-            }
-            else if (comp.CurrentSuppression > 0)
-            {
-                return ThoughtState.ActiveAtStage(0);
-            }
+            return ThoughtState.Inactive;
         }
-        return ThoughtState.Inactive;
     }
 }

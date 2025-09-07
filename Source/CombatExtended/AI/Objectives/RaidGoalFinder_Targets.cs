@@ -6,8 +6,10 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended.AI;
-public class RaidGoalFinder_HostilePawns
+namespace CombatExtended.AI
 {
+    public class RaidGoalFinder_HostilePawns
+    {
 
+    }
 }

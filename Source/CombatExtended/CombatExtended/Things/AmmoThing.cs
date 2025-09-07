@@ -7,66 +7,65 @@ using Verse;
 using Verse.Sound;
 using UnityEngine;
 
-namespace CombatExtended;
-public class AmmoThing : ThingWithComps
+namespace CombatExtended
 {
-    private int numToCookOff;
-
-    #region Properties
-
-    public AmmoDef AmmoDef => def as AmmoDef;
-    public bool IsCookingOff => numToCookOff > 0 && this.CanCookOffOrDetonate();
-
-    #endregion
-
-    #region Methods
-
-    public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
+    public class AmmoThing : ThingWithComps
     {
-        base.PreApplyDamage(ref dinfo, out absorbed);
-        if (!absorbed && Spawned && this.CanCookOffOrDetonate() && dinfo.Def.ExternalViolenceFor(this))
+        private int numToCookOff;
+
+        #region Properties
+
+        public AmmoDef AmmoDef => def as AmmoDef;
+        public bool IsCookingOff => numToCookOff > 0 && this.CanCookOffOrDetonate();
+
+        #endregion
+
+        #region Methods
+
+        public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
-            if (HitPoints - dinfo.Amount > 0)
+            base.PreApplyDamage(ref dinfo, out absorbed);
+            if (!absorbed && Spawned && this.CanCookOffOrDetonate() && dinfo.Def.ExternalViolenceFor(this))
             {
-                numToCookOff += Mathf.RoundToInt(def.stackLimit * ((float)dinfo.Amount / HitPoints) * (def.smallVolume ? Rand.Range(1f, 2f) : Rand.Range(0.0f, 1f)));
-            }
-            //Assume CompExplosive destroys on kill
-            else if (this.TryGetComp<CompExplosive>() == null || !this.TryGetComp<CompExplosive>().Props.explodeOnKilled)
-            {
-                TryDetonate(stackCount);
+                if (HitPoints - dinfo.Amount > 0)
+                {
+                    numToCookOff += Mathf.RoundToInt(def.stackLimit * ((float)dinfo.Amount / HitPoints) * (def.smallVolume ? Rand.Range(1f, 2f) : Rand.Range(0.0f, 1f)));
+                }
+                //Assume CompExplosive destroys on kill
+                else if (this.TryGetComp<CompExplosive>() == null || !this.TryGetComp<CompExplosive>().Props.explodeOnKilled)
+                {
+                    TryDetonate(stackCount);
+                }
             }
         }
-    }
 
-    int shouldDestroy = -1;
-    public bool ShouldDestroy
-    {
-        get
+        int shouldDestroy = -1;
+        public bool ShouldDestroy
         {
-            if (shouldDestroy == -1)
+            get
             {
-                shouldDestroy = !def.IsWeapon && (AmmoDef?.tradeTags?.Contains(AmmoInjector.destroyWithAmmoDisabledTag) ?? false)
-                                ? 1     //isn't a weapon AND has the tag
-                                : 0;    //is a weapon or doesn't have the tag (shouldn't be destroyed)
+                if (shouldDestroy == -1)
+                {
+                    shouldDestroy = !def.IsWeapon && (AmmoDef?.tradeTags?.Contains(AmmoInjector.destroyWithAmmoDisabledTag) ?? false)
+                                    ? 1     //isn't a weapon AND has the tag
+                                    : 0;    //is a weapon or doesn't have the tag (shouldn't be destroyed)
+                }
+                return shouldDestroy == 1 && !AmmoUtility.IsAmmoSystemActive(AmmoDef);
             }
-            return shouldDestroy == 1 && !AmmoUtility.IsAmmoSystemActive(AmmoDef);
-        }
-    }
-
-    public override void TickInterval(int delta)
-    {
-        // Self-destruct if ammo is disabled
-        if (ShouldDestroy)
-        {
-            Destroy(DestroyMode.Vanish);
         }
 
-        //Calls CompExplosive _first_
-        base.TickInterval(delta);
-
-        // Cook off ammo based on how much damage we've taken so far
-        for (int i = 0; i < delta; i++) // Might feel weird in practice, could be reverted to regular ticks
+        public override void Tick()
         {
+            // Self-destruct if ammo is disabled
+            if (ShouldDestroy)
+            {
+                Destroy(DestroyMode.Vanish);
+            }
+
+            //Calls CompExplosive _first_
+            base.Tick();
+
+            // Cook off ammo based on how much damage we've taken so far
             if (numToCookOff > 0 && Rand.Chance((float)numToCookOff / def.stackLimit))
             {
                 if (TryLaunchCookOffProjectile() || TryDetonate())
@@ -85,163 +84,163 @@ public class AmmoThing : ThingWithComps
                 }
             }
         }
-    }
 
-    public override string GetInspectString()
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        string inspectString = base.GetInspectString();
-
-        if (!inspectString.NullOrEmpty())
+        public override string GetInspectString()
         {
-            stringBuilder.AppendLine(inspectString);
-        }
-        if (AmmoUtility.IsAmmoSystemActive(AmmoDef))
-        {
-            var count = AmmoDef?.Users.Count ?? 0;
+            StringBuilder stringBuilder = new StringBuilder();
+            string inspectString = base.GetInspectString();
 
-            if (count >= 1)
+            if (!inspectString.NullOrEmpty())
             {
-                stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + ")" : ""));
+                stringBuilder.AppendLine(inspectString);
             }
+            if (AmmoUtility.IsAmmoSystemActive(AmmoDef))
+            {
+                var count = AmmoDef?.Users.Count ?? 0;
+
+                if (count >= 1)
+                {
+                    stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + ")" : ""));
+                }
+            }
+
+            return stringBuilder.ToString().TrimEndNewlines();
         }
 
-        return stringBuilder.ToString().TrimEndNewlines();
-    }
-
-    private bool TryDetonate(float stackCountScale = 1)
-    {
-        if (Find.Maps.IndexOf(Map) < 0)
+        private bool TryDetonate(float stackCountScale = 1)
         {
+            if (Find.Maps.IndexOf(Map) < 0)
+            {
+                return false;
+            }
+
+            CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
+            var detProps = AmmoDef?.detonateProjectile?.projectile;
+
+            if (comp != null || detProps != null)
+            {
+                if (Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2))))
+                {
+                    if (comp != null)
+                    {
+                        comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(stackCountScale, 0.333f), null, new List<Thing>()
+                    {
+                        this
+                    });
+                    }
+                    else
+                    {
+                        this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this);    //Mathf.Pow(scale, 0.333f));
+                    }
+
+                    if (detProps != null)
+                    {
+                        GenExplosionCE.DoExplosion(
+                            Position,
+                            Map,
+                            detProps.explosionRadius,
+                            detProps.damageDef,
+                            instigator: this,
+                            detProps.GetDamageAmount(1f, null),
+                            detProps.GetExplosionArmorPenetration(),
+                            detProps.soundExplode,
+                            weapon: null,
+                            projectile: def,
+                            intendedTarget: null,
+                            detProps.postExplosionSpawnThingDef,
+                            detProps.postExplosionSpawnChance,
+                            detProps.postExplosionSpawnThingCount,
+                            detProps.postExplosionGasType,
+                            null,
+                            255,
+                            detProps.applyDamageToExplosionCellsNeighbors,
+                            detProps.preExplosionSpawnThingDef,
+                            detProps.preExplosionSpawnChance,
+                            detProps.preExplosionSpawnThingCount,
+                            detProps.explosionChanceToStartFire,
+                            detProps.explosionDamageFalloff,
+                            null,
+                            new List<Thing>()
+                        {
+                            this
+                        },
+                        affectedAngle: null,
+                        doVisualEffects: true,
+                        propagationSpeed: 1f,
+                        excludeRadius: 0,
+                        doSoundEffects: true,
+                        detProps.postExplosionSpawnThingDefWater,
+                        detProps.screenShakeFactor,
+                        null,
+                        null,
+                            detProps.postExplosionSpawnSingleThingDef,
+                            detProps.preExplosionSpawnSingleThingDef,
+                        height: 0f,
+                        Mathf.Pow(stackCountScale, 0.333f));
+                    }
+                }
+
+                return true;
+            }
             return false;
         }
 
-        CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
-        var detProps = AmmoDef?.detonateProjectile?.projectile;
-
-        if (comp != null || detProps != null)
+        private bool TryLaunchCookOffProjectile()
         {
-            if (Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2))))
+            if (AmmoDef == null || AmmoDef.cookOffProjectile == null || Find.Maps.IndexOf(Map) < 0)
             {
-                if (comp != null)
-                {
-                    comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(stackCountScale, 0.333f), null, new List<Thing>()
-                {
-                    this
-                });
-                }
-                else
-                {
-                    this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this);    //Mathf.Pow(scale, 0.333f));
-                }
+                return false;
+            }
 
-                if (detProps != null)
-                {
-                    GenExplosionCE.DoExplosion(
-                        Position,
-                        Map,
-                        detProps.explosionRadius,
-                        detProps.damageDef,
-                        instigator: this,
-                        detProps.GetDamageAmount(1f, null),
-                        detProps.GetExplosionArmorPenetration(),
-                        detProps.soundExplode,
-                        weapon: null,
-                        projectile: def,
-                        intendedTarget: null,
-                        detProps.postExplosionSpawnThingDef,
-                        detProps.postExplosionSpawnChance,
-                        detProps.postExplosionSpawnThingCount,
-                        detProps.postExplosionGasType,
-                        null,
-                        255,
-                        detProps.applyDamageToExplosionCellsNeighbors,
-                        detProps.preExplosionSpawnThingDef,
-                        detProps.preExplosionSpawnChance,
-                        detProps.preExplosionSpawnThingCount,
-                        detProps.explosionChanceToStartFire,
-                        detProps.explosionDamageFalloff,
-                        null,
-                        new List<Thing>()
-                    {
-                        this
-                    },
-                    affectedAngle: null,
-                    doVisualEffects: true,
-                    propagationSpeed: 1f,
-                    excludeRadius: 0,
-                    doSoundEffects: true,
-                    detProps.postExplosionSpawnThingDefWater,
-                    detProps.screenShakeFactor,
-                    null,
-                    null,
-                        detProps.postExplosionSpawnSingleThingDef,
-                        detProps.preExplosionSpawnSingleThingDef,
-                    height: 0f,
-                    Mathf.Pow(stackCountScale, 0.333f));
-                }
+            // Spawn projectile if enabled
+            if (!Controller.settings.RealisticCookOff)
+            {
+                ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(AmmoDef.cookOffProjectile);
+                GenSpawn.Spawn(projectile, PositionHeld, MapHeld);
+
+                // Launch in random direction
+                projectile.canTargetSelf = true;
+                projectile.minCollisionDistance = 0f;
+                projectile.logMisses = false;
+                projectile.Launch(this,
+                                  new Vector2(DrawPos.x, DrawPos.z),
+                                  Mathf.Acos(2 * Rand.Range(0.5f, 1f) - 1),
+                                  Rand.Range(0, 360),
+                                  0.1f,
+                                  AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed,
+                                  this);
+            }
+            // Create sound and flash effects
+            if (AmmoDef.cookOffFlashScale > 0.01)
+            {
+                FleckMakerCE.Static(Position, Map, FleckDefOf.ShotFlash, AmmoDef.cookOffFlashScale);
+            }
+
+            if (AmmoDef.cookOffSound != null)
+            {
+                AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));
+            }
+            if (AmmoDef.cookOffTailSound != null)
+            {
+                AmmoDef.cookOffTailSound.PlayOneShotOnCamera();
             }
 
             return true;
         }
-        return false;
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+
+            //Such that save-reloading doesn't stop ammo cookoff
+            Scribe_Values.Look(ref numToCookOff, "numToCookOff", 0);
+        }
+
+        /// <summary>
+        /// Determine whether this ammunition type can cook off in some way.
+        /// </summary>
+        private bool CanCookOffOrDetonate() => AmmoDef?.cookOffProjectile != null || AmmoDef?.detonateProjectile != null;
+
+        #endregion
     }
-
-    private bool TryLaunchCookOffProjectile()
-    {
-        if (AmmoDef == null || AmmoDef.cookOffProjectile == null || Find.Maps.IndexOf(Map) < 0)
-        {
-            return false;
-        }
-
-        // Spawn projectile if enabled
-        if (!Controller.settings.RealisticCookOff)
-        {
-            ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(AmmoDef.cookOffProjectile);
-            GenSpawn.Spawn(projectile, PositionHeld, MapHeld);
-
-            // Launch in random direction
-            projectile.canTargetSelf = true;
-            projectile.minCollisionDistance = 0f;
-            projectile.logMisses = false;
-            projectile.Launch(this,
-                              new Vector2(DrawPos.x, DrawPos.z),
-                              Mathf.Acos(2 * Rand.Range(0.5f, 1f) - 1),
-                              Rand.Range(0, 360),
-                              0.1f,
-                              AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed,
-                              this);
-        }
-        // Create sound and flash effects
-        if (AmmoDef.cookOffFlashScale > 0.01)
-        {
-            FleckMakerCE.Static(Position, Map, FleckDefOf.ShotFlash, AmmoDef.cookOffFlashScale);
-        }
-
-        if (AmmoDef.cookOffSound != null)
-        {
-            AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));
-        }
-        if (AmmoDef.cookOffTailSound != null)
-        {
-            AmmoDef.cookOffTailSound.PlayOneShotOnCamera();
-        }
-
-        return true;
-    }
-
-    public override void ExposeData()
-    {
-        base.ExposeData();
-
-        //Such that save-reloading doesn't stop ammo cookoff
-        Scribe_Values.Look(ref numToCookOff, "numToCookOff", 0);
-    }
-
-    /// <summary>
-    /// Determine whether this ammunition type can cook off in some way.
-    /// </summary>
-    private bool CanCookOffOrDetonate() => AmmoDef?.cookOffProjectile != null || AmmoDef?.detonateProjectile != null;
-
-    #endregion
 }

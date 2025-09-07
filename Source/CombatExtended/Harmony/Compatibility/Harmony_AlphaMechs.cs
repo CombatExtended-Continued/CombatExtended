@@ -8,34 +8,36 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended.HarmonyCE.Compatibility;
-
-public static class Harmony_AlphaMechs
+namespace CombatExtended.HarmonyCE.Compatibility
 {
-    private static Type CompSwapWeapons_Patch_HarmonyPatches
+
+    public static class Harmony_AlphaMechs
     {
-        get
+        private static Type CompSwapWeapons_Patch_HarmonyPatches
         {
-            return AccessTools.TypeByName("AlphaMechs.CompSwapWeapons");
+            get
+            {
+                return AccessTools.TypeByName("AlphaMechs.CompSwapWeapons");
+            }
         }
+        [HarmonyPatch]
+        public static class Harmony_CompSwapWeapons_Apply
+        {
+            public static bool Prepare()
+            {
+                return CompSwapWeapons_Patch_HarmonyPatches != null;
+            }
+
+            public static MethodBase TargetMethod()
+            {
+                return AccessTools.Method("AlphaMechs.CompSwapWeapons:Apply", new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo) });
+            }
+
+            public static void Prefix(CompAbilityEffect __instance)
+            {
+                __instance?.parent?.pawn?.equipment.Primary?.TryGetComp<CompAmmoUser>()?.TryUnload();
+            }
+        }
+
     }
-    [HarmonyPatch]
-    public static class Harmony_CompSwapWeapons_Apply
-    {
-        public static bool Prepare()
-        {
-            return CompSwapWeapons_Patch_HarmonyPatches != null;
-        }
-
-        public static MethodBase TargetMethod()
-        {
-            return AccessTools.Method("AlphaMechs.CompSwapWeapons:Apply", new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo) });
-        }
-
-        public static void Prefix(CompAbilityEffect __instance)
-        {
-            __instance?.parent?.pawn?.equipment.Primary?.TryGetComp<CompAmmoUser>()?.TryUnload();
-        }
-    }
-
 }

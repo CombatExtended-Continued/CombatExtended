@@ -6,18 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended;
-[HarmonyLib.HarmonyPatch(typeof(Designator_Dropdown), nameof(Designator.Visible), HarmonyLib.MethodType.Getter)]
-internal static class Harmony_Designator_Dropdown
+namespace CombatExtended
 {
-    static void Postfix(Designator_Dropdown __instance, bool __result)
+    [HarmonyLib.HarmonyPatch(typeof(Designator_Dropdown), nameof(Designator.Visible), HarmonyLib.MethodType.Getter)]
+    internal static class Harmony_Designator_Dropdown
     {
-        if (__result && !__instance.activeDesignator.Visible)
+        static void Postfix(Designator_Dropdown __instance, bool __result)
         {
-            var visibleElement = __instance.elements.FirstOrDefault(x => x.Visible);
-            if (visibleElement != null)
+            if (__result && !__instance.activeDesignator.Visible)
             {
-                __instance.SetActiveDesignator(visibleElement, false);
+                var visibleElement = __instance.elements.FirstOrDefault(x => x.Visible);
+                if (visibleElement != null)
+                {
+                    __instance.SetActiveDesignator(visibleElement, false);
+                }
             }
         }
     }

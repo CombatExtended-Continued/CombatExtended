@@ -6,12 +6,13 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class DamageDefExtensionCE : DefModExtension
+namespace CombatExtended
 {
-    public bool noDamageOnDeflect = false;
-    public bool harmOnlyOutsideLayers = false;
-    public bool isAmbientDamage = false;
-    public float worldDamageMultiplier = -1f;
-    public bool canCauseWallFragmentation = true;
+    public class DamageDefExtensionCE : DefModExtension
+    {
+        public bool noDamageOnDeflect = false;
+        public bool harmOnlyOutsideLayers = false;
+        public bool isAmbientDamage = false;
+        public float worldDamageMultiplier = -1f;
+    }
 }

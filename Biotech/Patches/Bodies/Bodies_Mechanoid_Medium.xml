@@ -6,9 +6,9 @@
 	<!-- ========== Add groups entry if it doesn't exist already ========== -->
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/BodyDef[defName="Scorcher"]/corePart/groups</xpath>
+		<xpath>Defs/BodyDef[defName="Scorcher" or defName="Apocriton"]/corePart/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="Scorcher"]/corePart</xpath>
+			<xpath>Defs/BodyDef[defName="Scorcher" or defName="Apocriton"]/corePart</xpath>
 			<value>
 				<groups />
 			</value>

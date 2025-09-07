@@ -4,13 +4,15 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace ProjectileImpactFX;
-// ProjectileImpactFX.TrailerProjectileExtension
-public class TrailerProjectileExtension : DefModExtension
+namespace ProjectileImpactFX
 {
-    public string trailMoteDef = "AirPuff";
-    public float trailMoteSize = 0.5f;
-    public int trailerMoteInterval = 30;
-    public int motesThrown = 1;
-}
+    // ProjectileImpactFX.TrailerProjectileExtension
+    public class TrailerProjectileExtension : DefModExtension
+    {
+        public string trailMoteDef = "AirPuff";
+        public float trailMoteSize = 0.5f;
+        public int trailerMoteInterval = 30;
+        public int motesThrown = 1;
+    }
 
+}

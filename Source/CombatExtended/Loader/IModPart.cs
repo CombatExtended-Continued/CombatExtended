@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using Verse;
 using System;
 
-namespace CombatExtended.Loader;
-public interface IModPart
+namespace CombatExtended.Loader
 {
-    public void PostLoad(ModContentPack content, ISettingsCE settings);
-    public Type GetSettingsType();
+    public interface IModPart
+    {
+        public void PostLoad(ModContentPack content, ISettingsCE settings);
+        public Type GetSettingsType();
+    }
 }

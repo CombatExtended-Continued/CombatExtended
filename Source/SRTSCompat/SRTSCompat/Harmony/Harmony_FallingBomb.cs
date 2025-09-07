@@ -11,39 +11,41 @@ using HarmonyLib;
 using SRTS;
 using UnityEngine;
 
-namespace CombatExtended.Compatibility.SRTSCompat;
-[HarmonyPatch(typeof(FallingBomb),
-        MethodType.Constructor,
-        new Type[] { typeof(Thing), typeof(CompExplosive), typeof(Map), typeof(string) })]
-public static class Harmony_FallingBomb_Thing_CompExplosive_Map_string
+namespace CombatExtended.Compatibility.SRTSCompat
 {
-    // Adds an additional null check for def.projectileWhenLoaded of
-    // this.projectile = def.projectileWhenLoaded.projectile;
-    static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions,
-            ILGenerator il)
+    [HarmonyPatch(typeof(FallingBomb),
+            MethodType.Constructor,
+            new Type[] { typeof(Thing), typeof(CompExplosive), typeof(Map), typeof(string) })]
+    public static class Harmony_FallingBomb_Thing_CompExplosive_Map_string
     {
-        bool found = false;
-        Label projectileDoesntExist = il.DefineLabel();
-
-        FieldInfo thingDefProjectileField = AccessTools.DeclaredField(typeof(ThingDef),
-                "projectile");
-
-        List<CodeInstruction> codes = instructions.ToList();
-        for (int i = 0; i < codes.Count(); ++i)
+        // Adds an additional null check for def.projectileWhenLoaded of
+        // this.projectile = def.projectileWhenLoaded.projectile;
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions,
+                ILGenerator il)
         {
-            if (!found && codes[i].LoadsField(thingDefProjectileField))
+            bool found = false;
+            Label projectileDoesntExist = il.DefineLabel();
+
+            FieldInfo thingDefProjectileField = AccessTools.DeclaredField(typeof(ThingDef),
+                    "projectile");
+
+            List<CodeInstruction> codes = instructions.ToList();
+            for (int i = 0; i < codes.Count(); ++i)
             {
-                found = true;
+                if (!found && codes[i].LoadsField(thingDefProjectileField))
+                {
+                    found = true;
 
-                yield return new CodeInstruction(OpCodes.Dup);
-                yield return new CodeInstruction(OpCodes.Brfalse_S, projectileDoesntExist);
+                    yield return new CodeInstruction(OpCodes.Dup);
+                    yield return new CodeInstruction(OpCodes.Brfalse_S, projectileDoesntExist);
+                    yield return codes[i];
+
+                    ++i;
+                    codes[i].labels.Add(projectileDoesntExist);
+                }
+
                 yield return codes[i];
-
-                ++i;
-                codes[i].labels.Add(projectileDoesntExist);
             }
-
-            yield return codes[i];
         }
     }
 }

@@ -8,159 +8,161 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace CombatExtended;
-public struct Fleck_Casing : IFleck
+namespace CombatExtended
 {
-    public FleckStatic baseData;
-
-    public float airTimeLeft;
-
-    public Vector3 velocity;
-
-    public float rotationRate;
-
-    public float delay;
-
-    public bool Flying => airTimeLeft > 0f;
-
-    public Vector3 Velocity
+    public struct Fleck_Casing : IFleck
     {
-        get
-        {
-            return velocity;
-        }
-        set
-        {
-            velocity = value;
-        }
-    }
+        public FleckStatic baseData;
 
-    public float MoveAngle
-    {
-        get
-        {
-            return velocity.AngleFlat();
-        }
-        set
-        {
-            SetVelocity(value, Speed);
-        }
-    }
+        public float airTimeLeft;
 
-    public float Speed
-    {
-        get
+        public Vector3 velocity;
+
+        public float rotationRate;
+
+        public float delay;
+
+        public bool Flying => airTimeLeft > 0f;
+
+        public Vector3 Velocity
         {
-            return velocity.MagnitudeHorizontal();
-        }
-        set
-        {
-            if (value == 0f)
+            get
             {
-                velocity = Vector3.zero;
+                return velocity;
             }
-            else if (velocity == Vector3.zero)
+            set
             {
-                velocity = new Vector3(value, 0f, 0f);
-            }
-            else
-            {
-                velocity = velocity.normalized * value;
+                velocity = value;
             }
         }
-    }
 
-    public void Setup(FleckCreationData creationData)
-    {
-        baseData = default(FleckStatic);
-        baseData.Setup(creationData);
-        airTimeLeft = creationData.airTimeLeft ?? 999999f;
-        baseData.position.worldPosition += creationData.def.attachedDrawOffset;
-        rotationRate = creationData.rotationRate;
-        SetVelocity(creationData.velocityAngle, creationData.velocitySpeed);
-        if (creationData.velocity.HasValue)
+        public float MoveAngle
         {
-            velocity += creationData.velocity.Value;
+            get
+            {
+                return velocity.AngleFlat();
+            }
+            set
+            {
+                SetVelocity(value, Speed);
+            }
         }
-    }
 
-    public bool TimeInterval(float deltaTime, Map map)
-    {
-        if (baseData.TimeInterval(deltaTime, map))
+        public float Speed
         {
-            return true;
+            get
+            {
+                return velocity.MagnitudeHorizontal();
+            }
+            set
+            {
+                if (value == 0f)
+                {
+                    velocity = Vector3.zero;
+                }
+                else if (velocity == Vector3.zero)
+                {
+                    velocity = new Vector3(value, 0f, 0f);
+                }
+                else
+                {
+                    velocity = velocity.normalized * value;
+                }
+            }
         }
-        if (!Flying)
+
+        public void Setup(FleckCreationData creationData)
         {
-            return false;
+            baseData = default(FleckStatic);
+            baseData.Setup(creationData);
+            airTimeLeft = creationData.airTimeLeft ?? 999999f;
+            baseData.position.worldPosition += creationData.def.attachedDrawOffset;
+            rotationRate = creationData.rotationRate;
+            SetVelocity(creationData.velocityAngle, creationData.velocitySpeed);
+            if (creationData.velocity.HasValue)
+            {
+                velocity += creationData.velocity.Value;
+            }
         }
-        Vector3 vector = NextExactPosition(deltaTime);
-        IntVec3 intVec = new IntVec3(vector);
-        if (intVec != new IntVec3(baseData.position.ExactPosition))
+
+        public bool TimeInterval(float deltaTime, Map map)
         {
-            if (!intVec.InBounds(map))
+            if (baseData.TimeInterval(deltaTime, map))
             {
                 return true;
             }
-            if (baseData.def.collide && intVec.Filled(map))
+            if (!Flying)
             {
-                WallHit();
                 return false;
             }
+            Vector3 vector = NextExactPosition(deltaTime);
+            IntVec3 intVec = new IntVec3(vector);
+            if (intVec != new IntVec3(baseData.position.ExactPosition))
+            {
+                if (!intVec.InBounds(map))
+                {
+                    return true;
+                }
+                if (baseData.def.collide && intVec.Filled(map))
+                {
+                    WallHit();
+                    return false;
+                }
+            }
+            baseData.position.worldPosition = vector;
+            if (baseData.def.speedPerTime != FloatRange.Zero)
+            {
+                Speed = Mathf.Max(Speed + baseData.def.speedPerTime.RandomInRange * deltaTime, 0f);
+            }
+            if (airTimeLeft > 0f)
+            {
+                if (baseData.def.rotateTowardsMoveDirection && velocity != default(Vector3))
+                {
+                    baseData.exactRotation = velocity.AngleFlat() + baseData.def.rotateTowardsMoveDirectionExtraAngle;
+                }
+                else
+                {
+                    baseData.exactRotation += rotationRate * deltaTime;
+                }
+                velocity += baseData.def.acceleration * deltaTime;
+                airTimeLeft -= deltaTime;
+                if (airTimeLeft < 0f)
+                {
+                    airTimeLeft = 0f;
+                }
+                if (airTimeLeft <= 0f && !baseData.def.landSound.NullOrUndefined())
+                {
+                    baseData.def.landSound.PlayOneShot(new TargetInfo(new IntVec3(baseData.position.ExactPosition), map));
+                }
+            }
+            return false;
         }
-        baseData.position.worldPosition = vector;
-        if (baseData.def.speedPerTime != FloatRange.Zero)
+
+        private Vector3 NextExactPosition(float deltaTime)
         {
-            Speed = Mathf.Max(Speed + baseData.def.speedPerTime.RandomInRange * deltaTime, 0f);
+            return baseData.position.ExactPosition + velocity * deltaTime;
         }
-        if (airTimeLeft > 0f)
+
+        public void SetVelocity(float angle, float speed)
         {
-            if (baseData.def.rotateTowardsMoveDirection && velocity != default(Vector3))
-            {
-                baseData.exactRotation = velocity.AngleFlat() + baseData.def.rotateTowardsMoveDirectionExtraAngle;
-            }
-            else
-            {
-                baseData.exactRotation += rotationRate * deltaTime;
-            }
-            velocity += baseData.def.acceleration * deltaTime;
-            airTimeLeft -= deltaTime;
-            if (airTimeLeft < 0f)
-            {
-                airTimeLeft = 0f;
-            }
-            if (airTimeLeft <= 0f && !baseData.def.landSound.NullOrUndefined())
-            {
-                baseData.def.landSound.PlayOneShot(new TargetInfo(new IntVec3(baseData.position.ExactPosition), map));
-            }
+            velocity = Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward * speed;
         }
-        return false;
-    }
 
-    private Vector3 NextExactPosition(float deltaTime)
-    {
-        return baseData.position.ExactPosition + velocity * deltaTime;
-    }
+        public void Draw(DrawBatch batch)
+        {
+            baseData.Draw(batch);
+        }
 
-    public void SetVelocity(float angle, float speed)
-    {
-        velocity = Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward * speed;
-    }
+        private void WallHit()
+        {
+            airTimeLeft = 0f;
+            Speed = 0f;
+            rotationRate = 0f;
+        }
 
-    public void Draw(DrawBatch batch)
-    {
-        baseData.Draw(batch);
-    }
-
-    private void WallHit()
-    {
-        airTimeLeft = 0f;
-        Speed = 0f;
-        rotationRate = 0f;
-    }
-
-    public Vector3 GetPosition()
-    {
-        return baseData.position.worldPosition;
+        public Vector3 GetPosition()
+        {
+            return baseData.position.worldPosition;
+        }
     }
 }

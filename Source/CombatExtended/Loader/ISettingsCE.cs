@@ -2,8 +2,10 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended.Loader;
-public interface ISettingsCE
+namespace CombatExtended.Loader
 {
-    public void DoWindowContents(Listing_Standard list);
+    public interface ISettingsCE
+    {
+        public void DoWindowContents(Listing_Standard list);
+    }
 }

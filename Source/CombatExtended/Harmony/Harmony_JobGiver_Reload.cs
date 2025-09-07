@@ -7,32 +7,34 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended.HarmonyCE;
-/* Overrides the CompReloadable reload job if the pawn has suitable ammo in their inventory.
- * If no inventory ammo is available, base method is allowed to execute (reload from stockpiles).
- */
-[HarmonyPatch(typeof(JobGiver_Reload), "TryGiveJob")]
-internal static class Harmony_JobGiver_Reload_TryGiveJob
+namespace CombatExtended.HarmonyCE
 {
-    internal static bool Prefix(Pawn pawn, ref Job __result)
+    /* Overrides the CompReloadable reload job if the pawn has suitable ammo in their inventory.
+     * If no inventory ammo is available, base method is allowed to execute (reload from stockpiles).
+     */
+    [HarmonyPatch(typeof(JobGiver_Reload), "TryGiveJob")]
+    internal static class Harmony_JobGiver_Reload_TryGiveJob
     {
-        CompApparelReloadable compReloadable = (CompApparelReloadable)ReloadableUtility.FindSomeReloadableComponent(pawn, false);
-        if (compReloadable != null)
+        internal static bool Prefix(Pawn pawn, ref Job __result)
         {
-            var inventoryAmmo = pawn?.inventory?.innerContainer?.InnerListForReading?.Find(thing => thing.def == compReloadable.AmmoDef);
-            if (inventoryAmmo != null)
+            CompApparelReloadable compReloadable = (CompApparelReloadable)ReloadableUtility.FindSomeReloadableComponent(pawn, false);
+            if (compReloadable != null)
             {
-                int dropCount = Mathf.Min(compReloadable.MaxAmmoNeeded(true), inventoryAmmo.stackCount);
-                pawn.inventory.innerContainer.TryDrop(inventoryAmmo, pawn.Position, pawn.Map, ThingPlaceMode.Direct, dropCount, out Thing dropThing);
-                var droppedAmmo = new List<Thing>
+                var inventoryAmmo = pawn?.inventory?.innerContainer?.InnerListForReading?.Find(thing => thing.def == compReloadable.AmmoDef);
+                if (inventoryAmmo != null)
                 {
-                    dropThing
-                };
-                __result = JobGiver_Reload.MakeReloadJob(compReloadable, droppedAmmo);
-                return false;
-            }
+                    int dropCount = Mathf.Min(compReloadable.MaxAmmoNeeded(true), inventoryAmmo.stackCount);
+                    pawn.inventory.innerContainer.TryDrop(inventoryAmmo, pawn.Position, pawn.Map, ThingPlaceMode.Direct, dropCount, out Thing dropThing);
+                    var droppedAmmo = new List<Thing>
+                    {
+                        dropThing
+                    };
+                    __result = JobGiver_Reload.MakeReloadJob(compReloadable, droppedAmmo);
+                    return false;
+                }
 
+            }
+            return true;
         }
-        return true;
     }
 }

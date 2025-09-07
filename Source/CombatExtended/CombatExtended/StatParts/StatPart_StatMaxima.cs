@@ -6,17 +6,19 @@ using Steamworks;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended;
-public class StatPart_StatMaxima : StatPart_StatSelect
+namespace CombatExtended
 {
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected override float Select(float first, float second)
+    public class StatPart_StatMaxima : StatPart_StatSelect
     {
-        return Mathf.Max(first, second);
-    }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override float Select(float first, float second)
+        {
+            return Mathf.Max(first, second);
+        }
 
-    public override string ExplanationPart(StatRequest req)
-    {
-        return "CE_StatPart_MaximaExplanation".Translate() + ": \n\n" + base.ExplanationPart(req);
+        public override string ExplanationPart(StatRequest req)
+        {
+            return "CE_StatPart_MaximaExplanation".Translate() + ": \n\n" + base.ExplanationPart(req);
+        }
     }
 }

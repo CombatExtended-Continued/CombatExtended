@@ -7,37 +7,39 @@ using Verse.AI;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class JobDriver_GiveAmmo : JobDriver
+namespace CombatExtended
 {
-    public override bool TryMakePreToilReservations(bool errorOnFailed)
+    public class JobDriver_GiveAmmo : JobDriver
     {
-        return GetActor().CanReserveAndReach(TargetA, PathEndMode.ClosestTouch, Danger.Deadly);
-    }
-    public override IEnumerable<Toil> MakeNewToils()
-    {
-        yield return Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch);
-        yield return Toils_General.Do(
-                         delegate
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            var targetPawn = (Pawn)TargetA.Thing;
-
-            var ammoGiverComp = targetPawn.TryGetComp<CompAmmoGiver>();
-
-            var newThing = ThingMaker.MakeThing(TargetB.Thing.def);
-
-            newThing.HitPoints = TargetB.Thing.HitPoints;
-
-            newThing.stackCount = ammoGiverComp.ammoAmountToGive;
-
-            TargetB.Thing.stackCount -= ammoGiverComp.ammoAmountToGive;
-
-            if (TargetB.Thing.stackCount <= 0)
+            return GetActor().CanReserveAndReach(TargetA, PathEndMode.ClosestTouch, Danger.Deadly);
+        }
+        public override IEnumerable<Toil> MakeNewToils()
+        {
+            yield return Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch);
+            yield return Toils_General.Do(
+                             delegate
             {
-                TargetB.Thing.Destroy();
-            }
+                var targetPawn = (Pawn)TargetA.Thing;
 
-            targetPawn.inventory.TryAddItemNotForSale(newThing);
-        });
+                var ammoGiverComp = targetPawn.TryGetComp<CompAmmoGiver>();
+
+                var newThing = ThingMaker.MakeThing(TargetB.Thing.def);
+
+                newThing.HitPoints = TargetB.Thing.HitPoints;
+
+                newThing.stackCount = ammoGiverComp.ammoAmountToGive;
+
+                TargetB.Thing.stackCount -= ammoGiverComp.ammoAmountToGive;
+
+                if (TargetB.Thing.stackCount <= 0)
+                {
+                    TargetB.Thing.Destroy();
+                }
+
+                targetPawn.inventory.TryAddItemNotForSale(newThing);
+            });
+        }
     }
 }

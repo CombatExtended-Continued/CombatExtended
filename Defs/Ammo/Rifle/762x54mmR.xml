@@ -24,24 +24,10 @@
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_762x54mmR_SB</defName>
-		<label>7.62x54mmR</label>
-		<ammoTypes>
-			<Ammo_762x54mmR_FMJ>Bullet_762x54mmR_FMJ_SB</Ammo_762x54mmR_FMJ>
-			<Ammo_762x54mmR_AP>Bullet_762x54mmR_AP_SB</Ammo_762x54mmR_AP>
-			<Ammo_762x54mmR_HP>Bullet_762x54mmR_HP_SB</Ammo_762x54mmR_HP>
-			<Ammo_762x54mmR_Incendiary>Bullet_762x54mmR_Incendiary_SB</Ammo_762x54mmR_Incendiary>
-			<Ammo_762x54mmR_HE>Bullet_762x54mmR_HE_SB</Ammo_762x54mmR_HE>
-			<Ammo_762x54mmR_Sabot>Bullet_762x54mmR_Sabot_SB</Ammo_762x54mmR_Sabot>
-		</ammoTypes>
-		<similarTo>AmmoSet_Rifle</similarTo>
-	</CombatExtended.AmmoSetDef>	
-
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="762x54mmRBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Rimmed rifle cartridge used by numerous machine guns, bolt-action rifles, and other weapons.</description>
+		<description>Rimmed rifle cartridge used by many machine guns, bolt-action and sniper rifles.</description>
 		<statBases>
 			<Mass>0.026</Mass>
 			<Bulk>0.03</Bulk>
@@ -96,7 +82,6 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>IncendiaryAP</ammoClass>
-		<generateAllowChance>0.65</generateAllowChance> <!-- Make advanced ammo types less common. -->
 		<cookOffProjectile>Bullet_762x54mmR_Incendiary</cookOffProjectile>
 	</ThingDef>
 
@@ -108,7 +93,6 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>ExplosiveAP</ammoClass>
-		<generateAllowChance>0.65</generateAllowChance> <!-- Make advanced ammo types less common. -->
 		<cookOffProjectile>Bullet_762x54mmR_HE</cookOffProjectile>
 	</ThingDef>
 
@@ -123,7 +107,6 @@
 			<Mass>0.022</Mass>
 		</statBases>
 		<ammoClass>Sabot</ammoClass>
-		<generateAllowChance>0.65</generateAllowChance> <!-- Make advanced ammo types less common. -->
 		<cookOffProjectile>Bullet_762x54mmR_Sabot</cookOffProjectile>
 	</ThingDef>
 
@@ -213,86 +196,6 @@
 			<armorPenetrationSharp>25</armorPenetrationSharp>
 			<armorPenetrationBlunt>87.280</armorPenetrationBlunt>
 			<speed>210</speed>
-		</projectile>
-	</ThingDef>
-
-	<!-- Short barrel (Carbine) -->
-
-	<ThingDef ParentName="Base762x54mmRBullet">
-		<defName>Bullet_762x54mmR_FMJ_SB</defName>
-		<label>7.62mmR bullet (FMJ)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>51.52</armorPenetrationBlunt>
-			<speed>140</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="Base762x54mmRBullet">
-		<defName>Bullet_762x54mmR_AP_SB</defName>
-		<label>7.62mmR bullet (AP)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
-			<armorPenetrationBlunt>51.52</armorPenetrationBlunt>
-			<speed>140</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="Base762x54mmRBullet">
-		<defName>Bullet_762x54mmR_HP_SB</defName>
-		<label>7.62mmR bullet (HP)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>23</damageAmountBase>
-			<armorPenetrationSharp>3</armorPenetrationSharp>
-			<armorPenetrationBlunt>51.52</armorPenetrationBlunt>
-			<speed>140</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="Base762x54mmRBullet">
-		<defName>Bullet_762x54mmR_Incendiary_SB</defName>
-		<label>7.62mmR bullet (AP-I)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
-			<armorPenetrationBlunt>51.52</armorPenetrationBlunt>
-			<speed>140</speed>
-			<secondaryDamage>
-				<li>
-					<def>Flame_Secondary</def>
-					<amount>6</amount>
-				</li>
-			</secondaryDamage>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="Base762x54mmRBullet">
-		<defName>Bullet_762x54mmR_HE_SB</defName>
-		<label>7.62mmR bullet (AP-HE)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>51.52</armorPenetrationBlunt>
-			<speed>140</speed>
-			<secondaryDamage>
-				<li>
-					<def>Bomb_Secondary</def>
-					<amount>8</amount>
-				</li>
-			</secondaryDamage>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="Base762x54mmRBullet">
-		<defName>Bullet_762x54mmR_Sabot_SB</defName>
-		<label>7.62mmR bullet (Sabot)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>9</damageAmountBase>
-			<armorPenetrationSharp>21</armorPenetrationSharp>
-			<armorPenetrationBlunt>66.7</armorPenetrationBlunt>
-			<speed>190</speed>
 		</projectile>
 	</ThingDef>
 

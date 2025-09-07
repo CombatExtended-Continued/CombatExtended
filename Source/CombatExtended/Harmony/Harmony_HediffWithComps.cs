@@ -7,18 +7,20 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE;
-static class Harmony_HediffWithComps_BleedRate_Patch
+namespace CombatExtended.HarmonyCE
 {
-    public static void Postfix(Hediff __instance, ref float __result)
+    static class Harmony_HediffWithComps_BleedRate_Patch
     {
-        if (__result > 0)
+        public static void Postfix(Hediff __instance, ref float __result)
         {
-            // Check for stabilized comp
-            HediffComp_Stabilize comp = (__instance as HediffWithComps)?.TryGetComp<HediffComp_Stabilize>() ?? null;
-            if (comp != null)
+            if (__result > 0)
             {
-                __result = __result * (comp.BleedModifier);
+                // Check for stabilized comp
+                HediffComp_Stabilize comp = (__instance as HediffWithComps)?.TryGetComp<HediffComp_Stabilize>() ?? null;
+                if (comp != null)
+                {
+                    __result = __result * (comp.BleedModifier);
+                }
             }
         }
     }

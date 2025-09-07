@@ -13,11 +13,10 @@
 
 	<!-- Pistols -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="GD_MSSH" or
+		<xpath>Defs/ThingDef[defName="GD_MSSH" or
 			defName="GD_MSST" or
 			defName="GD_MSSF"
-			]/tools</xpath>
+			]/tools </xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -47,14 +46,13 @@
 
 	<!-- Long guns-->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="GD_HybridRifle" or
+		<xpath>Defs/ThingDef[defName="GD_HybridRifle" or
 			defName="GD_ModularCarbine" or
 			defName="GD_ModularRifle" or
 			defName="GD_ModularDMR" or
 			defName="GD_ModularLMG" or
 			defName="GD_GrenadeLauncher"
-			]/tools</xpath>
+			]/tools </xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -104,22 +102,22 @@
 			<Bulk>9.6</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>2.00</recoilAmount>
+			<recoilAmount>1.34</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66Greydale_FMJ_Hybrid</defaultProjectile>
+			<defaultProjectile>Bullet_473x33mmGDHybrid_FMJ</defaultProjectile>
 			<warmupTime>1.05</warmupTime>
 			<range>58</range>
 			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
 			<soundCast>ShotGRH</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>36</magazineSize>
+			<magazineSize>45</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_66Greydale_Hybrid</ammoSet>
+			<ammoSet>AmmoSet_473x33mmCaseless_GDHybrid</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -135,7 +133,7 @@
 		</value>
 	</Operation>
 
-	<!-- ========== Hybrid Ocelot =========== -->
+	<!-- ==========  Hybrid Ocelot =========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>GD_MSSH</defName>
 		<statBases>
@@ -148,10 +146,9 @@
 			<RangedWeapon_Cooldown>0.33</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>2.92</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66Greydale_FMJ_Hybrid</defaultProjectile>
+			<defaultProjectile>Bullet_473x33mmGDHybrid_FMJ</defaultProjectile>
 			<warmupTime>0.65</warmupTime>
 			<range>23</range>
 			<soundCast>ShotGRH</soundCast>
@@ -159,9 +156,9 @@
 			<muzzleFlashScale>12</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>12</magazineSize>
+			<magazineSize>15</magazineSize>
 			<reloadTime>3.5</reloadTime>
-			<ammoSet>AmmoSet_66Greydale_Hybrid</ammoSet>
+			<ammoSet>AmmoSet_473x33mmCaseless_GDHybrid</ammoSet>
 		</AmmoUser>
 		<FireModes>
 		</FireModes>
@@ -189,10 +186,10 @@
 			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.27</recoilAmount><!--Halved from base-->
+			<recoilAmount>1.12</recoilAmount><!--Halved from base-->
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66Greydale_FMJ_Pistol</defaultProjectile>
+			<defaultProjectile>Bullet_473x33mmGDPistol_FMJ</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
 			<burstShotCount>3</burstShotCount>
 			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
@@ -203,9 +200,9 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>12</magazineSize>
+			<magazineSize>15</magazineSize>
 			<reloadTime>3.5</reloadTime>
-			<ammoSet>AmmoSet_66Greydale_Pistol</ammoSet>
+			<ammoSet>AmmoSet_473x33mmCaseless_GDPistol</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<noSingleShot>true</noSingleShot>
@@ -255,10 +252,10 @@
 		<value>
 			<verbs>
 				<li Class="CombatExtended.VerbPropertiesCE">
-					<recoilAmount>2.31</recoilAmount>
+					<recoilAmount>2.04</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_66Greydale_FMJ_Pistol</defaultProjectile>
+					<defaultProjectile>Bullet_473x33mmGDPistol_FMJ</defaultProjectile>
 					<warmupTime>0.6</warmupTime>
 					<burstShotCount>5</burstShotCount>
 					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
@@ -276,9 +273,9 @@
 		<value>
 			<comps>
 				<li Class="CombatExtended.CompProperties_AmmoUser">
-					<magazineSize>36</magazineSize>
+					<magazineSize>45</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_66Greydale_Pistol</ammoSet>
+					<ammoSet>AmmoSet_473x33mmCaseless_GDPistol</ammoSet>
 				</li>
 				<li Class="CombatExtended.CompProperties_FireModes">
 					<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -351,7 +348,6 @@
 			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>3.65</recoilAmount><!--Halved from base-->
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_25x40mmGrenade_HE</defaultProjectile>
@@ -405,12 +401,12 @@
 			<Chemfuel>10</Chemfuel>
 		</costList>
 		<Properties>
-			<recoilAmount>2.06</recoilAmount>
+			<recoilAmount>1.56</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66Greydale_FMJ_SB</defaultProjectile>
+			<defaultProjectile>Bullet_473x33mmCaseless_FMJ</defaultProjectile>
 			<warmupTime>0.85</warmupTime>
-			<range>36</range>
+			<range>40</range>
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 			<soundCast>ShotGRC</soundCast>
@@ -418,9 +414,9 @@
 			<muzzleFlashScale>11</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>36</magazineSize>
+			<magazineSize>45</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_66Greydale_SB</ammoSet>
+			<ammoSet>AmmoSet_473x33mmCaseless</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiUseBurstMode>false</aiUseBurstMode>
@@ -441,10 +437,10 @@
 			<Bulk>9.45</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>2.00</recoilAmount>
+			<recoilAmount>1.32</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66Greydale_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_473x33mmCaseless_FMJ</defaultProjectile>
 			<warmupTime>1.2</warmupTime>
 			<range>62</range>
 			<burstShotCount>6</burstShotCount>
@@ -454,51 +450,15 @@
 			<muzzleFlashScale>7</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>36</magazineSize>
+			<magazineSize>45</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_66Greydale</ammoSet>
+			<ammoSet>AmmoSet_473x33mmCaseless</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
 			<aiUseBurstMode>TRUE</aiUseBurstMode>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
-	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GD_ModularRifle"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_UnderBarrel">
-				<propsUnderBarrel>
-					<magazineSize>1</magazineSize>
-					<reloadTime>3</reloadTime>
-					<ammoSet>AmmoSet_25x40mmGrenade</ammoSet>
-				</propsUnderBarrel>
-				<verbPropsUnderBarrel>
-					<recoilAmount>2.51</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_25mmGDMicromissile_HEDP</defaultProjectile>
-					<warmupTime>0.55</warmupTime>
-					<range>51</range>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<soundCast>Shot_IncendiaryLauncher</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>12</muzzleFlashScale>
-					<burstShotCount>1</burstShotCount>
-				</verbPropsUnderBarrel>
-				<propsFireModesUnderBarrel>
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
-					<aiAimMode>AimedShot</aiAimMode>
-					<aimedBurstShotCount>1</aimedBurstShotCount>
-				</propsFireModesUnderBarrel>
-			</li>
-			<li>
-				<compClass>CompEquippable</compClass>
-			</li>
-		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
@@ -531,23 +491,23 @@
 			<Bulk>11.85</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.87</recoilAmount>
+			<recoilAmount>0.12</recoilAmount><!--Further reduction of the recoil from 0.2x to 0.1x to facilitate aimed shots a bit better-->
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66Greydale_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_473x33mmCaseless_FMJ</defaultProjectile>
 			<warmupTime>1.9</warmupTime>
 			<range>81</range>
 			<burstShotCount>3</burstShotCount>
-			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 			<soundCast>ShotGRM</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>36</magazineSize>
+			<magazineSize>45</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_66Greydale</ammoSet>
+			<ammoSet>AmmoSet_473x33mmCaseless</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>2</aimedBurstShotCount>
@@ -580,10 +540,10 @@
 			<Bulk>11.75</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.40</recoilAmount>
+			<recoilAmount>0.87</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_66Greydale_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_473x33mmCaseless_FMJ</defaultProjectile>
 			<warmupTime>1.3</warmupTime>
 			<range>67</range>
 			<burstShotCount>10</burstShotCount>
@@ -597,9 +557,9 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>108</magazineSize>
+			<magazineSize>150</magazineSize>
 			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_66Greydale</ammoSet>
+			<ammoSet>AmmoSet_473x33mmCaseless</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>5</aimedBurstShotCount>

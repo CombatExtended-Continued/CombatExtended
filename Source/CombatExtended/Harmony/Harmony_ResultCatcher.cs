@@ -7,20 +7,22 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(Thing), "TakeDamage")]
-public static class PatchCETakeDamage
+namespace CombatExtended.HarmonyCE
 {
-    static void Postfix(Thing __instance, DamageWorker.DamageResult __result)
+    [HarmonyPatch(typeof(Thing), "TakeDamage")]
+    public static class PatchCETakeDamage
     {
-        if (__instance is Pawn compHolder)
+        static void Postfix(Thing __instance, DamageWorker.DamageResult __result)
         {
-            var exploder = compHolder.TryGetComp<CompAmmoExploder>();
-            if (exploder != null)
+            if (__instance is Pawn compHolder)
             {
-                exploder.PostDamageResult(__result);
+                var exploder = compHolder.TryGetComp<CompAmmoExploder>();
+                if (exploder != null)
+                {
+                    exploder.PostDamageResult(__result);
+                }
             }
-        }
 
+        }
     }
 }

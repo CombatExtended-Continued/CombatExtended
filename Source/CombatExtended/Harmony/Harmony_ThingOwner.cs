@@ -7,48 +7,50 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE;
-// Need to patch all methods that can modify pawn's inventory to refresh CompInventory cache when it happens
-public class Harmony_ThingOwner_NotifyAdded_Patch
+namespace CombatExtended.HarmonyCE
 {
-    public static void Postfix(ThingOwner __instance, Thing item)
+    // Need to patch all methods that can modify pawn's inventory to refresh CompInventory cache when it happens
+    public class Harmony_ThingOwner_NotifyAdded_Patch
     {
-        if (item != null)
+        public static void Postfix(ThingOwner __instance, Thing item)
         {
-            CE_Utility.TryUpdateInventory(__instance);
+            if (item != null)
+            {
+                CE_Utility.TryUpdateInventory(__instance);
+            }
         }
     }
-}
 
-public class Harmony_ThingOwner_NotifyAddedAndMergedWith_Patch
-{
-    public static void Postfix(ThingOwner __instance, Thing item, int mergedCount)
+    public class Harmony_ThingOwner_NotifyAddedAndMergedWith_Patch
     {
-        if (item != null && mergedCount != 0)
+        public static void Postfix(ThingOwner __instance, Thing item, int mergedCount)
         {
-            CE_Utility.TryUpdateInventory(__instance);
+            if (item != null && mergedCount != 0)
+            {
+                CE_Utility.TryUpdateInventory(__instance);
+            }
         }
     }
-}
 
-public class Harmony_ThingOwner_Take_Patch
-{
-    public static void Postfix(ThingOwner __instance, Thing __result)
+    public class Harmony_ThingOwner_Take_Patch
     {
-        if (__result != null)
+        public static void Postfix(ThingOwner __instance, Thing __result)
         {
-            CE_Utility.TryUpdateInventory(__instance);
+            if (__result != null)
+            {
+                CE_Utility.TryUpdateInventory(__instance);
+            }
         }
     }
-}
 
-public class Harmony_ThingOwner_NotifyRemoved_Patch
-{
-    public static void Postfix(ThingOwner __instance, Thing item)
+    public class Harmony_ThingOwner_NotifyRemoved_Patch
     {
-        if (item != null)
+        public static void Postfix(ThingOwner __instance, Thing item)
         {
-            CE_Utility.TryUpdateInventory(__instance);
+            if (item != null)
+            {
+                CE_Utility.TryUpdateInventory(__instance);
+            }
         }
     }
 }

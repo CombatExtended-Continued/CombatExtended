@@ -15,24 +15,13 @@
 					</value>
 				</li>
 				<!-- === Mod Extensions === -->
-				<li Class="PatchOperationConditional">
-					<xpath>Defs/ThingDef[defName="EW_Gun_PersonaEltexPistol"]/modExtensions/li[@Class="AthenaFramework.DamageModifierExtension"]</xpath>
-					<nomatch Class="PatchOperationRemove">
-						<xpath>Defs/ThingDef[
-							defName="EW_Gun_PersonaEltexPistol" or
-							defName="EW_Gun_PersonaEltexSMG" or
-							defName="EW_Gun_PersonaEltexRifle" or
-							defName="EW_Gun_PersonaEltexLance"
-							]/modExtensions/li[@Class="EltexWeaponry.ModExtension_PsychicDamage"]</xpath>
-					</nomatch>
-					<match Class="PatchOperationRemove">
-						<xpath>Defs/ThingDef[
-							defName="EW_Gun_PersonaEltexPistol" or
-							defName="EW_Gun_PersonaEltexSMG" or
-							defName="EW_Gun_PersonaEltexRifle" or
-							defName="EW_Gun_PersonaEltexLance"
-							]/modExtensions/li[@Class="AthenaFramework.DamageModifierExtension"]</xpath>
-					</match>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[
+						defName="EW_Gun_PersonaEltexPistol" or
+						defName="EW_Gun_PersonaEltexSMG" or
+						defName="EW_Gun_PersonaEltexRifle" or
+						defName="EW_Gun_PersonaEltexLance"
+						]/modExtensions/li[@Class="AthenaFramework.DamageModifierExtension"]</xpath>
 				</li>
 				<!-- === Tools === -->
 				<li Class="PatchOperationReplace">

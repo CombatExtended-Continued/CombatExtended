@@ -2,18 +2,20 @@
 using RimWorld;
 using Verse;
 
-namespace CombatExtended;
-
-public class CompProperties_ShearableRenameable : CompProperties_Shearable
+namespace CombatExtended
 {
 
-    public string growthLabel = "";
-
-    public CompProperties_ShearableRenameable()
+    public class CompProperties_ShearableRenameable : CompProperties_Shearable
     {
-        this.compClass = typeof(CompShearableRenameable);
+
+        public string growthLabel = "";
+
+        public CompProperties_ShearableRenameable()
+        {
+            this.compClass = typeof(CompShearableRenameable);
+        }
+
     }
 
 }
-
 

@@ -20,20 +20,11 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/HediffDef[defName="IW_Ionization"]/comps/li[@Class="AthenaFramework.HediffCompProperties_Bomb"]</xpath>
-		<nomatch Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="IW_Ionization"]/comps/li[@Class="IonWeaponry.HediffCompProperties_Bomb"]/damageAmount</xpath>
-			<value>
-				<damageAmount>30</damageAmount>
-			</value>
-		</nomatch>
-		<match Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="IW_Ionization"]/comps/li[@Class="AthenaFramework.HediffCompProperties_Bomb"]/damageAmount</xpath>
-			<value>
-				<damageAmount>30</damageAmount>
-			</value>
-		</match>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="IW_Ionization"]/comps/li[@Class="AthenaFramework.HediffCompProperties_Bomb"]/damageAmount</xpath>
+		<value>
+			<damageAmount>30</damageAmount>
+		</value>
 	</Operation>
 
 </Patch>

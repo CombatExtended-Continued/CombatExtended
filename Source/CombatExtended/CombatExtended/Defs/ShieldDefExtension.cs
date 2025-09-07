@@ -6,42 +6,44 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class ShieldDefExtension : DefModExtension
+namespace CombatExtended
 {
-    public List<BodyPartGroupDef> shieldCoverage = new List<BodyPartGroupDef>();
-    public List<BodyPartGroupDef> crouchCoverage = new List<BodyPartGroupDef>();
-    public bool drawAsTall = false;
+    public class ShieldDefExtension : DefModExtension
+    {
+        public List<BodyPartGroupDef> shieldCoverage = new List<BodyPartGroupDef>();
+        public List<BodyPartGroupDef> crouchCoverage = new List<BodyPartGroupDef>();
+        public bool drawAsTall = false;
 
-    public bool PartIsCoveredByShield(BodyPartRecord part, bool isPawnCrouching)
-    {
-        if (!shieldCoverage.NullOrEmpty())
+        public bool PartIsCoveredByShield(BodyPartRecord part, bool isPawnCrouching)
         {
-            foreach (BodyPartGroupDef group in shieldCoverage)
+            if (!shieldCoverage.NullOrEmpty())
             {
-                if (part.IsInGroup(group))
+                foreach (BodyPartGroupDef group in shieldCoverage)
                 {
-                    return true;
+                    if (part.IsInGroup(group))
+                    {
+                        return true;
+                    }
                 }
             }
-        }
-        if (!crouchCoverage.NullOrEmpty() && isPawnCrouching)
-        {
-            foreach (BodyPartGroupDef group in crouchCoverage)
+            if (!crouchCoverage.NullOrEmpty() && isPawnCrouching)
             {
-                if (part.IsInGroup(group))
+                foreach (BodyPartGroupDef group in crouchCoverage)
                 {
-                    return true;
+                    if (part.IsInGroup(group))
+                    {
+                        return true;
+                    }
                 }
             }
+            return false;
         }
-        return false;
-    }
-    public static string GetShieldProtectedAreas(BodyDef body, ThingDef thingDef)
-    {
-        return (from part in (from x in body.AllParts
-                              where x.depth == BodyPartDepth.Outside && x.groups.Any((BodyPartGroupDef y) => thingDef.GetModExtension<ShieldDefExtension>().shieldCoverage.Contains(y))
-                              select x).Distinct<BodyPartRecord>()
-                select part.Label).ToCommaList(false, false).CapitalizeFirst();
+        public static string GetShieldProtectedAreas(BodyDef body, ThingDef thingDef)
+        {
+            return (from part in (from x in body.AllParts
+                                  where x.depth == BodyPartDepth.Outside && x.groups.Any((BodyPartGroupDef y) => thingDef.GetModExtension<ShieldDefExtension>().shieldCoverage.Contains(y))
+                                  select x).Distinct<BodyPartRecord>()
+                    select part.Label).ToCommaList(false, false).CapitalizeFirst();
+        }
     }
 }

@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(CompProjectileInterceptor), nameof(CompProjectileInterceptor.PostPreApplyDamage))]
-internal static class Harmony_CompProjectileInterceptor_PostPreApplyDamage
+namespace CombatExtended.HarmonyCE
 {
-    public static bool Prefix(CompProjectileInterceptor __instance)
+    [HarmonyPatch(typeof(CompProjectileInterceptor), nameof(CompProjectileInterceptor.PostPreApplyDamage))]
+    internal static class Harmony_CompProjectileInterceptor_PostPreApplyDamage
     {
-        return __instance.Active;
-    }
+        public static bool Prefix(CompProjectileInterceptor __instance)
+        {
+            return __instance.Active;
+        }
 
+    }
 }

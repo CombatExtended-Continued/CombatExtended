@@ -8,53 +8,55 @@ using Verse;
 using UnityEngine;
 using Verse.AI;
 
-namespace CombatExtended;
-public class Window_GiveAmmoAmountSlider : Window
+namespace CombatExtended
 {
-    public float ammoToGiveAmount = 1;
-
-    public CompAmmoGiver sourceComp;
-
-    public Thing sourceAmmo;
-
-    public Pawn selPawn;
-
-    public Pawn dad;
-
-    public bool finalized = false;
-
-    public int maxAmmoCount;
-
-    public override Vector2 InitialSize
+    public class Window_GiveAmmoAmountSlider : Window
     {
-        get
-        {
-            return new Vector2(350f, 125f);
-        }
-    }
-    public override void DoWindowContents(Rect inRect)
-    {
-        Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf(), ref ammoToGiveAmount, new FloatRange(0, maxAmmoCount), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString(), 1);
+        public float ammoToGiveAmount = 1;
 
-        if (Widgets.ButtonText(inRect.BottomHalf().LeftHalf(), "Cancel".Translate()))
+        public CompAmmoGiver sourceComp;
+
+        public Thing sourceAmmo;
+
+        public Pawn selPawn;
+
+        public Pawn dad;
+
+        public bool finalized = false;
+
+        public int maxAmmoCount;
+
+        public override Vector2 InitialSize
         {
-            this.Close();
+            get
+            {
+                return new Vector2(350f, 125f);
+            }
+        }
+        public override void DoWindowContents(Rect inRect)
+        {
+            Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf(), ref ammoToGiveAmount, new FloatRange(0, maxAmmoCount), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString(), 1);
+
+            if (Widgets.ButtonText(inRect.BottomHalf().LeftHalf(), "Cancel".Translate()))
+            {
+                this.Close();
+            }
+
+            if (Widgets.ButtonText(inRect.BottomHalf().RightHalf(), "OK".Translate()))
+            {
+                finalized = true;
+                this.Close();
+            }
         }
 
-        if (Widgets.ButtonText(inRect.BottomHalf().RightHalf(), "OK".Translate()))
+        public override void Close(bool doCloseSound = true)
         {
-            finalized = true;
-            this.Close();
-        }
-    }
+            if (finalized)
+            {
+                sourceComp.GiveAmmo(selPawn, sourceAmmo, (int)this.ammoToGiveAmount);
+            }
 
-    public override void Close(bool doCloseSound = true)
-    {
-        if (finalized)
-        {
-            sourceComp.GiveAmmo(selPawn, sourceAmmo, (int)this.ammoToGiveAmount);
+            base.Close(doCloseSound);
         }
-
-        base.Close(doCloseSound);
     }
 }

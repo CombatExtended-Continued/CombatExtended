@@ -5,113 +5,115 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended.AI;
-public static class Toils_CombatCE
+namespace CombatExtended.AI
 {
-    public static Toil ReloadEquipedWeapon(IJobDriver_Tactical driver, TargetIndex progressIndex, Thing ammo = null)
+    public static class Toils_CombatCE
     {
-        // fields
-        CompAmmoUser compAmmo = null;
-        int reloadingTime = 0;
-        int startTick = 0;
-        // reloading toil
-        Toil waitToil = new Toil()
+        public static Toil ReloadEquipedWeapon(IJobDriver_Tactical driver, TargetIndex progressIndex, Thing ammo = null)
         {
-            actor = driver.pawn
-        };
-        waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-        waitToil.defaultDuration = 300;
-        waitToil.AddPreInitAction(() =>
-        {
-            if (driver.pawn.equipment?.Primary == null)
+            // fields
+            CompAmmoUser compAmmo = null;
+            int reloadingTime = 0;
+            int startTick = 0;
+            // reloading toil
+            Toil waitToil = new Toil()
             {
-                driver.EndJobWith(JobCondition.Incompletable);
-                return;
-            }
-            compAmmo = driver.pawn.equipment?.Primary.TryGetComp<CompAmmoUser>();
-            if (compAmmo == null || !compAmmo.HasAmmoOrMagazine)
+                actor = driver.pawn
+            };
+            waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
+            waitToil.defaultDuration = 300;
+            waitToil.AddPreInitAction(() =>
             {
-                driver.EndJobWith(JobCondition.Incompletable);
-                return;
-            }
-            startTick = GenTicks.TicksGame;
-            WeaponPlatform platform = compAmmo.parent as WeaponPlatform;
-            reloadingTime = Mathf.CeilToInt((platform?.GetStatValue(CE_StatDefOf.ReloadTime) ?? compAmmo.Props.reloadTime).SecondsToTicks() / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
-        });
-        waitToil.tickAction = () =>
-        {
-            if (GenTicks.TicksGame - startTick >= reloadingTime)
-            {
-                if (compAmmo == null)
+                if (driver.pawn.equipment?.Primary == null)
                 {
                     driver.EndJobWith(JobCondition.Incompletable);
                     return;
                 }
-                if (ammo == null && !compAmmo.TryFindAmmoInInventory(out ammo))
+                compAmmo = driver.pawn.equipment?.Primary.TryGetComp<CompAmmoUser>();
+                if (compAmmo == null || !compAmmo.HasAmmoOrMagazine)
                 {
                     driver.EndJobWith(JobCondition.Incompletable);
                     return;
                 }
-                if (!compAmmo.EmptyMagazine && !compAmmo.TryUnload())
+                startTick = GenTicks.TicksGame;
+                WeaponPlatform platform = compAmmo.parent as WeaponPlatform;
+                reloadingTime = Mathf.CeilToInt((platform?.GetStatValue(CE_StatDefOf.ReloadTime) ?? compAmmo.Props.reloadTime).SecondsToTicks() / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            });
+            waitToil.tickAction = () =>
+            {
+                if (GenTicks.TicksGame - startTick >= reloadingTime)
                 {
-                    driver.EndJobWith(JobCondition.Incompletable);
-                    return;
-                }
-                compAmmo.LoadAmmo(ammo);
-                driver.ReadyForNextToil();
-            }
-        };
-        return waitToil.WithProgressBarToilDelay(progressIndex);
-    }
-
-    public static IEnumerable<Toil> AttackStatic(IJobDriver_Tactical driver, TargetIndex targetIndex)
-    {
-        Toil init = new Toil();
-        bool startedIncapacitated = false;
-        init.initAction = delegate
-        {
-            Pawn pawn2 = driver.TargetThingB as Pawn;
-            if (pawn2 != null)
-            {
-                startedIncapacitated = pawn2.Downed;
-            }
-            driver.pawn.pather.StopDead();
-        };
-        init.tickAction = delegate
-        {
-            LocalTargetInfo target = driver.job.GetTarget(targetIndex);
-            if (!driver.job.GetTarget(targetIndex).IsValid)
-            {
-                driver.EndJobWith(JobCondition.Succeeded);
-            }
-            else
-            {
-                if (target.HasThing)
-                {
-                    Pawn pawn = target.Thing as Pawn;
-                    if (target.Thing.Destroyed || (pawn != null && !startedIncapacitated && pawn.Downed) || (pawn != null && !(pawn.GetInvisibilityComp()?.ForcedVisible ?? false)))
+                    if (compAmmo == null)
                     {
-                        driver.EndJobWith(JobCondition.Succeeded);
+                        driver.EndJobWith(JobCondition.Incompletable);
                         return;
                     }
+                    if (ammo == null && !compAmmo.TryFindAmmoInInventory(out ammo))
+                    {
+                        driver.EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
+                    if (!compAmmo.EmptyMagazine && !compAmmo.TryUnload())
+                    {
+                        driver.EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
+                    compAmmo.LoadAmmo(ammo);
+                    driver.ReadyForNextToil();
                 }
-                if (driver.numAttacksMade >= driver.job.maxNumStaticAttacks && !driver.pawn.stances.FullBodyBusy)
+            };
+            return waitToil.WithProgressBarToilDelay(progressIndex);
+        }
+
+        public static IEnumerable<Toil> AttackStatic(IJobDriver_Tactical driver, TargetIndex targetIndex)
+        {
+            Toil init = new Toil();
+            bool startedIncapacitated = false;
+            init.initAction = delegate
+            {
+                Pawn pawn2 = driver.TargetThingB as Pawn;
+                if (pawn2 != null)
+                {
+                    startedIncapacitated = pawn2.Downed;
+                }
+                driver.pawn.pather.StopDead();
+            };
+            init.tickAction = delegate
+            {
+                LocalTargetInfo target = driver.job.GetTarget(targetIndex);
+                if (!driver.job.GetTarget(targetIndex).IsValid)
                 {
                     driver.EndJobWith(JobCondition.Succeeded);
                 }
-                else if (driver.pawn.TryStartAttack(target))
+                else
                 {
-                    driver.numAttacksMade++;
+                    if (target.HasThing)
+                    {
+                        Pawn pawn = target.Thing as Pawn;
+                        if (target.Thing.Destroyed || (pawn != null && !startedIncapacitated && pawn.Downed) || (pawn != null && !(pawn.GetInvisibilityComp()?.ForcedVisible ?? false)))
+                        {
+                            driver.EndJobWith(JobCondition.Succeeded);
+                            return;
+                        }
+                    }
+                    if (driver.numAttacksMade >= driver.job.maxNumStaticAttacks && !driver.pawn.stances.FullBodyBusy)
+                    {
+                        driver.EndJobWith(JobCondition.Succeeded);
+                    }
+                    else if (driver.pawn.TryStartAttack(target))
+                    {
+                        driver.numAttacksMade++;
+                    }
+                    else if (!driver.pawn.stances.FullBodyBusy)
+                    {
+                        driver.EndJobWith(JobCondition.Incompletable);
+                    }
                 }
-                else if (!driver.pawn.stances.FullBodyBusy)
-                {
-                    driver.EndJobWith(JobCondition.Incompletable);
-                }
-            }
-        };
-        init.defaultCompleteMode = ToilCompleteMode.Never;
-        init.activeSkill = () => Toils_Combat.GetActiveSkillForToil(init);
-        yield return Toils_Misc.ThrowColonistAttackingMote(TargetIndex.A);
-        yield return init;
+            };
+            init.defaultCompleteMode = ToilCompleteMode.Never;
+            init.activeSkill = () => Toils_Combat.GetActiveSkillForToil(init);
+            yield return Toils_Misc.ThrowColonistAttackingMote(TargetIndex.A);
+            yield return init;
+        }
     }
 }

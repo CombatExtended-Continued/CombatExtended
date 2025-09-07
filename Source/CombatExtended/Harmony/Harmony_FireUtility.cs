@@ -1,64 +1,59 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(FireUtility), "ChanceToStartFireIn")]
-internal static class Harmony_FireUtility_ChanceToStartFireIn
+namespace CombatExtended.HarmonyCE
 {
-    internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    [HarmonyPatch(typeof(FireUtility), "ChanceToStartFireIn")]
+    internal static class Harmony_FireUtility_ChanceToStartFireIn
     {
-        var write = false;
-        bool foundInjection = false;
-        foreach (CodeInstruction code in instructions)
+        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            if (write)
+            var write = false;
+            foreach (CodeInstruction code in instructions)
             {
-                if (code.opcode == OpCodes.Ldc_I4_1)
+                if (write)
                 {
-                    code.opcode = OpCodes.Ldc_I4_M1;
-                    foundInjection = true;
-                }
+                    if (code.opcode == OpCodes.Ldc_I4_1)
+                    {
+                        code.opcode = OpCodes.Ldc_I4_M1;
+                    }
 
-                write = false;
+                    write = false;
+                }
+                else if (code.opcode == OpCodes.Ldfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.category))))
+                {
+                    write = true;
+                }
+                yield return code;
             }
-            else if (code.opcode == OpCodes.Ldfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.category))))
-            {
-                write = true;
-            }
-            yield return code;
-        }
-        if (!foundInjection)
-        {
-            Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
         }
     }
-}
 
-[HarmonyPatch(typeof(FireUtility), "TryStartFireIn")]
-internal static class Harmony_FireUtility_TryStartFireIn
-{
-    private const float CatchFireChance = 0.5f;
-
-    internal static void Postfix(IntVec3 c, Map map, float fireSize, bool __result)
+    [HarmonyPatch(typeof(FireUtility), "TryStartFireIn")]
+    internal static class Harmony_FireUtility_TryStartFireIn
     {
-        if (!__result)
-        {
-            return;
-        }
+        private const float CatchFireChance = 0.5f;
 
-        var pawn = c.GetFirstThing<Pawn>(map);
-        if (pawn == null)
+        internal static void Postfix(IntVec3 c, Map map, float fireSize, bool __result)
         {
-            return;
-        }
+            if (!__result)
+            {
+                return;
+            }
 
-        if (Rand.Chance(CatchFireChance * pawn.GetStatValue(StatDefOf.Flammability)))
-        {
-            pawn.TryAttachFire(fireSize, null);
+            var pawn = c.GetFirstThing<Pawn>(map);
+            if (pawn == null)
+            {
+                return;
+            }
+
+            if (Rand.Chance(CatchFireChance * pawn.GetStatValue(StatDefOf.Flammability)))
+            {
+                pawn.TryAttachFire(fireSize, null);
+            }
         }
     }
 }

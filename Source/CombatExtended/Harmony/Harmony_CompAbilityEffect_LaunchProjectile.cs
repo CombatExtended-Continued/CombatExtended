@@ -9,30 +9,33 @@ using RimWorld;
 using UnityEngine;
 
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(CompAbilityEffect_LaunchProjectile), "LaunchProjectile")]
-internal static class Harmony_CompAbilityEffect_LaunchProjectile
+namespace CombatExtended.HarmonyCE
+
 {
-    internal static bool Prefix(CompAbilityEffect_LaunchProjectile __instance, LocalTargetInfo target)
+    [HarmonyPatch(typeof(CompAbilityEffect_LaunchProjectile), "LaunchProjectile")]
+    internal static class Harmony_CompAbilityEffect_LaunchProjectile
     {
-        Type projectileClass = __instance.Props.projectileDef.thingClass;
-        if (projectileClass.IsSubclassOf(typeof(ProjectileCE)) || projectileClass == typeof(ProjectileCE))
+        internal static bool Prefix(CompAbilityEffect_LaunchProjectile __instance, LocalTargetInfo target)
         {
-            ThingDef projectileDef = __instance.Props.projectileDef.GetProjectile();
-            if (projectileDef.projectile is ProjectilePropertiesCE ppce)
+            Type projectileClass = __instance.Props.projectileDef.thingClass;
+            if (projectileClass.IsSubclassOf(typeof(ProjectileCE)) || projectileClass == typeof(ProjectileCE))
             {
-                Pawn pawn = __instance.parent.pawn;
-                var u = pawn.TrueCenter().WithY((new CollisionVertical(pawn)).shotHeight);
-                var targetPos = target.Thing != null ? target.Thing.TrueCenter() : target.Cell.ToVector3Shifted();
-                targetPos = targetPos.WithY((new CollisionVertical(target.Thing)).shotHeight);
+                ThingDef projectileDef = __instance.Props.projectileDef.GetProjectile();
+                if (projectileDef.projectile is ProjectilePropertiesCE ppce)
+                {
+                    Pawn pawn = __instance.parent.pawn;
+                    var u = pawn.TrueCenter().WithY((new CollisionVertical(pawn)).shotHeight);
+                    var targetPos = target.Thing != null ? target.Thing.TrueCenter() : target.Cell.ToVector3Shifted();
+                    targetPos = targetPos.WithY((new CollisionVertical(target.Thing)).shotHeight);
 
 
-                var angle = ppce.TrajectoryWorker.ShotAngle(ppce, u, targetPos);
-                float shotRotation = ppce.TrajectoryWorker.ShotRotation(ppce, u, targetPos);
-                CE_Utility.LaunchProjectileCE(projectileDef, new Vector2(u.x, u.z), target, pawn, angle, shotRotation, u.y, ppce.speed);
-                return false;
+                    var angle = ppce.TrajectoryWorker.ShotAngle(ppce, u, targetPos);
+                    float shotRotation = ppce.TrajectoryWorker.ShotRotation(ppce, u, targetPos);
+                    CE_Utility.LaunchProjectileCE(projectileDef, new Vector2(u.x, u.z), target, pawn, angle, shotRotation, u.y, ppce.speed);
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
     }
 }

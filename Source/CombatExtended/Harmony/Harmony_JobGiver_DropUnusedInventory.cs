@@ -7,22 +7,24 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(JobGiver_DropUnusedInventory), "Drop")]
-public static class Harmony_JobGiver_DropUnusedInventory_Drop
+namespace CombatExtended.HarmonyCE
 {
-    public static bool Prefix(JobGiver_DropUnusedInventory __instance, Pawn pawn, Thing thing)
+    [HarmonyPatch(typeof(JobGiver_DropUnusedInventory), "Drop")]
+    public static class Harmony_JobGiver_DropUnusedInventory_Drop
     {
-        // Remove forced hold from timed out tamer food
-        if (thing.def.IsIngestible && !thing.def.IsDrug && thing.def.ingestible.preferability <= FoodPreferability.RawTasty)
+        public static bool Prefix(JobGiver_DropUnusedInventory __instance, Pawn pawn, Thing thing)
         {
-            if (pawn.HoldTrackerIsHeld(thing))
+            // Remove forced hold from timed out tamer food
+            if (thing.def.IsIngestible && !thing.def.IsDrug && thing.def.ingestible.preferability <= FoodPreferability.RawTasty)
             {
-                pawn.HoldTrackerForget(thing);
+                if (pawn.HoldTrackerIsHeld(thing))
+                {
+                    pawn.HoldTrackerForget(thing);
+                }
+                return true;
             }
-            return true;
+            var loadout = pawn.GetLoadout();
+            return !(loadout != null && loadout.SlotCount > 0);
         }
-        var loadout = pawn.GetLoadout();
-        return !(loadout != null && loadout.SlotCount > 0);
     }
 }

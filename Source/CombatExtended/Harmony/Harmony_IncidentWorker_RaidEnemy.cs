@@ -7,33 +7,35 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE;
-public static class Harmony_IncidentWorker_RaidEnemy
+namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), nameof(IncidentWorker_RaidEnemy.ResolveRaidPoints))]
-    public static class Harmony_IncidentWorker_RaidEnemy_ResolveRaidPoints
+    public static class Harmony_IncidentWorker_RaidEnemy
     {
-        public static void Postfix(ref IncidentParms parms)
+        [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), nameof(IncidentWorker_RaidEnemy.ResolveRaidPoints))]
+        public static class Harmony_IncidentWorker_RaidEnemy_ResolveRaidPoints
         {
-            FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
-            if (tracker != null)
+            public static void Postfix(ref IncidentParms parms)
             {
-                parms.points *= tracker.StrengthPointsMultiplier;
+                FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
+                if (tracker != null)
+                {
+                    parms.points *= tracker.StrengthPointsMultiplier;
+                }
             }
         }
-    }
 
-    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), nameof(IncidentWorker_RaidEnemy.TryExecuteWorker))]
-    public static class Harmony_IncidentWorker_RaidEnemy_TryExecuteWorker
-    {
-        public static bool Prefix(IncidentParms parms)
+        [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), nameof(IncidentWorker_RaidEnemy.TryExecuteWorker))]
+        public static class Harmony_IncidentWorker_RaidEnemy_TryExecuteWorker
         {
-            FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
-            if (tracker != null)
+            public static bool Prefix(IncidentParms parms)
             {
-                return tracker.CanRaid;
+                FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
+                if (tracker != null)
+                {
+                    return tracker.CanRaid;
+                }
+                return true;
             }
-            return true;
         }
     }
 }

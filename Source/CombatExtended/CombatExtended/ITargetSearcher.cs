@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended;
-public interface ITargetSearcher
+namespace CombatExtended
 {
-    bool TryFindNewTarget(out LocalTargetInfo target);
+    public interface ITargetSearcher
+    {
+        bool TryFindNewTarget(out LocalTargetInfo target);
+    }
 }

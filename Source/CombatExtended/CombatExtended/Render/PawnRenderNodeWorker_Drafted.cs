@@ -6,12 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended;
-public class PawnRenderNodeWorker_Drafted : PawnRenderNodeWorker
+namespace CombatExtended
 {
-    public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
+    public class PawnRenderNodeWorker_Drafted : PawnRenderNodeWorker
     {
-        var pawn = node.tree.pawn;
-        return pawn != null && pawn.Spawned && (pawn.Drafted || (pawn.CurJob?.def.alwaysShowWeapon ?? false) || (pawn.mindState?.duty?.def.alwaysShowWeapon ?? false)) && base.CanDrawNow(node, parms);
+        public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
+        {
+            var pawn = node.tree.pawn;
+            return pawn != null && pawn.Spawned && (pawn.Drafted || (pawn.CurJob?.def.alwaysShowWeapon ?? false) || (pawn.mindState?.duty?.def.alwaysShowWeapon ?? false)) && base.CanDrawNow(node, parms);
+        }
     }
 }

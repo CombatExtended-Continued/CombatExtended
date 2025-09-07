@@ -5,8 +5,10 @@ using System.Text;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.AI;
-public abstract class RaidGoalFinder
+namespace CombatExtended.AI
 {
+    public abstract class RaidGoalFinder
+    {
 
+    }
 }

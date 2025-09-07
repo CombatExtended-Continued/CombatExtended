@@ -7,101 +7,69 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(TooltipUtility), "ShotCalculationTipString")]
-public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
+namespace CombatExtended.HarmonyCE
 {
-    public static void Postfix(ref string __result, Thing target)
+    [HarmonyPatch(typeof(TooltipUtility), "ShotCalculationTipString")]
+    public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
     {
-        var selectedThing = Find.Selector.SingleSelectedThing;
-        if (__result.NullOrEmpty() && selectedThing != null)
+        public static void Postfix(ref string __result, Thing target)
         {
-            // Create CE Tooltip
-            StringBuilder stringBuilder = new StringBuilder();
-            Verb_LaunchProjectileCE verbCE = null;
-            Verb_MeleeAttackCE meleeVerbCE = null;
-            Pawn pawn = selectedThing as Pawn;
-            if (pawn != null && pawn != target && pawn.equipment?.Primary != null)
+            var selectedThing = Find.Selector.SingleSelectedThing;
+            if (__result.NullOrEmpty() && selectedThing != null)
             {
-                Verb primaryVerb = pawn.equipment.PrimaryEq.PrimaryVerb;
-                if (primaryVerb is Verb_LaunchProjectileCE projectileVerb)
+                // Create CE Tooltip
+                StringBuilder stringBuilder = new StringBuilder();
+                Verb_LaunchProjectileCE verbCE = null;
+                Pawn pawn = selectedThing as Pawn;
+                if (pawn != null && pawn != target && pawn.equipment != null &&
+                        pawn.equipment.Primary != null && pawn.equipment.PrimaryEq.PrimaryVerb is Verb_LaunchProjectileCE)
                 {
-                    verbCE = projectileVerb;
+                    verbCE = pawn.equipment.PrimaryEq.PrimaryVerb as Verb_LaunchProjectileCE;
                 }
-                else if (primaryVerb is Verb_MeleeAttackCE meleeVerb)
+                Building_TurretGunCE turret = selectedThing as Building_TurretGunCE;
+                if (turret != null && turret != target)
                 {
-                    meleeVerbCE = meleeVerb;
+                    verbCE = turret.AttackVerb as Verb_LaunchProjectileCE;
                 }
-            }
-            if (selectedThing is Building_TurretGunCE turret && turret != target)
-            {
-                verbCE = turret.AttackVerb as Verb_LaunchProjectileCE;
-            }
-            Pawn pawn2 = target as Pawn;
-            //ranged tooltip
-            if (verbCE != null)
-            {
-                stringBuilder.AppendLine();
-                stringBuilder.Append("ShotBy".Translate(selectedThing.LabelShort, selectedThing) + ":\n");
-                if (verbCE.CanHitTarget(target, out string obstructReport))
+                if (verbCE != null)
                 {
-                    ShiftVecReport report = verbCE.ShiftVecReportFor(new LocalTargetInfo(target));
-                    stringBuilder.Append(report.GetTextReadout());
-                }
-                else
-                {
-                    stringBuilder.Append("CannotHit".Translate());
-                    if (!obstructReport.NullOrEmpty())
+                    stringBuilder.AppendLine();
+                    stringBuilder.Append("ShotBy".Translate(selectedThing.LabelShort, selectedThing) + ":\n");
+                    string obstructReport;
+                    if (verbCE.CanHitTarget(target, out obstructReport))
                     {
-                        stringBuilder.Append(" " + obstructReport + ".");
+                        ShiftVecReport report = verbCE.ShiftVecReportFor(new LocalTargetInfo(target));
+                        stringBuilder.Append(report.GetTextReadout());
                     }
-                }
-
-                if (pawn2 != null && pawn2.Faction == null && !pawn2.InAggroMentalState && pawn2.AnimalOrWildMan())
-                {
-                    float manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, selectedThing);
-
-                    if (manhunterOnDamageChance > 0f)
+                    else
                     {
-                        stringBuilder.AppendLine();
-                        stringBuilder.AppendLine(string.Format("{0}: {1}", "ManhunterPerHit".Translate(), manhunterOnDamageChance.ToStringPercent()));
-                    }
-                }
-            }
-            // melee tooltip
-            else if (pawn != null && pawn2 != null && (pawn.Drafted || pawn.Faction != Faction.OfPlayer || pawn.InAggroMentalState))
-            {
-                //if pawn doesn't have a melee weapon equipped, find another source of melee verb
-                if (meleeVerbCE == null)
-                {
-                    List<VerbEntry> verbs = pawn.meleeVerbs.GetUpdatedAvailableVerbsList(false);
-                    foreach (var verbEntry in verbs)
-                    {
-                        if (verbEntry.verb.IsMeleeAttack || verbEntry.GetSelectionWeight(pawn2) > 0 && verbEntry.verb is Verb_MeleeAttackCE)
+                        stringBuilder.Append("CannotHit".Translate());
+                        if (!obstructReport.NullOrEmpty())
                         {
-                            meleeVerbCE = verbEntry.verb as Verb_MeleeAttackCE;
-                            break;
+                            stringBuilder.Append(" " + obstructReport + ".");
+                        }
+                    }
+                    Pawn pawn2 = target as Pawn;
+                    if (pawn2 != null && pawn2.Faction == null && !pawn2.InAggroMentalState)
+                    {
+                        float manhunterOnDamageChance;
+                        if (verbCE.IsMeleeAttack)
+                        {
+                            manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, selectedThing, 0f);
+                        }
+                        else
+                        {
+                            manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, selectedThing);
+                        }
+                        if (manhunterOnDamageChance > 0f)
+                        {
+                            stringBuilder.AppendLine();
+                            stringBuilder.AppendLine(string.Format("{0}: {1}", "ManhunterPerHit".Translate(), manhunterOnDamageChance.ToStringPercent()));
                         }
                     }
                 }
-
-                if (meleeVerbCE != null)
-                {
-                    stringBuilder.AppendLine();
-                    stringBuilder.Append("CE_AttackedBy".Translate(selectedThing.LabelShort, selectedThing) + ":\n");
-
-                    stringBuilder.Append(meleeVerbCE.GetTextReadout(pawn, pawn2, pawn.equipment?.PrimaryEq));
-
-                    if (pawn2.Faction == null && !pawn2.InAggroMentalState && pawn2.AnimalOrWildMan())
-                    {
-                        float manhunterOnDamageChance = PawnUtility.GetManhunterOnDamageChance(pawn2, selectedThing, 0f);
-
-                        stringBuilder.AppendLine();
-                        stringBuilder.AppendLine(string.Format("{0}: {1}", "ManhunterPerHit".Translate(), manhunterOnDamageChance.ToStringPercent()));
-                    }
-                }
+                __result = stringBuilder.ToString();
             }
-            __result = stringBuilder.ToString();
         }
     }
 }

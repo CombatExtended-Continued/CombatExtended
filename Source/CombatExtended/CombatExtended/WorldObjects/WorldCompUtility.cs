@@ -4,19 +4,21 @@ using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
-namespace CombatExtended.WorldObjects;
-public static class WorldCompUtility
+namespace CombatExtended.WorldObjects
 {
-    public static IEnumerable<IWorldCompCE> GetCompsCE(this WorldObject worldObject)
+    public static class WorldCompUtility
     {
-        for (int i = 0; i < worldObject.comps.Count; i++)
+        public static IEnumerable<IWorldCompCE> GetCompsCE(this WorldObject worldObject)
         {
-            if (worldObject.comps[i] is IWorldCompCE throttleable)
+            for (int i = 0; i < worldObject.comps.Count; i++)
             {
-                yield return throttleable;
+                if (worldObject.comps[i] is IWorldCompCE throttleable)
+                {
+                    yield return throttleable;
+                }
             }
         }
+        public static WorldObjectDamageWorker GetWorldObjectDamageWorker(this ThingDef shellDef) => (shellDef?.GetProjectile()?.projectile as ProjectilePropertiesCE)?.shellingProps?.Worker ?? new WorldObjectDamageWorker();
     }
-    public static WorldObjectDamageWorker GetWorldObjectDamageWorker(this ThingDef shellDef) => (shellDef?.GetProjectile()?.projectile as ProjectilePropertiesCE)?.shellingProps?.Worker ?? new WorldObjectDamageWorker();
 }
 

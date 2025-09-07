@@ -6,36 +6,38 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace CombatExtended;
-/// <summary>
-/// This is only used to store the bool for one calculation
-/// </summary>
-public class Comp_BurnDamageCalc : ThingComp
+namespace CombatExtended
 {
-    public bool deflectedSharp;
-
-    public ThingDef weapon;
-
-    public override void PostExposeData()
+    /// <summary>
+    /// This is only used to store the bool for one calculation
+    /// </summary>
+    public class Comp_BurnDamageCalc : ThingComp
     {
-        Scribe_Values.Look(ref deflectedSharp, "deflsharp");
+        public bool deflectedSharp;
 
-        Scribe_Defs.Look(ref weapon, "weapon");
-    }
-}
+        public ThingDef weapon;
 
-[StaticConstructorOnStartup]
-public class BurnCompAdder
-{
-    static BurnCompAdder()
-    {
-        foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(x => x.race != null))
+        public override void PostExposeData()
         {
-            if (def.comps == null)
+            Scribe_Values.Look(ref deflectedSharp, "deflsharp");
+
+            Scribe_Defs.Look(ref weapon, "weapon");
+        }
+    }
+
+    [StaticConstructorOnStartup]
+    public class BurnCompAdder
+    {
+        static BurnCompAdder()
+        {
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(x => x.race != null))
             {
-                def.comps = new List<CompProperties>();
+                if (def.comps == null)
+                {
+                    def.comps = new List<CompProperties>();
+                }
+                def.comps.Add(new CompProperties { compClass = typeof(Comp_BurnDamageCalc) });
             }
-            def.comps.Add(new CompProperties { compClass = typeof(Comp_BurnDamageCalc) });
         }
     }
 }

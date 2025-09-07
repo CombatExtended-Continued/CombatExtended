@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(JobGiver_PickUpOpportunisticWeapon), "ShouldEquipWeapon")]
-internal static class Harmony_JobGiver_PickUpOpportunisticWeapon
+namespace CombatExtended.HarmonyCE
 {
-    internal static void Postfix(Thing newWep, Pawn pawn, ref bool __result)
+    [HarmonyPatch(typeof(JobGiver_PickUpOpportunisticWeapon), "ShouldEquipWeapon")]
+    internal static class Harmony_JobGiver_PickUpOpportunisticWeapon
     {
-        __result = __result && newWep.def != CE_ThingDefOf.Gun_BinocularsRadio && !(pawn.HasShield() && newWep.IsTwoHandedWeapon());
+        internal static void Postfix(Thing newWep, Pawn pawn, ref bool __result)
+        {
+            __result = __result && newWep.def != CE_ThingDefOf.Gun_BinocularsRadio && !(pawn.HasShield() && newWep.IsTwoHandedWeapon());
+        }
     }
 }

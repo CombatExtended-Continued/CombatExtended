@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended;
-public class WorldObjectHostilityExtension : DefModExtension
+namespace CombatExtended
 {
-    public bool? AbleToRaidResponse;
-    public bool? AbleToShellingResponse;
+    public class WorldObjectHostilityExtension : DefModExtension
+    {
+        public bool? AbleToRaidResponse;
+        public bool? AbleToShellingResponse;
+    }
 }

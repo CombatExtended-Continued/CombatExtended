@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended;
-public class MultiBarrelExtension : DefModExtension
+namespace CombatExtended
 {
-    public List<Vector2> offsets = new List<Vector2>();
-
-    public Vector2 GetOffsetFor(int index)
+    public class MultiBarrelExtension : DefModExtension
     {
-        if (offsets.NullOrEmpty())
+        public List<Vector2> offsets = new List<Vector2>();
+
+        public Vector2 GetOffsetFor(int index)
         {
-            return Vector2.zero;
+            if (offsets.NullOrEmpty())
+            {
+                return Vector2.zero;
+            }
+            int i = index % offsets.Count;
+            return offsets[i];
         }
-        int i = index % offsets.Count;
-        return offsets[i];
     }
 }

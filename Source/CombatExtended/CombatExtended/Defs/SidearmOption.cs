@@ -6,12 +6,14 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class SidearmOption
+namespace CombatExtended
 {
-    public FloatRange sidearmMoney = FloatRange.Zero;
-    public FloatRange magazineCount = FloatRange.Zero;
-    public List<string> weaponTags;
-    public float generateChance = 1;
-    public AttachmentOption attachments;
+    public class SidearmOption
+    {
+        public FloatRange sidearmMoney = FloatRange.Zero;
+        public FloatRange magazineCount = FloatRange.Zero;
+        public List<string> weaponTags;
+        public float generateChance = 1;
+        public AttachmentOption attachments;
+    }
 }

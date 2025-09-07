@@ -7,17 +7,19 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(PawnWeaponGenerator), "TryGenerateWeaponFor")]
-static class Harmony_PawnWeaponGenerator_TryGenerateWeaponFor
+namespace CombatExtended.HarmonyCE
 {
-    public static void Postfix(Pawn pawn, PawnGenerationRequest request)
+    [HarmonyPatch(typeof(PawnWeaponGenerator), "TryGenerateWeaponFor")]
+    static class Harmony_PawnWeaponGenerator_TryGenerateWeaponFor
     {
-        var loadoutProps = pawn.kindDef.GetModExtension<LoadoutPropertiesExtension>();
-        if (loadoutProps != null)
+        public static void Postfix(Pawn pawn, PawnGenerationRequest request)
         {
-            float biocodeChance = (request.BiocodeWeaponChance > 0f) ? request.BiocodeWeaponChance : pawn.kindDef.biocodeWeaponChance;  //pass biocode weapon chance to generate loadout
-            loadoutProps.GenerateLoadoutFor(pawn, biocodeChance);
+            var loadoutProps = pawn.kindDef.GetModExtension<LoadoutPropertiesExtension>();
+            if (loadoutProps != null)
+            {
+                float biocodeChance = (request.BiocodeWeaponChance > 0f) ? request.BiocodeWeaponChance : pawn.kindDef.biocodeWeaponChance;  //pass biocode weapon chance to generate loadout
+                loadoutProps.GenerateLoadoutFor(pawn, biocodeChance);
+            }
         }
     }
 }

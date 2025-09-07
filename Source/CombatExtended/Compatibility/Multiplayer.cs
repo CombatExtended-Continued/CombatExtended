@@ -5,79 +5,81 @@ using System.Reflection;
 using Verse;
 using System.Collections.Generic;
 
-namespace CombatExtended.Compatibility;
-public class Multiplayer : IPatch
+namespace CombatExtended.Compatibility
 {
-    private static bool isMultiplayerActive = false;
-
-    public bool CanInstall()
+    public class Multiplayer : IPatch
     {
-        Log.Message("Combat Extended :: Checking Multiplayer Compat");
-        return ModLister.HasActiveModWithName("Multiplayer");
-    }
+        private static bool isMultiplayerActive = false;
 
-    public void Install()
-    {
-        Log.Message("CombatExtended :: Installing Multiplayer Compat");
-        isMultiplayerActive = true;
-    }
-
-    public static bool InMultiplayer
-    {
-        get
+        public bool CanInstall()
         {
-            if (isMultiplayerActive)
-            {
-                return _inMultiplayer();
-            }
-            return false;
+            Log.Message("Checking Multiplayer Compat");
+            return ModLister.HasActiveModWithName("Multiplayer");
         }
-    }
 
-    public static bool IsExecutingCommands
-    {
-        get
+        public void Install()
         {
-            if (isMultiplayerActive)
-            {
-                return _isExecutingCommands();
-            }
-
-            return false;
+            Log.Message("CombatExtended :: Installing Multiplayer Compat");
+            isMultiplayerActive = true;
         }
-    }
 
-    public static bool IsExecutingCommandsIssuedBySelf
-    {
-        get
+        public static bool InMultiplayer
         {
-            if (isMultiplayerActive)
+            get
             {
-                return _isExecutingCommandsIssuedBySelf();
+                if (isMultiplayerActive)
+                {
+                    return _inMultiplayer();
+                }
+                return false;
             }
-            return false;
         }
+
+        public static bool IsExecutingCommands
+        {
+            get
+            {
+                if (isMultiplayerActive)
+                {
+                    return _isExecutingCommands();
+                }
+
+                return false;
+            }
+        }
+
+        public static bool IsExecutingCommandsIssuedBySelf
+        {
+            get
+            {
+                if (isMultiplayerActive)
+                {
+                    return _isExecutingCommandsIssuedBySelf();
+                }
+                return false;
+            }
+        }
+
+        public static void registerCallbacks(Func<bool> inMP, Func<bool> iec, Func<bool> iecibs)
+        {
+            _inMultiplayer = inMP;
+            _isExecutingCommands = iec;
+            _isExecutingCommandsIssuedBySelf = iecibs;
+        }
+
+        private static Func<bool> _inMultiplayer = null;
+
+        private static Func<bool> _isExecutingCommands = null;
+
+        private static Func<bool> _isExecutingCommandsIssuedBySelf = null;
+
+        [AttributeUsage(AttributeTargets.Method)]
+        public class SyncMethodAttribute : Attribute
+        {
+            public int syncContext = -1;
+            public int[] exposeParameters = null;
+        }
+
+
     }
-
-    public static void registerCallbacks(Func<bool> inMP, Func<bool> iec, Func<bool> iecibs)
-    {
-        _inMultiplayer = inMP;
-        _isExecutingCommands = iec;
-        _isExecutingCommandsIssuedBySelf = iecibs;
-    }
-
-    private static Func<bool> _inMultiplayer = null;
-
-    private static Func<bool> _isExecutingCommands = null;
-
-    private static Func<bool> _isExecutingCommandsIssuedBySelf = null;
-
-    [AttributeUsage(AttributeTargets.Method)]
-    public class SyncMethodAttribute : Attribute
-    {
-        public int syncContext = -1;
-        public int[] exposeParameters = null;
-    }
-
-
 }

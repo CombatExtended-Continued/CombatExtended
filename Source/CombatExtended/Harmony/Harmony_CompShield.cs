@@ -2,36 +2,37 @@
 using Verse;
 using RimWorld;
 
-namespace CombatExtended.HarmonyCE;
-
-/// <summary>
-/// Prevent using ranged verbs other than binoculars (artillery spotting) for shield belt users.
-/// </summary>
-[HarmonyPatch(typeof(CompShield), nameof(CompShield.CompAllowVerbCast))]
-internal static class CompShield_PatchCompAllowVerbCast
+namespace CombatExtended.HarmonyCE
 {
-    internal static bool Prefix(ref bool __result, Verb verb, CompShield __instance)
-    {
-        if (__instance.Props.blocksRangedWeapons)
-        {
-            __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
-        }
-        else
-        {
-            // Let pawns use ranged weapons with Biotech's ranged shield belts
-            __result = true;
-        }
 
-        return false;
+    /// <summary>
+    /// Prevent using ranged verbs other than binoculars (artillery spotting) for shield belt users.
+    /// </summary>
+    [HarmonyPatch(typeof(CompShield), nameof(CompShield.CompAllowVerbCast))]
+    internal static class CompShield_PatchCompAllowVerbCast
+    {
+        internal static bool Prefix(ref bool __result, Verb verb, CompShield __instance)
+        {
+            if (__instance.Props.blocksRangedWeapons)
+            {
+                __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
+            }
+            else
+            {
+                // Let pawns use ranged weapons with Biotech's ranged shield belts
+                __result = true;
+            }
+
+            return false;
+        }
     }
-}
 
-[HarmonyPatch(typeof(CompShield), nameof(CompShield.PostPreApplyDamage))]
-internal static class CompShield_PatchCheckPreAbsorbDamage
-{
-    internal static bool Prefix(out bool absorbed, DamageInfo dinfo, CompShield __instance)
+    [HarmonyPatch(typeof(CompShield), nameof(CompShield.PostPreApplyDamage))]
+    internal static class CompShield_PatchCheckPreAbsorbDamage
     {
-        absorbed = false;
+        internal static bool Prefix(out bool absorbed, DamageInfo dinfo, CompShield __instance)
+        {
+            absorbed = false;
 
             if (__instance.ShieldState != ShieldState.Active)
             {
@@ -70,26 +71,27 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
         }
     }
 
-[HarmonyPatch(typeof(CompShield), nameof(CompShield.CompTick))]
-internal static class CompShield_DisableOnOperateTurret
-{
-    private const int SHORT_SHIELD_RECHARGE_TIME = 2 * GenTicks.TicksPerRealSecond;
-    internal static void Postfix(CompShield __instance, ref int ___ticksToReset)
+    [HarmonyPatch(typeof(CompShield), nameof(CompShield.CompTick))]
+    internal static class CompShield_DisableOnOperateTurret
     {
-        if (!Controller.settings.TurretsBreakShields)
+        private const int SHORT_SHIELD_RECHARGE_TIME = 2 * GenTicks.TicksPerRealSecond;
+        internal static void Postfix(CompShield __instance, ref int ___ticksToReset)
         {
-            return;
-        }
-        if (__instance.PawnOwner?.CurJobDef == JobDefOf.ManTurret && (__instance.PawnOwner?.jobs?.curDriver?.OnLastToil ?? false))
-        {
-            if (__instance.ShieldState == ShieldState.Active)
+            if (!Controller.settings.TurretsBreakShields)
             {
-                __instance.Break();
-                ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
+                return;
             }
-            if (___ticksToReset < SHORT_SHIELD_RECHARGE_TIME)
+            if (__instance.PawnOwner?.CurJobDef == JobDefOf.ManTurret && (__instance.PawnOwner?.jobs?.curDriver?.OnLastToil ?? false))
             {
-                ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
+                if (__instance.ShieldState == ShieldState.Active)
+                {
+                    __instance.Break();
+                    ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
+                }
+                if (___ticksToReset < SHORT_SHIELD_RECHARGE_TIME)
+                {
+                    ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
+                }
             }
         }
     }

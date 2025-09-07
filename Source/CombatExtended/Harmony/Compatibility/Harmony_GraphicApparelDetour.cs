@@ -6,77 +6,79 @@ using System.Reflection;
 using Verse;
 
 
-namespace CombatExtended.HarmonyCE.Compatibility;
-
-[HarmonyPatch]
-class GraphicApparelDetour_Disable
+namespace CombatExtended.HarmonyCE.Compatibility
 {
-    static List<Assembly> target_asses = new List<Assembly>();
 
-    static bool Prepare()
+    [HarmonyPatch]
+    class GraphicApparelDetour_Disable
     {
-        foreach (var ass in AppDomain.CurrentDomain.GetAssemblies())
-        {
-            if (ass.FullName.Contains("GraphicApparelDetour"))
-            {
-                target_asses.Add(ass);
-            }
-        }
-        if (target_asses.Any())
-        {
-            return true;
-        }
-        return false;
-    }
+        static List<Assembly> target_asses = new List<Assembly>();
 
-    static IEnumerable<MethodBase> TargetMethods()
-    {
-        ReportOffendingDetourMods();
-        foreach (var ass in target_asses)
+        static bool Prepare()
         {
-            foreach (var type in ass.GetTypes())
+            foreach (var ass in AppDomain.CurrentDomain.GetAssemblies())
             {
-                MethodBase method_info = null;
-                if (type.Name.Contains("InjectorThingy"))
+                if (ass.FullName.Contains("GraphicApparelDetour"))
                 {
-                    method_info = AccessTools.Method(type, "InjectStuff");
-                }
-                if (method_info != null)
-                {
-                    yield return method_info;
+                    target_asses.Add(ass);
                 }
             }
-        }
-    }
-
-    static bool Prefix()
-    {
-        return false;
-    }
-
-    static void ReportOffendingDetourMods()
-    {
-        List<string> offending_mods = new List<string>();
-
-        foreach (var mod in LoadedModManager.RunningMods)
-        {
-            foreach (var mod_ass in mod.assemblies.loadedAssemblies)
+            if (target_asses.Any())
             {
-                if (target_asses.Contains(mod_ass))
+                return true;
+            }
+            return false;
+        }
+
+        static IEnumerable<MethodBase> TargetMethods()
+        {
+            ReportOffendingDetourMods();
+            foreach (var ass in target_asses)
+            {
+                foreach (var type in ass.GetTypes())
                 {
-                    offending_mods.Add(mod.Name);
+                    MethodBase method_info = null;
+                    if (type.Name.Contains("InjectorThingy"))
+                    {
+                        method_info = AccessTools.Method(type, "InjectStuff");
+                    }
+                    if (method_info != null)
+                    {
+                        yield return method_info;
+                    }
                 }
             }
         }
-        if (offending_mods.Any())
+
+        static bool Prefix()
         {
-            bool pl = offending_mods.Count > 1;
-            Log.Error($"Combat Extended:: An incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
-            foreach (var mod_name in offending_mods)
+            return false;
+        }
+
+        static void ReportOffendingDetourMods()
+        {
+            List<string> offending_mods = new List<string>();
+
+            foreach (var mod in LoadedModManager.RunningMods)
             {
-                Log.Error($"   {mod_name}");
+                foreach (var mod_ass in mod.assemblies.loadedAssemblies)
+                {
+                    if (target_asses.Contains(mod_ass))
+                    {
+                        offending_mods.Add(mod.Name);
+                    }
+                }
             }
-            Log.Error($"Please ask the developer{(pl ? "s" : "")} of {(pl ? "these mods" : "this mod")} to update {(pl ? "them" : "it")}  with a more compatible patching method, such as the Harmony library.");
+            if (offending_mods.Any())
+            {
+                bool pl = offending_mods.Count > 1;
+                Log.Error($"Combat Extended:: An incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
+                foreach (var mod_name in offending_mods)
+                {
+                    Log.Error($"   {mod_name}");
+                }
+                Log.Error($"Please ask the developer{(pl ? "s" : "")} of {(pl ? "these mods" : "this mod")} to update {(pl ? "them" : "it")}  with a more compatible patching method, such as the Harmony library.");
+            }
         }
     }
 }

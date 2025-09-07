@@ -6,25 +6,27 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class AmmoSetDef : Def
+namespace CombatExtended
 {
-    public List<AmmoLink> ammoTypes;
-    // mortar ammo should still availabe when the ammo system is off
-    public bool isMortarAmmoSet = false;
-
-    public AmmoSetDef similarTo;
-
-    public int ammoConsumedPerShot = 1;
-
-    public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
+    public class AmmoSetDef : Def
     {
-        foreach (StatDrawEntry entry in base.SpecialDisplayStats(req)) { yield return entry; }
+        public List<AmmoLink> ammoTypes;
+        // mortar ammo should still availabe when the ammo system is off
+        public bool isMortarAmmoSet = false;
 
-        foreach (AmmoLink link in ammoTypes)
+        public AmmoSetDef similarTo;
+
+        public int ammoConsumedPerShot = 1;
+
+        public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
         {
+            foreach (StatDrawEntry entry in base.SpecialDisplayStats(req)) { yield return entry; }
 
-            yield return new StatDrawEntry(StatCategoryDefOf.BasicsImportant, link.ammo.label, "", link.projectile.GetProjectileReadout(null), 1, hyperlinks: new List<Dialog_InfoCard.Hyperlink>() { new Dialog_InfoCard.Hyperlink(link.ammo) });
+            foreach (AmmoLink link in ammoTypes)
+            {
+
+                yield return new StatDrawEntry(StatCategoryDefOf.BasicsImportant, link.ammo.label, "", link.projectile.GetProjectileReadout(null), 1, hyperlinks: new List<Dialog_InfoCard.Hyperlink>() { new Dialog_InfoCard.Hyperlink(link.ammo) });
+            }
         }
     }
 }

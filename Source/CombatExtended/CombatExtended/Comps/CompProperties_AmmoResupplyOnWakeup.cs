@@ -6,13 +6,15 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class CompProperties_AmmoResupplyOnWakeup : CompProperties
+namespace CombatExtended
 {
-    public bool dropInPods;
-
-    public CompProperties_AmmoResupplyOnWakeup()
+    public class CompProperties_AmmoResupplyOnWakeup : CompProperties
     {
-        compClass = typeof(CompAmmoResupplyOnWakeup);
+        public bool dropInPods;
+
+        public CompProperties_AmmoResupplyOnWakeup()
+        {
+            compClass = typeof(CompAmmoResupplyOnWakeup);
+        }
     }
 }

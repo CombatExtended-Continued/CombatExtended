@@ -1,25 +1,27 @@
 ﻿using System;
 using Verse;
 
-namespace CombatExtended;
-public class PawnRenderNodeWorker_Backpack : PawnRenderNodeWorker_Apparel_Body
+namespace CombatExtended
 {
-    public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
+    public class PawnRenderNodeWorker_Backpack : PawnRenderNodeWorker_Apparel_Body
     {
-        if (!Controller.settings.ShowBackpacks)
+        public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
         {
-            return false;
+            if (!Controller.settings.ShowBackpacks)
+            {
+                return false;
+            }
+            return base.CanDrawNow(node, parms);
         }
-        return base.CanDrawNow(node, parms);
-    }
 
-    public override float LayerFor(PawnRenderNode node, PawnDrawParms parms)
-    {
-        return parms.facing.AsInt switch
+        public override float LayerFor(PawnRenderNode node, PawnDrawParms parms)
         {
-            0 => 93f, // North
-            2 => -3f, // South
-            _ => 30f
-        };
+            return parms.facing.AsInt switch
+            {
+                0 => 93f, // North
+                2 => -3f, // South
+                _ => 30f
+            };
+        }
     }
 }

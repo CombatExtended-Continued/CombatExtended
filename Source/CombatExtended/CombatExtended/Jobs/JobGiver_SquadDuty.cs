@@ -7,19 +7,21 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 
-namespace CombatExtended;
-public class JobGiver_SquadDuty : ThinkNode_JobGiver
+namespace CombatExtended
 {
-    protected override Job TryGiveJob(Pawn pawn)
+    public class JobGiver_SquadDuty : ThinkNode_JobGiver
     {
-        CompSquadBrain comp = pawn.TryGetComp<CompSquadBrain>();
-        if (comp == null)
+        protected override Job TryGiveJob(Pawn pawn)
         {
-            Log.Error("CE tried running JobGiver_SquadDuty on " + pawn.ToString() + " without CompSquadBrain");
-            return null;
+            CompSquadBrain comp = pawn.TryGetComp<CompSquadBrain>();
+            if (comp == null)
+            {
+                Log.Error("CE tried running JobGiver_SquadDuty on " + pawn.ToString() + " without CompSquadBrain");
+                return null;
+            }
+            Job job = comp.squad.GetJobFor(pawn);
+            //if (job == null) job = new Job(JobDefOf.WaitCombat, pawn.Position);
+            return job;
         }
-        Job job = comp.squad.GetJobFor(pawn);
-        //if (job == null) job = new Job(JobDefOf.WaitCombat, pawn.Position);
-        return job;
     }
 }

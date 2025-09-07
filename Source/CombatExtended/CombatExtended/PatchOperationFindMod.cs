@@ -7,17 +7,19 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class PatchOperationFindMod : PatchOperation
+namespace CombatExtended
 {
-    public string modName;
-
-    public override bool ApplyWorker(XmlDocument xml)
+    public class PatchOperationFindMod : PatchOperation
     {
-        if (modName.NullOrEmpty())
+        public string modName;
+
+        public override bool ApplyWorker(XmlDocument xml)
         {
-            return false;
+            if (modName.NullOrEmpty())
+            {
+                return false;
+            }
+            return ModsConfig.ActiveModsInLoadOrder.Any(m => m.Name == modName);
         }
-        return ModsConfig.ActiveModsInLoadOrder.Any(m => m.Name == modName);
     }
 }

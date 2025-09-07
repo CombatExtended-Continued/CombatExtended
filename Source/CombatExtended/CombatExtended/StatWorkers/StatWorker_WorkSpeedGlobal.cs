@@ -6,37 +6,39 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class StatWorker_WorkSpeedGlobal : StatWorker
+namespace CombatExtended
 {
-    public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
+    public class StatWorker_WorkSpeedGlobal : StatWorker
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append(base.GetExplanationUnfinalized(req, numberSense));
-        if (req.HasThing)
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
-            CompInventory comp = req.Thing.TryGetComp<CompInventory>();
-            if (comp != null)
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(base.GetExplanationUnfinalized(req, numberSense));
+            if (req.HasThing)
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("CE_CarriedBulk".Translate() + ": x" + comp.workSpeedFactor.ToStringPercent());
+                CompInventory comp = req.Thing.TryGetComp<CompInventory>();
+                if (comp != null)
+                {
+                    stringBuilder.AppendLine();
+                    stringBuilder.AppendLine("CE_CarriedBulk".Translate() + ": x" + comp.workSpeedFactor.ToStringPercent());
+                }
             }
+
+            return stringBuilder.ToString();
         }
 
-        return stringBuilder.ToString();
-    }
-
-    public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
-    {
-        float value = base.GetValueUnfinalized(req, applyPostProcess);
-        if (req.HasThing)
+        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            CompInventory comp = req.Thing.TryGetComp<CompInventory>();
-            if (comp != null)
+            float value = base.GetValueUnfinalized(req, applyPostProcess);
+            if (req.HasThing)
             {
-                value *= comp.workSpeedFactor;
+                CompInventory comp = req.Thing.TryGetComp<CompInventory>();
+                if (comp != null)
+                {
+                    value *= comp.workSpeedFactor;
+                }
             }
+            return value;
         }
-        return value;
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
-namespace CombatExtended;
-public enum CE_DebugTooltipType
+namespace CombatExtended
 {
-    World = 1,
-    Map = 2,
+    public enum CE_DebugTooltipType
+    {
+        World = 1,
+        Map = 2,
+    }
 }

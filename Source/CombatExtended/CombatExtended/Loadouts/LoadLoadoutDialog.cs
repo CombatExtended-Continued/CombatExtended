@@ -2,14 +2,16 @@
 using System.IO;
 using Verse;
 
-namespace CombatExtended;
-class LoadLoadoutDialog : FileListDialog
+namespace CombatExtended
 {
-    internal LoadLoadoutDialog(string storageTypeName, Action<FileInfo, FileListDialog> fileAction) : base(storageTypeName, fileAction)
+    class LoadLoadoutDialog : FileListDialog
     {
-        base.interactButLabel = "LoadGameButton".Translate();
+        internal LoadLoadoutDialog(string storageTypeName, Action<FileInfo, FileListDialog> fileAction) : base(storageTypeName, fileAction)
+        {
+            base.interactButLabel = "LoadGameButton".Translate();
+        }
+
+        protected override bool ShouldDoTypeInField => false;
     }
 
-    protected override bool ShouldDoTypeInField => false;
 }
-

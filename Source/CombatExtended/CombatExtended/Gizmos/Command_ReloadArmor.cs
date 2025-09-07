@@ -7,39 +7,41 @@ using Verse;
 using UnityEngine;
 using Verse.AI;
 
-namespace CombatExtended;
-public class Command_ReloadArmor : Command_Action
+namespace CombatExtended
 {
-    public CompApparelReloadable compReloadable;
-
-    public override bool GroupsWith(Gizmo other)
+    public class Command_ReloadArmor : Command_Action
     {
-        var order = other as Command_ReloadArmor;
-        return order != null;
-    }
+        public CompApparelReloadable compReloadable;
 
-    public override void ProcessInput(Event ev)
-    {
-        if (compReloadable == null)
+        public override bool GroupsWith(Gizmo other)
         {
-            Log.Error("Command_ReloadArmor without reloadable comp");
-            return;
+            var order = other as Command_ReloadArmor;
+            return order != null;
         }
 
-        else if (compReloadable.RemainingCharges < compReloadable.MaxCharges)
+        public override void ProcessInput(Event ev)
         {
-            base.ProcessInput(ev);
+            if (compReloadable == null)
+            {
+                Log.Error("Command_ReloadArmor without reloadable comp");
+                return;
+            }
+
+            else if (compReloadable.RemainingCharges < compReloadable.MaxCharges)
+            {
+                base.ProcessInput(ev);
+            }
+
         }
 
-    }
-
-    public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
-    {
-        get
+        public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
         {
-            yield break;
+            get
+            {
+                yield break;
+            }
         }
+
+
     }
-
-
 }

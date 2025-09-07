@@ -9,20 +9,22 @@ using System;
 using UnityEngine;
 using RimWorld;
 
-namespace CombatExtended.Compatibility;
-public class SRTS : IPatch
+namespace CombatExtended.Compatibility
 {
-    public bool CanInstall()
+    public class SRTS : IPatch
     {
-        Log.Message("Combat Extended :: Checking SRTS Expanded");
-        if (!ModLister.HasActiveModWithName("SRTS Expanded"))
+        public bool CanInstall()
         {
-            return false;
+            Log.Message("Combat Extended :: Checking SRTS Expanded");
+            if (!ModLister.HasActiveModWithName("SRTS Expanded"))
+            {
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
-    public void Install()
-    {
-        Log.Message("Combat Extended :: Installing SRTS Expanded");
+        public void Install()
+        {
+            Log.Message("Combat Extended :: Installing SRTS Expanded");
+        }
     }
 }

@@ -6,12 +6,14 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class ThinkNode_ConditionalHasSquad : ThinkNode_Conditional
+namespace CombatExtended
 {
-    protected override bool Satisfied(Pawn pawn)
+    public class ThinkNode_ConditionalHasSquad : ThinkNode_Conditional
     {
-        CompSquadBrain comp = pawn.TryGetComp<CompSquadBrain>();
-        return comp != null && comp.squad != null;
+        protected override bool Satisfied(Pawn pawn)
+        {
+            CompSquadBrain comp = pawn.TryGetComp<CompSquadBrain>();
+            return comp != null && comp.squad != null;
+        }
     }
 }

@@ -3,45 +3,47 @@ using RimWorld;
 using Verse;
 using System.Xml;
 
-namespace CombatExtended;
-public class ApparelPartialStat
+namespace CombatExtended
 {
-    public StatDef stat;
-
-    public List<BodyPartDef> parts;
-
-    public float statValue = 1f;
-
-    public bool isStatValueStatic;
-
-    public float GetStatValue(float baseValue)
+    public class ApparelPartialStat
     {
-        return isStatValueStatic ? statValue : statValue * baseValue;
-    }
+        public StatDef stat;
 
-    public void LoadDataFromXmlCustom(XmlNode xmlRoot)
-    {
-        int index = 0;
-        foreach (XmlNode xmlPart in xmlRoot.ChildNodes)
+        public List<BodyPartDef> parts;
+
+        public float statValue = 1f;
+
+        public bool isStatValueStatic;
+
+        public float GetStatValue(float baseValue)
         {
-            if (xmlPart is XmlComment)
+            return isStatValueStatic ? statValue : statValue * baseValue;
+        }
+
+        public void LoadDataFromXmlCustom(XmlNode xmlRoot)
+        {
+            int index = 0;
+            foreach (XmlNode xmlPart in xmlRoot.ChildNodes)
             {
-                xmlRoot.RemoveChild(xmlPart);
+                if (xmlPart is XmlComment)
+                {
+                    xmlRoot.RemoveChild(xmlPart);
+                }
             }
-        }
-        if (xmlRoot.FirstChild.Name == "useStatic")
-        {
-            isStatValueStatic = ParseHelper.FromString<bool>(xmlRoot.FirstChild.InnerText);
-            index = 1;
-        }
+            if (xmlRoot.FirstChild.Name == "useStatic")
+            {
+                isStatValueStatic = ParseHelper.FromString<bool>(xmlRoot.FirstChild.InnerText);
+                index = 1;
+            }
 
-        DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "stat", xmlRoot.ChildNodes[index].Name, null, null);
-        this.statValue = ParseHelper.FromString<float>(xmlRoot.ChildNodes[index].InnerText);
+            DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "stat", xmlRoot.ChildNodes[index].Name, null, null);
+            this.statValue = ParseHelper.FromString<float>(xmlRoot.ChildNodes[index].InnerText);
 
-        parts ??= [];
-        foreach (XmlNode node in xmlRoot.LastChild.ChildNodes)
-        {
-            DirectXmlCrossRefLoader.RegisterListWantsCrossRef(parts, node.InnerText);
+            parts ??= [];
+            foreach (XmlNode node in xmlRoot.LastChild.ChildNodes)
+            {
+                DirectXmlCrossRefLoader.RegisterListWantsCrossRef(parts, node.InnerText);
+            }
         }
     }
 }

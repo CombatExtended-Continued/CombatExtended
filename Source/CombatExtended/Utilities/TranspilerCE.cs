@@ -8,79 +8,81 @@ using UnityEngine;
 using Verse;
 using CombatExtended;
 
-namespace CombatExtended.Utilities;
-public static class TranspilerCE
+namespace CombatExtended.Utilities
 {
-    public static IEnumerable<CodeInstruction> SeekStart(IEnumerator<CodeInstruction> iterInstructions, CodeInstruction startTarget)
+    public static class TranspilerCE
     {
-        bool found = false;
-        while (iterInstructions.MoveNext())
+        public static IEnumerable<CodeInstruction> SeekStart(IEnumerator<CodeInstruction> iterInstructions, CodeInstruction startTarget)
         {
-            CodeInstruction code = iterInstructions.Current;
-            yield return code;
-            if (code.opcode == startTarget.opcode && (startTarget.operand == null || code.operand == startTarget.operand))
+            bool found = false;
+            while (iterInstructions.MoveNext())
             {
-                found = true;
-                break;
-            }
-        }
-        if (!found)
-        {
-            throw new Exception($"Cannot find {startTarget} in current transpiler");
-        }
-    }
-
-    public static void SeekStop(IEnumerator<CodeInstruction> iterInstructions, CodeInstruction stopTarget)
-    {
-        while (iterInstructions.MoveNext())
-        {
-            CodeInstruction code = iterInstructions.Current;
-            if (code.opcode == stopTarget.opcode && (stopTarget.operand == null || code.operand == stopTarget.operand))
-            {
-                return;
-            }
-        }
-        throw new Exception($"Cannot find {stopTarget} in current transpiler");
-    }
-
-    public static IEnumerable<CodeInstruction> Transpile(ILGenerator gen,
-            IEnumerable<CodeInstruction> instructions,
-            IEnumerable<CodeInstruction> patch,
-            CodeInstruction startTarget,
-            CodeInstruction stopTarget = null,
-            int offsetCount = 0,
-            int cutCount = 0,
-            int count = 1)
-    {
-        IEnumerator<CodeInstruction> iterInstructions = instructions.GetEnumerator();
-
-        while (count-- > 0)
-        {
-            foreach (var code in SeekStart(iterInstructions, startTarget))
-            {
+                CodeInstruction code = iterInstructions.Current;
                 yield return code;
+                if (code.opcode == startTarget.opcode && (startTarget.operand == null || code.operand == startTarget.operand))
+                {
+                    found = true;
+                    break;
+                }
             }
-            for (int offsetIdx = 0; offsetIdx < offsetCount; offsetIdx++)
+            if (!found)
             {
-                iterInstructions.MoveNext();
+                throw new Exception($"Cannot find {startTarget} in current transpiler");
+            }
+        }
+
+        public static void SeekStop(IEnumerator<CodeInstruction> iterInstructions, CodeInstruction stopTarget)
+        {
+            while (iterInstructions.MoveNext())
+            {
+                CodeInstruction code = iterInstructions.Current;
+                if (code.opcode == stopTarget.opcode && (stopTarget.operand == null || code.operand == stopTarget.operand))
+                {
+                    return;
+                }
+            }
+            throw new Exception($"Cannot find {stopTarget} in current transpiler");
+        }
+
+        public static IEnumerable<CodeInstruction> Transpile(ILGenerator gen,
+                IEnumerable<CodeInstruction> instructions,
+                IEnumerable<CodeInstruction> patch,
+                CodeInstruction startTarget,
+                CodeInstruction stopTarget = null,
+                int offsetCount = 0,
+                int cutCount = 0,
+                int count = 1)
+        {
+            IEnumerator<CodeInstruction> iterInstructions = instructions.GetEnumerator();
+
+            while (count-- > 0)
+            {
+                foreach (var code in SeekStart(iterInstructions, startTarget))
+                {
+                    yield return code;
+                }
+                for (int offsetIdx = 0; offsetIdx < offsetCount; offsetIdx++)
+                {
+                    iterInstructions.MoveNext();
+                    yield return iterInstructions.Current;
+                }
+                foreach (var code in patch)
+                {
+                    yield return code;
+                }
+                if (stopTarget != null)
+                {
+                    SeekStop(iterInstructions, stopTarget);
+                }
+                for (int cutIdx = 0; cutIdx < cutCount; cutIdx++)
+                {
+                    iterInstructions.MoveNext();
+                }
+            }
+            while (iterInstructions.MoveNext())
+            {
                 yield return iterInstructions.Current;
             }
-            foreach (var code in patch)
-            {
-                yield return code;
-            }
-            if (stopTarget != null)
-            {
-                SeekStop(iterInstructions, stopTarget);
-            }
-            for (int cutIdx = 0; cutIdx < cutCount; cutIdx++)
-            {
-                iterInstructions.MoveNext();
-            }
-        }
-        while (iterInstructions.MoveNext())
-        {
-            yield return iterInstructions.Current;
         }
     }
 }

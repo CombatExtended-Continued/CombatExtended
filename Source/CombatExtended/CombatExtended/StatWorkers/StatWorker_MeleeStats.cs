@@ -6,11 +6,13 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class StatWorker_MeleeStats : StatWorker
+namespace CombatExtended
 {
-    public override bool IsDisabledFor(Thing thing)
+    public class StatWorker_MeleeStats : StatWorker
     {
-        return thing?.def?.building?.IsTurret ?? base.IsDisabledFor(thing);
+        public override bool IsDisabledFor(Thing thing)
+        {
+            return thing?.def?.building?.IsTurret ?? base.IsDisabledFor(thing);
+        }
     }
 }

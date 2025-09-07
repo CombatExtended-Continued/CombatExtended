@@ -2,18 +2,20 @@
 using RimWorld;
 using Verse;
 
-namespace CombatExtended;
-
-public class CompProperties_MilkableRenameable : CompProperties_Milkable
+namespace CombatExtended
 {
 
-    public string growthLabel = "";
-
-    public CompProperties_MilkableRenameable()
+    public class CompProperties_MilkableRenameable : CompProperties_Milkable
     {
-        this.compClass = typeof(CompMilkableRenameable);
+
+        public string growthLabel = "";
+
+        public CompProperties_MilkableRenameable()
+        {
+            this.compClass = typeof(CompMilkableRenameable);
+        }
+
     }
 
 }
-
 

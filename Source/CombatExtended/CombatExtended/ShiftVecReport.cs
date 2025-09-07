@@ -7,271 +7,273 @@ using Verse;
 using UnityEngine;
 using RimWorld.Planet;
 
-namespace CombatExtended;
-public class ShiftVecReport
+namespace CombatExtended
 {
-    public LocalTargetInfo target = null;
-    public GlobalTargetInfo globalTarget = GlobalTargetInfo.Invalid;
-
-    public Pawn targetPawn
+    public class ShiftVecReport
     {
-        get
-        {
-            return target.Thing as Pawn;
-        }
-    }
-    public float aimingAccuracy = 1f;
-    public float sightsEfficiency = 1f;
+        public LocalTargetInfo target = null;
+        public GlobalTargetInfo globalTarget = GlobalTargetInfo.Invalid;
 
-    private float accuracyFactorInt = -1f;
-    public float accuracyFactor
-    {
-        get
+        public Pawn targetPawn
         {
-            if (accuracyFactorInt < 0)
+            get
             {
-                accuracyFactorInt = (1.5f - aimingAccuracy) / sightsEfficiency;
+                return target.Thing as Pawn;
             }
-            return accuracyFactorInt;
         }
-    }
+        public float aimingAccuracy = 1f;
+        public float sightsEfficiency = 1f;
 
-    public float circularMissRadius = 0f;
-    public float indirectFireShift = 0f;
-
-    // Visibility variables
-    public float lightingShift = 0f;
-    public float weatherShift = 0f;
-
-    private float enviromentShiftInt = -1;
-    public float enviromentShift
-    {
-        get
+        private float accuracyFactorInt = -1f;
+        public float accuracyFactor
         {
-            if (enviromentShiftInt < 0)
+            get
             {
-                enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 7f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
-            }
-            return enviromentShiftInt;
-        }
-    }
-
-
-    private float visibilityShiftInt = -1f;
-    public float visibilityShift
-    {
-        get
-        {
-            if (visibilityShiftInt < 0)
-            {
-                float se = sightsEfficiency;
-                if (se < 0.02f)
+                if (accuracyFactorInt < 0)
                 {
-                    se = 0.02f;
+                    accuracyFactorInt = (1.5f - aimingAccuracy) / sightsEfficiency;
                 }
-                visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
+                return accuracyFactorInt;
             }
-            return visibilityShiftInt;
         }
-    }
 
-    // Leading variables
-    public float shotSpeed = 0f;
-    private bool targetIsMoving
-    {
-        get
+        public float circularMissRadius = 0f;
+        public float indirectFireShift = 0f;
+
+        // Visibility variables
+        public float lightingShift = 0f;
+        public float weatherShift = 0f;
+
+        private float enviromentShiftInt = -1;
+        public float enviromentShift
         {
-            return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving && (targetPawn.stances.stunner == null || !targetPawn.stances.stunner.Stunned);
-        }
-    }
-    private float leadDistInt = -1f;
-    public float leadDist
-    {
-        get
-        {
-            if (leadDistInt < 0)
+            get
             {
-                if (targetIsMoving)
+                if (enviromentShiftInt < 0)
                 {
-                    float targetSpeed = CE_Utility.GetMoveSpeed(targetPawn);
-                    float timeToTarget = shotDist / shotSpeed;
-                    leadDistInt = targetSpeed * timeToTarget;
+                    enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 7f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
                 }
-                else
+                return enviromentShiftInt;
+            }
+        }
+
+
+        private float visibilityShiftInt = -1f;
+        public float visibilityShift
+        {
+            get
+            {
+                if (visibilityShiftInt < 0)
                 {
-                    leadDistInt = 0f;
+                    float se = sightsEfficiency;
+                    if (se < 0.02f)
+                    {
+                        se = 0.02f;
+                    }
+                    visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
                 }
-            }
-            return leadDistInt;
-        }
-    }
-    public float leadShift
-    {
-        get
-        {
-            return leadDist * Mathf.Min(accuracyFactor * 0.25f, 2.5f)
-                   + Mathf.Min((blindFiring ? 1 : lightingShift) * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, (blindFiring ? 100f : 2.0f))
-                   + Mathf.Min((blindFiring ? 0 : smokeDensity) * 0.5f, 2.0f);
-        }
-    }
-
-    // Range variables
-    public float shotDist = 0f;
-    public float maxRange;
-    public float distShift
-    {
-        get
-        {
-            return shotDist * (shotDist / Math.Max(maxRange, 20)) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
-        }
-    }
-
-    public bool isAiming = false;
-    public float swayDegrees = 0f;
-    public float spreadDegrees = 0f;
-    public Thing cover = null;
-    public float smokeDensity = 0f;
-    public bool blindFiring = false;
-    public bool roofed = false;
-
-    // Copy-constructor
-    public ShiftVecReport(ShiftVecReport report)
-    {
-        target = report.target;
-        sightsEfficiency = report.sightsEfficiency;
-        aimingAccuracy = report.aimingAccuracy;
-        circularMissRadius = report.circularMissRadius;
-        indirectFireShift = report.indirectFireShift;
-        lightingShift = report.lightingShift;
-        shotSpeed = report.shotSpeed;
-        shotDist = report.shotDist;
-        maxRange = report.maxRange;
-        isAiming = report.isAiming;
-        swayDegrees = report.swayDegrees;
-        spreadDegrees = report.spreadDegrees;
-        cover = report.cover;
-        smokeDensity = report.smokeDensity;
-        blindFiring = report.blindFiring;
-        roofed = report.roofed;
-    }
-
-    public ShiftVecReport()
-    {
-    }
-
-    public Vector2 GetRandCircularVec()
-    {
-        Vector2 vec = CE_Utility.GenRandInCircle(visibilityShift + circularMissRadius + indirectFireShift);
-        return vec;
-    }
-
-    public float GetRandDist()
-    {
-        float dist = shotDist + Rand.Range(-distShift, distShift);
-        return dist;
-    }
-
-    public Vector2 GetRandLeadVec()
-    {
-        if (blindFiring)
-        {
-            return new Vector2(0, 0);
-        }
-        Vector3 moveVec = new Vector3();
-        if (targetIsMoving)
-        {
-            moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + Rand.Range(-leadShift, leadShift));
-        }
-        return new Vector2(moveVec.x, moveVec.z);
-    }
-
-    /// <returns>Angle Vector2 in degrees</returns>
-    public Vector2 GetRandSpreadVec()
-    {
-        Vector2 vec = Rand.InsideUnitCircle * spreadDegrees;
-        return vec;
-    }
-
-    public static string AsPercent(float pct)
-    {
-        return Mathf.RoundToInt(100f * pct) + "%";
-    }
-
-    public string GetTextReadout()
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.AppendLine("   " + "CE_VisibilityError".Translate() + "\t" + GenText.ToStringByStyle(visibilityShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
-
-        if (Controller.settings.DebuggingMode)
-        {
-            stringBuilder.AppendLine("   " + $"DEBUG: visibilityShift\t\t{visibilityShift} ");
-            stringBuilder.AppendLine("   " + $"DEBUG: leadDist\t\t{leadDist} ");
-            stringBuilder.AppendLine("   " + $"DEBUG: enviromentShift\t{enviromentShift}");
-            stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t{accuracyFactor}");
-            stringBuilder.AppendLine("   " + $"DEBUG: circularMissRadius\t{circularMissRadius}");
-            stringBuilder.AppendLine("   " + $"DEBUG: sightsEfficiency\t{sightsEfficiency}");
-            stringBuilder.AppendLine("   " + $"DEBUG: weathershift\t\t{weatherShift}");
-            stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t\t{accuracyFactor}");
-            stringBuilder.AppendLine("   " + $"DEBUG: lightingShift\t\t{lightingShift}");
-        }
-
-        if (lightingShift > 0)
-        {
-            stringBuilder.AppendLine("      " + "Darkness".Translate() + "\t" + AsPercent(lightingShift));
-        }
-        if (weatherShift > 0)
-        {
-            stringBuilder.AppendLine("      " + "Weather".Translate() + "\t" + AsPercent(weatherShift));
-        }
-        if (smokeDensity > 0)
-        {
-            stringBuilder.AppendLine("      " + "CE_SmokeDensity".Translate() + "\t" + AsPercent(smokeDensity));
-        }
-        if (leadShift > 0)
-        {
-            stringBuilder.AppendLine("   " + "CE_LeadError".Translate() + "\t" + GenText.ToStringByStyle(leadShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
-        }
-        if (distShift > 0)
-        {
-            stringBuilder.AppendLine("   " + "CE_RangeError".Translate() + "\t" + GenText.ToStringByStyle(distShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
-        }
-        if (swayDegrees > 0)
-        {
-            stringBuilder.AppendLine("   " + "CE_Sway".Translate() + "\t\t" + GenText.ToStringByStyle(swayDegrees, ToStringStyle.FloatTwo) + "CE_degrees".Translate());
-        }
-        if (spreadDegrees > 0)
-        {
-            stringBuilder.AppendLine("   " + "CE_Spread".Translate() + "\t\t" + GenText.ToStringByStyle(spreadDegrees, ToStringStyle.FloatTwo) + "CE_degrees".Translate());
-        }
-        // Don't display cover and target size if our weapon has a CEP
-        if (circularMissRadius > 0)
-        {
-            stringBuilder.AppendLine("   " + "CE_MissRadius".Translate() + "\t" + GenText.ToStringByStyle(circularMissRadius, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
-            if (indirectFireShift > 0)
-            {
-                stringBuilder.AppendLine("   " + "CE_IndirectFire".Translate() + "\t" + GenText.ToStringByStyle(indirectFireShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
-                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_MortarDirectFire, KnowledgeAmount.FrameDisplayed); // Show we learned about indirect fire penalties
+                return visibilityShiftInt;
             }
         }
-        else
+
+        // Leading variables
+        public float shotSpeed = 0f;
+        private bool targetIsMoving
         {
-            if (cover != null)
+            get
             {
-                stringBuilder.AppendLine("   " + "CE_CoverHeight".Translate() + "\t" + new CollisionVertical(cover).Max * CE_Utility.MetersPerCellHeight + " " + "CE_meters".Translate());
+                return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving && (targetPawn.stances.stunner == null || !targetPawn.stances.stunner.Stunned);
             }
-            if (target.Thing != null)
+        }
+        private float leadDistInt = -1f;
+        public float leadDist
+        {
+            get
             {
-                stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(new CollisionVertical(target.Thing).HeightRange.Span * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
-                stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
-                var pawn = target.Thing as Pawn;
-                if (pawn != null && pawn.IsCrouching())
+                if (leadDistInt < 0)
                 {
-                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Crouching, OpportunityType.GoodToKnow);
+                    if (targetIsMoving)
+                    {
+                        float targetSpeed = CE_Utility.GetMoveSpeed(targetPawn);
+                        float timeToTarget = shotDist / shotSpeed;
+                        leadDistInt = targetSpeed * timeToTarget;
+                    }
+                    else
+                    {
+                        leadDistInt = 0f;
+                    }
+                }
+                return leadDistInt;
+            }
+        }
+        public float leadShift
+        {
+            get
+            {
+                return leadDist * Mathf.Min(accuracyFactor * 0.25f, 2.5f)
+                       + Mathf.Min((blindFiring ? 1 : lightingShift) * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, (blindFiring ? 100f : 2.0f))
+                       + Mathf.Min((blindFiring ? 0 : smokeDensity) * 0.5f, 2.0f);
+            }
+        }
+
+        // Range variables
+        public float shotDist = 0f;
+        public float maxRange;
+        public float distShift
+        {
+            get
+            {
+                return shotDist * (shotDist / Math.Max(maxRange, 20)) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
+            }
+        }
+
+        public bool isAiming = false;
+        public float swayDegrees = 0f;
+        public float spreadDegrees = 0f;
+        public Thing cover = null;
+        public float smokeDensity = 0f;
+        public bool blindFiring = false;
+        public bool roofed = false;
+
+        // Copy-constructor
+        public ShiftVecReport(ShiftVecReport report)
+        {
+            target = report.target;
+            sightsEfficiency = report.sightsEfficiency;
+            aimingAccuracy = report.aimingAccuracy;
+            circularMissRadius = report.circularMissRadius;
+            indirectFireShift = report.indirectFireShift;
+            lightingShift = report.lightingShift;
+            shotSpeed = report.shotSpeed;
+            shotDist = report.shotDist;
+            maxRange = report.maxRange;
+            isAiming = report.isAiming;
+            swayDegrees = report.swayDegrees;
+            spreadDegrees = report.spreadDegrees;
+            cover = report.cover;
+            smokeDensity = report.smokeDensity;
+            blindFiring = report.blindFiring;
+            roofed = report.roofed;
+        }
+
+        public ShiftVecReport()
+        {
+        }
+
+        public Vector2 GetRandCircularVec()
+        {
+            Vector2 vec = CE_Utility.GenRandInCircle(visibilityShift + circularMissRadius + indirectFireShift);
+            return vec;
+        }
+
+        public float GetRandDist()
+        {
+            float dist = shotDist + Rand.Range(-distShift, distShift);
+            return dist;
+        }
+
+        public Vector2 GetRandLeadVec()
+        {
+            if (blindFiring)
+            {
+                return new Vector2(0, 0);
+            }
+            Vector3 moveVec = new Vector3();
+            if (targetIsMoving)
+            {
+                moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + Rand.Range(-leadShift, leadShift));
+            }
+            return new Vector2(moveVec.x, moveVec.z);
+        }
+
+        /// <returns>Angle Vector2 in degrees</returns>
+        public Vector2 GetRandSpreadVec()
+        {
+            Vector2 vec = Rand.InsideUnitCircle * spreadDegrees;
+            return vec;
+        }
+
+        public static string AsPercent(float pct)
+        {
+            return Mathf.RoundToInt(100f * pct) + "%";
+        }
+
+        public string GetTextReadout()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine("   " + "CE_VisibilityError".Translate() + "\t" + GenText.ToStringByStyle(visibilityShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
+
+            if (Controller.settings.DebuggingMode)
+            {
+                stringBuilder.AppendLine("   " + $"DEBUG: visibilityShift\t\t{visibilityShift} ");
+                stringBuilder.AppendLine("   " + $"DEBUG: leadDist\t\t{leadDist} ");
+                stringBuilder.AppendLine("   " + $"DEBUG: enviromentShift\t{enviromentShift}");
+                stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t{accuracyFactor}");
+                stringBuilder.AppendLine("   " + $"DEBUG: circularMissRadius\t{circularMissRadius}");
+                stringBuilder.AppendLine("   " + $"DEBUG: sightsEfficiency\t{sightsEfficiency}");
+                stringBuilder.AppendLine("   " + $"DEBUG: weathershift\t\t{weatherShift}");
+                stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t\t{accuracyFactor}");
+                stringBuilder.AppendLine("   " + $"DEBUG: lightingShift\t\t{lightingShift}");
+            }
+
+            if (lightingShift > 0)
+            {
+                stringBuilder.AppendLine("      " + "Darkness".Translate() + "\t" + AsPercent(lightingShift));
+            }
+            if (weatherShift > 0)
+            {
+                stringBuilder.AppendLine("      " + "Weather".Translate() + "\t" + AsPercent(weatherShift));
+            }
+            if (smokeDensity > 0)
+            {
+                stringBuilder.AppendLine("      " + "CE_SmokeDensity".Translate() + "\t" + AsPercent(smokeDensity));
+            }
+            if (leadShift > 0)
+            {
+                stringBuilder.AppendLine("   " + "CE_LeadError".Translate() + "\t" + GenText.ToStringByStyle(leadShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
+            }
+            if (distShift > 0)
+            {
+                stringBuilder.AppendLine("   " + "CE_RangeError".Translate() + "\t" + GenText.ToStringByStyle(distShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
+            }
+            if (swayDegrees > 0)
+            {
+                stringBuilder.AppendLine("   " + "CE_Sway".Translate() + "\t\t" + GenText.ToStringByStyle(swayDegrees, ToStringStyle.FloatTwo) + "CE_degrees".Translate());
+            }
+            if (spreadDegrees > 0)
+            {
+                stringBuilder.AppendLine("   " + "CE_Spread".Translate() + "\t\t" + GenText.ToStringByStyle(spreadDegrees, ToStringStyle.FloatTwo) + "CE_degrees".Translate());
+            }
+            // Don't display cover and target size if our weapon has a CEP
+            if (circularMissRadius > 0)
+            {
+                stringBuilder.AppendLine("   " + "CE_MissRadius".Translate() + "\t" + GenText.ToStringByStyle(circularMissRadius, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
+                if (indirectFireShift > 0)
+                {
+                    stringBuilder.AppendLine("   " + "CE_IndirectFire".Translate() + "\t" + GenText.ToStringByStyle(indirectFireShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
+                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_MortarDirectFire, KnowledgeAmount.FrameDisplayed); // Show we learned about indirect fire penalties
                 }
             }
-            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimingSystem, KnowledgeAmount.FrameDisplayed); // Show we learned about the aiming system
+            else
+            {
+                if (cover != null)
+                {
+                    stringBuilder.AppendLine("   " + "CE_CoverHeight".Translate() + "\t" + new CollisionVertical(cover).Max * CollisionVertical.MeterPerCellHeight + " " + "CE_meters".Translate());
+                }
+                if (target.Thing != null)
+                {
+                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(new CollisionVertical(target.Thing).HeightRange.Span * CollisionVertical.MeterPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
+                    stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * CollisionVertical.MeterPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate());
+                    var pawn = target.Thing as Pawn;
+                    if (pawn != null && pawn.IsCrouching())
+                    {
+                        LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Crouching, OpportunityType.GoodToKnow);
+                    }
+                }
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimingSystem, KnowledgeAmount.FrameDisplayed); // Show we learned about the aiming system
+            }
+            return stringBuilder.ToString();
         }
-        return stringBuilder.ToString();
     }
 }

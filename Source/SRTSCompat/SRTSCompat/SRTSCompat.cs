@@ -11,25 +11,27 @@ using SRTS;
 using UnityEngine;
 
 
-namespace CombatExtended.Compatibility.SRTSCompat;
-[StaticConstructorOnStartup]
-public class SRTSCompat : IModPart
+namespace CombatExtended.Compatibility.SRTSCompat
 {
-    private static Harmony harmony;
-
-    public Type GetSettingsType()
+    [StaticConstructorOnStartup]
+    public class SRTSCompat : IModPart
     {
-        return null;
-    }
+        private static Harmony harmony;
 
-    public IEnumerable<string> GetCompatList()
-    {
-        yield break;
-    }
+        public Type GetSettingsType()
+        {
+            return null;
+        }
 
-    public void PostLoad(ModContentPack content, ISettingsCE _)
-    {
-        harmony = new Harmony("CombatExtended.Compatibility.SRTSCompat");
-        harmony.PatchAll(Assembly.GetExecutingAssembly());
+        public IEnumerable<string> GetCompatList()
+        {
+            yield break;
+        }
+
+        public void PostLoad(ModContentPack content, ISettingsCE _)
+        {
+            harmony = new Harmony("CombatExtended.Compatibility.SRTSCompat");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+        }
     }
 }

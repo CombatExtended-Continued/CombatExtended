@@ -2,144 +2,146 @@
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended.AI;
-public abstract class ICompTactics : IExposable
+namespace CombatExtended.AI
 {
-    private Pawn pawnInt;
-
-    public virtual Pawn SelPawn
+    public abstract class ICompTactics : IExposable
     {
-        get
+        private Pawn pawnInt;
+
+        public virtual Pawn SelPawn
         {
-            return pawnInt;
-        }
-    }
-
-    public abstract int Priority
-    {
-        get;
-    }
-
-    public virtual ThingWithComps CurrentWeapon
-    {
-        get
-        {
-            return SelPawn.equipment.Primary;
-        }
-    }
-
-    private CompSuppressable _compSuppressable = null;
-    public virtual CompSuppressable CompSuppressable
-    {
-        get
-        {
-            if (_compSuppressable == null)
+            get
             {
-                _compSuppressable = SelPawn.TryGetComp<CompSuppressable>();
+                return pawnInt;
             }
-            return _compSuppressable;
         }
-    }
 
-    private CompInventory _compInventory = null;
-    public virtual CompInventory CompInventory
-    {
-        get
+        public abstract int Priority
         {
-            if (_compInventory == null)
+            get;
+        }
+
+        public virtual ThingWithComps CurrentWeapon
+        {
+            get
             {
-                _compInventory = SelPawn.TryGetComp<CompInventory>();
+                return SelPawn.equipment.Primary;
             }
-            return _compInventory;
         }
-    }
 
-    private CompAmmoUser _AmmoUser_CompAmmoUser = null;
-    private ThingWithComps _AmmoUser_ThingWithComps = null;
-
-    public virtual CompAmmoUser CurrentWeaponCompAmmo
-    {
-        get
+        private CompSuppressable _compSuppressable = null;
+        public virtual CompSuppressable CompSuppressable
         {
-            if (_AmmoUser_ThingWithComps == CurrentWeapon)
+            get
             {
-                return _AmmoUser_CompAmmoUser;
+                if (_compSuppressable == null)
+                {
+                    _compSuppressable = SelPawn.TryGetComp<CompSuppressable>();
+                }
+                return _compSuppressable;
             }
+        }
 
-            _AmmoUser_ThingWithComps = CurrentWeapon;
-
-            if (_AmmoUser_ThingWithComps == null)
+        private CompInventory _compInventory = null;
+        public virtual CompInventory CompInventory
+        {
+            get
             {
-                return _AmmoUser_CompAmmoUser = null;
+                if (_compInventory == null)
+                {
+                    _compInventory = SelPawn.TryGetComp<CompInventory>();
+                }
+                return _compInventory;
             }
-
-            return _AmmoUser_CompAmmoUser = _AmmoUser_ThingWithComps.TryGetComp<CompAmmoUser>();
         }
-    }
 
-    public Map Map
-    {
-        get
+        private CompAmmoUser _AmmoUser_CompAmmoUser = null;
+        private ThingWithComps _AmmoUser_ThingWithComps = null;
+
+        public virtual CompAmmoUser CurrentWeaponCompAmmo
         {
-            return pawnInt.Map;
+            get
+            {
+                if (_AmmoUser_ThingWithComps == CurrentWeapon)
+                {
+                    return _AmmoUser_CompAmmoUser;
+                }
+
+                _AmmoUser_ThingWithComps = CurrentWeapon;
+
+                if (_AmmoUser_ThingWithComps == null)
+                {
+                    return _AmmoUser_CompAmmoUser = null;
+                }
+
+                return _AmmoUser_CompAmmoUser = _AmmoUser_ThingWithComps.TryGetComp<CompAmmoUser>();
+            }
         }
-    }
 
-    public ICompTactics()
-    {
-    }
-
-    public virtual void Initialize(Pawn pawn)
-    {
-        this.pawnInt = pawn;
-    }
-
-    public virtual Job TryGiveTacticalJob()
-    {
-        return null;
-    }
-
-    public virtual void TickRarer()
-    {
-    }
-
-    public virtual bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
-    {
-        return true;
-    }
-
-    public virtual void OnStartCastFailed()
-    {
-    }
-
-    public virtual void OnStartCastSuccess(Verb verb)
-    {
-    }
-
-    public virtual void PostExposeData()
-    {
-    }
-
-    public virtual void Notify_BulletImpactNearBy()
-    {
-    }
-
-    public void ExposeData()
-    {
-        Scribe_References.Look(ref pawnInt, "pawnInt");
-        this.PostExposeData();
-    }
-
-    public void Notify_StartCastChecksFailed(ICompTactics failedComp)
-    {
-        if (failedComp != this)
+        public Map Map
         {
-            OnStartCastFailed();
+            get
+            {
+                return pawnInt.Map;
+            }
         }
-    }
 
-    public void Notify_StartCastChecksSuccess(Verb verb)
-    {
-        OnStartCastSuccess(verb);
+        public ICompTactics()
+        {
+        }
+
+        public virtual void Initialize(Pawn pawn)
+        {
+            this.pawnInt = pawn;
+        }
+
+        public virtual Job TryGiveTacticalJob()
+        {
+            return null;
+        }
+
+        public virtual void TickRarer()
+        {
+        }
+
+        public virtual bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
+        {
+            return true;
+        }
+
+        public virtual void OnStartCastFailed()
+        {
+        }
+
+        public virtual void OnStartCastSuccess(Verb verb)
+        {
+        }
+
+        public virtual void PostExposeData()
+        {
+        }
+
+        public virtual void Notify_BulletImpactNearBy()
+        {
+        }
+
+        public void ExposeData()
+        {
+            Scribe_References.Look(ref pawnInt, "pawnInt");
+            this.PostExposeData();
+        }
+
+        public void Notify_StartCastChecksFailed(ICompTactics failedComp)
+        {
+            if (failedComp != this)
+            {
+                OnStartCastFailed();
+            }
+        }
+
+        public void Notify_StartCastChecksSuccess(Verb verb)
+        {
+            OnStartCastSuccess(verb);
+        }
     }
 }

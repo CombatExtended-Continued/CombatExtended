@@ -1,6 +1,8 @@
 ﻿using System;
-namespace CombatExtended.AI;
-public enum TacticalRequestType
+namespace CombatExtended.AI
 {
-    Smoke = 0
+    public enum TacticalRequestType
+    {
+        Smoke = 0
+    }
 }

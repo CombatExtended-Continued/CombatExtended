@@ -2,57 +2,59 @@
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended;
-public static class ExternalPawnDrafter
+namespace CombatExtended
 {
-    public static bool CanTakeOrderedJob(Pawn pawn)
+    public static class ExternalPawnDrafter
     {
-        return !pawn.HasAttachment(ThingDefOf.Fire) &&
-               (pawn.CurJob == null || pawn.CurJob.def.playerInterruptible);
-    }
-
-    public static void TakeOrderedJob(Pawn pawn, Job newJob)
-    {
-        if (pawn.jobs.debugLog)
+        public static bool CanTakeOrderedJob(Pawn pawn)
         {
-            pawn.jobs.DebugLogEvent("TakeOrderedJob " + newJob);
+            return !pawn.HasAttachment(ThingDefOf.Fire) &&
+                   (pawn.CurJob == null || pawn.CurJob.def.playerInterruptible);
         }
-        if (!CanTakeOrderedJob(pawn))
+
+        public static void TakeOrderedJob(Pawn pawn, Job newJob)
         {
             if (pawn.jobs.debugLog)
             {
-                pawn.jobs.DebugLogEvent("    CanTakePlayerJob is false. Returning.");
+                pawn.jobs.DebugLogEvent("TakeOrderedJob " + newJob);
             }
-            return;
-        }
-        pawn.CurJob.playerForced = true;
-        if (pawn.CurJob.JobIsSameAs(pawn, newJob))
-        {
-            return;
-        }
-        pawn.stances.CancelBusyStanceSoft();
-        pawn.Map.pawnDestinationReservationManager.ReleaseAllClaimedBy(pawn);
-        if (newJob.def == JobDefOf.Goto)
-        {
-            pawn.Map.pawnDestinationReservationManager.Reserve(pawn, newJob, newJob.targetA.Cell);
-        }
-        if (pawn.jobs.debugLog)
-        {
-            pawn.jobs.DebugLogEvent("    Queueing job");
-        }
-        if (pawn.jobs.jobQueue == null)
-        {
-            pawn.jobs.jobQueue = new JobQueue();
-        }
-        pawn.jobs.ClearQueuedJobs();
-        pawn.jobs.jobQueue.EnqueueFirst(newJob);
-        if (pawn.CurJob != null)
-        {
-            pawn.jobs.curDriver.EndJobWith(JobCondition.InterruptForced);
-        }
-        else
-        {
-            pawn.jobs.CheckForJobOverride();
+            if (!CanTakeOrderedJob(pawn))
+            {
+                if (pawn.jobs.debugLog)
+                {
+                    pawn.jobs.DebugLogEvent("    CanTakePlayerJob is false. Returning.");
+                }
+                return;
+            }
+            pawn.CurJob.playerForced = true;
+            if (pawn.CurJob.JobIsSameAs(pawn, newJob))
+            {
+                return;
+            }
+            pawn.stances.CancelBusyStanceSoft();
+            pawn.Map.pawnDestinationReservationManager.ReleaseAllClaimedBy(pawn);
+            if (newJob.def == JobDefOf.Goto)
+            {
+                pawn.Map.pawnDestinationReservationManager.Reserve(pawn, newJob, newJob.targetA.Cell);
+            }
+            if (pawn.jobs.debugLog)
+            {
+                pawn.jobs.DebugLogEvent("    Queueing job");
+            }
+            if (pawn.jobs.jobQueue == null)
+            {
+                pawn.jobs.jobQueue = new JobQueue();
+            }
+            pawn.jobs.ClearQueuedJobs();
+            pawn.jobs.jobQueue.EnqueueFirst(newJob);
+            if (pawn.CurJob != null)
+            {
+                pawn.jobs.curDriver.EndJobWith(JobCondition.InterruptForced);
+            }
+            else
+            {
+                pawn.jobs.CheckForJobOverride();
+            }
         }
     }
 }

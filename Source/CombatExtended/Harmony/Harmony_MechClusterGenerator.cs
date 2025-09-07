@@ -8,32 +8,34 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(MechClusterGenerator))]
-[HarmonyPatch("GetBuildingDefsForCluster")]
-[HarmonyPatch(new Type[] { typeof(float), typeof(IntVec2), typeof(bool), typeof(float?), typeof(bool) })]
-public static class Harmony_MechClusterGenerator_GetBuildingDefsForCluster
+namespace CombatExtended.HarmonyCE
 {
-    //internal static ThingDef mechAmmoBeacon = DefDatabase<ThingDef>.GetNamed("CombatExtended_MechAmmoBeacon");
-
-    [HarmonyPostfix]
-    public static void PostFix(float points, ref List<ThingDef> __result)
+    [HarmonyPatch(typeof(MechClusterGenerator))]
+    [HarmonyPatch("GetBuildingDefsForCluster")]
+    [HarmonyPatch(new Type[] { typeof(float), typeof(IntVec2), typeof(bool), typeof(float?), typeof(bool) })]
+    public static class Harmony_MechClusterGenerator_GetBuildingDefsForCluster
     {
-        if (Controller.settings.EnableAmmoSystem
-                && __result.Any(x => x.building.IsTurret
-                                && !x.building.IsMortar
-                                && x.building.turretGunDef != null
-                                && x.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null))
+        //internal static ThingDef mechAmmoBeacon = DefDatabase<ThingDef>.GetNamed("CombatExtended_MechAmmoBeacon");
+
+        [HarmonyPostfix]
+        public static void PostFix(float points, ref List<ThingDef> __result)
         {
-            if (points > 3000)
+            if (Controller.settings.EnableAmmoSystem
+                    && __result.Any(x => x.building.IsTurret
+                                    && !x.building.IsMortar
+                                    && x.building.turretGunDef != null
+                                    && x.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null))
             {
+                if (points > 3000)
+                {
+                    __result.Add(CE_ThingDefOf.CombatExtended_MechAmmoBeacon);
+                }
+                if (points > 7000)
+                {
+                    __result.Add(CE_ThingDefOf.CombatExtended_MechAmmoBeacon);
+                }
                 __result.Add(CE_ThingDefOf.CombatExtended_MechAmmoBeacon);
             }
-            if (points > 7000)
-            {
-                __result.Add(CE_ThingDefOf.CombatExtended_MechAmmoBeacon);
-            }
-            __result.Add(CE_ThingDefOf.CombatExtended_MechAmmoBeacon);
         }
     }
 }

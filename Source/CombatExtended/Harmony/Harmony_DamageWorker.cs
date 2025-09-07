@@ -9,129 +9,123 @@ using RimWorld;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(DamageWorker), nameof(DamageWorker.Apply))]
-internal static class Harmony_DamageWorker_Apply
+namespace CombatExtended.HarmonyCE
 {
-    public static bool Prefix(DamageWorker __instance, DamageInfo dinfo, Thing victim)
+    [HarmonyPatch(typeof(DamageWorker), nameof(DamageWorker.Apply))]
+    internal static class Harmony_DamageWorker_Apply
     {
-        if (!Controller.settings.FragmentsFromWalls)
+        public static bool Prefix(DamageWorker __instance, DamageInfo dinfo, Thing victim)
         {
-            return true;
-        }
-        if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null)
-        {
-            if (victim.def.category == ThingCategory.Building && (dinfo.Def.GetModExtension<DamageDefExtensionCE>()?.canCauseWallFragmentation ?? true))
+            if (!Controller.settings.FragmentsFromWalls)
             {
-                bool isSharp = dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                Vector3 pos = victim.Position.ToVector3Shifted();
-                float num = dinfo.Amount;
-
-                num *= dinfo.Def.buildingDamageFactor;
-                if (victim.def.passability == Traversability.Impassable)
+                return true;
+            }
+            if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null && dinfo.Def != DamageDefOf.Mining)
+            {
+                if (victim.def.category == ThingCategory.Building)
                 {
-                    num *= dinfo.Def.buildingDamageFactorImpassable;
-                }
-                else
-                {
-                    num *= dinfo.Def.buildingDamageFactorPassable;
-                }
-                float hitPoints = victim.HitPoints;
-                float maxHitPoints = victim.MaxHitPoints;
-                bool max = num > hitPoints;
-                int fragmentDamage = (int)(Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num) * Controller.settings.FragmentsFromWallsIntensity);
-                if (isSharp)
-                {
-                    fragmentDamage /= 2;
-                }
-
-                if (victim.Stuff != null)
-                {
-                    StuffCategoryDef stuff = victim.Stuff.stuffProps.categories.First() ?? StuffCategoryDefOf.Stony;
-                    if (stuff == StuffCategoryDefOf.Leathery || stuff == StuffCategoryDefOf.Fabric)
+                    if (dinfo.Def == CE_DamageDefOf.Demolish)
                     {
-                        fragmentDamage /= 10;
+                        return true;
                     }
-                    else if (stuff == StuffCategoryDefOf.Metallic || stuff == StuffCategoryDefOf.Woody)
+                    bool isSharp = dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp;
+                    Vector3 pos;
+                    pos = victim.Position.ToVector3Shifted();
+                    float num = dinfo.Amount;
+
+                    num *= dinfo.Def.buildingDamageFactor;
+                    if (victim.def.passability == Traversability.Impassable)
+                    {
+                        num *= dinfo.Def.buildingDamageFactorImpassable;
+                    }
+                    else
+                    {
+                        num *= dinfo.Def.buildingDamageFactorPassable;
+                    }
+                    float hitPoints = victim.HitPoints;
+                    float maxHitPoints = victim.MaxHitPoints;
+                    bool max = false;
+                    if (num > hitPoints)
+                    {
+                        max = true;
+                    }
+                    int fragmentDamage = (int)(Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num));
+                    if (isSharp)
                     {
                         fragmentDamage /= 2;
                     }
-                }
 
-                int largeFragments = fragmentDamage / 37;
-                int smallFragments = (fragmentDamage % 37) / 9;
+                    int largeFragments = fragmentDamage / 37;
+                    int smallFragments = (fragmentDamage % 37) / 9;
 
-                smallFragments += 4 * ((largeFragments / 2) + largeFragments % 2);
-                largeFragments /= 2;
+                    smallFragments += 4 * ((largeFragments / 2) + largeFragments % 2);
+                    largeFragments /= 2;
 
-                smallFragments = Mathf.Min(200, smallFragments);
-                largeFragments = Mathf.Min(100, largeFragments);
+                    var frontArc = new FloatRange(dinfo.Angle + 90, dinfo.Angle + 270);
+                    var backArc = new FloatRange(dinfo.Angle - 60, dinfo.Angle + 60);
 
-                var frontArc = new FloatRange(dinfo.Angle + 90, dinfo.Angle + 270);
-                var backArc = new FloatRange(dinfo.Angle - 60, dinfo.Angle + 60);
-
-                var map = victim.Map;
-                var height = new FloatRange(0, new CollisionVertical(victim).Max).RandomInRange;
-                if (max)
-                {
-                    backArc = new FloatRange(dinfo.Angle - 90, dinfo.Angle + 90);
-                }
-
-                Vector3 spawnOffset = Quaternion.Euler(0, dinfo.Angle, 0) * Vector3.forward * Mathf.Max(1, Mathf.Min(victim.RotatedSize.x, victim.RotatedSize.z) / 2f);
-                if (smallFragments > 0)
-                {
-                    int reflectedFrags = (int)(smallFragments * (hitPoints / maxHitPoints));
-                    smallFragments -= reflectedFrags;
-                    if (reflectedFrags > 0)
+                    var map = victim.Map;
+                    var height = new FloatRange(0, new CollisionVertical(victim).Max).RandomInRange;
+                    if (max)
                     {
-                        var fr = CompFragments.FragRoutine(pos - spawnOffset,
-                                                           map,
-                                                           height,
-                                                           dinfo.Instigator,
-                                                           new ThingDefCountClass(CE_ThingDefOf.Fragment_Small, smallFragments),
-                                                           1,
-                                                           0.2f,
-                                                           new FloatRange(-10f, 10f),
-                                                           frontArc,
-                                                           1f,
-                                                           false);
-                        while (fr.MoveNext()) { }
+                        backArc = new FloatRange(dinfo.Angle - 90, dinfo.Angle + 90);
                     }
+
+                    if (smallFragments > 0)
                     {
-                        var fr = CompFragments.FragRoutine(pos + spawnOffset,
+                        int reflectedFrags = (int)(smallFragments * (hitPoints / maxHitPoints));
+                        smallFragments -= reflectedFrags;
+                        if (reflectedFrags > 0)
+                        {
+                            var fr = CompFragments.FragRoutine(pos,
+                                                               map,
+                                                               height,
+                                                               victim,
+                                                               new ThingDefCountClass(CE_ThingDefOf.Fragment_Small, smallFragments),
+                                                               1,
+                                                               0.2f,
+                                                               new FloatRange(0.5f, 5),
+                                                               frontArc,
+                                                               1f,
+                                                               false);
+                            while (fr.MoveNext()) { }
+                        }
+                        {
+                            var fr = CompFragments.FragRoutine(pos,
+                                                               map,
+                                                               height,
+                                                               victim,
+                                                               new ThingDefCountClass(CE_ThingDefOf.Fragment_Small, smallFragments),
+                                                               1,
+                                                               0.2f,
+                                                               new FloatRange(0.5f, 5),
+                                                               backArc,
+                                                               1f,
+                                                               false);
+                            while (fr.MoveNext()) { }
+                        }
+
+                    }
+                    if (largeFragments > 0)
+                    {
+                        var fr = CompFragments.FragRoutine(pos,
                                                            map,
                                                            height,
-                                                           dinfo.Instigator,
-                                                           new ThingDefCountClass(CE_ThingDefOf.Fragment_Small, smallFragments),
+                                                           victim,
+                                                           new ThingDefCountClass(CE_ThingDefOf.Fragment_Large, largeFragments),
                                                            1,
                                                            0.2f,
-                                                           new FloatRange(-10f, 10f),
+                                                           new FloatRange(0.5f, 5),
                                                            backArc,
                                                            1f,
                                                            false);
+
                         while (fr.MoveNext()) { }
+
                     }
-
-                }
-                if (largeFragments > 0)
-                {
-                    var fr = CompFragments.FragRoutine(pos + spawnOffset,
-                                                       map,
-                                                       height,
-                                                       dinfo.Instigator,
-                                                       new ThingDefCountClass(CE_ThingDefOf.Fragment_Medium, largeFragments),
-                                                       1,
-                                                       0.2f,
-                                                       new FloatRange(-10f, 10f),
-                                                       backArc,
-                                                       1f,
-                                                       false);
-
-                    while (fr.MoveNext()) { }
-
                 }
             }
+            return true;
         }
-        return true;
     }
 }

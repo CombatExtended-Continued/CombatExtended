@@ -8,17 +8,19 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(QuestPart_Notify_PlayerRaidedSomeone), nameof(QuestPart_Notify_PlayerRaidedSomeone.Notify_QuestSignalReceived))]
-internal static class Harmony_QuestPart_Notify_PlayerRaidedSomeone
+namespace CombatExtended.HarmonyCE
 {
-    internal static bool Prefix(Signal signal, QuestPart_Notify_PlayerRaidedSomeone __instance)
+    [HarmonyPatch(typeof(QuestPart_Notify_PlayerRaidedSomeone), nameof(QuestPart_Notify_PlayerRaidedSomeone.Notify_QuestSignalReceived))]
+    internal static class Harmony_QuestPart_Notify_PlayerRaidedSomeone
     {
-        if (signal.tag == __instance.inSignal && signal.args.TryGetArg("MAP", out Map map))
+        internal static bool Prefix(Signal signal, QuestPart_Notify_PlayerRaidedSomeone __instance)
         {
-            IdeoUtility.Notify_PlayerRaidedSomeone(map.mapPawns.FreeColonistsSpawned);
-            return false; //potentially destructive patch...
+            if (signal.tag == __instance.inSignal && signal.args.TryGetArg("MAP", out Map map))
+            {
+                IdeoUtility.Notify_PlayerRaidedSomeone(map.mapPawns.FreeColonistsSpawned);
+                return false; //potentially destructive patch...
+            }
+            return true;
         }
-        return true;
     }
 }

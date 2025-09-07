@@ -3,46 +3,48 @@ using ProjectRimFactory.Industry;
 using System;
 using System.Collections.Generic;
 
-namespace CombatExtended.Compatibility;
-public class ProjectRimFactoryCompat : IPatch
+namespace CombatExtended.Compatibility
 {
-    public bool CanInstall()
+    public class ProjectRimFactoryCompat : IPatch
     {
-        return ModLister.GetActiveModWithIdentifier("spdskatr.projectrimfactory") != null;
-    }
-
-    public void Install()
-    {
-        Building_FuelingMachine.RegisterRefuelable(typeof(Building_TurretGunCE), FindCompAmmoUser, TestAmmo, ReloadAction);
-    }
-    private static int TestAmmo(object compObject, Thing ammo)
-    {
-        var comp = compObject as CompAmmoUser;
-        // Not the correct ammo type (I'm looking at FMJ, but turret asks for AP)
-        if (ammo.def != comp.SelectedAmmo)
+        public bool CanInstall()
         {
-            return 0;
+            return ModLister.GetActiveModWithIdentifier("spdskatr.projectrimfactory") != null;
         }
-        return Math.Min(comp.MissingToFullMagazine, ammo.stackCount);
-    }
 
-    private static void ReloadAction(object compObject, Thing ammo)
-    {
-        var comp = compObject as CompAmmoUser;
-        if (ammo.def != comp.CurrentAmmo)
+        public void Install()
         {
-            comp.TryUnload();
+            Building_FuelingMachine.RegisterRefuelable(typeof(Building_TurretGunCE), FindCompAmmoUser, TestAmmo, ReloadAction);
         }
-        comp.LoadAmmo(ammo);
-    }
+        private static int TestAmmo(object compObject, Thing ammo)
+        {
+            var comp = compObject as CompAmmoUser;
+            // Not the correct ammo type (I'm looking at FMJ, but turret asks for AP)
+            if (ammo.def != comp.SelectedAmmo)
+            {
+                return 0;
+            }
+            return Math.Min(comp.MissingToFullMagazine, ammo.stackCount);
+        }
 
-    static object FindCompAmmoUser(Building building)
-    {
-        var compAmmoUser = (building as Building_TurretGunCE).CompAmmo;
-        if (!compAmmoUser.FullMagazine)
+        private static void ReloadAction(object compObject, Thing ammo)
         {
-            return compAmmoUser;
+            var comp = compObject as CompAmmoUser;
+            if (ammo.def != comp.CurrentAmmo)
+            {
+                comp.TryUnload();
+            }
+            comp.LoadAmmo(ammo);
         }
-        return null;
+
+        static object FindCompAmmoUser(Building building)
+        {
+            var compAmmoUser = (building as Building_TurretGunCE).CompAmmo;
+            if (!compAmmoUser.FullMagazine)
+            {
+                return compAmmoUser;
+            }
+            return null;
+        }
     }
 }

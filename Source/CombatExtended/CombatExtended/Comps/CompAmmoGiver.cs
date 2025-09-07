@@ -9,86 +9,88 @@ using Verse.AI;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended;
-public class CompAmmoGiver : ThingComp
+namespace CombatExtended
 {
-    public int ammoAmountToGive;
-    public Pawn dad => this.parent as Pawn;
-    public CompAmmoUser user => dad.equipment.Primary?.TryGetComp<CompAmmoUser>() ?? null;
-
-    public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
+    public class CompAmmoGiver : ThingComp
     {
-        if (user != null && selPawn != dad)
+        public int ammoAmountToGive;
+        public Pawn dad => this.parent as Pawn;
+        public CompAmmoUser user => dad.equipment.Primary?.TryGetComp<CompAmmoUser>() ?? null;
+
+        public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            if (!selPawn.Faction.HostileTo(dad.Faction))
+            if (user != null && selPawn != dad)
             {
-                if (selPawn.CanReach(dad, PathEndMode.ClosestTouch, Danger.Deadly)
-                        &&
-                        !selPawn.Downed
-                        &&
-                        selPawn.inventory.innerContainer.Where(x => x is AmmoThing).Any(x => ((AmmoDef)x.def).AmmoSetDefs.Contains(user.Props.ammoSet))
-                   )
+                if (!selPawn.Faction.HostileTo(dad.Faction))
                 {
-                    yield return new FloatMenuOption("CE_GiveAmmoToThing".Translate(dad.Name?.ToStringShort ?? dad.def.label),
-                                                     delegate
+                    if (selPawn.CanReach(dad, PathEndMode.ClosestTouch, Danger.Deadly)
+                            &&
+                            !selPawn.Downed
+                            &&
+                            selPawn.inventory.innerContainer.Where(x => x is AmmoThing).Any(x => ((AmmoDef)x.def).AmmoSetDefs.Contains(user.Props.ammoSet))
+                       )
                     {
-                        List<FloatMenuOption> options = new List<FloatMenuOption>();
-
-                        foreach (AmmoThing ammo in selPawn.TryGetComp<CompInventory>().ammoList)
+                        yield return new FloatMenuOption("CE_GiveAmmoToThing".Translate(dad.Name?.ToStringShort ?? dad.def.label),
+                                                         delegate
                         {
-                            if (ammo.AmmoDef.AmmoSetDefs.Contains(user.Props.ammoSet))
+                            List<FloatMenuOption> options = new List<FloatMenuOption>();
+
+                            foreach (AmmoThing ammo in selPawn.TryGetComp<CompInventory>().ammoList)
                             {
-                                int outAmmoCount = 0;
-                                if ((dad.TryGetComp<CompInventory>()?.CanFitInInventory(ammo, out outAmmoCount) ?? false) && outAmmoCount >= ammo.stackCount)
+                                if (ammo.AmmoDef.AmmoSetDefs.Contains(user.Props.ammoSet))
                                 {
-                                    options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " (" + "All".Translate() + ")", delegate
+                                    int outAmmoCount = 0;
+                                    if ((dad.TryGetComp<CompInventory>()?.CanFitInInventory(ammo, out outAmmoCount) ?? false) && outAmmoCount >= ammo.stackCount)
                                     {
-                                        GiveAmmo(selPawn, ammo, ammo.stackCount);
-                                    }));
-                                }
-
-                                if (outAmmoCount > 0)
-                                {
-                                    options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label + "...", delegate
-                                    {
-                                        Find.WindowStack.Add(new Window_GiveAmmoAmountSlider()
+                                        options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " (" + "All".Translate() + ")", delegate
                                         {
-                                            dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this, maxAmmoCount = outAmmoCount
-                                        });
-                                    }));
-                                }
-                                else
-                                {
-                                    options.Add(new FloatMenuOption("CE_TargetInventoryFull".Translate(), null));
-                                }
+                                            GiveAmmo(selPawn, ammo, ammo.stackCount);
+                                        }));
+                                    }
 
+                                    if (outAmmoCount > 0)
+                                    {
+                                        options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label + "...", delegate
+                                        {
+                                            Find.WindowStack.Add(new Window_GiveAmmoAmountSlider()
+                                            {
+                                                dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this, maxAmmoCount = outAmmoCount
+                                            });
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        options.Add(new FloatMenuOption("CE_TargetInventoryFull".Translate(), null));
+                                    }
+
+                                }
                             }
-                        }
 
-                        if (!options.Any())
-                        {
-                            options.Add(new FloatMenuOption("CE_NoAmmoToGive".Translate(), null));
-                        }
+                            if (!options.Any())
+                            {
+                                options.Add(new FloatMenuOption("CE_NoAmmoToGive".Translate(), null));
+                            }
 
-                        Find.WindowStack.Add(new FloatMenu(options));
-                    });
+                            Find.WindowStack.Add(new FloatMenu(options));
+                        });
+                    }
                 }
             }
+
         }
 
-    }
+        // Needs to be a sync method for 2 reasons - MP only auto synchronizes jobs through TryTakeOrderedJob/TryTakeOrderedJobPrioritizedWork,
+        // and ammoAmountToGive field is set before ordering the job - which means only 1 player would have the value set.
+        [Compatibility.Multiplayer.SyncMethod]
+        public void GiveAmmo(Pawn selPawn, Thing ammo, int amount)
+        {
+            ammoAmountToGive = amount;
 
-    // Needs to be a sync method for 2 reasons - MP only auto synchronizes jobs through TryTakeOrderedJob/TryTakeOrderedJobPrioritizedWork,
-    // and ammoAmountToGive field is set before ordering the job - which means only 1 player would have the value set.
-    [Compatibility.Multiplayer.SyncMethod]
-    public void GiveAmmo(Pawn selPawn, Thing ammo, int amount)
-    {
-        ammoAmountToGive = amount;
+            var jobdef = CE_JobDefOf.GiveAmmo;
 
-        var jobdef = CE_JobDefOf.GiveAmmo;
+            var job = new Job { def = jobdef, targetA = dad, targetB = ammo };
 
-        var job = new Job { def = jobdef, targetA = dad, targetB = ammo };
-
-        selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+        }
     }
 }

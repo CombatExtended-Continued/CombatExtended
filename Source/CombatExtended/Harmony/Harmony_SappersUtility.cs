@@ -2,18 +2,20 @@
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(SappersUtility), "CanMineReasonablyFast")]
-internal static class Harmony_SappersUtility
+namespace CombatExtended.HarmonyCE
 {
-    internal static bool Prefix(Pawn p, ref bool __result)
+    [HarmonyPatch(typeof(SappersUtility), "CanMineReasonablyFast")]
+    internal static class Harmony_SappersUtility
     {
-        if (p.RaceProps.IsMechanoid)
+        internal static bool Prefix(Pawn p, ref bool __result)
         {
-            __result = true;
-            return false;
-        }
+            if (p.RaceProps.IsMechanoid)
+            {
+                __result = true;
+                return false;
+            }
 
-        return true;
+            return true;
+        }
     }
 }

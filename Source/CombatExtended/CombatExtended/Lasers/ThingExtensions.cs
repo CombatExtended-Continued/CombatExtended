@@ -5,30 +5,32 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace CombatExtended.Lasers;
-public static class ThingExtensions
+namespace CombatExtended.Lasers
 {
-    public static bool IsShielded(this Thing thing)
+    public static class ThingExtensions
     {
-        return (thing as Pawn)?.IsShielded() ?? false;
-    }
-
-    public static bool IsShielded(this Pawn pawn)
-    {
-        if (pawn == null || pawn.apparel == null)
+        public static bool IsShielded(this Thing thing)
         {
+            return (thing as Pawn)?.IsShielded() ?? false;
+        }
+
+        public static bool IsShielded(this Pawn pawn)
+        {
+            if (pawn == null || pawn.apparel == null)
+            {
+                return false;
+            }
+
+            DamageInfo damageTest = new DamageInfo(DamageDefOf.Bomb, 0f, 0f, -1, null);
+            foreach (Apparel apparel in pawn.apparel.WornApparel)
+            {
+                if (apparel.CheckPreAbsorbDamage(damageTest))
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
-
-        DamageInfo damageTest = new DamageInfo(DamageDefOf.Bomb, 0f, 0f, -1, null);
-        foreach (Apparel apparel in pawn.apparel.WornApparel)
-        {
-            if (apparel.CheckPreAbsorbDamage(damageTest))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

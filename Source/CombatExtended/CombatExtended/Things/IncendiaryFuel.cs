@@ -6,50 +6,52 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class IncendiaryFuel : Filth
+namespace CombatExtended
 {
-    private const float maxFireSize = 1.75f;
-
-    public override void SpawnSetup(Map map, bool respawningAfterLoad)
+    public class IncendiaryFuel : Filth
     {
-        base.SpawnSetup(map, respawningAfterLoad);
-        List<Thing> list = new List<Thing>(Position.GetThingList(map));
-        foreach (Thing thing in list)
-        {
-            if (thing is Building_Door door && !door.Open)
-            {
-                Destroy();
-                return;
-            }
+        private const float maxFireSize = 1.75f;
 
-            if (thing.HasAttachment(ThingDefOf.Fire))
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            List<Thing> list = new List<Thing>(Position.GetThingList(map));
+            foreach (Thing thing in list)
             {
-                Fire fire = (Fire)thing.GetAttachment(ThingDefOf.Fire);
-                if (fire != null)
+                if (thing is Building_Door door && !door.Open)
                 {
-                    fire.fireSize = maxFireSize;
+                    Destroy();
+                    return;
+                }
+
+                if (thing.HasAttachment(ThingDefOf.Fire))
+                {
+                    Fire fire = (Fire)thing.GetAttachment(ThingDefOf.Fire);
+                    if (fire != null)
+                    {
+                        fire.fireSize = maxFireSize;
+                    }
+                }
+                else
+                {
+                    thing.TryAttachFire(maxFireSize, null);
+                }
+            }
+        }
+
+        public override void Tick()
+        {
+            if (Position.GetThingList(base.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam) || Position.GetTerrain(base.Map).IsWater)
+            {
+                if (!Destroyed)
+                {
+                    Destroy();
                 }
             }
             else
             {
-                thing.TryAttachFire(maxFireSize, null);
+                FireUtility.TryStartFireIn(Position, base.Map, maxFireSize, this);
             }
-        }
-    }
-
-    public override void TickInterval(int delta)
-    {
-        if (Position.GetThingList(base.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam) || Position.GetTerrain(base.Map).IsWater)
-        {
-            if (!Destroyed)
-            {
-                Destroy();
-            }
-        }
-        else
-        {
-            FireUtility.TryStartFireIn(Position, base.Map, maxFireSize, this);
         }
     }
 }

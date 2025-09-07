@@ -1,15 +1,17 @@
 ﻿using Verse;
 
-namespace CombatExtended;
-public class PawnRenderNodeWorker_Webbing : PawnRenderNodeWorker_Apparel_Body
+namespace CombatExtended
 {
-    public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
+    public class PawnRenderNodeWorker_Webbing : PawnRenderNodeWorker_Apparel_Body
     {
-        if (!Controller.settings.ShowTacticalVests)
+        public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
         {
-            return false;
-        }
+            if (!Controller.settings.ShowTacticalVests)
+            {
+                return false;
+            }
 
-        return base.CanDrawNow(node, parms);
+            return base.CanDrawNow(node, parms);
+        }
     }
 }

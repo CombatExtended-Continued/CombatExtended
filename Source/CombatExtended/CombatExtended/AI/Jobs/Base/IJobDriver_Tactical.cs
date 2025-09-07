@@ -3,46 +3,48 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended.AI;
-public abstract class IJobDriver_Tactical : JobDriver
+namespace CombatExtended.AI
 {
-    public int numAttacksMade = 0;
-
-    private CompSuppressable _compSuppressable = null;
-    public virtual CompSuppressable CompSuppressable
+    public abstract class IJobDriver_Tactical : JobDriver
     {
-        get
+        public int numAttacksMade = 0;
+
+        private CompSuppressable _compSuppressable = null;
+        public virtual CompSuppressable CompSuppressable
         {
-            if (_compSuppressable == null)
+            get
             {
-                _compSuppressable = pawn.TryGetComp<CompSuppressable>();
+                if (_compSuppressable == null)
+                {
+                    _compSuppressable = pawn.TryGetComp<CompSuppressable>();
+                }
+                return _compSuppressable;
             }
-            return _compSuppressable;
         }
-    }
 
-    private CompInventory _compInventory = null;
-    public virtual CompInventory CompInventory
-    {
-        get
+        private CompInventory _compInventory = null;
+        public virtual CompInventory CompInventory
         {
-            if (_compInventory == null)
+            get
             {
-                _compInventory = pawn.TryGetComp<CompInventory>();
+                if (_compInventory == null)
+                {
+                    _compInventory = pawn.TryGetComp<CompInventory>();
+                }
+                return _compInventory;
             }
-            return _compInventory;
         }
-    }
 
 
-    public override void ExposeData()
-    {
-        base.ExposeData();
-        Scribe_Values.Look(ref numAttacksMade, "numAttacksMade", 0);
-    }
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref numAttacksMade, "numAttacksMade", 0);
+        }
 
-    public override bool TryMakePreToilReservations(bool errorOnFailed)
-    {
-        return true;
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            return true;
+        }
     }
 }

@@ -7,11 +7,13 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 
-namespace CombatExtended;
-public class JobDriver_WaitKnockdown : JobDriver_Wait
+namespace CombatExtended
 {
-    public override void SetInitialPosture()
+    public class JobDriver_WaitKnockdown : JobDriver_Wait
     {
-        pawn.jobs.posture = PawnPosture.LayingOnGroundNormal;
+        public override void SetInitialPosture()
+        {
+            pawn.jobs.posture = PawnPosture.LayingOnGroundNormal;
+        }
     }
 }

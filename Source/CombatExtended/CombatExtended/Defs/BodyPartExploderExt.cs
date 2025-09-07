@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended;
-public class BodyPartExploderExt : DefModExtension
+namespace CombatExtended
 {
-    public float triggerChance;
+    public class BodyPartExploderExt : DefModExtension
+    {
+        public float triggerChance;
 
-    public List<DamageDef> allowedDamageDefs;
+        public List<DamageDef> allowedDamageDefs;
+    }
 }

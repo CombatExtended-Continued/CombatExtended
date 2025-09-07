@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using Verse;
 
-namespace CombatExtended;
-public class HediffComp_Beanbag : HediffComp
+namespace CombatExtended
 {
-    public HediffCompProperties_Beanbag Props => props as HediffCompProperties_Beanbag;
-
-    public override void CompPostPostAdd(DamageInfo? dinfo)
+    public class HediffComp_Beanbag : HediffComp
     {
-        base.CompPostPostAdd(dinfo);
+        public HediffCompProperties_Beanbag Props => props as HediffCompProperties_Beanbag;
 
-        if (parent.pawn.RaceProps.IsMechanoid)
+        public override void CompPostPostAdd(DamageInfo? dinfo)
         {
-            return;
-        }
+            base.CompPostPostAdd(dinfo);
 
-        var severity = Props.BaseSeverityPerDamage * parent.Severity / Mathf.Pow(parent.pawn.HealthScale, 2);
-        HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.MuscleSpasms, severity);
+            if (parent.pawn.RaceProps.IsMechanoid)
+            {
+                return;
+            }
+
+            var severity = Props.BaseSeverityPerDamage * parent.Severity / Mathf.Pow(parent.pawn.HealthScale, 2);
+            HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.MuscleSpasms, severity);
+        }
     }
 }

@@ -1,5 +1,7 @@
-namespace CombatExtended;
-static class VersionInfo
+namespace CombatExtended
 {
-    public static string COMMIT = "UNKNOWN";
+    static class VersionInfo
+    {
+        public static string COMMIT = "UNKNOWN";
+    }
 }

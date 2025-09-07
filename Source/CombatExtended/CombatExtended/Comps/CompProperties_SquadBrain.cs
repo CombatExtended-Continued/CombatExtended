@@ -6,11 +6,13 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class CompProperties_SquadBrain : CompProperties
+namespace CombatExtended
 {
-    public CompProperties_SquadBrain()
+    public class CompProperties_SquadBrain : CompProperties
     {
-        compClass = typeof(CompSquadBrain);
+        public CompProperties_SquadBrain()
+        {
+            compClass = typeof(CompSquadBrain);
+        }
     }
 }

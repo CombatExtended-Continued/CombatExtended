@@ -1,7 +1,9 @@
 ﻿using Verse;
 
-namespace CombatExtended;
-public class ApparelHediffExtension : DefModExtension
+namespace CombatExtended
 {
-    public HediffDef hediff;
+    public class ApparelHediffExtension : DefModExtension
+    {
+        public HediffDef hediff;
+    }
 }

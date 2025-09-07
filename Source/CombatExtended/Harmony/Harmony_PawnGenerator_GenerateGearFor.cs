@@ -1,31 +1,33 @@
 ﻿using HarmonyLib;
 using Verse;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GenerateGearFor))]
-public static class Harmony_PawnGenerator_GenerateGearFor
+namespace CombatExtended.HarmonyCE
 {
-    public static void Postfix(Pawn pawn)
+    [HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GenerateGearFor))]
+    public static class Harmony_PawnGenerator_GenerateGearFor
     {
-        if (pawn?.equipment?.Primary is ThingWithComps weapon && weapon.IsTwoHandedWeapon())
+        public static void Postfix(Pawn pawn)
         {
-            if (pawn.apparel != null)
+            if (pawn?.equipment?.Primary is ThingWithComps weapon && weapon.IsTwoHandedWeapon())
             {
-                var list = pawn.apparel.wornApparel;
-                // Reverse loop to prevent removal issues
-                for (int i = list.Count - 1; i >= 0; i--)
+                if (pawn.apparel != null)
                 {
-                    if (list[i] is Apparel_Shield shield)
+                    var list = pawn.apparel.wornApparel;
+                    // Reverse loop to prevent removal issues
+                    for (int i = list.Count - 1; i >= 0; i--)
                     {
-                        Log.Warning($"Combat Extended :: Removing shield from {pawn.kindDef.defName} as they generated with shield and two-handed weapon.");
-                        if (!shield.Destroyed)
+                        if (list[i] is Apparel_Shield shield)
                         {
-                            shield.Destroy();
+                            Log.Warning($"Combat Extended :: Removing shield from {pawn.kindDef.defName} as they generated with shield and two-handed weapon.");
+                            if (!shield.Destroyed)
+                            {
+                                shield.Destroy();
+                            }
                         }
                     }
                 }
             }
         }
     }
-}
 
+}

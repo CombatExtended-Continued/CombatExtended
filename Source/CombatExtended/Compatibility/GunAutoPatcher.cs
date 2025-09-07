@@ -8,130 +8,132 @@ using RimWorld;
 using UnityEngine;
 using CombatExtended.Compatibility;
 
-namespace CombatExtended;
-[StaticConstructorOnStartup]
-public class GunAutoPatcher
+namespace CombatExtended
 {
-    private static bool shouldPatch(ThingDef thingDef)
+    [StaticConstructorOnStartup]
+    public class GunAutoPatcher
     {
-        if (thingDef.weaponTags?.Contains("Patched") ?? false)
+        private static bool shouldPatch(ThingDef thingDef)
         {
-            return false;
-        }
-        if (thingDef.thingClass != typeof(ThingWithComps) && thingDef.thingClass != typeof(Thing))
-        {
-            return false;
-        }
-        if (!thingDef.IsRangedWeapon)
-        {
-            return false;
-        }
-        if (thingDef.verbs is List<VerbProperties> verbs)
-        {
-            foreach (var verb in verbs)
+            if (thingDef.weaponTags?.Contains("Patched") ?? false)
             {
-                if (verb is VerbPropertiesCE)
+                return false;
+            }
+            if (thingDef.thingClass != typeof(ThingWithComps) && thingDef.thingClass != typeof(Thing))
+            {
+                return false;
+            }
+            if (!thingDef.IsRangedWeapon)
+            {
+                return false;
+            }
+            if (thingDef.verbs is List<VerbProperties> verbs)
+            {
+                foreach (var verb in verbs)
                 {
-                    return false;
-                }
-                if (verb.defaultProjectile?.thingClass is Type tc)
-                {
-                    if (tc != typeof(Bullet) && tc != typeof(Projectile_Explosive))
+                    if (verb is VerbPropertiesCE)
                     {
                         return false;
                     }
-                }
-                else
-                {
-                    return false;
-                }
-                var t = verb.verbClass;
-                if (t != typeof(Verb_ShootOneUse) && t != typeof(Verb_Shoot) && t != typeof(Verb_LaunchProjectile) && t != typeof(Verb_LaunchProjectileStatic))
-                {
-                    return false;
-                }
+                    if (verb.defaultProjectile?.thingClass is Type tc)
+                    {
+                        if (tc != typeof(Bullet) && tc != typeof(Projectile_Explosive))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    var t = verb.verbClass;
+                    if (t != typeof(Verb_ShootOneUse) && t != typeof(Verb_Shoot) && t != typeof(Verb_LaunchProjectile) && t != typeof(Verb_LaunchProjectileStatic))
+                    {
+                        return false;
+                    }
 
+                }
+                return true;
             }
-            return true;
+            return false;
         }
-        return false;
-    }
-    static GunAutoPatcher()
-    {
-        if (!Controller.settings.EnableWeaponAutopatcher)
+        static GunAutoPatcher()
         {
-            return;
-        }
-
-        var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(shouldPatch);
-
-        var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
-
-        var toolMissers = DefDatabase<ThingDef>.AllDefs.Where(x => x.tools != null && x.tools.All(y => !(y is ToolCE)));
-
-        foreach (var preset in patcherDefs)
-        {
-            try
+            if (!Controller.settings.EnableWeaponAutopatcher)
             {
-                unpatchedGuns.PatchGunsFromPreset(preset);
+                return;
             }
-            catch (Exception e)
-            {
-                Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, "" + e, StackTraceUtility.ExtractStringFromException(e)));
-                Log.Error($"Unhandled exception handling {preset}");
 
-            }
-        }
+            var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(shouldPatch);
 
-        if (unpatchedGuns.Count() > 0)
-        {
-            foreach (var gun in unpatchedGuns)
+            var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
+
+            var toolMissers = DefDatabase<ThingDef>.AllDefs.Where(x => x.tools != null && x.tools.All(y => !(y is ToolCE)));
+
+            foreach (var preset in patcherDefs)
             {
                 try
                 {
-                    gun.PatchGunFromPreset
-                    (
-                        patcherDefs.MaxBy
-                        (
-                            //random range is there to avoid elements with same values
-                            x =>
-                            (
-                                x.DamageRange.Average
-                                +
-                                x.RangeRange.Average
-                                +
-                                x.ProjSpeedRange.Average
-                                +
-                                x.WarmupRange.Average
-                            )));
+                    unpatchedGuns.PatchGunsFromPreset(preset);
                 }
                 catch (Exception e)
                 {
                     Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, "" + e, StackTraceUtility.ExtractStringFromException(e)));
-                    Log.Error($"Unhandled exception patching gun {gun} from preset");
+                    Log.Error($"Unhandled exception handling {preset}");
+
                 }
             }
-        }
 
-        foreach (var toolMisser in toolMissers)
-        {
-            List<Tool> newTools = new List<Tool>();
-            foreach (var tool in toolMisser.tools)
+            if (unpatchedGuns.Count() > 0)
             {
-                Tool newTool;
-                try
+                foreach (var gun in unpatchedGuns)
                 {
-                    newTool = tool.ConvertTool();
+                    try
+                    {
+                        gun.PatchGunFromPreset
+                        (
+                            patcherDefs.MaxBy
+                            (
+                                //random range is there to avoid elements with same values
+                                x =>
+                                (
+                                    x.DamageRange.Average
+                                    +
+                                    x.RangeRange.Average
+                                    +
+                                    x.ProjSpeedRange.Average
+                                    +
+                                    x.WarmupRange.Average
+                                )));
+                    }
+                    catch (Exception e)
+                    {
+                        Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, "" + e, StackTraceUtility.ExtractStringFromException(e)));
+                        Log.Error($"Unhandled exception patching gun {gun} from preset");
+                    }
                 }
-                catch
-                {
-                    Log.Error($"Failed to autoconvert tool {tool} in {toolMisser}.  Using original");
-                    newTool = tool;
-                }
-                newTools.Add(newTool);
             }
 
-            toolMisser.tools = newTools;
+            foreach (var toolMisser in toolMissers)
+            {
+                List<Tool> newTools = new List<Tool>();
+                foreach (var tool in toolMisser.tools)
+                {
+                    Tool newTool;
+                    try
+                    {
+                        newTool = tool.ConvertTool();
+                    }
+                    catch
+                    {
+                        Log.Error($"Failed to autoconvert tool {tool} in {toolMisser}.  Using original");
+                        newTool = tool;
+                    }
+                    newTools.Add(newTool);
+                }
+
+                toolMisser.tools = newTools;
+            }
         }
     }
 }

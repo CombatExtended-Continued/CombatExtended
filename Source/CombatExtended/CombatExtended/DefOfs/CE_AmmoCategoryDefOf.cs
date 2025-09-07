@@ -1,13 +1,15 @@
 ﻿using RimWorld;
 
-namespace CombatExtended;
-[DefOf]
-public class CE_AmmoCategoryDefOf
+namespace CombatExtended
 {
-
-    static CE_AmmoCategoryDefOf()
+    [DefOf]
+    public class CE_AmmoCategoryDefOf
     {
-        DefOfHelper.EnsureInitializedInCtor(typeof(CE_AmmoCategoryDefOf));
+
+        static CE_AmmoCategoryDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(CE_AmmoCategoryDefOf));
+        }
+        public static AmmoCategoryDef ExplosiveAP;
     }
-    public static AmmoCategoryDef ExplosiveAP;
 }

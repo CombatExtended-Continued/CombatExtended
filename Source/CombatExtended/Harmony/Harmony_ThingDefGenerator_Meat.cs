@@ -8,21 +8,23 @@ using UnityEngine;
 using HarmonyLib;
 using System.Reflection;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch]
-public static class Harmony_ThingDefGenerator_Meat
+namespace CombatExtended.HarmonyCE
 {
-    static MethodBase TargetMethod()
+    [HarmonyPatch]
+    public static class Harmony_ThingDefGenerator_Meat
     {
-        var type = AccessTools.Inner(typeof(ThingDefGenerator_Meat), "<ImpliedMeatDefs>d__0");
-        return AccessTools.Method(type, "MoveNext");
-    }
-
-    public static void Postfix(IEnumerator<ThingDef> __instance, bool __result)
-    {
-        if (__result)
+        static MethodBase TargetMethod()
         {
-            __instance.Current.SetStatBaseValue(CE_StatDefOf.Bulk, 0.2f);
+            var type = AccessTools.Inner(typeof(ThingDefGenerator_Meat), "<ImpliedMeatDefs>d__0");
+            return AccessTools.Method(type, "MoveNext");
+        }
+
+        public static void Postfix(IEnumerator<ThingDef> __instance, bool __result)
+        {
+            if (__result)
+            {
+                __instance.Current.SetStatBaseValue(CE_StatDefOf.Bulk, 0.2f);
+            }
         }
     }
 }

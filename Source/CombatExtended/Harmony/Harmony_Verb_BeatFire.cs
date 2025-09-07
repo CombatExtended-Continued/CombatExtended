@@ -1,31 +1,29 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using System.Reflection.Emit;
+using System.Text;
 using Verse;
 
-namespace CombatExtended.HarmonyCE;
-class Harmony_Verb_BeatFire
+namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(Verb_BeatFire), "TryCastShot")]
-    class EditFirePunchingStrength
+    class Harmony_Verb_BeatFire
     {
-        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        [HarmonyPatch(typeof(Verb_BeatFire), "TryCastShot")]
+        class EditFirePunchingStrength
         {
-            bool foundInjection = false;
-            foreach (var instruction in instructions)
+            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
-                if (instruction.opcode == OpCodes.Ldc_R4 && instruction.operand is float amount && amount == 32f)
+                foreach (var instruction in instructions)
                 {
-                    instruction.operand = 48f;
-                    foundInjection = true;
+                    if (instruction.opcode == OpCodes.Ldc_R4 && instruction.operand is float amount && amount == 32f)
+                    {
+                        instruction.operand = 48f;
+                    }
+                    yield return instruction;
                 }
-                yield return instruction;
-            }
-            if (!foundInjection)
-            {
-                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
             }
         }
     }

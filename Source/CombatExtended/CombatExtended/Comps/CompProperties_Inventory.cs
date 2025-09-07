@@ -1,10 +1,12 @@
 ﻿using Verse;
 
-namespace CombatExtended;
-public class CompProperties_Inventory : CompProperties
+namespace CombatExtended
 {
-    public CompProperties_Inventory()
+    public class CompProperties_Inventory : CompProperties
     {
-        compClass = typeof(CompInventory);
+        public CompProperties_Inventory()
+        {
+            compClass = typeof(CompInventory);
+        }
     }
 }

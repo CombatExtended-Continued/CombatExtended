@@ -10,8 +10,10 @@ using Verse.AI;
 using RimWorld;
 using CombatExtended;
 
-namespace CombatExtended.Compatibility;
-public class AmmoDef_ThingSpawner : AmmoDef
+namespace CombatExtended.Compatibility
 {
-    public ThingDef spawnDef;
+    public class AmmoDef_ThingSpawner : AmmoDef
+    {
+        public ThingDef spawnDef;
+    }
 }

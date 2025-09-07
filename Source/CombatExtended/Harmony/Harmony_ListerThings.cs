@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace CombatExtended.HarmonyCE;
-[HarmonyPatch(typeof(ListerThings), "EverListable")]
-internal static class Harmony_ListerThings_AllowSavingGas
+namespace CombatExtended.HarmonyCE
 {
-    internal static void Postfix(ref bool __result, ThingDef def, ListerThingsUse use)
+    [HarmonyPatch(typeof(ListerThings), "EverListable")]
+    internal static class Harmony_ListerThings_AllowSavingGas
     {
-        __result = __result || def.category == ThingCategory.Gas;
-        return;
+        internal static void Postfix(ref bool __result, ThingDef def, ListerThingsUse use)
+        {
+            __result = __result || def.category == ThingCategory.Gas;
+            return;
+        }
     }
 }

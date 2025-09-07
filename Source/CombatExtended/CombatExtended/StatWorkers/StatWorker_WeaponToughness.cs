@@ -7,96 +7,98 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended;
-public class StatWorker_WeaponToughness : StatWorker
+namespace CombatExtended
 {
-    public const float parryChanceFactor = 5f; // Factor by which the weapon holder's skill affects the final weapon toughness
-
-    public float GetHolderToughnessFactor(Pawn pawn)
+    public class StatWorker_WeaponToughness : StatWorker
     {
-        // We want the parry chance from the pawn, ignoring their gear, so remove their gear for the next function call, then put it back.
-        var apparel = pawn.apparel;
-        pawn.apparel = null;
-        var equipment = pawn.equipment;
-        pawn.equipment = null;
-        float factor;
-        try
-        {
-            factor = pawn.GetStatValue(CE_StatDefOf.MeleeParryChance);
-        }
-        finally
-        {
-            pawn.apparel = apparel;
-            pawn.equipment = equipment;
-        }
-        return factor * parryChanceFactor;
-    }
+        public const float parryChanceFactor = 5f; // Factor by which the weapon holder's skill affects the final weapon toughness
 
-    public override void FinalizeValue(StatRequest req, ref float val, bool applyPostProcess)
-    {
-        var thing = req.Thing;
-        if (thing != null)
+        public float GetHolderToughnessFactor(Pawn pawn)
         {
-            // Since the material factor acts like a StatPart, if the holder's skill was taken into account first, it wouldn't affect stuffable weapons
-            if (stat.parts != null)
+            // We want the parry chance from the pawn, ignoring their gear, so remove their gear for the next function call, then put it back.
+            var apparel = pawn.apparel;
+            pawn.apparel = null;
+            var equipment = pawn.equipment;
+            pawn.equipment = null;
+            float factor;
+            try
             {
-                foreach (StatPart part in this.stat.parts)
+                factor = pawn.GetStatValue(CE_StatDefOf.MeleeParryChance);
+            }
+            finally
+            {
+                pawn.apparel = apparel;
+                pawn.equipment = equipment;
+            }
+            return factor * parryChanceFactor;
+        }
+
+        public override void FinalizeValue(StatRequest req, ref float val, bool applyPostProcess)
+        {
+            var thing = req.Thing;
+            if (thing != null)
+            {
+                // Since the material factor acts like a StatPart, if the holder's skill was taken into account first, it wouldn't affect stuffable weapons
+                if (stat.parts != null)
                 {
-                    part.TransformValue(req, ref val);
+                    foreach (StatPart part in this.stat.parts)
+                    {
+                        part.TransformValue(req, ref val);
+                    }
                 }
-            }
 
-            // Additional stuff multiplier
-            if (thing.Stuff != null)
-            {
-                val *= thing.Stuff.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f;
-            }
-
-            // Factors in the holder's skill
-            var compEq = thing.TryGetComp<CompEquippable>();
-            var holder = compEq?.Holder;
-            if (holder?.equipment?.Primary == thing)
-            {
-                val *= GetHolderToughnessFactor(holder);
-            }
-        }
-    }
-
-    public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
-    {
-        string result = "";
-
-        if (this.stat.parts != null)
-        {
-            foreach (var part in this.stat.parts)
-            {
-                if (!part.ExplanationPart(req).NullOrEmpty())
+                // Additional stuff multiplier
+                if (thing.Stuff != null)
                 {
-                    result += "\n" + part.ExplanationPart(req);
+                    val *= thing.Stuff.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f;
+                }
+
+                // Factors in the holder's skill
+                var compEq = thing.TryGetComp<CompEquippable>();
+                var holder = compEq?.Holder;
+                if (holder?.equipment?.Primary == thing)
+                {
+                    val *= GetHolderToughnessFactor(holder);
                 }
             }
         }
 
-        if (req.Thing.Stuff != null)
+        public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
         {
-            result += "\n" + "CE_StatsReport_WeaponToughness_StuffEffect".Translate() + (req.Thing.Stuff.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f).ToStringPercent();
-        }
+            string result = "";
 
-        if (req.Thing != null)
-        {
-            if (req.Thing?.TryGetComp<CompEquippable>()?.Holder != null)
+            if (this.stat.parts != null)
             {
-                result += "\n" + "CE_StatsReport_WeaponToughness_HolderEffect".Translate() + GetHolderToughnessFactor(req.Thing.TryGetComp<CompEquippable>().Holder).ToStringPercent();
+                foreach (var part in this.stat.parts)
+                {
+                    if (!part.ExplanationPart(req).NullOrEmpty())
+                    {
+                        result += "\n" + part.ExplanationPart(req);
+                    }
+                }
             }
+
+            if (req.Thing.Stuff != null)
+            {
+                result += "\n" + "CE_StatsReport_WeaponToughness_StuffEffect".Translate() + (req.Thing.Stuff.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f).ToStringPercent();
+            }
+
+            if (req.Thing != null)
+            {
+                if (req.Thing?.TryGetComp<CompEquippable>()?.Holder != null)
+                {
+                    result += "\n" + "CE_StatsReport_WeaponToughness_HolderEffect".Translate() + GetHolderToughnessFactor(req.Thing.TryGetComp<CompEquippable>().Holder).ToStringPercent();
+                }
+            }
+
+            result += "\n" + "StatsReport_FinalValue".Translate() + ": " + stat.ValueToString(finalVal, stat.toStringNumberSense);
+
+            return result;
         }
 
-        result += "\n" + "StatsReport_FinalValue".Translate() + ": " + stat.ValueToString(finalVal, stat.toStringNumberSense);
-
-        return result;
-    }
-
-    public override bool ShouldShowFor(StatRequest req)
-    {
-        return Controller.settings.ShowExtraStats && req.HasThing && req.Thing.def.IsWeapon && base.ShouldShowFor(req);
+        public override bool ShouldShowFor(StatRequest req)
+        {
+            return Controller.settings.ShowExtraStats && req.HasThing && req.Thing.def.IsWeapon && base.ShouldShowFor(req);
+        }
     }
 }

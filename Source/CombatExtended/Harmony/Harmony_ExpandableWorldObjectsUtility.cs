@@ -1,79 +1,79 @@
-﻿using RimWorld.Planet;
+﻿using System;
+using RimWorld.Planet;
 using HarmonyLib;
 using Verse;
 using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace CombatExtended.HarmonyCE;
-public static class Harmony_ExpandableWorldObjectsUtility
+namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(ExpandableWorldObjectsUtility), nameof(ExpandableWorldObjectsUtility.ExpandableWorldObjectsOnGUI))]
-    public static class Harmony_ExpandableWorldObjectsOnGUI
+    public static class Harmony_ExpandableWorldObjectsUtility
     {
-        private static List<WorldObject> tmpWorldObjects = new List<WorldObject>();
-
-        private static bool skip = true;
-        private static bool showExpandingIcons;
-        private static float transitionPct;
-
-        private static MethodBase allWorldObjectGetter = AccessTools.PropertyGetter(typeof(WorldObjectsHolder), nameof(WorldObjectsHolder.AllWorldObjects));
-        private static MethodBase getAllWorldObjectCE = AccessTools.Method(typeof(Harmony_ExpandableWorldObjectsOnGUI), nameof(Harmony_ExpandableWorldObjectsOnGUI.GetAllWorldObjectCE));
-
-        public static List<WorldObject> GetAllWorldObjectCE(List<WorldObject> worldObjects)
+        [HarmonyPatch(typeof(ExpandableWorldObjectsUtility), nameof(ExpandableWorldObjectsUtility.ExpandableWorldObjectsOnGUI))]
+        public static class Harmony_ExpandableWorldObjectsOnGUI
         {
-            if (!skip)
-            {
-                return worldObjects.Where(o => o is TravelingShell).ToList();
-            }
-            return worldObjects;
-        }
+            private static List<WorldObject> tmpWorldObjects = new List<WorldObject>();
 
-        [HarmonyPrefix]
-        public static void Prefix()
-        {
-            skip = true;
-            transitionPct = ExpandableWorldObjectsUtility.transitionPct;
-            showExpandingIcons = Find.PlaySettings.showImportantExpandingIcons;
-            if (ExpandableWorldObjectsUtility.RawTransitionPct == 0)
-            {
-                skip = false;
-                ExpandableWorldObjectsUtility.transitionPct = 1.0f;
-                Find.PlaySettings.showImportantExpandingIcons = true;
-            }
-        }
+            private static bool skip = true;
+            private static bool showExpandingIcons;
+            private static float transitionPct;
 
-        [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            var codes = instructions.ToList();
-            bool foundInjection = false;
-            for (int i = 0; i < codes.Count; i++)
+            private static MethodBase allWorldObjectGetter = AccessTools.PropertyGetter(typeof(WorldObjectsHolder), nameof(WorldObjectsHolder.AllWorldObjects));
+            private static MethodBase getAllWorldObjectCE = AccessTools.Method(typeof(Harmony_ExpandableWorldObjectsOnGUI), nameof(Harmony_ExpandableWorldObjectsOnGUI.GetAllWorldObjectCE));
+
+            public static List<WorldObject> GetAllWorldObjectCE(List<WorldObject> worldObjects)
             {
-                if (!foundInjection)
+                if (!skip)
                 {
-                    if (codes[i].opcode == OpCodes.Callvirt && codes[i].OperandIs(allWorldObjectGetter))
-                    {
-                        yield return codes[i];
-                        yield return new CodeInstruction(OpCodes.Call, getAllWorldObjectCE);
-                        foundInjection = true;
-                        continue;
-                    }
+                    return worldObjects.Where(o => o is TravelingShell).ToList();
                 }
-                yield return codes[i];
+                return worldObjects;
             }
-            if (!foundInjection)
-            {
-                Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
-            }
-        }
 
-        [HarmonyPostfix]
-        public static void Postfix()
-        {
-            ExpandableWorldObjectsUtility.transitionPct = transitionPct;
-            Find.PlaySettings.showImportantExpandingIcons = showExpandingIcons;
+            [HarmonyPrefix]
+            public static void Prefix()
+            {
+                skip = true;
+                transitionPct = ExpandableWorldObjectsUtility.transitionPct;
+                showExpandingIcons = Find.PlaySettings.showImportantExpandingIcons;
+                if (ExpandableWorldObjectsUtility.RawTransitionPct == 0)
+                {
+                    skip = false;
+                    ExpandableWorldObjectsUtility.transitionPct = 1.0f;
+                    Find.PlaySettings.showImportantExpandingIcons = true;
+                }
+            }
+
+            [HarmonyTranspiler]
+            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var codes = instructions.ToList();
+                var finished = false;
+                for (int i = 0; i < codes.Count; i++)
+                {
+                    if (!finished)
+                    {
+                        if (codes[i].opcode == OpCodes.Callvirt && codes[i].OperandIs(allWorldObjectGetter))
+                        {
+                            finished = true;
+                            yield return codes[i];
+                            yield return new CodeInstruction(OpCodes.Call, getAllWorldObjectCE);
+                            continue;
+                        }
+                    }
+                    yield return codes[i];
+                }
+            }
+
+            [HarmonyPostfix]
+            public static void Postfix()
+            {
+                ExpandableWorldObjectsUtility.transitionPct = transitionPct;
+                Find.PlaySettings.showImportantExpandingIcons = showExpandingIcons;
+            }
         }
     }
 }

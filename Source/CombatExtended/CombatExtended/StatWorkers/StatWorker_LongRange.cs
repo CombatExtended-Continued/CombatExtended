@@ -7,16 +7,18 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended;
-public class StatWorker_LongRange : StatWorker
+namespace CombatExtended
 {
-    public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
+    public class StatWorker_LongRange : StatWorker
     {
-        float result = ((req.Def as ThingDef)?.GetProjectile()?.projectile as ProjectilePropertiesCE)?.shellingProps?.range ?? 0f;
-        return result;
-    }
-    public override bool ShouldShowFor(StatRequest req)
-    {
-        return this.GetValueUnfinalized(req) > 0f && base.ShouldShowFor(req);
+        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
+        {
+            float result = ((req.Def as ThingDef)?.GetProjectile()?.projectile as ProjectilePropertiesCE)?.shellingProps?.range ?? 0f;
+            return result;
+        }
+        public override bool ShouldShowFor(StatRequest req)
+        {
+            return this.GetValueUnfinalized(req) > 0f && base.ShouldShowFor(req);
+        }
     }
 }

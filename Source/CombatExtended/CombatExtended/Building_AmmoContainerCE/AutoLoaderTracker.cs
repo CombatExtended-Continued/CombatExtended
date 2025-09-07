@@ -7,35 +7,37 @@ using RimWorld;
 using Verse.AI;
 using Verse;
 
-namespace CombatExtended;
-internal class AutoLoaderTracker : MapComponent
+namespace CombatExtended
 {
-    public HashSet<Building_AutoloaderCE> AutoLoaders = new HashSet<Building_AutoloaderCE>();
-
-    public AutoLoaderTracker(Map map) : base(map)
+    internal class AutoLoaderTracker : MapComponent
     {
-    }
+        public HashSet<Building_AutoloaderCE> AutoLoaders = new HashSet<Building_AutoloaderCE>();
 
-    public void Register(Building_AutoloaderCE t)
-    {
-        if (!AutoLoaders.Contains(t))
+        public AutoLoaderTracker(Map map) : base(map)
         {
-            AutoLoaders.Add(t);
         }
-    }
 
-    public void Unregister(Building_AutoloaderCE t)
-    {
-        if (AutoLoaders.Contains(t))
+        public void Register(Building_AutoloaderCE t)
         {
-            AutoLoaders.Remove(t);
+            if (!AutoLoaders.Contains(t))
+            {
+                AutoLoaders.Add(t);
+            }
         }
-    }
-    public Thing ClosestCpmtaomer(IntVec3 position, PathEndMode pathEndMode, TraverseParms parms, float maxDist,
-                               Predicate<Thing> validator = null)
-    {
-        return GenClosest.ClosestThingReachable(
-                   position, map, ThingRequest.ForUndefined(), pathEndMode,
-                   parms, maxDist, validator, AutoLoaders);
+
+        public void Unregister(Building_AutoloaderCE t)
+        {
+            if (AutoLoaders.Contains(t))
+            {
+                AutoLoaders.Remove(t);
+            }
+        }
+        public Thing ClosestCpmtaomer(IntVec3 position, PathEndMode pathEndMode, TraverseParms parms, float maxDist,
+                                   Predicate<Thing> validator = null)
+        {
+            return GenClosest.ClosestThingReachable(
+                       position, map, ThingRequest.ForUndefined(), pathEndMode,
+                       parms, maxDist, validator, AutoLoaders);
+        }
     }
 }

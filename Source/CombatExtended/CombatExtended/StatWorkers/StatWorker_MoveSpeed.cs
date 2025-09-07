@@ -6,96 +6,98 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-class StatWorker_MoveSpeed : StatWorker
+namespace CombatExtended
 {
-    private const float CrouchWalkFactor = 0.67f;   // The factor to apply when crouch-walking
-
-    public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
+    class StatWorker_MoveSpeed : StatWorker
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append(base.GetExplanationUnfinalized(req, numberSense));
-        if (req.HasThing)
+        private const float CrouchWalkFactor = 0.67f;   // The factor to apply when crouch-walking
+
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
-            CompInventory inventoryComp = req.Thing.TryGetComp<CompInventory>();
-            if (inventoryComp != null)
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(base.GetExplanationUnfinalized(req, numberSense));
+            if (req.HasThing)
             {
-                stringBuilder.AppendLine();
-                if (this.stat.defName != "MeleeDodgeChance")
+                CompInventory inventoryComp = req.Thing.TryGetComp<CompInventory>();
+                if (inventoryComp != null)
                 {
-                    stringBuilder.AppendLine("CE_CarriedWeight".Translate() + ": x" + inventoryComp.moveSpeedFactor.ToStringPercent());
+                    stringBuilder.AppendLine();
+                    if (this.stat.defName != "MeleeDodgeChance")
+                    {
+                        stringBuilder.AppendLine("CE_CarriedWeight".Translate() + ": x" + inventoryComp.moveSpeedFactor.ToStringPercent());
+                    }
+                    else
+                    {
+                        stringBuilder.AppendLine("CE_CarriedWeight".Translate() + ": x" + MassBulkUtility.DodgeWeightFactor(inventoryComp.currentWeight, inventoryComp.capacityWeight).ToStringPercent());
+                        stringBuilder.AppendLine("CE_BulkEffect".Translate() + " x" + (MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk) * 100f).ToString() + "%");
+                    }
+                    if (inventoryComp.encumberPenalty > 0)
+                    {
+                        stringBuilder.AppendLine("CE_Encumbered".Translate() + ": -" + inventoryComp.encumberPenalty.ToStringPercent());
+                    }
+                    if (this.stat.defName != "MeleeDodgeChance")
+                    {
+                        stringBuilder.AppendLine("CE_FinalModifier".Translate() + ": x" + (GetStatFactor(req.Thing)).ToStringPercent());
+                    }
                 }
-                else
+
+                var suppressComp = req.Thing.TryGetComp<CompSuppressable>();
+                if (suppressComp != null && suppressComp.IsCrouchWalking)
                 {
-                    stringBuilder.AppendLine("CE_CarriedWeight".Translate() + ": x" + MassBulkUtility.DodgeWeightFactor(inventoryComp.currentWeight, inventoryComp.capacityWeight).ToStringPercent());
-                    stringBuilder.AppendLine("CE_BulkEffect".Translate() + " x" + (MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk) * 100f).ToString() + "%");
-                }
-                if (inventoryComp.encumberPenalty > 0)
-                {
-                    stringBuilder.AppendLine("CE_Encumbered".Translate() + ": -" + inventoryComp.encumberPenalty.ToStringPercent());
-                }
-                if (this.stat.defName != "MeleeDodgeChance")
-                {
-                    stringBuilder.AppendLine("CE_FinalModifier".Translate() + ": x" + (GetStatFactor(req.Thing)).ToStringPercent());
+                    stringBuilder.AppendLine();
+                    stringBuilder.AppendLine(
+                        $"{"CE_CrouchWalking".Translate()}: x{CrouchWalkFactor.ToStringPercent()}");
                 }
             }
 
-            var suppressComp = req.Thing.TryGetComp<CompSuppressable>();
-            if (suppressComp != null && suppressComp.IsCrouchWalking)
-            {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine(
-                    $"{"CE_CrouchWalking".Translate()}: x{CrouchWalkFactor.ToStringPercent()}");
-            }
+            return stringBuilder.ToString();
         }
 
-        return stringBuilder.ToString();
-    }
-
-    public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
-    {
-        float value = base.GetValueUnfinalized(req, applyPostProcess);
-        if (req.HasThing)
+        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            var inventory = req.Thing.TryGetComp<CompInventory>();
-            if (this.stat.defName != "MeleeDodgeChance" && inventory != null)
+            float value = base.GetValueUnfinalized(req, applyPostProcess);
+            if (req.HasThing)
             {
-                value *= GetStatFactor(req.Thing);
-            }
-
-
-
-            if (this.stat.defName == "MeleeDodgeChance" && inventory != null)
-            {
-                value *= MassBulkUtility.DodgeChanceFactor(inventory.currentBulk, inventory.capacityBulk);
-                value *= MassBulkUtility.DodgeWeightFactor(inventory.currentWeight, inventory.capacityWeight);
-                if (inventory.currentWeight > inventory.capacityWeight)
+                var inventory = req.Thing.TryGetComp<CompInventory>();
+                if (this.stat.defName != "MeleeDodgeChance" && inventory != null)
                 {
-                    value -= inventory.encumberPenalty;
+                    value *= GetStatFactor(req.Thing);
+                }
+
+
+
+                if (this.stat.defName == "MeleeDodgeChance" && inventory != null)
+                {
+                    value *= MassBulkUtility.DodgeChanceFactor(inventory.currentBulk, inventory.capacityBulk);
+                    value *= MassBulkUtility.DodgeWeightFactor(inventory.currentWeight, inventory.capacityWeight);
+                    if (inventory.currentWeight > inventory.capacityWeight)
+                    {
+                        value -= inventory.encumberPenalty;
+                    }
                 }
             }
+            return value;
         }
-        return value;
-    }
 
-    private float GetStatFactor(Thing thing)
-    {
-        float factor = 1f;
-
-        // Apply inventory penalties
-        CompInventory inventory = thing.TryGetComp<CompInventory>();
-        if (inventory != null)
+        private float GetStatFactor(Thing thing)
         {
-            factor = Mathf.Clamp(inventory.moveSpeedFactor - inventory.encumberPenalty, 0.5f, 1f);
-        }
+            float factor = 1f;
 
-        // Apply crouch walk penalty
-        var suppressComp = thing.TryGetComp<CompSuppressable>();
-        if (suppressComp?.IsCrouchWalking ?? false)
-        {
-            factor *= CrouchWalkFactor;
-        }
+            // Apply inventory penalties
+            CompInventory inventory = thing.TryGetComp<CompInventory>();
+            if (inventory != null)
+            {
+                factor = Mathf.Clamp(inventory.moveSpeedFactor - inventory.encumberPenalty, 0.5f, 1f);
+            }
 
-        return factor;
+            // Apply crouch walk penalty
+            var suppressComp = thing.TryGetComp<CompSuppressable>();
+            if (suppressComp?.IsCrouchWalking ?? false)
+            {
+                factor *= CrouchWalkFactor;
+            }
+
+            return factor;
+        }
     }
 }

@@ -1,14 +1,16 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace CombatExtended;
-[DefOf]
-public static class CE_LetterDefOf
+namespace CombatExtended
 {
-    static CE_LetterDefOf()
+    [DefOf]
+    public static class CE_LetterDefOf
     {
-        DefOfHelper.EnsureInitializedInCtor(typeof(CE_LetterDefOf));
+        static CE_LetterDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(CE_LetterDefOf));
+        }
+        public static LetterDef CE_ThreatBig;
     }
-    public static LetterDef CE_ThreatBig;
 }
 

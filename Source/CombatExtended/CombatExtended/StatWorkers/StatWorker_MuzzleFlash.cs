@@ -2,26 +2,28 @@
 using RimWorld;
 using Verse;
 
-namespace CombatExtended;
-public class StatWorker_MuzzleFlash : StatWorker
+namespace CombatExtended
 {
-    public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
+    public class StatWorker_MuzzleFlash : StatWorker
     {
-        ThingDef def = req.Thing?.def;
-        if (def != null && def.verbs != null && def.IsRangedWeapon && def.verbs.Count > 0)
+        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            var count = 0;
-            var scale = 0f;
-            foreach (VerbProperties prop in def.verbs)
+            ThingDef def = req.Thing?.def;
+            if (def != null && def.verbs != null && def.IsRangedWeapon && def.verbs.Count > 0)
             {
-                if (!prop.IsMeleeAttack && prop.muzzleFlashScale > 1e-2f)
+                var count = 0;
+                var scale = 0f;
+                foreach (VerbProperties prop in def.verbs)
                 {
-                    scale += prop.muzzleFlashScale;
-                    count++;
+                    if (!prop.IsMeleeAttack && prop.muzzleFlashScale > 1e-2f)
+                    {
+                        scale += prop.muzzleFlashScale;
+                        count++;
+                    }
                 }
+                return scale / count;
             }
-            return scale / count;
+            return 0f;
         }
-        return 0f;
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
-namespace CombatExtended.WorldObjects;
-public interface IWorldCompCE
+namespace CombatExtended.WorldObjects
 {
-    public void ThrottledCompTick();
+    public interface IWorldCompCE
+    {
+        public void ThrottledCompTick();
+    }
 }
 

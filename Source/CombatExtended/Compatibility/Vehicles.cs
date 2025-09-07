@@ -10,21 +10,23 @@ using UnityEngine;
 using RimWorld;
 
 
-namespace CombatExtended.Compatibility;
-public class Vehicles : IPatch
+namespace CombatExtended.Compatibility
 {
-    public bool CanInstall()
+    public class Vehicles : IPatch
     {
-        Log.Message("Combat Extended :: Checking Vehicle Framework");
-        if (!ModLister.HasActiveModWithName("Vehicle Framework"))
+        public bool CanInstall()
         {
-            return false;
+            Log.Message("Combat Extended :: Checking Vehicle Framework");
+            if (!ModLister.HasActiveModWithName("Vehicle Framework"))
+            {
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
 
-    public void Install()
-    {
-        Log.Message("Combat Extended :: Installing Vehicle Framework");
+        public void Install()
+        {
+            Log.Message("Combat Extended :: Installing Vehicle Framework");
+        }
     }
 }

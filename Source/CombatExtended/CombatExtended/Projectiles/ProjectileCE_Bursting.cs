@@ -11,60 +11,61 @@ using CombatExtended.Lasers;
 using ProjectileImpactFX;
 using CombatExtended.Utilities;
 
-namespace CombatExtended;
-class ProjectileCE_Bursting : ProjectileCE
+namespace CombatExtended
 {
-    private int ticksToBurst;
-
-    public override void ExposeData()
+    class ProjectileCE_Bursting : ProjectileCE
     {
-        base.ExposeData();
-        Scribe_Values.Look(ref this.ticksToBurst, "ticksToBurst", -1, false);
-    }
+        private int ticksToBurst;
 
-    public override void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
-    {
-        int armingDelay = 0;
-        if (def.projectile is ProjectilePropertiesCE props)
+        public override void ExposeData()
         {
-            armingDelay = props.armingDelay;
-            this.castShadow = props.castShadow;
-            this.GravityPerWidth = props.GravityPerWidth;
+            base.ExposeData();
+            Scribe_Values.Look(ref this.ticksToBurst, "ticksToBurst", -1, false);
         }
-        if (distance > 0)
-        {
-            float cosine = (float)Math.Cos((double)shotAngle);
 
-            float fuzeTiming = distance / ((shotSpeed / 60) * cosine);
+        public override void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
+        {
+            int armingDelay = 0;
+            if (def.projectile is ProjectilePropertiesCE props)
+            {
+                armingDelay = props.armingDelay;
+                this.castShadow = props.castShadow;
+            }
+            if (distance > 0)
+            {
+                float cosine = (float)Math.Cos((double)shotAngle);
+
+                float fuzeTiming = distance / ((shotSpeed / 60) * cosine);
 #if DEBUG
-            Log.Message("Distance    = " + distance);
-            Log.Message("ShotSpeed   = " + shotSpeed / 60);
-            Log.Message("Cosine      = " + cosine);
-            Log.Message("Fuse timing = " + fuzeTiming);
-            Log.Message("Launched ProjectileCEBursting with ticks to burst = " + fuzeTiming);
+                Log.Message("Distance    = " + distance);
+                Log.Message("ShotSpeed   = " + shotSpeed / 60);
+                Log.Message("Cosine      = " + cosine);
+                Log.Message("Fuse timing = " + fuzeTiming);
+                Log.Message("Launched ProjectileCEBursting with ticks to burst = " + fuzeTiming);
 #endif
 
-            ticksToBurst = (int)fuzeTiming;
-        }
-        if (ticksToBurst < armingDelay)
-        {
-            ticksToBurst = armingDelay;
+                ticksToBurst = (int)fuzeTiming;
+            }
+            if (ticksToBurst < armingDelay)
+            {
+                ticksToBurst = armingDelay;
+            }
+
+            this.shotAngle = shotAngle;
+            this.shotHeight = shotHeight;
+            this.shotRotation = shotRotation;
+            this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            this.ticksToTruePosition = (def.projectile as ProjectilePropertiesCE).TickToTruePos;
+            Launch(launcher, origin, equipment);
         }
 
-        this.shotAngle = shotAngle;
-        this.shotHeight = shotHeight;
-        this.shotRotation = shotRotation;
-        this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
-        this.ticksToTruePosition = (def.projectile as ProjectilePropertiesCE).TickToTruePos;
-        Launch(launcher, origin, equipment);
-    }
-
-    public override void Tick()
-    {
-        base.Tick();
-        if (--this.ticksToBurst == 0 && !Destroyed)
+        public override void Tick()
         {
-            base.Impact(null);
+            base.Tick();
+            if (--this.ticksToBurst == 0)
+            {
+                base.Impact(null);
+            }
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using RimWorld;
 using Verse.AI;
 
-namespace CombatExtended;
-public class MentalState_CombatFrenzy : MentalState
+namespace CombatExtended
 {
-    public override RandomSocialMode SocialModeMax()
+    public class MentalState_CombatFrenzy : MentalState
     {
-        return RandomSocialMode.Off;
+        public override RandomSocialMode SocialModeMax()
+        {
+            return RandomSocialMode.Off;
+        }
     }
 }

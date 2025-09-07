@@ -6,41 +6,43 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-public class SecondaryDamage
+namespace CombatExtended
 {
-    private const float SecExplosionPenPerDmg = 0.8f; // 2x ExplosiveArmorPenetrationMultiplier
-
-    public DamageDef def;
-    public int amount;
-    public float chance = 1f;
-
-    public DamageInfo GetDinfo()
+    public class SecondaryDamage
     {
-        return new DamageInfo(def, amount);
-    }
+        private const float SecExplosionPenPerDmg = 0.8f; // 2x ExplosiveArmorPenetrationMultiplier
 
-    public DamageInfo GetDinfo(DamageInfo primaryDinfo)
-    {
-        var penetration = 0f;
-        if (def.isExplosive)
+        public DamageDef def;
+        public int amount;
+        public float chance = 1f;
+
+        public DamageInfo GetDinfo()
         {
-            penetration = amount * SecExplosionPenPerDmg;
-        }
-        else if (def.armorCategory == DamageArmorCategoryDefOf.Sharp)
-        {
-            penetration = primaryDinfo.ArmorPenetrationInt;
+            return new DamageInfo(def, amount);
         }
 
-        var dinfo = new DamageInfo(def,
-                                   amount,
-                                   penetration,
-                                   primaryDinfo.Angle,
-                                   primaryDinfo.Instigator,
-                                   primaryDinfo.HitPart,
-                                   primaryDinfo.Weapon,
-                                   instigatorGuilty: primaryDinfo.InstigatorGuilty);
-        dinfo.SetBodyRegion(primaryDinfo.Height, primaryDinfo.Depth);
-        return dinfo;
+        public DamageInfo GetDinfo(DamageInfo primaryDinfo)
+        {
+            var penetration = 0f;
+            if (def.isExplosive)
+            {
+                penetration = amount * SecExplosionPenPerDmg;
+            }
+            else if (def.armorCategory == DamageArmorCategoryDefOf.Sharp)
+            {
+                penetration = primaryDinfo.ArmorPenetrationInt;
+            }
+
+            var dinfo = new DamageInfo(def,
+                                       amount,
+                                       penetration,
+                                       primaryDinfo.Angle,
+                                       primaryDinfo.Instigator,
+                                       primaryDinfo.HitPart,
+                                       primaryDinfo.Weapon,
+                                       instigatorGuilty: primaryDinfo.InstigatorGuilty);
+            dinfo.SetBodyRegion(primaryDinfo.Height, primaryDinfo.Depth);
+            return dinfo;
+        }
     }
 }

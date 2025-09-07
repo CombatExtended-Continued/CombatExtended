@@ -2,20 +2,22 @@
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended;
-class JobGiver_HunkerDown : ThinkNode_JobGiver
+namespace CombatExtended
 {
-    public override Job TryGiveJob(Pawn pawn)
+    class JobGiver_HunkerDown : ThinkNode_JobGiver
     {
-        //if (pawn.TryGetComp<CompSuppressable>().isHunkering && pawn.GetPosture() != PawnPosture.Standing)
-        //{
-        //    return null;
-        //}
-
-        if (!pawn.Position.Standable(pawn.Map) && !pawn.Position.ContainsStaticFire(pawn.Map))
+        public override Job TryGiveJob(Pawn pawn)
         {
-            return null;
+            //if (pawn.TryGetComp<CompSuppressable>().isHunkering && pawn.GetPosture() != PawnPosture.Standing)
+            //{
+            //    return null;
+            //}
+
+            if (!pawn.Position.Standable(pawn.Map) && !pawn.Position.ContainsStaticFire(pawn.Map))
+            {
+                return null;
+            }
+            return JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
         }
-        return JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
     }
 }

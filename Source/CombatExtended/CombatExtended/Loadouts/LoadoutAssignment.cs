@@ -5,35 +5,37 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace CombatExtended;
-public class LoadoutAssignment : IExposable
+namespace CombatExtended
 {
-    #region Fields
-
-    internal Loadout loadout;
-    internal Pawn pawn;
-
-    #endregion Fields
-
-    public bool Valid
+    public class LoadoutAssignment : IExposable
     {
-        get
+        #region Fields
+
+        internal Loadout loadout;
+        internal Pawn pawn;
+
+        #endregion Fields
+
+        public bool Valid
         {
-            return ((pawn != null) && (loadout != null));
+            get
+            {
+                return ((pawn != null) && (loadout != null));
+            }
         }
-    }
 
-    #region Methods
+        #region Methods
 
-    public void ExposeData()
-    {
-        Scribe_References.Look( ref pawn, "pawn" );
-        Scribe_References.Look( ref loadout, "loadout" );
+        public void ExposeData()
+        {
+            Scribe_References.Look( ref pawn, "pawn" );
+            Scribe_References.Look( ref loadout, "loadout" );
 
 #if DEBUG
-        Log.Message( Scribe.mode + ", pawn: " + ( pawn == null ? "NULL" : pawn.NameStringShort ) + ", loadout: " + ( loadout == null ? "NULL" : loadout.label ) );
+            Log.Message( Scribe.mode + ", pawn: " + ( pawn == null ? "NULL" : pawn.NameStringShort ) + ", loadout: " + ( loadout == null ? "NULL" : loadout.label ) );
 #endif
-    }
+        }
 
-    #endregion Methods
+        #endregion Methods
+    }
 }

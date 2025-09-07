@@ -6,33 +6,35 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace CombatExtended;
-public class StatPart_Bulk : StatPart
+namespace CombatExtended
 {
-    public bool ValidReq(StatRequest req)
+    public class StatPart_Bulk : StatPart
     {
-        return req.HasThing && inv(req) != null;
-    }
-
-    public CompInventory inv(StatRequest req)
-    {
-        return req.Thing.TryGetComp<CompInventory>();
-    }
-
-    public override string ExplanationPart(StatRequest req)
-    {
-        if (ValidReq(req))
+        public bool ValidReq(StatRequest req)
         {
-            return "CE_BulkEffect".Translate() + " x" + (MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk) * 100f) + "%";
+            return req.HasThing && inv(req) != null;
         }
-        return null;
-    }
 
-    public override void TransformValue(StatRequest req, ref float val)
-    {
-        if (ValidReq(req))
+        public CompInventory inv(StatRequest req)
         {
-            val *= MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk);
+            return req.Thing.TryGetComp<CompInventory>();
+        }
+
+        public override string ExplanationPart(StatRequest req)
+        {
+            if (ValidReq(req))
+            {
+                return "CE_BulkEffect".Translate() + " x" + (MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk) * 100f) + "%";
+            }
+            return null;
+        }
+
+        public override void TransformValue(StatRequest req, ref float val)
+        {
+            if (ValidReq(req))
+            {
+                val *= MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk);
+            }
         }
     }
 }

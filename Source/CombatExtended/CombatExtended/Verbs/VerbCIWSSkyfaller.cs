@@ -7,27 +7,29 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended;
-public class VerbCIWSSkyfaller : VerbCIWS<Skyfaller>
+namespace CombatExtended
 {
-    public override IEnumerable<Skyfaller> Targets => Caster.Map?.listerThings.ThingsInGroup(Verse.ThingRequestGroup.ActiveTransporter).OfType<Skyfaller>();
-
-
-    protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(Caster));
-    protected override IEnumerable<Vector3> PredictPositions(Skyfaller target, int maxTicks)
+    public class VerbCIWSSkyfaller : VerbCIWS<Skyfaller>
     {
-        return target.PredictPositions(maxTicks);
-    }
+        public override IEnumerable<Skyfaller> Targets => Caster.Map?.listerThings.ThingsInGroup(Verse.ThingRequestGroup.ActiveTransporter).OfType<Skyfaller>();
 
-}
-public class VerbProperties_CIWSSkyfaller : VerbProperties_CIWS
-{
-    public VerbProperties_CIWSSkyfaller()
-    {
-        this.verbClass = typeof(VerbCIWSSkyfaller);
-        this.holdFireIcon = "UI/Buttons/CE_CIWS_Skyfaller";
-        this.holdFireLabel = "HoldCloseInSkyfallersFire";
-        this.holdFireDesc = "HoldCloseInSkyfallersFireDesc";
+
+        protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(Caster));
+        protected override IEnumerable<Vector3> PredictPositions(Skyfaller target, int maxTicks)
+        {
+            return target.PredictPositions(maxTicks);
+        }
+
     }
-    protected override IEnumerable<ThingDef> InitAllTargets() => DefDatabase<ThingDef>.AllDefsListForReading.Where(x => (typeof(Skyfaller).IsAssignableFrom(x.thingClass) && typeof(IActiveTransporter).IsAssignableFrom(x.thingClass)));
+    public class VerbProperties_CIWSSkyfaller : VerbProperties_CIWS
+    {
+        public VerbProperties_CIWSSkyfaller()
+        {
+            this.verbClass = typeof(VerbCIWSSkyfaller);
+            this.holdFireIcon = "UI/Buttons/CE_CIWS_Skyfaller";
+            this.holdFireLabel = "HoldCloseInSkyfallersFire";
+            this.holdFireDesc = "HoldCloseInSkyfallersFireDesc";
+        }
+        protected override IEnumerable<ThingDef> InitAllTargets() => DefDatabase<ThingDef>.AllDefsListForReading.Where(x => (typeof(Skyfaller).IsAssignableFrom(x.thingClass) && typeof(IActiveTransporter).IsAssignableFrom(x.thingClass)));
+    }
 }

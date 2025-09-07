@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CombatExtended.Lasers;
-public interface IBeamColorThing
+namespace CombatExtended.Lasers
 {
-    int BeamColor
+    public interface IBeamColorThing
     {
-        get;
-        set;
+        int BeamColor
+        {
+            get;
+            set;
+        }
     }
 }

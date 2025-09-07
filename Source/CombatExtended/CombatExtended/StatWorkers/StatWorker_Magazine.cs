@@ -6,73 +6,75 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 using HarmonyLib;
-namespace CombatExtended;
-public class StatWorker_Magazine : StatWorker
+namespace CombatExtended
 {
-    public CompAmmoUser compAmmo;
-
-    private ThingDef GunDef(StatRequest req)
+    public class StatWorker_Magazine : StatWorker
     {
-        var def = req.Def as ThingDef;
+        public CompAmmoUser compAmmo;
 
-        if (def?.building?.IsTurret ?? false)
+        private ThingDef GunDef(StatRequest req)
         {
-            def = def.building.turretGunDef;
+            var def = req.Def as ThingDef;
+
+            if (def?.building?.IsTurret ?? false)
+            {
+                def = def.building.turretGunDef;
+            }
+
+            return def;
         }
 
-        return def;
-    }
-
-    public override bool ShouldShowFor(StatRequest req)
-    {
-        return base.ShouldShowFor(req) && (GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0) > 0;
-    }
-
-    public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
-    {
-        compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
-        if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+        public override bool ShouldShowFor(StatRequest req)
         {
-            return compAmmo.Props.magazineSize;
+            return base.ShouldShowFor(req) && (GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0) > 0;
         }
-        float size = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
-        return size;
-    }
 
-    public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        var ammoProps = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>();
-        stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(GetMagSize(req), ToStringStyle.Integer));
-        stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate());
-        return stringBuilder.ToString().TrimEndNewlines();
-    }
+        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
+        {
+            compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
+            if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+            {
+                return compAmmo.Props.magazineSize;
+            }
+            float size = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
+            return size;
+        }
 
-    public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
-    {
-        if (!optionalReq.HasThing)
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
-            var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
-            return ammoProps.magazineSize.ToString() + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
+            StringBuilder stringBuilder = new StringBuilder();
+            var ammoProps = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>();
+            stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(GetMagSize(req), ToStringStyle.Integer));
+            stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate());
+            return stringBuilder.ToString().TrimEndNewlines();
         }
-        else
-        {
-            var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
-            return GetMagSize(optionalReq).ToString() + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
-        }
-    }
 
-    private int GetMagSize(StatRequest req)
-    {
-        compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
-        if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
-            return compAmmo.Props.magazineSize;
+            if (!optionalReq.HasThing)
+            {
+                var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
+                return ammoProps.magazineSize.ToString() + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
+            }
+            else
+            {
+                var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
+                return GetMagSize(optionalReq).ToString() + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
+            }
         }
-        if (req.HasThing)
+
+        private int GetMagSize(StatRequest req)
         {
-            return (int)(compAmmo?.MagSize ?? req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity));
+            compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
+            if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+            {
+                return compAmmo.Props.magazineSize;
+            }
+            if (req.HasThing)
+            {
+                return (int)(compAmmo?.MagSize ?? req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity));
+            }
+            return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
         }
-        return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
     }
 }

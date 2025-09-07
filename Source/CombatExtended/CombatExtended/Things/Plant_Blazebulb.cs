@@ -6,53 +6,55 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended;
-class Plant_Blazebulb : Plant
+namespace CombatExtended
 {
-    private const int IgnitionTemp = 28;                    // Temperature (in Celsius) above which the plant will start catching fire
-
-    public override void SpawnSetup(Map map, bool respawningAfterLoad)
+    class Plant_Blazebulb : Plant
     {
-        base.SpawnSetup(map, respawningAfterLoad);
-        PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_ObtainingPrometheum, KnowledgeAmount.Total);
-    }
+        private const int IgnitionTemp = 28;                    // Temperature (in Celsius) above which the plant will start catching fire
 
-    public override void TickLong()
-    {
-        base.TickLong();
-        if (Destroyed)
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            return;
+            base.SpawnSetup(map, respawningAfterLoad);
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_ObtainingPrometheum, KnowledgeAmount.Total);
         }
-        float temperature = Position.GetTemperature(base.Map);
-        if (temperature > IgnitionTemp)
+
+        public override void TickLong()
         {
-            float ignitionChance = 0.005f * Mathf.Pow((temperature - IgnitionTemp), 2);
-            if (Rand.Value < ignitionChance)
+            base.TickLong();
+            if (Destroyed)
             {
-                FireUtility.TryStartFireIn(Position, base.Map, 0.1f, this);
+                return;
+            }
+            float temperature = Position.GetTemperature(base.Map);
+            if (temperature > IgnitionTemp)
+            {
+                float ignitionChance = 0.005f * Mathf.Pow((temperature - IgnitionTemp), 2);
+                if (Rand.Value < ignitionChance)
+                {
+                    FireUtility.TryStartFireIn(Position, base.Map, 0.1f, this);
+                }
             }
         }
-    }
 
-    public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
-    {
-        if (dinfo.Def != DamageDefOf.Rotting && SpawnedOrAnyParentSpawned)
+        public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
-            // Find existing fuel puddle or spawn one if needed
-            Thing fuel = PositionHeld.GetThingList(MapHeld).FirstOrDefault(x => x.def == CE_ThingDefOf.FilthPrometheum);
-            int fuelHpFromDamage = Mathf.CeilToInt(CE_ThingDefOf.FilthPrometheum.BaseMaxHitPoints * Mathf.Clamp01(totalDamageDealt / MaxHitPoints));
-            if (fuel != null)
+            if (dinfo.Def != DamageDefOf.Rotting && SpawnedOrAnyParentSpawned)
             {
-                fuel.HitPoints = Mathf.Min(fuel.MaxHitPoints, fuel.HitPoints + fuelHpFromDamage);
+                // Find existing fuel puddle or spawn one if needed
+                Thing fuel = PositionHeld.GetThingList(MapHeld).FirstOrDefault(x => x.def == CE_ThingDefOf.FilthPrometheum);
+                int fuelHpFromDamage = Mathf.CeilToInt(CE_ThingDefOf.FilthPrometheum.BaseMaxHitPoints * Mathf.Clamp01(totalDamageDealt / MaxHitPoints));
+                if (fuel != null)
+                {
+                    fuel.HitPoints = Mathf.Min(fuel.MaxHitPoints, fuel.HitPoints + fuelHpFromDamage);
+                }
+                else
+                {
+                    fuel = ThingMaker.MakeThing(CE_ThingDefOf.FilthPrometheum);
+                    GenSpawn.Spawn(fuel, PositionHeld, MapHeld);
+                    fuel.HitPoints = fuelHpFromDamage;
+                }
             }
-            else
-            {
-                fuel = ThingMaker.MakeThing(CE_ThingDefOf.FilthPrometheum);
-                GenSpawn.Spawn(fuel, PositionHeld, MapHeld);
-                fuel.HitPoints = fuelHpFromDamage;
-            }
+            base.PostApplyDamage(dinfo, totalDamageDealt);
         }
-        base.PostApplyDamage(dinfo, totalDamageDealt);
     }
 }

@@ -7,88 +7,86 @@ using Verse;
 using System.Reflection.Emit;
 using System;
 
-namespace CombatExtended.HarmonyCE.Compatibility;
-[HarmonyPatch]
-class Harmony_Compat_BBBodySupport
+namespace CombatExtended.HarmonyCE.Compatibility
 {
-    static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: ";
-    static Assembly ass = AppDomain.CurrentDomain.GetAssemblies().
-                          SingleOrDefault(assembly => assembly.
-                                          GetName().Name == "BBBodySupport");
-
-    private static bool IsHeadwear(ApparelLayerDef layer)
+    [HarmonyPatch]
+    class Harmony_Compat_BBBodySupport
     {
-        return layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false;
-    }
+        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: ";
+        static Assembly ass = AppDomain.CurrentDomain.GetAssemblies().
+                              SingleOrDefault(assembly => assembly.
+                                              GetName().Name == "BBBodySupport");
 
-    static bool Prepare()
-    {
-        if (ass?.FullName.Contains("BBBodySupport") ?? false)
+        private static bool IsHeadwear(ApparelLayerDef layer)
         {
-            return true;
+            return layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false;
         }
-        return false;
-    }
 
-    static IEnumerable<MethodBase> TargetMethods()
-    {
-        var found = false;
-        foreach (var t in ass.GetTypes())
+        static bool Prepare()
         {
-            foreach (var m in AccessTools.GetDeclaredMethods(t))
+            if (ass?.FullName.Contains("BBBodySupport") ?? false)
             {
-                if (m.Name.Contains("BBBody_ApparelPatch") || m.Name.Contains("BBBody_ApparelZombiefiedPatch"))
-                {
-                    found = true;
-                    yield return m;
-                }
+                return true;
             }
+            return false;
         }
-        if (found)
-        {
-            Log.Message($"{logPrefix}Applying compatibility patch for {ass.FullName}");
-        }
-    }
 
-    static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-    {
-        bool ready = false;
-        bool foundInjection = false;
-
-        List<CodeInstruction> patch = new List<CodeInstruction>
+        static IEnumerable<MethodBase> TargetMethods()
         {
-            new CodeInstruction(OpCodes.Ldarg_0),
-            new CodeInstruction(OpCodes.Ldind_Ref),
-            new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), nameof(Thing.def))),
-            new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.apparel))),
-            new CodeInstruction(OpCodes.Callvirt, AccessTools.Property(typeof(ApparelProperties), nameof(ApparelProperties.LastLayer)).GetGetMethod()),
-            new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Compat_BBBodySupport), nameof(IsHeadwear))),
-            new CodeInstruction(OpCodes.Brtrue)
-        };
-
-        foreach (var code in instructions)
-        {
-            yield return code;
-            if (!foundInjection)
+            var found = false;
+            foreach (var t in ass.GetTypes())
             {
-                if (code.opcode == OpCodes.Ldsfld)
+                foreach (var m in AccessTools.GetDeclaredMethods(t))
                 {
-                    ready = true;
-                }
-                if (ready && code.opcode == OpCodes.Beq_S)
-                {
-                    patch.Last().operand = code.operand;
-                    foreach (var c in patch)
+                    if (m.Name.Contains("BBBody_ApparelPatch") || m.Name.Contains("BBBody_ApparelZombiefiedPatch"))
                     {
-                        yield return c;
+                        found = true;
+                        yield return m;
                     }
-                    foundInjection = true;
                 }
             }
+            if (found)
+            {
+                Log.Message($"{logPrefix}Applying compatibility patch for {ass.FullName}");
+            }
         }
-        if (!foundInjection)
+
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            bool patched = false;
+            bool ready = false;
+
+            List<CodeInstruction> patch = new List<CodeInstruction>
+            {
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Ldind_Ref),
+                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), nameof(Thing.def))),
+                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.apparel))),
+                new CodeInstruction(OpCodes.Callvirt, AccessTools.Property(typeof(ApparelProperties), nameof(ApparelProperties.LastLayer)).GetGetMethod()),
+                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Compat_BBBodySupport), nameof(IsHeadwear))),
+                new CodeInstruction(OpCodes.Brtrue)
+            };
+
+            foreach (var code in instructions)
+            {
+                yield return code;
+                if (!patched)
+                {
+                    if (code.opcode == OpCodes.Ldsfld)
+                    {
+                        ready = true;
+                    }
+                    if (ready && code.opcode == OpCodes.Beq_S)
+                    {
+                        patch.Last().operand = code.operand;
+                        foreach (var c in patch)
+                        {
+                            yield return c;
+                        }
+                        patched = true;
+                    }
+                }
+            }
         }
     }
 }

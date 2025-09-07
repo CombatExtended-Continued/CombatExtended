@@ -7,25 +7,27 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended;
-public class CompCIWSTarget_Skyfaller : CompCIWSTarget
+namespace CombatExtended
 {
-    public override IEnumerable<Vector3> PredictedPositions
+    public class CompCIWSTarget_Skyfaller : CompCIWSTarget
     {
-        get
+        public override IEnumerable<Vector3> PredictedPositions
         {
-            Skyfaller skyfaller = parent as Skyfaller;
-            int end = skyfaller.ticksToImpact;
-            if (skyfaller.def.skyfaller.reversed)
+            get
             {
-                end = skyfaller.LeaveMapAfterTicks - end;
+                Skyfaller skyfaller = parent as Skyfaller;
+                int end = skyfaller.ticksToImpact;
+                if (skyfaller.def.skyfaller.reversed)
+                {
+                    end = skyfaller.LeaveMapAfterTicks - end;
+                }
+                return skyfaller.PredictPositions(end);
             }
-            return skyfaller.PredictPositions(end);
         }
-    }
 
-    public override bool IsFriendlyTo(Thing caster)
-    {
-        return (parent as Skyfaller).ContainedThings().All(x => !x.HostileTo(caster));
+        public override bool IsFriendlyTo(Thing caster)
+        {
+            return (parent as Skyfaller).ContainedThings().All(x => !x.HostileTo(caster));
+        }
     }
 }

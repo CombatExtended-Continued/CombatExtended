@@ -7,12 +7,14 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 
-namespace CombatExtended;
-class ThinkNode_ConditionalHunkering : ThinkNode_Conditional
+namespace CombatExtended
 {
-    public override bool Satisfied(Pawn pawn)
+    class ThinkNode_ConditionalHunkering : ThinkNode_Conditional
     {
-        CompSuppressable comp = pawn.TryGetComp<CompSuppressable>();
-        return comp != null && comp.CanReactToSuppression && comp.IsHunkering;
+        public override bool Satisfied(Pawn pawn)
+        {
+            CompSuppressable comp = pawn.TryGetComp<CompSuppressable>();
+            return comp != null && comp.CanReactToSuppression && comp.IsHunkering;
+        }
     }
 }

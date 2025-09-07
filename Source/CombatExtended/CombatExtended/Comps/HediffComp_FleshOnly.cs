@@ -1,13 +1,15 @@
 ﻿using Verse;
 
-namespace CombatExtended;
-public class HediffComp_FleshOnly : HediffComp
+namespace CombatExtended
 {
-    public override void CompPostPostAdd(DamageInfo? dinfo)
+    public class HediffComp_FleshOnly : HediffComp
     {
-        if (!Pawn.RaceProps.IsFlesh)
+        public override void CompPostPostAdd(DamageInfo? dinfo)
         {
-            parent.Severity = 0;
+            if (!Pawn.RaceProps.IsFlesh)
+            {
+                parent.Severity = 0;
+            }
         }
     }
 }

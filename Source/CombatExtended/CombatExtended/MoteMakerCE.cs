@@ -2,28 +2,30 @@
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended;
-public static class MoteMakerCE
+namespace CombatExtended
 {
-    public static void ThrowText(Vector3 loc, Map map, string text, float timeBeforeStartFadeout = -1f)
+    public static class MoteMakerCE
     {
-        if (map == null)
+        public static void ThrowText(Vector3 loc, Map map, string text, float timeBeforeStartFadeout = -1f)
         {
-            return;
+            if (map == null)
+            {
+                return;
+            }
+            Rand.PushState();
+            MoteMaker.ThrowText(loc, map, text, timeBeforeStartFadeout);
+            Rand.PopState();
         }
-        Rand.PushState();
-        MoteMaker.ThrowText(loc, map, text, timeBeforeStartFadeout);
-        Rand.PopState();
-    }
 
-    public static void ThrowText(Vector3 loc, Map map, string text, Color color, float timeBeforeStartFadeout = -1f)
-    {
-        if (map == null)
+        public static void ThrowText(Vector3 loc, Map map, string text, Color color, float timeBeforeStartFadeout = -1f)
         {
-            return;
+            if (map == null)
+            {
+                return;
+            }
+            Rand.PushState();
+            MoteMaker.ThrowText(loc, map, text, color, timeBeforeStartFadeout);
+            Rand.PopState();
         }
-        Rand.PushState();
-        MoteMaker.ThrowText(loc, map, text, color, timeBeforeStartFadeout);
-        Rand.PopState();
     }
 }

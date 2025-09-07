@@ -1,11 +1,13 @@
 ﻿using System;
 using Verse;
 
-namespace CombatExtended;
-public class CompProperties_TacticalManager : CompProperties
+namespace CombatExtended
 {
-    public CompProperties_TacticalManager()
+    public class CompProperties_TacticalManager : CompProperties
     {
-        compClass = typeof(CompTacticalManager);
+        public CompProperties_TacticalManager()
+        {
+            compClass = typeof(CompTacticalManager);
+        }
     }
 }

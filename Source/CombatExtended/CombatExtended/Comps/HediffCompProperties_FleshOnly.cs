@@ -1,10 +1,12 @@
 ﻿using Verse;
 
-namespace CombatExtended;
-public class HediffCompProperties_FleshOnly : HediffCompProperties
+namespace CombatExtended
 {
-    public HediffCompProperties_FleshOnly()
+    public class HediffCompProperties_FleshOnly : HediffCompProperties
     {
-        compClass = typeof(HediffComp_FleshOnly);
+        public HediffCompProperties_FleshOnly()
+        {
+            compClass = typeof(HediffComp_FleshOnly);
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Verse;
 
-namespace CombatExtended;
-public class ApparelLayerExtension : DefModExtension
+namespace CombatExtended
 {
-    public bool IsHeadwear;
+    public class ApparelLayerExtension : DefModExtension
+    {
+        public bool IsHeadwear;
+    }
 }

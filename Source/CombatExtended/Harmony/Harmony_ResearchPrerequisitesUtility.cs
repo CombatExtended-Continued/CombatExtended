@@ -3,17 +3,19 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended;
-[HarmonyPatch(typeof(ResearchPrerequisitesUtility), nameof(ResearchPrerequisitesUtility.UnlockedDefsGroupedByPrerequisites))]
-public class Harmony_ResearchPrerequisitesUtility
+namespace CombatExtended
 {
-    public static List<Pair<ResearchPrerequisitesUtility.UnlockedHeader, List<Def>>> Postfix(List<Pair<ResearchPrerequisitesUtility.UnlockedHeader, List<Def>>> input)
+    [HarmonyPatch(typeof(ResearchPrerequisitesUtility), nameof(ResearchPrerequisitesUtility.UnlockedDefsGroupedByPrerequisites))]
+    public class Harmony_ResearchPrerequisitesUtility
     {
-        foreach (var pair in input)
+        public static List<Pair<ResearchPrerequisitesUtility.UnlockedHeader, List<Def>>> Postfix(List<Pair<ResearchPrerequisitesUtility.UnlockedHeader, List<Def>>> input)
         {
-            pair.second.RemoveWhere(x => x is AmmoDef ammoDef && ammoDef.menuHidden);
+            foreach (var pair in input)
+            {
+                pair.second.RemoveWhere(x => x is AmmoDef ammoDef && ammoDef.menuHidden);
+            }
+            input.RemoveWhere(x => x.second.NullOrEmpty());
+            return input;
         }
-        input.RemoveWhere(x => x.second.NullOrEmpty());
-        return input;
     }
 }

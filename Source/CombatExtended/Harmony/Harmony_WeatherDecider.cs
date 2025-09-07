@@ -4,19 +4,21 @@ using System.Reflection.Emit;
 using Harmony;
 using RimWorld;
 
-namespace CombatExtended.Harmony;
-[HarmonyPatch(typeof(WeatherDecider), "CurrentWeatherCommonality")]
-internal static class Harmony_WeatherDecider
+namespace CombatExtended.Harmony
 {
-    internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    [HarmonyPatch(typeof(WeatherDecider), "CurrentWeatherCommonality")]
+    internal static class Harmony_WeatherDecider
     {
-        foreach (var code in instructions)
+        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            if (code.opcode == OpCodes.Ldc_R4 && code.operand is float operand && operand == 15f)
+            foreach (var code in instructions)
             {
-                code.operand = 15f;
+                if (code.opcode == OpCodes.Ldc_R4 && code.operand is float operand && operand == 15f)
+                {
+                    code.operand = 15f;
+                }
+                yield return code;
             }
-            yield return code;
         }
     }
 }
