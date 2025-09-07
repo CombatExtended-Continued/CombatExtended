@@ -119,7 +119,7 @@ public class HediffComp_InfecterCE : HediffComp
         {
             var room = Pawn.GetRoom();
             _tendedOutside = room == null || room.OutdoorsForWork;
-            _infectionModifier *= _tendedOutside || room == null ? RoomStatDefOf.InfectionChanceFactor.roomlessScore : RoomStatDefOf.InfectionChanceFactor.Worker.GetScore(room);
+            _infectionModifier *= _tendedOutside ? RoomStatDefOf.InfectionChanceFactor.roomlessScore : RoomStatDefOf.InfectionChanceFactor.Worker.GetScore(room);
         }
     }
 }
