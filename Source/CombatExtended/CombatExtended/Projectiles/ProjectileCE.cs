@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
@@ -709,9 +709,10 @@ public abstract class ProjectileCE : ThingWithComps
                 shieldPosition,
                 radius,
                 out Vector3[] sect,
-                // Don't normalize away the 3D component of the projectile position when checking for collisions
-                // between indirect fire projectiles and shields that protect against them
-                // (e.g. mortar shells targeting a high-shield).
+                /* Don't normalize away the 3D component of the projectile position when checking for collisions
+                 * between indirect fire projectiles and shields that protect against them
+                 * (e.g. mortar shells targeting a high-shield).
+                */
                 spherical: interceptorComp.Props.interceptAirProjectiles && def.projectile.flyOverhead
         ))
         {
@@ -747,28 +748,28 @@ public abstract class ProjectileCE : ThingWithComps
             }
         }
 
-            // Handle Biotech's new shields used e.g. on the Centurion mech, which, unlike mech cluster shields, can only take
-            // a finite amount of damage before breaking.
-            // This simply mirrors the corresponding vanilla logic - we apply the incoming damage from our projectile to the shield
-            // and break it if we manage to decrease its hitpoints to zero or lower.
-            if (interceptorComp.currentHitPoints > 0)
+        // Handle Biotech's new shields used e.g. on the Centurion mech, which, unlike mech cluster shields, can only take
+        // a finite amount of damage before breaking.
+        // This simply mirrors the corresponding vanilla logic - we apply the incoming damage from our projectile to the shield
+        // and break it if we manage to decrease its hitpoints to zero or lower.
+        if (interceptorComp.currentHitPoints > 0)
+        {
+            float shieldDamage = this.DamageAmount * Props.shieldDamageMultiplier;
+            int totalShieldDamage = Mathf.FloorToInt(shieldDamage);
+            if (Rand.Value > shieldDamage - damageAmount)
             {
-                float shieldDamage = this.DamageAmount * Props.shieldDamageMultiplier;
-                int totalShieldDamage = Mathf.FloorToInt(shieldDamage);
-                if (Rand.Value > shieldDamage - damageAmount)
-                {
-                    totalShieldDamage++;
-                }
-                interceptorComp.currentHitPoints -= totalShieldDamage;
-
-                if (interceptorComp.currentHitPoints <= 0)
-                {
-                    interceptorComp.currentHitPoints = 0;
-                    interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
-                    interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, shieldDamage));
-                    return true;
-                }
+                totalShieldDamage++;
             }
+            interceptorComp.currentHitPoints -= totalShieldDamage;
+
+            if (interceptorComp.currentHitPoints <= 0)
+            {
+                interceptorComp.currentHitPoints = 0;
+                interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
+                interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, shieldDamage));
+                return true;
+            }
+        }
 
         Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
         eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptorThing.Map, false), TargetInfo.Invalid);
