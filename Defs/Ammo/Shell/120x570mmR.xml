@@ -2,8 +2,8 @@
 <Defs>
 
 	<ThingCategoryDef>
-		<defName>Ammo120mmCannonShells</defName>
-		<label>120mm cannon shell</label>
+		<defName>Ammo120x570mmRCannonShells</defName>
+		<label>120x570mmR cannon shell</label>
 		<parent>AmmoShells</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
 	</ThingCategoryDef>
@@ -11,21 +11,21 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_120mmCannonShell</defName>
-		<label>120mm cannon shells</label>
+		<defName>AmmoSet_120x570mmRCannonShell</defName>
+		<label>120x570mmR cannon shells</label>
 		<ammoTypes>
-			<Ammo_120mmCannonShell_HEAT>Bullet_120mmCannonShell_HEAT</Ammo_120mmCannonShell_HEAT>
-			<Ammo_120mmCannonShell_HE>Bullet_120mmCannonShell_HE</Ammo_120mmCannonShell_HE>
+			<Ammo_120x570mmRCannonShell_HEAT>Bullet_120x570mmRCannonShell_HEAT</Ammo_120x570mmRCannonShell_HEAT>
+			<Ammo_120x570mmRCannonShell_HE>Bullet_120x570mmRCannonShell_HE</Ammo_120x570mmRCannonShell_HE>
 		</ammoTypes>
 		<similarTo>AmmoSet_HeavyCannon</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="120mmCannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="120x570mmRCannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
 		<description>Large cannon shells, typically used by 120mm smoothbore tank guns.</description>
 		<thingCategories>
-			<li>Ammo120mmCannonShells</li>
+			<li>Ammo120x570mmRCannonShells</li>
 		</thingCategories>
 		<stackLimit>25</stackLimit>
 		<tradeTags>
@@ -41,31 +41,31 @@
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="120mmCannonShellBase">
-		<defName>Ammo_120mmCannonShell_HEAT</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="120x570mmRCannonShellBase">
+		<defName>Ammo_120x570mmRCannonShell_HEAT</defName>
 		<label>120x570mmR cannon shell (HEAT)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Tank/HEATFS</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>RocketHEAT</ammoClass>
-		<detonateProjectile>Bullet_120mmCannonShell_HEAT</detonateProjectile>
+		<detonateProjectile>Bullet_120x570mmRCannonShell_HEAT</detonateProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="120mmCannonShellBase">
-		<defName>Ammo_120mmCannonShell_HE</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="120x570mmRCannonShellBase">
+		<defName>Ammo_120x570mmRCannonShell_HE</defName>
 		<label>120x570mmR cannon shell (HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Tank/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>GrenadeHE</ammoClass>
-		<detonateProjectile>Bullet_120mmCannonShell_HE</detonateProjectile>
+		<detonateProjectile>Bullet_120x570mmRCannonShell_HE</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base120mmCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
+	<ThingDef Name="Base120x570mmRCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -78,8 +78,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base120mmCannonShell">
-		<defName>Bullet_120mmCannonShell_HEAT</defName>
+	<ThingDef ParentName="Base120x570mmRCannonShell">
+		<defName>Bullet_120x570mmRCannonShell_HEAT</defName>
 		<label>120x570mmR cannon shell (HEAT)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Cannon/HEAT</texPath>
@@ -108,8 +108,8 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base120mmCannonShell">
-		<defName>Bullet_120mmCannonShell_HE</defName>
+	<ThingDef ParentName="Base120x570mmRCannonShell">
+		<defName>Bullet_120x570mmRCannonShell_HE</defName>
 		<label>120x570mmR cannon shell (HE)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
@@ -137,7 +137,7 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="CannonAmmoRecipeBase">
-		<defName>MakeAmmo_120mmCannonShell_HEAT</defName>
+		<defName>MakeAmmo_120x570mmRCannonShell_HEAT</defName>
 		<label>make 120x570mmR (HEAT) cannon shells x2</label>
 		<description>Craft 2 120x570mmR (HEAT) cannon shells.</description>
 		<jobString>Making 120x570mmR (HEAT) cannon shells.</jobString>
@@ -181,12 +181,12 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_120mmCannonShell_HEAT>2</Ammo_120mmCannonShell_HEAT>
+			<Ammo_120x570mmRCannonShell_HEAT>2</Ammo_120x570mmRCannonShell_HEAT>
 		</products>
 	</RecipeDef>
 
 	<RecipeDef ParentName="CannonAmmoRecipeBase">
-		<defName>MakeAmmo_120mmCannonShell_HE</defName>
+		<defName>MakeAmmo_120x570mmRCannonShell_HE</defName>
 		<label>make 120x570mmR (HE) cannon shells x2</label>
 		<description>Craft 2 120x570mmR (HE) cannon shells.</description>
 		<jobString>Making 120x570mmR (HE) cannon shells.</jobString>
@@ -225,7 +225,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_120mmCannonShell_HE>2</Ammo_120mmCannonShell_HE>
+			<Ammo_120x570mmRCannonShell_HE>2</Ammo_120x570mmRCannonShell_HE>
 		</products>
 	</RecipeDef>
 
