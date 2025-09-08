@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="AA_FrostWeb" or
+			defName="AA_FireWeb" or
+			defName="AA_AcidicWeb" or
+			defName="AA_ElectricBolt" or
+			defName="AA_FrostBolt"
+			]/thingClass
+		</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="AA_PoisonBolt" or
+			defName="AA_Web" or
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="AA_Bullet_Rock" or
+			defName="AA_IncendiaryMote" or
+			defName="AA_FrostBolt"
+			]/thingClass 
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+
+	<!-- =============== Now defining Projectiles in CE Procedure ============= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AI_Web"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>Stun</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<speed>15</speed>
+				<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AI_PoisonBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>AA_ToxicBolt</damageDef>
+				<damageAmountBase>9</damageAmountBase>
+				<speed>25</speed>
+				<armorPenetrationSharp>2.3</armorPenetrationSharp>
+				<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+
+</Patch>
