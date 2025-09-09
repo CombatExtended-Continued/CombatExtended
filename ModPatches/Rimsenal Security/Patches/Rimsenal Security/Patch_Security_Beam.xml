@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Beam Graser ========== -->
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/statBases/RangedWeapon_Cooldown</xpath>
+				<value>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/statBases/AccuracyTouch</xpath>
+				<value>
+					<AccuracyTouch>1</AccuracyTouch>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/statBases/AccuracyShort</xpath>
+				<value>
+					<AccuracyShort>1</AccuracyShort>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/statBases/AccuracyMedium</xpath>
+				<value>
+					<AccuracyMedium>1</AccuracyMedium>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/statBases/AccuracyLong</xpath>
+				<value>
+					<AccuracyLong>1</AccuracyLong>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/verbs/li/warmupTime</xpath>
+				<value>
+					<warmupTime>1</warmupTime>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/verbs/li/range</xpath>
+				<value>
+					<range>55</range>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/verbs/li/burstShotCount</xpath>
+				<value>
+					<burstShotCount>125</burstShotCount>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/verbs/li/beamMaxDeviation</xpath>
+				<value>
+					<beamMaxDeviation>0.5</beamMaxDeviation>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/verbs/li/ticksBetweenBurstShots</xpath>
+				<value>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Gun_GraserTurret"]/verbs/li/beamWidth</xpath>
+				<value>
+					<beamWidth>12.5</beamWidth>
+				</value>
+			</li>
+
+			<!--========== Common to all Sentry Turrets ========== -->
+
+			<li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Odyssey, Ludeon.RimWorld.Biotech">
+				<xpath>Defs/ThingDef[defName="Turret_Graser"]/statBases </xpath>
+				<value>
+					<AimingAccuracy>1.0</AimingAccuracy>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
