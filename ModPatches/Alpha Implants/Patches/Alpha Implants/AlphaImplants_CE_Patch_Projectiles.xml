@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-			defName="AA_FrostWeb" or
-			defName="AA_FireWeb" or
-			defName="AA_AcidicWeb" or
-			defName="AA_ElectricBolt" or
-			defName="AA_FrostBolt"
-			]/thingClass
+		<xpath>Defs/ThingDef[defName="AI_ElectricBolt"]/thingClass
 		</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName="AA_PoisonBolt" or
-			defName="AA_Web" or
+			defName="AI_PoisonBolt" or
+			defName="AI_AcidBolt" or
+			defName="AI_Quill" or			
+			defName="AI_Web" or
+			defName="AI_Plasma"]
 		</xpath>
 		<value>
 			<thingClass>CombatExtended.BulletCE</thingClass>
 		</value>
 	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="AA_Bullet_Rock" or
-			defName="AA_IncendiaryMote" or
-			defName="AA_FrostBolt"
-			]/thingClass 
-		</xpath>
-		<value>
-			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		</value>
-	</Operation>
-
 
 	<!-- =============== Now defining Projectiles in CE Procedure ============= -->
 
@@ -56,7 +41,7 @@
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<flyOverhead>false</flyOverhead>
-				<damageDef>AA_ToxicBolt</damageDef>
+				<damageDef>AI_ToxicBolt</damageDef>
 				<damageAmountBase>9</damageAmountBase>
 				<speed>25</speed>
 				<armorPenetrationSharp>2.3</armorPenetrationSharp>
@@ -65,5 +50,29 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AI_AcidBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>AI_AcidSpit</damageDef>
+				<damageAmountBase>5</damageAmountBase>
+				<speed>36</speed>
+				<armorPenetrationSharp>7</armorPenetrationSharp>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AI_ElectricBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>AI_Electric</damageDef>
+				<damageAmountBase>12</damageAmountBase>
+				<speed>50</speed>
+			</projectile>
+		</value>
+	</Operation>
 
 </Patch>
