@@ -133,10 +133,7 @@
 	<!-- ========== Medium Mechs ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[
-		@Name="CGM_WorkerMechMedium" or 
-		@Name="CGM_CombatMechMedium"
-		]</xpath>
+		<xpath>Defs/ThingDef[@Name="CGM_WorkerMechMedium" or @Name="CGM_CombatMechMedium"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -145,10 +142,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-		@Name="CGM_WorkerMechMedium" or 
-		@Name="CGM_CombatMechMedium"
-		]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[@Name="CGM_WorkerMechMedium" or @Name="CGM_CombatMechMedium"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>8</ArmorRating_Sharp>
 		</value>
@@ -169,10 +163,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-		@Name="CGM_WorkerMechMedium" or 
-		@Name="CGM_CombatMechMedium"
-		]/tools</xpath>
+		<xpath>Defs/ThingDef[@Name="CGM_WorkerMechMedium" or @Name="CGM_CombatMechMedium"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -278,231 +269,227 @@
 		<mods>
 			<li>Anomaly</li>
 		</mods>
-
 		<match Class="PatchOperationSequence">
 			<operations>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="CGM_AnomalyMech"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>8</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="CGM_AnomalyMech"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="CGM_AnomalyMech"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0</ArmorRating_Heat>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="CGM_AnomalyMech"]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>8</ArmorRating_Sharp>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="CGM_AnomalyMech"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>12</ArmorRating_Blunt>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="CGM_AnomalyMech"]/statBases/ArmorRating_Heat</xpath>
-					<value>
-						<ArmorRating_Heat>0</ArmorRating_Heat>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="CGM_AnomalyMech"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>left blade</label>
-								<capacities>
-									<li>Cut</li>
-								</capacities>
-								<power>30</power>
-								<cooldownTime>2.07</cooldownTime>
-								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-								<armorPenetrationSharp>2.16</armorPenetrationSharp>
-								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
-								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>right blade</label>
-								<capacities>
-									<li>Cut</li>
-								</capacities>
-								<power>30</power>
-								<cooldownTime>2.07</cooldownTime>
-								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-								<armorPenetrationSharp>2.16</armorPenetrationSharp>
-								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
-								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>6</power>
-								<cooldownTime>5.9</cooldownTime>
-								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<chanceFactor>0.2</chanceFactor>
-								<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="CGM_AnomalyMech"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>30</power>
+							<cooldownTime>2.07</cooldownTime>
+							<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+							<armorPenetrationSharp>2.16</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>30</power>
+							<cooldownTime>2.07</cooldownTime>
+							<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+							<armorPenetrationSharp>2.16</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>5.9</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
 			</operations>
 		</match>
 	</Operation>
 
-	
 	<!-- ========== Anomaly Mech ========== -->
 	
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Anomaly</li>
 		</mods>
-
 		<match Class="PatchOperationSequence">
 			<operations>
-					<li Class="PatchOperationAddModExtension">
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+							<canParry>true</canParry>
+							<maxParry>8</maxParry>
+						</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/statBases</xpath>
+					<value>
+						<MeleeCritChance>0.48</MeleeCritChance>
+						<MeleeParryChance>0.52</MeleeParryChance>
+						<CarryBulk>30</CarryBulk>
+						<MaxHitPoints>500</MaxHitPoints>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>28</ArmorRating_Sharp>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>70</ArmorRating_Blunt>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/statBases/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>7.5</EnergyShieldEnergyMax>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>61</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>11.25</armorPenetrationSharp>
+								<armorPenetrationBlunt>8.44</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>61</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>11.25</armorPenetrationSharp>
+								<armorPenetrationBlunt>8.44</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>44</power>
+								<cooldownTime>1.48</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>40.50</armorPenetrationSharp>
+								<armorPenetrationBlunt>16.2</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>44</power>
+								<cooldownTime>1.48</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>40.50</armorPenetrationSharp>
+								<armorPenetrationBlunt>16.2</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>toxic bite</label>
+								<capacities>
+									<li>ToxicBite</li>
+								</capacities>
+								<power>41</power>
+								<cooldownTime>1.48</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>40.50</armorPenetrationSharp>
+								<armorPenetrationBlunt>16.2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]</xpath>
 						<value>
-							<li Class="CombatExtended.RacePropertiesExtensionCE">
-								<bodyShape>Humanoid</bodyShape>
-								<canParry>true</canParry>
-								<maxParry>8</maxParry>
-							</li>
+							<comps />
 						</value>
-					</li>
-					
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/statBases</xpath>
-						<value>
-							<MeleeCritChance>0.48</MeleeCritChance>
-							<MeleeParryChance>0.52</MeleeParryChance>
-							<CarryBulk>30</CarryBulk>
-							<MaxHitPoints>500</MaxHitPoints>
-						</value>
-					</li>
-					
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/statBases/ArmorRating_Sharp</xpath>
-						<value>
-							<ArmorRating_Sharp>28</ArmorRating_Sharp>
-						</value>
-					</li>
-					
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/statBases/ArmorRating_Blunt</xpath>
-						<value>
-							<ArmorRating_Blunt>70</ArmorRating_Blunt>
-						</value>
-					</li>
-					
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/statBases/EnergyShieldEnergyMax</xpath>
-						<value>
-							<EnergyShieldEnergyMax>7.5</EnergyShieldEnergyMax>
-						</value>
-					</li>
+					</nomatch>
+				</li>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>left claw</label>
-									<capacities>
-										<li>Cut</li>
-									</capacities>
-									<power>61</power>
-									<cooldownTime>1.65</cooldownTime>
-									<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-									<armorPenetrationSharp>11.25</armorPenetrationSharp>
-									<armorPenetrationBlunt>8.44</armorPenetrationBlunt>
-									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>right claw</label>
-									<capacities>
-										<li>Cut</li>
-									</capacities>
-									<power>61</power>
-									<cooldownTime>1.65</cooldownTime>
-									<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-									<armorPenetrationSharp>11.25</armorPenetrationSharp>
-									<armorPenetrationBlunt>8.44</armorPenetrationBlunt>
-									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>left claw</label>
-									<capacities>
-										<li>Stab</li>
-									</capacities>
-									<power>44</power>
-									<cooldownTime>1.48</cooldownTime>
-									<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-									<armorPenetrationSharp>40.50</armorPenetrationSharp>
-									<armorPenetrationBlunt>16.2</armorPenetrationBlunt>
-									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>right claw</label>
-									<capacities>
-										<li>Stab</li>
-									</capacities>
-									<power>44</power>
-									<cooldownTime>1.48</cooldownTime>
-									<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-									<armorPenetrationSharp>40.50</armorPenetrationSharp>
-									<armorPenetrationBlunt>16.2</armorPenetrationBlunt>
-									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>toxic bite</label>
-									<capacities>
-										<li>ToxicBite</li>
-									</capacities>
-									<power>41</power>
-									<cooldownTime>1.48</cooldownTime>
-									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-									<armorPenetrationSharp>40.50</armorPenetrationSharp>
-									<armorPenetrationBlunt>16.2</armorPenetrationBlunt>
-								</li>
-							</tools>
-						</value>
-					</li>
-
-					<li Class="PatchOperationConditional">
-						<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/comps</xpath>
-						<nomatch Class="PatchOperationAdd">
-							<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</nomatch>
-					</li>
-
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/comps</xpath>
-						<value>
-							<li Class="CombatExtended.CompProperties_ArmorDurability">
-								<Durability>2500</Durability>
-								<Regenerates>true</Regenerates>
-								<RegenInterval>1250</RegenInterval>
-								<RegenValue>250</RegenValue>
-								<Repairable>true</Repairable>
-								<RepairIngredients>
-									<Steel>5</Steel>
-									<Bioferrite>5</Bioferrite>
-								</RepairIngredients>
-								<RepairTime>300</RepairTime>
-								<RepairValue>500</RepairValue>
-								<MinArmorPct>0.5</MinArmorPct>
-							</li>
-						</value>
-					</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CGM_MechMaidZombie"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>250</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Bioferrite>5</Bioferrite>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>500</RepairValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
 
 			</operations>
 		</match>
 	</Operation>
-
 
 </Patch>
