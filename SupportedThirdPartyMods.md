@@ -159,6 +159,7 @@ Call of Duty: Wonder Weapons |
 Carbon	|
 Censored Armory  |
 Charge-Loading Lee-Enfield  |
+Chougou Mechs   |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Colonial Shuttle |
