@@ -41,27 +41,52 @@
 			</tools>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_Scattergun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
 
 	<!-- ========== Beam Repeater ========== -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_BeamRepeater</defName>
 		<statBases>
-			<Mass>3.50</Mass>
-			<Bulk>10.00</Bulk>
-			<SwayFactor>1.35</SwayFactor>
-			<ShotSpread>0.06</ShotSpread>
+			<Mass>10.00</Mass>
+			<Bulk>9.50</Bulk>
+			<SwayFactor>1.95</SwayFactor>
+			<ShotSpread>0.10</ShotSpread>
 			<SightsEfficiency>1.10</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.10</RangedWeapon_Cooldown>
+			<WorkToMake>80500</WorkToMake>
 		</statBases>
+		<costList>
+			<Steel>80</Steel>
+			<Plasteel>80</Plasteel>
+			<ComponentSpacer>3</ComponentSpacer>
+		</costList>
 		<Properties>
 			<recoilAmount>0.01</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_Laser_BeamRepeater</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>25</range>
-			<burstShotCount>6</burstShotCount>
+			<warmupTime>2.0</warmupTime>
+			<range>40</range>
+			<burstShotCount>25</burstShotCount>
 			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
 			<soundCast>Shot_BeamRepeater</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
@@ -71,14 +96,14 @@
 			</targetParams>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>60</magazineSize>
+			<magazineSize>300</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_LaserRifle</ammoSet>
+			<ammoSet>AmmoSet_BeamRepeater</ammoSet>
+			<AmmoGenPerMagOverride>100</AmmoGenPerMagOverride>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>True</aiUseBurstMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aimedBurstShotCount>10</aimedBurstShotCount>
 		</FireModes>
 	</Operation>
 
