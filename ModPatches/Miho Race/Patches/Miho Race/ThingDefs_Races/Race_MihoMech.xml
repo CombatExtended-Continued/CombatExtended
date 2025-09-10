@@ -104,7 +104,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]</xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex" or defName="Miho_Mech_DesertSphexExplosion"]</xpath>
 		<value>
 			<comps>
 				<li Class="CombatExtended.CompProperties_ArmorDurability">
@@ -126,7 +126,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex" or defName="Miho_Mech_DesertSphexExplosion"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.65</MeleeDodgeChance>
 			<MeleeCritChance>0.05</MeleeCritChance>
@@ -137,7 +137,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex" or defName="Miho_Mech_DesertSphexExplosion"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -169,6 +169,21 @@
 			<ArmorRating_Blunt>6</ArmorRating_Blunt>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphexExplosion"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphexExplosion"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Miho_Mech_Bulgasal" or defName="Miho_Mech_BulgasalGrenade"]/comps</xpath>
