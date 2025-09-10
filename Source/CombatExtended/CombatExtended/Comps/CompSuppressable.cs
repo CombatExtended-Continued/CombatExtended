@@ -121,7 +121,7 @@ public class CompSuppressable : ThingComp
     {
         get
         {
-             if (currentSuppression > (SuppressionThreshold * 10) || (ticksHunkered > 0 && ticksHunkered < hunkeringMinDuration))
+            if (currentSuppression > (SuppressionThreshold * 10) || (ticksHunkered > 0 && ticksHunkered < hunkeringMinDuration))
             {
                 if (isSuppressed)
                 {
