@@ -100,6 +100,20 @@ public class CompInventory : ThingComp
             return MassBulkUtility.DodgeWeightFactor(currentWeight, capacityWeight);
         }
     }
+    public float meleeHitChanceFactorBulk
+    {
+        get
+        {
+            return MassBulkUtility.HitChanceBulkFactor(currentBulk, capacityBulk);
+        }
+    }
+    public float dodgeChanceFactorBulk
+    {
+        get
+        {
+            return MassBulkUtility.DodgeChanceFactor(currentBulk, capacityBulk);
+        }
+    }
     public float workSpeedFactor
     {
         get

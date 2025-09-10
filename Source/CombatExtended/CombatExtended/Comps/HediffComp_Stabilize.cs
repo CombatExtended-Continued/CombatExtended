@@ -86,7 +86,7 @@ public class HediffComp_Stabilize : HediffComp
         // Increase bleed modifier once per second
         if (stabilized && bleedModifier < 1 && parent.pawn.IsHashIntervalTick(60, delta))
         {
-            bleedModifier = bleedModifier + bleedIncreasePerSec * delta;
+            bleedModifier = bleedModifier + bleedIncreasePerSec;
             if (bleedModifier >= 1)
             {
                 bleedModifier = 1;

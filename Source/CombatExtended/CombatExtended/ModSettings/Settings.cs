@@ -31,10 +31,13 @@ public class Settings : ModSettings, ISettingsCE
     private bool enableCIWS = false;
 
     private bool showExtraTooltips = false;
+    private bool detailedMeleeTooltip = false;
 
     private bool showExtraStats = false;
 
     private bool fragmentsFromWalls = false;
+    private bool fragmentsFromWallsReflected = false;
+    private float fragmentsFromWallsIntensity = 1.0f;
 
     private bool midBurstRetarget = true;
     private bool fasterRepeatShots = true;
@@ -63,6 +66,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool PartialStat => partialstats;
     public bool EnableExtraEffects => enableExtraEffects;
     public bool ShowExtraTooltips => showExtraTooltips;
+    public bool DetailedMeleeTooltip => detailedMeleeTooltip;
 
     public bool ShowExtraStats => showExtraStats;
     public bool EnableCIWS => enableCIWS;
@@ -138,6 +142,8 @@ public class Settings : ModSettings, ISettingsCE
     public bool EnablePawnKindAutopatcher => enablePawnKindAutopatcher;
 
     public bool FragmentsFromWalls => fragmentsFromWalls;
+    public bool FragmentsFromWallsReflected => fragmentsFromWallsReflected;
+    public float FragmentsFromWallsIntensity => fragmentsFromWallsIntensity;
 
     public bool FasterRepeatShots => fasterRepeatShots;
     public bool MidBurstRetarget => midBurstRetarget;
@@ -180,6 +186,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref partialstats, "PartialArmor", true);
         Scribe_Values.Look(ref enableExtraEffects, "enableExtraEffects", true);
         Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
+        Scribe_Values.Look(ref detailedMeleeTooltip, "detailedMeleeTooltip", false);
         Scribe_Values.Look(ref enableArcOfFire, "enableArcOfFire", false);
 
         Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
@@ -224,6 +231,8 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref autosetup, "autosetup", true);
 
         Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
+        Scribe_Values.Look(ref fragmentsFromWallsReflected, "fragmentsFromWallsReflected", false);
+        Scribe_Values.Look(ref fragmentsFromWallsIntensity, "fragmentsFromWallsIntensity", 1.0f);
         Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
         Scribe_Values.Look(ref midBurstRetarget, "midBurstRetarget", true);
         Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
@@ -279,6 +288,9 @@ public class Settings : ModSettings, ISettingsCE
         left.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
+        left.CheckboxLabeled("CE_Settings_FragmentsFromWallsReflected_Title".Translate(), ref fragmentsFromWallsReflected, "CE_Settings_FragmentsFromWallsReflected_Desc".Translate());
+        left.Gap();
+        fragmentsFromWallsIntensity = left.SliderLabeled("CE_Settings_FragmentsFromWallsIntensity_Title".Translate() + ": " + fragmentsFromWallsIntensity.ToString("0.0"), fragmentsFromWallsIntensity, 0.1f, 2f, tooltip: "CE_Settings_FragmentsFromWallsIntensity_Desc".Translate(), labelPct: 0.6f);
         left.GapLine();
         left.Label("CE_Settings_BipodSettings".Translate());
         left.Gap();
@@ -354,6 +366,7 @@ public class Settings : ModSettings, ISettingsCE
         list.Gap();
         list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
+        list.CheckboxLabeled("CE_Settings_DetailedMeleeTooltip_Title".Translate(), ref detailedMeleeTooltip, "CE_Settings_DetailedMeleeTooltip_Desc".Translate());
         list.Gap();
         list.GapLine();
         list.Gap();
@@ -459,6 +472,8 @@ public class Settings : ModSettings, ISettingsCE
         midBurstRetarget = true;
         enableCIWS = true;
         fragmentsFromWalls = false;
+        fragmentsFromWallsReflected = false;
+        fragmentsFromWallsIntensity = 1.0f;
         enableArcOfFire = false;
         mergeExplosions = true;
         explosionPenMultiplier = 1.0f;
@@ -495,7 +510,7 @@ public class Settings : ModSettings, ISettingsCE
         // Extra Tooltips
         showExtraTooltips = false;
         showExtraStats = false;
-
+        detailedMeleeTooltip = false;
         // AutoPatcher Settings
         debugAutopatcherLogger = false;
         enableApparelAutopatcher = false;

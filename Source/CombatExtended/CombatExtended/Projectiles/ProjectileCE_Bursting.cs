@@ -29,6 +29,7 @@ class ProjectileCE_Bursting : ProjectileCE
         {
             armingDelay = props.armingDelay;
             this.castShadow = props.castShadow;
+            this.GravityPerWidth = props.GravityPerWidth;
         }
         if (distance > 0)
         {
@@ -61,7 +62,7 @@ class ProjectileCE_Bursting : ProjectileCE
     public override void Tick()
     {
         base.Tick();
-        if (--this.ticksToBurst == 0)
+        if (--this.ticksToBurst == 0 && !Destroyed)
         {
             base.Impact(null);
         }

@@ -367,6 +367,10 @@ public class Loadout : IExposable, ILoadReferenceable, IComparable
         _parent = null;
         // slots
         Scribe_Collections.Look(ref _slots, "slots", LookMode.Deep);
+        if (Scribe.mode == LoadSaveMode.PostLoadInit)
+        {
+            _slots?.RemoveAll(slot => slot == null || (slot.thingDef == null && slot.genericDef == null));
+        }
     }
 
     public string GetUniqueLoadID()
