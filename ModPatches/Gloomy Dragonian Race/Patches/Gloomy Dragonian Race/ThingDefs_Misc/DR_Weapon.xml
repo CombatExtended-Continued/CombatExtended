@@ -182,5 +182,41 @@
 			<MeleeDodgeChance>0.40</MeleeDodgeChance>
 		</value>
 	</Operation>
+	
+	<!-- ========== Great bow ========== -->
 
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DR_GreatBow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2.25</SwayFactor>
+			<Bulk>9.00</Bulk>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<Mass>15</Mass>
+		</statBases>
+		<costList>
+			<WoodLog>40</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Pilum_Fired</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>40</range>
+			<soundCast>DRBowSound</soundCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_Javelins</ammoSet>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
+		</AmmoUser>
+		<FireModes />
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
 </Patch>
