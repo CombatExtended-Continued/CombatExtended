@@ -147,7 +147,7 @@ public class Verb_LaunchProjectileCE : Verb
 
     public virtual CompAmmoUser CompAmmo => compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
 
-    public override float EffectiveRange => base.EffectiveRange * (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_RangeMultiplier) ?? 1f);
+    public override float EffectiveRange => Mathf.Max(0, base.EffectiveRange * (1f + (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_RangeMultiplier) - 1f ?? 0f) + (projectilePropsCE?.effectiveRangeMultiplier - 1f ?? 0f)) + (projectilePropsCE?.effectiveRangeOffset ?? 0f));
 
     public virtual ThingDef Projectile
     {
@@ -203,7 +203,7 @@ public class Verb_LaunchProjectileCE : Verb
     {
         get
         {
-            float recoil = VerbPropsCE.recoilAmount * EquipmentSource?.GetStatValue(CE_StatDefOf.CE_RangedWeapon_RecoilMultiplier) ?? 1f;
+            float recoil = Mathf.Max(0, VerbPropsCE.recoilAmount * (1f + (EquipmentSource?.GetStatValue(CE_StatDefOf.CE_RangedWeapon_RecoilMultiplier) - 1f ?? 0f) + (projectilePropsCE?.recoilMultiplier - 1f ?? 0f)) + (projectilePropsCE?.recoilOffset ?? 0f));
             WeaponPlatform platform = this.WeaponPlatform;
             if (platform != null)
             {
@@ -233,7 +233,7 @@ public class Verb_LaunchProjectileCE : Verb
     public bool MidBurst => numShotsFired > 0;
     protected virtual bool LockRotationAndAngle => !didRetarget && MidBurst;
 
-    public override float WarmupTime => base.WarmupTime * (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_WarmupMultiplier) ?? 1f);
+    public override float WarmupTime => Mathf.Max(0, base.WarmupTime * (1f + (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_WarmupMultiplier) - 1f ?? 0f) + (projectilePropsCE?.warmupMultiplier - 1f ?? 0f)) + (projectilePropsCE?.warmupOffset ?? 0f));
 
     #endregion
 
@@ -1190,7 +1190,7 @@ public class Verb_LaunchProjectileCE : Verb
         /*
          * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
          */
-        LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: VerbPropsCE.muzzleFlashScale);
+        LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: Mathf.Max(0, VerbPropsCE.muzzleFlashScale * projectilePropsCE.muzzleFlashMultiplier + projectilePropsCE.muzzleFlashOffset));
         pelletMechanicsOnly = false;
         numShotsFired++;
         if (ShooterPawn != null)

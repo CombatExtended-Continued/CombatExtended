@@ -96,6 +96,38 @@ public static class AmmoUtility
         {
             stringBuilder.AppendLine("   " + "CE_DescSpreadMult".Translate() + ": " + props.spreadMult.ToStringByStyle(ToStringStyle.PercentZero));
         }
+        if (props.recoilMultiplier != 1)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescRecoilMult".Translate() + ": " + props.recoilMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+        if (props.recoilOffset != 0)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescRecoilOffset".Translate() + ": " + props.recoilOffset.ToStringByStyle(ToStringStyle.FloatMaxOne));
+        }
+        if (props.effectiveRangeMultiplier != 1)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescEffectiveRangeMult".Translate() + ": " + props.effectiveRangeMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+        if (props.effectiveRangeOffset != 0)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescEffectiveRangeOffset".Translate() + ": " + props.effectiveRangeOffset.ToStringByStyle(ToStringStyle.FloatMaxOne));
+        }
+        if (props.warmupMultiplier != 1)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescWarmupMult".Translate() + ": " + props.warmupMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+        if (props.warmupOffset != 0)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescWarmupOffset".Translate() + ": " + props.warmupOffset.ToStringByStyle(ToStringStyle.FloatMaxOne));
+        }
+        if (props.muzzleFlashMultiplier != 1)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescMuzzleFlashMult".Translate() + ": " + props.muzzleFlashMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+        if (props.muzzleFlashOffset != 0)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescMuzzleFlashOffset".Translate() + ": " + props.muzzleFlashOffset.ToStringByStyle(ToStringStyle.FloatMaxOne));
+        }
 
         // Fragments
         var fragmentComp = projectileDef.GetCompProperties<CompProperties_Fragments>();

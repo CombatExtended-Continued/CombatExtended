@@ -658,7 +658,16 @@ public static class CE_Utility
         {
             return;
         }
-        float recoil = ((VerbPropertiesCE)shootVerb.verbProps).recoilAmount;
+
+        float recoil = 0f;
+        if (shootVerb is Verb_LaunchProjectileCE verbCE)
+        {
+            recoil = verbCE.RecoilAmount;
+        }
+        else
+        {
+            recoil = ((VerbPropertiesCE)shootVerb.verbProps).recoilAmount;
+        }
 
         float recoilRelaxation = shootVerb.verbProps.burstShotCount > 1 ? shootVerb.verbProps.ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
 
