@@ -1140,7 +1140,7 @@ public class Verb_LaunchProjectileCE : Verb
             projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
             projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
 
-            if (EquipmentSource.TryGetComp(out CompUniqueWeapon comp))
+            if (EquipmentSource?.TryGetComp(out CompUniqueWeapon comp) ?? false)
             {
                 foreach (WeaponTraitDef trait in comp.TraitsListForReading)
                 {
