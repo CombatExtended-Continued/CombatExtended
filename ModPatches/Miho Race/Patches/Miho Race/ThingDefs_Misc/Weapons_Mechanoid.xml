@@ -4,7 +4,7 @@
 	<!-- ========== Remove other verbs =========== -->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Miho_MechWeapon_Heavygrenade"]/verbs/li[@Class="TorgueMiho.Verb_Properties_ShotGun"] </xpath>
+		<xpath>Defs/ThingDef[defName="Miho_MechWeapon_Heavygrenade"]/verbs/li[@Class="MihoLib.VerbProperties_ShotGun"] </xpath>
 	</Operation>
 	
 	<!-- ========== Rifle =========== -->
@@ -119,6 +119,10 @@
 			<li>CE_AI_Launcher</li>
 			<li>NoSwitch</li>
 		</weaponTags>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[ defName="Miho_MechWeapon_Rocket" ]/verbs/li[@Class="MihoLib.VerbProperties_ShotGun"]</xpath>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -247,7 +251,7 @@
 	</Operation>
 	<!--Miho_MechWeapon_Cluster-->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[ defName="Miho_MechWeapon_CluRocket" ]/verbs/li[@Class="TorgueMiho.Verb_Properties_ShotGun"]</xpath>
+		<xpath>Defs/ThingDef[ defName="Miho_MechWeapon_CluRocket" ]/verbs/li[@Class="MihoLib.VerbProperties_ShotGun"]</xpath>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -335,6 +339,46 @@
 		</Properties>
 		<AmmoUser>
 			<magazineSize>100</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_132x92mmSRTuF</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- ========== HMG Alt =========== -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_MechWeapon_Miclic</defName>
+		<statBases>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>1.51</SwayFactor>
+			<Bulk>55</Bulk>
+			<Mass>100</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.85</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_132x92mmSRTuF_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<range>75</range>
+			<soundCast>Miho_SevenSevenRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>150</magazineSize>
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_132x92mmSRTuF</ammoSet>
 		</AmmoUser>
