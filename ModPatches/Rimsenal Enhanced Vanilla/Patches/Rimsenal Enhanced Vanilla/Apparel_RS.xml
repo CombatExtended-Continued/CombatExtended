@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="ApparelMakeableBase">
+    <defName>Apparel_TacVest</defName>
+    <label>tactical vest</label>
+    <description>An ergonomically designed suit of body armor that enhances the wearer’s combat effectiveness.</description>
+    <techLevel>Spacer</techLevel>
+    <graphicData> <texPath>Things/Apparel/TacVest</texPath>
+    <graphicClass>Graphic_Single</graphicClass> </graphicData>
+    <statBases>
+      <Mass>3</Mass>
+      <WorkToMake>15000</WorkToMake>
+      <MaxHitPoints>290</MaxHitPoints>
+      <ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.15</ArmorRating_Heat>
+      <Insulation_Cold>1</Insulation_Cold>
+      <EquipDelay>4</EquipDelay>
+    </statBases>
+    <thingCategories>
+      <li>ApparelArmor</li>
+    </thingCategories>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <researchPrerequisite>ComplexClothing</researchPrerequisite>
+      <recipeUsers Inherit="False">
+        <li>FabricationBench</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>7</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+		<equippedStatOffsets>
+			<WorkSpeedGlobal>0.05</WorkSpeedGlobal>
+			<AimingDelayFactor>-0.08</AimingDelayFactor>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<MoveSpeed>0.05</MoveSpeed>
+		</equippedStatOffsets>
+    <costList>
+      <ComponentSpacer>1</ComponentSpacer>
+      <Plasteel>10</Plasteel>
+      <Steel>45</Steel>
+    </costList>
+      <generateCommonality>0.5</generateCommonality>
+    <apparel>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+      <bodyPartGroups>
+	    <li>Shoulders</li>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Apparel/TacVest</wornGraphicPath>
+      <layers>
+        <li>Middle</li>
+      </layers>
+      <tags>
+        <li>SpacerMilitary</li>
+      </tags>
+    </apparel>
+  </ThingDef>
+
+  <ThingDef ParentName="ArmorHelmetMakeableBase">
+    <defName>Apparel_TacHelmet</defName>
+    <label>tactical helmet</label>
+    <description>An advanced helmet engineered specifically for head protection in combat.</description>
+    <graphicData> <texPath>Things/Apparel/TacHelmet</texPath>
+    <graphicClass>Graphic_Single</graphicClass> </graphicData>
+    <statBases>
+      <Mass>1.1</Mass>
+      <WorkToMake>11000</WorkToMake>
+      <MaxHitPoints>220</MaxHitPoints>
+      <ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.1</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.15</ArmorRating_Heat>
+      <Insulation_Cold>1</Insulation_Cold>
+      <EquipDelay>2</EquipDelay>
+    </statBases>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <researchPrerequisite>ComplexClothing</researchPrerequisite>
+      <recipeUsers Inherit="False">
+        <li>FabricationBench</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>7</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <costList>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <Plasteel>10</Plasteel>
+      <Steel>25</Steel>
+    </costList>
+      <generateCommonality>0.5</generateCommonality>
+		<equippedStatOffsets>
+			<WorkSpeedGlobal>0.02</WorkSpeedGlobal>
+			<AimingDelayFactor>-0.06</AimingDelayFactor>
+			<ShootingAccuracyPawn>0.09</ShootingAccuracyPawn>
+		</equippedStatOffsets>
+    <apparel>
+      <bodyPartGroups>
+	    <li>Neck</li>
+        <li>UpperHead</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Apparel/TacHelmet</wornGraphicPath>
+      <layers>
+        <li>Overhead</li>
+      </layers>
+      <tags>
+        <li>SpacerMilitary</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+    </apparel>
+  </ThingDef>
+
+	<ThingDef ParentName="ApparelMakeableBase">
+		<defName>Apparel_Exoframe</defName>
+		<label>industrial exo-frame</label>
+		<description>A powered mobility system utilizing motors, pneumatics, levers, or hydraulics to augment limb movement, increasing the user's strength and stamina.</description>
+		<graphicData> <texPath>Things/Apparel/Exo</texPath>
+		<graphicClass>Graphic_Single</graphicClass> </graphicData>
+		<tickerType>Normal</tickerType>
+		<statBases>
+      <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.15</ArmorRating_Heat>
+      <Insulation_Cold>18</Insulation_Cold>
+      <Mass>6</Mass>
+     			<WorkToMake>55000</WorkToMake>
+			<MaxHitPoints>450</MaxHitPoints>
+      <EquipDelay>15</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<WorkSpeedGlobal>0.10</WorkSpeedGlobal>
+			<MoveSpeed>1.2</MoveSpeed>
+		</equippedStatOffsets>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <costList>
+      <ComponentSpacer>2</ComponentSpacer>
+      <Plasteel>45</Plasteel>
+    </costList>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <recipeUsers Inherit="False">
+        <li>FabricationBench</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>8</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+			<generateCommonality>0.5</generateCommonality>
+		<apparel>
+<wornGraphicPath>Things/Apparel/Exo</wornGraphicPath>
+			<layers>
+			    <li>Shell</li>
+			</layers>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+		</apparel>
+	</ThingDef>
+
+ <!-- ============================================== -->
+
+
+ <ThingDef ParentName="ArmorMachineableBase">
+    <defName>Apparel_ProtectiveGear</defName>
+    <label>heavy flak armor</label>
+    <description>A heavy, non-powered suit of armor that provides full-body coverage, though it lacks the defensive capabilities of powered armor.</description>
+    <techLevel>Industrial</techLevel>
+    <recipeMaker>
+      <researchPrerequisite>FlakArmor</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <graphicData>
+      <texPath>Things/Apparel/ProtectiveGear</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <WorkToMake>18600</WorkToMake>
+      <MaxHitPoints>300</MaxHitPoints>
+      <Mass>15</Mass>
+      <Flammability>0.6</Flammability>
+      <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.05</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.35</ArmorRating_Heat>
+      <Insulation_Cold>25</Insulation_Cold>
+      <EquipDelay>15</EquipDelay>
+    </statBases>
+    <thingCategories>
+      <li>ApparelArmor</li>
+    </thingCategories>
+    <equippedStatOffsets>
+      <MoveSpeed>-0.7</MoveSpeed>
+    </equippedStatOffsets>
+    <costList>
+      <Steel>105</Steel>
+      <Plasteel>45</Plasteel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+      <generateCommonality>0.1</generateCommonality>
+    <apparel>
+      <bodyPartGroups>
+	    <li>Neck</li>
+        <li>Shoulders</li>
+        <li>Torso</li>
+        <li>Arms</li>
+        <li>Legs</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Apparel/ProtectiveGear</wornGraphicPath>
+      <layers>
+        <li>Middle</li>
+        <li>Shell</li>
+      </layers>
+      <tags>
+        <li>IndustrialMilitaryAdvanced</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags> </apparel>
+  </ThingDef>
+
+  <ThingDef ParentName="ArmorHelmetMakeableBase">
+    <defName>Apparel_ProtectiveHelmet</defName>
+    <label>heavy flak helmet</label>
+    <description>A heavy combat helmet that provides full head protection.</description>
+    <graphicData> <texPath>Things/Apparel/ProtectiveHelmet</texPath>
+    <graphicClass>Graphic_Single</graphicClass> </graphicData>
+    <statBases>
+      <Mass>2.62</Mass>
+      <WorkToMake>10000</WorkToMake>
+      <MaxHitPoints>320</MaxHitPoints>
+      <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.05</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.36</ArmorRating_Heat>
+      <Insulation_Cold>5</Insulation_Cold>
+      <Insulation_Heat>5</Insulation_Heat>
+      <EquipDelay>8</EquipDelay>
+    </statBases>
+    <equippedStatOffsets>
+      <MoveSpeed>-0.2</MoveSpeed>
+    </equippedStatOffsets>
+    <recipeMaker>
+      <researchPrerequisite>FlakArmor</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+    </recipeMaker>
+    <costList>
+      <ComponentIndustrial>2</ComponentIndustrial>
+      <Plasteel>25</Plasteel>
+      <Steel>35</Steel>
+    </costList>
+      <generateCommonality>0.8</generateCommonality>
+    <apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+      <wornGraphicPath>Things/Apparel/ProtectiveHelmet</wornGraphicPath>
+      <layers>
+        <li>Overhead</li>
+      </layers>
+      <tags>
+        <li>IndustrialMilitaryAdvanced</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+    </apparel>
+  </ThingDef>
+
+
+</Defs>
