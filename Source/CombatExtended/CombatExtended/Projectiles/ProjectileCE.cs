@@ -122,6 +122,7 @@ public abstract class ProjectileCE : ThingWithComps
                 launcher,
                 null,
                 def,
+                intendedTarget: intendedTargetThing,
                 instigatorGuilty: InstigatorGuilty);
 
     public float RemainingKineticEnergyPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed) : 1f;
