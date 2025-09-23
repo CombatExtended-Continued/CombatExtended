@@ -1,16 +1,14 @@
 ﻿using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+
+/// <summary>
+/// Override CompGetGizmosExtra() to add gizmos you want.
+/// </summary>
+public class CompRangedGizmoGiver : ThingComp
 {
 
-    /// <summary>
-    /// Override CompGetGizmosExtra() to add gizmos you want.
-    /// </summary>
-    public class CompRangedGizmoGiver : ThingComp
-    {
-
-        public readonly bool isRangedGiver = true;
-
-    }
+    public readonly bool isRangedGiver = true;
 
 }
+

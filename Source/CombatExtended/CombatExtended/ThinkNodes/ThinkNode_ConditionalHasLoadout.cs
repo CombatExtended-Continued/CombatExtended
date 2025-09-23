@@ -7,14 +7,12 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class ThinkNode_ConditionalHasLoadout : ThinkNode_Conditional
 {
-    public class ThinkNode_ConditionalHasLoadout : ThinkNode_Conditional
+    public override bool Satisfied(Pawn pawn)
     {
-        public override bool Satisfied(Pawn pawn)
-        {
-            var loadout = pawn.GetLoadout();
-            return loadout != null && !loadout.defaultLoadout && loadout.Slots.Any();
-        }
+        var loadout = pawn.GetLoadout();
+        return loadout != null && !loadout.defaultLoadout && loadout.Slots.Any();
     }
 }

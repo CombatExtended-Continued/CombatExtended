@@ -11,152 +11,150 @@ using Vehicles;
 using UnityEngine;
 
 
-namespace CombatExtended.Compatibility.VehiclesCompat
+namespace CombatExtended.Compatibility.VehiclesCompat;
+public class VehiclesCompat : IModPart
 {
-    public class VehiclesCompat : IModPart
+    public Type GetSettingsType()
     {
-        public Type GetSettingsType()
-        {
-            return typeof(VehicleSettings);
-        }
-        public IEnumerable<string> GetCompatList()
-        {
-            yield break;
-        }
-        public void PostLoad(ModContentPack content, ISettingsCE vehicleSettings)
-        {
-            VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
-            VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
-            VehicleTurret.LaunchProjectileCE = CE_Utility.LaunchProjectileCE;
-            VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
-            VehicleTurret.NotifyShotFiredCE = NotifyShotFiredCE;
-            global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
-            global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
-            var harmony = new Harmony("CombatExtended.Compatibility.VehiclesCompat");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-        }
+        return typeof(VehicleSettings);
+    }
+    public IEnumerable<string> GetCompatList()
+    {
+        yield break;
+    }
+    public void PostLoad(ModContentPack content, ISettingsCE vehicleSettings)
+    {
+        VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
+        VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
+        VehicleTurret.LaunchProjectileCE = CE_Utility.LaunchProjectileCE;
+        VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
+        VehicleTurret.NotifyShotFiredCE = NotifyShotFiredCE;
+        global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
+        global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
+        var harmony = new Harmony("CombatExtended.Compatibility.VehiclesCompat");
+        harmony.PatchAll(Assembly.GetExecutingAssembly());
+    }
 
-        public static void NotifyShotFiredCE(ThingDef projectileDef, ThingDef _ammoDef, Def _ammosetDef, VehicleTurret turret, float recoil)
+    public static void NotifyShotFiredCE(ThingDef projectileDef, ThingDef _ammoDef, Def _ammosetDef, VehicleTurret turret, float recoil)
+    {
+        if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
         {
-            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            foreach (var al in ammosetDef.ammoTypes)
             {
-                foreach (var al in ammosetDef.ammoTypes)
+                if (al.ammo == ammoDef)
                 {
-                    if (al.ammo == ammoDef)
-                    {
-                        projectileDef = al.projectile;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                projectileDef = projectileDef.GetProjectile();
-            }
-            if (projectileDef.projectile is ProjectilePropertiesCE ppce)
-            {
-                CE_Utility.GenerateAmmoCasings(ppce, turret.TurretLocation, turret.vehicle.Map, -turret.TurretRotation, recoil);
-            }
-
-        }
-
-        public static Tuple<int, float> LookupProjectileCountAndSpreadCE(ThingDef _ammoDef, Def _ammosetDef, float spread)
-        {
-            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
-            {
-                foreach (var al in ammosetDef.ammoTypes)
-                {
-                    if (al.ammo == ammoDef)
-                    {
-                        var projectileDef = al.projectile;
-                        if (projectileDef.projectile is ProjectilePropertiesCE pprop)
-                        {
-                            return new Tuple<int, float>(pprop.pelletCount, spread * pprop.spreadMult);
-                        }
-                        break;
-                    }
-                }
-            }
-            return new Tuple<int, float>(1, spread);
-        }
-
-        public static Def LookupAmmosetCE(string defName)
-        {
-            var list = DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.defName == defName);
-            if (list.EnumerableNullOrEmpty())
-            {
-                Log.Error($"Combat Extended Vehicle Compat: ammoset named {defName} not found.");
-                return null;
-            }
-            return list.First();
-        }
-
-        public static IEnumerable<ThingDef> _GetUsedAmmo()
-        {
-            if (Controller.settings.EnableAmmoSystem)
-            {
-                foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
-                {
-                    if (vtd.GetModExtension<CETurretDataDefModExtension>() is CETurretDataDefModExtension cetddme)
-                    {
-                        if (cetddme.ammoSet != null)
-                        {
-                            AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
-                            if (Controller.settings.GenericAmmo && asd?.similarTo != null)
-                            {
-                                asd = asd.similarTo;
-                            }
-                            if (asd != null)
-                            {
-                                cetddme._ammoSet = asd;
-                                var ammunition = vtd.ammunition = new ThingFilter();
-                                vtd.genericAmmo = false;
-                                vtd.chargePerAmmoCount = 1f / asd.ammoConsumedPerShot;
-                                HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)ammunition.AllowedThingDefs;
-
-                                foreach (var al in asd.ammoTypes)
-                                {
-                                    allowedAmmo.Add(al.ammo);
-                                    yield return al.ammo;
-                                }
-
-                                vtd.ammunition.ResolveReferences();
-                            }
-                        }
-                    }
+                    projectileDef = al.projectile;
+                    break;
                 }
             }
         }
-
-        public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravity, float sway, float spread, float recoil)
+        else
         {
-            // TODO: Handle cover
-            var bounds = CE_Utility.GetBoundsFor(target.Thing);
-            float dheight = (bounds.max.y + bounds.min.y) / 2 - shotOrigin.y;
-            float shotAngle = CE_Utility.GetShotAngle(speed, range, dheight, flyOverhead, gravity);
-
-            float dTurretRotation = 0;
-            float ticks = (float)(Find.TickManager.TicksAbs + shooter.thingIDNumber);
-            dTurretRotation += sway * (float)Mathf.Sin(ticks * 0.022f);
-            shotAngle += Mathf.Deg2Rad * 0.25f * sway * (float)Mathf.Sin(ticks * 0.0165f);
-            double spreadDirection = Rand.Value * Math.PI * 2;
-            double randomSpread = Rand.Value * spread;
-            shotAngle += (float)(randomSpread * Math.Sin(spreadDirection) + recoil);
-            dTurretRotation += (float)(randomSpread * Math.Cos(spreadDirection));
-            return new Vector2(dTurretRotation, shotAngle);
+            projectileDef = projectileDef.GetProjectile();
         }
-
-
-        private static Tuple<bool, Vector2> _GetCollisionBodyFactors(Pawn pawn)
+        if (projectileDef.projectile is ProjectilePropertiesCE ppce)
         {
-            Vector2 ret = new Vector2();
-            if (pawn is VehiclePawn vehicle)
-            {
-                ret = new Vector2(1, vehicle.def.fillPercent);
-                return new Tuple<bool, Vector2>(true, ret);
-            }
-            return new Tuple<bool, Vector2>(false, ret);
+            CE_Utility.GenerateAmmoCasings(ppce, turret.TurretLocation, turret.vehicle.Map, -turret.TurretRotation, recoil);
         }
 
     }
+
+    public static Tuple<int, float> LookupProjectileCountAndSpreadCE(ThingDef _ammoDef, Def _ammosetDef, float spread)
+    {
+        if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+        {
+            foreach (var al in ammosetDef.ammoTypes)
+            {
+                if (al.ammo == ammoDef)
+                {
+                    var projectileDef = al.projectile;
+                    if (projectileDef.projectile is ProjectilePropertiesCE pprop)
+                    {
+                        return new Tuple<int, float>(pprop.pelletCount, spread * pprop.spreadMult);
+                    }
+                    break;
+                }
+            }
+        }
+        return new Tuple<int, float>(1, spread);
+    }
+
+    public static Def LookupAmmosetCE(string defName)
+    {
+        var list = DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.defName == defName);
+        if (list.EnumerableNullOrEmpty())
+        {
+            Log.Error($"Combat Extended Vehicle Compat: ammoset named {defName} not found.");
+            return null;
+        }
+        return list.First();
+    }
+
+    public static IEnumerable<ThingDef> _GetUsedAmmo()
+    {
+        if (Controller.settings.EnableAmmoSystem)
+        {
+            foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
+            {
+                if (vtd.GetModExtension<CETurretDataDefModExtension>() is CETurretDataDefModExtension cetddme)
+                {
+                    if (cetddme.ammoSet != null)
+                    {
+                        AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
+                        if (Controller.settings.GenericAmmo && asd?.similarTo != null)
+                        {
+                            asd = asd.similarTo;
+                        }
+                        if (asd != null)
+                        {
+                            cetddme._ammoSet = asd;
+                            var ammunition = vtd.ammunition = new ThingFilter();
+                            vtd.genericAmmo = false;
+                            vtd.chargePerAmmoCount = 1f / asd.ammoConsumedPerShot;
+                            HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)ammunition.AllowedThingDefs;
+
+                            foreach (var al in asd.ammoTypes)
+                            {
+                                allowedAmmo.Add(al.ammo);
+                                yield return al.ammo;
+                            }
+
+                            vtd.ammunition.ResolveReferences();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravity, float sway, float spread, float recoil)
+    {
+        // TODO: Handle cover
+        var bounds = CE_Utility.GetBoundsFor(target.Thing);
+        float dheight = (bounds.max.y + bounds.min.y) / 2 - shotOrigin.y;
+        float shotAngle = CE_Utility.GetShotAngle(speed, range, dheight, flyOverhead, gravity);
+
+        float dTurretRotation = 0;
+        float ticks = (float)(Find.TickManager.TicksAbs + shooter.thingIDNumber);
+        dTurretRotation += sway * (float)Mathf.Sin(ticks * 0.022f);
+        shotAngle += Mathf.Deg2Rad * 0.25f * sway * (float)Mathf.Sin(ticks * 0.0165f);
+        double spreadDirection = Rand.Value * Math.PI * 2;
+        double randomSpread = Rand.Value * spread;
+        shotAngle += (float)(randomSpread * Math.Sin(spreadDirection) + recoil);
+        dTurretRotation += (float)(randomSpread * Math.Cos(spreadDirection));
+        return new Vector2(dTurretRotation, shotAngle);
+    }
+
+
+    private static Tuple<bool, Vector2> _GetCollisionBodyFactors(Pawn pawn)
+    {
+        Vector2 ret = new Vector2();
+        if (pawn is VehiclePawn vehicle)
+        {
+            ret = new Vector2(1, vehicle.def.fillPercent);
+            return new Tuple<bool, Vector2>(true, ret);
+        }
+        return new Tuple<bool, Vector2>(false, ret);
+    }
+
 }

@@ -13,7 +13,7 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<OutputPath>..\..\Assemblies\</OutputPath>
-		<DebugType>portable</DebugType>
+		<DebugType>embedded</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<LangVersion>12.0</LangVersion>
@@ -78,8 +78,8 @@
 		  <HintPath>..\packages\VanillaPsycastsExpanded-reference.dll</HintPath>
 		  <Private>false</Private>
 		</Reference>
-		<Reference Include="VFECore">
-		  <HintPath>..\packages\VFECore-reference.dll</HintPath>
+		<Reference Include="VEF">
+		  <HintPath>..\packages\VEF-reference.dll</HintPath>
 		  <Private>false</Private>
 		</Reference>
 		<Reference Include="VFESecurity">
@@ -118,12 +118,12 @@
 		<Folder Include="CombatExtended\GenStep\" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krafs.Publicizer" Version="2.2.1">
+		<PackageReference Include="Krafs.Publicizer" Version="2.3.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4104" GeneratePathProperty="true" />
-		<PackageReference Include="Lib.Harmony" Version="2.3.3" ExcludeAssets="runtime" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4543" GeneratePathProperty="true" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
 	</ItemGroup>
 	<ItemGroup>
 		<Publicize Include="Assembly-CSharp" />

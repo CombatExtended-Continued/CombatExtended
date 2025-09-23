@@ -1,44 +1,46 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+//[HarmonyPatch(typeof(PawnGraphicSet), "MatsBodyBaseAt")]
+internal static class Harmony_PawnGraphicSet
 {
-    //[HarmonyPatch(typeof(PawnGraphicSet), "MatsBodyBaseAt")]
-    internal static class Harmony_PawnGraphicSet
+    private static bool RenderSpecial(ApparelLayerDef layer)
     {
-        private static bool RenderSpecial(ApparelLayerDef layer)
-        {
-            return (layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false) || layer.drawOrder > ApparelLayerDefOf.Shell.drawOrder;
-        }
+        return (layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false) || layer.drawOrder > ApparelLayerDefOf.Shell.drawOrder;
+    }
 
-        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            var write = false;
+    internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    {
+        var write = false;
+        bool foundInjection = false;
 
-            foreach (var code in instructions)
+        foreach (var code in instructions)
+        {
+            if (write)
             {
-                if (write)
-                {
-                    write = false;
-                    code.opcode = OpCodes.Brtrue;
-                }
-
-                if (code.opcode == OpCodes.Ldsfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Overhead))))
-                {
-                    write = true;
-                    yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnGraphicSet), nameof(RenderSpecial)));
-                }
-                else
-                {
-                    yield return code;
-                }
+                write = false;
+                code.opcode = OpCodes.Brtrue;
             }
+
+            if (code.opcode == OpCodes.Ldsfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Overhead))))
+            {
+                write = true;
+                foundInjection = true;
+                yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnGraphicSet), nameof(RenderSpecial)));
+            }
+            else
+            {
+                yield return code;
+            }
+        }
+        if (!foundInjection)
+        {
+            Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
         }
     }
 }
