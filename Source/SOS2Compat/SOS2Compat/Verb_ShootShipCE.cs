@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using CombatExtended.Utilities;
 using Verse.AI;
@@ -458,7 +459,7 @@ public class Verb_ShootShipCE : Verb_ShootCE
             else if (mapComp.TargetMapComp.ShuttlesInRange.Where(shuttle => shuttle.Faction != turret.Faction).Any())
             {
                 VehiclePawn shuttleHit = mapComp.TargetMapComp.ShuttlesInRange.Where(shuttle => shuttle.Faction != turret.Faction).RandomElement();
-                int? targetIntellectualSkill = (shuttleHit.FindPawnWithBestStat(StatDefOf.ResearchSpeed)?.skills?.GetSkill(SkillDefOf.Intellectual)?.Level);
+                int? targetIntellectualSkill = (FindPawnWithBestStatCompat(shuttleHit, StatDefOf.ResearchSpeed, null)?.skills?.GetSkill(SkillDefOf.Intellectual)?.Level);
                 int skill = 0;
                 if (targetIntellectualSkill.HasValue)
                 {
@@ -542,6 +543,49 @@ public class Verb_ShootShipCE : Verb_ShootCE
         }
     }
     #endregion
+
+    private static Pawn FindPawnWithBestStatCompat(VehiclePawn vehicle, StatDef stat, Predicate<Pawn> pawnValidator)
+    {
+        if (vehicle == null || stat == null)
+        {
+            return null;
+        }
+
+        Pawn bestPawn = null;
+        float bestValue = float.MinValue;
+
+        foreach (Pawn pawn in vehicle.AllPawnsAboard)
+        {
+            if (pawn == null || pawn.Dead || pawn.Downed || pawn.InMentalState)
+            {
+                continue;
+            }
+
+            if (!CaravanUtility.IsOwner(pawn, vehicle.Faction))
+            {
+                continue;
+            }
+
+            if (stat.Worker != null && stat.Worker.IsDisabledFor(pawn))
+            {
+                continue;
+            }
+
+            if (pawnValidator != null && !pawnValidator(pawn))
+            {
+                continue;
+            }
+
+            float statValue = pawn.GetStatValue(stat);
+            if (bestPawn == null || statValue > bestValue)
+            {
+                bestPawn = pawn;
+                bestValue = statValue;
+            }
+        }
+
+        return bestPawn;
+    }
 }
 // Including this class in the bottom here it is so small and should only be used by Verb_ShootShipCE
 // New VerbProperties type that includes an extra property for a seperate projectile for GroundDefenseMode.
