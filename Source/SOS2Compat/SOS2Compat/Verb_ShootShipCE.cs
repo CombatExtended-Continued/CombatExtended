@@ -415,13 +415,20 @@ public class Verb_ShootShipCE : Verb_ShootCE
         {
             accBoost = 10;
         }
+        ThingDef shipProjectile = VerbPropsShip?.shipProjectile ?? spawnProjectile;
+        if (shipProjectile == null)
+        {
+            Log.ErrorOnce($"Combat Extended SOS2Compat :: {turret} attempted to register a projectile but no ship projectile definition was provided.", turret.GetHashCode() ^ 0x4DFA1C22);
+            return;
+        }
+
         ShipCombatProjectile proj = new ShipCombatProjectile
         {
             turret = turret.ToBuilding_ShipTurret(),
             target = target,
             range = 0,
             //rangeAtStart = mapComp.Range,
-            spawnProjectile = spawnProjectile,
+            spawnProjectile = shipProjectile,
             missRadius = this.verbProps.ForcedMissRadius,
             accBoost = accBoost,
             burstLoc = burstLoc,
@@ -592,4 +599,5 @@ public class Verb_ShootShipCE : Verb_ShootCE
 public class VerbPropertiesShipWeaponCE : VerbPropertiesCE
 {
     public ThingDef defaultProjectileGround;
+    public ThingDef shipProjectile;
 }
