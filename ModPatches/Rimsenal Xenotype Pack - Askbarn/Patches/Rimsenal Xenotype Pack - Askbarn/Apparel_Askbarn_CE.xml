@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bullet_EMPSurge"]</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_EMPSurge"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>5</speed>
+				<damageDef>EMP</damageDef>
+				<damageAmountBase>60</damageAmountBase>
+				<explosionRadius>4.5</explosionRadius>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+				<aimHeightOffset>1.1</aimHeightOffset>
+				<armingDelay>0</armingDelay>
+				<gravityFactor>0.01</gravityFactor>
+			</projectile>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SurgePack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<defaultProjectile>Bullet_EMPSurge</defaultProjectile>
+					<label>release EMP surge</label>
+					<warmupTime>0.5</warmupTime>
+					<range>10</range>
+					<burstShotCount>1</burstShotCount>
+					<onlyManualCast>true</onlyManualCast>
+					<hasStandardCommand>true</hasStandardCommand>
+					<targetable>true</targetable>
+					<violent>true</violent>
+					<targetParams>
+						<canTargetPawns>true</canTargetPawns>
+						<canTargetBuildings>true</canTargetBuildings>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+					<canGoWild>false</canGoWild>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+</Patch>
