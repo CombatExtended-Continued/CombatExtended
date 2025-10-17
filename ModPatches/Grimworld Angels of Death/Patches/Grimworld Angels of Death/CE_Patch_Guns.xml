@@ -4,21 +4,22 @@
 	<!--Melee Attacks for Guns-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-		defName="HP_Gun_PlasmaGun" or 
-		defName="Plasma_Incinerator" or
-		defName="HP_Gun_MeltaGun" or
-		defName="HP_Gun_Multimelta" or 
-		defName="Bolter_Gun_Bolter" or 
-		defName="Executor_Bolt_Rifle" or
-		defName="HeavyBolter" or
-		defName="GW_SM_AstartesShotgun" or
-		defName="GW_SM_SniperRifle" or 
+		defName="GW_AOD_PlasmaGun" or 
+		defName="GW_AOD_Plasma_Incinerator" or
+		defName="GW_AOD_MeltaGun" or
+		defName="GW_AOD_Multimelta" or 
+		defName="GW_AOD_Bolter_Gun_Bolter" or 
+		defName="GW_AOD_Executor_Bolt_Rifle" or
+		defName="GW_AOD_HeavyBolter" or
+		defName="GW_AOD_AstartesShotgun" or
+		defName="GW_AOD_DeathwatchShotgun" or
+		defName="GW_AOD_SniperRifle" or 
 		defName="GW_SM_Gun_GravRifle" or
 		defName="GW_SM_Gun_GravPistol" or
-		defName="GW_SM_HeavyBoltPistol" or
-		defName="GW_SM_InfernoPistol" or
-		defName="GW_SM_PlasmaPistol" or
-		defName="GW_SM_RocketLauncher"
+		defName="GW_AOD_HeavyBoltPistol" or
+		defName="GW_AOD_InfernoPistol" or
+		defName="GW_AOD_PlasmaPistol" or
+		defName="GW_AOD_RocketLauncher"
 		]/tools</xpath>
 		<value>
 			<tools>
@@ -51,12 +52,12 @@
 	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-		defName="GW_SM_Gun_AssualtCannon" or
-		defName="GW_SM_Gun_PlasmaCannon" or
-		defName="GW_SM_Gun_ReaperCannon" or
-		defName="GW_SM_Gun_StormBolter" or
-		defName="GW_SM_Gun_AstartesPlasmaCannon" or
-		defName="GW_SM_Gun_GravCannon"
+		defName="GW_AOD_Gun_AssualtCannon" or
+		defName="GW_AOD_Gun_AstartesPlasmaCannon" or
+		defName="GW_AOD_Gun_PlasmaCannon" or
+		defName="GW_AOD_Gun_ReaperCannon" or
+		defName="GW_AOD_Gun_StormBolter" or
+		defName="GW_AOD_Gun_GravCannon"
 		]/tools</xpath>
 		<value>
 			<tools>
@@ -79,9 +80,9 @@
 	<!-- ============ Plasma Gun ============ -->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="HP_Gun_PlasmaGun"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_PlasmaGun"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="HP_Gun_PlasmaGun"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_PlasmaGun"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -89,7 +90,7 @@
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>HP_Gun_PlasmaGun</defName>
+		<defName>GW_AOD_PlasmaGun</defName>
 		<statBases>
 			<Mass>23.2</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -132,9 +133,9 @@
 		<!-- ============ Plasma Incinerator ============ -->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Plasma_Incinerator"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Plasma_Incinerator"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -142,9 +143,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Plasma_Incinerator"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Plasma_Incinerator"]</xpath>
 			<value>
 				<comps />
 			</value>
@@ -152,7 +153,7 @@
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Plasma_Incinerator</defName>
+		<defName>GW_AOD_Plasma_Incinerator</defName>
 		<statBases>
 			<Mass>32.4</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -193,7 +194,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Plasma_Incinerator"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_UnderBarrel">
 				<standardLabel>switch to standard mode</standardLabel>
@@ -233,9 +234,9 @@
 	<!-- ============ Melta Gun ============ -->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="HP_Gun_MeltaGun"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_MeltaGun"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="HP_Gun_MeltaGun"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_MeltaGun"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -243,7 +244,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>HP_Gun_MeltaGun</defName>
+		<defName>GW_AOD_MeltaGun</defName>
 		<statBases>
 			<Mass>23.2</Mass>
 			<RangedWeapon_Cooldown>1.78</RangedWeapon_Cooldown>
@@ -286,9 +287,9 @@
 	<!-- ============ Multimelta Gun ============ -->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="HP_Gun_Multimelta"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Multimelta"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="HP_Gun_Multimelta"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Multimelta"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -296,7 +297,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>HP_Gun_Multimelta</defName>
+		<defName>GW_AOD_Multimelta</defName>
 		<statBases>
 			<Mass>35.4</Mass>
 			<RangedWeapon_Cooldown>1.78</RangedWeapon_Cooldown>
@@ -339,9 +340,9 @@
 	<!-- ============ Bolter ============ -->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Bolter_Gun_Bolter"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Bolter_Gun_Bolter"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Bolter_Gun_Bolter"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Bolter_Gun_Bolter"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -349,7 +350,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Bolter_Gun_Bolter</defName>
+		<defName>GW_AOD_Bolter_Gun_Bolter</defName>
 		<statBases>
 			<Mass>11.8</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -391,9 +392,9 @@
 	<!-- ============ Executor Bolt Rifle ============ -->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Executor_Bolt_Rifle"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Executor_Bolt_Rifle"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Executor_Bolt_Rifle"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Executor_Bolt_Rifle"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -401,7 +402,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Executor_Bolt_Rifle</defName>
+		<defName>GW_AOD_Executor_Bolt_Rifle</defName>
 		<statBases>
 			<Mass>16.4</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -442,9 +443,9 @@
 	<!-- ============ Heavy Bolter ============ -->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="HeavyBolter"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_HeavyBolter"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="HeavyBolter"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_HeavyBolter"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -452,7 +453,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>HeavyBolter</defName>
+		<defName>GW_AOD_HeavyBolter</defName>
 		<statBases>
 			<Mass>23.6</Mass>
 			<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
@@ -495,9 +496,9 @@
 	<!--===== Assualt Cannon =====-->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Gun_AssualtCannon"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Gun_AssualtCannon"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Gun_AssualtCannon"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Gun_AssualtCannon"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -505,7 +506,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_Gun_AssualtCannon</defName>
+		<defName>GW_AOD_Gun_AssualtCannon</defName>
 		<statBases>
 			<Mass>42.6</Mass>
 			<RangedWeapon_Cooldown>0.44</RangedWeapon_Cooldown>
@@ -546,9 +547,9 @@
 	<!--===== Reaper Cannon =====-->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Gun_ReaperCannon"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Gun_ReaperCannon"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Gun_ReaperCannon"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Gun_ReaperCannon"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -556,7 +557,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_Gun_ReaperCannon</defName>
+		<defName>GW_AOD_Gun_ReaperCannon</defName>
 		<statBases>
 			<Mass>38.6</Mass>
 			<RangedWeapon_Cooldown>0.46</RangedWeapon_Cooldown>
@@ -597,9 +598,9 @@
 	<!--===== Storm Bolter =====-->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Gun_StormBolter"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Gun_StormBolter"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Gun_StormBolter"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Gun_StormBolter"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -607,7 +608,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_Gun_StormBolter</defName>
+		<defName>GW_AOD_Gun_StormBolter</defName>
 		<statBases>
 			<Mass>14.8</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -645,66 +646,13 @@
 			<li>IndustrialGunAdvanced</li>
 		</weaponTags>
 	</Operation>
-	
-	<!--===== Plasma Cannon =====-->
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Gun_PlasmaCannon"]/weaponTags</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Gun_PlasmaCannon"]</xpath>
-			<value>
-				<weaponTags />
-			</value>
-		</nomatch>
-	</Operation>
-	
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_Gun_PlasmaCannon</defName>
-		<statBases>
-			<Mass>54.4</Mass>
-			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.5</SightsEfficiency>
-			<ShotSpread>0.05</ShotSpread>
-			<SwayFactor>1</SwayFactor>
-			<Bulk>22.5</Bulk>
-			<WorkToMake>65000</WorkToMake>
-		</statBases>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_PlasmaCannon</defaultProjectile>
-			<warmupTime>3.4</warmupTime>
-			<range>72</range>
-			<burstShotCount>5</burstShotCount>
-			<soundCast>HP_Incinerator_Gun_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>12</muzzleFlashScale>
-			<recoilAmount>4.6</recoilAmount>
-			<ticksBetweenBurstShots>21</ticksBetweenBurstShots>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>45</magazineSize>
-			<reloadTime>13</reloadTime>
-			<ammoSet>AmmoSet_PlasmaCanister_Cannon</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>AdvancedGun</li>
-			<li>CE_AI_Rifle</li>
-		</weaponTags>
-	</Operation>
 
 	<!--===== Astares Shotgun =====-->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_AstartesShotgun"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_AstartesShotgun"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_AstartesShotgun"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_AstartesShotgun"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -712,7 +660,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_AstartesShotgun</defName>
+		<defName>GW_AOD_AstartesShotgun</defName>
 		<statBases>
 			<Mass>6.5</Mass>
 			<RangedWeapon_Cooldown>0.84</RangedWeapon_Cooldown>
@@ -747,13 +695,13 @@
 			<li>CE_AI_AssaultWeapon</li>
 		</weaponTags>
 	</Operation>
-	
-	<!--===== Needlegun =====-->
-	
+
+	<!--===== Astares Shotgun =====-->
+			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_SniperRifle"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_DeathwatchShotgun"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_SniperRifle"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_DeathwatchShotgun"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -761,7 +709,56 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_SniperRifle</defName>
+		<defName>GW_AOD_DeathwatchShotgun</defName>
+		<statBases>
+			<Mass>5.75</Mass>
+			<RangedWeapon_Cooldown>0.52</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.2</SwayFactor>
+			<Bulk>7.2</Bulk>
+			<WorkToMake>38500</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_23x75mmR_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>23</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>GW_Heavy_Bolt_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<recoilAmount>3.2</recoilAmount>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadTime>0.7</reloadTime>
+			<ammoSet>AmmoSet_23x75mmR</ammoSet>
+			<reloadOneAtATime>true</reloadOneAtATime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+	</Operation>
+	
+	<!--===== Needlegun =====-->
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_AOD_SniperRifle"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_AOD_SniperRifle"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_AOD_SniperRifle</defName>
 		<statBases>
 			<Mass>8.6</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -801,9 +798,9 @@
 	<!--===== Astartes Plasma Cannon =====-->
 	
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Gun_AstartesPlasmaCannon"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Gun_AstartesPlasmaCannon"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Gun_AstartesPlasmaCannon"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Gun_AstartesPlasmaCannon"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -811,7 +808,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_Gun_AstartesPlasmaCannon</defName>
+		<defName>GW_AOD_Gun_AstartesPlasmaCannon</defName>
 		<statBases>
 			<Mass>54.4</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -851,12 +848,12 @@
 		</weaponTags>
 	</Operation>
 	
-	<!--===== Grav Cannon =====-->
+	<!--===== Terminator Plasma Cannon =====-->
 	
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Gun_GravCannon"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Gun_PlasmaCannon"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Gun_GravCannon"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Gun_PlasmaCannon"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -864,7 +861,60 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_Gun_GravCannon</defName>
+		<defName>GW_AOD_Gun_AstartesPlasmaCannon</defName>
+		<statBases>
+			<Mass>54.4</Mass>
+			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.5</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1</SwayFactor>
+			<Bulk>22.5</Bulk>
+			<WorkToMake>65000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCannon</defaultProjectile>
+			<warmupTime>3.4</warmupTime>
+			<range>72</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>HP_Incinerator_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilAmount>4.6</recoilAmount>
+			<ticksBetweenBurstShots>21</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>13</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCanister_Cannon</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>AdvancedGun</li>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+	</Operation>
+	
+	<!--===== Grav Cannon =====-->
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_AOD_Gun_GravCannon"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_AOD_Gun_GravCannon"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_AOD_Gun_GravCannon</defName>
 		<statBases>
 			<Mass>64.2</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -881,7 +931,7 @@
 			<warmupTime>3.4</warmupTime>
 			<range>72</range>
 			<burstShotCount>3</burstShotCount>
-			<soundCast>HP_Incinerator_Gun_Sound</soundCast>
+			<soundCast>GW_SM_Grav_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
 			<recoilAmount>4.6</recoilAmount>
@@ -932,7 +982,7 @@
 			<warmupTime>3.4</warmupTime>
 			<range>86</range>
 			<burstShotCount>0</burstShotCount>
-			<soundCast>HP_Incinerator_Gun_Sound</soundCast>
+			<soundCast>GW_SM_Grav_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
 			<recoilAmount>4.6</recoilAmount>
@@ -983,7 +1033,7 @@
 			<warmupTime>2.4</warmupTime>
 			<range>42</range>
 			<burstShotCount>0</burstShotCount>
-			<soundCast>HP_Incinerator_Gun_Sound</soundCast>
+			<soundCast>GW_SM_Grav_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
 			<recoilAmount>4.6</recoilAmount>
@@ -1007,9 +1057,9 @@
 	<!--===== Heavy Bolt Pistol =====-->
 	
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_HeavyBoltPistol"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_HeavyBoltPistol"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_HeavyBoltPistol"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_HeavyBoltPistol"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -1017,7 +1067,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_HeavyBoltPistol</defName>
+		<defName>GW_AOD_HeavyBoltPistol</defName>
 		<statBases>
 			<Mass>8.6</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -1058,9 +1108,9 @@
 	<!--===== Plasma Pistol =====-->
 	
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_PlasmaPistol"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_PlasmaPistol"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_PlasmaPistol"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_PlasmaPistol"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -1068,7 +1118,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_PlasmaPistol</defName>
+		<defName>GW_AOD_PlasmaPistol</defName>
 		<statBases>
 			<Mass>9.2</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -1111,9 +1161,9 @@
 	<!--===== Inferno Pistol =====-->
 	
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_InfernoPistol"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_InfernoPistol"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_InfernoPistol"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_InfernoPistol"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -1121,7 +1171,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_InfernoPistol</defName>
+		<defName>GW_AOD_InfernoPistol</defName>
 		<statBases>
 			<Mass>9.5</Mass>
 			<RangedWeapon_Cooldown>1.78</RangedWeapon_Cooldown>
@@ -1164,9 +1214,9 @@
 	<!-- ============ Rocket Launcher ============ -->
 			
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_RocketLauncher"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_RocketLauncher"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_RocketLauncher"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_RocketLauncher"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -1174,7 +1224,7 @@
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_RocketLauncher</defName>
+		<defName>GW_AOD_RocketLauncher</defName>
 		<statBases>
 			<Mass>8</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>

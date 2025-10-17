@@ -6,7 +6,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 		defName="GW_SM_Gun_Flamer" or 
-		defName="GW_SM_Gun_HeavyFlamer" or
+		defName="GW_AOD_Gun_HeavyFlamer" or
 		defName="GW_SM_Gun_Burner"
 		]/tools</xpath>
 		<value>
@@ -81,9 +81,9 @@
 	<!--===== Heavy Flamer =====-->
 	
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Gun_HeavyFlamer"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Gun_HeavyFlamer"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Gun_HeavyFlamer"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Gun_HeavyFlamer"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -91,7 +91,7 @@
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_Gun_HeavyFlamer</defName>
+		<defName>GW_AOD_Gun_HeavyFlamer</defName>
 		<statBases>
 			<Mass>50.6</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
