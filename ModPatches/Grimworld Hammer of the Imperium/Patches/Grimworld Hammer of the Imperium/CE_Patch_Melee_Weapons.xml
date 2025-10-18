@@ -323,5 +323,112 @@
 			<MeleeCounterParryBonus>0.82</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
+	<!--===== Omnissian Axe =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Melee_OmniAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.5</cooldownTime>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>60</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetrationSharp>24</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.64</cooldownTime>
+					<armorPenetrationSharp>31</armorPenetrationSharp>
+					<armorPenetrationBlunt>5.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Melee_OmniAxe"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_HOI_Melee_OmniAxe"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Melee_OmniAxe"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.0</MeleeCritChance>
+			<MeleeParryChance>1.25</MeleeParryChance>
+			<MeleeDodgeChance>0.5</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Melee_OmniAxe"]/statBases</xpath>
+		<value>
+			<Bulk>8.5</Bulk>
+			<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Force Staff ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Melee_PsykerForceStaff"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.84</cooldownTime>
+					<armorPenetrationBlunt>1.54</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Melee_PsykerForceStaff"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<MeleeCounterParryBonus>1.56</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Melee_PsykerForceStaff"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.6</MeleeCritChance>
+			<MeleeParryChance>1.17</MeleeParryChance>
+			<MeleeDodgeChance>0.47</MeleeDodgeChance>
+		</value>
+	</Operation>
 	
 </Patch>
