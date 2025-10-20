@@ -16,6 +16,7 @@
 		defName="GW_AOD_SniperRifle" or 
 		defName="GW_SM_Gun_GravRifle" or
 		defName="GW_SM_Gun_GravPistol" or
+		defName="GW_AOD_Gun_BoltPistol" or
 		defName="GW_AOD_HeavyBoltPistol" or
 		defName="GW_AOD_InfernoPistol" or
 		defName="GW_AOD_PlasmaPistol" or
@@ -261,7 +262,7 @@
 			<warmupTime>0.6</warmupTime>
 			<range>18</range>
 			<burstShotCount>1</burstShotCount>
-			<soundCast>HP_Melta_Gun_Sound</soundCast>
+			<soundCast>GW_Multi_Melta_Gun_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
 			<recoilAmount>2.7</recoilAmount>
@@ -367,7 +368,7 @@
 			<warmupTime>1</warmupTime>
 			<range>55</range>
 			<burstShotCount>12</burstShotCount>
-			<soundCast>HP_Bolt_Gun_Sound</soundCast>
+			<soundCast>GW_Heavy_Bolt_Gun_Sound</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
 			<recoilAmount>1.45</recoilAmount>
@@ -625,7 +626,7 @@
 			<warmupTime>1</warmupTime>
 			<range>42</range>
 			<burstShotCount>15</burstShotCount>
-			<soundCast>HP_Bolt_Gun_Sound</soundCast>
+			<soundCast>GW_Heavy_Bolt_Gun_Sound</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
 			<recoilAmount>2.15</recoilAmount>
@@ -774,7 +775,7 @@
 			<defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>85</range>
-			<soundCast>HP_Bolt_Gun_Sound</soundCast>
+			<soundCast>GW_Heavy_Bolt_Gun_Sound</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
 			<recoilAmount>2.15</recoilAmount>
@@ -1054,6 +1055,56 @@
 		</weaponTags>
 	</Operation>
 	
+	<!--===== Bolt Pistol =====-->
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_AOD_Gun_BoltPistol"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_AOD_Gun_BoltPistol"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_AOD_Gun_BoltPistol</defName>
+		<statBases>
+			<Mass>6.5</Mass>
+			<RangedWeapon_Cooldown>0.7</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.014</ShotSpread>
+			<SwayFactor>1.2</SwayFactor>
+			<Bulk>4.5</Bulk>
+			<WorkToMake>24000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>24</range>
+			<burstShotCount>0</burstShotCount>
+			<soundCast>GW_Heavy_Bolt_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilAmount>2.7</recoilAmount>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>3.2</reloadTime>
+			<ammoSet>AmmoSet_Bolter75</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Pistol</li>
+			<li>ShortShots</li>
+		</weaponTags>
+	</Operation>
+	
 	<!--===== Heavy Bolt Pistol =====-->
 	
 	<Operation Class="PatchOperationConditional">
@@ -1082,9 +1133,9 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
 			<warmupTime>1</warmupTime>
-			<range>26</range>
+			<range>32</range>
 			<burstShotCount>0</burstShotCount>
-			<soundCast>HP_Bolt_Gun_Sound</soundCast>
+			<soundCast>GW_Heavy_Bolt_Gun_Sound</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
 			<recoilAmount>1.45</recoilAmount>
@@ -1188,7 +1239,7 @@
 			<warmupTime>0.6</warmupTime>
 			<range>12</range>
 			<burstShotCount>0</burstShotCount>
-			<soundCast>HP_Melta_Gun_Sound</soundCast>
+			<soundCast>GW_Multi_Melta_Gun_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
 			<recoilAmount>2.7</recoilAmount>

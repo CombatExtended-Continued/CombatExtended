@@ -27,6 +27,30 @@
 					<armorPenetrationSharp>21.45</armorPenetrationSharp>
 					<armorPenetrationBlunt>6.74</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>
+					<soundMeleeHit>ChainSword</soundMeleeHit>
+					<soundMeleeMiss>Smite</soundMeleeMiss>
 				</li>
 			</tools>
 		</value>
@@ -101,6 +125,30 @@
 					<armorPenetrationSharp>23.26</armorPenetrationSharp>
 					<armorPenetrationBlunt>4.15</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>
+					<soundMeleeHit>ChainSword</soundMeleeHit>
+					<soundMeleeMiss>Smite</soundMeleeMiss>
 				</li>
 			</tools>
 		</value>
@@ -173,6 +221,8 @@
 					<armorPenetrationSharp>27.54</armorPenetrationSharp>
 					<armorPenetrationBlunt>5.24</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<soundMeleeHit>PowerSword</soundMeleeHit>
+					<soundMeleeMiss>Smite</soundMeleeMiss>
 				</li>
 			</tools>
 		</value>
@@ -248,6 +298,8 @@
 					<armorPenetrationSharp>38.3</armorPenetrationSharp>
 					<armorPenetrationBlunt>6.1</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<soundMeleeHit>PowerSword</soundMeleeHit>
+					<soundMeleeMiss>Smite</soundMeleeMiss>
 				</li>
 			</tools>
 		</value>
@@ -316,6 +368,8 @@
 						<armorPenetrationSharp>45.7</armorPenetrationSharp>
 						<armorPenetrationBlunt>8.2</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						<soundMeleeHit>PowerSword</soundMeleeHit>
+						<soundMeleeMiss>Smite</soundMeleeMiss>
 					</li>
 					<li Class="CombatExtended.ToolCE">
 						<label>point</label>
@@ -327,6 +381,8 @@
 						<armorPenetrationSharp>49.3</armorPenetrationSharp>
 						<armorPenetrationBlunt>9.5</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						<soundMeleeHit>PowerSword</soundMeleeHit>
+						<soundMeleeMiss>Smite</soundMeleeMiss>
 					</li>
 				</tools>
 			</value>
@@ -471,6 +527,64 @@
 			<MeleeCounterParryBonus>0.51</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
+	<!--===== Thunder Hammer =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>2.3</cooldownTime>
+					<armorPenetrationBlunt>5.46</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>114</power>
+					<cooldownTime>2.3</cooldownTime>
+					<armorPenetrationBlunt>215</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					<soundMeleeHit>GW_SM_ThunderHammer</soundMeleeHit>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.16</MeleeCritChance>
+			<MeleeParryChance>0.23</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]/statBases</xpath>
+		<value>
+			<Bulk>18.6</Bulk>
+			<MeleeCounterParryBonus>0.51</MeleeCounterParryBonus>
+		</value>
+	</Operation>
 	
 	<!--===== 1H Thunder Hammer =====-->
 	
@@ -497,6 +611,7 @@
 					<cooldownTime>2.3</cooldownTime>
 					<armorPenetrationBlunt>215</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					<soundMeleeHit>GW_SM_ThunderHammer</soundMeleeHit>
 				</li>
 			</tools>
 		</value>
