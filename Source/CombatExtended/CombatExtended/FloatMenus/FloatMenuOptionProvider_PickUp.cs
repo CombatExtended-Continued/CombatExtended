@@ -11,7 +11,7 @@ public class FloatMenuOptionProvider_PickUp : FloatMenuOptionProvider
     public override bool Drafted => true;
     public override bool Undrafted => true;
     public override bool Multiselect => false;
-    public override bool MechanoidCanDo => true;
+    public override bool MechanoidCanDo => false;
 
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
