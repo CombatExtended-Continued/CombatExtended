@@ -579,6 +579,7 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
+T's Wild Child Rags |
 Useless Clothes |
 Ushankas Glittertech Expansion  |
 VacSlipsuit |
