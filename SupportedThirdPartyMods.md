@@ -159,6 +159,7 @@ Call of Duty: Wonder Weapons |
 Carbon	|
 Censored Armory  |
 Charge-Loading Lee-Enfield  |
+Chougou Mechs   |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Colonial Shuttle |
@@ -271,6 +272,7 @@ Glitter Tech	|
 Glitter Weaponry	|
 Gloomy Dragonian Race	|
 GouRIMet	|
+Gravship Captain Set    |
 GREG	|
 Grimstone Beasts   |
 Grimworld: Autoguns	|
@@ -328,6 +330,7 @@ Kurin HAR Edition	|
 Leeani Playable Race	|
 Lemolim Race    |
 Let's Have a Cat!	|
+Life Support Pack   |
 Littluna Race |
 Logann Race	|
 Logistics_Mechanoid |
@@ -407,6 +410,7 @@ Nyaron Race |
 Nomad Scavengers    |
 Not Only Just a Cannon  |
 Obsidia Expansion - Mothoids Xenotype   |
+Odysseus Vacsuit Set    |
 ODZ Suits |
 Opossum Friends |
 Orassans	|
@@ -437,6 +441,7 @@ phynilla Expanded Mechs Scyther |
 pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
+Prestige Vacsuit Set    |
 Primitive Core |
 Primitive Workbenches |
 Project RimFactory - Materials |
@@ -574,8 +579,10 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
+T's Wild Child Rags |
 Useless Clothes |
-Ushankas Glitterworld Uprising  |
+Ushankas Glittertech Expansion  |
+VacSlipsuit |
 Valorant Weapon Pack |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Endangered |
@@ -648,6 +655,7 @@ Victorian Era Apparels!  |
 Volt Weaponry  |
 VRE Android Factions  |
 Vulpine Race Pack	|
+W1NG VacSuit Set    |
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Barbatos Gundam Addon  |

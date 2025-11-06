@@ -1,10 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- Animal Jump -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/AbilityDef[defName="AI_AnimalJump"]/verbProperties/range</xpath>
 		<value>
 			<range>14.9</range>
+		</value>
+	</Operation>
+
+	<!-- Web -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AI_Web"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>AI_Web</defaultProjectile>
+				<range>15</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>2</warmupTime>
+				<soundCast>AI_ThrowShort</soundCast>
+				<burstShotCount>3</burstShotCount>
+				<commonality>0.8</commonality>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				<minRange>1</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- Poison Bolt -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AI_PoisonBolt"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>AI_PoisonBolt</defaultProjectile>
+				<range>32</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>1.6</warmupTime>
+				<soundCast>AI_PoisonBolt</soundCast>
+				<burstShotCount>1</burstShotCount>
+				<commonality>0.8</commonality>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<minRange>2</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- Acid Bolt -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AI_AcidBolt"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>AI_AcidBolt</defaultProjectile>
+				<range>14</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>1.1</warmupTime>
+				<soundCast>AI_PoisonBolt</soundCast>
+				<burstShotCount>1</burstShotCount>
+				<commonality>0.8</commonality>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<minRange>2</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- Barbed Quill -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AI_Quill"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>AI_Quill</defaultProjectile>
+				<range>18</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>2</warmupTime>
+				<soundCast>AI_DartSound</soundCast>
+				<burstShotCount>3</burstShotCount>
+				<commonality>0.8</commonality>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				<minRange>2</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- Plasma / Quad Tesla Cannon -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AI_Plasma"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>AI_Plasma</defaultProjectile>
+				<range>20</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>3.6</warmupTime>
+				<soundCast>AI_Plasma</soundCast>
+				<burstShotCount>4</burstShotCount>
+				<commonality>1</commonality>
+				<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+				<minRange>2</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- Electric Bolt -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AI_ElectricBolt"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>AI_ElectricBolt</defaultProjectile>
+				<range>18</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>2.6</warmupTime>
+				<soundCast>AI_ElectricBolt</soundCast>
+				<burstShotCount>1</burstShotCount>
+				<commonality>0.8</commonality>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<minRange>2</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- Laser Bullet -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AI_LaserBullet"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>AI_LaserBullet_CE</defaultProjectile>
+				<range>15</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>2.5</warmupTime>
+				<soundCast>AI_LaserBullet</soundCast>
+				<burstShotCount>1</burstShotCount>
+				<commonality>0.8</commonality>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				<minRange>2</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- Acid Vomit -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AI_AcidicVomit"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>AI_AcidicVomit</defaultProjectile>
+				<range>8</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>2.6</warmupTime>
+				<soundCast>AI_PoisonBolt</soundCast>
+				<burstShotCount>1</burstShotCount>
+				<commonality>0.8</commonality>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				<minRange>1</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>
+			</verbProperties>
 		</value>
 	</Operation>
 

@@ -68,13 +68,23 @@
 		</modExtensions>
 	</DamageDef>
 
-	<DamageDef ParentName="Flame">
+	<DamageDef Name="FlameSecondary" ParentName="Flame">
 		<defName>Flame_Secondary</defName>
 		<label>burn</label>
 		<workerClass>DamageWorker_AddInjury</workerClass>
 		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
 		<minDamageToFragment>99999</minDamageToFragment>
 		<hediff>BurnSecondary</hediff>
+	</DamageDef>
+
+	<DamageDef ParentName="FlameSecondary">
+		<defName>Flame_Secondary_Incendiary</defName>
+		<igniteChanceByTargetFlammability>
+			<points>
+				<li>(0, 0)</li>
+				<li>(1, 0.3)</li>
+			</points>
+		</igniteChanceByTargetFlammability>
 	</DamageDef>
 
 	<DamageDef Name="Electrical">
@@ -164,17 +174,17 @@
 		<hediff>Flashbanged</hediff>
 	</DamageDef>
 	
-  <DamageDef ParentName="Bullet">
+	<DamageDef ParentName="Bullet">
 		<defName>CE_Laser</defName>
 		<label>laser</label>
 		<deathMessage>{0} has been scorched to death.</deathMessage>
 		<hediff>BurnSecondary</hediff>
-    	<hasForcefulImpact>false</hasForcefulImpact>
+			<hasForcefulImpact>false</hasForcefulImpact>
 		<minDamageToFragment>99999</minDamageToFragment>
-    	<defaultDamage>1</defaultDamage>
-    	<defaultArmorPenetration>0</defaultArmorPenetration>
+			<defaultDamage>1</defaultDamage>
+			<defaultArmorPenetration>0</defaultArmorPenetration>
 		<buildingDamageFactor>0.1</buildingDamageFactor>
 		<plantDamageFactor>2</plantDamageFactor>
-  </DamageDef>
-
+	</DamageDef>
+	
 </Defs>

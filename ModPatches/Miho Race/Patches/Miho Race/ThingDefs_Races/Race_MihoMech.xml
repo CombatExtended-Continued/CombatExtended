@@ -104,7 +104,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]</xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex" or defName="Miho_Mech_DesertSphexExplosion"]</xpath>
 		<value>
 			<comps>
 				<li Class="CombatExtended.CompProperties_ArmorDurability">
@@ -126,7 +126,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex" or defName="Miho_Mech_DesertSphexExplosion"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.65</MeleeDodgeChance>
 			<MeleeCritChance>0.05</MeleeCritChance>
@@ -137,7 +137,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex" or defName="Miho_Mech_DesertSphexExplosion"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -169,6 +169,21 @@
 			<ArmorRating_Blunt>6</ArmorRating_Blunt>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphexExplosion"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphexExplosion"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Miho_Mech_Bulgasal" or defName="Miho_Mech_BulgasalGrenade"]/comps</xpath>
@@ -478,6 +493,97 @@
 		<xpath>Defs/AbilityDef[defName="Miho_MechATMissileReloadable"]/verbProperties/range</xpath>
 		<value>
 			<range>86</range>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_Clibanar"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>5000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Miho_MilitaryGradeBalisticCeramics>5</Miho_MilitaryGradeBalisticCeramics>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.50</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_Clibanar"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+			<MeleeCritChance>0.15</MeleeCritChance>
+			<MeleeParryChance>0.30</MeleeParryChance>
+			<NightVisionEfficiency>0.60</NightVisionEfficiency>
+			<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+			<CarryWeight>100</CarryWeight>
+			<CarryBulk>150</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_Clibanar"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_Clibanar"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>65</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Mech_Clibanar"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>front left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.9</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>front right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.9</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_MechWeapon_Miclic_Proj"]/projectile/damageAmountBase</xpath>
+		<value>
+			<damageAmountBase>200</damageAmountBase>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="Miho_MechMiclicReloadable"]/verbProperties/range</xpath>
+		<value>
+			<range>62</range>
 		</value>
 	</Operation>
 </Patch>
