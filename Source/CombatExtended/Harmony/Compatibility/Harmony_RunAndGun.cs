@@ -73,7 +73,7 @@ class Harmony_Compat_RunAndGun
                 {
                     ready = true;
                 }
-                if (ready && (code.opcode == OpCodes.Brtrue || code.opcode == OpCodes.Brtrue_S)))
+                if (ready && (code.opcode == OpCodes.Brtrue || code.opcode == OpCodes.Brtrue_S))
                 {
                     patch.Last().operand = code.operand;
                     foreach (var c in patch)
