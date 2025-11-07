@@ -64,14 +64,21 @@ public class StatWorker_Caliber : StatWorker
         StringBuilder stringBuilder = new StringBuilder();
 
         var ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+        var damageMultiplier = Gun(req)?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
+        var penMultiplier = Gun(req)?.GetStatValue(StatDefOf.RangedWeapon_ArmorPenetrationMultiplier) ?? 1f;
         if (ShouldDisplayAmmoSet(ammoSet))
         {
             // Append various ammo stats
             stringBuilder.AppendLine(ammoSet.LabelCap);
-            var multiplier = Gun(req)?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
-            if (Mathf.Abs(1f - multiplier) > 0.0001f)
+            if (Mathf.Abs(1f - damageMultiplier) > 0.0001f)
             {
-                stringBuilder.AppendLine("CE_RangedQualityMultiplier".Translate() + ": " + multiplier.ToStringByStyle(ToStringStyle.PercentOne));
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine("CE_RangedDamageMultiplier".Translate() + ": " + damageMultiplier.ToStringByStyle(ToStringStyle.PercentOne));
+            }
+            if (Mathf.Abs(1f - penMultiplier) > 0.0001f)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine("CE_RangedPenMultiplier".Translate() + ": " + penMultiplier.ToStringByStyle(ToStringStyle.PercentOne));
             }
             stringBuilder.AppendLine();
             foreach (var cur in ammoSet.ammoTypes)
@@ -82,6 +89,16 @@ public class StatWorker_Caliber : StatWorker
         }
         else
         {
+            if (Mathf.Abs(1f - damageMultiplier) > 0.0001f)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine("CE_RangedDamageMultiplier".Translate() + ": " + damageMultiplier.ToStringByStyle(ToStringStyle.PercentOne));
+            }
+            if (Mathf.Abs(1f - penMultiplier) > 0.0001f)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine("CE_RangedPenMultiplier".Translate() + ": " + penMultiplier.ToStringByStyle(ToStringStyle.PercentOne));
+            }
             var projectiles = GunDef(req)?.Verbs?.Where(x => x.defaultProjectile != null).Select(x => x.defaultProjectile);
 
             foreach (var cur in projectiles)

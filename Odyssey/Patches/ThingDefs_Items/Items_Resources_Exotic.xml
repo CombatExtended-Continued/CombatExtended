@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Mastodon Tusk ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MastodonTusk"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MastodonTusk"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MastodonTusk"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+			<Bulk>25</Bulk>
+		</value>
+	</Operation>
+
+	<!-- ========== Alpha Thrumbo Horn ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="AlphaThrumboHorn"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="AlphaThrumboHorn"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AlphaThrumboHorn"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+			<Bulk>25</Bulk>
+		</value>
+	</Operation>
+
+</Patch>

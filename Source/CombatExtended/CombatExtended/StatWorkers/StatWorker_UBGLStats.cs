@@ -17,7 +17,7 @@ public class StatWorker_UBGLStats : StatWorker
         {
             comp = (req.Def as ThingDef)?.GetCompProperties<CompProperties_UnderBarrel>() ?? null;
         }
-        return base.ShouldShowFor(req) && comp != null;
+        return base.ShouldShowFor(req) && comp?.verbPropsUnderBarrel != null;
     }
 
     public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -27,7 +27,7 @@ public class StatWorker_UBGLStats : StatWorker
         {
             comp = ((ThingDef)req.Def)?.GetCompProperties<CompProperties_UnderBarrel>() ?? null;
         }
-        if (comp != null)
+        if (comp?.verbPropsUnderBarrel != null)
         {
             var builder = new StringBuilder();
 

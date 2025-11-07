@@ -159,6 +159,7 @@ Call of Duty: Wonder Weapons |
 Carbon	|
 Censored Armory  |
 Charge-Loading Lee-Enfield  |
+Chougou Mechs   |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Colonial Shuttle |
@@ -170,6 +171,7 @@ Cossacks of the Rim |
 Crossbows   |
 Crowns and Regalia  |
 Crypto Weapon Restored  |
+Crypto Arsenal  |
 Cupro's Alloys	|
 Cursed Guns |
 CutePenguin	|
@@ -270,6 +272,7 @@ Glitter Tech	|
 Glitter Weaponry	|
 Gloomy Dragonian Race	|
 GouRIMet	|
+Gravship Captain Set    |
 GREG	|
 Grimstone Beasts   |
 Grimworld: Autoguns	|
@@ -291,11 +294,13 @@ Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
 Hive Armory |
+Hunter Mechanoid |
 Huscarl - Power Armor   |
 Hyena (Continued) |
 Idhale Race	|
 Impact Weaponry	|
 Imperial Arsenal: Royal Warcasket 	|
+Imperial Attires 	|
 Individuality 	|
 Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
@@ -325,6 +330,7 @@ Kurin HAR Edition	|
 Leeani Playable Race	|
 Lemolim Race    |
 Let's Have a Cat!	|
+Life Support Pack   |
 Littluna Race |
 Logann Race	|
 Logistics_Mechanoid |
@@ -387,6 +393,7 @@ MorrowRim - Ashlands Swamp  |
 MorrowRim - Bloodmoon  |
 MorrowRim - Colovian Fur Helm	|
 MorrowRim - Just the Animals	|
+Mono Weapons Pack	|
 Moyo - From the Depth   |
 Moyo - Light in the Abyss   |
 Moyo - The Cartel Arrives   |
@@ -395,6 +402,7 @@ Nakin Race  |
 Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
+Nephilim Xenotype Reborn    |
 New Mech: Mini-Miner    |
 Ni'Hal	|
 Nukes   |
@@ -402,6 +410,7 @@ Nyaron Race |
 Nomad Scavengers    |
 Not Only Just a Cannon  |
 Obsidia Expansion - Mothoids Xenotype   |
+Odysseus Vacsuit Set    |
 ODZ Suits |
 Opossum Friends |
 Orassans	|
@@ -423,6 +432,7 @@ Palm Cats   |
 Paniel the Automata |
 Pawnbold Race   |
 Persona Warcasket Weapons   |
+Plasma Weapons Pack   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
 Possessed Weapons	|
@@ -431,6 +441,7 @@ phynilla Expanded Mechs Scyther |
 pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
+Prestige Vacsuit Set    |
 Primitive Core |
 Primitive Workbenches |
 Project RimFactory - Materials |
@@ -496,6 +507,7 @@ Rimsenal - Security Pack |
 Rimsenal - Spacer Faction Pack  |
 Rimsenal Xenotype Pack - Askbarn    |
 Rimsenal Xenotype Pack - Harana |
+Rimsenal Xenotype Pack - Zohar  |
 RimTraits - General Traits  |
 RimTraits – Medieval Talents    |
 Rimworld - The Dark Descent |
@@ -537,6 +549,7 @@ Star Wars - Factions |
 Starship Troopers Aracnids  |
 Steamworld Uniforms |
 Steves Animals  |
+Stellic Arsenal  |
 Stoneborn - Delights  |
 Supernatural Weapons    |
 Swords (Continued)  |
@@ -545,6 +558,7 @@ Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
 The Profaned	|
+The REAL flamberg	|
 The Vanity Project - Shiba Inu  |
 The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
@@ -558,14 +572,17 @@ Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 Tools O'Plenty  |
 TouhouStyle	|
+Tox Weapons Pack	|
 Tribal Warrior Set! |
 Tsar Armory	|
 Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
+T's Wild Child Rags |
 Useless Clothes |
-Ushankas Glitterworld Uprising  |
+Ushankas Glittertech Expansion  |
+VacSlipsuit |
 Valorant Weapon Pack |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Endangered |
@@ -635,8 +652,10 @@ VFE - Mechanoids : Drones |
 VGP Fabrics |
 VGP Garden Drinks    |
 Victorian Era Apparels!  |
+Volt Weaponry  |
 VRE Android Factions  |
 Vulpine Race Pack	|
+W1NG VacSuit Set    |
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Barbatos Gundam Addon  |
@@ -659,3 +678,4 @@ Xenohumans Expanded |
 Xenoorca Race	|
 Yet Another Prosthetic Expansion Mod - Core |
 Zombieland	|
+Zeus Weapons Pack	|

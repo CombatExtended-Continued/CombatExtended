@@ -40,7 +40,9 @@ public class ProjectileCE_BunkerBuster : ProjectileCE_Explosive
                                        preExplosionSpawnThingDef: props.preExplosionSpawnThingDef,
                                        preExplosionSpawnChance: props.preExplosionSpawnChance,
                                        preExplosionSpawnThingCount: props.preExplosionSpawnThingCount,
-                                       postExplosionGasType: props.postExplosionGasType
+                                       postExplosionGasType: props.postExplosionGasType,
+                                       preExplosionSpawnSingleThingDef: Props.preExplosionSpawnSingleThingDef,
+                                       postExplosionSpawnSingleThingDef: Props.postExplosionSpawnSingleThingDef
                                       );
 
             foreach (var comp in GetComps<CompFragments>())
