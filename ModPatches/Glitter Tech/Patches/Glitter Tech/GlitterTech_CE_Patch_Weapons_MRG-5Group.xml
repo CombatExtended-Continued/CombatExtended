@@ -2,6 +2,35 @@
 <Patch>
 	<!-- ========== MRG-5 Pistol ========== -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_MRGPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_MRGPistol</defName>
 		<statBases>
@@ -37,42 +66,6 @@
 		</FireModes>
 
 		<!-- No additional CE weaponTags needed -->
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_MRGPistol"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>1.54</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>1.54</cooldownTime>
-					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Bullet_8mmRailgun_Sabot"]/graphicData/texPath</xpath>
-		<value>
-			<texPath>Things/Projectile/MRGP</texPath>
-		</value>
 	</Operation>
 
 	<!-- ========== MRG-5 Rifle ========== -->
