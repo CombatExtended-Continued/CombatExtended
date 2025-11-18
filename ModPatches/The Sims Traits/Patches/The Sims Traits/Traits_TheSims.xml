@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ======= Daredevil ======= -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ST_AdrenalineRush" or defName="ST_AdrenalineRushShort"]/stages/li</xpath>
+		<value>
+			<statOffsets>
+				<Suppressability>-0.25</Suppressability>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- ======= Steady Hands ======= -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraitDef[defName="ST_SteadyHands"]/degreeDatas/li[label="steady hands"]</xpath>
+		<value>
+			<statOffsets>
+				<AimingAccuracy>0.5</AimingAccuracy>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- ======= Gambler ======= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName="ST_Gambler"]/degreeDatas/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>0.7</ShootingAccuracyPawn>
+				<AimingAccuracy>0.7</AimingAccuracy>
+				<MeleeHitChance>0.7</MeleeHitChance>
+				<MeleeCritChance>0.7</MeleeCritChance>
+				<MeleeParryChance>0.7</MeleeParryChance>
+				<MeleeDodgeChance>0.7</MeleeDodgeChance>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- ======= Huge Power ======= -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraitDef[defName="ST_HugePower"]/degreeDatas/li/statOffsets</xpath>
+		<value>
+			<CarryBulk>20</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName="ST_HugePower"]/degreeDatas/li/statFactors</xpath> 
+		<value>
+			<statFactors>
+				<VEF_VerbRangeFactor MayRequire="OskarPotocki.VanillaFactionsExpanded.Core">1.2</VEF_VerbRangeFactor> <!--nerfed from 1.5-->
+			</statFactors>
+		</value>
+	</Operation>
+
+</Patch>
