@@ -2,10 +2,14 @@
 <Patch>
 
 	<!-- ========== Inicinerator Turret ========== -->
-	<Operation Class="PatchOperationSequence">
-		<operations>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Anomaly">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Gun_IncineratorTurret"]/verbs</xpath>
 				<value>
 					<verbs>
@@ -29,7 +33,7 @@
 				</value>
 			</li>
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="Ludeon.RimWorld.Anomaly">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_IncineratorTurret</defName>
 				<statBases>
 					<SightsEfficiency>1</SightsEfficiency>
@@ -70,7 +74,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Anomaly">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_Incinerator"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>0.37</turretBurstCooldownTime>
@@ -79,23 +83,25 @@
 
 			<!--========== Common to all Sentry Turrets ========== -->
 			
-			<li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Anomaly">
+			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Turret_Incinerator"]</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 				</value>
 			</li>
 
-			<li Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Anomaly">
+			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Turret_Incinerator"]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 			</li>
 
-			<li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Anomaly">
+			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Turret_Incinerator"]/statBases </xpath>
 				<value>
 					<AimingAccuracy>1.0</AimingAccuracy>
 				</value>
 			</li>
-		</operations>
+
+			</operations>
+		</match>
 	</Operation>
 </Patch>
