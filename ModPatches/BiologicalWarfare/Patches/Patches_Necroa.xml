@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ushankas Necroa Archovirus</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Necroa -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/USH_BW.CombatDiseaseDef[defName="USH_Necroa"]/thingDefsToFormatAndColor/li[
+					.="USH_NecroaShell" or
+					.="USH_NecroaShellBullet" or
+					.="USH_NecroaMissileLauncherTurret" or
+					.="USH_NecroaMissileBullet" or
+					.="USH_NecroaGrenadeLauncher" or
+					.="USH_NecroaGrenadeBullet"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/USH_BW.CombatDiseaseDef[defName="USH_Necroa"]/thingDefsToColorIcons/li[.="USH_NecroaMissileLauncher"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/USH_BW.CombatDiseaseDef[defName="USH_Necroa"]/thingDefsToFormat/li[.="USH_NecroaMissileLauncher"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+					defName="USH_NecroaShell" or
+					defName="USH_NecroaMissileLauncher" or
+					defName="USH_NecroaMissileLauncherTurret" or
+					defName="USH_NecroaMissileBullet" or
+					defName="USH_NecroaGrenadeLauncher" or
+					defName="USH_NecroaGrenadeBullet"]
+				</xpath>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>	
+
+</Patch>
