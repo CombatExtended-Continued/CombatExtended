@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<operations>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsenal: Murder diversified</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
 			<!-- ========== Shard Sentry ========== -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_ShardSentry</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
@@ -43,7 +49,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_ShardSentry"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>0.33</turretBurstCooldownTime>
@@ -51,7 +57,7 @@
 			</li>
 
 			<!-- ========== Wave Emitter ========== -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_WaveEmitter</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>2.6</RangedWeapon_Cooldown>
@@ -85,7 +91,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_WaveEmitter"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>1</turretBurstCooldownTime>
@@ -93,7 +99,7 @@
 			</li>
 
 			<!-- ========== Nest HMG ========== -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_NestHMG</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -130,7 +136,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_GraydaleHMG"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>0.37</turretBurstCooldownTime>
@@ -138,7 +144,7 @@
 			</li>
 
 			<!-- ========== Portable MMG ========== -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_GreydaleMMG</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -175,7 +181,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_GreydaleMMG"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>0.36</turretBurstCooldownTime>
@@ -184,7 +190,7 @@
 			
 			<!-- ========== Portable AMR ========== -->
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_GreydaleAMR</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -217,7 +223,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_GreydaleAMR"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>0.45</turretBurstCooldownTime>
@@ -226,7 +232,7 @@
 
 			<!-- ========== AGS ========== -->
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_AGS</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -267,7 +273,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_NestAGS"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>0.40</turretBurstCooldownTime>
@@ -276,7 +282,7 @@
 			
 			<!-- ========== RR ========== -->
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RR</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -309,7 +315,7 @@
 				</weaponTags>
 			</li>
 
-			<li Class="PatchOperationAddModExtension" MayRequire="rimsenal.core">
+			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/ThingDef[defName="Gun_RR"]</xpath>
 				<value>
 					<li Class="CombatExtended.MultiBarrelExtension">
@@ -320,7 +326,7 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_NestRR"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>1.5</turretBurstCooldownTime>
@@ -329,7 +335,7 @@
 			
 			<!-- ========== Mini-Mortar ========== -->
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_GreydaleLightMortar</defName>
 				<statBases>
 					<SightsEfficiency>0.5</SightsEfficiency>
@@ -363,7 +369,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_GreydaleLightMortar"]/placeWorkers</xpath>
 				<value>
 					<placeWorkers Inherit="False">
@@ -374,14 +380,14 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Turret_GreydaleLightMortar"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>2</turretBurstCooldownTime>
 				</value>
 			</li>
 			
-			<li Class="PatchOperationConditional" MayRequire="rimsenal.core">
+			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="Gun_GreydaleLightMortar"]/comps</xpath>
 				<match Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Gun_GreydaleLightMortar"]/comps</xpath>
@@ -415,7 +421,7 @@
 
 			<!-- ========== Suv Turret ========== -->
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_SuvTurret</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>2.40</RangedWeapon_Cooldown>
@@ -458,7 +464,7 @@
 
 			<!-- ========== Sup Turret ========== -->
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_SupTurret</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>2.40</RangedWeapon_Cooldown>
@@ -503,7 +509,7 @@
 
 			<!-- ========== Molten Cannon ========== -->
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Artillery_MC</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
@@ -542,7 +548,7 @@
 			</li>
 
 			<!-- ========== Rocket Turret ========== -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="rimsenal.core">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RocketTurret</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
@@ -583,7 +589,7 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationAddModExtension" MayRequire="rimsenal.core">
+			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/ThingDef[defName="Gun_RocketTurret"]</xpath>
 				<value>
 					<li Class="CombatExtended.MultiBarrelExtension">
@@ -597,7 +603,7 @@
 			</li>
 
 			<!-- ========== Common to all Defensive Turrets ========== -->
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 					@Name="BaseMCBuilding" or
 					@Name="GraydaleHeavy" or
@@ -609,14 +615,14 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationRemove" MayRequire="rimsenal.core">
+			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[
 					defName="RocketTurret" or
 					defName="Turret_MC"
 					]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 			</li>
 
-			<li Class="PatchOperationAdd" MayRequire="rimsenal.core">
+			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[
 					defName="Turret_GraydaleHMG" or
 					defName="Turret_NestAGS" or
@@ -632,7 +638,7 @@
 			
 
 			<!--========== Common to all Sentry Turrets ========== -->
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 					@Name="ShardSentry" or
 					@Name="SuvTurret" or
@@ -643,7 +649,7 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationRemove" MayRequire="rimsenal.core">
+			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[
 					defName="Turret_ShardSentry" or
 					defName="Turret_SuvTurret" or
@@ -651,7 +657,7 @@
 					]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 			</li>
 
-			<li Class="PatchOperationAdd" MayRequire="rimsenal.core">
+			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[
 					defName="Turret_ShardSentry" or
 					defName="Turret_SuvTurret" or
@@ -664,7 +670,7 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationAdd" MayRequire="rimsenal.core">
+			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[
 					defName="Turret_ShardSentry" or
 					defName="Turret_SuvTurret" or
@@ -677,7 +683,7 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationAdd" MayRequire="rimsenal.core">
+			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[
 					defName="Gun_SuvTurret" or
 					defName="Gun_RocketTurret" or
@@ -691,7 +697,7 @@
 
 			<!--========== fillpercent replacement ========== -->
 
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 					@Name="GraydaleHeavy" or
 					@Name="GreydaleLight" or
@@ -706,7 +712,7 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 					@Name = "BaseMCBuilding"]/thingClass </xpath>
 				<value>
@@ -714,12 +720,12 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationRemove" MayRequire="rimsenal.core">
+			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[@Name = "BaseMCBuilding"]/inspectorTabs</xpath>
 			</li>
 
 			<!-- ========== Impact Mine ========== -->
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="ImpactMine"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 				<value>
 					<li Class="CompProperties_Explosive">
@@ -733,19 +739,21 @@
 				</value>
 			</li>
 			<!-- ========== Shell Textures ========== -->
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Bullet_MoltenShell_CE"]/graphicData/texPath</xpath>
 				<value>
 					<texPath>Things/Projectile/Bullet_ULMMC</texPath>
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace" MayRequire="rimsenal.core">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Bullet_JISiegeRocket_CE"]/graphicData/texPath</xpath>
 				<value>
 					<texPath>Things/Projectile/Bullet_ULMBC</texPath>
 				</value>
 			</li>
-		</operations>
+
+			</operations>
+		</match>
 	</Operation>
 </Patch>
