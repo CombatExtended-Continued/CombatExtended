@@ -619,7 +619,8 @@
 				<xpath>Defs/ThingDef[
 					defName="RocketTurret" or
 					defName="Turret_MC"
-					]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+					]/comps/li[@Class="CompProperties_Refuelable"]
+				</xpath>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -630,12 +631,11 @@
 					defName="Turret_GreydaleMMG" or
 					defName="Turret_GreydaleAMR" or
 					defName="Turret_GreydaleLightMortar"
-					]/statBases </xpath>
+					]/statBases</xpath>
 				<value>
 					<AimingAccuracy>0.5</AimingAccuracy>
 				</value>
 			</li>
-			
 
 			<!--========== Common to all Sentry Turrets ========== -->
 			<li Class="PatchOperationReplace">
@@ -654,7 +654,8 @@
 					defName="Turret_ShardSentry" or
 					defName="Turret_SuvTurret" or
 					defName="Turret_SupTurret"
-					]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+					]/comps/li[@Class = "CompProperties_Refuelable"]
+				</xpath>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -664,7 +665,7 @@
 					defName="Turret_SupTurret" or
 					defName="Turret_WaveEmitter" or
 					defName="Turret_MC"
-					]/statBases </xpath>
+					]/statBases</xpath>
 				<value>
 					<AimingAccuracy>1.0</AimingAccuracy>
 				</value>
@@ -677,7 +678,7 @@
 					defName="Turret_WaveEmitter" or
 					defName="RocketTurret" or
 					defName="Turret_MC"
-					]/statBases </xpath>
+					]/statBases</xpath>
 				<value>
 					<NightVisionEfficiency>0.5</NightVisionEfficiency>
 				</value>
@@ -689,7 +690,7 @@
 					defName="Gun_RocketTurret" or
 					defName="Gun_WaveEmitter" or
 					defName="Gun_ShardSentry"
-					]/statBases </xpath>
+					]/statBases</xpath>
 				<value>
 					<NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
 				</value>
@@ -706,22 +707,21 @@
 					@Name="ShardSentry" or
 					@Name="SuvTurret" or
 					@Name="WaveEmitter"
-					]/fillPercent </xpath>
+					]/fillPercent</xpath>
 				<value>
 					<fillPercent>0.85</fillPercent>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					@Name = "BaseMCBuilding"]/thingClass </xpath>
+				<xpath>Defs/ThingDef[@Name="BaseMCBuilding"]/thingClass </xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 				</value>
 			</li>
 
 			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[@Name = "BaseMCBuilding"]/inspectorTabs</xpath>
+				<xpath>Defs/ThingDef[@Name="BaseMCBuilding"]/inspectorTabs</xpath>
 			</li>
 
 			<!-- ========== Impact Mine ========== -->
@@ -738,6 +738,7 @@
 					</li>
 				</value>
 			</li>
+
 			<!-- ========== Shell Textures ========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Bullet_MoltenShell_CE"]/graphicData/texPath</xpath>
