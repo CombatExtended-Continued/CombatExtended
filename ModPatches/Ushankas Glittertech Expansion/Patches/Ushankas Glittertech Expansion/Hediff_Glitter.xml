@@ -2,10 +2,6 @@
 <Patch>
 
 	<!-- ===== Glitterworld Golden Skin ===== -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/HediffDef[defName="USH_InstalledGoldenSkinReplacement"]/stages/li/capMods</xpath>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="USH_InstalledGoldenSkinReplacement"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
 		<value>
@@ -52,6 +48,52 @@
 		<value>
 			<MoveSpeed>0.10</MoveSpeed>
 			<MeleeDodgeChance>0.01</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- ===== Glitterworld Plasteel Teeth ===== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="USH_InstalledPlasteelTeethReplacement"]/comps</xpath>
+		<value>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>1.8</cooldownTime>
+						<chanceFactor>0.07</chanceFactor>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetrationSharp>1</armorPenetrationSharp>
+						<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ===== Glitterworld Gold Teeth ===== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="USH_InstalledGoldenTeethReplacement"]/comps</xpath>
+		<value>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>2</cooldownTime>
+						<chanceFactor>0.07</chanceFactor>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetrationSharp>0.15</armorPenetrationSharp>
+						<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</li>
 		</value>
 	</Operation>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ScenarioDef[defName="Miho_Start"]/scenario/parts</xpath>
 		<value>
@@ -10,4 +11,28 @@
 			</li>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ScenarioDef[defName="Miho_TheGravship"]/scenario/parts</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_8x22mmNambu_FMJ</thingDef>
+						<count>200</count>
+					</li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
 </Patch>
