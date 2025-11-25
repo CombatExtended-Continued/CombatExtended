@@ -128,14 +128,28 @@
 			<dropsCasings>false</dropsCasings>
 		</projectile>
 		<modExtensions>
-            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+			<li Class="ProjectileImpactFX.EffectProjectileExtension">
 				<AutoAssign>false</AutoAssign>
 				<CreateTerrainEffects>true</CreateTerrainEffects>
 				<ImpactSoundDef>CE_HeavyProjectileImpact</ImpactSoundDef>
 				<explosionFleckDef>Fleck_CECannonball</explosionFleckDef>
 				<explosionFleckSize>0.8</explosionFleckSize>
-            </li>
-        </modExtensions>
+			</li>
+		</modExtensions>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>3~3</cutoffTickRange>
+						<scale>2~2.5</scale>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCannonBall">
@@ -158,18 +172,19 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>99</speed>
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>142</damageAmountBase>
+			<damageAmountBase>79</damageAmountBase>
 			<armorPenetrationSharp>0</armorPenetrationSharp>
 			<armorPenetrationBlunt>0</armorPenetrationBlunt>
-			<explosionRadius>2.5</explosionRadius>
+			<explosionRadius>2</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Large>17</Fragment_Large>
-					<Fragment_Small>22</Fragment_Small>
+					<Fragment_Large>19</Fragment_Large>
+					<Fragment_Small>9</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -206,6 +221,21 @@
 			<armorPenetrationBlunt>420.68</armorPenetrationBlunt>
 			<spreadMult>26.7</spreadMult>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmoke</fleck>
+						<emissionsPerTick>1</emissionsPerTick>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>2</cutoffTickRange>
+						<scale>2.0~2.5</scale>
+						<originOffset>0.0~2.0</originOffset>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ================== Projectiles - Mortar ================== -->
@@ -223,6 +253,20 @@
 			<dropsCasings>false</dropsCasings>
 			<gravityFactor>5</gravityFactor>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<startDelayTick>0</startDelayTick>
+						<fleck>Fleck_CEBlackpowderSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>3~3</cutoffTickRange>
+						<scale>2~2.5</scale>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCannonBall_Mortar">
@@ -235,16 +279,17 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>142</damageAmountBase>
-			<explosionRadius>2.5</explosionRadius>
+			<damageAmountBase>79</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Large>17</Fragment_Large>
-					<Fragment_Small>22</Fragment_Small>
+					<Fragment_Large>19</Fragment_Large>
+					<Fragment_Small>9</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -366,7 +411,7 @@
 		<products>
 			<Ammo_CannonBall_Incendiary>5</Ammo_CannonBall_Incendiary>
 		</products>
-		<workAmount>7400</workAmount>
+		<workAmount>8600</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">

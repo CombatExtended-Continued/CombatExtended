@@ -1,18 +1,16 @@
 ﻿using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class CompProperties_FireModes : CompProperties
 {
-    public class CompProperties_FireModes : CompProperties
-    {
-        public int aimedBurstShotCount = -1;    //will default to regular burst setting if not specified in def
-        public bool aiUseBurstMode = false;
-        public bool noSingleShot = false;
-        public bool noSnapshot = false;
-        public AimMode aiAimMode = AimMode.AimedShot;
+    public int aimedBurstShotCount = -1;    //will default to regular burst setting if not specified in def
+    public bool aiUseBurstMode = false;
+    public bool noSingleShot = false;
+    public bool noSnapshot = false;
+    public AimMode aiAimMode = AimMode.AimedShot;
 
-        public CompProperties_FireModes()
-        {
-            compClass = typeof(CompFireModes);
-        }
+    public CompProperties_FireModes()
+    {
+        compClass = typeof(CompFireModes);
     }
 }

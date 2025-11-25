@@ -6,9 +6,9 @@
 	<!-- ========== Add groups entry if it doesn't exist already ========== -->
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/BodyDef[defName="Scorcher" or defName="Apocriton"]/corePart/groups</xpath>
+		<xpath>Defs/BodyDef[defName="Scorcher"]/corePart/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="Scorcher" or defName="Apocriton"]/corePart</xpath>
+			<xpath>Defs/BodyDef[defName="Scorcher"]/corePart</xpath>
 			<value>
 				<groups />
 			</value>
@@ -165,6 +165,17 @@
 
 	<!-- ========== Modify coverage ========== -->
 
+  <!-- ==================== Scorcher ==================== -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/BodyDef[defName="Scorcher"]/corePart/parts/li[def="FluidReprocessor"]/coverage</xpath>
+		<value>
+      <coverage>0.05</coverage>
+    </value>
+	</Operation>
+
+  <!-- ==================== Apocriton ==================== -->
+	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/BodyDef[defName="Apocriton"]/corePart/parts/li[def="Reactor"]/coverage</xpath>
 		<value>

@@ -18,6 +18,25 @@
 			</layers>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_IntegratorHeadset"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets Inherit="False">
+				<MechBandwidth>9</MechBandwidth>
+				<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_IntegratorHeadset"]/apparel</xpath>
+		<value>
+			<layers Inherit="False">
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Apparel_AirwireHeadset" or defName="Apparel_ArrayHeadset" or defName="Apparel_IntegratorHeadset"]</xpath>
@@ -32,8 +51,6 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="ApparelArmorHelmetMechanitorBase"]</xpath>
 		<value>
-			<equippedStatOffsets Inherit="False">
-			</equippedStatOffsets>
 			<statBases Inherit="False">
 				<WorkToMake>15750</WorkToMake>
 				<MaxHitPoints>120</MaxHitPoints>
@@ -95,11 +112,9 @@
 		<value>
 			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 			<SmokeSensitivity>-1</SmokeSensitivity>
+			<AimingAccuracy>-0.25</AimingAccuracy>
+			<ShootingAccuracyPawn>-1.25</ShootingAccuracyPawn>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetMechlordHelmet"]/equippedStatOffsets/MeleeHitChance</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -148,6 +163,9 @@
 		<value>
 			<li Class="CombatExtended.ApparelHediffExtension">
 				<hediff>WearingGasMask</hediff>
+			</li>
+			<li Class="CombatExtended.ApparelDefExtension">
+				<isSoftArmor>true</isSoftArmor>
 			</li>
 			<li Class="CombatExtended.ApperalRenderingExtension">
 				<HideHair>false</HideHair>

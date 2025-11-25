@@ -4,25 +4,29 @@
 	<!-- Remove refuelable property -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName = "VFEA_Turret_AncientSecurityTurret" or
-			defName = "VFEA_Turret_AncientPointDefense"
-			]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+			defName="VFEA_Turret_AncientSecurityTurret" or
+			defName="VFEA_Turret_AncientPointDefense"
+			]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
 	</Operation>
 
 	<!-- Replace vanilla thingClass -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName = "VFEA_Turret_AncientSecurityTurret" or
-			@Name = "AncientPointDefenseTurretBase"
-			]/thingClass </xpath>
+		<xpath>Defs/ThingDef[defName="VFEA_Turret_AncientSecurityTurret"]/thingClass </xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AncientPointDefenseTurretBase"]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.Building_CIWS_CE</thingClass>
+		</value>
+	</Operation>
+
 	<!-- Make turrets taller -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEA_Turret_AncientSecurityTurret"]/fillPercent</xpath>
+		<xpath>Defs/ThingDef[defName="VFEA_Turret_AncientSecurityTurret"]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
 		</value>
@@ -37,8 +41,8 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName = "VFEA_Turret_AncientSecurityTurret" or
-			defName = "VFEA_Turret_AncientPointDefense"
+			defName="VFEA_Turret_AncientSecurityTurret" or
+			defName="VFEA_Turret_AncientPointDefense"
 			]/statBases </xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
@@ -46,14 +50,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEA_Turret_AncientSecurityTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="VFEA_Turret_AncientSecurityTurret"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1.1</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEA_Turret_AncientPointDefense"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="VFEA_Turret_AncientPointDefense"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
 		</value>
@@ -61,8 +65,8 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName = "VFEA_Turret_AncientSecurityTurret" or
-			defName = "VFEA_Turret_AncientPointDefense"
+			defName="VFEA_Turret_AncientSecurityTurret" or
+			defName="VFEA_Turret_AncientPointDefense"
 			]/building/turretBurstCooldownTime </xpath>
 		<value>
 			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
@@ -70,7 +74,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="VFEA_Turret_AncientSecurityTurret" or defName="VFEA_Turret_AncientPointDefense"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFEA_Turret_AncientSecurityTurret" or defName="VFEA_Turret_AncientPointDefense"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -82,7 +86,7 @@
 
 	<!-- Make turrets taller -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEA_Turret_AncientSecurityTurret"]/statBases/MaxHitPoints</xpath>
+		<xpath>Defs/ThingDef[defName="VFEA_Turret_AncientSecurityTurret"]/statBases/MaxHitPoints</xpath>
 		<value>
 			<MaxHitPoints>125</MaxHitPoints>
 		</value>
@@ -164,4 +168,51 @@
 			<noSingleShot>true</noSingleShot>
 		</FireModes>
 	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEA_Gun_AncientPointDefenseTurret"]/verbs</xpath>
+		<value>
+			<li Class="CombatExtended.VerbProperties_CIWSProjectile">
+				<verbClass>CombatExtended.VerbCIWSProjectile</verbClass>
+				<recoilAmount>0.25</recoilAmount>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+				<warmupTime>0.4</warmupTime>
+				<range>105</range>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<burstShotCount>10</burstShotCount>
+				<soundCast>Shot_Minigun</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<recoilPattern>Mounted</recoilPattern>
+				<holdFireLabel>HoldCloseInProjectilesFire</holdFireLabel>
+				<holdFireDesc>HoldCloseInProjectilesFireDesc</holdFireDesc>
+			</li>
+			<li Class="CombatExtended.VerbProperties_CIWSSkyfaller">
+				<verbClass>CombatExtended.VerbCIWSSkyfaller</verbClass>
+				<recoilAmount>0.25</recoilAmount>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+				<warmupTime>0.4</warmupTime>
+				<range>105</range>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<burstShotCount>10</burstShotCount>
+				<soundCast>Shot_Minigun</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<recoilPattern>Mounted</recoilPattern>
+				<holdFireLabel>HoldCloseInSkyfallersFire</holdFireLabel>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEA_Gun_AncientPointDefenseTurret"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompVerbDisabler</compClass>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>

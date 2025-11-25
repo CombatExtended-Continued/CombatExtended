@@ -5,123 +5,121 @@ using Verse;
 using Verse.Sound;
 using System.Reflection;
 
-namespace CombatExtended.Lasers
+namespace CombatExtended.Lasers;
+public class Building_LaserGunDef : ThingDef
 {
-    public class Building_LaserGunDef : ThingDef
+    public int beamPowerConsumption = 20;
+    public bool supportsColors = false;
+}
+// AdeptusMechanicus.Building_LaserGunCE
+public class Building_LaserGunCE : Building_TurretGunCE, IBeamColorThing
+{
+    public bool isCharged = false;
+    public int previousBurstCooldownTicksLeft = 0;
+
+    private Building_LaserGunDef laserGunDef => base.def as Building_LaserGunDef;
+
+    public int BurstCooldownTicksLeft => burstCooldownTicksLeft;
+    public int BurstWarmupTicksLeft => burstWarmupTicksLeft;
+
+    public int BeamColor
     {
-        public int beamPowerConsumption = 20;
-        public bool supportsColors = false;
+        get
+        {
+            return LaserColor.IndexBasedOnThingQuality(beamColorIndex, this);
+        }
+        set
+        {
+            beamColorIndex = value;
+        }
     }
-    // AdeptusMechanicus.Building_LaserGunCE
-    public class Building_LaserGunCE : Building_TurretGunCE, IBeamColorThing
+
+    public override void ExposeData()
     {
-        public bool isCharged = false;
-        public int previousBurstCooldownTicksLeft = 0;
+        base.ExposeData();
 
-        private Building_LaserGunDef laserGunDef => base.def as Building_LaserGunDef;
+        Scribe_Values.Look<bool>(ref isCharged, "isCharged", false, false);
+        Scribe_Values.Look<int>(ref previousBurstCooldownTicksLeft, "previousBurstCooldownTicksLeft", 0, false);
+        Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
+    }
 
-        public int BurstCooldownTicksLeft => burstCooldownTicksLeft;
-        public int BurstWarmupTicksLeft => burstWarmupTicksLeft;
 
-        public int BeamColor
+
+    public override void SpawnSetup(Map map, bool respawningAfterLoad)
+    {
+        base.SpawnSetup(map, respawningAfterLoad);
+    }
+
+    public override void Tick()
+    {
+        if (burstCooldownTicksLeft > previousBurstCooldownTicksLeft)
         {
-            get
+            isCharged = false;
+        }
+        previousBurstCooldownTicksLeft = burstCooldownTicksLeft;
+
+        if (!isCharged)
+        {
+            if (Drain(laserGunDef.beamPowerConsumption))
             {
-                return LaserColor.IndexBasedOnThingQuality(beamColorIndex, this);
-            }
-            set
-            {
-                beamColorIndex = value;
+                isCharged = true;
             }
         }
 
-        public override void ExposeData()
+        if (!(isCharged || burstCooldownTicksLeft > 1))
         {
-            base.ExposeData();
-
-            Scribe_Values.Look<bool>(ref isCharged, "isCharged", false, false);
-            Scribe_Values.Look<int>(ref previousBurstCooldownTicksLeft, "previousBurstCooldownTicksLeft", 0, false);
-            Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
+            return;
         }
 
-
-
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        int ticksLeft = burstWarmupTicksLeft;
+        base.Tick();
+        if (burstWarmupTicksLeft == def.building.turretBurstWarmupTime.RandomInRange.SecondsToTicks() - 1 && ticksLeft == burstWarmupTicksLeft + 1)
         {
-            base.SpawnSetup(map, respawningAfterLoad);
-        }
-
-        public override void Tick()
-        {
-            if (burstCooldownTicksLeft > previousBurstCooldownTicksLeft)
+            if (AttackVerb.verbProps.soundAiming != null)
             {
-                isCharged = false;
-            }
-            previousBurstCooldownTicksLeft = burstCooldownTicksLeft;
-
-            if (!isCharged)
-            {
-                if (Drain(laserGunDef.beamPowerConsumption))
-                {
-                    isCharged = true;
-                }
-            }
-
-            if (!(isCharged || burstCooldownTicksLeft > 1))
-            {
-                return;
-            }
-
-            int ticksLeft = burstWarmupTicksLeft;
-            base.Tick();
-            if (burstWarmupTicksLeft == def.building.turretBurstWarmupTime.RandomInRange.SecondsToTicks() - 1 && ticksLeft == burstWarmupTicksLeft + 1)
-            {
-                if (AttackVerb.verbProps.soundAiming != null)
-                {
-                    AttackVerb.verbProps.soundAiming.PlayOneShot(new TargetInfo(Position, Map, false));
-                }
+                AttackVerb.verbProps.soundAiming.PlayOneShot(new TargetInfo(Position, Map, false));
             }
         }
+    }
 
-        public float AvailablePower()
+    public float AvailablePower()
+    {
+        if (powerComp.PowerNet == null)
         {
-            if (powerComp.PowerNet == null)
-            {
-                return 0;
-            }
-
-            return powerComp.PowerNet.CurrentStoredEnergy();
-
+            return 0;
         }
-        public bool Drain(float amount)
+
+        return powerComp.PowerNet.CurrentStoredEnergy();
+
+    }
+    public bool Drain(float amount)
+    {
+        if (amount <= 0)
         {
-            if (amount <= 0)
-            {
-                return true;
-            }
-            if (AvailablePower() < amount)
-            {
-                return false;
-            }
-            powerComp.PowerNet.ChangeStoredEnergy(-amount);
             return true;
         }
-
-        public override string GetInspectString()
+        if (AvailablePower() < amount)
         {
-            string result = base.GetInspectString();
-
-            if (!isCharged)
-            {
-                result += "\n";
-                result += "LaserTurretNotCharged".Translate();
-            }
-
-            return result;
+            return false;
         }
-
-        private int beamColorIndex = -1;
+        powerComp.PowerNet.ChangeStoredEnergy(-amount);
+        return true;
     }
 
+    public override string GetInspectString()
+    {
+        string result = base.GetInspectString();
 
+        if (!isCharged)
+        {
+            result += "\n";
+            result += "LaserTurretNotCharged".Translate();
+        }
+
+        return result;
+    }
+
+    private int beamColorIndex = -1;
 }
+
+

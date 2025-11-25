@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class AttachmentOption
 {
-    public class AttachmentOption
-    {
-        public FloatRange attachmentCount = FloatRange.Zero;
-        public List<string> attachmentTags;
-    }
+    public FloatRange attachmentCount = FloatRange.Zero;
+    public List<string> attachmentTags;
 }

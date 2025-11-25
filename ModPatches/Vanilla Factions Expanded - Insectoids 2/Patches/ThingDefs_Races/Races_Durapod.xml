@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFEI2_Durapod"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<canParry>true</canParry>
+				<maxParry>1</maxParry>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEI2_Durapod"]/statBases/MoveSpeed</xpath>
 		<value>
@@ -68,7 +78,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="VFEI2_Durapod"]/comps/li[@Class="AnimalBehaviours.CompProperties_HediffAfterHealthLoss"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFEI2_Durapod"]/comps/li[@Class="VEF.AnimalBehaviours.CompProperties_HediffAfterHealthLoss"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
