@@ -262,11 +262,9 @@ public class ShiftVecReport
             }
             if (target.Thing != null)
             {
-                var pawn = target.Thing as Pawn;
-                bool crouching = false;
-                if (pawn != null && pawn.IsCrouching())
+                bool crouching = target.Thing is Pawn pawn && pawn.IsCrouching();
+                if (crouching)
                 {
-                    crouching = true;
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Crouching, OpportunityType.GoodToKnow);
                 }
                 stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(new CollisionVertical(target.Thing).HeightRange.Span * CE_Utility.MetersPerCellHeight, ToStringStyle.FloatTwo) + " " + "CE_meters".Translate() + (string)(crouching ? " " + "CE_Crouched".Translate() : ""));
