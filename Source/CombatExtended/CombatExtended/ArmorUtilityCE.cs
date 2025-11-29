@@ -499,9 +499,13 @@ public static class ArmorUtilityCE
         //and because localPenAmount is the sharp attack's remaining penetration amount and localDmgAmount is the sharp attack's remaining damage amount,
         //we have to take that amount away from the base penetration amount and damage amount.
         float penMulti = (partialPen ? ((dinfo.ArmorPenetrationInt - localPenAmount) * (dinfo.Amount - localDmgAmount) / dinfo.Amount) : localPenAmount) / dinfo.ArmorPenetrationInt;
-        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
+        ProjectilePropertiesCE projectile = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
+        if (projectile != null || dinfo.Weapon == null)
         {
-            localPenAmount = projectile.armorPenetrationBlunt * penMulti;
+            if (projectile != null)
+            {
+                localPenAmount = projectile.armorPenetrationBlunt * penMulti;
+            }
         }
         else if (dinfo.Instigator?.def.thingClass == typeof(Building_TrapDamager))
         {
@@ -523,7 +527,7 @@ public static class ArmorUtilityCE
                 //but on rare occasions, one of the soldiers gets Bite injuries with with Weapon==null and the instigator set as *himself*.
                 //Warning message below to identify any other situations where this might be happening. -LX7
                 Log.Warning($"[CE] Deflection for Instigator:{dinfo.Instigator} Target:{dinfo.IntendedTarget} DamageDef:{dinfo.Def} Weapon:{dinfo.Weapon} has null verb, overriding AP.");
-                localPenAmount = 50;
+                localPenAmount = 50 * penMulti;
             }
         }
         localDmgAmount = Mathf.Pow(localPenAmount * 10000, 1 / 3f) / 10;
