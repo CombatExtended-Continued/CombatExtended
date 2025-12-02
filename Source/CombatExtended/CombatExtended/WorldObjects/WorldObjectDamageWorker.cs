@@ -43,7 +43,7 @@ public class WorldObjectDamageWorker
 #if DEBUG
             if (Controller.settings.DebugVerbose)
             {
-                Log.Message("Projectile launched at " + faction + " had a damage value of "  + result);
+                Log.Message("Projectile launched at " + faction + " had a damage value of " + result);
             }
             if (Controller.settings.DebugWorldShellingDamageRandomness)
             {
