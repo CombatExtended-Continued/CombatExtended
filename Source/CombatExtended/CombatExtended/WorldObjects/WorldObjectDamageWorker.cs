@@ -40,9 +40,28 @@ public class WorldObjectDamageWorker
         if (projectile.projectile is ProjectilePropertiesCE projectileProperties && projectileProperties.shellingProps.damage > 0f)
         {
             result = projectileProperties.shellingProps.damage;
+#if DEBUG
+            if (Controller.settings.DebugVerbose)
+            {
+                Log.Message("Projectile launched at " + faction + " had a damage value of "  + result);
+            }
+            if (Controller.settings.DebugWorldShellingDamageRandomness)
+            {
+             return result;
+            }
+#endif
+
         }
         //Crit/Miss imitation
-        result *= Rand.Range(0.4f, 1.5f);
+        float randomNum = Rand.Range(0.4f, 1.5f);
+#if DEBUG
+        if (Controller.settings.DebugVerbose)
+        {
+            Log.Message("Projectile launched at " + faction + " had a damage value adjusted by " + randomNum);
+        }
+#endif
+
+        result *= randomNum;
         return result;
     }
     protected const float fragDamageMultipler = 0.04f;

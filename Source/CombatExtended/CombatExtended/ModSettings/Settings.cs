@@ -108,6 +108,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool debugDisplayDangerBuildup = false;
     private bool debugDisplayCellCoverRating = false;
     private bool debugDisplayAttritionInfo = false;
+    private bool debugWorldShellingDamageRandomness = false;
 
     public bool DebuggingMode => debuggingMode;
     public bool DebugVerbose => debugVerbose;
@@ -122,6 +123,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool DebugDisplayDangerBuildup => debugDisplayDangerBuildup && debuggingMode;
     public bool DebugDisplayCellCoverRating => debugDisplayCellCoverRating && debuggingMode;
     public bool DebugDisplayAttritionInfo => debugDisplayAttritionInfo && debuggingMode;
+    public bool DebugWorldShellingDamageRandomness => debugWorldShellingDamageRandomness && debuggingMode;
     #endregion
 
     #region Autopatcher
@@ -405,6 +407,7 @@ public class Settings : ModSettings, ISettingsCE
             list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
             list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
             list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
+            list.CheckboxLabeled("Disable randomness in world shelling", ref debugWorldShellingDamageRandomness);
         }
 #endif
         list.Gap();
@@ -532,6 +535,7 @@ public class Settings : ModSettings, ISettingsCE
         debugMuzzleFlash = false;
         debugDisplayDangerBuildup = false;
         debugDisplayCellCoverRating = false;
+        debugWorldShellingDamageRandomness = false;
 #endif
     }
     #endregion
