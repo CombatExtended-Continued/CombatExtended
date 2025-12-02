@@ -47,7 +47,7 @@ public class WorldObjectDamageWorker
             }
             if (Controller.settings.DebugWorldShellingDamageRandomness)
             {
-             return result;
+                return result;
             }
 #endif
 
