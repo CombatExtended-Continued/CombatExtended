@@ -111,11 +111,10 @@ public class VehiclesCompat : IModPart
                             var ammunition = vtd.ammunition = new ThingFilter();
                             vtd.genericAmmo = false;
                             vtd.chargePerAmmoCount = 1f / asd.ammoConsumedPerShot;
-                            HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)ammunition.AllowedThingDefs;
 
                             foreach (var al in asd.ammoTypes)
                             {
-                                allowedAmmo.Add(al.ammo);
+                                ammunition.SetAllow(al.ammo, allow: true);
                                 yield return al.ammo;
                             }
 
