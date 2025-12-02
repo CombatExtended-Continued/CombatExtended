@@ -304,6 +304,7 @@ Imperial Attires 	|
 Individuality 	|
 Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
+Inspiration Tweaks 	|
 Infused 2 Expansion |
 Infusion 2  |
 Integrated Implants |

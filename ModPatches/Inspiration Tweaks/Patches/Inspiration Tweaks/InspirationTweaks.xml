@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Hediff-->
+	<!--Arsonist-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="InspiredArsonistWeaponBonus"]/stages/li[label="Pyromania Focus"]/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+				<AimingDelayFactor>-0.1</AimingDelayFactor>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!--Tweaks-->
+	<!--brawling frenzy-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/InspirationTweaks.InspirationWithIdentifier[defName="Frenzy_Brawl"]/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<MeleeHitChance>0.25</MeleeHitChance>
+				<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!--inspired fighting-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/InspirationTweaks.InspirationWithIdentifier[defName="Inspired_Fighting"]/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<MeleeHitChance>0.15</MeleeHitChance>
+				<MeleeDodgeChance>0.1</MeleeDodgeChance>
+				<ShootingAccuracyPawn>0.6</ShootingAccuracyPawn>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!--inspired hunting-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/InspirationTweaks.InspirationWithIdentifier[defName="Inspired_Hunting"]/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>1.2</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<!--bloodlust focus-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/InspirationTweaks.InspirationWithIdentifier[defName="Focus_Bloodlust"]/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/InspirationTweaks.InspirationWithIdentifier[defName="Focus_Bloodlust"]/statFactors</xpath>
+		<value>
+			<statFactors>
+				<AimingDelayFactor>0.8</AimingDelayFactor>
+				<MeleeHitChance>1.25</MeleeHitChance>
+			</statFactors>
+		</value>
+	</Operation>
+
+</Patch>
