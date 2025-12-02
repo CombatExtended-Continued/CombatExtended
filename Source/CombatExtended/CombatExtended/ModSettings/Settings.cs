@@ -497,6 +497,7 @@ public class Settings : ModSettings, ISettingsCE
         autoTakeAmmo = true;
         showCaliberOnGuns = true;
         reuseNeolithicProjectiles = true;
+        forbiddenNeolithicProjectiles = true;
         realisticCookOff = true;
         genericammo = false;
         LastAmmoSystemStatusChanged();
