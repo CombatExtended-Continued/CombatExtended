@@ -565,6 +565,7 @@ T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
 The Tuffalo |
+The Sims Traits |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
@@ -579,6 +580,7 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
+T's Wild Child Rags |
 Useless Clothes |
 Ushankas Glittertech Expansion  |
 VacSlipsuit |

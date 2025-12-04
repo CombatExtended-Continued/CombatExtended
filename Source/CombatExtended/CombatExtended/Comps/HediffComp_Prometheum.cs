@@ -26,11 +26,11 @@ public class HediffComp_Prometheum : HediffComp
             Fire fire = Pawn.GetAttachment(ThingDefOf.Fire) as Fire;
             if (fire == null && Pawn.Spawned)
             {
-                Pawn.TryAttachFire(parent.Severity * 0.5f * delta, null);
+                Pawn.TryAttachFire(parent.Severity * 0.5f, null);
             }
             else if (fire != null)
             {
-                fire.fireSize = Mathf.Min(fire.fireSize + parent.Severity * 0.5f * delta, 1.75f);  // Clamped at max fire size
+                fire.fireSize = Mathf.Min(fire.fireSize + parent.Severity * 0.5f, 1.75f);  // Clamped at max fire size
             }
 
             // Apply to internal parts
@@ -41,7 +41,7 @@ public class HediffComp_Prometheum : HediffComp
                 {
                     return;
                 }
-                Pawn.TakeDamage(new DamageInfo(CE_DamageDefOf.Flame_Secondary, InternalFireDamage * Pawn.BodySize * parent.Severity * delta, 0, -1, null,
+                Pawn.TakeDamage(new DamageInfo(CE_DamageDefOf.Flame_Secondary, InternalFireDamage * Pawn.BodySize * parent.Severity, 0, -1, null,
                                                internalPart));
             }
         }

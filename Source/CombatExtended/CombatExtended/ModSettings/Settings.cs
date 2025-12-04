@@ -82,6 +82,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool autoTakeAmmo = true;
     private bool showCaliberOnGuns = true;
     private bool reuseNeolithicProjectiles = true;
+    private bool forbiddenNeolithicProjectiles = true;
     private bool realisticCookOff = true;
     private bool stuckArrowsAsFlecks = true;
 
@@ -91,6 +92,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool AutoTakeAmmo => autoTakeAmmo;
     public bool ShowCaliberOnGuns => showCaliberOnGuns;
     public bool ReuseNeolithicProjectiles => reuseNeolithicProjectiles;
+    public bool ForbiddenNeolithicProjectiles => forbiddenNeolithicProjectiles;
     public bool RealisticCookOff => realisticCookOff;
     public bool StuckArrowsAsFlecks => stuckArrowsAsFlecks;
 
@@ -220,6 +222,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
         Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
         Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
+        Scribe_Values.Look(ref forbiddenNeolithicProjectiles, "forbiddenNeolithicProjectiles", true);
         Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
         Scribe_Values.Look(ref stuckArrowsAsFlecks, "stuckArrowsAsFlecks", true);
         Scribe_Values.Look(ref genericammo, "genericAmmo", false);
@@ -326,6 +329,10 @@ public class Settings : ModSettings, ISettingsCE
             list.CheckboxLabeled("CE_Settings_AutoTakeAmmo_Title".Translate(), ref autoTakeAmmo, "CE_Settings_AutoTakeAmmo_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
+            if (reuseNeolithicProjectiles)
+            {
+                list.CheckboxLabeled("CE_Settings_ForbiddenNeolithicProjectiles_Title".Translate(), ref forbiddenNeolithicProjectiles, "CE_Settings_ForbiddenNeolithicProjectiles_Desc".Translate());
+            }
             list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate());
         }
@@ -490,6 +497,7 @@ public class Settings : ModSettings, ISettingsCE
         autoTakeAmmo = true;
         showCaliberOnGuns = true;
         reuseNeolithicProjectiles = true;
+        forbiddenNeolithicProjectiles = true;
         realisticCookOff = true;
         genericammo = false;
         LastAmmoSystemStatusChanged();

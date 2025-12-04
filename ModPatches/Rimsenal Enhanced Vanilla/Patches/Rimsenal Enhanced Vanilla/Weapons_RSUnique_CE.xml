@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_PistolHeavyRevolver_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>5</magazineSize>
+							<reloadTime>4.6</reloadTime>
+							<ammoSet>AmmoSet_500SWMagnum</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>Snapshot</aiAimMode>
+						</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_RSCarbine_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>30</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_556x45mmNATO_SB</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_RSBattleRifle_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>24</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_RSBeamCarbine_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>60</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_RSBeamCarbine</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
