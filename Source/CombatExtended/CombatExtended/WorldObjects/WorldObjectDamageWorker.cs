@@ -36,32 +36,41 @@ public class WorldObjectDamageWorker
         var result = FragmentsPotentialDamage(projectile) + FirePotentialDamage(projectile) + EMPPotentialDamage(projectile, empModifier) + OtherPotentialDamage(projectile);
         //Damage calculated as in-map damage, needs to be converted into world object damage. 3500f experimentally obtained
         result /= 3500f;
+
+#if DEBUG
+        if (Controller.settings.DebugVerbose)
+        {
+            Log.Message($"CE: World Map Projectile: {projectile.defName} launched at {faction} and has a damage value of {result}");
+        }
+#endif
         //manual overwrite
         if (projectile.projectile is ProjectilePropertiesCE projectileProperties && projectileProperties.shellingProps.damage > 0f)
         {
             result = projectileProperties.shellingProps.damage;
+
 #if DEBUG
             if (Controller.settings.DebugVerbose)
             {
-                Log.Message("Projectile launched at " + faction + " had a damage value of " + result);
-            }
-            if (Controller.settings.DebugWorldShellingDamageRandomness)
-            {
-                return result;
+                Log.Message($"CE: World Map Projectile: {projectile.defName} damage value being manually set to {result}");
             }
 #endif
-
         }
+#if DEBUG
+        if (Controller.settings.DebugWorldShellingDamageRandomness)
+        {
+            return result;
+        }
+#endif
         //Crit/Miss imitation
         float randomNum = Rand.Range(0.4f, 1.5f);
+        result *= randomNum;
 #if DEBUG
         if (Controller.settings.DebugVerbose)
         {
-            Log.Message("Projectile launched at " + faction + " had a damage value adjusted by " + randomNum);
+            Log.Message($"CE: World Map Projectile: {projectile.defName} damage value adjusted randomly by {randomNum} and is now set to {result}");
         }
 #endif
 
-        result *= randomNum;
         return result;
     }
     protected const float fragDamageMultipler = 0.04f;
