@@ -304,9 +304,9 @@ Imperial Attires 	|
 Individuality 	|
 Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
-Inspiration Tweaks 	|
 Infused 2 Expansion |
 Infusion 2  |
+Inspiration Tweaks 	|
 Integrated Implants |
 Ion Weaponry    |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
