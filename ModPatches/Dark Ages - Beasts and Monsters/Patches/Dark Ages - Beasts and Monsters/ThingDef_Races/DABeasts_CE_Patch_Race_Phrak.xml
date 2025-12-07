@@ -60,31 +60,5 @@
 		</value>
 	</Operation>
 
-	<!-- 1.5 only condition -->
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="DA_Phrak"]/verbs</xpath>
-
-	<match Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DA_Phrak"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>DA_Shot_Phrak</defaultProjectile>
-					<warmupTime>2.4</warmupTime>
-					<burstShotCount>3</burstShotCount>
-					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-					<minRange>2</minRange>
-					<range>20</range>
-					<soundCast>DA_PhrakShot</soundCast>
-					<muzzleFlashScale>0</muzzleFlashScale>
-					<label>toxic barbpike</label>
-					<commonality>0.50</commonality>
-				</li>
-			</verbs>
-		</value>
-	</match>
-	</Operation>
 
 </Patch>
