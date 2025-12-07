@@ -60,7 +60,11 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<!-- 1.5 only condition -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DA_Phrak"]/verbs</xpath>
+
+	<match Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DA_Phrak"]/verbs</xpath>
 		<value>
 			<verbs>
@@ -80,6 +84,7 @@
 				</li>
 			</verbs>
 		</value>
+	</match>
 	</Operation>
 
 </Patch>
