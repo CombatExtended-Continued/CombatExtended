@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- PhrakShot -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="DA_ToxicBarbspike"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<defaultProjectile>DA_Shot_Phrak</defaultProjectile>
+				<range>20</range>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<warmupTime>2.4</warmupTime>
+				<soundCast>DA_PhrakShot</soundCast>
+				<burstShotCount>3</burstShotCount>
+				<commonality>0.50</commonality>
+				<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+				<minRange>2</minRange>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+				<ai_IsWeapon>false</ai_IsWeapon>	
+			</verbProperties>
+		</value>
+	</Operation>
+
+</Patch>
