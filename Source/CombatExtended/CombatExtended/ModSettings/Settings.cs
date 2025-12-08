@@ -206,6 +206,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref debugDisplayDangerBuildup, "debugDisplayDangerBuildup", false);
         Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
         Scribe_Values.Look(ref debugDisplayAttritionInfo, "debugDisplayAttritionInfo", false);
+        Scribe_Values.Look(ref debugWorldShellingDamageRandomness, "debugWorldShellingDamageRandomness", false);
 #endif
         Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
 
