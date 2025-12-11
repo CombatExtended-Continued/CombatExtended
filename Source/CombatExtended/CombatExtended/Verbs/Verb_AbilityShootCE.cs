@@ -18,15 +18,24 @@ public class Verb_AbilityShootCE : Verb_ShootCE, IAbilityVerb
             ability = value;
         }
     }
+    public override VerbPropertiesCE VerbPropsCE => Ability.def.verbProperties as VerbPropertiesCE;
+    public override ThingDef Projectile => Ability.def.verbProperties.defaultProjectile;
 
+    public override bool Available()
+    {
+        if (ability.OnCooldown)
+        {
+            return false;
+        }
+        return base.Available();
+    }
     public override bool TryCastShot()
     {
-        bool flag = base.TryCastShot();
-        if (flag)
+        if (ability.OnCooldown)
         {
-            ability.StartCooldown(ability.def.cooldownTicksRange.RandomInRange);
+            return false;
         }
-        return flag;
+        return base.TryCastShot() && ability.Activate(currentTarget, currentDestination);
     }
 
     public override void ExposeData()

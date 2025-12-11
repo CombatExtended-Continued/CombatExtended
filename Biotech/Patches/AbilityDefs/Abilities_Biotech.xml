@@ -2,17 +2,42 @@
 <Patch>
 
 	<!-- ========== Piercing Spine ========== -->
+	<Operation Class="PatchOperationAttributeSet">
+	  <xpath>Defs/AbilityDef[defName="PiercingSpine"]/verbProperties</xpath>
+	  <attribute>Class</attribute>
+	  <value>CombatExtended.VerbPropertiesCE</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/AbilityDef[defName="PiercingSpine"]/verbProperties/range</xpath>
 		<value>
 			<range>5.9</range>
+			<defaultProjectile>PiercingSpine</defaultProjectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="PiercingSpine"]/verbProperties/verbClass</xpath>
+		<value>
+			<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/AbilityDef[defName="PiercingSpine"]/comps/li[@Class="CompProperties_AbilityLaunchProjectile"]</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="PiercingSpine"]/cooldownTicksRange</xpath>
+		<value>
+			<cooldownTicksRange>180</cooldownTicksRange>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile</xpath>
 		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>RangedStab</damageDef>
 				<speed>30</speed>

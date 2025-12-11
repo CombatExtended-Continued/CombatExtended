@@ -64,7 +64,7 @@ public class Verb_LaunchProjectileCE : Verb
 
     #region Properties
 
-    public VerbPropertiesCE VerbPropsCE => verbProps as VerbPropertiesCE;
+    public virtual VerbPropertiesCE VerbPropsCE => verbProps as VerbPropertiesCE;
     public ProjectilePropertiesCE projectilePropsCE => Projectile.projectile as ProjectilePropertiesCE;
     public MultiBarrelExtension multiBarrelExt => EquipmentSource?.def.GetModExtension<MultiBarrelExtension>();
 
