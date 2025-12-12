@@ -280,6 +280,7 @@ Grimworld: Lasguns	|
 Grimworld: Melee	|
 GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
+GrimWorld 40,000 - Dead Men |
 GrimWorld 40,000 - Hammer of the Imperium |
 Grimworld 40,000 - Heresy Armor Addon   |
 GrimWorld 40,000 - Sabbat's Blight |
