@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="MR_Intuition"]/statOffsets/MeleeDodgeChance</xpath>
+					<value>
+						<MeleeDodgeChance>1.5</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="MR_Intuition"]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<AimingAccuracy>0.50</AimingAccuracy>
+						<ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

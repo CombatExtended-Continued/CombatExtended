@@ -48,6 +48,7 @@ public class Settings : ModSettings, ISettingsCE
     private float medicineSearchRadius = 5f;
 
     private bool suppressionCausesRunning = true;
+    private bool variedHumanHeight = false;
 
     public bool ShowCasings => showCasings;
 
@@ -78,6 +79,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool ShowTutorialPopup = true;
 
     public bool SuppressionCausesRunning => suppressionCausesRunning;
+    public bool VariedHumanHeight => variedHumanHeight;
 
     // Ammo settings
     private bool enableAmmoSystem = true;
@@ -86,6 +88,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool autoTakeAmmo = true;
     private bool showCaliberOnGuns = true;
     private bool reuseNeolithicProjectiles = true;
+    private bool forbiddenNeolithicProjectiles = true;
     private bool realisticCookOff = true;
     private bool stuckArrowsAsFlecks = true;
 
@@ -95,6 +98,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool AutoTakeAmmo => autoTakeAmmo;
     public bool ShowCaliberOnGuns => showCaliberOnGuns;
     public bool ReuseNeolithicProjectiles => reuseNeolithicProjectiles;
+    public bool ForbiddenNeolithicProjectiles => forbiddenNeolithicProjectiles;
     public bool RealisticCookOff => realisticCookOff;
     public bool StuckArrowsAsFlecks => stuckArrowsAsFlecks;
 
@@ -112,6 +116,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool debugDisplayDangerBuildup = false;
     private bool debugDisplayCellCoverRating = false;
     private bool debugDisplayAttritionInfo = false;
+    private bool debugWorldShellingDamageRandomness = false;
 
     public bool DebuggingMode => debuggingMode;
     public bool DebugVerbose => debugVerbose;
@@ -126,6 +131,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool DebugDisplayDangerBuildup => debugDisplayDangerBuildup && debuggingMode;
     public bool DebugDisplayCellCoverRating => debugDisplayCellCoverRating && debuggingMode;
     public bool DebugDisplayAttritionInfo => debugDisplayAttritionInfo && debuggingMode;
+    public bool DebugWorldShellingDamageRandomness => debugWorldShellingDamageRandomness && debuggingMode;
     #endregion
 
     #region Autopatcher
@@ -194,7 +200,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref enableArcOfFire, "enableArcOfFire", false);
 
         Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
-
+        Scribe_Values.Look(ref variedHumanHeight, "variedHumanHeight", false);
 
 #if DEBUG
         // Debug settings
@@ -208,7 +214,13 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref debugDisplayDangerBuildup, "debugDisplayDangerBuildup", false);
         Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
         Scribe_Values.Look(ref debugDisplayAttritionInfo, "debugDisplayAttritionInfo", false);
+        Scribe_Values.Look(ref debugWorldShellingDamageRandomness, "debugWorldShellingDamageRandomness", false);
+        Scribe_Values.Look(ref debugGenClosetPawn, "debugGenClosetPawn", false);
+        Scribe_Values.Look(ref debugVerbose, "debugVerbose", false);
+        Scribe_Values.Look(ref debugMuzzleFlash, "debugMuzzleFlash", false);
+
 #endif
+
         Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
 
         Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", false);
@@ -224,6 +236,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
         Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
         Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
+        Scribe_Values.Look(ref forbiddenNeolithicProjectiles, "forbiddenNeolithicProjectiles", true);
         Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
         Scribe_Values.Look(ref stuckArrowsAsFlecks, "stuckArrowsAsFlecks", true);
         Scribe_Values.Look(ref genericammo, "genericAmmo", false);
@@ -332,6 +345,10 @@ public class Settings : ModSettings, ISettingsCE
             list.CheckboxLabeled("CE_Settings_AutoTakeAmmo_Title".Translate(), ref autoTakeAmmo, "CE_Settings_AutoTakeAmmo_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
+            if (reuseNeolithicProjectiles)
+            {
+                list.CheckboxLabeled("CE_Settings_ForbiddenNeolithicProjectiles_Title".Translate(), ref forbiddenNeolithicProjectiles, "CE_Settings_ForbiddenNeolithicProjectiles_Desc".Translate());
+            }
             list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate());
         }
@@ -373,6 +390,7 @@ public class Settings : ModSettings, ISettingsCE
         list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_DetailedMeleeTooltip_Title".Translate(), ref detailedMeleeTooltip, "CE_Settings_DetailedMeleeTooltip_Desc".Translate());
+        list.CheckboxLabeled("CE_Settings_VariedHumanHeight_Title".Translate(), ref variedHumanHeight, "CE_Settings_VariedHumanHeight_Desc".Translate());
         list.Gap();
         list.GapLine();
         list.Gap();
@@ -411,6 +429,7 @@ public class Settings : ModSettings, ISettingsCE
             list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
             list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
             list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
+            list.CheckboxLabeled("Disable randomness in world shelling", ref debugWorldShellingDamageRandomness);
         }
 #endif
         list.Gap();
@@ -497,6 +516,7 @@ public class Settings : ModSettings, ISettingsCE
         autoTakeAmmo = true;
         showCaliberOnGuns = true;
         reuseNeolithicProjectiles = true;
+        forbiddenNeolithicProjectiles = true;
         realisticCookOff = true;
         genericammo = false;
         LastAmmoSystemStatusChanged();
@@ -525,6 +545,7 @@ public class Settings : ModSettings, ISettingsCE
         enableWeaponToughnessAutopatcher = true;
         enableRaceAutopatcher = true;
         enablePawnKindAutopatcher = true;
+        variedHumanHeight = false;
 
 #if DEBUG
         debuggingMode = false;
@@ -539,6 +560,7 @@ public class Settings : ModSettings, ISettingsCE
         debugMuzzleFlash = false;
         debugDisplayDangerBuildup = false;
         debugDisplayCellCoverRating = false;
+        debugWorldShellingDamageRandomness = false;
 #endif
     }
     #endregion
