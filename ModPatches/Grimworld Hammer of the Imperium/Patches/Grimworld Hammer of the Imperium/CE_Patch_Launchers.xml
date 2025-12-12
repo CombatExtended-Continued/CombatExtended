@@ -4,24 +4,24 @@
 	<!--===== Remove Extra Launchers =====-->
 	
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_AM_Gun_EMPLauncher"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_EMPLauncher"]</xpath>
 	</Operation>
 	
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_AM_Gun_SmokeLauncher"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_SmokeLauncher"]</xpath>
 	</Operation>
 	
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_AM_Gun_StunLauncher"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_StunLauncher"]</xpath>
 	</Operation>
 	
 	<Operation Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Biotech">
-		<xpath>Defs/ThingDef[defName="GW_AM_Gun_ToxLauncher"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_ToxLauncher"]</xpath>
 	</Operation>
 	
-	<!--===== Melee Attacks =====-->
+	<!--===== Grenade Launcher =====-->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_AM_Gun_FragLauncher"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_FragLauncher"]</xpath>
 		<value>
 			<tools Inherit="False">
 				<li Class="CombatExtended.ToolCE">
@@ -48,20 +48,18 @@
 			</tools>
 		</value>
 	</Operation>
-
-	<!--===== Grenade Launcher =====-->
 	
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_AM_Gun_FragLauncher"]/label</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_FragLauncher"]/label</xpath>
 		<value>
 			<label>Voss Pattern Launcher</label>
 		</value>
 	</Operation>
 	
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_AM_Gun_FragLauncher"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_FragLauncher"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_AM_Gun_FragLauncher"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_HOI_Gun_FragLauncher"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -69,7 +67,7 @@
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_AM_Gun_FragLauncher</defName>
+		<defName>GW_HOI_Gun_FragLauncher</defName>
 		<statBases>
 			<Mass>8.4</Mass>
 			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
@@ -86,7 +84,7 @@
 			<warmupTime>3.4</warmupTime>
 			<range>56</range>
 			<burstShotCount>0</burstShotCount>
-			<soundCast>HP_AM_Plasma_Gun_Sound</soundCast>
+			<soundCast>Shot_IncendiaryLauncher</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
 			<recoilAmount>4.6</recoilAmount>
@@ -108,6 +106,69 @@
 			<li>AdvancedGun</li>
 			<li>CE_AI_Rifle</li>
 		</weaponTags>
+	</Operation>
+	
+	<!--===== Missile Launcher =====-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_MissileLauncher"]</xpath>
+		<value>
+			<tools Inherit="False">
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_MissileLauncher"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_HOI_Gun_MissileLauncher"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_HOI_Gun_MissileLauncher</defName>
+		<statBases>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.2</SwayFactor>
+			<Bulk>11.8</Bulk>
+			<WorkToMake>34000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_84x246mmR_HEAT</defaultProjectile>
+			<warmupTime>4.2</warmupTime>
+			<range>46</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>15</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_84x246mmR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+		</FireModes>
 	</Operation>
 
 </Patch>

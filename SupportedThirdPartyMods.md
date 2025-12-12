@@ -280,6 +280,7 @@ Grimworld: Lasguns	|
 Grimworld: Melee	|
 GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
+GrimWorld 40,000 - Dead Men |
 GrimWorld 40,000 - Hammer of the Imperium |
 Grimworld 40,000 - Heresy Armor Addon   |
 GrimWorld 40,000 - Sabbat's Blight |
@@ -306,6 +307,7 @@ Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
+Inspiration Tweaks 	|
 Integrated Implants |
 Ion Weaponry    |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
@@ -565,6 +567,7 @@ T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
 The Tuffalo |
+The Sims Traits |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
@@ -579,6 +582,7 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
+T's Wild Child Rags |
 Useless Clothes |
 Ushankas Glittertech Expansion  |
 VacSlipsuit |

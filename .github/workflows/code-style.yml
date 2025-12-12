@@ -9,15 +9,17 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: '7.x'
+        # Note: Runners may have different, newer .NET SDKs preinstalled.
+        # Use global.json to control the maximum acceptable version.
+        dotnet-version: '9.x'
     - name: Check C# code style
       run: |
         dotnet format --verify-no-changes Source/CombatExtendedLoader.sln

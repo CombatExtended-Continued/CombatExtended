@@ -302,7 +302,21 @@ public static class BoundsInjector
     {
         if (pawn.RaceProps.Humanlike)
         {
-            return new Vector2(0.5f, 1);
+            if (!Controller.settings.VariedHumanHeight)
+            {
+                return new Vector2(0.5f, 1);
+            }
+
+            //limit humans to never be taller than 3.5m (wall height)
+            float height = Mathf.Min(pawn.BodySize, 2.0f);
+
+            //slight height increase so that 13 y.o. can aim over embrasures and 8 y.o. can aim over sandbags
+            if (height < 1)
+            {
+                height = Mathf.Min(height + 0.2f, 1);
+            }
+
+            return new Vector2(pawn.BodySize / 2f, height);
 
             // Disabling sprite bounds for humans for balance and game design reasons -NIA
             /*

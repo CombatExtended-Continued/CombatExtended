@@ -111,11 +111,10 @@ public class VehiclesCompat : IModPart
                             var ammunition = vtd.ammunition = new ThingFilter();
                             vtd.genericAmmo = false;
                             vtd.chargePerAmmoCount = 1f / asd.ammoConsumedPerShot;
-                            HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)ammunition.AllowedThingDefs;
 
                             foreach (var al in asd.ammoTypes)
                             {
-                                allowedAmmo.Add(al.ammo);
+                                ammunition.SetAllow(al.ammo, allow: true);
                                 yield return al.ammo;
                             }
 
@@ -127,8 +126,9 @@ public class VehiclesCompat : IModPart
         }
     }
 
-    public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravity, float sway, float spread, float recoil)
+    public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravityModifier, float sway, float spread, float recoil)
     {
+        var gravity = CE_Utility.GravityConst * gravityModifier;
         // TODO: Handle cover
         var bounds = CE_Utility.GetBoundsFor(target.Thing);
         float dheight = (bounds.max.y + bounds.min.y) / 2 - shotOrigin.y;
