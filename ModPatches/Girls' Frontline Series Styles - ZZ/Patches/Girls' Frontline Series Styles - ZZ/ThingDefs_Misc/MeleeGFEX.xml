@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+    <!-- ============================ Industrial - Blade ============================ -->
+    <!-- Rectrix -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_Baiying"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Poke</li>
+                    </capacities>
+                    <power>10</power>
+                    <cooldownTime>1.62</cooldownTime>
+                    <chanceFactor>0.05</chanceFactor>
+                    <armorPenetrationBlunt>4.00</armorPenetrationBlunt>
+                    <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>point</label>
+                    <capacities>
+                        <li>Stab</li>
+                    </capacities>
+                    <power>30</power>
+                    <cooldownTime>1.22</cooldownTime>
+                    <chanceFactor>0.25</chanceFactor>
+                    <armorPenetrationBlunt>6.22</armorPenetrationBlunt>
+                    <armorPenetrationSharp>32.24</armorPenetrationSharp>
+                    <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>edge</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>34</power>
+                    <cooldownTime>1.14</cooldownTime>
+                    <chanceFactor>0.70</chanceFactor>
+                    <armorPenetrationBlunt>8.88</armorPenetrationBlunt>
+                    <armorPenetrationSharp>30.62</armorPenetrationSharp>
+                    <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_Baiying"]/label</xpath>
+        <value>
+            <label>GF Rectrix ZZ</label>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_Baiying"]</xpath>
+        <value>
+            <statBases>
+                <WorkToMake>45000</WorkToMake>
+                <Bulk>12.24</Bulk>
+                <Mass>8.46</Mass>
+                <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+            </statBases>
+            <costList>
+                <Plasteel>120</Plasteel>
+                <ComponentSpacer>4</ComponentSpacer>
+                <Silver>80</Silver>
+                <DevilstrandCloth>20</DevilstrandCloth>
+            </costList>
+            <recipeMaker>
+                <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+                <workSkill>Crafting</workSkill>
+                <effectWorking>Smith</effectWorking>
+                <soundWorking>Recipe_Smith</soundWorking>
+                <recipeUsers>
+		    		<li>TableMachining</li>
+		    	</recipeUsers>
+                <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+                <researchPrerequisite>Fabrication</researchPrerequisite>
+                <skillRequirements>
+                    <Crafting>12</Crafting>
+                    <Intellectual>6</Intellectual>
+                </skillRequirements>
+            </recipeMaker>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_Baiying"]</xpath>
+        <value>
+            <equippedStatOffsets>
+                <MeleeCritChance>1</MeleeCritChance>
+                <MeleeParryChance>0.75</MeleeParryChance>
+                <MeleeDodgeChance>0.75</MeleeDodgeChance>
+            </equippedStatOffsets>
+        </value>
+    </Operation>
+
+    <!-- Crowned Jackalope -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_crown_jackalope"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Poke</li>
+                    </capacities>
+                    <power>14</power>
+                    <cooldownTime>2.02</cooldownTime>
+                    <chanceFactor>0.05</chanceFactor>
+                    <armorPenetrationBlunt>4.00</armorPenetrationBlunt>
+                    <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>point</label>
+                    <capacities>
+                        <li>Stab</li>
+                    </capacities>
+                    <power>34</power>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Flame</def>
+                            <amount>10</amount>
+                            <chance>0.75</chance>
+                        </li>
+                    </extraMeleeDamages>
+                    <cooldownTime>1.38</cooldownTime>
+                    <chanceFactor>0.25</chanceFactor>
+                    <armorPenetrationBlunt>6.22</armorPenetrationBlunt>
+                    <armorPenetrationSharp>32.24</armorPenetrationSharp>
+                    <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>edge</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>38</power>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Flame</def>
+                            <amount>10</amount>
+                            <chance>0.75</chance>
+                        </li>
+                    </extraMeleeDamages>
+                    <cooldownTime>1.62</cooldownTime>
+                    <chanceFactor>0.70</chanceFactor>
+                    <armorPenetrationBlunt>8.88</armorPenetrationBlunt>
+                    <armorPenetrationSharp>30.62</armorPenetrationSharp>
+                    <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_crown_jackalope"]/label</xpath>
+        <value>
+            <label>GF Crowned Jackalope ZZ</label>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_crown_jackalope"]</xpath>
+        <value>
+            <statBases>
+                <WorkToMake>45000</WorkToMake>
+                <Bulk>14.24</Bulk>
+                <Mass>10.46</Mass>
+                <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+            </statBases>
+            <costList>
+                <Plasteel>120</Plasteel>
+                <ComponentSpacer>4</ComponentSpacer>
+                <Silver>80</Silver>
+                <DevilstrandCloth>20</DevilstrandCloth>
+            </costList>
+            <recipeMaker>
+                <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+                <workSkill>Crafting</workSkill>
+                <effectWorking>Smith</effectWorking>
+                <soundWorking>Recipe_Smith</soundWorking>
+                <recipeUsers>
+		    		<li>TableMachining</li>
+		    	</recipeUsers>
+                <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+                <researchPrerequisite>Fabrication</researchPrerequisite>
+                <skillRequirements>
+                    <Crafting>12</Crafting>
+                    <Intellectual>6</Intellectual>
+                </skillRequirements>
+            </recipeMaker>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_crown_jackalope"]</xpath>
+        <value>
+            <equippedStatOffsets>
+                <MeleeCritChance>0.85</MeleeCritChance>
+                <MeleeParryChance>0.75</MeleeParryChance>
+                <MeleeDodgeChance>0.75</MeleeDodgeChance>
+            </equippedStatOffsets>
+        </value>
+    </Operation>
+</Patch>
