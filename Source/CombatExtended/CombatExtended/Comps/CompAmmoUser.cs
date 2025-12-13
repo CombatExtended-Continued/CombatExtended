@@ -722,6 +722,10 @@ public class CompAmmoUser : CompRangedGizmoGiver
                 }
                 Job reload = TryMakeReloadJob();
                 Holder.jobs.jobQueue.EnqueueFirst(reload);
+                if (Holder.Drafted)
+                {
+                    Holder.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                }
                 return true;
             }
         }
