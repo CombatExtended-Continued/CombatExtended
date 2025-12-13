@@ -36,4 +36,5 @@ public static class CE_ThingDefOf
     public static ThingDef Gas_BlackSmoke;
     public static ThingDef Fragment_Large;
     public static ThingDef Fragment_Small;
+    public static ThingDef Fragment_Medium;
 }

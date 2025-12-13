@@ -98,6 +98,8 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
     /// </summary>
     private bool meleeTargettingInitialized;
 
+    private BodyPartHeight lastUsedBodyPartHeight;
+
     #endregion
 
     #region Methods
@@ -574,7 +576,8 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                 }
             }
 
-            switch (GetAttackedPartHeightCE(target.Thing))
+            lastUsedBodyPartHeight = GetAttackedPartHeightCE(target.Thing);
+            switch (lastUsedBodyPartHeight)
             {
                 case BodyPartHeight.Bottom:
                     chance *= 0.8f;
@@ -595,6 +598,10 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
     private float GetDodgeChance(Pawn defender)
     {
+        if (defender.stances?.stunner?.Stunned ?? false)
+        {
+            return 0f;
+        }
         float chance = defender.GetStatValue(StatDefOf.MeleeDodgeChance);
 
         if (!ModsConfig.IdeologyActive)
@@ -654,7 +661,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             var pawn = target.Thing as Pawn;
 
             float equivalentTargetWeight = pawn.GetStatValue(StatDefOf.Mass);
-            RacePropertiesExtensionCE bodyShape = pawn.def.GetModExtension<RacePropertiesExtensionCE>();
+            RacePropertiesExtensionCE bodyShape = pawn?.def.GetModExtension<RacePropertiesExtensionCE>();
             if (bodyShape != null)
             {
                 equivalentTargetWeight *= (bodyShape.bodyShape.width / bodyShape.bodyShape.height);
@@ -694,6 +701,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                 || (!pawn.RaceProps.Humanlike && (pawn.def.GetModExtension<RacePropertiesExtensionCE>()?.canParry != true))
                 || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                 || IsTargetImmobile(pawn)
+                || (pawn.stances?.stunner?.Stunned ?? false)
                 || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)
         {
             return false;
@@ -840,7 +848,16 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             }
         }
         stringBuilder.AppendLine("\n   " + "CE_FinalToHitChance".Translate() + ":\t\t" + GenText.ToStringByStyle(Mathf.Clamp01(toDamageChance), ToStringStyle.PercentZero));
-        stringBuilder.AppendLine("      " + "CE_CritChance".Translate() + ":\t\t" + GenText.ToStringByStyle(critChance, ToStringStyle.PercentZero));
+        switch (lastUsedBodyPartHeight)
+        {
+            case BodyPartHeight.Bottom:
+                stringBuilder.AppendLine("      " + "CE_MeleeTargetting".Translate() + ":\t\t" + GenText.ToStringByStyle(0.8f, ToStringStyle.FloatOne) + "x\n");
+                break;
+            case BodyPartHeight.Top:
+                stringBuilder.AppendLine("      " + "CE_MeleeTargetting".Translate() + ":\t\t" + GenText.ToStringByStyle(0.7f, ToStringStyle.FloatOne) + "x\n");
+                break;
+        }
+        stringBuilder.AppendLine("   " + "CE_CritChance".Translate() + ":\t\t" + GenText.ToStringByStyle(critChance, ToStringStyle.PercentZero));
 
         return stringBuilder.ToString();
     }

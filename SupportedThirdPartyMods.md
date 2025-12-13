@@ -159,6 +159,7 @@ Call of Duty: Wonder Weapons |
 Carbon	|
 Censored Armory  |
 Charge-Loading Lee-Enfield  |
+Chougou Mechs   |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Colonial Shuttle |
@@ -271,6 +272,7 @@ Glitter Tech	|
 Glitter Weaponry	|
 Gloomy Dragonian Race	|
 GouRIMet	|
+Gravship Captain Set    |
 GREG	|
 Grimstone Beasts   |
 Grimworld: Autoguns	|
@@ -278,6 +280,7 @@ Grimworld: Lasguns	|
 Grimworld: Melee	|
 GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
+GrimWorld 40,000 - Dead Men |
 GrimWorld 40,000 - Hammer of the Imperium |
 Grimworld 40,000 - Heresy Armor Addon   |
 GrimWorld 40,000 - Sabbat's Blight |
@@ -304,6 +307,7 @@ Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
+Inspiration Tweaks 	|
 Integrated Implants |
 Ion Weaponry    |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
@@ -328,6 +332,7 @@ Kurin HAR Edition	|
 Leeani Playable Race	|
 Lemolim Race    |
 Let's Have a Cat!	|
+Life Support Pack   |
 Littluna Race |
 Logann Race	|
 Logistics_Mechanoid |
@@ -407,6 +412,7 @@ Nyaron Race |
 Nomad Scavengers    |
 Not Only Just a Cannon  |
 Obsidia Expansion - Mothoids Xenotype   |
+Odysseus Vacsuit Set    |
 ODZ Suits |
 Opossum Friends |
 Orassans	|
@@ -437,6 +443,7 @@ phynilla Expanded Mechs Scyther |
 pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
+Prestige Vacsuit Set    |
 Primitive Core |
 Primitive Workbenches |
 Project RimFactory - Materials |
@@ -502,6 +509,7 @@ Rimsenal - Security Pack |
 Rimsenal - Spacer Faction Pack  |
 Rimsenal Xenotype Pack - Askbarn    |
 Rimsenal Xenotype Pack - Harana |
+Rimsenal Xenotype Pack - Zohar  |
 RimTraits - General Traits  |
 RimTraits – Medieval Talents    |
 Rimworld - The Dark Descent |
@@ -552,12 +560,14 @@ Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
 The Profaned	|
+The REAL flamberg	|
 The Vanity Project - Shiba Inu  |
 The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
 The Tuffalo |
+The Sims Traits |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
@@ -572,8 +582,10 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
+T's Wild Child Rags |
 Useless Clothes |
-Ushankas Glitterworld Uprising  |
+Ushankas Glittertech Expansion  |
+VacSlipsuit |
 Valorant Weapon Pack |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Endangered |
@@ -643,8 +655,10 @@ VFE - Mechanoids : Drones |
 VGP Fabrics |
 VGP Garden Drinks    |
 Victorian Era Apparels!  |
+Volt Weaponry  |
 VRE Android Factions  |
 Vulpine Race Pack	|
+W1NG VacSuit Set    |
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Barbatos Gundam Addon  |

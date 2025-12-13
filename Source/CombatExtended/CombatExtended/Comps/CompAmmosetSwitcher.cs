@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Reflection;
 using RimWorld;
 using Verse;
 using UnityEngine;
@@ -150,6 +151,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.verbPropsUnderBarrel.burstShotCount;
         usingUnderBarrel = true;
         CompFireModes.InitAvailableFireModes();
+
         if (CompFireModes.AvailableFireModes.Contains(_cachedUnderbarrelFireMode))
         {
             CompFireModes.CurrentFireMode = _cachedUnderbarrelFireMode;
@@ -158,6 +160,8 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         {
             CompFireModes.CurrentAimMode = _cachedUnderbarrelAimMode;
         }
+
+        ClearWeaponCaches(this.parent);
     }
 
     [Compatibility.Multiplayer.SyncMethod]
@@ -189,6 +193,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         CompEq.PrimaryVerb.verbProps.burstShotCount = DefVerbProps.burstShotCount;
         usingUnderBarrel = false;
         CompFireModes.InitAvailableFireModes();
+
         if (CompFireModes.AvailableFireModes.Contains(_cachedBarrelFireMode))
         {
             CompFireModes.CurrentFireMode = _cachedBarrelFireMode;
@@ -197,11 +202,19 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         {
             CompFireModes.CurrentAimMode = _cachedBarrelAimMode;
         }
+
+        ClearWeaponCaches(this.parent);
+    }
+
+    private static void ClearWeaponCaches(Thing thing)
+    {
+        StatDef magazineStatDef = DefDatabase<StatDef>.GetNamed(CE_StatDefOf.MagazineCapacity.ToString());
+        magazineStatDef?.Worker.ClearCacheForThing(thing);
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        if (CompEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode)
+        if (Props.propsUnderBarrel != null && (CompEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode))
         {
             if (!usingUnderBarrel)
             {

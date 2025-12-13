@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Sludge Spew ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="SludgeSpew"]/verbProperties/range</xpath>
+		<value>
+			<range>11.9</range>
+		</value>
+	</Operation>
+
+	<!-- ========== Egg Spew ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="EggSpew"]/verbProperties/range</xpath>
+		<value>
+			<range>24.9</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_EggSac"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_EggSac"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<dropsCasings>false</dropsCasings>
+				<dangerFactor>0</dangerFactor>
+				<airborneSuppressionFactor>0</airborneSuppressionFactor>
+				<speed>32</speed>
+				<spawnsThingDef>EggSac</spawnsThingDef>
+				<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

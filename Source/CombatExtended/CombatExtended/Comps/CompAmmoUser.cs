@@ -58,8 +58,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         get
         {
-            WeaponPlatform platform = parent as WeaponPlatform;
-            return (int)(platform?.GetStatValue(CE_StatDefOf.MagazineCapacity) ?? Props.magazineSize);
+            return (int)(parent.GetStatValue(CE_StatDefOf.MagazineCapacity, cacheStaleAfterTicks: 250));
         }
     }
 
@@ -839,7 +838,16 @@ public class CompAmmoUser : CompRangedGizmoGiver
         }
 
         // Try finding suitable ammoThing for currently set ammo first
-        ammoThing = CompInventory.ammoList.Find(thing => thing.def == selectedAmmo);
+        List<Thing> ammoList = CompInventory.ammoList;
+        for (int i = 0; i < ammoList.Count; i++)
+        {
+            Thing thing = ammoList[i];
+            if (thing.def == selectedAmmo)
+            {
+                ammoThing = thing;
+                break;
+            }
+        }
         if (ammoThing != null)
         {
             return true;
@@ -856,10 +864,23 @@ public class CompAmmoUser : CompRangedGizmoGiver
         // Try finding ammo from different type
         foreach (AmmoLink link in Props.ammoSet.ammoTypes)
         {
-            ammoThing = CompInventory.ammoList.Find(thing => thing.def == link.ammo);
+            ammoThing = null;
+            if (!EmptyMagazine && selectedAmmo != link.ammo)
+            {
+                continue;
+            }
+            for (int i = 0; i < ammoList.Count; i++)
+            {
+                Thing thing = ammoList[i];
+                if (thing.def == link.ammo)
+                {
+                    ammoThing = thing;
+                    break;
+                }
+            }
             if (ammoThing != null)
             {
-                selectedAmmo = (AmmoDef)link.ammo;
+                selectedAmmo = link.ammo;
                 return true;
             }
         }
