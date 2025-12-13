@@ -29,7 +29,9 @@ public static class CE_StatDefOf
     public static StatDef TicksBetweenBurstShots;
     public static StatDef BurstShotCount;
     public static StatDef Recoil;
+    public static StatDef CE_RangedWeapon_RecoilMultiplier;
     public static StatDef ReloadTime;
+    public static StatDef CE_RangedWeapon_ReloadFactor;
     public static StatDef OneHandedness;
     public static StatDef BipodStats;
 

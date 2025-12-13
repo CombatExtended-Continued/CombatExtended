@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Spotting === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="USH_UpgradeRange"]/comps/li[@Class="USH_GE.CompProperties_OverclockUpgrade"]/statOffsets</xpath>
+		<value>
+			<SightsEfficiency>0.2</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<!-- === Power === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_UpgradeDamage"]/comps/li[@Class="USH_GE.CompProperties_OverclockUpgrade"]/statOffsets/RangedWeapon_DamageMultiplier</xpath>
+		<value>
+			<RangedWeapon_DamageMultiplier>0.20</RangedWeapon_DamageMultiplier>
+		</value>
+	</Operation>
+
+	<!-- === Piercing === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_UpgradeArmor"]/comps/li[@Class="USH_GE.CompProperties_OverclockUpgrade"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>0.3</RangedWeapon_ArmorPenetrationMultiplier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ADP rounds -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="USH_ADPRounds"]/extraDamages/li[def="USH_ADP"]/amount</xpath>
+					<value>
+						<amount>3</amount>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

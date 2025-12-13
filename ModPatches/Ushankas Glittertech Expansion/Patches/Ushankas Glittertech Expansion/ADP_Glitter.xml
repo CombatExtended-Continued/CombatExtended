@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Damage === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="USH_ADP"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="USH_ADP"]</xpath>
+		<value>
+			<armorCategory>Electric</armorCategory>
+		</value>
+	</Operation>
+
+	<!-- === Shell === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_Shell_ADP"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+				<defName>USH_Shell_ADP</defName>
+				<label>ADP shell</label>
+				<description>Area Denial Pulse (ADP) is a newer and more effective version of the common EMP charge. It uses far more aggressive electrical targeting, bypassing even the most advanced adaptation systems.\n\nIt renders mechanoids immobile over a wider radius, without any risk being of countered.</description>
+				<graphicData>
+					<texPath>Things/Item/ADPShell</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<tradeability>Sellable</tradeability>
+				<statBases>
+					<Mass>5</Mass>
+					<Bulk>8.34</Bulk>
+					<MarketValue>1500</MarketValue>
+				</statBases>
+				<destroyOnDrop>False</destroyOnDrop>
+				<ammoClass>ADP</ammoClass>
+				<detonateProjectile>Bullet_81mmMortarShell_ADP</detonateProjectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+		<value>
+			<USH_Shell_ADP>Bullet_81mmMortarShell_ADP</USH_Shell_ADP>
+		</value>
+	</Operation>
+
+	<!-- === IED === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_TrapIED_ADP"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>10</Steel>
+				<ComponentIndustrial>1</ComponentIndustrial>
+				<USH_Shell_ADP>1</USH_Shell_ADP>
+			</costList>
+		</value>
+	</Operation>
+
+</Patch>

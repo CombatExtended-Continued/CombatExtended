@@ -1010,6 +1010,34 @@
 			</li>
 		</comps>
 	</ThingDef>
+	
+	<ThingDef ParentName="Base_MihoMMAT">
+		<defName>Bullet_MihoMMAT_Barrage</defName>
+		<label>Miho AP-I Missile</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MihoGunshot</damageDef>
+			<damageAmountBase>124</damageAmountBase>
+			<armorPenetrationSharp>250</armorPenetrationSharp>
+			<armorPenetrationBlunt>37.075</armorPenetrationBlunt>
+			<pelletCount>8</pelletCount>
+			<gravityFactor>10</gravityFactor>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>124</damageAmountBase>
+				<explosiveDamageType>MihoGunshotDemo</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large_Miho>5</Fragment_Large_Miho>
+					<Fragment_Small_Miho>24</Fragment_Small_Miho>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
 
 	<ThingDef ParentName="Base_MihoMMAT">
 		<defName>Bullet_MihoMPLA</defName>
