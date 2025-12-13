@@ -69,7 +69,7 @@ public class JobDriver_SetUpBipod : JobDriver
         yield return Toils_General.Wait(timeToSetUpTrue).WithProgressBarToilDelay(TargetIndex.A);
         yield return Toils_General.Do(delegate
         {
-            Bipod.SetUpEnd(weapon);
+            Bipod.SetUpEnd(weapon, pawn);
         });
 
 
