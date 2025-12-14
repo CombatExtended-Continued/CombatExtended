@@ -5,13 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public interface IVerbDisableable
 {
-    public interface IVerbDisableable
-    {
-        bool HoldFire { get; set; }
-        string HoldFireLabel { get; }
-        string HoldFireDesc { get; }
-        Texture2D HoldFireIcon { get; }
-    }
+    bool HoldFire { get; set; }
+    string HoldFireLabel { get; }
+    string HoldFireDesc { get; }
+    Texture2D HoldFireIcon { get; }
 }

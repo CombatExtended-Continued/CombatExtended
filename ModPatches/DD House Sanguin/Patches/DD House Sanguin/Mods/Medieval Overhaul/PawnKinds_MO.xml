@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medieval Overhaul</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<!-- === Remove conflicting apparel layer === -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="DevDesigner_KnightSanguin"]/apparelRequired/li[.="DankPyon_Footwear_BootsPlate"]</xpath>
-	</Operation>
+				<!-- === Remove conflicting apparel layer === -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/PawnKindDef[defName="DevDesigner_KnightSanguin"]/apparelRequired/li[.="DankPyon_Footwear_BootsPlate"]</xpath>
+				</li>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="DevDesigner_KnightSanguin"]/apparelRequired/li[.="DankPyon_Handwear_GlovesPlate"]</xpath>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/PawnKindDef[defName="DevDesigner_KnightSanguin"]/apparelRequired/li[.="DankPyon_Handwear_GlovesPlate"]</xpath>
+				</li>
+
+			</operations>
+		</match>
 	</Operation>
 
 </Patch>

@@ -9,39 +9,37 @@ using Verse.AI;
 using RimWorld;
 using CombatExtended;
 
-namespace CombatExtended
+namespace CombatExtended;
+public static class Toils_Ammo
 {
-    public static class Toils_Ammo
+    public static Toil Drop(ThingDef def, int count)
     {
-        public static Toil Drop(ThingDef def, int count)
+        Toil toil = ToilMaker.MakeToil("DropAmmo");
+        toil.initAction = () =>
         {
-            Toil toil = ToilMaker.MakeToil("DropAmmo");
-            toil.initAction = () =>
-            {
-                Pawn actor = toil.actor;
-                actor.inventory.DropCount(def, count);
-            };
-            return toil;
-        }
+            Pawn actor = toil.actor;
+            actor.inventory.DropCount(def, count);
+        };
+        return toil;
+    }
 
-        public static Toil TryUnloadAmmo(CompAmmoUser ammoUser)
+    public static Toil TryUnloadAmmo(CompAmmoUser ammoUser)
+    {
+        Toil toil = ToilMaker.MakeToil("TryUnloadAmmo");
+        toil.initAction = () =>
         {
-            Toil toil = ToilMaker.MakeToil("TryUnloadAmmo");
-            toil.initAction = () =>
-            {
-                ammoUser?.TryUnload(true);
-            };
-            return toil;
-        }
+            ammoUser?.TryUnload(true);
+        };
+        return toil;
+    }
 
-        public static Toil DropUnusedAmmo(CompMechAmmo mechAmmo)
+    public static Toil DropUnusedAmmo(CompMechAmmo mechAmmo)
+    {
+        Toil toil = ToilMaker.MakeToil("DropUnusedAmmo");
+        toil.initAction = () =>
         {
-            Toil toil = ToilMaker.MakeToil("DropUnusedAmmo");
-            toil.initAction = () =>
-            {
-                mechAmmo.DropUnusedAmmo();
-            };
-            return toil;
-        }
+            mechAmmo.DropUnusedAmmo();
+        };
+        return toil;
     }
 }

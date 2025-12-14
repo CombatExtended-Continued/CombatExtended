@@ -1,56 +1,52 @@
 ﻿using System.Collections.Generic;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace CombatExtended
+namespace CombatExtended;
+class JobDriver_HunkerDown : JobDriver
 {
-    class JobDriver_HunkerDown : JobDriver
+    private const int GetUpCheckInterval = 60;
+
+    private void SetPosture()
     {
-        private const int GetUpCheckInterval = 60;
+        pawn.jobs.posture = PawnPosture.LayingOnGroundNormal;
+    }
 
-        public override void SetInitialPosture()
+    public override bool TryMakePreToilReservations(bool errorOnFailed)
+    {
+        return true;
+    }
+
+    public override IEnumerable<Toil> MakeNewToils()
+    {
+        this.FailOnDespawnedOrNull(TargetIndex.A);
+
+        int changePostureDelay = 10 + Mathf.RoundToInt(60f / Mathf.Max(0.6f, pawn.GetStatValue(StatDefOf.MoveSpeed) - 1.25f));
+        Toil changePostureToil = Toils_General.Wait(changePostureDelay);
+        changePostureToil.AddFinishAction(SetPosture);
+
+        //Hunkering toil
+        Toil toilNothing = new Toil();
+        toilNothing.defaultCompleteMode = ToilCompleteMode.Delay;
+        toilNothing.defaultDuration = GetUpCheckInterval;
+
+        // Start Toils
+        yield return changePostureToil;
+        yield return toilNothing;
+        yield return Toils_Jump.JumpIf(toilNothing, () =>
         {
-            pawn.jobs.posture = PawnPosture.LayingOnGroundNormal;
-        }
-
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
-        {
-            return true;
-        }
-
-        public override IEnumerable<Toil> MakeNewToils()
-        {
-            this.FailOnDespawnedOrNull(TargetIndex.A);
-
-            //Define Toil
-            Toil toilWait = new Toil();
-            toilWait.initAction = () =>
+            CompSuppressable comp = pawn.TryGetComp<CompSuppressable>();
+            if (comp == null)
             {
-                toilWait.actor.pather.StopDead();
-            };
-
-            Toil toilNothing = new Toil();
-            //toilNothing.initAction = () => {};
-            toilNothing.defaultCompleteMode = ToilCompleteMode.Delay;
-            toilNothing.defaultDuration = GetUpCheckInterval;
-
-            // Start Toil
-            yield return toilWait;
-            yield return toilNothing;
-            yield return Toils_Jump.JumpIf(toilNothing, () =>
+                return false;
+            }
+            if (!comp.CanReactToSuppression)
             {
-                CompSuppressable comp = pawn.TryGetComp<CompSuppressable>();
-                if (comp == null)
-                {
-                    return false;
-                }
-                if (!comp.CanReactToSuppression)
-                {
-                    return false;
-                }
-                return comp.IsHunkering;
-            });
-        }
+                return false;
+            }
+            return comp.IsHunkering;
+        });
     }
 }

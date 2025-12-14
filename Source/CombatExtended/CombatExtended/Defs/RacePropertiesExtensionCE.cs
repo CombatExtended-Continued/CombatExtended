@@ -1,12 +1,10 @@
 ﻿using Verse;
 
-namespace CombatExtended
-{
+namespace CombatExtended;
 
-    public class RacePropertiesExtensionCE : DefModExtension
-    {
-        public BodyShapeDef bodyShape;
-        public bool canParry = false;
-        public int maxParry = 1;
-    }
+public class RacePropertiesExtensionCE : DefModExtension
+{
+    public BodyShapeDef bodyShape;
+    public bool canParry = false;
+    public int maxParry = 1;
 }

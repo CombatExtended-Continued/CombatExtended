@@ -20,6 +20,11 @@
 			<Ammo_Autocannon_Incendiary>Bullet_20x102mmNATO_Incendiary</Ammo_Autocannon_Incendiary>
 			<Ammo_Autocannon_HE>Bullet_20x102mmNATO_HE</Ammo_Autocannon_HE>
 			<Ammo_Autocannon_Sabot>Bullet_20x102mmNATO_Sabot</Ammo_Autocannon_Sabot>
+			<Ammo_AutocannonGrenade_HE>Bullet_30x113mmBGrenade_HE</Ammo_AutocannonGrenade_HE>
+			<Ammo_AutocannonGrenade_HE_TFuzed>Bullet_30x113mmBGrenade_HE_TFuzed</Ammo_AutocannonGrenade_HE_TFuzed>
+			<Ammo_AutocannonGrenade_HEDP>Bullet_30x113mmBGrenade_HEDP</Ammo_AutocannonGrenade_HEDP>
+			<Ammo_AutocannonGrenade_EMP>Bullet_30x113mmBGrenade_EMP</Ammo_AutocannonGrenade_EMP>
+			<Ammo_AutocannonGrenade_Smoke>Bullet_30x113mmBGrenade_Smoke</Ammo_AutocannonGrenade_Smoke>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -87,6 +92,63 @@
 		<ammoClass>Sabot</ammoClass>
 		<cookOffProjectile>Bullet_20x102mmNATO_Sabot</cookOffProjectile>
 	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAutocannonShellBase">
+		<defName>Ammo_AutocannonGrenade_HE</defName>
+		<label>autocannon shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>GrenadeHE</ammoClass>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_HE</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAutocannonShellBase">
+		<defName>Ammo_AutocannonGrenade_HE_TFuzed</defName>
+		<label>autocannon shell (HE Time-Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/AIR</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>GrenadeHETF</ammoClass>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_HE</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAutocannonShellBase">
+		<defName>Ammo_AutocannonGrenade_HEDP</defName>
+		<label>autocannon shell (HEDP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/DP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>GrenadeHEDP</ammoClass>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_HEDP</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAutocannonShellBase">
+		<defName>Ammo_AutocannonGrenade_EMP</defName>
+		<label>autocannon shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<generateAllowChance>0.5</generateAllowChance>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_EMP</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAutocannonShellBase">
+		<defName>Ammo_AutocannonGrenade_Smoke</defName>
+		<label>autocannon shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/SMK</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>Smoke</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
+		<cookOffProjectile>Bullet_30x113mmBGrenade_Smoke</cookOffProjectile>
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -153,9 +215,9 @@
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_Autocannon_HE</defName>
-		<label>make autocannon shell (HE) x200</label>
-		<description>Craft 200 autocannon shell (HE).</description>
-		<jobString>Making autocannon shell (HE).</jobString>
+		<label>make autocannon shell (AP-HE) x200</label>
+		<description>Craft 200 autocannon shell (AP-HE).</description>
+		<jobString>Making autocannon shell (AP-HE).</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -228,6 +290,222 @@
 			<Ammo_Autocannon_Sabot>200</Ammo_Autocannon_Sabot>
 		</products>
 		<workAmount>13600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_AutocannonGrenade_HE</defName>
+		<label>make autocannon shell (HE) x100</label>
+		<description>Craft 100 autocannon shell (HE).</description>
+		<jobString>Making autocannon shell (HE).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AutocannonGrenade_HE>100</Ammo_AutocannonGrenade_HE>
+		</products>
+		<workAmount>11200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_AutocannonGrenade_HE_TFuzed</defName>
+		<label>make autocannon shell (HE Time-Fuzed) x100</label>
+		<description>Craft 100 autocannon shell (HE Time-Fuzed).</description>
+		<jobString>Making autocannon shell (HE Time-Fuzed).</jobString>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AutocannonGrenade_HE_TFuzed>100</Ammo_AutocannonGrenade_HE_TFuzed>
+		</products>
+		<workAmount>12400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_AutocannonGrenade_HEDP</defName>
+		<label>make autocannon shell (HEDP) x100</label>
+		<description>Craft 100 autocannon shell (HEDP).</description>
+		<jobString>Making autocannon shell (HEDP).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AutocannonGrenade_HEDP>100</Ammo_AutocannonGrenade_HEDP>
+		</products>
+		<workAmount>10400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_AutocannonGrenade_EMP</defName>
+		<label>make autocannon shell (EMP) x100</label>
+		<description>Craft 100 autocannon shell (EMP).</description>
+		<jobString>Making autocannon shell (EMP).</jobString>
+		<researchPrerequisites>
+			<li>MicroelectronicsBasics</li>
+			<li>CE_Launchers</li>
+		</researchPrerequisites>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>11</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AutocannonGrenade_EMP>100</Ammo_AutocannonGrenade_EMP>
+		</products>
+		<workAmount>13400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_AutocannonGrenade_Smoke</defName>
+		<label>make autocannon shell (Smoke) x100</label>
+		<description>Craft 100 autocannon shell (Smoke).</description>
+		<jobString>Making autocannon shell (Smoke).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>68</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AutocannonGrenade_Smoke>100</Ammo_AutocannonGrenade_Smoke>
+		</products>
+		<workAmount>9200</workAmount>
 	</RecipeDef>
 
 </Defs>

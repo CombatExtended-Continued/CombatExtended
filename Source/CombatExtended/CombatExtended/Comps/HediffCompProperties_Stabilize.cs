@@ -6,13 +6,11 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class HediffCompProperties_Stabilize : HediffCompProperties
 {
-    public class HediffCompProperties_Stabilize : HediffCompProperties
+    public HediffCompProperties_Stabilize()
     {
-        public HediffCompProperties_Stabilize()
-        {
-            compClass = typeof(HediffComp_Stabilize);
-        }
+        compClass = typeof(HediffComp_Stabilize);
     }
 }

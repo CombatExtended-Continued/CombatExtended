@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CombatExtended
+namespace CombatExtended;
+public enum RecoilPattern : byte
 {
-    public enum RecoilPattern : byte
-    {
-        None,
-        Regular,
-        Mounted
-    }
+    None,
+    Regular,
+    Mounted
 }

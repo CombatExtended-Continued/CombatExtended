@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class AmmoCategoryDef : Def
 {
-    public class AmmoCategoryDef : Def
-    {
-        public bool advanced = false;
-        public string labelShort;
+    public bool advanced = false;
+    public string labelShort;
 
-        public string LabelCapShort => labelShort.CapitalizeFirst();
-    }
+    public string LabelCapShort => labelShort.CapitalizeFirst();
 }

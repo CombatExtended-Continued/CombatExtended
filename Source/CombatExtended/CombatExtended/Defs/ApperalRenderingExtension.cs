@@ -1,11 +1,9 @@
 ﻿using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class ApperalRenderingExtension : DefModExtension
 {
-    public class ApperalRenderingExtension : DefModExtension
-    {
-        public bool HideHair = true;
+    public bool HideHair = true;
 
-        public bool HideBeard = false;
-    }
+    public bool HideBeard = false;
 }

@@ -1,9 +1,7 @@
 ﻿using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class ThingDefExtensionCE : DefModExtension
 {
-    public class ThingDefExtensionCE : DefModExtension
-    {
-        public bool MenuHidden;
-    }
+    public bool MenuHidden;
 }
