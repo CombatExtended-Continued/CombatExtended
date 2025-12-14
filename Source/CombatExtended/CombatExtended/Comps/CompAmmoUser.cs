@@ -191,6 +191,9 @@ public class CompAmmoUser : CompRangedGizmoGiver
     }
 
     public bool EmptyMagazine => HasMagazine && CurMagCount == 0;
+
+    public bool LoadedMagazine => HasMagazine && CurMagCount > 0;
+
     public int MissingToFullMagazine
     {
         get
@@ -857,7 +860,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
         foreach (AmmoLink link in Props.ammoSet.ammoTypes)
         {
             ammoThing = null;
-            if (!EmptyMagazine && selectedAmmo != link.ammo)
+            if (LoadedMagazine && selectedAmmo != link.ammo)
             {
                 continue;
             }
