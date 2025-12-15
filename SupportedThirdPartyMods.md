@@ -267,6 +267,12 @@ Gestalt Engine  |
 Giddy-Up 2    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
+Girls' Frontline Styles - DEFY Team	|
+Girls' Frontline Styles - GF2	|
+Girls' Frontline Styles - NL	|
+Girls' Frontline Styles - PtW	|
+Girls' Frontline Styles - YL	|
+Girls' Frontline Styles - ZZ	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 Glitter Weaponry	|
@@ -367,6 +373,7 @@ MH: Android Tiers Core	|
 MH: Mechanical Biomimetics	|
 MH: Military Tiers	|
 Midworld Expanded: Flak Armor  |
+Mingcao Styles	|
 Miho, the Celestial Fox  |
 Mincho, The Mint Choco Slime ~ HAR ver. |
 MiningCo. MiningHelmet	|

@@ -388,13 +388,47 @@
         </value>
     </Operation>
 
-    <Operation Class="PatchOperationRemove">
-        <xpath>Defs/ThingDef[defName="RFGirlsFrontline_vector"]/verbs</xpath>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_vector"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountPerCharge</xpath>
+		<value>
+			<ammoCountPerCharge>1</ammoCountPerCharge>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationRemove">
-        <xpath>Defs/ThingDef[defName="RFGirlsFrontline_vector"]/comps</xpath>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_vector"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoDef</xpath>
+		<value>
+			<ammoDef>Weapon_GrenadeMolotov</ammoDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_vector"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>throw molotov</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.8</warmupTime>
+					<range>10</range>
+					<minRange>3</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowMolotovCocktail</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>10</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>Proj_GrenadeMolotov</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
 
     <!--PA15 Uniform-->
     <Operation Class="PatchOperationReplace">
