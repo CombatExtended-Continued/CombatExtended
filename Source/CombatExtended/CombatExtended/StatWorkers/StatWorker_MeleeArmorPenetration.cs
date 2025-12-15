@@ -10,24 +10,6 @@ using HarmonyLib;
 namespace CombatExtended;
 public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
 {
-    public override bool ShouldShowFor(StatRequest req)
-    {
-        if (!(req.Def is ThingDef thingDef))
-        {
-            return false;
-        }
-
-        if (stat.category == StatCategoryDefOf.PawnCombat)
-        {
-            return req.Thing is Pawn;
-        }
-        else if (stat.category == StatCategoryDefOf.Weapon_Melee)
-        {
-            return !(req.Thing is Pawn) && !CE_Utility.GetThingDefTools(thingDef).NullOrEmpty();
-        }
-
-        return false;
-    }
 
     public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
     {
@@ -36,16 +18,18 @@ public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
 
     public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
     {
-        List<Tool> tools = CE_Utility.GetThingDefTools(req.Def as ThingDef);
-
-        if (tools.NullOrEmpty())
+        if (req.Def is not ThingDef thingDef)
         {
             return base.GetExplanationUnfinalized(req, numberSense);
         }
+
+        var pawn = GetCurrentWielder(req);
+
+        var skillFactor = GetSkillFactor(pawn);
+        var otherFactors = GetOtherFactors(pawn);
+
         var stringBuilder = new StringBuilder();
-        var penetrationFactor = GetPenetrationFactor(req);
-        var skillFactor = GetSkillFactor(req);
-        stringBuilder.AppendLine("CE_WeaponPenetrationFactor".Translate() + ": " + penetrationFactor.ToStringByStyle(ToStringStyle.PercentZero));
+
         if (Mathf.Abs(skillFactor - 1f) > 0.001f)
         {
             stringBuilder.AppendLine("CE_WeaponPenetrationSkillFactor".Translate() + ": " + skillFactor.ToStringByStyle(ToStringStyle.PercentZero));
@@ -53,57 +37,109 @@ public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
 
         stringBuilder.AppendLine();
 
-        foreach (ToolCE tool in tools)
+        if (req.Thing is Pawn)
         {
-            var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
-            var maneuverString = "(";
-            foreach (var maneuver in maneuvers)
+            var meleeVerbs = pawn.meleeVerbs.GetUpdatedAvailableVerbsList(terrainTools: false);
+            var cumulativeWeights = meleeVerbs.Sum(verbEntry => verbEntry.GetSelectionWeight(null));
+            foreach (var verbEntry in meleeVerbs)
             {
-                maneuverString += maneuver.ToString() + "/";
-            }
-            maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
-            stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + tool.ToString() + " " + maneuverString);
-            var otherFactors = GetOtherFactors(req).Aggregate(1f, (x, y) => x * y);
-            if (Mathf.Abs(otherFactors - 1f) > 0.001f)
-            {
-                stringBuilder.AppendLine("   " + "CE_WeaponPenetrationOtherFactors".Translate() + ": " + otherFactors.ToStringByStyle(ToStringStyle.PercentZero));
-            }
+                var penetrationFactor =
+                    verbEntry.verb.EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
+                var chance = verbEntry.GetSelectionWeight(null) / cumulativeWeights;
 
-            stringBuilder.Append(string.Format("    {0}: {1} x {2}",
-                                                   "CE_DescSharpPenetration".Translate(),
-                                                   tool.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                                                   penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree)));
-            if (Mathf.Abs(skillFactor - 1f) > 0.001f)
-            {
-                stringBuilder.Append(string.Format(" x {0}", skillFactor.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                if (chance > 0)
+                {
+                    ShowExplanationForVerb(
+                        stringBuilder,
+                        verbEntry.verb.tool,
+                        verbEntry.verb.maneuver,
+                        skillFactor,
+                        otherFactors,
+                        penetrationFactor,
+                        chance
+                    );
+                }
             }
-            if (Mathf.Abs(otherFactors - 1f) > 0.001f)
-            {
-                stringBuilder.Append(string.Format(" x {0}", otherFactors.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-            }
-            stringBuilder.AppendLine(string.Format(" = {0} {1}",
-                                                    (tool.armorPenetrationSharp * penetrationFactor * skillFactor * otherFactors).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                                                    "CE_mmRHA".Translate()));
-
-
-            stringBuilder.Append(string.Format("    {0}: {1} x {2}",
-                                                   "CE_DescBluntPenetration".Translate(),
-                                                   tool.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                                                   penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree)));
-            if (Mathf.Abs(skillFactor - 1f) > 0.001f)
-            {
-                stringBuilder.Append(string.Format(" x {0}", skillFactor.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-            }
-            if (Mathf.Abs(otherFactors - 1f) > 0.001f)
-            {
-                stringBuilder.Append(string.Format(" x {0}", otherFactors.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-            }
-            stringBuilder.AppendLine(string.Format(" = {0} {1}",
-                                                   (tool.armorPenetrationBlunt * penetrationFactor * skillFactor * otherFactors).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                                                   "CE_MPa".Translate()));
-            stringBuilder.AppendLine();
         }
+        else
+        {
+            var penetrationFactor = GetPenetrationFactor(req);
+            var meleeVerbPropsWithSource = AllMeleeVerbPropsWithSource(thingDef);
+            var cumulativeWeights = meleeVerbPropsWithSource.Sum(vps => AdjustedMeleeSelectionWeight(vps, pawn, req));
+            foreach (var vps in meleeVerbPropsWithSource)
+            {
+                var chance = AdjustedMeleeSelectionWeight(vps, pawn, req) / cumulativeWeights;
+                ShowExplanationForVerb(
+                    stringBuilder,
+                    vps.tool,
+                    vps.maneuver,
+                    skillFactor,
+                    otherFactors,
+                    penetrationFactor,
+                    chance
+                );
+            }
+        }
+
         return stringBuilder.ToString();
+    }
+
+    private void ShowExplanationForVerb(StringBuilder stringBuilder, Tool verbTool, ManeuverDef maneuver,
+        float skillFactor,
+        float otherFactors,
+        float penetrationFactor,
+        float chance)
+    {
+        if (verbTool is not ToolCE tool)
+        {
+            return;
+        }
+
+        var maneuverString = "(" + maneuver + ")";
+        stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + tool.ToString() + " " + maneuverString);
+
+
+        stringBuilder.AppendLine("   " + "CE_WeaponPenetrationFactor".Translate() + ": " + penetrationFactor.ToStringByStyle(ToStringStyle.PercentZero));
+
+        if (Mathf.Abs(otherFactors - 1f) > 0.001f)
+        {
+            stringBuilder.AppendLine("   " + "CE_WeaponPenetrationOtherFactors".Translate() + ": " + otherFactors.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+
+        stringBuilder.Append(string.Format("    {0}: {1} x {2}",
+                                               "CE_DescSharpPenetration".Translate(),
+                                               tool.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                               penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree)));
+        if (Mathf.Abs(skillFactor - 1f) > 0.001f)
+        {
+            stringBuilder.Append(string.Format(" x {0}", skillFactor.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+        }
+        if (Mathf.Abs(otherFactors - 1f) > 0.001f)
+        {
+            stringBuilder.Append(string.Format(" x {0}", otherFactors.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+        }
+        stringBuilder.AppendLine(string.Format(" = {0} {1}",
+                                                (tool.armorPenetrationSharp * penetrationFactor * skillFactor * otherFactors).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                "CE_mmRHA".Translate()));
+
+
+        stringBuilder.Append(string.Format("    {0}: {1} x {2}",
+                                               "CE_DescBluntPenetration".Translate(),
+                                               tool.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                               penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree)));
+        if (Mathf.Abs(skillFactor - 1f) > 0.001f)
+        {
+            stringBuilder.Append(string.Format(" x {0}", skillFactor.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+        }
+        if (Mathf.Abs(otherFactors - 1f) > 0.001f)
+        {
+            stringBuilder.Append(string.Format(" x {0}", otherFactors.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+        }
+        stringBuilder.AppendLine(string.Format(" = {0} {1}",
+                                               (tool.armorPenetrationBlunt * penetrationFactor * skillFactor * otherFactors).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                               "CE_MPa".Translate()));
+        stringBuilder.AppendLine("    " + "CE_ChanceFactor".Translate() + ": " + chance.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+        stringBuilder.AppendLine();
     }
 
     public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
@@ -111,39 +147,58 @@ public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
         return "StatsReport_FinalValue".Translate() + ": " + GetFinalDisplayValue(req);
     }
 
-    private string GetFinalDisplayValue(StatRequest optionalReq)
+    private string GetFinalDisplayValue(StatRequest req)
     {
-        List<Tool> tools = CE_Utility.GetThingDefTools(optionalReq.Def as ThingDef);
-        if (tools.NullOrEmpty())
+        if (req.Def is not ThingDef thingDef)
         {
             return "";
         }
-        if (tools.Any(x => !(x is ToolCE)))
+
+        var pawn = GetCurrentWielder(req);
+        var otherFactors = GetOtherFactors(pawn);
+        var skillFactor = GetSkillFactor(pawn);
+
+        float totalAveragePenSharp;
+        float totalAveragePenBlunt;
+
+        if (req.Thing is Pawn)
         {
-            Log.Error($"Trying to get stat MeleeArmorPenetration from {optionalReq.Def.defName} which has no support for Combat Extended.");
-            return "";
+            // When computing average armor penetration for a pawn, consider the weighted average of the armor penetration of all their available melee verbs.
+            // The penetration factor in this case depends on the weapon that provides a given verb.
+            var meleeVerbs = pawn.meleeVerbs.GetUpdatedAvailableVerbsList(terrainTools: false);
+
+            totalAveragePenSharp = meleeVerbs.AverageWeighted(
+                verbEntry => verbEntry.GetSelectionWeight(null),
+                verbEntry => verbEntry.verb.tool is ToolCE tool ? tool.armorPenetrationSharp * otherFactors * verbEntry.verb.EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f : 0f
+                );
+            totalAveragePenBlunt = meleeVerbs.AverageWeighted(
+                verbEntry => verbEntry.GetSelectionWeight(null),
+                verbEntry => verbEntry.verb.tool is ToolCE tool ? tool.armorPenetrationBlunt * otherFactors * verbEntry.verb.EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f : 0f
+            );
+        }
+        else
+        {
+            // Otherwise, when calculating average armor penetration for a single weapon (or def), be it wielded or unwielded,
+            // consider the weighted average of each verb and derive the penetration factor from the weapon/def.
+            var verbPropsWithSource = AllMeleeVerbPropsWithSource(thingDef);
+            totalAveragePenSharp = verbPropsWithSource.AverageWeighted(
+                vps => AdjustedMeleeSelectionWeight(vps, pawn, req),
+                vps => vps.tool is ToolCE tool ? tool.armorPenetrationSharp * otherFactors : 0f
+            );
+            totalAveragePenBlunt = verbPropsWithSource.AverageWeighted(
+                vps => AdjustedMeleeSelectionWeight(vps, pawn, req),
+                vps => vps.tool is ToolCE tool ? tool.armorPenetrationBlunt * otherFactors : 0f
+            );
+
+            var penetrationFactor = GetPenetrationFactor(req);
+
+            totalAveragePenSharp *= penetrationFactor;
+            totalAveragePenBlunt *= penetrationFactor;
         }
 
-        float totalSelectionWeight = 0f;
-        foreach (Tool tool in tools)
-        {
-            totalSelectionWeight += tool.chanceFactor;
-        }
-        float totalAveragePenSharp = 0f;
-        float totalAveragePenBlunt = 0f;
-        foreach (ToolCE tool in tools)
-        {
-            var weightFactor = tool.chanceFactor / totalSelectionWeight;
-            var otherFactors = GetOtherFactors(optionalReq).Aggregate(1f, (x, y) => x * y);
-            totalAveragePenSharp += weightFactor * tool.armorPenetrationSharp * otherFactors;
-            totalAveragePenBlunt += weightFactor * tool.armorPenetrationBlunt * otherFactors;
-        }
-        var penetrationFactor = GetPenetrationFactor(optionalReq);
-        var skillFactor = GetSkillFactor(optionalReq);
-
-        return (totalAveragePenSharp * penetrationFactor * skillFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_mmRHA".Translate()
+        return (totalAveragePenSharp * skillFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_mmRHA".Translate()
                + ", "
-               + (totalAveragePenBlunt * penetrationFactor * skillFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_MPa".Translate();
+               + (totalAveragePenBlunt * skillFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_MPa".Translate();
     }
 
     private float GetPenetrationFactor(StatRequest req)
@@ -163,30 +218,23 @@ public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
     }
     public const float skillFactorPerLevel = (25f / 19f) / 100f;
     public const float powerForOtherFactors = 0.75f;
-    private float GetSkillFactor(StatRequest req)
+    private float GetSkillFactor(Pawn pawn)
     {
         var skillFactor = 1f;
-        if (req.Thing is Pawn pawn && pawn.skills != null)
+        if (pawn?.skills != null)
         {
             skillFactor += skillFactorPerLevel * (pawn.skills.GetSkill(SkillDefOf.Melee).Level - 1);
         }
-        else
-        {
-            var thingHolder = (req.Thing?.ParentHolder as Pawn_EquipmentTracker)?.pawn;
-            if (thingHolder != null && thingHolder.skills != null)
-            {
-                skillFactor += skillFactorPerLevel * (thingHolder.skills.GetSkill(SkillDefOf.Melee).Level - 1);
-            }
-        }
         return skillFactor;
     }
-    private IEnumerable<float> GetOtherFactors(StatRequest req)
+    private float GetOtherFactors(Pawn pawn)
     {
-        var pawn = req.Thing as Pawn ?? (req.Thing?.ParentHolder as Pawn_EquipmentTracker)?.pawn;
         if (pawn != null)
         {
-            yield return Mathf.Pow(pawn.ageTracker.CurLifeStage.meleeDamageFactor, powerForOtherFactors);
-            yield return Mathf.Pow(pawn.GetStatValue(StatDefOf.MeleeDamageFactor, true, -1), powerForOtherFactors);
+            return Mathf.Pow(pawn.ageTracker.CurLifeStage.meleeDamageFactor, powerForOtherFactors) *
+                   Mathf.Pow(pawn.GetStatValue(StatDefOf.MeleeDamageFactor, true, -1), powerForOtherFactors);
         }
+
+        return 1f;
     }
 }

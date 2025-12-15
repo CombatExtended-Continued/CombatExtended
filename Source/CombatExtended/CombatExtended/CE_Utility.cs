@@ -1680,38 +1680,4 @@ public static class CE_Utility
         }
         return current;
     }
-
-    internal static List<Tool> GetThingDefTools(ThingDef thingDef)
-    {
-        List<Tool> tools = new List<Tool>();
-        if (thingDef.isTechHediff)
-        {
-            tools = GetTechHediffTools(thingDef);
-        }
-        else if (thingDef.IsWeapon || thingDef.category == ThingCategory.Pawn)
-        {
-            tools = thingDef.tools?.ToList();
-        }
-
-        return tools;
-    }
-
-    internal static List<Tool> GetTechHediffTools(ThingDef thingDef)
-    {
-        List<Tool> techHediffTools = new List<Tool>();
-        List<RecipeDef> allDefsListForReading = DefDatabase<RecipeDef>.AllDefsListForReading;
-        for (int i = 0; i < allDefsListForReading.Count; i++)
-        {
-            if (allDefsListForReading[i].IsIngredient(thingDef))
-            {
-                HediffDef hediffDef = allDefsListForReading[i].addsHediff;
-                HediffCompProperties_VerbGiver hediffCompProperties_VerbGiver = hediffDef?.comps?.FirstOrDefault((HediffCompProperties x) => x is HediffCompProperties_VerbGiver) as HediffCompProperties_VerbGiver;
-                if (hediffCompProperties_VerbGiver != null && !hediffCompProperties_VerbGiver.tools.NullOrEmpty() && hediffCompProperties_VerbGiver.tools.All(t => t is ToolCE))
-                {
-                    techHediffTools = hediffCompProperties_VerbGiver.tools.ToList();
-                }
-            }
-        }
-        return techHediffTools;
-    }
 }
