@@ -17,6 +17,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     #region Fields
 
     private int curMagCountInt = 0;
+    private int tryReloadOn = 0;
     private AmmoDef currentAmmoInt = null;
     private AmmoDef selectedAmmo;
 
@@ -77,6 +78,15 @@ public class CompAmmoUser : CompRangedGizmoGiver
             return MagSize / CurAmmoCount;
         }
     }
+
+    public int TryReloadOn
+    {
+        get => tryReloadOn;
+        set => tryReloadOn = value;
+    }
+    public float SafeDistanceToReload => 12.9f;
+
+    public int MinimalTicksAfterFight => GenTicks.TicksPerRealSecond * 10;
 
     public int MagSizeOverride
     {
@@ -324,6 +334,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         base.PostExposeData();
         Scribe_Values.Look(ref curMagCountInt, "count", 0);
+        Scribe_Values.Look(ref tryReloadOn, nameof(tryReloadOn));
         Scribe_Defs.Look(ref currentAmmoInt, "currentAmmo");
         Scribe_Defs.Look(ref selectedAmmo, "selectedAmmo");
     }

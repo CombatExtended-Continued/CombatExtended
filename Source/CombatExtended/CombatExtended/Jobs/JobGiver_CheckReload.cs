@@ -112,14 +112,36 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
         {
             return false;    // There isn't any work to do since the pawn doesn't have a CE Inventory.
         }
+        tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>();
+        if (pawn.Drafted)
+        {
+            if (tmpComp == null)
+            {
+                return false;
+            }
+            if (Find.TickManager.TicksGame - pawn.LastAttackTargetTick < tmpComp.MinimalTicksAfterFight)
+            {
+                return false;
+            }
+            var enemiesAround = pawn.Map.mapPawns.AllPawnsSpawned.Where(x => x.Position.InHorDistOf(pawn.Position, tmpComp.SafeDistanceToReload) && !x.IsPsychologicallyInvisible() && x.HostileTo(pawn));
+            if (enemiesAround.Any())
+            {
+                return false;
+            }
 
-        if ((tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>()) != null && tmpComp.HasMagazine)
+        }
+
+        if (tmpComp != null && tmpComp.HasMagazine)
         {
             guns.Add(pawn.equipment.Primary);
         }
 
-        // CompInventory doesn't track equipment and it's desired to check the pawn's equipped weapon before inventory items so need to copy stuff from Inventory Cache.
-        guns.AddRange(inventory.rangedWeaponList.Where(t => t.TryGetComp<CompAmmoUser>() != null && t.GetComp<CompAmmoUser>().HasMagazine));
+        // We don't reload other guns if pawn is drafted
+        if (!pawn.Drafted)
+        {
+            // CompInventory doesn't track equipment and it's desired to check the pawn's equipped weapon before inventory items so need to copy stuff from Inventory Cache.
+            guns.AddRange(inventory.rangedWeaponList.Where(t => t.TryGetComp<CompAmmoUser>() != null && t.GetComp<CompAmmoUser>().HasMagazine));
+        }
 
         if (guns.NullOrEmpty())
         {
@@ -133,6 +155,10 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
             tmpComp = gun.TryGetComp<CompAmmoUser>();
             AmmoDef ammoType = tmpComp.CurrentAmmo;
             int ammoAmount = tmpComp.CurMagCount;
+            if (ammoAmount > tmpComp.TryReloadOn)
+            {
+                continue;
+            }
             int magazineSize = tmpComp.MagSize;
 
             // Is the gun loaded with ammo not in a Loadout/HoldTracker?
