@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Basic hats, uniforms, and coats -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_Tanith1stHood" or
+				defName="GW_HOI_ROR_TempestusScion_Beret" or
+				defName="GW_AM_Valhallan_GarrisonCap" or
+				defName="GW_AM_Valhallan_OfficerCap" or
+				defName="GW_AM_Valhallan_Ushanka" or
+				defName="GW_AM_Valhallan_OfficerUshanka"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.0</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_Tanith1stHood" or
+				defName="GW_HOI_ROR_TempestusScion_Beret" or
+				defName="GW_AM_Valhallan_GarrisonCap" or
+				defName="GW_AM_Valhallan_OfficerCap" or
+				defName="GW_AM_Valhallan_Ushanka" or
+				defName="GW_AM_Valhallan_OfficerUshanka"
+				]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+			<WornBulk>0.5</WornBulk>
+			<ArmorRating_Sharp>0.16</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.32</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="GW_HOI_ROR_Tanith1stCloak" or
+			defName="GW_HOI_ROR_CatachanFatigues" or
+			defName="GW_HOI_ROR_Mordian_Uniform" or
+			defName="GW_HOI_ROR_TDR_DesertFatigues" or
+			defName="ODZ_40k_IM_TempestusScion_Fatigues" or
+			defName="GW_HOI_ROR_VostoyanFirstborn_Uniform" or
+			defName="GW_HOI_ROR_SteelLeg_Uniform" or
+			defName="GW_HOI_ROR_Valhallan_GreatCoat" or
+			defName="GW_HOI_ROR_Valhallan_OfficerGreatCoat"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="GW_HOI_ROR_Tanith1stCloak" or
+			defName="GW_HOI_ROR_Tanith1stGhili" or
+			defName="GW_HOI_ROR_CatachanVest"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			<Bulk>5</Bulk>
+			<WornBulk>2.5</WornBulk>
+		</value>
+	</Operation>
+	
+	<!-- Common Flak Armor variants -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_CatachanArmor" or
+				defName="GW_HOI_ROR_Valhallan_Armor" or
+				defName="GW_HOI_ROR_Elysian_Armor"
+				]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_CatachanArmor" or
+				defName="GW_HOI_ROR_Valhallan_Armor" or
+				defName="GW_HOI_ROR_Elysian_Armor"
+				]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_CatachanArmor" or
+				defName="GW_HOI_ROR_Valhallan_Armor" or
+				defName="GW_HOI_ROR_Elysian_Armor"
+				]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>18</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_Elysian_Helmet" or
+				defName="GW_HOI_ROR_ElysianHelmetOpen"
+				]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_Elysian_Helmet" or
+				defName="GW_HOI_ROR_ElysianHelmetOpen"
+				]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_Elysian_Helmet" or
+				defName="GW_HOI_ROR_ElysianHelmetOpen"
+				]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>9.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Common Carapace variants -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="GW_HOI_ROR_LuciferBlack_Armor" or
+			defName="GW_HOI_TempestusScion_CarapaceArmor"
+			]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="GW_HOI_ROR_LuciferBlack_Armor" or
+			defName="GW_HOI_TempestusScion_CarapaceArmor"
+			]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="GW_HOI_ROR_LuciferBlack_Armor" or
+			defName="GW_HOI_TempestusScion_CarapaceArmor"
+			]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>22</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[
+			defName="GW_HOI_ROR_LuciferBlack_Armor" or
+			defName="GW_HOI_TempestusScion_CarapaceArmor"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_LuciferBlackSkull" or
+				defName="GW_HOI_ROR_LuciferBlackAlt" or
+				defName="GW_HOI_TempestusScion_Helmet"
+				]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_LuciferBlackSkull" or
+				defName="GW_HOI_ROR_LuciferBlackAlt" or
+				defName="GW_HOI_TempestusScion_Helmet"
+				]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-0.75</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_LuciferBlackSkull" or
+				defName="GW_HOI_ROR_LuciferBlackAlt" or
+				defName="GW_HOI_TempestusScion_Helmet"
+				]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Apparel>0.80</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_LuciferBlackSkull" or
+				defName="GW_HOI_ROR_LuciferBlackAlt" or
+				defName="GW_HOI_TempestusScion_Helmet"
+				]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>9</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_LuciferBlackSkull" or
+				defName="GW_HOI_ROR_LuciferBlackAlt" or
+				defName="GW_HOI_TempestusScion_Helmet"
+				]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>13.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Common Masks -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				defName="GW_AM_LuciferBlackMask" or
+				defName="GW_HOI_ROR_TempestusScion_Mask"
+				]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+				defName="GW_AM_LuciferBlackMask" or
+				defName="GW_HOI_ROR_TempestusScion_Mask" or
+				defName="GW_HOI_ROR_Tanith1stGoggle"
+				]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Apparel>0.80</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+	
+	<!-- Tanith -->
+	
+	<!-- Catachans -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+				defName="GW_HOI_ROR_CatachanBandana" or
+				defName="GW_HOI_ROR_CatachanBandanaFull"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+	
+	<!-- Mordians -->
+	
+	<!-- Tallarns -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="GW_AM_TDR_GogglesHeadwrap" or
+			defName="GW_AM_TDR_OfficerHeadwrap" or
+			defName="GW_AM_TDR_Headwrap"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[
+				defName="GW_AM_TDR_Headwrap" or
+				defName="GW_AM_TDR_OfficerHeadwrap"
+				]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_TDR_Goggles"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<Bulk>0.5</Bulk>
+			<WornBulk>0.5</WornBulk>
+			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_TDR_Goggles"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!-- Scions -->
+	
+	<!-- Valhallans -->
+	
+	<!-- Vostroyans -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_VostoyanFirstbornHeadgear"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_VostoyanFirstbornHeadgear"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.2</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_VostoyanFirstbornHeadgear"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+	<!-- Steel Legion -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_SL_GasMask"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_SL_GasMask"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.0</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+	
+	<!-- Elysians -->
+
+</Patch>
