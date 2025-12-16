@@ -249,7 +249,7 @@ public static class AmmoInjector
             ThingDef def = DefDatabase<ThingDef>.GetNamed(defName, false);
             if (def == null)
             {
-                Log.Error($"Combat Extended :: AmmoInjector bench defName={defName} not found for tag {tag}");
+                Log.Error($"Combat Extended :: AmmoInjector trying to inject ammo with autoCraftTag" + tag + "to crafting bench with defName=" + defName + " but could not be found");
                 continue;
             }
             uniqueBenches.Add(def);
