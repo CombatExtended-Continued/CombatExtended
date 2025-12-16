@@ -139,7 +139,11 @@ public class Building_AutoloaderCE : Building
     {
         TargetTurret?.SetReloading(false);
         Map.GetComponent<AutoLoaderTracker>().Unregister(this);
-        DropAmmo(mode == DestroyMode.KillFinalize);
+        if (mode != DestroyMode.WillReplace)
+        {
+            DropAmmo(mode == DestroyMode.KillFinalize);
+        }
+
         base.DeSpawn(mode);
     }
 
