@@ -214,7 +214,7 @@ public class JobGiver_UpdateLoadout : ThinkNode_JobGiver
         {
             findItem = t => t.GetInnerIfMinified().def == curSlot.thingDef;
         }
-        Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t, 10, 1) && !isFoodInPrison(t) && AllowedByBiocode(t, pawn) && AllowedByFoodRestriction(t, pawn);
+        Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t, 10, 1) && !isFoodInPrison(t) && EquipmentUtility.CanEquip(t, pawn) && AllowedByFoodRestriction(t, pawn);
 
         // look for a thing near the pawn.
         curThing = GenClosest.ClosestThingReachable(
@@ -269,12 +269,6 @@ public class JobGiver_UpdateLoadout : ThinkNode_JobGiver
                 }
             }
         }
-    }
-
-    private static bool AllowedByBiocode(Thing thing, Pawn pawn)
-    {
-        CompBiocodable compBiocoded = thing.TryGetComp<CompBiocodable>();
-        return (compBiocoded == null || !compBiocoded.Biocoded || compBiocoded.CodedPawn == pawn);
     }
 
     private static bool AllowedByFoodRestriction(Thing thing, Pawn pawn)
