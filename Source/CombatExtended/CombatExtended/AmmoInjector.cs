@@ -21,7 +21,7 @@ namespace CombatExtended;
 public static class AmmoInjector
 {
 
-    private static readonly AmmoInjectorOptions AmmoInjectorOptions = DefDatabase<AmmoInjectorOptions>.GetNamed("ammoInjectorOptions");
+    private static readonly AmmoInjectorOptions AmmoInjectorOptions = CE_MiscDefOf.ammoInjectorOptions;
     private static readonly Dictionary<string, HashSet<ThingDef>> BenchesByTag = new Dictionary<string, HashSet<ThingDef>>();
     private static readonly bool _cacheBuilt = false;
     public const string destroyWithAmmoDisabledTag = "CE_AmmoInjector";               // The trade tag which automatically deleted this ammo with the ammo system disabled
