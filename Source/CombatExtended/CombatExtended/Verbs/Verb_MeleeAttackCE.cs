@@ -763,7 +763,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                     hediffVerb.ApplyMeleeDamageToTarget(caster);
                     sound = hediffVerb.SoundHitPawn();
                 }
-                if (ceVerb == null)
+                else if (ceVerb == null)
                 {
                     Log.Error("CE failed to get attack verb for riposte from Pawn " + defender.ToString());
                 }
