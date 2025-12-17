@@ -9,6 +9,25 @@ using UnityEngine;
 namespace CombatExtended;
 public class StatWorker_MeleeDamageAverage : StatWorker_MeleeDamageBase
 {
+    public override bool ShouldShowFor(StatRequest req)
+    {
+        if (!(req.Def is ThingDef thingDef))
+        {
+            return false;
+        }
+
+        if (stat.category == StatCategoryDefOf.PawnCombat)
+        {
+            return req.Thing is Pawn;
+        }
+        else if (stat.category == StatCategoryDefOf.Weapon_Melee)
+        {
+            return !(req.Thing is Pawn) && !CE_Utility.GetThingDefTools(thingDef).NullOrEmpty();
+        }
+
+        return false;
+    }
+
     public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess)
     {
         var skilledDamageVariationMin = damageVariationMin;
@@ -20,7 +39,7 @@ public class StatWorker_MeleeDamageAverage : StatWorker_MeleeDamageBase
             skilledDamageVariationMax = GetDamageVariationMax(tracker.pawn);
         }
 
-        var tools = (req.Def as ThingDef)?.tools;
+        List<Tool> tools = CE_Utility.GetThingDefTools(req.Def as ThingDef);
         if (tools.NullOrEmpty())
         {
             return 0;
@@ -66,7 +85,7 @@ public class StatWorker_MeleeDamageAverage : StatWorker_MeleeDamageBase
             }
         }
 
-        var tools = (req.Def as ThingDef)?.tools;
+        List<Tool> tools = CE_Utility.GetThingDefTools(req.Def as ThingDef);
 
         if (tools.NullOrEmpty())
         {

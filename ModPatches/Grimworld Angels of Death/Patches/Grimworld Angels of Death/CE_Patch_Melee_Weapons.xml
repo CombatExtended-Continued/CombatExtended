@@ -2,15 +2,8 @@
 <Patch>
 
 	<!-- ======== Chainsword ======= -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword_GrimWorld"]/stuffCategories</xpath>
-		<value>
-			<li>Metallic_Weapon</li>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword_GrimWorld"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Chainsword"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -34,15 +27,39 @@
 					<armorPenetrationSharp>21.45</armorPenetrationSharp>
 					<armorPenetrationBlunt>6.74</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>
+					<soundMeleeHit>ChainSword</soundMeleeHit>
+					<soundMeleeMiss>Smite</soundMeleeMiss>
 				</li>
 			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword_GrimWorld"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Chainsword"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword_GrimWorld"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Chainsword"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -50,14 +67,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword_GrimWorld"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Chainsword"]/weaponTags</xpath>
 		<value>
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword_GrimWorld"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Chainsword"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.18</MeleeCritChance>
@@ -68,7 +85,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword_GrimWorld"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Chainsword"]/statBases</xpath>
 		<value>
 			<Bulk>5.7</Bulk>
 			<MeleeCounterParryBonus>0.58</MeleeCounterParryBonus>
@@ -77,14 +94,14 @@
 
 	<!-- ======== Relic Chainsword ======= -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Chainsword_GrimWorld"]/stuffCategories</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Chainsword"]/stuffCategories</xpath>
 		<value>
 			<li>Metallic_Weapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Chainsword_GrimWorld"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Chainsword"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -108,15 +125,39 @@
 					<armorPenetrationSharp>23.26</armorPenetrationSharp>
 					<armorPenetrationBlunt>4.15</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>
+					<soundMeleeHit>ChainSword</soundMeleeHit>
+					<soundMeleeMiss>Smite</soundMeleeMiss>
 				</li>
 			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Chainsword_GrimWorld"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Chainsword"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Chainsword_GrimWorld"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Chainsword"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -124,14 +165,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Chainsword_GrimWorld"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Chainsword"]/weaponTags</xpath>
 		<value>
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Chainsword_GrimWorld"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Chainsword"]/equippedStatOffsets</xpath>
 		<value>
 			<MeleeCritChance>0.21</MeleeCritChance>
 			<MeleeParryChance>0.45</MeleeParryChance>
@@ -140,7 +181,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Chainsword_GrimWorld"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Chainsword"]/statBases</xpath>
 		<value>
 			<Bulk>4.0</Bulk>
 			<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
@@ -149,14 +190,14 @@
 
 	<!-- ======== Powersword ======= -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Powersword_GrimWorld"]/stuffCategories</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powersword"]/stuffCategories</xpath>
 		<value>
 			<li>Metallic_Weapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Powersword_GrimWorld"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powersword"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -180,15 +221,17 @@
 					<armorPenetrationSharp>27.54</armorPenetrationSharp>
 					<armorPenetrationBlunt>5.24</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<soundMeleeHit>PowerSword</soundMeleeHit>
+					<soundMeleeMiss>Smite</soundMeleeMiss>
 				</li>
 			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Powersword_GrimWorld"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powersword"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="MeleeWeapon_Powersword_GrimWorld"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Powersword"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -196,14 +239,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Powersword_GrimWorld"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powersword"]/weaponTags</xpath>
 		<value>
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Powersword_GrimWorld"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powersword"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.35</MeleeCritChance>
@@ -214,7 +257,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Powersword_GrimWorld"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powersword"]/statBases</xpath>
 		<value>
 			<Bulk>4.25</Bulk>
 			<MeleeCounterParryBonus>0.42</MeleeCounterParryBonus>
@@ -224,14 +267,14 @@
 	<!-- ======== Relic Powersword ======= -->
 			
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Powersword_GrimWorld"]/stuffCategories</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Powersword"]/stuffCategories</xpath>
 		<value>
 			<li>Metallic_Weapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Powersword_GrimWorld"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Powersword"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -255,15 +298,17 @@
 					<armorPenetrationSharp>38.3</armorPenetrationSharp>
 					<armorPenetrationBlunt>6.1</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<soundMeleeHit>PowerSword</soundMeleeHit>
+					<soundMeleeMiss>Smite</soundMeleeMiss>
 				</li>
 			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Powersword_GrimWorld"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Powersword"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Powersword_GrimWorld"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Powersword"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -271,14 +316,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Powersword_GrimWorld"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Powersword"]/weaponTags</xpath>
 		<value>
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Powersword_GrimWorld"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Powersword"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.45</MeleeCritChance>
@@ -289,7 +334,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="MeleeWeapon_Relic_Powersword_GrimWorld"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Relic_Powersword"]/statBases</xpath>
 		<value>
 			<Bulk>3.0</Bulk>
 			<MeleeCounterParryBonus>0.3</MeleeCounterParryBonus>
@@ -299,7 +344,7 @@
 	<!--===== Sword of the Emperor =====-->
 
 		<Operation Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermSword"]/tools</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_TermSword"]/tools</xpath>
 			<value>
 				<tools>
 					<li Class="CombatExtended.ToolCE">
@@ -323,6 +368,8 @@
 						<armorPenetrationSharp>45.7</armorPenetrationSharp>
 						<armorPenetrationBlunt>8.2</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						<soundMeleeHit>PowerSword</soundMeleeHit>
+						<soundMeleeMiss>Smite</soundMeleeMiss>
 					</li>
 					<li Class="CombatExtended.ToolCE">
 						<label>point</label>
@@ -334,15 +381,17 @@
 						<armorPenetrationSharp>49.3</armorPenetrationSharp>
 						<armorPenetrationBlunt>9.5</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						<soundMeleeHit>PowerSword</soundMeleeHit>
+						<soundMeleeMiss>Smite</soundMeleeMiss>
 					</li>
 				</tools>
 			</value>
 		</Operation>
 	
 		<Operation Class="PatchOperationConditional">
-			<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermSword"]/weaponTags</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_TermSword"]/weaponTags</xpath>
 			<nomatch Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermSword"]</xpath>
+				<xpath>Defs/ThingDef[defName="GW_AOD_TermSword"]</xpath>
 				<value>
 					<weaponTags />
 				</value>
@@ -350,7 +399,7 @@
 		</Operation>
 	
 		<Operation Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermSword"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_TermSword"]</xpath>
 			<value>
 				<equippedStatOffsets>
 					<MeleeCritChance>0.85</MeleeCritChance>
@@ -361,7 +410,7 @@
 		</Operation>
 	
 		<Operation Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermSword"]/statBases</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_TermSword"]/statBases</xpath>
 			<value>
 				<Bulk>7.5</Bulk>
 				<MeleeCounterParryBonus>0.65</MeleeCounterParryBonus>
@@ -372,7 +421,7 @@
 	<!--===== Power Fist =====-->
 	
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Powerfist"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powerfist"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -389,9 +438,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Powerfist"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powerfist"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Melee_Powerfist"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Powerfist"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -399,14 +448,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Powerfist"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powerfist"]/weaponTags</xpath>
 		<value>
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Powerfist"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powerfist"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>1.47</MeleeCritChance>
@@ -417,7 +466,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Powerfist"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Powerfist"]/statBases</xpath>
 		<value>
 			<Bulk>12.4</Bulk>
 			<MeleeCounterParryBonus>0.51</MeleeCounterParryBonus>
@@ -427,7 +476,7 @@
 	<!--===== Terminator Power Fist =====-->
 	
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermPowerFist"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_TermPowerFist"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -444,9 +493,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermPowerFist"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_TermPowerFist"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermPowerFist"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_TermPowerFist"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -454,14 +503,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermPowerFist"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_TermPowerFist"]/weaponTags</xpath>
 		<value>
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermPowerFist"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_TermPowerFist"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>1.47</MeleeCritChance>
@@ -472,17 +521,17 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_TermPowerFist"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_TermPowerFist"]/statBases</xpath>
 		<value>
 			<Bulk>15.4</Bulk>
 			<MeleeCounterParryBonus>0.51</MeleeCounterParryBonus>
 		</value>
 	</Operation>
-	
+
 	<!--===== Thunder Hammer =====-->
-	
+
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_ThunderHammer"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -504,15 +553,16 @@
 					<cooldownTime>2.3</cooldownTime>
 					<armorPenetrationBlunt>215</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					<soundMeleeHit>GW_SM_ThunderHammer</soundMeleeHit>
 				</li>
 			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_ThunderHammer"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Melee_ThunderHammer"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -520,7 +570,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_ThunderHammer"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]/equippedStatOffsets</xpath>
 		<value>
 			<MeleeCritChance>1.16</MeleeCritChance>
 			<MeleeParryChance>0.23</MeleeParryChance>
@@ -529,7 +579,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_ThunderHammer"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_ThunderHammer"]/statBases</xpath>
 		<value>
 			<Bulk>18.6</Bulk>
 			<MeleeCounterParryBonus>0.51</MeleeCounterParryBonus>
@@ -539,7 +589,7 @@
 	<!--===== 1H Thunder Hammer =====-->
 	
 		<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Thunder1hHammer"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Term_Thunder1hHammer"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -561,15 +611,16 @@
 					<cooldownTime>2.3</cooldownTime>
 					<armorPenetrationBlunt>215</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					<soundMeleeHit>GW_SM_ThunderHammer</soundMeleeHit>
 				</li>
 			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Thunder1hHammer"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Term_Thunder1hHammer"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_Melee_Thunder1hHammer"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_Term_Thunder1hHammer"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -577,14 +628,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Thunder1hHammer"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Term_Thunder1hHammer"]/weaponTags</xpath>
 		<value>
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Thunder1hHammer"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Term_Thunder1hHammer"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>1.16</MeleeCritChance>
@@ -595,7 +646,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_Melee_Thunder1hHammer"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_Term_Thunder1hHammer"]/statBases</xpath>
 		<value>
 			<Bulk>14.2</Bulk>
 			<MeleeCounterParryBonus>0.51</MeleeCounterParryBonus>
@@ -604,14 +655,14 @@
 	
 		<!-- ======== Combat Knife ======= -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_MeleeWeapon_CombatKnife"]/stuffCategories</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_CombatKnife"]/stuffCategories</xpath>
 		<value>
 			<li>Metallic_Weapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_SM_MeleeWeapon_CombatKnife"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_CombatKnife"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -641,9 +692,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="GW_SM_MeleeWeapon_CombatKnife"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_CombatKnife"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GW_SM_MeleeWeapon_CombatKnife"]</xpath>
+			<xpath>Defs/ThingDef[defName="GW_AOD_CombatKnife"]</xpath>
 			<value>
 				<weaponTags />
 			</value>
@@ -651,14 +702,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_MeleeWeapon_CombatKnife"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_CombatKnife"]/weaponTags</xpath>
 		<value>
 			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_MeleeWeapon_CombatKnife"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_CombatKnife"]/equippedStatOffsets</xpath>
 		<value>
 			<MeleeCritChance>0.23</MeleeCritChance>
 			<MeleeParryChance>0.45</MeleeParryChance>
@@ -667,7 +718,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_SM_MeleeWeapon_CombatKnife"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GW_AOD_CombatKnife"]/statBases</xpath>
 		<value>
 			<Bulk>4.9</Bulk>
 			<MeleeCounterParryBonus>0.58</MeleeCounterParryBonus>
