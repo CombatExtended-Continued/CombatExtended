@@ -583,6 +583,30 @@ public class Dialog_ManageLoadouts : Window
         }
     }
 
+    private void DrawTryReloadOnField(Rect canvas, LoadoutSlot slot)
+    {
+        if (slot == null)
+        {
+            return;
+        }
+
+        int tryReloadOnCount = slot.TryReloadOn;
+        string buffer = tryReloadOnCount.ToString();
+        Widgets.TextFieldNumeric(canvas, ref tryReloadOnCount, ref buffer);
+        TooltipHandler.TipRegion(canvas, "CE_TryReloadOnFieldTip".Translate(slot.TryReloadOn));
+        if (slot.TryReloadOn != tryReloadOnCount)
+        {
+            if (Compatibility.Multiplayer.InMultiplayer)
+            {
+                SetSlotCount(CurrentLoadout, CurrentLoadout.OwnSlots.IndexOf(slot), tryReloadOnCount);
+            }
+            else
+            {
+                slot.TryReloadOn = tryReloadOnCount;
+            }
+        }
+    }
+
     private void DrawFilterField(Rect canvas)
     {
         string filter = GUI.TextField(canvas, _filter);
@@ -711,8 +735,9 @@ public class Dialog_ManageLoadouts : Window
         // easy ammo adder, ranged weapons only
         if (slot.thingDef is { IsRangedWeapon: true })
         {
+            var ammoUserProperties = slot.thingDef.GetCompProperties<CompProperties_AmmoUser>();
             // make sure there's an ammoSet defined
-            AmmoSetDef ammoSet = ((slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? null : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().ammoSet);
+            AmmoSetDef ammoSet = ammoUserProperties?.ammoSet;
 
             if (ammoSet is { ammoTypes.Count: > 0 })
             {
@@ -739,6 +764,10 @@ public class Dialog_ManageLoadouts : Window
                     }
 
                     Find.WindowStack.Add(new FloatMenu(options, "CE_AddAmmoFor".Translate(slot.thingDef.LabelCap)));
+                }
+                if (ammoUserProperties.magazineSize > 1)
+                {
+                    DrawTryReloadOnField(countModeRect, slot);
                 }
             }
         }
@@ -1065,6 +1094,15 @@ public class Dialog_ManageLoadouts : Window
         if (index >= 0)
         {
             loadout.OwnSlots[index].count = count;
+        }
+    }
+
+    [Compatibility.Multiplayer.SyncMethod]
+    private static void SetTryReloadOn(Loadout loadout, int index, int tryReloadOn)
+    {
+        if (index >= 0)
+        {
+            loadout.OwnSlots[index].TryReloadOn = tryReloadOn;
         }
     }
 

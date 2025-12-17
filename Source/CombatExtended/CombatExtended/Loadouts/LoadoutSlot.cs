@@ -20,6 +20,7 @@ public class LoadoutSlot : IExposable
 
     private const int _defaultCount = 1;
     private int _count;
+    private int tryReloadOn = -1;
     private Def _def;
     private Type _type; // to help with save/load.
     private List<AttachmentDef> _attachments = new List<AttachmentDef>();
@@ -190,6 +191,29 @@ public class LoadoutSlot : IExposable
         }
     }
 
+    public int TryReloadOn
+    {
+        get
+        {
+            if (tryReloadOn < 0)
+            {
+                if (thingDef?.IsRangedWeapon ?? false)
+                {
+                    tryReloadOn = thingDef.GetCompProperties<CompProperties_AmmoUser>().magazineSize - 1;
+                }
+                else
+                {
+                    tryReloadOn = 0;
+                }
+            }
+            return tryReloadOn;
+        }
+        set
+        {
+            this.tryReloadOn = value;
+        }
+    }
+
     //public ThingDef def { get { return _def; } set { _def = value; } }
 
     #endregion Properties
@@ -237,6 +261,7 @@ public class LoadoutSlot : IExposable
     {
         Scribe_Values.Look(ref _count, "count", _defaultCount);
         Scribe_Values.Look(ref _type, "DefType");
+        Scribe_Values.Look(ref tryReloadOn, nameof(tryReloadOn), -1);
         Scribe_Collections.Look(ref _attachments, "Attachments", LookMode.Def);
         if (_attachments == null)
         {
