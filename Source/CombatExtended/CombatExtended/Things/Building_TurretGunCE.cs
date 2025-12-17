@@ -727,7 +727,7 @@ public class Building_TurretGunCE : Building_Turret
         // Ammo gizmos
         if (CompAmmo != null && (PlayerControlled || Prefs.DevMode))
         {
-            foreach (Command com in CompAmmo.CompGetGizmosExtra())
+            foreach (var com in CompAmmo.CompGetGizmosExtra())
             {
                 if (!PlayerControlled && Prefs.DevMode && com is GizmoAmmoStatus)
                 {
