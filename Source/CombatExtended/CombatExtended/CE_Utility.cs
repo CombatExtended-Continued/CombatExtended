@@ -1554,6 +1554,9 @@ public static class CE_Utility
         return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
     }
 
+    /// <summary>
+    /// Entry point for projectile launches from vehicle turrets in Vehicle Framework.
+    /// </summary>
     public static object LaunchProjectileCE(ThingDef projectileDef,
                                             ThingDef _ammoDef,
                                             Def _ammosetDef,
@@ -1589,6 +1592,13 @@ public static class CE_Utility
         projectile.intendedTarget = target;
         projectile.mount = null;
         projectile.AccuracyFactor = 1;
+
+        var charges = launcher.TryGetComp<CompCharges>();
+        if (charges?.GetChargeBracket((target.Cell - launcher.Position).LengthHorizontal, shotHeight, projectile.Props.GravityPerWidth,
+                out var bracket) ?? false)
+        {
+            shotSpeed = bracket.x;
+        }
 
         ProjectilePropertiesCE pprop = projectileDef.projectile as ProjectilePropertiesCE;
         bool instant = false;
