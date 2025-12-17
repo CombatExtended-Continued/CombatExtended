@@ -126,9 +126,15 @@ public class VehiclesCompat : IModPart
         }
     }
 
-    public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravityModifier, float sway, float spread, float recoil)
+    public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravity, float sway, float spread, float recoil)
     {
-        var gravity = CE_Utility.GravityConst * gravityModifier;
+        var charges = shooter.TryGetComp<CompCharges>();
+        if (charges?.GetChargeBracket((target.Cell - shooter.Position).LengthHorizontal, shotOrigin.y, gravity,
+                out var bracket) ?? false)
+        {
+            speed = bracket.x;
+        }
+
         // TODO: Handle cover
         var bounds = CE_Utility.GetBoundsFor(target.Thing);
         float dheight = (bounds.max.y + bounds.min.y) / 2 - shotOrigin.y;
