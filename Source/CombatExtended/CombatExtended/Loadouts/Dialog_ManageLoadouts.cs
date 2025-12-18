@@ -54,6 +54,7 @@ public class Dialog_ManageLoadouts : Window
     private Vector2 _availableScrollPosition = Vector2.zero;
     private const float _barHeight = 24f;
     private Vector2 _countFieldSize = new Vector2(40f, 24f);
+    private Vector2 _tryReloadOnFieldSize = new Vector2(30f, 24f);
     private Loadout _currentLoadout;
     private string _localLabel;
     private LoadoutSlot _draggedSlot;
@@ -657,8 +658,15 @@ public class Dialog_ManageLoadouts : Window
             row.yMin + (row.height - _iconSize) / 2f,
             _iconSize, _iconSize);
 
+        Rect tryReloadOn = new Rect(
+            ammoRect.xMin -_tryReloadOnFieldSize.x - _margin,
+            row.yMin + (row.height - _tryReloadOnFieldSize.y) / 2f,
+            _tryReloadOnFieldSize.x,
+            _tryReloadOnFieldSize.y);
+
+
         Rect editAttachmentsRect = new Rect(
-            countModeRect.xMin - _iconSize - _margin,
+            tryReloadOn.xMin - _iconSize - _margin,
             row.yMin + (row.height - _iconSize) / 2f,
             _iconSize, _iconSize);
 
@@ -767,7 +775,7 @@ public class Dialog_ManageLoadouts : Window
                 }
                 if (ammoUserProperties.magazineSize > 1)
                 {
-                    DrawTryReloadOnField(countModeRect, slot);
+                    DrawTryReloadOnField(tryReloadOn, slot);
                 }
             }
         }
