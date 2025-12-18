@@ -68,7 +68,7 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
 #if DEBUG
             if (Controller.settings.DebugVerbose)
             {
-                Log.Message($"Shield Energy Damage: {totalDamage} Physical Damage: {dinfo.Amount + secondaryDamageAmount} Amount: {dinfo.Amount} secondaryDamage: {secondaryDamageAmount}");
+                Log.Message($"Shield Energy Damage: {totalDamage} Physical Damage: {dinfo.Amount + secondaryShieldDamageAmount} Amount: {dinfo.Amount} secondaryDamage: {secondaryShieldDamageAmount}");
             }
 #endif
             __instance.energy -= totalDamage;
