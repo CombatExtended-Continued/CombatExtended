@@ -40,10 +40,12 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
         }
         float bc = 1.0f;
         bool isEMP = dinfo.Def == DamageDefOf.EMP;
+        float shieldDamageMultiplier = 1f;
         if (dinfo.Weapon?.projectile is ProjectilePropertiesCE pce)
         {
             bc = pce.empShieldBreakChance;
             isEMP = isEMP || pce.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP) != null;
+            shieldDamageMultiplier = pce.shieldDamageMultiplier;
         }
         if (isEMP && Rand.Chance(bc))
         {
@@ -59,7 +61,7 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
         if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
         {
             absorbed = true;
-            __instance.energy -= dinfo.Amount * __instance.Props.energyLossPerDamage * (isEMP ? (1 + bc) : 1);
+            __instance.energy -= dinfo.Amount * __instance.Props.energyLossPerDamage * shieldDamageMultiplier;
             if (__instance.energy < 0f)
             {
                 __instance.Break();

@@ -70,6 +70,7 @@ public abstract class ProjectileCE : ThingWithComps
     public DamageDef damageDefOverride;
 
     public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
+    public float ShieldDamageMultiplier => Props.shieldDamageMultiplier;
 
     public Thing intendedTargetThing
     {
@@ -758,13 +759,19 @@ public abstract class ProjectileCE : ThingWithComps
         // and break it if we manage to decrease its hitpoints to zero or lower.
         if (interceptorComp.currentHitPoints > 0)
         {
-            interceptorComp.currentHitPoints -= Mathf.FloorToInt(this.DamageAmount);
+            float shieldDamage = this.DamageAmount * ShieldDamageMultiplier;
+            int totalShieldDamage = Mathf.FloorToInt(shieldDamage);
+            if (Rand.Value > shieldDamage - damageAmount)
+            {
+                totalShieldDamage++;
+            }
+            interceptorComp.currentHitPoints -= totalShieldDamage;
 
             if (interceptorComp.currentHitPoints <= 0)
             {
                 interceptorComp.currentHitPoints = 0;
                 interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
-                interceptorComp.BreakShieldHitpoints(new DamageInfo(DamageDef, this.DamageAmount));
+                interceptorComp.BreakShieldHitpoints(new DamageInfo(DamageDef, totalShieldDamage));
                 return true;
             }
         }
