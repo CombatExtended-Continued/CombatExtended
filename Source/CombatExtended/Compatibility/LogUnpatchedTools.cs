@@ -14,7 +14,7 @@ public static class LogUnpatchedTools
 
         foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs)
         {
-            string unpatchedToolList = null ;
+            string unpatchedToolList = "";
             if (def.tools == null)
             {
                 continue;
