@@ -38,30 +38,33 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
         {
             return false;
         }
-        float bc = 1.0f;
-        bool isEMP = dinfo.Def == DamageDefOf.EMP;
-        float shieldDamageMultiplier = 1f;
-        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE pce)
-        {
-            bc = pce.empShieldBreakChance;
-            isEMP = isEMP || pce.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP) != null;
-            shieldDamageMultiplier = pce.shieldDamageMultiplier;
-        }
-        if (isEMP && Rand.Chance(bc))
-        {
-            __instance.energy = 0f;
-            __instance.Break();
-            absorbed = true;
-            return false;
-        }
         if (dinfo.Def.ignoreShields)
         {
             return false;
         }
+        float shieldDamageMultiplier = 1f;
+        var secondaryDamageAmount = 0f;
+        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
+        {
+            shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
+            var secondaryDamageProperties =  projectilePropertiesCe?.secondaryDamage?.FirstOrDefault();
+            if (secondaryDamageProperties != null && Rand.Chance(secondaryDamageProperties.chance))
+            {
+                secondaryDamageAmount =  secondaryDamageProperties.amount * secondaryDamageProperties.shieldDamageMultiplier;
+            }
+        }
         if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
         {
             absorbed = true;
-            __instance.energy -= dinfo.Amount * __instance.Props.energyLossPerDamage * shieldDamageMultiplier;
+            var totalDamage = ((dinfo.Amount * shieldDamageMultiplier) + (secondaryDamageAmount)) * __instance.Props.energyLossPerDamage;
+#if DEBUG
+ if (Controller.settings.DebugVerbose)
+{
+Log.Message($"Shield Energy Damage: {totalDamage} Physical Damage: {dinfo.Amount + secondaryDamageAmount} Amount: {dinfo.Amount} secondaryDamage: {secondaryDamageAmount}");
+}
+#endif
+            __instance.energy -= totalDamage;
+
             if (__instance.energy < 0f)
             {
                 __instance.Break();

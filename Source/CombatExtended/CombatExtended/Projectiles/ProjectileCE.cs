@@ -739,9 +739,7 @@ public abstract class ProjectileCE : ThingWithComps
             // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
             // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
             // may still technically pass the chance check.
-            var empDamageDef = DamageDef == DamageDefOf.EMP
-                               ? DamageDef
-                               : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
+            var empDamageDef = DamageDef == DamageDefOf.EMP ? DamageDef : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
 
             if (empDamageDef != null)
             {
@@ -753,6 +751,13 @@ public abstract class ProjectileCE : ThingWithComps
             }
         }
 
+        var secondaryDamageProperties =  projectileProperties?.secondaryDamage?.FirstOrDefault();
+        var secondaryShieldDamageAmount = 0f;
+        if (secondaryDamageProperties != null && Rand.Chance(secondaryDamageProperties.chance))
+        {
+            secondaryShieldDamageAmount = (secondaryDamageProperties.shieldDamageMultiplier * secondaryDamageProperties.shieldDamageMultiplier);
+        }
+
         // Handle Biotech's new shields used e.g. on the Centurion mech, which, unlike mech cluster shields, can only take
         // a finite amount of damage before breaking.
         // This simply mirrors the corresponding vanilla logic - we apply the incoming damage from our projectile to the shield
@@ -760,7 +765,7 @@ public abstract class ProjectileCE : ThingWithComps
         if (interceptorComp.currentHitPoints > 0)
         {
             float shieldDamage = this.DamageAmount * ShieldDamageMultiplier;
-            int totalShieldDamage = Mathf.FloorToInt(shieldDamage);
+            int totalShieldDamage = Mathf.FloorToInt(shieldDamage + secondaryShieldDamageAmount);
             if (Rand.Value > shieldDamage - damageAmount)
             {
                 totalShieldDamage++;
