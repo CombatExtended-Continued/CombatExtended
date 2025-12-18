@@ -1545,6 +1545,7 @@ public class Verb_LaunchProjectileCE : Verb
             damageTaker?.TakeDamage(dInfo);
             tookDamage = true;
         }
+
         //apply decimal part via chance, as item hp is integer
         if (Rand.Chance(decimalPart))
         {
@@ -1559,33 +1560,34 @@ public class Verb_LaunchProjectileCE : Verb
             {
                 //simplified gun position calculation, because the exact spot doesn't matter here
                 Vector3 gunPosition = (Vector3)weaponPosition +
-                                      ((Vector3)(targetLoc - weaponPosition)).normalized * 0.75f;
+                                      (((Vector3)(targetLoc - weaponPosition)).normalized * 0.75f);
                 FleckCreationData dataStatic =
-                    FleckMaker.GetDataStatic(gunPosition, casterMap, CE_FleckDefOf.Fleck_HeatGlow_API, 1);
+                    FleckMaker.GetDataStatic(gunPosition, casterMap, CE_FleckDefOf.Fleck_HeatGlow_API);
                 casterMap.flecks.CreateFleck(dataStatic);
             }
+
             if (damageTaker?.HitPoints <= 0)
             {
-                 burstShotsLeft = 0;
+                burstShotsLeft = 0;
 
-                 //Cancel shooter's job when destroying weapon
-                 if (caster is Pawn casterPawn && casterPawn.Spawned)
-                 {
-                     if (casterPawn.stances.curStance is Stance_Warmup)
-                     {
-                         casterPawn.stances.CancelBusyStanceSoft();
-                     }
+                //Cancel shooter's job when destroying weapon
+                if (caster is Pawn casterPawn && casterPawn.Spawned)
+                {
+                    if (casterPawn.stances.curStance is Stance_Warmup)
+                    {
+                        casterPawn.stances.CancelBusyStanceSoft();
+                    }
 
-                     if (casterPawn.CurJob != null)
-                     {
-                         casterPawn.jobs.EndCurrentJob(JobCondition.Incompletable, true, true);
-                     }
-                 }
+                    if (casterPawn.CurJob != null)
+                    {
+                        casterPawn.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    }
+                }
 
-                 return false;
+                return false;
             }
-
         }
+        
         return true;
     }
 
