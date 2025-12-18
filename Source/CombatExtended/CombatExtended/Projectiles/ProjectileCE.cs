@@ -709,15 +709,15 @@ public abstract class ProjectileCE : ThingWithComps
         {
             return false;
         }
+        // Don't normalize away the 3D component of the projectile position when checking for collisions
+        // between indirect fire projectiles and shields that protect against them
+        // (e.g. mortar shells targeting a high-shield).
         if (CE_Utility.IntersectionPoint(
                 LastPos,
                 newExactPos,
                 shieldPosition,
                 radius,
                 out Vector3[] sect,
-                // Don't normalize away the 3D component of the projectile position when checking for collisions
-                // between indirect fire projectiles and shields that protect against them
-                // (e.g. mortar shells targeting a high-shield).
                 spherical: interceptorComp.Props.interceptAirProjectiles && def.projectile.flyOverhead
         ))
         {
@@ -751,7 +751,7 @@ public abstract class ProjectileCE : ThingWithComps
             }
         }
 
-        var secondaryDamageProperties =  projectileProperties?.secondaryDamage?.FirstOrDefault();
+        var secondaryDamageProperties = projectileProperties?.secondaryDamage?.FirstOrDefault();
         var secondaryShieldDamageAmount = 0f;
         if (secondaryDamageProperties != null && Rand.Chance(secondaryDamageProperties.chance))
         {

@@ -43,25 +43,25 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
             return false;
         }
         float shieldDamageMultiplier = 1f;
-        var secondaryDamageAmount = 0f;
+        float secondaryDamageAmount = 0f;
         if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
         {
             shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
-            var secondaryDamageProperties =  projectilePropertiesCe?.secondaryDamage?.FirstOrDefault();
+            SecondaryDamage secondaryDamageProperties = projectilePropertiesCe?.secondaryDamage?.FirstOrDefault();
             if (secondaryDamageProperties != null && Rand.Chance(secondaryDamageProperties.chance))
             {
-                secondaryDamageAmount =  secondaryDamageProperties.amount * secondaryDamageProperties.shieldDamageMultiplier;
+                secondaryDamageAmount = secondaryDamageProperties.amount * secondaryDamageProperties.shieldDamageMultiplier;
             }
         }
         if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
         {
             absorbed = true;
-            var totalDamage = ((dinfo.Amount * shieldDamageMultiplier) + (secondaryDamageAmount)) * __instance.Props.energyLossPerDamage;
+            float totalDamage = ((dinfo.Amount * shieldDamageMultiplier) + secondaryDamageAmount) * __instance.Props.energyLossPerDamage;
 #if DEBUG
- if (Controller.settings.DebugVerbose)
-{
-Log.Message($"Shield Energy Damage: {totalDamage} Physical Damage: {dinfo.Amount + secondaryDamageAmount} Amount: {dinfo.Amount} secondaryDamage: {secondaryDamageAmount}");
-}
+            if (Controller.settings.DebugVerbose)
+            {
+                Log.Message($"Shield Energy Damage: {totalDamage} Physical Damage: {dinfo.Amount + secondaryDamageAmount} Amount: {dinfo.Amount} secondaryDamage: {secondaryDamageAmount}");
+            }
 #endif
             __instance.energy -= totalDamage;
 
