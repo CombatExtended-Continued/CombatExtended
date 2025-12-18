@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using System.Linq;
@@ -43,20 +44,27 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
             return false;
         }
         float shieldDamageMultiplier = 1f;
-        float secondaryDamageAmount = 0f;
+        float secondaryShieldDamageAmount = 0f;
         if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
         {
             shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
-            SecondaryDamage secondaryDamageProperties = projectilePropertiesCe?.secondaryDamage?.FirstOrDefault();
-            if (secondaryDamageProperties != null && Rand.Chance(secondaryDamageProperties.chance))
+            List<SecondaryDamage> secondaryDamageProperties = projectilePropertiesCe?.secondaryDamage;
+            if (!secondaryDamageProperties.NullOrEmpty())
             {
-                secondaryDamageAmount = secondaryDamageProperties.amount * secondaryDamageProperties.shieldDamageMultiplier;
+                foreach (var secondaryDamageInfo in secondaryDamageProperties)
+                {
+                    if (secondaryDamageInfo.def.harmsHealth && Rand.Chance(secondaryDamageInfo.chance))
+                    {
+                        secondaryShieldDamageAmount += (secondaryDamageInfo.shieldDamageMultiplier * secondaryDamageInfo.shieldDamageMultiplier);
+
+                    }
+                }
             }
         }
         if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
         {
             absorbed = true;
-            float totalDamage = ((dinfo.Amount * shieldDamageMultiplier) + secondaryDamageAmount) * __instance.Props.energyLossPerDamage;
+            float totalDamage = ((dinfo.Amount * shieldDamageMultiplier) + secondaryShieldDamageAmount) * __instance.Props.energyLossPerDamage;
 #if DEBUG
             if (Controller.settings.DebugVerbose)
             {

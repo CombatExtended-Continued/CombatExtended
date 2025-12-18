@@ -754,20 +754,26 @@ public abstract class ProjectileCE : ThingWithComps
                 }
             }
         }
-
-        var secondaryDamageProperties = projectileProperties?.secondaryDamage?.FirstOrDefault();
-        var secondaryShieldDamageAmount = 0f;
-        if (secondaryDamageProperties != null && Rand.Chance(secondaryDamageProperties.chance))
-        {
-            secondaryShieldDamageAmount = (secondaryDamageProperties.shieldDamageMultiplier * secondaryDamageProperties.shieldDamageMultiplier);
-        }
-
         // Handle Biotech's new shields used e.g. on the Centurion mech, which, unlike mech cluster shields, can only take
         // a finite amount of damage before breaking.
         // This simply mirrors the corresponding vanilla logic - we apply the incoming damage from our projectile to the shield
         // and break it if we manage to decrease its hitpoints to zero or lower.
         if (interceptorComp.currentHitPoints > 0)
         {
+
+            var secondaryShieldDamageAmount = 0f;
+            var secondaryDamageProperties = projectileProperties?.secondaryDamage;
+            if (!secondaryDamageProperties.NullOrEmpty())
+            {
+                foreach (var secondaryDamageInfo in secondaryDamageProperties)
+                {
+                    if (secondaryDamageInfo.def.harmsHealth && Rand.Chance(secondaryDamageInfo.chance))
+                    {
+                        secondaryShieldDamageAmount += (secondaryDamageInfo.shieldDamageMultiplier * secondaryDamageInfo.shieldDamageMultiplier);
+
+                    }
+                }
+            }
             float shieldDamage = this.DamageAmount * ShieldDamageMultiplier;
             int totalShieldDamage = Mathf.FloorToInt(shieldDamage + secondaryShieldDamageAmount);
             if (Rand.Value > shieldDamage - damageAmount)
