@@ -60,8 +60,9 @@ public class CompAmmoExploder : ThingComp
                             postExplosionSpawnThingDef: proj.postExplosionSpawnThingDef,
                             preExplosionSpawnChance: proj.preExplosionSpawnChance,
                             preExplosionSpawnThingCount: proj.preExplosionSpawnThingCount,
-                            preExplosionSpawnThingDef: proj.preExplosionSpawnThingDef
-
+                            preExplosionSpawnThingDef: proj.preExplosionSpawnThingDef,
+                            preExplosionSpawnSingleThingDef: proj.preExplosionSpawnSingleThingDef,
+                            postExplosionSpawnSingleThingDef: proj.postExplosionSpawnSingleThingDef
                         );
                     }
                 }

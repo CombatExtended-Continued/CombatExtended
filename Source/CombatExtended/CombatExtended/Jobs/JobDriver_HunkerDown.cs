@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -8,7 +9,7 @@ class JobDriver_HunkerDown : JobDriver
 {
     private const int GetUpCheckInterval = 60;
 
-    public override void SetInitialPosture()
+    private void SetPosture()
     {
         pawn.jobs.posture = PawnPosture.LayingOnGroundNormal;
     }
@@ -22,20 +23,17 @@ class JobDriver_HunkerDown : JobDriver
     {
         this.FailOnDespawnedOrNull(TargetIndex.A);
 
-        //Define Toil
-        Toil toilWait = new Toil();
-        toilWait.initAction = () =>
-        {
-            toilWait.actor.pather.StopDead();
-        };
+        int changePostureDelay = 10 + Mathf.RoundToInt(60f / Mathf.Max(0.6f, pawn.GetStatValue(StatDefOf.MoveSpeed) - 1.25f));
+        Toil changePostureToil = Toils_General.Wait(changePostureDelay);
+        changePostureToil.AddFinishAction(SetPosture);
 
+        //Hunkering toil
         Toil toilNothing = new Toil();
-        //toilNothing.initAction = () => {};
         toilNothing.defaultCompleteMode = ToilCompleteMode.Delay;
         toilNothing.defaultDuration = GetUpCheckInterval;
 
-        // Start Toil
-        yield return toilWait;
+        // Start Toils
+        yield return changePostureToil;
         yield return toilNothing;
         yield return Toils_Jump.JumpIf(toilNothing, () =>
         {

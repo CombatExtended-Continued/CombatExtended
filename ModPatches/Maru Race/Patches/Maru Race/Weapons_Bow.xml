@@ -29,6 +29,27 @@
 			</tools>
 		</value>
 	</Operation>
+	
+	<!-- ========== Turret ========== -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_Gun_Turret_harpoon"]/verbs/li/range</xpath>
+		<value>
+			<range>62</range>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="MR_WArrow"]</xpath>
+		<value>
+			<defaultDamage>250</defaultDamage>
+			<defaultArmorPenetration>500</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_Turret_projectileA"]/projectile/damageAmountBase</xpath>
+	</Operation>
 
 	<!-- ========== Basic Bow ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">

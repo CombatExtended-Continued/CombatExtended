@@ -147,6 +147,13 @@ class JobGiverUtils_Reload
             JobFailReason.Is("CE_TurretNonAllied".Translate());
             return false;
         }
+
+        if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+        {
+            CELogger.Message($"{pawn} could not reload {turret} because it's not capable of manipulation.");
+            return false;
+        }
+
         if ((turret.GetMannable()?.ManningPawn != pawn) && !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(), MagicMaxPawns))
         {
             CELogger.Message($"{pawn} could not reload {turret} because turret is manned (or was recently manned) by someone else.");
