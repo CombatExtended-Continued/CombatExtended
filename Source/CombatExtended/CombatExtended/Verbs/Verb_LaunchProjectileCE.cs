@@ -1201,6 +1201,12 @@ public class Verb_LaunchProjectileCE : Verb
             }
         }
         lastShotTick = Find.TickManager.TicksGame;
+
+        if (EquipmentSource != null && projectilePropsCE != null && Rand.Chance(projectilePropsCE.weaponDeteriorationChance))
+        {
+            return TryDamageWeapon(projectilePropsCE, targetLoc);
+        }
+
         return true;
     }
     protected virtual ProjectileCE SpawnProjectile()
@@ -1502,6 +1508,83 @@ public class Verb_LaunchProjectileCE : Verb
                 {
                     return false;
                 }
+            }
+        }
+        return true;
+    }
+
+    private bool TryDamageWeapon(ProjectilePropertiesCE pprop, Vector3 targetLoc, bool canDestroy = true)
+    {
+        float damageToWeapon = pprop.weaponDeteriorationHP.RandomInRange;
+        //cache weapon position and map before caster is destroyed
+        Vector3? weaponPosition = EquipmentSource.DrawPosHeld;
+        ThingWithComps damageTaker = EquipmentSource;
+
+        if (caster is Building_TurretGunCE turret)
+        {
+            damageTaker = turret;
+            weaponPosition = turret.DrawPos;
+        }
+
+        if (!canDestroy && damageTaker.HitPoints < Mathf.Ceil(damageToWeapon))
+        {
+            return true;
+        }
+
+        Map casterMap = Caster.Map;
+
+        //decimal damage is applied here because there is no way to tell if it was triggered otherwise
+        float decimalPart = damageToWeapon % 1;
+        float integerPart = Mathf.Floor(damageToWeapon);
+        DamageInfo dInfo = new DamageInfo(DamageDefOf.Bullet, integerPart);
+
+        bool tookDamage = false;
+
+        if (integerPart > 0)
+        {
+            damageTaker?.TakeDamage(dInfo);
+            tookDamage = true;
+        }
+
+        //apply decimal part via chance, as item hp is integer
+        if (Rand.Chance(decimalPart))
+        {
+            dInfo.amountInt = 1;
+            damageTaker?.TakeDamage(dInfo);
+            tookDamage = true;
+        }
+
+        if (tookDamage)
+        {
+            if (weaponPosition != null)
+            {
+                //simplified gun position calculation, because the exact spot doesn't matter here
+                Vector3 gunPosition = (Vector3)weaponPosition +
+                                      (((Vector3)(targetLoc - weaponPosition)).normalized * 0.75f);
+                FleckCreationData dataStatic =
+                    FleckMaker.GetDataStatic(gunPosition, casterMap, CE_FleckDefOf.Fleck_HeatGlow_API);
+                casterMap.flecks.CreateFleck(dataStatic);
+            }
+
+            if (damageTaker?.HitPoints <= 0)
+            {
+                burstShotsLeft = 0;
+
+                //Cancel shooter's job when destroying weapon
+                if (caster is Pawn casterPawn && casterPawn.Spawned)
+                {
+                    if (casterPawn.stances.curStance is Stance_Warmup)
+                    {
+                        casterPawn.stances.CancelBusyStanceSoft();
+                    }
+
+                    if (casterPawn.CurJob != null)
+                    {
+                        casterPawn.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    }
+                }
+
+                return false;
             }
         }
         return true;
