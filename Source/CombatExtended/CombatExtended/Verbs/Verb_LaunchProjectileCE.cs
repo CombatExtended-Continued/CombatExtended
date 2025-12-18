@@ -1587,7 +1587,6 @@ public class Verb_LaunchProjectileCE : Verb
                 return false;
             }
         }
-        
         return true;
     }
 
