@@ -713,12 +713,12 @@ public abstract class ProjectileCE : ThingWithComps
         // between indirect fire projectiles and shields that protect against them
         // (e.g. mortar shells targeting a high-shield).
         if (CE_Utility.IntersectionPoint(
-                LastPos,
-                newExactPos,
-                shieldPosition,
-                radius,
-                out Vector3[] sect,
-                spherical: interceptorComp.Props.interceptAirProjectiles && def.projectile.flyOverhead
+            LastPos,
+            newExactPos,
+            shieldPosition,
+            radius,
+            out Vector3[] sect,
+            spherical: interceptorComp.Props.interceptAirProjectiles && def.projectile.flyOverhead
         ))
         {
             ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
@@ -732,22 +732,26 @@ public abstract class ProjectileCE : ThingWithComps
         interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
 
         var projectileProperties = def.projectile as ProjectilePropertiesCE;
-        var areWeLucky = Rand.Chance(projectileProperties?.empShieldBreakChance ?? 0);
-        if (areWeLucky && interceptorComp.Props.disarmedByEmpForTicks > 0)
+        // EMP insta break if shield with no hit points. Default hitpoints are -1
+        if (interceptorComp.currentHitPoints < 0)
         {
-            // If the chance check for this EMP projectile succeeds, break the shield using the appropriate damage type
-            // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
-            // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
-            // may still technically pass the chance check.
-            var empDamageDef = DamageDef == DamageDefOf.EMP ? DamageDef : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
-
-            if (empDamageDef != null)
+            var areWeLucky = Rand.Chance(projectileProperties?.empShieldBreakChance ?? 0);
+            if (areWeLucky && interceptorComp.Props.disarmedByEmpForTicks > 0)
             {
-                interceptorComp.BreakShieldEmp(new DamageInfo(empDamageDef, empDamageDef.defaultDamage));
+                // If the chance check for this EMP projectile succeeds, break the shield using the appropriate damage type
+                // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
+                // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
+                // may still technically pass the chance check.
+                var empDamageDef = DamageDef == DamageDefOf.EMP ? DamageDef : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
 
-                // Ensure we reset hit points for Biotech's new shields if broken by EMP
-                interceptorComp.currentHitPoints = 0;
-                interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
+                if (empDamageDef != null)
+                {
+                    interceptorComp.BreakShieldEmp(new DamageInfo(empDamageDef, empDamageDef.defaultDamage));
+
+                    // Ensure we reset hit points for Biotech's new shields if broken by EMP
+                    interceptorComp.currentHitPoints = 0;
+                    interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
+                }
             }
         }
 
