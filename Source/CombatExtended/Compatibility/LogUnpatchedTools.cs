@@ -34,7 +34,7 @@ public static class LogUnpatchedTools
             {
                 continue;
             }
-            Log.Message($"CE: Detected unpatched tool on {def.defName}. Recommend patching or turning on autopatcher. \nUnpatched Tools:\n {unpatchedToolList}");
+            Log.Message($"CE: Detected unpatched tool(s) on {def.defName}. Recommend patching or turning on autopatcher. \nUnpatched Tool Capacities:\n {unpatchedToolList}");
         }
 
     }
