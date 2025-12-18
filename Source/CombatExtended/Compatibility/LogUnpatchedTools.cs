@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Verse;
+﻿using Verse;
 
 namespace CombatExtended.Compatibility;
 
@@ -12,8 +11,10 @@ public static class LogUnpatchedTools
         {
             return;
         }
+
         foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs)
         {
+            string unpatchedToolList = null ;
             if (def.tools == null)
             {
                 continue;
@@ -27,13 +28,13 @@ public static class LogUnpatchedTools
                     continue;
                 }
                 unpatchedTool = true;
-                break;
+                unpatchedToolList += tool + "\n";
             }
             if (!unpatchedTool)
             {
                 continue;
             }
-            Log.Message($"CE: Detected unpatched tool on {def.defName}. Recommend patching or turning on autopatcher");
+            Log.Message($"CE: Detected unpatched tool on {def.defName}. Recommend patching or turning on autopatcher. \nUnpatched Tools:\n {unpatchedToolList}");
         }
 
     }
