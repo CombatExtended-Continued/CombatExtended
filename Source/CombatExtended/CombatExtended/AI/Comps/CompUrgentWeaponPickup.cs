@@ -123,6 +123,10 @@ public class CompUrgentWeaponPickup : ICompTactics
                 {
                     continue;
                 }
+                if (!EquipmentUtility.CanEquip(thing, SelPawn))
+                {
+                    continue;
+                }
                 if (compAmmo == null)
                 {
                     continue;
@@ -170,6 +174,10 @@ public class CompUrgentWeaponPickup : ICompTactics
                 continue;
             }
             if (!SelPawn.CanReserve(thing))
+            {
+                continue;
+            }
+            if (!EquipmentUtility.CanEquip(thing, SelPawn))
             {
                 continue;
             }
