@@ -55,7 +55,7 @@ public class GizmoAmmoStatus : Gizmo_Slider
     }
     public override void DrawHeader(Rect rect, ref bool mouseOverElement)
     {
-        
+
         Text.Font = GameFont.Tiny;
         base.DrawHeader(rect, ref mouseOverElement);
         Text.Font = GameFont.Small;
