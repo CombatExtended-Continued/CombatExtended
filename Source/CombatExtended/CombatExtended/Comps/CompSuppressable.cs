@@ -216,7 +216,7 @@ public class CompSuppressable : ThingComp
             if (curJobDef != CE_JobDefOf.RunForCover)
             {
                 Job reactJob = null;
-                if (Controller.settings.SuppressionCausesRunning || !(pawn.Drafted || (!pawn.IsFreeColonist && pawn.CurJob == null)))
+                if (Controller.settings.SuppressionCausesRunning || (!pawn.Drafted && (pawn.IsFreeColonist || pawn.CurJob != null)))
                 {
                     reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
                 }
