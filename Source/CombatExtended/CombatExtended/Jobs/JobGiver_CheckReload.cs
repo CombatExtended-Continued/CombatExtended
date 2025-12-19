@@ -131,7 +131,7 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
         {
             // Get key stats of the weapon.
             tmpComp = gun.TryGetComp<CompAmmoUser>();
-            AmmoDef ammoType = tmpComp.CurrentAmmo;
+            AmmoDef ammoType = tmpComp.SelectedAmmo;
             int ammoAmount = tmpComp.CurMagCount;
             int magazineSize = tmpComp.MagSize;
 
@@ -139,7 +139,7 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
             if (tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
             {
                 // Do we have ammo in the inventory that the gun uses which satisfies requirements? (expensive)
-                AmmoDef matchAmmo = tmpComp.Props.ammoSet.ammoTypes
+                AmmoDef matchAmmo = tmpComp.CurAmmoSet.ammoTypes
                                     .Where(al => al.ammo != ammoType)
                                     .Select(al => al.ammo)
                                     .FirstOrDefault(ad => TrackingSatisfied(pawn, ad, magazineSize)
