@@ -89,7 +89,7 @@ public static class Toils_CombatCE
                 if (target.HasThing)
                 {
                     Pawn pawn = target.Thing as Pawn;
-                    if (target.Thing.Destroyed || (pawn != null && !startedIncapacitated && pawn.Downed) || (pawn != null && !(pawn.GetInvisibilityComp()?.ForcedVisible ?? false)))
+                    if (target.Thing.Destroyed || (pawn != null && !startedIncapacitated && pawn.Downed) || (pawn != null && !(pawn.GetInvisibilityComp()?.ForcedVisible ?? true)))
                     {
                         driver.EndJobWith(JobCondition.Succeeded);
                         return;

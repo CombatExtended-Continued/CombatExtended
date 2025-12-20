@@ -129,6 +129,11 @@ public static class AmmoUtility
             stringBuilder.AppendLine("   " + "CE_DescMuzzleFlashOffset".Translate() + ": " + props.muzzleFlashOffset.ToStringByStyle(ToStringStyle.FloatMaxOne));
         }
 
+        if (props.weaponDeteriorationChance > 0)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescDeteriorationHP".Translate() + ": " + props.weaponDeteriorationHP.min.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " ~ " + props.weaponDeteriorationHP.max.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " (" + props.weaponDeteriorationChance.ToStringByStyle(ToStringStyle.PercentZero) + " " + "CE_Chance".Translate() + ")");
+        }
+
         // Fragments
         var fragmentComp = projectileDef.GetCompProperties<CompProperties_Fragments>();
         if (fragmentComp != null)

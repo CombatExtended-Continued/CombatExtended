@@ -49,6 +49,8 @@ public class Settings : ModSettings, ISettingsCE
 
     private bool variedHumanHeight = false;
 
+    private bool logUnpatchedDefs = false;
+
     public bool ShowCasings => showCasings;
 
     public bool BipodMechanics => bipodMechanics;
@@ -78,6 +80,8 @@ public class Settings : ModSettings, ISettingsCE
     public bool ShowTutorialPopup = true;
 
     public bool VariedHumanHeight => variedHumanHeight;
+
+    public bool LogUnpatchedDefs => logUnpatchedDefs;
 
     // Ammo settings
     private bool enableAmmoSystem = true;
@@ -199,6 +203,7 @@ public class Settings : ModSettings, ISettingsCE
 
         Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
         Scribe_Values.Look(ref variedHumanHeight, "variedHumanHeight", false);
+        Scribe_Values.Look(ref logUnpatchedDefs, "logUnpatchedDefs", false);
 
 #if DEBUG
         // Debug settings
@@ -387,6 +392,7 @@ public class Settings : ModSettings, ISettingsCE
         list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_DetailedMeleeTooltip_Title".Translate(), ref detailedMeleeTooltip, "CE_Settings_DetailedMeleeTooltip_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_VariedHumanHeight_Title".Translate(), ref variedHumanHeight, "CE_Settings_VariedHumanHeight_Desc".Translate());
+        list.CheckboxLabeled("CE_Settings_LogUnpatchedDefs_Title".Translate(), ref logUnpatchedDefs, "CE_Settings_LogUnpatchedDefs_Desc".Translate());
         list.Gap();
         list.GapLine();
         list.Gap();
@@ -541,6 +547,7 @@ public class Settings : ModSettings, ISettingsCE
         enableRaceAutopatcher = true;
         enablePawnKindAutopatcher = true;
         variedHumanHeight = false;
+        logUnpatchedDefs = false;
 
 #if DEBUG
         debuggingMode = false;
