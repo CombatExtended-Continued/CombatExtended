@@ -133,11 +133,10 @@ public class CompOpportunisticSwitch : ICompTactics
         {
             return false;
         }
-        //TODO 1.5
-        //if (TryUseAOE(verb, castTarg, destTarg))
-        //{
-        //return false;
-        //}
+        if (TryUseAOE(verb, castTarg, destTarg))
+        {
+            return false;
+        }
         return true;
     }
 
@@ -152,22 +151,18 @@ public class CompOpportunisticSwitch : ICompTactics
                     (TargetingPawns(castTarg.Thing, distance, out targetType) || TargetingTurrets(castTarg.Thing, distance, out targetType) || Rand.Chance(0.1f)))
             {
                 // TODO add the ability to switch to EMP ammo or weapons
-                if (targetType == TargetType.Turret)
-                {
-                }
+                // if (targetType == TargetType.Turret)
+                // {
+                // }
                 if (CompInventory.TryFindRandomAOEWeapon(out ThingWithComps weapon, checkAmmo: true, predicate: (g) => g.def.Verbs?.Any(t => t.range >= distance + 3) ?? false))
                 {
                     lastOpportunisticSwitch = GenTicks.TicksGame;
 
-                    var nextVerb = weapon.def.verbs.First(v => !v.IsMeleeAttack);
-                    var targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, weapon.def.verbs.Max(v => v.range), 4, (pos) =>
-                    {
-                        return GenSight.LineOfSight(SelPawn.Position, pos, Map, skipFirstCell: true);
-                    });
-                    var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon, targtPos.IsValid ? targtPos : castTarg.Cell);
-                    job.maxNumStaticAttacks = 1;
+                    LocalTargetInfo targetInfo = castTarg.Thing;
 
-                    SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                    var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon, targetInfo);
+                    job.maxNumStaticAttacks = 1;
+                    SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, cancelBusyStances: false);
                     return true;
                 }
             }
@@ -175,7 +170,7 @@ public class CompOpportunisticSwitch : ICompTactics
         bool TargetingPawns(Thing thing, float distance, out TargetType targetType)
         {
             targetType = TargetType.None;
-            if (thing is Pawn pawn && (distance > 8 || SelPawn.HiddingBehindCover(pawn.positionInt)) && TargetIsSquad(pawn))
+            if (thing is Pawn pawn && distance > 8)
             {
                 targetType = TargetType.Pawn;
                 return true;
@@ -185,7 +180,7 @@ public class CompOpportunisticSwitch : ICompTactics
         bool TargetingTurrets(Thing thing, float distance, out TargetType targetType)
         {
             targetType = TargetType.None;
-            if (thing is Building_Turret && (distance > 8 || SelPawn.HiddingBehindCover(thing.positionInt)))
+            if (thing is Building_Turret && distance > 8)
             {
                 targetType = TargetType.Turret;
                 return true;
@@ -261,6 +256,10 @@ public class CompOpportunisticSwitch : ICompTactics
         int hostiles = 0;
         foreach (Pawn other in pawn.Position.PawnsInRange(pawn.Map, 4))
         {
+            if (other == null)
+            {
+                continue;
+            }
             if (other.Faction == null)
             {
                 continue;
