@@ -77,4 +77,28 @@ public static class Harmony_VanillaExpandedFramework
             return false;
         }
     }
+    private static Type MVCF_Patch_HarmonyPatches
+    {
+        get
+        {
+            return AccessTools.TypeByName("MVCF.VerbManager");
+        }
+    }
+
+    [HarmonyPatch]
+    public class Harmony_MVCF_VerbManager_RemoveVerb
+    {
+        public static bool Prepare()
+        {
+            return MVCF_Patch_HarmonyPatches != null;
+        }
+        public static MethodBase TargetMethod()
+        {
+            return AccessTools.Method("MVCF.VerbManager:RemoveVerb");
+        }
+        public static bool Prefix(Verb verb)
+        {
+            return verb is not Verb_ShootCE;
+        }
+    }
 }
