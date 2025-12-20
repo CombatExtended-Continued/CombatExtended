@@ -95,7 +95,10 @@ public abstract class CompVariableAmmoUser : CompAmmoUser
                     delegate { SyncedSelectAmmoSet(caliber); },
                     caliber.ammoTypes.First().ammo,
                     priority: MenuOptionPriority.Default,
-                    mouseoverGuiAction: delegate(Rect rect) { ContainedAmmoPopOut(rect, caliber); });
+                    mouseoverGuiAction: delegate(Rect rect)
+                    {
+                        ContainedAmmoPopOut(rect, caliber);
+                    });
                 list.Add(item);
             }
             Find.WindowStack.Add(new FloatMenu(list));
