@@ -50,6 +50,10 @@ public static class LogUnpatchedTools
                 {
                     continue;
                 }
+                if (hediffVerbGiver.tools == null)
+                {
+                    continue;
+                }
                 for (int i = 0; i < hediffVerbGiver.tools.Count; i++)
                 {
                     Tool tool = hediffVerbGiver.tools[i];
