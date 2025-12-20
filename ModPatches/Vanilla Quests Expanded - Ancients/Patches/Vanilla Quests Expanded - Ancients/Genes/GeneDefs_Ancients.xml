@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Herculean ========== -->
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/GeneDef[defName="VQEA_Herculean"]/statFactors/VEF_MassCarryCapacity</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="VQEA_Herculean"]/statFactors/CarryingCapacity</xpath>
+		<value>
+			<CarryWeight>2.5</CarryWeight>
+		</value>
+	</Operation>
+	
+	<!-- ========== Prowess ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="VQEA_Prowess"]/statFactors/VQEA_Prowess</xpath>
+		<value>
+			<VQEA_Prowess>5.0</VQEA_Prowess>
+			<MeleeCritChance>0.5</MeleeCritChance>
+			<MeleeParryChance>4.0</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<!-- ========== Marksman ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/GeneDef[defName="VQEA_Marksman"]/statFactors</xpath>
+		<value>
+			<ShootingAccuracyPawn>5</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<!-- ========== Perfect Vision ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/GeneDef[defName="VQEA_PerfectVision"]</xpath>
+		<value>
+			<statOffsets>
+				<NightVisionEfficiency>1.0</NightVisionEfficiency>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- ========== Plasteel Skin ========== -->
+
+	<!-- The description here needs to be replaced because the actual effects are applied with a hediff. Not doing so would just make the hediff description wrong -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="VQEA_PlasteelSkin"]/customEffectDescriptions</xpath>
+		<value>
+			<customEffectDescriptions>
+				<li>+12mm natural sharp armour.</li>
+				<li>+36 MPa natural blunt armour.</li>
+				<li>+80% natural heat armour.</li>
+			</customEffectDescriptions>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VQEA_PlasteelSkin"]/stages/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ArmorRating_Sharp>12</ArmorRating_Sharp>
+				<ArmorRating_Blunt>36</ArmorRating_Blunt>
+				<ArmorRating_Heat>0.8</ArmorRating_Heat>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- ========== Plasteel Claws ========== -->
+
+	<!-- Roughly equal to a normal-quality monosword -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VQEA_PlasteelClaws"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>plasteel claw</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<power>16</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetrationBlunt>1.28</armorPenetrationBlunt>
+					<armorPenetrationSharp>25</armorPenetrationSharp>
+					<cooldownTime>1.3</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Serene ========== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/GeneDef[defName="VQEA_Serene"]/statFactors</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/GeneDef[defName="VQEA_Serene"]</xpath>
+			<value>
+				<statFactors/>
+			</value>
+		</nomatch>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/GeneDef[defName="VQEA_Serene"]/statFactors</xpath>
+		<value>
+			<Suppressability>0</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- ========== Enormous ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/GeneDef[defName="VQEA_Enormous"]/statFactors</xpath>
+		<value>
+			<CarryWeight>1.5</CarryWeight>
+		</value>
+	</Operation>
+	
+	<!-- ========== Hellsphere Blast ========== -->
+	<!-- This one is mostly identical to the hellsphere cannon's blast from base Biotech. That one works as-is without a patch replacing the verb, so I've done the same here -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AbilityDef[defName="VQEA_HellsphereBlast"]/verbProperties/range</xpath>
+		<value>
+			<range>23.9</range>
+		</value>
+	</Operation>
+</Patch>

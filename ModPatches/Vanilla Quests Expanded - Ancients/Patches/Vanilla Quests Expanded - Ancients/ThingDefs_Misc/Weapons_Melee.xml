@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Scalpel ========== -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQEA_MeleeWeapon_Scalpel"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<chanceFactor>10</chanceFactor>
+					<label>blade</label>
+					<capacities>
+						<li>VQEA_Scalpel</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.8</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_MeleeWeapon_Scalpel"]/statBases</xpath>
+		<value>
+			<Bulk>1.2</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_MeleeWeapon_Scalpel"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.5</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+</Patch>
