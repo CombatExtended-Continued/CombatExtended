@@ -15,7 +15,7 @@ public static class LogUnpatchedTools
         foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs)
         {
             string unpatchedToolList = "";
-            if (def.tools == null)
+            if (def.tools.NullOrEmpty())
             {
                 continue;
             }
@@ -50,7 +50,7 @@ public static class LogUnpatchedTools
                 {
                     continue;
                 }
-                if (hediffVerbGiver.tools == null)
+                if (hediffVerbGiver.tools.NullOrEmpty())
                 {
                     continue;
                 }
