@@ -3,10 +3,7 @@
 	<!-- Basic helmet operations -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-				defName="PF_ExoVisor" or
-				defName="PF_Exopack"
-				]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="PF_ExoVisor" or defName="PF_Exopack"]/statBases</xpath>
 		<value>
 			<Bulk>0.5</Bulk>
 			<WornBulk>0.5</WornBulk>
@@ -23,10 +20,10 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-				defName="PF_SCH_Sentinel" or
-				defName="PF_HDH_Golem" or
-				defName="PF_HSH_Spectrum"
-				]/statBases</xpath>
+			defName="PF_SCH_Sentinel" or
+			defName="PF_HDH_Golem" or
+			defName="PF_HSH_Spectrum"
+			]/statBases</xpath>
 		<value>
 			<Bulk>5</Bulk>
 			<WornBulk>1</WornBulk>
@@ -34,10 +31,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-				defName="PF_HDH_Golem" or
-				defName="PF_HSH_Spectrum"
-				]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="PF_HDH_Golem" or defName="PF_HSH_Spectrum"]/statBases</xpath>
 		<value>
 			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
 		</value>
@@ -46,12 +40,12 @@
 	<!-- Smoke/tox protection -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-				defName="PF_Exopack" or
-				defName="PF_ExoHelmet" or
-				defName="PF_SCH_Sentinel" or
-				defName="PF_HDH_Golem" or
-				defName="PF_HSH_Spectrum"
-				]/equippedStatOffsets</xpath>
+			defName="PF_Exopack" or
+			defName="PF_ExoHelmet" or
+			defName="PF_SCH_Sentinel" or
+			defName="PF_HDH_Golem" or
+			defName="PF_HSH_Spectrum"
+			]/equippedStatOffsets</xpath>
 		<value>
 			<SmokeSensitivity>-1.00</SmokeSensitivity>
 		</value>
@@ -59,15 +53,15 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-				defName="PFLight_Armor_Warthog" or
-				defName="PF_LightArmor_Exotant_ModelF" or
-				defName="PF_Medium_Armor_Brasher" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan" or
-				defName="PF_Heavy_Armor_Centurion" or
-				defName="PF_Heavy_Armor_Monolith" or
-				defName="PF_Heavy_Armor_Viper"
-				]/equippedStatOffsets</xpath>
+			defName="PFLight_Armor_Warthog" or
+			defName="PF_LightArmor_Exotant_ModelF" or
+			defName="PF_Medium_Armor_Brasher" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan" or
+			defName="PF_Heavy_Armor_Centurion" or
+			defName="PF_Heavy_Armor_Monolith" or
+			defName="PF_Heavy_Armor_Viper"
+			]/equippedStatOffsets</xpath>
 		<value>
 			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 		</value>
@@ -76,20 +70,20 @@
 	<!-- clean up negative/inappropriate movespeed mods -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-				defName="PF_HDH_Golem" or
-				defName="PF_Medium_Armor_Titan" or
-				defName="PF_Heavy_Armor_Centurion" or
-				defName="PF_Heavy_Armor_Monolith" or
-				defName="PF_SCH_Sentinel"
-				]/equippedStatOffsets/MoveSpeed</xpath>
+			defName="PF_HDH_Golem" or
+			defName="PF_Medium_Armor_Titan" or
+			defName="PF_Heavy_Armor_Centurion" or
+			defName="PF_Heavy_Armor_Monolith" or
+			defName="PF_SCH_Sentinel"
+			]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 	
 	<!-- set up variable armour coverage extensions -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-				defName="PFLight_Armor_Warthog" or
-				defName="PF_LightArmor_Exotant_ModelF"
-				]/apparel/bodyPartGroups</xpath>
+			defName="PFLight_Armor_Warthog" or
+			defName="PF_LightArmor_Exotant_ModelF"
+			]/apparel/bodyPartGroups</xpath>
 		<value>
 			<li>Hands</li>
 			<li>Feet</li>
@@ -98,15 +92,15 @@
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[
-				defName="PFLight_Armor_Warthog" or
-				defName="PF_LightArmor_Exotant_ModelF" or
-				defName="PF_Medium_Armor_Brasher" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan" or
-				defName="PF_Heavy_Armor_Centurion" or
-				defName="PF_Heavy_Armor_Monolith" or
-				defName="PF_Heavy_Armor_Viper"
-				]</xpath>
+			defName="PFLight_Armor_Warthog" or
+			defName="PF_LightArmor_Exotant_ModelF" or
+			defName="PF_Medium_Armor_Brasher" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan" or
+			defName="PF_Heavy_Armor_Centurion" or
+			defName="PF_Heavy_Armor_Monolith" or
+			defName="PF_Heavy_Armor_Viper"
+			]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
@@ -166,65 +160,60 @@
 	<!-- clean up inappropriate statoffsets -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-				defName="PFLight_Armor_Warthog" or
-				defName="PF_LightArmor_Exotant_ModelF" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan" or
-				defName="PF_Heavy_Armor_Centurion" or
-				defName="PF_Heavy_Armor_Monolith" or
-				defName="PF_Heavy_Armor_Viper" or
-				defName="PF_HSH_Spectrum" or
-				defName="PF_HDH_Golem"
-				]/equippedStatOffsets/AimingDelayFactor</xpath>
+			defName="PFLight_Armor_Warthog" or
+			defName="PF_LightArmor_Exotant_ModelF" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan" or
+			defName="PF_Heavy_Armor_Centurion" or
+			defName="PF_Heavy_Armor_Monolith" or
+			defName="PF_Heavy_Armor_Viper" or
+			defName="PF_HSH_Spectrum" or
+			defName="PF_HDH_Golem"
+			]/equippedStatOffsets/AimingDelayFactor</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="PFLight_Armor_Warthog" or	defName="PF_LightArmor_Exotant_ModelF"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-				defName="PFLight_Armor_Warthog" or
-				defName="PF_LightArmor_Exotant_ModelF"
-				]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+			defName="PF_LightArmor_Exotant_ModelF" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Heavy_Armor_Viper"
+			]/equippedStatOffsets/MeleeDodgeChance</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="PF_LightArmor_Exotant_ModelF"]/equippedStatOffsets/MeleeHitChance</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-				defName="PF_LightArmor_Exotant_ModelF" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Heavy_Armor_Viper"
-				]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			defName="PF_Medium_Armor_Brasher" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan"
+			]/equippedStatOffsets/MentalBreakThreshold</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-				defName="PF_LightArmor_Exotant_ModelF"
-				]/equippedStatOffsets/MeleeHitChance</xpath>
+			defName="PF_Medium_Armor_Brasher" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan" or
+			defName="PF_Heavy_Armor_Centurion" or
+			defName="PF_Heavy_Armor_Monolith" or
+			defName="PF_Heavy_Armor_Viper" or
+			defName="PF_ExoVisor"
+			]/equippedStatOffsets/PainShockThreshold</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-				defName="PF_Medium_Armor_Brasher" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan"
-				]/equippedStatOffsets/MentalBreakThreshold</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-				defName="PF_Medium_Armor_Brasher" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan" or
-				defName="PF_Heavy_Armor_Centurion" or
-				defName="PF_Heavy_Armor_Monolith" or
-				defName="PF_Heavy_Armor_Viper" or
-				defName="PF_ExoVisor"
-				]/equippedStatOffsets/PainShockThreshold</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-				defName="PF_Heavy_Armor_Centurion" or
-				defName="PF_Heavy_Armor_Monolith" or
-				defName="PF_Heavy_Armor_Viper"
-				]/equippedStatOffsets/SocialImpact</xpath>
+			defName="PF_Heavy_Armor_Centurion" or
+			defName="PF_Heavy_Armor_Monolith" or
+			defName="PF_Heavy_Armor_Viper"
+			]/equippedStatOffsets/SocialImpact</xpath>
 	</Operation>
 	
 	<!-- ========== Exovisor / Exopack Mask ========== -->
@@ -348,10 +337,10 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-				defName="PF_Medium_Armor_Brasher" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan"
-				]/statBases/Mass</xpath>
+			defName="PF_Medium_Armor_Brasher" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan"
+			]/statBases/Mass</xpath>
 		<value>
 			<Mass>16</Mass>
 		</value>
@@ -359,10 +348,10 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-				defName="PF_Medium_Armor_Brasher" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan"
-				]/statBases/ArmorRating_Sharp</xpath>
+			defName="PF_Medium_Armor_Brasher" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan"
+			]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>14</ArmorRating_Sharp>
 		</value>
@@ -370,10 +359,10 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-				defName="PF_Medium_Armor_Brasher" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan"
-				]/statBases/ArmorRating_Blunt</xpath>
+			defName="PF_Medium_Armor_Brasher" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan"
+			]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>22</ArmorRating_Blunt>
 		</value>
@@ -381,10 +370,10 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-				defName="PF_Medium_Armor_Brasher" or
-				defName="PFMedium_Armor_Martikhoras" or
-				defName="PF_Medium_Armor_Titan"
-				]/equippedStatOffsets</xpath>
+			defName="PF_Medium_Armor_Brasher" or
+			defName="PFMedium_Armor_Martikhoras" or
+			defName="PF_Medium_Armor_Titan"
+			]/equippedStatOffsets</xpath>
 		<value>
 			<ReloadSpeed>0.1</ReloadSpeed>
 			<CarryWeight>15</CarryWeight>

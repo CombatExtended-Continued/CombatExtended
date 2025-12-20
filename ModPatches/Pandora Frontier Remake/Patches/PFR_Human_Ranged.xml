@@ -4,12 +4,7 @@
 	
 	<!-- pistolwhip -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[
-				defName="FOP_RDA_Handgun" or 
-				defName="PF_WASP"
-			]/tools
-		</xpath>
+		<xpath>Defs/ThingDef[defName="FOP_RDA_Handgun" or defName="PF_WASP"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -39,21 +34,20 @@
 	
 	<!-- riflebutt -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[
-				defName="FOP_CARB_SMG" or
-				defName="FOP_CARB_DMR" or
-				defName="FOP_CARB_Shotgun" or
-				defName="FOP_FNG_Hammer" or
-				defName="FOP_CGL" or
-				defName="PF_CARB_AR_MUB" or
-				defName="PF_CARB_HardAR_MSG" or
-				defName="PF_CARB_SR" or
-				defName="FOP_AVR_A" or
-				defName="FOP_AVR_MB" or
-				defName="PF_AVR_AR" or
-				defName="PF_RecomHydra_MG" or
-				defName="PF_EMXRAD_AMR"
+		<xpath>Defs/ThingDef[
+			defName="FOP_CARB_SMG" or
+			defName="FOP_CARB_DMR" or
+			defName="FOP_CARB_Shotgun" or
+			defName="FOP_FNG_Hammer" or
+			defName="FOP_CGL" or
+			defName="PF_CARB_AR_MUB" or
+			defName="PF_CARB_HardAR_MSG" or
+			defName="PF_CARB_SR" or
+			defName="FOP_AVR_A" or
+			defName="FOP_AVR_MB" or
+			defName="PF_AVR_AR" or
+			defName="PF_RecomHydra_MG" or
+			defName="PF_EMXRAD_AMR"
 			]/tools
 		</xpath>
 		<value>
@@ -85,11 +79,7 @@
 
 	<!-- heavypoke -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[
-				defName="FOP_RML_Rocket_Launcher" or
-				defName="PF_CARB_RL"
-			]/tools
+		<xpath>Defs/ThingDef[defName="FOP_RML_Rocket_Launcher" or defName="PF_CARB_RL"]/tools
 		</xpath>
 		<value>
 			<tools>
@@ -108,15 +98,10 @@
 	</Operation>
 	
 	<Operation Class="PatchOperationAdd">
-		<xpath>
-			Defs/ThingDef[
-				defName="PF_CARB_AR_MUB" or
-				defName="PF_CARB_HardAR_MSG"
-			]/comps
-		</xpath>
+		<xpath>Defs/ThingDef[defName="PF_CARB_AR_MUB" or defName="PF_CARB_HardAR_MSG"]/comps</xpath>
 		<value>
 			<li>
-		     		<compClass>CompEquippable</compClass>
+		     	<compClass>CompEquippable</compClass>
 			</li>
 		</value>
 	</Operation>
@@ -404,13 +389,13 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>FOP_CGL</defName>
 		<statBases>
-                  	<WorkToMake>36500</WorkToMake>
-                  	<Mass>3</Mass>
-                  	<Bulk>7.0</Bulk>
-                  	<SwayFactor>1</SwayFactor>
-                  	<ShotSpread>0.12</ShotSpread>
-                  	<SightsEfficiency>1.1</SightsEfficiency>
-                  	<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			<WorkToMake>36500</WorkToMake>
+			<Mass>3</Mass>
+			<Bulk>7.0</Bulk>
+			<SwayFactor>1</SwayFactor>
+			<ShotSpread>0.12</ShotSpread>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
