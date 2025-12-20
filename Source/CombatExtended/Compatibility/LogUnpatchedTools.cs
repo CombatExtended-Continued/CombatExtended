@@ -64,7 +64,7 @@ public static class LogUnpatchedTools
                 {
                     continue;
                 }
-                Log.Message($"CE: Detected unpatched tool(s) on {hediff.}. Recommend patching or turning on autopatcher. \nUnpatched Tool Capacities:\n {unpatchedToolList}");
+                Log.Message($"CE: Detected unpatched tool(s) on {hediff}. Recommend patching or turning on autopatcher. \nUnpatched Tool Capacities:\n {unpatchedToolList}");
             }
 
         }
