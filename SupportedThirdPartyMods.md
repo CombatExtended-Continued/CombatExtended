@@ -438,6 +438,7 @@ Outland - Eastborn Empire    |
 Outland - Motz Coalition  |
 Outland - Redburn Pact  |
 Palm Cats   |
+Pandora: Frontier Remake |
 Paniel the Automata |
 Pawnbold Race   |
 Persona Warcasket Weapons   |
