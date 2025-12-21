@@ -75,12 +75,15 @@
 		</value>
 	</Operation>
 
+	<!-- This creature has all their wounds heal up every 6 seconds. This should be reflected on their armor as well -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VQEA_Splicehulk"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ArmorDurability">
 				<Durability>1625</Durability>
-				<Regenerates>false</Regenerates>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>360</RegenInterval>
+				<RegenValue>480</RegenValue>
 				<MinArmorPct>0.1</MinArmorPct>
 			</li>
 		</value>
