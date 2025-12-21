@@ -281,7 +281,7 @@ public class CompSuppressable : ThingComp
         {
             ticksUntilDecay -= delta;
         }
-        else if (currentSuppression > 0)
+        else if (currentSuppression > 0 || isSuppressed)
         {
             //Decay global suppression
             if (Controller.settings.DebugShowSuppressionBuildup && Gen.IsHashIntervalTick(parent, 30))
