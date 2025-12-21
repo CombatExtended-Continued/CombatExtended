@@ -29,7 +29,7 @@ public class LoadFoldersXmlTests
             DirectoryInfo patchesDir = new(Path.Combine(loadFoldersDir.FullName, patchesPath));
             Assert.True(patchesDir.Exists, $"Mod {packageId} has an invalid patch directory {patchesPath} in LoadFolders.xml");
         }
-        
+
         Assert.True(modsWithPath.Count > 0, "No entries found while checking LoadFolders.xml, is the file valid?");
     }
 
