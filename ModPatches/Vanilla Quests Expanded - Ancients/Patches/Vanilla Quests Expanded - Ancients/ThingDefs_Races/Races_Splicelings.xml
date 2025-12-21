@@ -192,6 +192,16 @@
 			<ArmorRating_Blunt>1.1</ArmorRating_Blunt>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicetoot"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VQEA_Splicetoot"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VQEA_Splicetoot"]/comps</xpath>
