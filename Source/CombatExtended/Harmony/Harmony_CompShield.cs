@@ -43,27 +43,33 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
         {
             return false;
         }
-        float shieldDamageMultiplier = 1f;
-        float secondaryShieldDamageAmount = 0f;
-        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
-        {
-            shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
-            List<SecondaryDamage> secondaryDamageProperties = projectilePropertiesCe?.secondaryDamage;
-            if (!secondaryDamageProperties.NullOrEmpty())
-            {
-                foreach (var secondaryDamageInfo in secondaryDamageProperties)
-                {
-                    if (secondaryDamageInfo.def.harmsHealth && Rand.Chance(secondaryDamageInfo.chance))
-                    {
-                        secondaryShieldDamageAmount += (secondaryDamageInfo.shieldDamageMultiplier * secondaryDamageInfo.shieldDamageMultiplier);
-
-                    }
-                }
-            }
-        }
         if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
         {
             absorbed = true;
+            float shieldDamageMultiplier = 1f;
+            float secondaryShieldDamageAmount = 0f;
+            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
+            {
+                shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
+                DamageDefExtensionCE damDefCE = dinfo.defInt.GetModExtension<DamageDefExtensionCE>();
+                if (damDefCE != null && damDefCE.shieldDamageMultiplier > shieldDamageMultiplier)
+                {
+                    shieldDamageMultiplier = damDefCE.shieldDamageMultiplier;
+                }
+                List<SecondaryDamage> secondaryDamageProperties = projectilePropertiesCe.secondaryDamage;
+                if (!secondaryDamageProperties.NullOrEmpty())
+                {
+                    foreach (var secondaryDamageInfo in secondaryDamageProperties)
+                    {
+                        if (secondaryDamageInfo.def.harmsHealth && Rand.Chance(secondaryDamageInfo.chance))
+                        {
+                            secondaryShieldDamageAmount += (secondaryDamageInfo.shieldDamageMultiplier * secondaryDamageInfo.shieldDamageMultiplier);
+                            dinfo.amountInt += secondaryDamageInfo.amount;
+
+                        }
+                    }
+                }
+            }
             float totalDamage = ((dinfo.Amount * shieldDamageMultiplier) + secondaryShieldDamageAmount) * __instance.Props.energyLossPerDamage;
 #if DEBUG
             if (Controller.settings.DebugVerbose)
@@ -79,6 +85,7 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
             }
             else
             {
+                dinfo.amountInt -= secondaryShieldDamageAmount;
                 __instance.AbsorbedDamage(dinfo);
             }
         }

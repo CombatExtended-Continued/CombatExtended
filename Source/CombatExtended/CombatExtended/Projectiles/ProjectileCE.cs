@@ -761,11 +761,17 @@ public abstract class ProjectileCE : ThingWithComps
         if (interceptorComp.currentHitPoints > 0)
         {
 
-            var secondaryShieldDamageAmount = 0f;
-            var secondaryDamageProperties = projectileProperties?.secondaryDamage;
+            float secondaryShieldDamageAmount = 0f;
+            List<SecondaryDamage> secondaryDamageProperties = projectileProperties?.secondaryDamage;
+            DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>();
+            var shieldDamageMultiplier = ShieldDamageMultiplier;
+            if (damDefCE != null && damDefCE.shieldDamageMultiplier > ShieldDamageMultiplier)
+            {
+                shieldDamageMultiplier = damDefCE.shieldDamageMultiplier;
+            }
             if (!secondaryDamageProperties.NullOrEmpty())
             {
-                foreach (var secondaryDamageInfo in secondaryDamageProperties)
+                foreach (SecondaryDamage secondaryDamageInfo in secondaryDamageProperties)
                 {
                     if (secondaryDamageInfo.def.harmsHealth && Rand.Chance(secondaryDamageInfo.chance))
                     {
@@ -774,7 +780,7 @@ public abstract class ProjectileCE : ThingWithComps
                     }
                 }
             }
-            float shieldDamage = this.DamageAmount * ShieldDamageMultiplier;
+            float shieldDamage = this.DamageAmount * shieldDamageMultiplier;
             int totalShieldDamage = Mathf.FloorToInt(shieldDamage + secondaryShieldDamageAmount);
             if (Rand.Value > shieldDamage - damageAmount)
             {
