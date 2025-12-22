@@ -36,7 +36,7 @@ public class LoadFoldersXmlTests
                 var relPath = Path.GetRelativePath(loadFolder.FullName, xmlFile);
                 if (relativePaths.TryGetValue(relPath, out var duplicatePackageId))
                 {
-                        Assert.Fail($"Relative paths collision found: {relPath} is duplicated for mods {duplicatePackageId} and {packageId}");
+                    Assert.Fail($"Relative paths collision found: {relPath} is duplicated for mods {duplicatePackageId} and {packageId}");
                 }
 
                 relativePaths[relPath] = packageId;
