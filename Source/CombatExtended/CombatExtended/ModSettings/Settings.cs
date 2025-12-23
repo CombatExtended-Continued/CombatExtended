@@ -32,6 +32,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool enableCIWS = false;
     private OpportunisticReloadMode opportunisticReloadMode = OpportunisticReloadMode.Any;
     private float opportunisticReloadSafeDistance = 12.9f;
+    private int secondsAfterFightToOpportunisticReload = 5;
 
     private bool showExtraTooltips = false;
     private bool detailedMeleeTooltip = false;
@@ -77,6 +78,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool EnableCIWS => enableCIWS;
     public OpportunisticReloadMode OpportunisticReloadMode => opportunisticReloadMode;
     public float OpportunisticReloadSafeDistance => opportunisticReloadSafeDistance;
+    public int SecondsAfterFightToOpportunisticReload => secondsAfterFightToOpportunisticReload;
 
     public float MedicineSearchRadiusSquared => medicineSearchRadius * medicineSearchRadius;
 
@@ -267,6 +269,7 @@ public class Settings : ModSettings, ISettingsCE
         //OpportunisticReload
         Scribe_Values.Look(ref opportunisticReloadMode, nameof(opportunisticReloadMode), OpportunisticReloadMode.Any);
         Scribe_Values.Look(ref opportunisticReloadSafeDistance, nameof(opportunisticReloadSafeDistance), 12.9f);
+        Scribe_Values.Look(ref secondsAfterFightToOpportunisticReload, nameof(secondsAfterFightToOpportunisticReload), 5);
     }
     public void DoWindowContents(Listing_Standard list)
     {
@@ -291,7 +294,7 @@ public class Settings : ModSettings, ISettingsCE
     private void DoSettingsWindowContents_Mechanics(Listing_Standard list)
     {
 
-        Rect fullRect = list.GetRect(500f);
+        Rect fullRect = list.GetRect(600f);
         const float columnPadding = 16f;
         float columnWidth = (fullRect.width - columnPadding) / 2f;
 
@@ -337,6 +340,7 @@ public class Settings : ModSettings, ISettingsCE
         }
         opportunisticReloadSafeDistance = left.SliderLabeled("CE_Settings_OpportunisticReload_SafeDistance_Title".Translate(opportunisticReloadSafeDistance), opportunisticReloadSafeDistance, 0f, 34.9f,  tooltip: "CE_Settings_OpportunisticReload_SafeDistance_Desc".Translate());
         GUI.contentColor = Color.white;
+        secondsAfterFightToOpportunisticReload = (int)left.SliderLabeled("CE_Settings_OpportunisticReload_SecondsAfterFight_Title".Translate(secondsAfterFightToOpportunisticReload), secondsAfterFightToOpportunisticReload, 0f, 15f, tooltip: "CE_Settings_OpportunisticReload_SecondsAfterFight_Desc".Translate());
         left.End();
 
         // RIGHT COLUMN

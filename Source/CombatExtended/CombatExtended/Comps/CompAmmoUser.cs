@@ -86,7 +86,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     }
     public float SafeDistanceToReload => Controller.settings.OpportunisticReloadSafeDistance;
 
-    public int MinimalTicksAfterFight => GenTicks.TicksPerRealSecond * 10;
+    public int MinimalTicksAfterFight => GenTicks.TicksPerRealSecond * Controller.settings.SecondsAfterFightToOpportunisticReload;
 
     public int MagSizeOverride
     {
