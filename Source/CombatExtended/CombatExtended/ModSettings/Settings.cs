@@ -3,6 +3,7 @@ using Verse;
 using UnityEngine;
 using CombatExtended.Loader;
 using System.Collections.Generic;
+using System;
 
 namespace CombatExtended;
 public class Settings : ModSettings, ISettingsCE
@@ -29,6 +30,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool enableArcOfFire = false;
 
     private bool enableCIWS = false;
+    private OpportunisticReloadMode opportunisticReloadMode = OpportunisticReloadMode.Any;
 
     private bool showExtraTooltips = false;
     private bool detailedMeleeTooltip = false;
@@ -72,6 +74,7 @@ public class Settings : ModSettings, ISettingsCE
 
     public bool ShowExtraStats => showExtraStats;
     public bool EnableCIWS => enableCIWS;
+    public OpportunisticReloadMode OpportunisticReloadMode => opportunisticReloadMode;
 
     public float MedicineSearchRadiusSquared => medicineSearchRadius * medicineSearchRadius;
 
@@ -258,6 +261,9 @@ public class Settings : ModSettings, ISettingsCE
         lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
 
         Scribe_Values.Look(ref medicineSearchRadius, "medicineSearchRadius", 5f);
+
+        //OpportunisticReload
+        Scribe_Values.Look(ref opportunisticReloadMode, nameof(opportunisticReloadMode), OpportunisticReloadMode.Any);
     }
     public void DoWindowContents(Listing_Standard list)
     {
@@ -311,6 +317,17 @@ public class Settings : ModSettings, ISettingsCE
         left.Gap();
         left.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+        if(left.ButtonTextLabeled("CE_Settings_OpportunisticReload_Title".Translate(), OpportunisticReloadModeLabel(this.OpportunisticReloadMode), anchor: TextAnchor.MiddleLeft, tooltip: "CE_Settings_OpportunisticReload_Desc".Translate()))
+        {
+            var floatMenuList = new List<FloatMenuOption>();
+            foreach (var option in Enum.GetValues(typeof(OpportunisticReloadMode)))
+            {
+                var enumOption = (OpportunisticReloadMode)option;
+                var menuOption = new FloatMenuOption(OpportunisticReloadModeLabel(enumOption), () => opportunisticReloadMode = enumOption);
+                floatMenuList.Add(menuOption);
+            }
+            Find.WindowStack.Add(new FloatMenu(floatMenuList));
+        }
         left.End();
 
         // RIGHT COLUMN
@@ -589,6 +606,21 @@ public class Settings : ModSettings, ISettingsCE
             _dirtyTabs.Remove(tabIndex);
         }
         return height;
+    }
+
+    private string OpportunisticReloadModeLabel(OpportunisticReloadMode mode)
+    {
+        switch (mode)
+        {
+            case OpportunisticReloadMode.None:
+                return "CE_Settings_OpportunisticReload_None".Translate();
+            case OpportunisticReloadMode.DraftedOnly:
+                return "CE_Settings_OpportunisticReload_DraftedOnly".Translate();
+            case OpportunisticReloadMode.Any:
+                return "CE_Settings_OpportunisticReload_Any".Translate();
+            default:
+                return "";
+        }
     }
 
     #endregion
