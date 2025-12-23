@@ -115,6 +115,10 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
         tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>();
         if (pawn.Drafted)
         {
+            if (Controller.settings.OpportunisticReloadMode == OpportunisticReloadMode.Off)
+            {
+                return false;
+            }
             if (tmpComp == null)
             {
                 return false;
@@ -155,7 +159,7 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
             tmpComp = gun.TryGetComp<CompAmmoUser>();
             AmmoDef ammoType = tmpComp.CurrentAmmo;
             int ammoAmount = tmpComp.CurMagCount;
-            if (ammoAmount > tmpComp.TryReloadOn)
+            if ((Controller.settings.OpportunisticReloadMode == OpportunisticReloadMode.Any || (Controller.settings.OpportunisticReloadMode == OpportunisticReloadMode.DraftedOnly && pawn.Drafted)) && ammoAmount > tmpComp.TryReloadOn)
             {
                 continue;
             }
