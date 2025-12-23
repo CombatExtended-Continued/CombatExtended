@@ -21,7 +21,7 @@ public class GizmoAmmoStatus : Gizmo_Slider
         get => (float)compAmmo.TryReloadOn / compAmmo.MagSize;
         set => compAmmo.TryReloadOn = Mathf.FloorToInt(value * compAmmo.MagSize);
     }
-    
+
     public override bool IsDraggable => Controller.settings.OpportunisticReloadMode != OpportunisticReloadMode.Off && compAmmo.MagSize > 1;
 
     public override float ValuePercent => (float)compAmmo.CurMagCount / compAmmo.MagSize;
