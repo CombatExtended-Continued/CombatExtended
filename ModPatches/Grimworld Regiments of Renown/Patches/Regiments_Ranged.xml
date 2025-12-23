@@ -2,14 +2,13 @@
 <Patch>
 	<!-- stock bash-->
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[
-				defName="GW_HOI_ROR_Gun_Accatranfive" or
-				defName="GW_HOI_ROR_Gun_VossPattern" or
-				defName="GW_HOI_ROR_Gun_PlasmaGun" or
-				defName="GW_HOI_ROR_Gun_MeltaGun"
-			]/tools
-		</xpath>
+		<xpath>Defs/ThingDef[
+			defName="GW_HOI_ROR_Gun_Accatranfive" or
+			defName="GW_HOI_ROR_Gun_VossPattern" or
+			defName="GW_HOI_ROR_Gun_PlasmaGun" or
+			defName="GW_HOI_ROR_Gun_MeltaGun" or
+			defName="GW_HOI_ROR_Gun_Lascarbinefour"
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -39,16 +38,14 @@
 	
 	<!-- stockless -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[
-				defName="GW_HOI_Gun_Zarona" or 
-				defName="GW_HOI_Gun_Hiveworldautopistol" or 
-				defName="GW_HOI_Gun_OrlockAutogun" or
-				defName="GW_HOI_Gun_LuciferBolter" or
-				defName="GW_HOI_Gun_LuciferPistol" or
-				defName="GW_HOI_Gun_LuciferHellgun"
-			]/tools
-		</xpath>
+		<xpath>Defs/ThingDef[
+			defName="GW_HOI_Gun_Zarona" or 
+			defName="GW_HOI_Gun_Hiveworldautopistol" or 
+			defName="GW_HOI_Gun_OrlockAutogun" or
+			defName="GW_HOI_Gun_LuciferBolter" or
+			defName="GW_HOI_Gun_LuciferPistol" or
+			defName="GW_HOI_Gun_LuciferHellgun"
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -78,10 +75,7 @@
 	
 	<!-- stockless heavy -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[
-				defName="GW_HOI_Gun_Heavystubber"
-			]/tools
+		<xpath>Defs/ThingDef[defName="GW_HOI_Gun_Heavystubber"]/tools
 		</xpath>
 		<value>
 			<tools>
@@ -101,9 +95,7 @@
 	
 	<!-- bayonet -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[defName="GW_HOI_ROR_Gun_lasLock"]/tools
-		</xpath>
+		<xpath>Defs/ThingDef[defName="GW_HOI_ROR_Gun_lasLock"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -331,7 +323,38 @@
 			<li>CE_AI_LMG</li>
 		</weaponTags>
 	</Operation>
-	
+
+	<!-- === MK4 Lascarbine === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_HOI_ROR_Gun_Lascarbinefour</defName>
+		<statBases>
+			<Mass>3.40</Mass>
+			<Bulk>13.50</Bulk>
+			<SwayFactor>1.25</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_Lasgun_Rifle</defaultProjectile>
+			<warmupTime>0.2</warmupTime>
+			<range>45</range>
+			<soundCast>GW_AM_GW_HOI_ROR_Gun_Lascarbinefour</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_Lasgun_Rifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
 	<!-- stubbers / ballistics -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -495,7 +518,6 @@
 
 	<!-- bolters -->
 
-	
 	<!--===== Bolter =====-->
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
