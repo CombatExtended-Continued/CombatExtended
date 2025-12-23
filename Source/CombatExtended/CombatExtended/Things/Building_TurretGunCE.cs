@@ -468,7 +468,11 @@ public class Building_TurretGunCE : Building_Turret
         if (!Projectile.projectile.flyOverhead)
         {
             targetScanFlags |= TargetScanFlags.NeedLOSToAll;
-            targetScanFlags |= TargetScanFlags.LOSBlockableByGas;
+            // Let manned turrets acquire targets through smoke.
+            if (attackTargetSearcher is not Pawn)
+            {
+                targetScanFlags |= TargetScanFlags.LOSBlockableByGas;
+            }
         }
         else
         {

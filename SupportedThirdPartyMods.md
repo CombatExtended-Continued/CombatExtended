@@ -289,6 +289,7 @@ GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Dead Men |
 GrimWorld 40,000 - Hammer of the Imperium |
 Grimworld 40,000 - Heresy Armor Addon   |
+GrimWorld 40,000 - Regiments of Renown   |
 GrimWorld 40,000 - Sabbat's Blight |
 GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
@@ -438,6 +439,7 @@ Outland - Eastborn Empire    |
 Outland - Motz Coalition  |
 Outland - Redburn Pact  |
 Palm Cats   |
+Pandora: Frontier Remake |
 Paniel the Automata |
 Pawnbold Race   |
 Persona Warcasket Weapons   |
