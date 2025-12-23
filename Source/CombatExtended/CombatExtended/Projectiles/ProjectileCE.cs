@@ -769,13 +769,20 @@ public abstract class ProjectileCE : ThingWithComps
             {
                 shieldDamageMultiplier = damDefCE.shieldDamageMultiplier;
             }
+
             if (!secondaryDamageProperties.NullOrEmpty())
             {
                 foreach (SecondaryDamage secondaryDamageInfo in secondaryDamageProperties)
                 {
-                    if (secondaryDamageInfo.def.harmsHealth && Rand.Chance(secondaryDamageInfo.chance))
+                    var secondaryDamageModExt = secondaryDamageInfo.def.GetModExtension<DamageDefExtensionCE>();
+                    if ((secondaryDamageInfo.def.harmsHealth || (secondaryDamageModExt?.secondaryDamageShieldOverride ?? false)) && Rand.Chance(secondaryDamageInfo.chance))
                     {
-                        secondaryShieldDamageAmount += (secondaryDamageInfo.shieldDamageMultiplier * secondaryDamageInfo.shieldDamageMultiplier);
+                        var secondaryDamageMultiplierValue = secondaryDamageInfo.shieldDamageMultiplier;
+                        if (secondaryDamageModExt != null && secondaryDamageModExt.shieldDamageMultiplier != secondaryDamageMultiplierValue)
+                        {
+                            secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
+                        }
+                        secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
 
                     }
                 }

@@ -51,25 +51,36 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
             {
                 shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
-                DamageDefExtensionCE damDefCE = dinfo.defInt.GetModExtension<DamageDefExtensionCE>();
-                if (damDefCE != null && damDefCE.shieldDamageMultiplier > shieldDamageMultiplier)
-                {
-                    shieldDamageMultiplier = damDefCE.shieldDamageMultiplier;
-                }
                 List<SecondaryDamage> secondaryDamageProperties = projectilePropertiesCe.secondaryDamage;
                 if (!secondaryDamageProperties.NullOrEmpty())
                 {
-                    foreach (var secondaryDamageInfo in secondaryDamageProperties)
+                    foreach (SecondaryDamage secondaryDamageInfo in secondaryDamageProperties)
                     {
-                        if (secondaryDamageInfo.def.harmsHealth && Rand.Chance(secondaryDamageInfo.chance))
+                        var secondaryDamageModExt = secondaryDamageInfo.def.GetModExtension<DamageDefExtensionCE>();
+                        if ((secondaryDamageInfo.def.harmsHealth || (secondaryDamageModExt?.secondaryDamageShieldOverride ?? false)) && Rand.Chance(secondaryDamageInfo.chance))
                         {
-                            secondaryShieldDamageAmount += (secondaryDamageInfo.shieldDamageMultiplier * secondaryDamageInfo.shieldDamageMultiplier);
+                            var secondaryDamageMultiplierValue = secondaryDamageInfo.shieldDamageMultiplier;
+                            if (secondaryDamageMultiplierValue == 1f && secondaryDamageModExt != null && secondaryDamageModExt.shieldDamageMultiplier != secondaryDamageMultiplierValue)
+                            {
+                                secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
+                            }
+                            secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
                             dinfo.amountInt += secondaryDamageInfo.amount;
 
                         }
                     }
                 }
             }
+            if (shieldDamageMultiplier == 1f)
+            {
+                DamageDefExtensionCE primaryDamageModExt = dinfo.defInt.GetModExtension<DamageDefExtensionCE>();
+                if (primaryDamageModExt != null && primaryDamageModExt.shieldDamageMultiplier != shieldDamageMultiplier)
+                {
+                    shieldDamageMultiplier = primaryDamageModExt.shieldDamageMultiplier;
+                }
+            }
+
+
             float totalDamage = ((dinfo.Amount * shieldDamageMultiplier) + secondaryShieldDamageAmount) * __instance.Props.energyLossPerDamage;
 #if DEBUG
             if (Controller.settings.DebugVerbose)
