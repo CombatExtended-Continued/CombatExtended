@@ -335,7 +335,7 @@ public class Settings : ModSettings, ISettingsCE
             }
             Find.WindowStack.Add(new FloatMenu(floatMenuList));
         }
-        if (OpportunisticReloadMode == OpportunisticReloadMode.None)
+        if (OpportunisticReloadMode == OpportunisticReloadMode.Off)
         {
             GUI.contentColor = Color.gray;
         }
@@ -626,8 +626,8 @@ public class Settings : ModSettings, ISettingsCE
     {
         switch (mode)
         {
-            case OpportunisticReloadMode.None:
-                return "CE_Settings_OpportunisticReload_None".Translate();
+            case OpportunisticReloadMode.Off:
+                return "CE_Settings_OpportunisticReload_Off".Translate();
             case OpportunisticReloadMode.DraftedOnly:
                 return "CE_Settings_OpportunisticReload_DraftedOnly".Translate();
             case OpportunisticReloadMode.Any:

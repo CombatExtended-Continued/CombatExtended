@@ -8,7 +8,7 @@ namespace CombatExtended
 {
     public enum OpportunisticReloadMode
     {
-        None,
+        Off,
         DraftedOnly,
         Any
     }
