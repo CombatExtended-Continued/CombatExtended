@@ -533,6 +533,9 @@ public class Settings : ModSettings, ISettingsCE
         bipodMechanics = true;
         autosetup = true;
         medicineSearchRadius = 5f;
+        opportunisticReloadMode = OpportunisticReloadMode.Any;
+        opportunisticReloadSafeDistance = 12.9f;
+        secondsAfterFightToOpportunisticReload = 5;
     }
     private void ResetToDefault_Ammo()
     {
