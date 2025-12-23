@@ -84,7 +84,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
         get => tryReloadOn;
         set => tryReloadOn = value;
     }
-    public float SafeDistanceToReload => 12.9f;
+    public float SafeDistanceToReload => Controller.settings.OpportunisticReloadSafeDistance;
 
     public int MinimalTicksAfterFight => GenTicks.TicksPerRealSecond * 10;
 

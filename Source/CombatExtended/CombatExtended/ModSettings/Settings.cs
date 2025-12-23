@@ -31,6 +31,7 @@ public class Settings : ModSettings, ISettingsCE
 
     private bool enableCIWS = false;
     private OpportunisticReloadMode opportunisticReloadMode = OpportunisticReloadMode.Any;
+    private float opportunisticReloadSafeDistance = 12.9f;
 
     private bool showExtraTooltips = false;
     private bool detailedMeleeTooltip = false;
@@ -75,6 +76,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool ShowExtraStats => showExtraStats;
     public bool EnableCIWS => enableCIWS;
     public OpportunisticReloadMode OpportunisticReloadMode => opportunisticReloadMode;
+    public float OpportunisticReloadSafeDistance => opportunisticReloadSafeDistance;
 
     public float MedicineSearchRadiusSquared => medicineSearchRadius * medicineSearchRadius;
 
@@ -264,6 +266,7 @@ public class Settings : ModSettings, ISettingsCE
 
         //OpportunisticReload
         Scribe_Values.Look(ref opportunisticReloadMode, nameof(opportunisticReloadMode), OpportunisticReloadMode.Any);
+        Scribe_Values.Look(ref opportunisticReloadSafeDistance, nameof(opportunisticReloadSafeDistance), 12.9f);
     }
     public void DoWindowContents(Listing_Standard list)
     {
@@ -328,6 +331,12 @@ public class Settings : ModSettings, ISettingsCE
             }
             Find.WindowStack.Add(new FloatMenu(floatMenuList));
         }
+        if (OpportunisticReloadMode == OpportunisticReloadMode.None)
+        {
+            GUI.contentColor = Color.gray;
+        }
+        opportunisticReloadSafeDistance = left.SliderLabeled("CE_Settings_OpportunisticReload_SafeDistance_Title".Translate(opportunisticReloadSafeDistance), opportunisticReloadSafeDistance, 0f, 34.9f,  tooltip: "CE_Settings_OpportunisticReload_SafeDistance_Desc".Translate());
+        GUI.contentColor = Color.white;
         left.End();
 
         // RIGHT COLUMN
