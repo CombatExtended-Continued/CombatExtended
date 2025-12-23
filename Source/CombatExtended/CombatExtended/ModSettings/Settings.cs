@@ -323,6 +323,7 @@ public class Settings : ModSettings, ISettingsCE
         left.Gap();
         left.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+        left.GapLine();
         if(left.ButtonTextLabeled("CE_Settings_OpportunisticReload_Title".Translate(), OpportunisticReloadModeLabel(this.OpportunisticReloadMode), anchor: TextAnchor.MiddleLeft, tooltip: "CE_Settings_OpportunisticReload_Desc".Translate()))
         {
             var floatMenuList = new List<FloatMenuOption>();
@@ -339,8 +340,8 @@ public class Settings : ModSettings, ISettingsCE
             GUI.contentColor = Color.gray;
         }
         opportunisticReloadSafeDistance = left.SliderLabeled("CE_Settings_OpportunisticReload_SafeDistance_Title".Translate(opportunisticReloadSafeDistance), opportunisticReloadSafeDistance, 0f, 34.9f,  tooltip: "CE_Settings_OpportunisticReload_SafeDistance_Desc".Translate());
-        GUI.contentColor = Color.white;
         secondsAfterFightToOpportunisticReload = (int)left.SliderLabeled("CE_Settings_OpportunisticReload_SecondsAfterFight_Title".Translate(secondsAfterFightToOpportunisticReload), secondsAfterFightToOpportunisticReload, 0f, 15f, tooltip: "CE_Settings_OpportunisticReload_SecondsAfterFight_Desc".Translate());
+        GUI.contentColor = Color.white;
         left.End();
 
         // RIGHT COLUMN
