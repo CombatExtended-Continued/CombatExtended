@@ -31,7 +31,7 @@ public class Harmony_RenderNodeSetup_ProcessApparel
                         node.Props.subworkerClasses.Add(typeof(PawnRenderSubWorker_Webbing));
                     }
                 }
-            } 
+            }
             yield return (node, parent);
         }
     }
