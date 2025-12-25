@@ -128,6 +128,7 @@ Astra Militarum Regimentum - Krieg: Officer Helmet  |
 Autocleaner	|
 Auto-Mortars	|
 Beast Man Tribes  |
+Bean's Turret Pack  |
 Beeralope Squad	|
 Beliar Xenotype |
 Better Wool Production - C# Edition	|
