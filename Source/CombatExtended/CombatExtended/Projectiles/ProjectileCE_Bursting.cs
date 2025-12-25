@@ -43,7 +43,7 @@ class ProjectileCE_Bursting : ProjectileCE
             Log.Message("ShotSpeed   = " + shotSpeed / 60);
             Log.Message("Cosine      = " + cosine);
             Log.Message("Fuse timing = " + fuzeTiming);
-            Log.Message("Distance offset = " + airburstDistanceOffset);            
+            Log.Message("Distance offset = " + airburstDistanceOffset);
             Log.Message("Launched ProjectileCEBursting with ticks to burst = " + fuzeTiming);
 #endif
 
