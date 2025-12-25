@@ -6,8 +6,8 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VacSlipsuit"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<Bulk>10</Bulk>
-			<WornBulk>5</WornBulk>
+			<Bulk>5</Bulk>
+			<WornBulk>2</WornBulk>
 			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
@@ -26,6 +26,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VacSlipsuit"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.07</ArmorRating_Heat>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VacSlipsuit"]/apparel/bodyPartGroups</xpath>
 		<value>
@@ -34,12 +41,13 @@
 		</value>
 	</Operation>
 
-	<!-- Prestige Version is not stuffable and uses hyperweave-->
+	<!-- Prestige Version is not stuffable and uses hyperweave
+		We will use hyperweave vacslipsuit as base-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Prestige_VacSlipsuit"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<Bulk>10</Bulk>
-			<WornBulk>5</WornBulk>
+			<Bulk>5</Bulk>
+			<WornBulk>3.5</WornBulk> <!-- again, hyperweave vacslipsuit --> 
 		</value>
 	</Operation>
 
@@ -57,6 +65,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Prestige_VacSlipsuit"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.47</ArmorRating_Heat>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Prestige_VacSlipsuit"]/apparel/bodyPartGroups</xpath>
 		<value>
@@ -71,8 +86,8 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="KidVacSlipsuit"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<Bulk>8</Bulk>
-			<WornBulk>3</WornBulk>
+			<Bulk>5</Bulk>
+			<WornBulk>2</WornBulk>
 			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
@@ -88,6 +103,13 @@
 		<xpath>Defs/ThingDef[defName="KidVacSlipsuit"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KidVacSlipsuit"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.07</ArmorRating_Heat>
 		</value>
 	</Operation>
 
