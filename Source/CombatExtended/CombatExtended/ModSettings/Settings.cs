@@ -47,6 +47,7 @@ public class Settings : ModSettings, ISettingsCE
 
     private float medicineSearchRadius = 5f;
 
+    private bool suppressionCausesRunning = true;
     private bool variedHumanHeight = false;
 
     private bool logUnpatchedDefs = false;
@@ -79,6 +80,7 @@ public class Settings : ModSettings, ISettingsCE
 
     public bool ShowTutorialPopup = true;
 
+    public bool SuppressionCausesRunning => suppressionCausesRunning;
     public bool VariedHumanHeight => variedHumanHeight;
 
     public bool LogUnpatchedDefs => logUnpatchedDefs;
@@ -257,7 +259,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref midBurstRetarget, "midBurstRetarget", true);
         Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
         Scribe_Values.Look(ref explosionFalloffFactor, "explosionFalloffFactor", 1.0f);
-
+        Scribe_Values.Look(ref suppressionCausesRunning, "suppressionCausesRunning", true);
         //CIWS
         Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
         lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
@@ -307,6 +309,7 @@ public class Settings : ModSettings, ISettingsCE
         left.CheckboxLabeled("CE_Settings_MidBurstRetarget_Title".Translate(), ref midBurstRetarget, "CE_Settings_MidBurstRetarget_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
+        left.CheckboxLabeled("CE_Settings_SuppressionCausesRunning_Title".Translate(), ref suppressionCausesRunning, "CE_Settings_SuppressionCausesRunning_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_FragmentsFromWallsReflected_Title".Translate(), ref fragmentsFromWallsReflected, "CE_Settings_FragmentsFromWallsReflected_Desc".Translate());
         left.Gap();
@@ -508,6 +511,7 @@ public class Settings : ModSettings, ISettingsCE
         bipodMechanics = true;
         autosetup = true;
         medicineSearchRadius = 5f;
+        suppressionCausesRunning = true;
     }
     private void ResetToDefault_Ammo()
     {

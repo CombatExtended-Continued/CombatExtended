@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== PawnKind Patches ========== -->
+	
+	<!-- Astropede inherits from the Centipede ThingDef so there's no need to seperately patch it -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="VGE_Astropede"]/combatPower</xpath>
+		<value>
+			<combatPower>580</combatPower>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VGE_Astropede"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- Hunter -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="VGE_Hunter"]/combatPower</xpath>
+		<value>
+			<combatPower>360</combatPower>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VGE_Hunter"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>4</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_Hunter"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6.3</ArmorRating_Blunt>
+			<SmokeSensitivity>0</SmokeSensitivity>
+			<NightVisionEfficiency>0.60</NightVisionEfficiency>
+		</value>
+	</Operation>
+			
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_Hunter"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="VGE_Hunter"]/tools</xpath>
+	<value>
+		<tools Inherit="false">
+			<li Class="CombatExtended.ToolCE">
+				<label>shell spike</label>
+				<capacities>
+				<li>Stab</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>2.6</cooldownTime>
+				<linkedBodyPartsGroup>SpikedShellAttackTool</linkedBodyPartsGroup>
+				<armorPenetrationSharp>3</armorPenetrationSharp>
+				<armorPenetrationBlunt>2.2</armorPenetrationBlunt>
+			</li>
+		</tools>
+	</value>
+	</Operation>
+	
+	<!-- Astronaut -->
+	<!-- This content is only available with Biotech, so we have to do a FindMod patch here -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VGE_Astronaut"]</xpath>
+						<value>
+							<comps/>
+						</value>
+					</nomatch>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>700</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]</xpath>
+					<value>
+						<!-- This is a little pod thing that hovers above ground, so -->
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Vehicle</bodyShape>
+						</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/tools</xpath>
+					<value>
+						<tools Inherit="false">
+							<li Class="CombatExtended.ToolCE">
+								<label>shell spike</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2.6</cooldownTime>
+								<linkedBodyPartsGroup>SpikedShellAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>3</ArmorRating_Blunt>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<NightVisionEfficiency>0.60</NightVisionEfficiency>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>2</ArmorRating_Sharp>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/statBases</xpath>
+					<value>
+						<ArmorRating_Heat>0.00</ArmorRating_Heat>
+						<CarryWeight>30</CarryWeight>
+						<CarryBulk>20</CarryBulk>
+						<!-- This is a little pod thing that hovers above ground, so -->
+						<MeleeDodgeChance>0.16</MeleeDodgeChance>
+						<MeleeCritChance>0.04</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>

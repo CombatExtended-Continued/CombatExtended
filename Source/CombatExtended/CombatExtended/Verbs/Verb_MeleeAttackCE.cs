@@ -756,15 +756,21 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             }
             else
             {
-                Verb_MeleeAttackCE verb = defender.meleeVerbs.TryGetMeleeVerb(caster) as Verb_MeleeAttackCE;
-                if (verb == null)
+                Verb verb = defender.meleeVerbs.TryGetMeleeVerb(caster);
+                Verb_MeleeAttackCE ceVerb = verb as Verb_MeleeAttackCE;
+                if (verb is Verb_MeleeApplyHediff hediffVerb)
+                {
+                    hediffVerb.ApplyMeleeDamageToTarget(caster);
+                    sound = hediffVerb.SoundHitPawn();
+                }
+                else if (ceVerb == null)
                 {
                     Log.Error("CE failed to get attack verb for riposte from Pawn " + defender.ToString());
                 }
                 else
                 {
-                    verb.ApplyMeleeDamageToTarget(caster);
-                    sound = verb.SoundHitPawn();
+                    ceVerb.ApplyMeleeDamageToTarget(caster);
+                    sound = ceVerb.SoundHitPawn();
                 }
             }
             // Held, because the caster may have died and despawned

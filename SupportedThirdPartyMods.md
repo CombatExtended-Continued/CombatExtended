@@ -289,6 +289,7 @@ GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Dead Men |
 GrimWorld 40,000 - Hammer of the Imperium |
 Grimworld 40,000 - Heresy Armor Addon   |
+GrimWorld 40,000 - Regiments of Renown   |
 GrimWorld 40,000 - Sabbat's Blight |
 GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
@@ -629,6 +630,7 @@ Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
 Vanilla Quests Expanded - Cryptoforge  |
+Vanilla Quests Expanded - Ancients  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
