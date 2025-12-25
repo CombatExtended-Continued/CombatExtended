@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+  <!-- ==================== AmmoSet ========================== -->
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_BTP_132mmM13</defName>
+		<label>132mm M13 Rockets</label>
+		<ammoTypes>
+			<Ammo_132mmM13_HE>Bullet_BTP_132mmM13_HE</Ammo_132mmM13_HE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+  <!-- ================== Projectiles ================== -->
+  
+	<!-- direct fire-->
+	
+	<ThingDef Name="BaseBTP132mmM13_HE" Class="CombatExtended.AmmoDef" ParentName="Base130mmType63">
+		<defName>Bullet_BTP_132mmM13_HE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>132mm M13 rocket (HE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/132mmM13</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>65</speed>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>164</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<flyOverhead>false</flyOverhead>
+			<gravityFactor>10</gravityFactor>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>7</Fragment_Large>
+					<Fragment_Small>11</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+	
+</Defs>
