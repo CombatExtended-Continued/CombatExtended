@@ -4,7 +4,7 @@
 	<!--===== Guardian Spear - Melee =====-->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_TotE_GuardianSpear"]/tools</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_GuardianSpearMeleeBase"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -44,7 +44,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_GuardianSpear"]</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_GuardianSpearMeleeBase"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.67</MeleeCritChance>
@@ -55,7 +55,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_GuardianSpear"]/statBases</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_GuardianSpearMeleeBase"]/statBases</xpath>
 		<value>
 			<Bulk>13</Bulk>
 			<MeleeCounterParryBonus>1.88</MeleeCounterParryBonus>
@@ -98,67 +98,6 @@
 		</FireModes>
 	</Operation>
 
-	<!--===== Adrathic Spear - Melee =====-->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_TotE_AdrathicSpear"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>1.54</cooldownTime>
-					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>shaft</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>1.78</cooldownTime>
-					<chanceFactor>0.05</chanceFactor>
-					<armorPenetrationBlunt>1</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>				
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>52</power>
-					<cooldownTime>1.35</cooldownTime>
-					<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
-					<armorPenetrationSharp>98</armorPenetrationSharp>
-				</li>			
-			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_AdrathicSpear"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.67</MeleeCritChance>
-				<MeleeParryChance>1.95</MeleeParryChance>
-				<MeleeDodgeChance>1.1</MeleeDodgeChance>
-			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_AdrathicSpear"]/statBases</xpath>
-		<value>
-			<Bulk>13</Bulk>
-			<MeleeCounterParryBonus>1.88</MeleeCounterParryBonus>
-		</value>
-	</Operation>
-
 	<!--===== Adrathic Spear - Ranged =====-->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -193,67 +132,6 @@
 		<weaponTags>
 			<li>CE_AI_AR</li>
 		</weaponTags>
-	</Operation>
-
-	<!--===== Melta Spear - Melee =====-->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_TotE_MeltaSpear"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>1.54</cooldownTime>
-					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>shaft</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>1.78</cooldownTime>
-					<chanceFactor>0.05</chanceFactor>
-					<armorPenetrationBlunt>1</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>				
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>52</power>
-					<cooldownTime>1.35</cooldownTime>
-					<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
-					<armorPenetrationSharp>98</armorPenetrationSharp>
-				</li>			
-			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_MeltaSpear"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.67</MeleeCritChance>
-				<MeleeParryChance>1.95</MeleeParryChance>
-				<MeleeDodgeChance>1.1</MeleeDodgeChance>
-			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_MeltaSpear"]/statBases</xpath>
-		<value>
-			<Bulk>13</Bulk>
-			<MeleeCounterParryBonus>1.88</MeleeCounterParryBonus>
-		</value>
 	</Operation>
 
 	<!--===== Melta Spear - Ranged =====-->
@@ -296,7 +174,7 @@
 	<!--===== Castellan Axe - Melee =====-->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_TotE_CastellanAxe"]/tools</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_AxeMeleeBase"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -336,7 +214,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_CastellanAxe"]</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_AxeMeleeBase"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.67</MeleeCritChance>
@@ -347,7 +225,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_CastellanAxe"]/statBases</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_AxeMeleeBase"]/statBases</xpath>
 		<value>
 			<Bulk>15</Bulk>
 			<MeleeCounterParryBonus>2.02</MeleeCounterParryBonus>
@@ -390,10 +268,29 @@
 		</FireModes>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_CastellanAxeR"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.74</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>	
+		</value>
+	</Operation>
+
 	<!--===== Watcher's Axe - Melee =====-->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_TotE_WatchersAxe"]/tools</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_AxeMeleeBase"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -433,7 +330,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_WatchersAxe"]</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_AxeMeleeBase"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.67</MeleeCritChance>
@@ -444,7 +341,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GW_TotE_WatchersAxe"]/statBases</xpath>
+		<xpath>Defs/ThingDef[@Name="GW_TOE_AxeMeleeBase"]/statBases</xpath>
 		<value>
 			<Bulk>15</Bulk>
 			<MeleeCounterParryBonus>2.02</MeleeCounterParryBonus>
@@ -485,6 +382,25 @@
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_WatchersAxeR"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.74</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
 	</Operation>
 
 </Patch>
