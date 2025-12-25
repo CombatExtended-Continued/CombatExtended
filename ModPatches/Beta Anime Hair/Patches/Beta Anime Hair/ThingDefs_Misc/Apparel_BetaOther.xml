@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+    <!-- ============================ Coat ============================ -->
+    <!-- Uses Uniforms CarryWeight 2 for Base; 4 for Advanced/Mod3 -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[
+            defName="22Uniform" or
+            defName="33Uniform"
+            ]/statBases</xpath>
+        <value>
+            <Bulk>4</Bulk>
+            <WornBulk>2</WornBulk>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[
+            defName="22Uniform" or
+            defName="33Uniform"
+            ]/equippedStatOffsets</xpath>
+        <value>
+            <ToxicEnvironmentResistance MayRequire="Ludeon.RimWorld.Biotech">1.0</ToxicEnvironmentResistance>
+            <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1.0</VacuumResistance>
+        </value>
+    </Operation>
+
+    <!--22 Uniform Coat-->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="22Uniform"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+            <ArmorRating_Sharp>2.75</ArmorRating_Sharp>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="22Uniform"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+            <ArmorRating_Blunt>1.1</ArmorRating_Blunt>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="22Uniform"]/statBases/ArmorRating_Heat</xpath>
+        <value>
+            <ArmorRating_Heat>0.50</ArmorRating_Heat>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="22Uniform"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+        <value>
+            <ShootingAccuracyPawn>0.12</ShootingAccuracyPawn>
+            <AimingAccuracy>0.06</AimingAccuracy>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="22Uniform"]/equippedStatOffsets</xpath>
+        <value>
+            <Flammability>-1.0</Flammability>
+            <Suppressability>-0.1</Suppressability>
+            <CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.05</ReloadSpeed>
+            <CarryWeight>2</CarryWeight>
+        </value>
+    </Operation>
+
+    <!--33 Uniform Coat-->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="33Uniform"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+            <ArmorRating_Sharp>2.75</ArmorRating_Sharp>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="33Uniform"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+            <ArmorRating_Blunt>1.1</ArmorRating_Blunt>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="33Uniform"]/statBases/ArmorRating_Heat</xpath>
+        <value>
+            <ArmorRating_Heat>0.50</ArmorRating_Heat>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="33Uniform"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+        <value>
+            <ShootingAccuracyPawn>0.12</ShootingAccuracyPawn>
+            <AimingAccuracy>0.06</AimingAccuracy>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="33Uniform"]/equippedStatOffsets</xpath>
+        <value>
+            <Flammability>-1.0</Flammability>
+            <Suppressability>-0.1</Suppressability>
+            <CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.05</ReloadSpeed>
+            <CarryWeight>2</CarryWeight>
+        </value>
+    </Operation>
+</Patch>
