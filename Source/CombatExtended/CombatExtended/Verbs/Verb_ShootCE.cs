@@ -314,7 +314,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
 
     public override void RecalculateWarmupTicks()
     {
-        if (!Controller.settings.FasterRepeatShots)
+        if (!Controller.settings.FasterRepeatShots || compAmmo?.HasMagazine == false)
         {
             return;
         }
@@ -405,7 +405,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
             {
                 if (VerbPropsCE.muzzleFlashScale > 0.01f)
                 {
-                    FleckMakerCE.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
+                    FleckMakerCE.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale + projectilePropsCE.muzzleFlashOffset);
                 }
                 if (VerbPropsCE.soundCast != null)
                 {

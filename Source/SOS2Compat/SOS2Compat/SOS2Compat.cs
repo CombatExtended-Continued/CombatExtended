@@ -79,7 +79,7 @@ public class SOS2Compat : IModPart
                     shield.parentVehicle.statHandler.SetComponentHealth("shieldGenerator", 0);
                     if (shield.parentVehicle.Spawned)
                     {
-                        shield.parentVehicle.Map.GetComponent<ListerVehiclesRepairable>().Notify_VehicleTookDamage(shield.parentVehicle);
+                        shield.parentVehicle.Map.GetComponent<ListerVehiclesRepairable>().NotifyVehicleTookDamage(shield.parentVehicle);
                     }
                 }
                 // Break Effects

@@ -98,9 +98,16 @@ public class CompFragments : ThingComp
 
             float height;
             FloatRange fragXZAngleRange;
+            FloatRange fragYAngleRange = PropsCE.fragAngleRange;
             if (parent is ProjectileCE projCE)
             {
                 height = projCE.ExactPosition.y;
+                //if the fragments use default value, shift the min angle lower to make it not fly over pawns when exploding at building heights
+                if (height > 0.1f && Mathf.Approximately(PropsCE.fragAngleRange.min, 0.5f))
+                {
+                    //launch with -30 angle at height of 1 vertical cell
+                    fragYAngleRange.min = -30f * height;
+                }
                 fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
             }
             else
@@ -119,7 +126,7 @@ public class CompFragments : ThingComp
                 var newCount = fragment;
                 newCount.count = Mathf.RoundToInt(newCount.count * scaleFactor);
 
-                var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor, PropsCE.fragShadowChance, PropsCE.fragAngleRange, fragXZAngleRange);
+                var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor, PropsCE.fragShadowChance, fragYAngleRange, fragXZAngleRange);
                 if (!Compatibility.Multiplayer.InMultiplayer)
                 {
                     _monoDummy.GetComponent<MonoDummy>().StartCoroutine(routine);

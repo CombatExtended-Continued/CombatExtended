@@ -34,6 +34,24 @@ public class ITab_Inventory : ITab_Pawn_Gear
 
     //private static List<Thing> workingInvList = new List<Thing>();
 
+    // Copy of Vanilla modified to allow drones to have inventory tab.
+    public override bool IsVisible
+    {
+        get
+        {
+            Pawn selPawnForGear = SelPawnForGear;
+            if (selPawnForGear.ageTracker.CurLifeStage == LifeStageDefOf.HumanlikeBaby || (ModsConfig.AnomalyActive && selPawnForGear.RaceProps.IsAnomalyEntity))
+            {
+                return false;
+            }
+            if (!ShouldShowInventory(selPawnForGear) && !ShouldShowApparel(selPawnForGear))
+            {
+                return ShouldShowEquipment(selPawnForGear);
+            }
+            return true;
+        }
+    }
+
     #endregion Fields
 
     #region Constructors

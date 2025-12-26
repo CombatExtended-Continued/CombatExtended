@@ -20,11 +20,26 @@ public abstract class VerbCIWS : Verb_ShootCE, ITargetSearcher, IVerbDisableable
 
     public virtual bool HoldFire { get; set; }
 
+    private bool _holdfire;
+
     public VerbProperties_CIWS Props => (VerbProperties_CIWS)verbProps;
     public virtual string HoldFireLabel => Props.holdFireLabel;
     public virtual string HoldFireDesc => Props.holdFireDesc;
     public Building_CIWS_CE Turret => Caster as Building_CIWS_CE;
 
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        if (Scribe.mode == LoadSaveMode.Saving)
+        {
+            _holdfire = HoldFire;
+        }
+        Scribe_Values.Look(ref _holdfire, "HoldFire", false);
+        if (Scribe.mode == LoadSaveMode.PostLoadInit)
+        {
+            HoldFire = _holdfire;
+        }
+    }
     public virtual Texture2D HoldFireIcon
     {
         get

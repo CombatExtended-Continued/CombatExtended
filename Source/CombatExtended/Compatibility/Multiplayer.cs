@@ -12,7 +12,7 @@ public class Multiplayer : IPatch
 
     public bool CanInstall()
     {
-        Log.Message("Checking Multiplayer Compat");
+        Log.Message("Combat Extended :: Checking Multiplayer Compat");
         return ModLister.HasActiveModWithName("Multiplayer");
     }
 

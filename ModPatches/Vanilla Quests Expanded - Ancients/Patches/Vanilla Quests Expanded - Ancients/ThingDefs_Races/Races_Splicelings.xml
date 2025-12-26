@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- None of the creatures here are particularly intelligent so they can't parry -->
+	
+	<!-- ========== Spliceling ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_Spliceling"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+			<ArmorRating_Blunt>2.7</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicefiend"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>500</Durability>
+                <Regenerates>true</Regenerates>
+                <RegenInterval>800</RegenInterval>
+                <RegenValue>5</RegenValue>
+				<MinArmorPct>0.1</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Mostly human mutated, so tools are similar to the human tools -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQEA_Spliceling"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left mutated fist</label>
+					<labelNoLocation>mutated fist</labelNoLocation>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<cooldownTime>1.25</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>flesh club</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<cooldownTime>1.5</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.1</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Splicehulk ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicehulk"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>3.1</ArmorRating_Sharp>
+			<ArmorRating_Blunt>5.8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- This creature has all their wounds heal up every 6 seconds. This should be reflected on their armor as well -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicehulk"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>700</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>360</RegenInterval>
+				<RegenValue>480</RegenValue>
+				<MinArmorPct>0.1</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicehulk"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left swollen arm</label>
+					<labelNoLocation>swollen arm</labelNoLocation>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+					<cooldownTime>2.6</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right swollen arm</label>
+					<labelNoLocation>swollen arm</labelNoLocation>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+					<cooldownTime>2.6</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>body slam</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<armorPenetrationBlunt>12</armorPenetrationBlunt>
+					<cooldownTime>3.2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.25</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Splicefiend ========== -->
+	
+	<!-- This one is basically a tank from Left 4 Dead that feels no pain, so some okay armor makes sense -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicefiend"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>8.4</ArmorRating_Sharp>
+			<ArmorRating_Blunt>26.9</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- It degrades, of course -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicefiend"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1200</Durability>
+                <Regenerates>true</Regenerates>
+                <RegenInterval>600</RegenInterval>
+                <RegenValue>5</RegenValue>
+				<MinArmorPct>0.1</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicefiend"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left massive fist</label>
+					<labelNoLocation>massive fist</labelNoLocation>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>18</power>
+					<armorPenetrationBlunt>24</armorPenetrationBlunt>
+					<cooldownTime>2.2</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right massive fist</label>
+					<labelNoLocation>massive fist</labelNoLocation>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>18</power>
+					<armorPenetrationBlunt>24</armorPenetrationBlunt>
+					<cooldownTime>2.2</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Splicetoot ========== -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicetoot"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.6</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1.1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicetoot"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VQEA_Splicetoot"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicetoot"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>240</Durability>
+                <Regenerates>true</Regenerates>
+                <RegenInterval>1200</RegenInterval>
+                <RegenValue>5</RegenValue>
+				<MinArmorPct>0.1</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VQEA_Splicefiend"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bite</label>
+					<capacities>
+						<li>VQEA_SuicideAttack</li>
+					</capacities>
+					<power>1</power>
+					<armorPenetrationSharp>2</armorPenetrationSharp>
+					<cooldownTime>1.5</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ========== Rifle Old =========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Miho_Weapon_RifleOld_Unique</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.48</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>2.48</SwayFactor>
+						<Bulk>16.5</Bulk>
+						<Mass>7.5</Mass>
+					</statBases>
+					<Properties>
+						<recoilAmount>3.28</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_132x92mmSRTuF_Miho</defaultProjectile>
+						<warmupTime>3</warmupTime>
+						<range>86</range>
+						<soundCast>Miho_KineticRifleBolt</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_132x92mmSRTuF</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+				
+				<!-- ========== Carbine =========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Miho_Weapon_RifleDefence_Unique</defName>
+					<statBases>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>1.15</SwayFactor>
+						<Bulk>5.15</Bulk>
+						<Mass>3.60</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.92</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_65x50mmSRArisaka_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<range>40</range>
+						<soundCast>Miho_DefenceRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>48</magazineSize>
+						<reloadTime>5.1</reloadTime>
+						<ammoSet>AmmoSet_65x50mmSRArisaka</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+	
+</Patch>

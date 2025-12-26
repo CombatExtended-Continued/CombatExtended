@@ -30,6 +30,15 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float armorPenetrationBlunt;
     public bool castShadow = true;
 
+    public float recoilMultiplier = 1;
+    public float recoilOffset = 0f;
+    public float warmupMultiplier = 1;
+    public float warmupOffset = 0f;
+    public float effectiveRangeMultiplier = 1;
+    public float effectiveRangeOffset = 0f;
+    public float muzzleFlashMultiplier = 1;
+    public float muzzleFlashOffset = 0f;
+
     public float suppressionFactor = 1;
     public float airborneSuppressionFactor = 1;
     public float dangerFactor = 1;
@@ -61,10 +70,14 @@ public class ProjectilePropertiesCE : ProjectileProperties
 
     public int armingDelay = 0;
     public float aimHeightOffset = 0;
+    public float airburstDistanceOffset = 0f;
 
     public float empShieldBreakChance = 1f;
     public float collideDistance = 1f;
     public float impactChance = 1f;
+
+    public FloatRange weaponDeteriorationHP = new FloatRange(1f, 1f);
+    public float weaponDeteriorationChance = 0f;
 
     public double Gravity => CE_Utility.GravityConst * gravityFactor;
     public float GravityPerHeight => (float)Gravity / CE_Utility.MetersPerCellHeight;

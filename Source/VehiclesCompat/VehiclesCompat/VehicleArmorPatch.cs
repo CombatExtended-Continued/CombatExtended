@@ -112,7 +112,7 @@ public static class VehicleArmorPatch
                 IntVec2 renderCell = cell2;
                 if (vehicle.Rotation != Rot4.North)
                 {
-                    renderCell = renderCell.RotatedBy(vehicle.Rotation, vehicle.VehicleDef.Size, reverseRotate: true);
+                    renderCell = renderCell.MirrorRotatedBy(vehicle.Rotation, vehicle.VehicleDef.Size);
                 }
                 stats.debugCellHighlight.Add(new Pair<IntVec2, int>(renderCell, VehicleStatHandler.TicksHighlighted));
             }
