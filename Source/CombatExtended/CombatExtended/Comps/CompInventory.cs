@@ -446,7 +446,10 @@ public class CompInventory : ThingComp
         }
         else if (useFists)
         {
-            parentPawn.jobs.SuspendCurrentJob(JobCondition.InterruptForced);
+            if (parentPawn.jobs.curJob != null) //check there is a current job before attempting to suspend it
+            {
+                parentPawn.jobs.SuspendCurrentJob(JobCondition.InterruptForced);
+            }
             // Put away current weapon
             ThingWithComps eq = parentPawn.equipment?.Primary;
             if (eq != null && !parentPawn.equipment.TryTransferEquipmentToContainer(eq, container))
