@@ -160,7 +160,7 @@ public class BipodComp : CompRangedGizmoGiver
         AssignVerbProps(source, changed);
     }
 
-    public void SetUpEnd(Thing source)
+    public void SetUpEnd(Thing source, Pawn pawn)
     {
         var changed = CopyVerbPropsFromThing(source);
 
@@ -174,7 +174,7 @@ public class BipodComp : CompRangedGizmoGiver
 
         AssignVerbProps(source, changed);
 
-        CE_SoundDefOf.Interact_Bipod.PlayOneShot(new TargetInfo(source.PositionHeld, source.Map));
+        CE_SoundDefOf.Interact_Bipod.PlayOneShot(new TargetInfo(source.PositionHeld, pawn.Map));
     }
 
     public void SetUpStart(Pawn pawn = null)

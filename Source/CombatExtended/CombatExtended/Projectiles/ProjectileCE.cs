@@ -122,6 +122,7 @@ public abstract class ProjectileCE : ThingWithComps
                 launcher,
                 null,
                 def,
+                intendedTarget: intendedTargetThing,
                 instigatorGuilty: InstigatorGuilty);
 
     public float RemainingKineticEnergyPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed) : 1f;
@@ -1445,7 +1446,7 @@ public abstract class ProjectileCE : ThingWithComps
             {
                 var reusableAmmo = ThingMaker.MakeThing(thingDef);
                 reusableAmmo.stackCount = 1;
-                reusableAmmo.SetForbidden(true, false);
+                reusableAmmo.SetForbidden(Controller.settings.ForbiddenNeolithicProjectiles, false);
                 Thing existingStack = Position.GetRegion(Map)?.listerThings.ThingsOfDef(thingDef).FirstOrFallback(thing => thing.stackCount < thing.def.stackLimit, null);
                 GenPlace.TryPlaceThing(reusableAmmo, existingStack != null ? existingStack.positionInt : Position, Map, ThingPlaceMode.Near);
                 LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, reusableAmmo, OpportunityType.GoodToKnow);

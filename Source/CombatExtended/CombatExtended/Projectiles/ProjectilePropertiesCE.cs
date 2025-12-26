@@ -70,10 +70,14 @@ public class ProjectilePropertiesCE : ProjectileProperties
 
     public int armingDelay = 0;
     public float aimHeightOffset = 0;
+    public float airburstDistanceOffset = 0f;
 
     public float empShieldBreakChance = 1f;
     public float collideDistance = 1f;
     public float impactChance = 1f;
+
+    public FloatRange weaponDeteriorationHP = new FloatRange(1f, 1f);
+    public float weaponDeteriorationChance = 0f;
 
     public double Gravity => CE_Utility.GravityConst * gravityFactor;
     public float GravityPerHeight => (float)Gravity / CE_Utility.MetersPerCellHeight;

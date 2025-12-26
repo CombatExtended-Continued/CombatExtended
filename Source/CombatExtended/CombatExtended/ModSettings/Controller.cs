@@ -125,6 +125,8 @@ public class Controller : Mod
         // Initialize the DefUtility (a caching system for common checks on defs)
         LongEventHandler.QueueLongEvent(DefUtility.Initialize, "CE_LongEvent_DefUtility", false, null);
 
+
+
         Log.Message("Combat Extended :: initialized");
 
         // Tutorial popup
@@ -134,6 +136,9 @@ public class Controller : Mod
         }
 
         LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
+
+        // Catalog all non-patched items
+        LongEventHandler.QueueLongEvent(LogUnpatchedTools.DetectAndLogUnpatchedTools, "CE_LongEvent_LogUnpatchedTools", false, null);
 
         genericState = settings.GenericAmmo;
     }
