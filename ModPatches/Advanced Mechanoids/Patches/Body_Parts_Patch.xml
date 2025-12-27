@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ==================== Advanced Mechanoids Add Covered By Natural Armor ==================== -->
+
+	
+	<!-- Militor -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[defName="Mech_AdvancedMilitor"]/corePart/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Mech_AdvancedMilitor"]/corePart</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="Mech_AdvancedMilitor"]/corePart/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedMilitor" or
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart/parts/li[def="MechanicalNeck"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedMilitor" or
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedMilitor" or
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="HearingSensor"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedMilitor" or
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="HearingSensor"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="HearingSensor"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SmellSensor"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedMilitor" or
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SmellSensor"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedMilitor" or
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SmellSensor"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[defName="Mech_AdvancedMilitor"]/corePart/parts/li[def="SmallMechanicalLeg"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Mech_AdvancedMilitor"]/corePart/parts/li[def="SmallMechanicalLeg"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="Mech_AdvancedMilitor"]/corePart/parts/li[def="SmallMechanicalLeg"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart/parts/li[def="MechanicalLeg"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalShoulder"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart/parts/li[def="MechanicalShoulder"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalShoulder"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[
+						defName="Mech_AdvancedLifter" or
+						defName="Mech_AdvancedParamedic" or
+						defName="Mech_AdvancedTunneler" or
+						defName="Mech_AdvancedFabricor" or
+						defName="Mech_AdvancedCleansweeper" or
+						defName="Mech_AdvancedAgrihand" or
+						defName="Mech_AdvancedConstructoid"
+					]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]</xpath>
+					<value><groups /></value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[
+					defName="Mech_AdvancedLifter" or
+					defName="Mech_AdvancedParamedic" or
+					defName="Mech_AdvancedTunneler" or
+					defName="Mech_AdvancedFabricor" or
+					defName="Mech_AdvancedCleansweeper" or
+					defName="Mech_AdvancedAgrihand" or
+					defName="Mech_AdvancedConstructoid"
+				]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/groups</xpath>
+				<value><li>CoveredByNaturalArmor</li></value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
