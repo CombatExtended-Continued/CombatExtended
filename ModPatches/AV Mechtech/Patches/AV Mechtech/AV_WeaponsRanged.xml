@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationAdd">
@@ -329,7 +329,7 @@
 		<xpath>Defs/ThingDef[defName="AV_Bullet_Mechanoid_Deployment_Shell"]/thingClass
 		</xpath>
 		<value>
-			<thingClass>Projectile_SpawnsPawnZeroAge</thingClass>
+			<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
 		</value>
 	</Operation>
 
@@ -350,10 +350,22 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AV_Bullet_Mechanoid_Deployment_Shell"]/projectile</xpath>
 		<value>
-			<spawnsPawnKind>Mech_WarUrchin</spawnsPawnKind>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Smoke</damageDef>
+				<explosionRadius>0.1</explosionRadius>
+				<flyOverhead>true</flyOverhead>
+				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+				<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+				<soundAmbient>MortarRound_Ambient</soundAmbient>
+				<spawnsThingDef>Mech_WarUrchin</spawnsThingDef>
+				<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
+				<postExplosionSpawnThingDef>AV_Shell_Deploy_Releasing</postExplosionSpawnThingDef>
+				<postExplosionSpawnThingDefWater>AV_Shell_Deploy_Releasing_Water</postExplosionSpawnThingDefWater>
+			</projectile>
 		</value>
 	</Operation>
 
