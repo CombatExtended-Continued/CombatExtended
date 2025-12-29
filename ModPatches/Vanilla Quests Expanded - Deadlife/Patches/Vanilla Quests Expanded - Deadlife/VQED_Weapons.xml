@@ -12,8 +12,8 @@
 					<damageAmountBase>13</damageAmountBase>
 					<armorPenetrationSharp>2</armorPenetrationSharp>
 					<armorPenetrationBlunt>9.66</armorPenetrationBlunt>
-					<weaponDeteriorationChance>0.5</weaponDeteriorationChance>
-					<weaponDeteriorationHP>0~2</weaponDeteriorationHP>
+					<weaponDeteriorationChance>1</weaponDeteriorationChance>
+					<weaponDeteriorationHP>1~2</weaponDeteriorationHP>
 				</projectile>
 			</ThingDef>
 
@@ -30,8 +30,8 @@
 					<armorPenetrationSharp>4</armorPenetrationSharp>
 					<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
 					<spreadMult>8.9</spreadMult>
-					<weaponDeteriorationChance>0.5</weaponDeteriorationChance>
-					<weaponDeteriorationHP>0~2</weaponDeteriorationHP>
+					<weaponDeteriorationChance>0.95</weaponDeteriorationChance>
+					<weaponDeteriorationHP>3~4</weaponDeteriorationHP>
 				</projectile>
 			</ThingDef>
 
@@ -42,11 +42,19 @@
 					<damageAmountBase>27</damageAmountBase>
 					<armorPenetrationSharp>4</armorPenetrationSharp>
 					<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
-					<weaponDeteriorationChance>0.5</weaponDeteriorationChance>
-					<weaponDeteriorationHP>0~2</weaponDeteriorationHP>
+					<weaponDeteriorationChance>1</weaponDeteriorationChance>
+					<weaponDeteriorationHP>0~1.1</weaponDeteriorationHP>
 				</projectile>
 			</ThingDef>
 
+		</value>
+	</Operation>
+
+	<!-- ========== patch HP so ammo damage matches vanilla ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VQED_Gun_MachinePistol_Ancient"]/statBases</xpath>
+		<value>
+			<MaxHitPoints>350</MaxHitPoints>
 		</value>
 	</Operation>
 
