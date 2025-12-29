@@ -658,7 +658,16 @@ public static class CE_Utility
         {
             return;
         }
-        float recoil = ((VerbPropertiesCE)shootVerb.verbProps).recoilAmount;
+
+        float recoil = 0f;
+        if (shootVerb is Verb_LaunchProjectileCE verbCE)
+        {
+            recoil = verbCE.RecoilAmount;
+        }
+        else
+        {
+            recoil = ((VerbPropertiesCE)shootVerb.verbProps).recoilAmount;
+        }
 
         float recoilRelaxation = shootVerb.verbProps.burstShotCount > 1 ? shootVerb.verbProps.ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
 
@@ -1545,6 +1554,9 @@ public static class CE_Utility
         return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
     }
 
+    /// <summary>
+    /// Entry point for projectile launches from vehicle turrets in Vehicle Framework.
+    /// </summary>
     public static object LaunchProjectileCE(ThingDef projectileDef,
                                             ThingDef _ammoDef,
                                             Def _ammosetDef,
@@ -1580,6 +1592,13 @@ public static class CE_Utility
         projectile.intendedTarget = target;
         projectile.mount = null;
         projectile.AccuracyFactor = 1;
+
+        var charges = launcher.TryGetComp<CompCharges>();
+        if (charges?.GetChargeBracket((target.Cell - launcher.Position).LengthHorizontal, shotHeight, projectile.Props.GravityPerWidth,
+                out var bracket) ?? false)
+        {
+            shotSpeed = bracket.x;
+        }
 
         ProjectilePropertiesCE pprop = projectileDef.projectile as ProjectilePropertiesCE;
         bool instant = false;
@@ -1670,5 +1689,39 @@ public static class CE_Utility
             current = source.Current;
         }
         return current;
+    }
+
+    internal static List<Tool> GetThingDefTools(ThingDef thingDef)
+    {
+        List<Tool> tools = new List<Tool>();
+        if (thingDef.isTechHediff)
+        {
+            tools = GetTechHediffTools(thingDef);
+        }
+        else if (thingDef.IsWeapon || thingDef.category == ThingCategory.Pawn)
+        {
+            tools = thingDef.tools?.ToList();
+        }
+
+        return tools;
+    }
+
+    internal static List<Tool> GetTechHediffTools(ThingDef thingDef)
+    {
+        List<Tool> techHediffTools = new List<Tool>();
+        List<RecipeDef> allDefsListForReading = DefDatabase<RecipeDef>.AllDefsListForReading;
+        for (int i = 0; i < allDefsListForReading.Count; i++)
+        {
+            if (allDefsListForReading[i].IsIngredient(thingDef))
+            {
+                HediffDef hediffDef = allDefsListForReading[i].addsHediff;
+                HediffCompProperties_VerbGiver hediffCompProperties_VerbGiver = hediffDef?.comps?.FirstOrDefault((HediffCompProperties x) => x is HediffCompProperties_VerbGiver) as HediffCompProperties_VerbGiver;
+                if (hediffCompProperties_VerbGiver != null && !hediffCompProperties_VerbGiver.tools.NullOrEmpty() && hediffCompProperties_VerbGiver.tools.All(t => t is ToolCE))
+                {
+                    techHediffTools = hediffCompProperties_VerbGiver.tools.ToList();
+                }
+            }
+        }
+        return techHediffTools;
     }
 }

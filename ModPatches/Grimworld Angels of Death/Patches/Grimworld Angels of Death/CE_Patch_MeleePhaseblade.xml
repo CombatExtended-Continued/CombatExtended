@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!--===== Xeno Phaseblade =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SS_Phaseblade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<chanceFactor>0.1</chanceFactor>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationBlunt>0.72</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>0.7</cooldownTime>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<armorPenetrationSharp>44.45</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>46</power>
+					<cooldownTime>0.7</cooldownTime>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>37.5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_SS_Phaseblade"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_SS_Phaseblade"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_Phaseblade"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_Phaseblade"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.33</MeleeCritChance>
+				<MeleeParryChance>1.2</MeleeParryChance>
+				<MeleeDodgeChance>0.4</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_Phaseblade"]/statBases</xpath>
+		<value>
+			<Bulk>6.2</Bulk>
+			<MeleeCounterParryBonus>1.6</MeleeCounterParryBonus>
+			<ToughnessRating>50</ToughnessRating>
+		</value>
+	</Operation>
+
+
+</Patch>

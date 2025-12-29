@@ -1,77 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- ========== Tactical "Armor" =========== -->
+	<!-- ========== Tactical Vest =========== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_TacVest" and techLevel="Spacer"]</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_TacVest"]/statBases/Mass</xpath>
 		<value>
-			<ThingDef ParentName="ApparelMakeableBase">
-				<defName>Apparel_TacArmor</defName>
-				<label>tactical armor</label>
-				<description>An ergonomically designed body armor. This type of armor increase wearer's combat efficiency.</description>
-				<techLevel>Spacer</techLevel>
-				<graphicData>
-					<texPath>Things/Apparel/TacVest</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<statBases>
-					<Mass>6</Mass>
-					<Bulk>6</Bulk>
-					<WornBulk>0</WornBulk>
-					<WorkToMake>15000</WorkToMake>
-					<MaxHitPoints>290</MaxHitPoints>
-					<ArmorRating_Blunt>24</ArmorRating_Blunt>
-					<ArmorRating_Sharp>12</ArmorRating_Sharp>
-					<ArmorRating_Heat>0.25</ArmorRating_Heat>
-					<Insulation_Cold>1</Insulation_Cold>
-					<EquipDelay>4</EquipDelay>
-				</statBases>
-				<equippedStatOffsets>
-					<CarryBulk>10</CarryBulk>
-					<ReloadSpeed>0.10</ReloadSpeed>
-				</equippedStatOffsets>
-				<thingCategories>
-					<li>Apparel</li>
-				</thingCategories>
-				<recipeMaker>
-					<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-					<researchPrerequisite>ComplexClothing</researchPrerequisite>
-					<recipeUsers Inherit="False">
-						<li>FabricationBench</li>
-					</recipeUsers>
-					<skillRequirements>
-						<Crafting>7</Crafting>
-					</skillRequirements>
-				</recipeMaker>
-				<costList>
-					<ComponentSpacer>1</ComponentSpacer>
-					<Plasteel>50</Plasteel>
-					<DevilstrandCloth>25</DevilstrandCloth>
-				</costList>
-				<generateCommonality>0.5</generateCommonality>
-				<apparel>
-					<defaultOutfitTags>
-						<li>Soldier</li>
-					</defaultOutfitTags>
-					<bodyPartGroups>
-						<li>Torso</li>
-						<li>Shoulders</li>
-						<li>Neck</li>
-					</bodyPartGroups>
-					<wornGraphicPath>Things/Apparel/TacVest</wornGraphicPath>
-					<layers>
-						<li>Middle</li>
-					</layers>
-					<tags>
-						<li>SpacerMilitary</li>
-					</tags>
-				</apparel>
-			</ThingDef>
+			<Mass>6</Mass>
+			<Bulk>6</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TacVest"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>15</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TacVest"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>30</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TacVest"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.25</ArmorRating_Heat>
+			<ArmorRating_Electric>0.15</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_TacVest"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.10</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TacVest"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>40</Plasteel>
+			<DevilstrandCloth>25</DevilstrandCloth>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Apparel_TacArmor"]</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_TacVest"]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
@@ -214,14 +193,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>10</ArmorRating_Sharp>
+			<ArmorRating_Sharp>12</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>15</ArmorRating_Blunt>
+			<ArmorRating_Blunt>27</ArmorRating_Blunt>
 		</value>
 	</Operation>
 

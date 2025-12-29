@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!--===== Trench Shovel =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_HOI_DM_MeleeWeapon_TrenchShovel"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.65</cooldownTime>
+					<chanceFactor>0.33</chanceFactor>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationSharp>6.6</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.2</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_HOI_DM_MeleeWeapon_TrenchShovel"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_HOI_DM_MeleeWeapon_TrenchShovel"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_DM_MeleeWeapon_TrenchShovel"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_DM_MeleeWeapon_TrenchShovel"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>0.17</MeleeParryChance>
+				<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_DM_MeleeWeapon_TrenchShovel"]/statBases</xpath>
+		<value>
+			<Bulk>3.0</Bulk>
+			<MeleeCounterParryBonus>0.17</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+</Patch>

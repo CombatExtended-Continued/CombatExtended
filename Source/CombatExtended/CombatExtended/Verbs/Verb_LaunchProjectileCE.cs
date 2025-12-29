@@ -147,6 +147,8 @@ public class Verb_LaunchProjectileCE : Verb
 
     public virtual CompAmmoUser CompAmmo => compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
 
+    public override float EffectiveRange => Mathf.Max(0, base.EffectiveRange * (1f + (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_RangeMultiplier) - 1f ?? 0f) + (projectilePropsCE?.effectiveRangeMultiplier - 1f ?? 0f)) + (projectilePropsCE?.effectiveRangeOffset ?? 0f));
+
     public virtual ThingDef Projectile
     {
         get
@@ -201,7 +203,7 @@ public class Verb_LaunchProjectileCE : Verb
     {
         get
         {
-            float recoil = VerbPropsCE.recoilAmount;
+            float recoil = Mathf.Max(0, VerbPropsCE.recoilAmount * (1f + (EquipmentSource?.GetStatValue(CE_StatDefOf.CE_RangedWeapon_RecoilMultiplier) - 1f ?? 0f) + (projectilePropsCE?.recoilMultiplier - 1f ?? 0f)) + (projectilePropsCE?.recoilOffset ?? 0f));
             WeaponPlatform platform = this.WeaponPlatform;
             if (platform != null)
             {
@@ -230,6 +232,8 @@ public class Verb_LaunchProjectileCE : Verb
 
     public bool MidBurst => numShotsFired > 0;
     protected virtual bool LockRotationAndAngle => !didRetarget && MidBurst;
+
+    public override float WarmupTime => Mathf.Max(0, base.WarmupTime * (1f + (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_WarmupMultiplier) - 1f ?? 0f) + (projectilePropsCE?.warmupMultiplier - 1f ?? 0f)) + (projectilePropsCE?.warmupOffset ?? 0f));
 
     #endregion
 
@@ -639,6 +643,8 @@ public class Verb_LaunchProjectileCE : Verb
     {
         ShiftVecReport report = new ShiftVecReport();
 
+        bool ignoreMalusesFlag = EquipmentSource != null && EquipmentSource.TryGetComp(out CompUniqueWeapon comp) && comp.IgnoreAccuracyMaluses;
+
         report.target = target;
         report.aimingAccuracy = AimingAccuracy;
         report.sightsEfficiency = SightsEfficiency;
@@ -652,7 +658,7 @@ public class Verb_LaunchProjectileCE : Verb
         report.maxRange = EffectiveRange;
         report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
-        if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
+        if (!ignoreMalusesFlag && (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map)))  //Change to more accurate algorithm?
         {
             report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
         }
@@ -666,7 +672,7 @@ public class Verb_LaunchProjectileCE : Verb
 
         GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity, out roofed);
         report.cover = cover;
-        report.smokeDensity = smokeDensity;
+        report.smokeDensity = ignoreMalusesFlag ? 0 : smokeDensity;
         report.roofed = roofed;
         return report;
     }
@@ -1012,7 +1018,7 @@ public class Verb_LaunchProjectileCE : Verb
         bool startedCasting = base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
         if (startedCasting)
         {
-            if (this.repeating && this.verbProps.warmupTime > 0f) // now warming up
+            if (this.repeating && this.WarmupTime > 0f) // now warming up
             {
                 this.RecalculateWarmupTicks();
             }
@@ -1134,6 +1140,21 @@ public class Verb_LaunchProjectileCE : Verb
             projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
             projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
 
+            if (EquipmentSource?.TryGetComp(out CompUniqueWeapon comp) ?? false)
+            {
+                foreach (WeaponTraitDef trait in comp.TraitsListForReading)
+                {
+                    if (trait.damageDefOverride != null)
+                    {
+                        projectile.damageDefOverride = trait.damageDefOverride;
+                    }
+                    if (!trait.extraDamages.NullOrEmpty())
+                    {
+                        projectile.extraDamages.AddRange(trait.extraDamages);
+                    }
+                }
+            }
+
             if (instant)
             {
                 var shotHeight = ShotHeight;
@@ -1169,7 +1190,7 @@ public class Verb_LaunchProjectileCE : Verb
         /*
          * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
          */
-        LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: VerbPropsCE.muzzleFlashScale);
+        LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: Mathf.Max(0, VerbPropsCE.muzzleFlashScale * projectilePropsCE.muzzleFlashMultiplier + projectilePropsCE.muzzleFlashOffset));
         pelletMechanicsOnly = false;
         numShotsFired++;
         if (ShooterPawn != null)
@@ -1180,6 +1201,12 @@ public class Verb_LaunchProjectileCE : Verb
             }
         }
         lastShotTick = Find.TickManager.TicksGame;
+
+        if (EquipmentSource != null && projectilePropsCE != null && Rand.Chance(projectilePropsCE.weaponDeteriorationChance))
+        {
+            return TryDamageWeapon(projectilePropsCE, targetLoc);
+        }
+
         return true;
     }
     protected virtual ProjectileCE SpawnProjectile()
@@ -1425,7 +1452,7 @@ public class Verb_LaunchProjectileCE : Verb
                 if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !(cover is Pawn && cover.HostileTo(caster)))
                 {
                     //Shooter pawns don't attempt to shoot targets partially obstructed by their own faction members or allies, except when close enough to fire over their shoulder
-                    if (cover is Pawn cellPawn && !cellPawn.Downed && cellPawn.Faction != null && ShooterPawn?.Faction != null && (ShooterPawn.Faction == cellPawn.Faction || ShooterPawn.Faction.RelationKindWith(cellPawn.Faction) == FactionRelationKind.Ally) && !cellPawn.AdjacentTo8WayOrInside(ShooterPawn))
+                    if (cover is Pawn { Downed: false, Faction: not null } cellPawn && ShooterPawn?.Faction != null && (ShooterPawn.Faction == cellPawn.Faction || ShooterPawn.Faction.RelationKindWith(cellPawn.Faction) == FactionRelationKind.Ally) && !cellPawn.AdjacentTo8WayOrInside(caster))
                     {
                         return false;
                     }
@@ -1481,6 +1508,83 @@ public class Verb_LaunchProjectileCE : Verb
                 {
                     return false;
                 }
+            }
+        }
+        return true;
+    }
+
+    private bool TryDamageWeapon(ProjectilePropertiesCE pprop, Vector3 targetLoc, bool canDestroy = true)
+    {
+        float damageToWeapon = pprop.weaponDeteriorationHP.RandomInRange;
+        //cache weapon position and map before caster is destroyed
+        Vector3? weaponPosition = EquipmentSource.DrawPosHeld;
+        ThingWithComps damageTaker = EquipmentSource;
+
+        if (caster is Building_TurretGunCE turret)
+        {
+            damageTaker = turret;
+            weaponPosition = turret.DrawPos;
+        }
+
+        if (!canDestroy && damageTaker.HitPoints < Mathf.Ceil(damageToWeapon))
+        {
+            return true;
+        }
+
+        Map casterMap = Caster.Map;
+
+        //decimal damage is applied here because there is no way to tell if it was triggered otherwise
+        float decimalPart = damageToWeapon % 1;
+        float integerPart = Mathf.Floor(damageToWeapon);
+        DamageInfo dInfo = new DamageInfo(DamageDefOf.Bullet, integerPart);
+
+        bool tookDamage = false;
+
+        if (integerPart > 0)
+        {
+            damageTaker?.TakeDamage(dInfo);
+            tookDamage = true;
+        }
+
+        //apply decimal part via chance, as item hp is integer
+        if (Rand.Chance(decimalPart))
+        {
+            dInfo.amountInt = 1;
+            damageTaker?.TakeDamage(dInfo);
+            tookDamage = true;
+        }
+
+        if (tookDamage)
+        {
+            if (weaponPosition != null)
+            {
+                //simplified gun position calculation, because the exact spot doesn't matter here
+                Vector3 gunPosition = (Vector3)weaponPosition +
+                                      (((Vector3)(targetLoc - weaponPosition)).normalized * 0.75f);
+                FleckCreationData dataStatic =
+                    FleckMaker.GetDataStatic(gunPosition, casterMap, CE_FleckDefOf.Fleck_HeatGlow_API);
+                casterMap.flecks.CreateFleck(dataStatic);
+            }
+
+            if (damageTaker?.HitPoints <= 0)
+            {
+                burstShotsLeft = 0;
+
+                //Cancel shooter's job when destroying weapon
+                if (caster is Pawn casterPawn && casterPawn.Spawned)
+                {
+                    if (casterPawn.stances.curStance is Stance_Warmup)
+                    {
+                        casterPawn.stances.CancelBusyStanceSoft();
+                    }
+
+                    if (casterPawn.CurJob != null)
+                    {
+                        casterPawn.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    }
+                }
+
+                return false;
             }
         }
         return true;

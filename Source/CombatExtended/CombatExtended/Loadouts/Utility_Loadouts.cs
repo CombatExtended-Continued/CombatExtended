@@ -117,11 +117,15 @@ public static class Utility_Loadouts
     public static string GetBulkTip(this Loadout loadout)
     {
         float workSpeedFactor = MassBulkUtility.WorkSpeedFactor(loadout.Bulk, medianBulkCapacity);
+        float hitChanceFactor = MassBulkUtility.HitChanceBulkFactor(loadout.Bulk, medianBulkCapacity);
+        float dodgeChanceFactor = MassBulkUtility.DodgeChanceFactor(loadout.Bulk, medianBulkCapacity);
 
         return "CE_DetailedBaseBulkTip".Translate(
                    CE_StatDefOf.CarryBulk.ValueToString(medianBulkCapacity, CE_StatDefOf.CarryBulk.toStringNumberSense),
                    CE_StatDefOf.CarryBulk.ValueToString(loadout.Bulk, CE_StatDefOf.CarryBulk.toStringNumberSense),
-                   workSpeedFactor.ToStringPercent());
+                   workSpeedFactor.ToStringPercent(),
+                   hitChanceFactor.ToStringPercent(),
+                   dodgeChanceFactor.ToStringPercent());
     }
 
     public static string GetBulkTip(this Pawn pawn)
@@ -129,8 +133,11 @@ public static class Utility_Loadouts
         CompInventory comp = pawn.TryGetComp<CompInventory>();
         if (comp != null)
         {
-            return "CE_DetailedBulkTip".Translate(CE_StatDefOf.CarryBulk.ValueToString(comp.capacityBulk, CE_StatDefOf.CarryBulk.toStringNumberSense), CE_StatDefOf.CarryBulk.ValueToString(comp.currentBulk, CE_StatDefOf.CarryBulk.toStringNumberSense),
-                                                  comp.workSpeedFactor.ToStringPercent());
+            return "CE_DetailedBulkTip".Translate(CE_StatDefOf.CarryBulk.ValueToString(comp.capacityBulk, CE_StatDefOf.CarryBulk.toStringNumberSense),
+                CE_StatDefOf.CarryBulk.ValueToString(comp.currentBulk, CE_StatDefOf.CarryBulk.toStringNumberSense),
+                comp.workSpeedFactor.ToStringPercent(),
+                comp.meleeHitChanceFactorBulk.ToStringPercent(),
+                comp.dodgeChanceFactorBulk.ToStringPercent());
         }
         else
         {
@@ -216,10 +223,12 @@ public static class Utility_Loadouts
     public static string GetWeightTip(this Loadout loadout)
     {
         float moveSpeedFactor = MassBulkUtility.MoveSpeedFactor(loadout.Weight, medianWeightCapacity);
+        float dodgeFactor = MassBulkUtility.DodgeWeightFactor(loadout.Weight, medianWeightCapacity);
         float encumberPenalty = MassBulkUtility.EncumberPenalty(loadout.Weight, medianWeightCapacity);
 
         return "CE_DetailedBaseWeightTip".Translate(CE_StatDefOf.CarryWeight.ValueToString(medianWeightCapacity, CE_StatDefOf.CarryWeight.toStringNumberSense), CE_StatDefOf.CarryWeight.ValueToString(loadout.Weight, CE_StatDefOf.CarryWeight.toStringNumberSense),
                 moveSpeedFactor.ToStringPercent(),
+                dodgeFactor.ToStringPercent(),
                 encumberPenalty.ToStringPercent());
     }
 
@@ -230,6 +239,7 @@ public static class Utility_Loadouts
         {
             return "CE_DetailedWeightTip".Translate(CE_StatDefOf.CarryWeight.ValueToString(comp.capacityWeight, CE_StatDefOf.CarryWeight.toStringNumberSense), CE_StatDefOf.CarryWeight.ValueToString(comp.currentWeight, CE_StatDefOf.CarryWeight.toStringNumberSense),
                                                     comp.moveSpeedFactor.ToStringPercent(),
+                                                    comp.dodgeChanceFactorWeight.ToStringPercent(),
                                                     comp.encumberPenalty.ToStringPercent());
         }
         else

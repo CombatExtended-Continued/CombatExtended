@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Inicinerator Turret ========== -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_IncineratorTurret"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<recoilAmount>0.12</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+							<warmupTime>0.6</warmupTime>
+							<range>22</range>
+							<minRange>4</minRange>
+							<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+							<burstShotCount>20</burstShotCount>
+							<soundCast>HissFlamethrower</soundCast>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_IncineratorTurret</defName>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>2.5</ShotSpread>
+					<SwayFactor>1.25</SwayFactor>
+					<Bulk>12.0</Bulk>
+					<Mass>30.0</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.12</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>22</range>
+					<minRange>4</minRange>
+					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+					<burstShotCount>20</burstShotCount>
+					<soundCast>HissFlamethrower</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>240</magazineSize>
+					<reloadTime>9.2</reloadTime>
+					<ammoSet>AmmoSet_Flamethrower</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+					<aimedBurstShotCount>10</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Incinerator"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>0.37</turretBurstCooldownTime>
+				</value>
+			</li>
+
+			<!--========== Common to all Sentry Turrets ========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Turret_Incinerator"]</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Turret_Incinerator"]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Turret_Incinerator"]/statBases </xpath>
+				<value>
+					<AimingAccuracy>1.0</AimingAccuracy>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

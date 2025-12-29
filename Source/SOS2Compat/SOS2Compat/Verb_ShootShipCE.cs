@@ -12,6 +12,7 @@ using UnityEngine;
 using SaveOurShip2;
 using Vehicles;
 using SaveOurShip2.Vehicles;
+using Vehicles.World;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
 public class Verb_ShootShipCE : Verb_ShootCE
@@ -458,7 +459,7 @@ public class Verb_ShootShipCE : Verb_ShootCE
             else if (mapComp.TargetMapComp.ShuttlesInRange.Where(shuttle => shuttle.Faction != turret.Faction).Any())
             {
                 VehiclePawn shuttleHit = mapComp.TargetMapComp.ShuttlesInRange.Where(shuttle => shuttle.Faction != turret.Faction).RandomElement();
-                int? targetIntellectualSkill = (shuttleHit.FindPawnWithBestStat(StatDefOf.ResearchSpeed)?.skills?.GetSkill(SkillDefOf.Intellectual)?.Level);
+                int? targetIntellectualSkill = (shuttleHit.FindPawnWithBestStat(StatDefOf.ResearchSpeed, null)?.skills?.GetSkill(SkillDefOf.Intellectual)?.Level);
                 int skill = 0;
                 if (targetIntellectualSkill.HasValue)
                 {

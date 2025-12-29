@@ -20,6 +20,7 @@ public class CompSuppressable : ThingComp
     private const int TicksForDecayStart = 30;           // How long since last suppression before decay starts
     private const float SuppressionDecayRate = 4f;       // How much suppression decays per tick
     private const int TicksPerMote = 150;                // How many ticks between throwing a mote
+    private const int hunkeringMinDuration = 240;        // How long in ticks until pawn can try to stop hunkering
 
     private const int MinTicksUntilMentalBreak = 600;    // How long until pawn can have a mental break
     private const float ChanceBreakPerTick = 0.001f;     // How likely we are to break each tick above the threshold
@@ -120,7 +121,7 @@ public class CompSuppressable : ThingComp
     {
         get
         {
-            if (currentSuppression > (SuppressionThreshold * 10))
+            if (currentSuppression > (SuppressionThreshold * 10) || (ticksHunkered > 0 && ticksHunkered < hunkeringMinDuration))
             {
                 if (isSuppressed)
                 {
@@ -214,7 +215,12 @@ public class CompSuppressable : ThingComp
             // If this pawn is not already attempting to run for cover, try to find an appropriate location with cover to run to
             if (curJobDef != CE_JobDefOf.RunForCover)
             {
-                Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                Job reactJob = null;
+                if (Controller.settings.SuppressionCausesRunning || (!pawn.Drafted && (pawn.IsFreeColonist || pawn.CurJob != null)))
+                {
+                    reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                }
+
                 if (reactJob == null && IsHunkering)
                 {
                     // no good locations with cover found, so hunker down
@@ -280,7 +286,7 @@ public class CompSuppressable : ThingComp
         {
             ticksUntilDecay -= delta;
         }
-        else if (currentSuppression > 0)
+        else if (currentSuppression > 0 || isSuppressed)
         {
             //Decay global suppression
             if (Controller.settings.DebugShowSuppressionBuildup && Gen.IsHashIntervalTick(parent, 30))
@@ -288,7 +294,7 @@ public class CompSuppressable : ThingComp
                 MoteMakerCE.ThrowText(parent.DrawPos, parent.Map, "-" + (SuppressionDecayRate * 30), Color.red);
             }
             currentSuppression -= Mathf.Min(SuppressionDecayRate * delta, currentSuppression);
-            isSuppressed = currentSuppression > 0;
+            isSuppressed = currentSuppression > 0 || (ticksHunkered > 0 && ticksHunkered < hunkeringMinDuration);
 
             // Clear crouch-walking
             if (!isSuppressed)

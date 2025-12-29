@@ -25,22 +25,25 @@ class ProjectileCE_Bursting : ProjectileCE
     public override void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
     {
         int armingDelay = 0;
+        float airburstDistanceOffset = 0f;
         if (def.projectile is ProjectilePropertiesCE props)
         {
             armingDelay = props.armingDelay;
             this.castShadow = props.castShadow;
             this.GravityPerWidth = props.GravityPerWidth;
+            airburstDistanceOffset = props.airburstDistanceOffset;
         }
         if (distance > 0)
         {
             float cosine = (float)Math.Cos((double)shotAngle);
 
-            float fuzeTiming = distance / ((shotSpeed / 60) * cosine);
+            float fuzeTiming = (distance + airburstDistanceOffset) / ((shotSpeed / 60) * cosine);
 #if DEBUG
             Log.Message("Distance    = " + distance);
             Log.Message("ShotSpeed   = " + shotSpeed / 60);
             Log.Message("Cosine      = " + cosine);
             Log.Message("Fuse timing = " + fuzeTiming);
+            Log.Message("Distance offset = " + airburstDistanceOffset);
             Log.Message("Launched ProjectileCEBursting with ticks to burst = " + fuzeTiming);
 #endif
 
@@ -62,7 +65,7 @@ class ProjectileCE_Bursting : ProjectileCE
     public override void Tick()
     {
         base.Tick();
-        if (--this.ticksToBurst == 0)
+        if (--this.ticksToBurst == 0 && !Destroyed)
         {
             base.Impact(null);
         }
