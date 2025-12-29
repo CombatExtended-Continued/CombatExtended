@@ -10,6 +10,25 @@ using HarmonyLib;
 namespace CombatExtended;
 public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
 {
+    public override bool ShouldShowFor(StatRequest req)
+    {
+        if (!(req.Def is ThingDef thingDef))
+        {
+            return false;
+        }
+
+        if (stat.category == StatCategoryDefOf.PawnCombat)
+        {
+            return req.Thing is Pawn;
+        }
+        else if (stat.category == StatCategoryDefOf.Weapon_Melee)
+        {
+            return !(req.Thing is Pawn) && !CE_Utility.GetThingDefTools(thingDef).NullOrEmpty();
+        }
+
+        return false;
+    }
+
     public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
     {
         return GetFinalDisplayValue(optionalReq);
@@ -17,7 +36,7 @@ public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
 
     public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
     {
-        var tools = (req.Def as ThingDef)?.tools;
+        List<Tool> tools = CE_Utility.GetThingDefTools(req.Def as ThingDef);
 
         if (tools.NullOrEmpty())
         {
@@ -94,7 +113,7 @@ public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
 
     private string GetFinalDisplayValue(StatRequest optionalReq)
     {
-        var tools = (optionalReq.Def as ThingDef)?.tools;
+        List<Tool> tools = CE_Utility.GetThingDefTools(optionalReq.Def as ThingDef);
         if (tools.NullOrEmpty())
         {
             return "";

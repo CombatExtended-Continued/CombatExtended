@@ -426,9 +426,9 @@ public class Building_TurretGunCE : Building_Turret
             return;
         }
         // Use verb warmup time instead of turret's
-        if (AttackVerb.verbProps.warmupTime > 0f)
+        if (AttackVerb.WarmupTime > 0f)
         {
-            burstWarmupTicksLeft = AttackVerb.verbProps.warmupTime.SecondsToTicks();
+            burstWarmupTicksLeft = AttackVerb.WarmupTime.SecondsToTicks();
             return;
         }
         if (targetingWorldMap && (!globalTargetInfo.IsValid || globalTargetInfo.WorldObject is DestroyedSettlement))
@@ -468,7 +468,11 @@ public class Building_TurretGunCE : Building_Turret
         if (!Projectile.projectile.flyOverhead)
         {
             targetScanFlags |= TargetScanFlags.NeedLOSToAll;
-            targetScanFlags |= TargetScanFlags.LOSBlockableByGas;
+            // Let manned turrets acquire targets through smoke.
+            if (attackTargetSearcher is not Pawn)
+            {
+                targetScanFlags |= TargetScanFlags.LOSBlockableByGas;
+            }
         }
         else
         {

@@ -442,7 +442,7 @@
 		</match>
 	</Operation>
 
-	<!-- Tweak the ranged weapon damage multiplier -->
+	<!-- Tweak the ranged weapon damage and pen multipliers -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/StatDef[defName="RangedWeapon_DamageMultiplier"]/parts</xpath>
@@ -458,6 +458,21 @@
 					<factorLegendary>1.15</factorLegendary>
 				</li>
 			</parts>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/StatDef[defName="RangedWeapon_ArmorPenetrationMultiplier"]/parts/li[@Class="StatPart_Quality"]</xpath>
+		<value>
+			<li Class="StatPart_Quality">
+				<factorAwful>0.9</factorAwful>
+				<factorPoor>1</factorPoor>
+				<factorNormal>1</factorNormal>
+				<factorGood>1</factorGood>
+				<factorExcellent>1</factorExcellent>
+				<factorMasterwork>1.05</factorMasterwork>
+				<factorLegendary>1.15</factorLegendary>
+			</li>
 		</value>
 	</Operation>
 

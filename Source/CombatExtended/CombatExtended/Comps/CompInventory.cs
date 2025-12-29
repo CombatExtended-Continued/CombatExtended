@@ -100,6 +100,20 @@ public class CompInventory : ThingComp
             return MassBulkUtility.DodgeWeightFactor(currentWeight, capacityWeight);
         }
     }
+    public float meleeHitChanceFactorBulk
+    {
+        get
+        {
+            return MassBulkUtility.HitChanceBulkFactor(currentBulk, capacityBulk);
+        }
+    }
+    public float dodgeChanceFactorBulk
+    {
+        get
+        {
+            return MassBulkUtility.DodgeChanceFactor(currentBulk, capacityBulk);
+        }
+    }
     public float workSpeedFactor
     {
         get
@@ -411,39 +425,14 @@ public class CompInventory : ThingComp
             return false;
         }
 
-        ThingWithComps newEq = null;
-
         // Stop current job
         if (parentPawn.jobs != null && stopJob)
         {
             parentPawn.jobs.StopAll();
         }
 
-        // Cycle through available ranged weapons
-        foreach (ThingWithComps gun in rangedWeaponListCached)
-        {
-            if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
-            {
-                CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
-                if ((!useAOE && gun.def.IsAOEWeapon()) || gun.def.IsIlluminationDevice())
-                {
-                    continue;
-                }
-                if ((predicate?.Invoke(gun, compAmmo) ?? true) && compAmmo == null || compAmmo.HasAndUsesAmmoOrMagazine)
-                {
-                    newEq = gun;
-                    break;
-                }
-            }
-        }
-        // If no ranged weapon was found, use first available melee weapons
-        if (newEq == null)
-        {
-            newEq = (predicate == null ? meleeWeaponListCached : meleeWeaponListCached.Where(w => predicate.Invoke(w, null))).FirstOrDefault();
-        }
-
         // Equip the weapon
-        if (newEq != null)
+        if (TryFindViableWeapon(out ThingWithComps newEq, useAOE, predicate))
         {
             if (!stopJob)
             {
@@ -457,7 +446,10 @@ public class CompInventory : ThingComp
         }
         else if (useFists)
         {
-            parentPawn.jobs.SuspendCurrentJob(JobCondition.InterruptForced);
+            if (parentPawn.jobs.curJob != null) //check there is a current job before attempting to suspend it
+            {
+                parentPawn.jobs.SuspendCurrentJob(JobCondition.InterruptForced);
+            }
             // Put away current weapon
             ThingWithComps eq = parentPawn.equipment?.Primary;
             if (eq != null && !parentPawn.equipment.TryTransferEquipmentToContainer(eq, container))
@@ -499,7 +491,11 @@ public class CompInventory : ThingComp
             }
             if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
             {
-                if (gun.def.IsAOEWeapon() && (predicate == null || predicate.Invoke(gun)))
+                if (!EquipmentUtility.CanEquip(gun, parentPawn))
+                {
+                    continue;
+                }
+                if (gun.def.IsAOEWeapon() && (predicate?.Invoke(gun) ?? true))
                 {
                     weapon = gun;
                     return true;
@@ -513,6 +509,10 @@ public class CompInventory : ThingComp
     {
         grenade = (ThingWithComps)container.FirstOrFallback(t => t.def.weaponTags?.Contains("GrenadeSmoke") ?? false, null);
         if (grenade == null)
+        {
+            return false;
+        }
+        if (!EquipmentUtility.CanEquip(grenade, parentPawn))
         {
             return false;
         }
@@ -545,6 +545,10 @@ public class CompInventory : ThingComp
                 {
                     continue;
                 }
+                if (!EquipmentUtility.CanEquip(gun, parentPawn))
+                {
+                    continue;
+                }
                 if ((predicate?.Invoke(gun, compAmmo) ?? true) && compAmmo == null || compAmmo.HasAndUsesAmmoOrMagazine)
                 {
                     weapon = gun;
@@ -555,7 +559,7 @@ public class CompInventory : ThingComp
         // If no ranged weapon was found, use first available melee weapons
         if (weapon == null)
         {
-            weapon = (predicate == null ? meleeWeaponListCached : meleeWeaponListCached.Where(w => predicate.Invoke(w, null))).FirstOrDefault();
+            weapon = meleeWeaponListCached.FirstOrDefault(w => EquipmentUtility.CanEquip(w, parentPawn) && (predicate?.Invoke(w, null) ?? true));
         }
         return weapon != null;
     }
@@ -571,6 +575,10 @@ public class CompInventory : ThingComp
                 {
                     continue;
                 }
+            }
+            if (!EquipmentUtility.CanEquip(gun, parentPawn))
+            {
+                continue;
             }
             if (gun.def.IsIlluminationDevice())
             {

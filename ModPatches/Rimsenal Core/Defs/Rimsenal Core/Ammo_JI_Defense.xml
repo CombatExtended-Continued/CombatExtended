@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MoltenShell</defName>
+		<label>molten shells</label>
+		<ammoTypes>
+			<Ammo_JI_Alloy>Bullet_MoltenShell_CE</Ammo_JI_Alloy>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base90mmCannonShell">
+		<defName>Bullet_MoltenShell_CE</defName>
+		<label>ULM Shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shell</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>151</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>400</damageAmountBase>
+			<armorPenetrationSharp>700</armorPenetrationSharp>
+			<armorPenetrationBlunt>80000</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>5</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragSpeedFactor>0.25</fragSpeedFactor>
+				<fragments>
+					<Fragment_Large>325</Fragment_Large>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_JIRocket</defName>
+		<label>molten barrage gun</label>
+		<ammoTypes>
+			<Ammo_JI_Alloy>Bullet_JISiegeRocket_CE</Ammo_JI_Alloy>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base90mmCannonShell">
+		<defName>Bullet_JISiegeRocket_CE</defName>
+		<label>ULM Shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shell</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>40</speed>
+			<gravityFactor>2</gravityFactor>
+			<damageDef>Bullet</damageDef>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>65</damageAmountBase>
+			<armorPenetrationBlunt>4050</armorPenetrationBlunt>
+			<armorPenetrationSharp>40</armorPenetrationSharp>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>20</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosionSound>Explosion_GiantBomb</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragSpeedFactor>0.25</fragSpeedFactor>
+				<fragments>
+					<Fragment_Large>200</Fragment_Large>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

@@ -226,7 +226,7 @@ public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
                 if ((pawn.skills.GetSkill(SkillDefOf.Shooting).Level >= pawn.skills.GetSkill(SkillDefOf.Melee).Level
                         || pawn.skills.GetSkill(SkillDefOf.Shooting).Level >= 6))
                 {
-                    ThingWithComps InvListGun3 = inventory.rangedWeaponList.Find(thing => thing.TryGetComp<CompAmmoUser>() != null && thing.TryGetComp<CompAmmoUser>().HasAmmoOrMagazine);
+                    ThingWithComps InvListGun3 = inventory.rangedWeaponList.Find(thing => thing.TryGetComp<CompAmmoUser>() != null && thing.TryGetComp<CompAmmoUser>().HasAmmoOrMagazine && EquipmentUtility.CanEquip(thing, pawn));
                     if (InvListGun3 != null)
                     {
                         inventory.TrySwitchToWeapon(InvListGun3);
@@ -250,7 +250,7 @@ public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
                 else
                 {
                     // For melee weapon
-                    ThingWithComps InvListMeleeWeapon = inventory.meleeWeaponList.Find(thing => thing.def.IsMeleeWeapon);
+                    ThingWithComps InvListMeleeWeapon = inventory.meleeWeaponList.Find(thing => thing.def.IsMeleeWeapon && EquipmentUtility.CanEquip(thing, pawn));
                     if (InvListMeleeWeapon != null)
                     {
                         inventory.TrySwitchToWeapon(InvListMeleeWeapon);
@@ -336,7 +336,7 @@ public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
             // Find weapon in inventory and try to switch if any ammo in inventory.
             if (priority == WorkPriority.Weapon && !hasPrimary)
             {
-                ThingWithComps InvListGun2 = inventory.rangedWeaponList.Find(thing => thing.TryGetComp<CompAmmoUser>() != null);
+                ThingWithComps InvListGun2 = inventory.rangedWeaponList.Find(thing => thing.TryGetComp<CompAmmoUser>() != null && EquipmentUtility.CanEquip(thing, pawn));
 
                 if (InvListGun2 != null)
                 {
@@ -357,6 +357,7 @@ public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
                 {
                     Predicate<Thing> validatorWS = (Thing w) => w.def.IsWeapon
                                                    && w.MarketValue > 500 && pawn.CanReserve(w, 1)
+                                                   && EquipmentUtility.CanEquip(w, pawn)
                                                    && pawn.Position.InHorDistOf(w.Position, 25f)
                                                    && pawn.CanReach(w, PathEndMode.Touch, Danger.Deadly, true)
                                                    && (pawn.Faction.HostileTo(Faction.OfPlayer) || pawn.Faction == Faction.OfPlayer || !pawn.Map.areaManager.Home[w.Position]);

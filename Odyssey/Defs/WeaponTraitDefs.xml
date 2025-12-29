@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.CustomWeaponTraitDef>
+		<defName>CE_FlamethrowerTrait</defName>
+		<label>flamethrower</label>
+		<description>This weapon has a flamethrower unit. The burner generates a blast of flame from a pressurized fuel tank.</description>
+		<commonality>0.5</commonality>
+		<weaponCategory>Attachable</weaponCategory>
+		<exclusionTags>
+			<li>Attachment</li>
+			<li>Ability</li>
+		</exclusionTags>
+		<traitAdjectives>
+			<li>fiery</li>
+			<li>flame</li>
+			<li>flaming</li>
+			<li>burning</li>
+		</traitAdjectives>
+		<statOffsets>
+			<MarketValue>80</MarketValue>
+		</statOffsets>
+		<underBarrelProps>
+			<underBarrelLabel>switch to flamethrower</underBarrelLabel>
+			<propsUnderBarrel>
+				<magazineSize>20</magazineSize>
+				<reloadTime>5</reloadTime>
+				<ammoSet>AmmoSet_Flamethrower</ammoSet>
+			</propsUnderBarrel>
+			<verbPropsUnderBarrel>
+				<recoilAmount>0.35</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+				<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+				<warmupTime>1.1</warmupTime>
+				<range>8</range>
+				<minRange>1</minRange>
+				<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+				<burstShotCount>20</burstShotCount>
+				<soundCast>HissFlamethrower</soundCast>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</verbPropsUnderBarrel>
+			<propsFireModesUnderBarrel>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aimedBurstShotCount>5</aimedBurstShotCount>
+				<noSingleShot>true</noSingleShot>
+			</propsFireModesUnderBarrel>
+		</underBarrelProps>
+	</CombatExtended.CustomWeaponTraitDef>
+
+</Defs>

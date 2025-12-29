@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -96,6 +97,8 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
     /// Whether <see cref="compMeleeTargettingGizmo"/> was initialized and is up to date for the current tick.
     /// </summary>
     private bool meleeTargettingInitialized;
+
+    private BodyPartHeight lastUsedBodyPartHeight;
 
     #endregion
 
@@ -338,11 +341,11 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
     /// Gets attacked body part height
     /// </summary>
     /// <returns></returns>
-    public BodyPartHeight GetAttackedPartHeightCE()
+    public BodyPartHeight GetAttackedPartHeightCE(Thing currentTarget)
     {
         var result = BodyPartHeight.Undefined;
 
-        if (CompMeleeTargettingGizmo != null && this.CurrentTarget.Thing is Pawn pawn)
+        if (CompMeleeTargettingGizmo != null && currentTarget is Pawn pawn)
         {
             return CompMeleeTargettingGizmo.finalHeight(pawn);
         }
@@ -409,7 +412,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         Vector3 direction = (target.Thing.Position - CasterPawn.Position).ToVector3();
         DamageDef def = damDef;
         //END 1:1 COPY
-        BodyPartHeight bodyRegion = GetAttackedPartHeightCE(); //Caula: Changed to the comp selector
+        BodyPartHeight bodyRegion = GetAttackedPartHeightCE(this.CurrentTarget.Thing); //Caula: Changed to the comp selector
         //GetBodyPartHeightFor(target);   //Custom // Add check for body height
         //START 1:1 COPY
 
@@ -573,7 +576,8 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                 }
             }
 
-            switch (GetAttackedPartHeightCE())
+            lastUsedBodyPartHeight = GetAttackedPartHeightCE(target.Thing);
+            switch (lastUsedBodyPartHeight)
             {
                 case BodyPartHeight.Bottom:
                     chance *= 0.8f;
@@ -594,6 +598,10 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
     private float GetDodgeChance(Pawn defender)
     {
+        if (defender.stances?.stunner?.Stunned ?? false)
+        {
+            return 0f;
+        }
         float chance = defender.GetStatValue(StatDefOf.MeleeDodgeChance);
 
         if (!ModsConfig.IdeologyActive)
@@ -653,7 +661,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             var pawn = target.Thing as Pawn;
 
             float equivalentTargetWeight = pawn.GetStatValue(StatDefOf.Mass);
-            RacePropertiesExtensionCE bodyShape = pawn.def.GetModExtension<RacePropertiesExtensionCE>();
+            RacePropertiesExtensionCE bodyShape = pawn?.def.GetModExtension<RacePropertiesExtensionCE>();
             if (bodyShape != null)
             {
                 equivalentTargetWeight *= (bodyShape.bodyShape.width / bodyShape.bodyShape.height);
@@ -693,6 +701,7 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                 || (!pawn.RaceProps.Humanlike && (pawn.def.GetModExtension<RacePropertiesExtensionCE>()?.canParry != true))
                 || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                 || IsTargetImmobile(pawn)
+                || (pawn.stances?.stunner?.Stunned ?? false)
                 || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)
         {
             return false;
@@ -747,15 +756,21 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             }
             else
             {
-                Verb_MeleeAttackCE verb = defender.meleeVerbs.TryGetMeleeVerb(caster) as Verb_MeleeAttackCE;
-                if (verb == null)
+                Verb verb = defender.meleeVerbs.TryGetMeleeVerb(caster);
+                Verb_MeleeAttackCE ceVerb = verb as Verb_MeleeAttackCE;
+                if (verb is Verb_MeleeApplyHediff hediffVerb)
+                {
+                    hediffVerb.ApplyMeleeDamageToTarget(caster);
+                    sound = hediffVerb.SoundHitPawn();
+                }
+                else if (ceVerb == null)
                 {
                     Log.Error("CE failed to get attack verb for riposte from Pawn " + defender.ToString());
                 }
                 else
                 {
-                    verb.ApplyMeleeDamageToTarget(caster);
-                    sound = verb.SoundHitPawn();
+                    ceVerb.ApplyMeleeDamageToTarget(caster);
+                    sound = ceVerb.SoundHitPawn();
                 }
             }
             // Held, because the caster may have died and despawned
@@ -771,6 +786,11 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         {
             tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender));
         }
+
+        if (CasterPawn != null && CasterPawn.IsColonistPlayerControlled)
+        {
+            LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_DetailedMeleeTooltip, OpportunityType.GoodToKnow);
+        }
     }
 
     protected static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)
@@ -783,6 +803,69 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         var defSkill = stat.Worker.IsDisabledFor(defender) ? 0 : defender.GetStatValue(stat) * defenderSkillMult;
         var chance = Mathf.Clamp01(baseChance + offSkill - defSkill);
         return chance;
+    }
+
+    public string GetTextReadout(Pawn attacker, Pawn target, CompEquippable equipment)
+    {
+        float dodgeChance = IsTargetImmobile(target) ? 0f : GetDodgeChance(target);
+
+        float counterParryBonus = 1 + (equipment?.parent.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 0);
+        bool canParry = CanDoParry(target);
+
+        float deflectChance = 0;
+        float riposteChance = 0;
+        float parryChance = 0;
+        float blockChance = 0;
+
+        if (canParry)
+        {
+            deflectChance = GetComparativeChanceAgainst(target, attacker, CE_StatDefOf.MeleeParryChance, BaseParryChance, counterParryBonus);
+            riposteChance = GetComparativeChanceAgainst(target, attacker, CE_StatDefOf.MeleeCritChance, BaseCritChance);
+            parryChance = riposteChance;
+            blockChance = 1 - parryChance;
+        }
+
+        float hitChance = GetHitChance(target);
+        float critChance = GetComparativeChanceAgainst(attacker, target, CE_StatDefOf.MeleeCritChance, BaseCritChance);
+
+        //chance of not missing, not getting dodged and not parried
+        float toDamageChance = hitChance * (1 - (dodgeChance + deflectChance));
+
+        StringBuilder stringBuilder = new StringBuilder();
+        if (Controller.settings.DetailedMeleeTooltip)
+        {
+            stringBuilder.AppendLine("   " + "CE_MissChance".Translate() + ":\t\t" + GenText.ToStringByStyle(1 - hitChance, ToStringStyle.PercentZero));
+            stringBuilder.AppendLine("   " + "CE_TargetDodgeChance".Translate() + ":\t" + GenText.ToStringByStyle(dodgeChance, ToStringStyle.PercentZero));
+            if (canParry)
+            {
+                stringBuilder.AppendLine("   " + "CE_RiposteChance".Translate() + ":\t\t" + GenText.ToStringByStyle(riposteChance, ToStringStyle.PercentZero));
+                stringBuilder.AppendLine("   " + "CE_DeflectedChance".Translate() + ":\t\t" + GenText.ToStringByStyle(deflectChance, ToStringStyle.PercentZero));
+
+                if (deflectChance > 0)
+                {
+                    stringBuilder.AppendLine("   " + "CE_DeflectionType".Translate() + ":");
+                    stringBuilder.AppendLine("      " + "CE_ParryChance".Translate() + ":\t\t" + GenText.ToStringByStyle(parryChance, ToStringStyle.PercentZero));
+                    stringBuilder.AppendLine("      " + "CE_BlockChance".Translate() + ":\t\t" + GenText.ToStringByStyle(blockChance, ToStringStyle.PercentZero));
+                }
+                if (counterParryBonus > 1)
+                {
+                    stringBuilder.AppendLine("   " + "CE_CounterParryBonus".Translate() + ":\t" + GenText.ToStringByStyle(counterParryBonus, ToStringStyle.FloatTwo) + "x");
+                }
+            }
+        }
+        stringBuilder.AppendLine("\n   " + "CE_FinalToHitChance".Translate() + ":\t\t" + GenText.ToStringByStyle(Mathf.Clamp01(toDamageChance), ToStringStyle.PercentZero));
+        switch (lastUsedBodyPartHeight)
+        {
+            case BodyPartHeight.Bottom:
+                stringBuilder.AppendLine("      " + "CE_MeleeTargetting".Translate() + ":\t\t" + GenText.ToStringByStyle(0.8f, ToStringStyle.FloatOne) + "x\n");
+                break;
+            case BodyPartHeight.Top:
+                stringBuilder.AppendLine("      " + "CE_MeleeTargetting".Translate() + ":\t\t" + GenText.ToStringByStyle(0.7f, ToStringStyle.FloatOne) + "x\n");
+                break;
+        }
+        stringBuilder.AppendLine("   " + "CE_CritChance".Translate() + ":\t\t" + GenText.ToStringByStyle(critChance, ToStringStyle.PercentZero));
+
+        return stringBuilder.ToString();
     }
 
     #endregion
