@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="DV_EMPBolts"]/extraDamages</xpath>
+					<value>
+						<extraDamages>
+							<li>
+								<def>EMP</def>
+								<amount>4</amount>
+							</li>
+						</extraDamages>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyTouch</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyShort</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyMedium</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyLong</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors</xpath>
+					<value>
+						<CE_RangedWeapon_RecoilMultiplier>1.25</CE_RangedWeapon_RecoilMultiplier>
+						<ShotSpread>1.15</ShotSpread>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/description</xpath>
+					<value>
+						<description>Special mechanisms allow this weapon to overcharge photon bolts to make them more powerful. The increased recoil makes it harder to control.</description>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="DV_ExtendedCell"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_ExtendedCell"]/burstShotCountMultiplier</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="DV_ExtendedCell"]</xpath>
+					<value>
+						<magazineCapacityFactor>1.50</magazineCapacityFactor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="DV_ExtendedCell"]/description</xpath>
+					<value>
+						<description>This weapon's energy cell holds 50% more charge than normal.</description>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
