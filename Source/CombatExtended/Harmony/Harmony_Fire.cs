@@ -74,7 +74,7 @@ internal static class Harmony_Fire_SpawnSmokeParticles
 [HarmonyPatch(typeof(Fire), "Tick")]
 internal static class Harmony_Fire_Tick
 {
-    private const float SmokeDensityPerInterval = 900f;
+    private const int SmokeDensityPerInterval = 1800;
 
     internal static void Postfix(Fire __instance)
     {
