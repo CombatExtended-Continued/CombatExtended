@@ -115,13 +115,17 @@ public class CompArmorDurability : ThingComp
     {
         if (durabilityProps.Regenerates)
         {
+            // Regenerate natural armor if more than RegenInterval ticks elapsed since the last regeneration.
+            // It's possible for the VTR to be larger than RegenInterval with mods that aggressively slow tick rate,
+            // in which case the regeneration value must be scaled accordingly.
             if (timer >= durabilityProps.RegenInterval)
             {
+                int elapsedIntervals = timer / durabilityProps.RegenInterval;
                 if (curDurability < maxDurability)
                 {
-                    curDurability += Math.Min(durabilityProps.RegenValue * delta, maxDurability - curDurability);
+                    curDurability += Math.Min(durabilityProps.RegenValue * elapsedIntervals, maxDurability - curDurability);
                 }
-                timer = 0;
+                timer -= elapsedIntervals * durabilityProps.RegenInterval;
             }
             timer += delta;
         }
@@ -264,7 +268,10 @@ public class CompProperties_ArmorDurability : CompProperties
 
     public bool Regenerates;
 
-    public float RegenInterval;
+    /// <summary>
+    /// Interval in ticks at which natural armor regenerates.
+    /// </summary>
+    public int RegenInterval;
 
     public float RegenValue;
 
