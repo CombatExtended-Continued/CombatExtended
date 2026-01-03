@@ -7,7 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
-class StatWorker_MoveSpeed : StatWorker
+public class StatWorker_MoveSpeed : StatWorker
 {
     private const float CrouchWalkFactor = 0.67f;   // The factor to apply when crouch-walking
 
