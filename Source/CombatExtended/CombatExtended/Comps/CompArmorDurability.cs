@@ -300,6 +300,19 @@ public class CompProperties_ArmorDurability : CompProperties
     public float MinArmorValueElectric = -1;
 
     public float MinArmorPct = 0.25f;
+
+    public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
+    {
+        foreach (string error in base.ConfigErrors(parentDef))
+        {
+            yield return error;
+        }
+
+        if (RegenInterval < 0)
+        {
+            yield return "has negative natural armor regeneration interval";
+        }
+    }
 }
 
 public class JobDriver_RepairNaturalArmor : JobDriver
