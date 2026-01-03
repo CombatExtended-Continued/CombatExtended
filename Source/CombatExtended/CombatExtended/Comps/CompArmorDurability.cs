@@ -310,7 +310,7 @@ public class CompProperties_ArmorDurability : CompProperties
 
         if (RegenInterval < 0)
         {
-            yield return "has negative natural armor regeneration interval";
+            yield return parentDef.defName + " has negative natural armor regeneration interval";
         }
     }
 }
