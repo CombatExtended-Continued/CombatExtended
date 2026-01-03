@@ -1031,15 +1031,16 @@ public abstract class ProjectileCE : ThingWithComps
         }
 
         var bounds = CE_Utility.GetBoundsFor(thing);
-        if (bounds.Contains(LastPos) || bounds.Contains(ExactPosition))
-        {
-            dist = 0f;
-            return true;
-        }
         if (!bounds.IntersectRay(ShotLine, out dist))
         {
             return false;
         }
+
+        if (bounds.Contains(LastPos) || bounds.Contains(ExactPosition))
+        {
+            return true;
+        }
+
         if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
         {
             return false;
