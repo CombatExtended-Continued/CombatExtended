@@ -388,5 +388,146 @@
 		</value>
 	</Operation>
 	
+	<!-- Laserpulse Longrifle -->
+	
+	<!-- Due to complications with patching (Yet another case of adding Defs with patches) I have been forced to do this-->
+	
+	<!-- Delete the Vanilla Def -->
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+	</Operation>
+	
+	<!-- Add the CE-fied Def -->
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Det's Xenotypes - Venators</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+        <operations>
+	<li Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs</xpath>
+      <value>
+	<ThingDef ParentName="BaseHumanMakeableGun" MayRequire="ebsg.framework">
+		<defName>DV_Gun_LaserpulseLongrifle</defName>
+		<label>laserpulse longrifle</label>
+		<description>A high tech long-range laser rifle. Photons are channeled through various gain mediums, forming a cascade of light particles that are focused into a single bolt. The long range scope is only compatible with the eyes of people with the farsighted gene, and it allows the wielder to fire at extremely long ranges.\n\nDue to the weapon's sheer size and weight, it is slow to aim and hard to move with when equipped.\n\nFar less common than the cartridge based precision longrifle, the laserpulse longrifle is often utilized by spaceborn venators hunting in zero-g environments.</description>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<possessionCount>1</possessionCount>
+		<techLevel>Spacer</techLevel>
+		<graphicData Inherit="False">
+			<texPath>Things/Item/Equipment/WeaponRanged/LaserPulseLongrifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.2</drawSize>
+		</graphicData>
+		<equippedStatOffsets Inherit="False">
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
+		<statBases>
+			<SightsEfficiency>3</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>13.7</Bulk>
+			<Mass>9.7</Mass>
+			<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Plasteel>70</Plasteel>
+			<Uranium>30</Uranium>
+			<ComponentSpacer>4</ComponentSpacer>
+		</costList>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<recoilAmount>0.01</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_Laser_LaserpulseLongrifle</defaultProjectile>
+				<warmupTime>1.8</warmupTime>
+				<range>88</range>
+				<soundCast>DV_Shot_PhotonSMG</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+			<li>Bipod_AMR</li>
+			<li>Longrifle</li>
+		</weaponTags>
+		<comps>
+		  <li>
+		  <compClass>CompQuality</compClass>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_AmmoUser">
+			<magazineSize>50</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_LaserpulseLongrifle</ammoSet>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_FireModes">
+				<aiAimMode>AimedShot</aiAimMode>
+		  </li>
+		</comps>
+		<modExtensions>
+		  <li Class="EBSGFramework.EquipRestrictExtension">
+			<requiredGenesToEquip>
+			  <li>DV_Farsighted</li>
+			</requiredGenesToEquip>
+		  </li>
+		</modExtensions>
+		<recipeMaker>
+			<researchPrerequisite>ChargedShot</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
+			<displayPriority>425</displayPriority>
+		</recipeMaker>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>2.02</cooldownTime>
+				<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+		</tools>
+	</ThingDef>
+      </value>
+    </nomatch>
+  </li>		
+	</operations>
+	</match>
+	</Operation>
 	
 </Patch>

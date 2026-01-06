@@ -389,7 +389,7 @@
 			<secondaryDamage>
 				<li>
 					<def>Flame_Secondary</def>
-					<amount>12</amount>
+					<amount>13</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -448,6 +448,26 @@
 		</products>
 		<workAmount>8400</workAmount>
 	</RecipeDef>
+	
+	<!-- ==================== Laserpulse Longrifle ========================== -->
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserpulseLongrifle</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_LaserpulseLongrifle</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+		<defName>Bullet_Laser_LaserpulseLongrifle</defName>
+		<label>laser bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef MayRequire="ludeon.rimworld.odyssey">BeamBypassShields</damageDef>
+			<damageAmountBase>36</damageAmountBase>
+		</projectile>
+	</ThingDef>
 		
 </Defs>
