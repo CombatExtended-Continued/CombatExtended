@@ -3,9 +3,10 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/VREAndroids.AndroidGeneDef[defName="VREA_PainDisabled"]</xpath>
 		<value>
-			<statFactors>
-				<Suppressability>0</Suppressability>
-			</statFactors>
+			<statOffsets>
+				<!-- VREA_PainDisabled is only for unawakened androids, we set it to 0 -->
+				<Suppressability>-1</Suppressability>
+			</statOffsets>
 		</value>
 	</Operation>
 </Patch>
