@@ -30,7 +30,7 @@
 
 	<ThingCategoryDef>
 		<defName>AmmoHotPlasmaCell</defName>
-		<label>Hot Plasma Cell</label>
+		<label>hot plasma cell</label>
 		<parent>AmmoAdvanced</parent>
 		<iconPath>Spacer Arsenal/PlasmaCell/HotPlasmaCell_c</iconPath>
 	</ThingCategoryDef>
@@ -39,7 +39,7 @@
 
 	<CombatExtended.AmmoCategoryDef>
 		<defName>PlasmaBolt</defName>
-		<label>Plasma Bolt</label>
+		<label>plasma bolt</label>
 		<description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
 	</CombatExtended.AmmoCategoryDef>
 
@@ -47,7 +47,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_PlasmaBlaster</defName>
-		<label>Hot Plasma Cell</label>
+		<label>hot plasma cell</label>
 		<ammoTypes>
 			<Ammo_HotPlasmaCell>Bullet_Bolt_PlasmaBlaster</Ammo_HotPlasmaCell>
 		</ammoTypes>
@@ -74,7 +74,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HotPlamsaCellBase">
 		<defName>Ammo_HotPlasmaCell</defName>
-		<label>Hot Plasma Cell</label>
+		<label>hot plasma cell</label>
 		<graphicData>
 			<texPath>Spacer Arsenal/PlasmaCell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -93,7 +93,7 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>CE_Laser</damageDef>
+			<damageDef>CE_Plasma</damageDef>
 			<speed>170</speed>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
@@ -102,14 +102,14 @@
 	<ThingDef ParentName="BasePlasmaBlastBullet">
 		<defName>Bullet_Bolt_PlasmaBlaster</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>5</damageAmountBase>
+			<damageDef>CE_Plasma</damageDef>
+			<damageAmountBase>8</damageAmountBase>
 			<armorPenetrationSharp>15</armorPenetrationSharp>
 			<armorPenetrationBlunt>5</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 					<def>Flame_Secondary</def>
-					<amount>17</amount>
+					<amount>10</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -185,7 +185,7 @@
 
 	<ThingCategoryDef>
 		<defName>AmmoPhotonCell</defName>
-		<label>Photon Cell</label>
+		<label>photon cell</label>
 		<parent>AmmoAdvanced</parent>
 		<iconPath>Spacer Arsenal/PhotonCell/PhotonCell_c</iconPath>
 	</ThingCategoryDef>
@@ -194,7 +194,7 @@
 
 	<CombatExtended.AmmoCategoryDef>
 		<defName>PhotonCell</defName>
-		<label>Photon Bolt</label>
+		<label>photon bolt</label>
 		<description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
 	</CombatExtended.AmmoCategoryDef>
 
@@ -202,7 +202,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_PhotonBlaster</defName>
-		<label>Photon charge</label>
+		<label>photon charge</label>
 		<ammoTypes>
 			<Ammo_PhotonCell>Bullet_Bolt_PhotonBlaster</Ammo_PhotonCell>
 		</ammoTypes>
@@ -229,7 +229,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="PhotonCellBase">
 		<defName>Ammo_PhotonCell</defName>
-		<label>Charged Photon Cell</label>
+		<label>charged photon cell</label>
 		<graphicData>
 			<texPath>Spacer Arsenal/PhotonCell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -241,14 +241,14 @@
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Name="BasePhotonBoltBullet" ParentName="BaseBulletCE" Abstract="true">
-		<label>Photon Bullet</label>
+		<label>photon bolt</label>
 		<graphicData>
 			<texPath>Things/Projectiles/Bullet_Photon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Photon</damageDef>
+			<damageDef>CE_Photon</damageDef>
 			<speed>156</speed>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
@@ -257,7 +257,7 @@
 	<ThingDef ParentName="BasePhotonBoltBullet">
 		<defName>Bullet_Bolt_PhotonBlaster</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Photon</damageDef>
+			<damageDef>CE_Photon</damageDef>
 			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationSharp>10.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>7</armorPenetrationBlunt>
@@ -314,7 +314,7 @@
 	
 	<ThingCategoryDef>
 		<defName>AmmoNeutronCell</defName>
-		<label>Neutron Cell</label>
+		<label>neutron cell</label>
 		<parent>AmmoAdvanced</parent>
 		<iconPath>Spacer Arsenal/NeutronCell/NeutronCell_c</iconPath>
 	</ThingCategoryDef>
@@ -322,14 +322,14 @@
 	<!-- ==================== Ammo Category ========================== -->
 	<CombatExtended.AmmoCategoryDef>
 		<defName>NeutronParticle</defName>
-		<label>Neutron Particle</label>
+		<label>neutron particle</label>
 		<description>A neutron particle, burns flesh upon impact.</description>
 	</CombatExtended.AmmoCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_NeutronCell</defName>
-		<label>Neutron Particle</label>
+		<label>neutron particle</label>
 		<ammoTypes>
 			<Ammo_NeutronCell>Bullet_NeutronStreamer</Ammo_NeutronCell>
 		</ammoTypes>
@@ -355,7 +355,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="NeutronCellBase">
 		<defName>Ammo_NeutronCell</defName>
-		<label>Neutron Cell</label>
+		<label>neutron cell</label>
 		<graphicData>
 			<texPath>Spacer Arsenal/NeutronCell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -382,16 +382,10 @@
 	<ThingDef ParentName="BaseNeutronStreamerBullet">
 		<defName>Bullet_NeutronStreamer</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationSharp>9</armorPenetrationSharp>
-			<armorPenetrationBlunt>144</armorPenetrationBlunt>
-			<secondaryDamage>
-				<li>
-					<def>Flame_Secondary</def>
-					<amount>13</amount>
-				</li>
-			</secondaryDamage>
+			<damageDef>CE_Neutron</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>25</armorPenetrationSharp>
+			<armorPenetrationBlunt>2</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 

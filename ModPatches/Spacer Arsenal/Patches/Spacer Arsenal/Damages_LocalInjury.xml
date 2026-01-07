@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- ========== Radburn Hediff ========== -->
+    
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/HediffDef[defName="DV_RadBurn_Hediff"]/comps/li[@Class="HediffCompProperties_Infecter"]</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/HediffDef[defName="DV_RadBurn_Hediff"]/comps</xpath>
+		<value>
+		<li Class="CombatExtended.HediffCompProperties_InfecterCE">
+			<infectionChancePerHourUntended>0.27</infectionChancePerHourUntended>
+		</li>
+		</value>
+	</Operation>
+  
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/HediffDef[defName="DV_RadBurn_Hediff"]/comps/li[@Class="HediffCompProperties_GetsPermanent"]</xpath>
+	</Operation>
+  
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/HediffDef[defName="DV_RadBurn_Hediff"]/comps</xpath>
+		<value>
+		<li Class="HediffCompProperties_GetsPermanent">
+			<becomePermanentChanceFactor>0.021</becomePermanentChanceFactor>
+			<permanentLabel>old radburn scar</permanentLabel>
+			<instantlyPermanentLabel>permanent radburn scar</instantlyPermanentLabel>
+		</li>
+		</value>
+	</Operation>
+
+    
+</Patch>
