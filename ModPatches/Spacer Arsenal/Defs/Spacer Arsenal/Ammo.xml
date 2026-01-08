@@ -5,9 +5,9 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_8mmRailgun_CoilgunLance</defName>
-		<label>8mm Railgun</label>
+		<label>6mm Coilgun</label>
 		<ammoTypes>
-			<Ammo_8mmRailgun_Sabot>Bullet_CoilGunLance</Ammo_8mmRailgun_Sabot>
+			<Ammo_6mmRailgun_Sabot>Bullet_CoilGunLance</Ammo_6mmRailgun_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -18,9 +18,9 @@
 			<isInstant>true</isInstant>
 			<damageFalloff>False</damageFalloff>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationSharp>47</armorPenetrationSharp>
-			<armorPenetrationBlunt>310</armorPenetrationBlunt>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>55</armorPenetrationSharp>
+			<armorPenetrationBlunt>252.720</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -32,16 +32,8 @@
 		<defName>AmmoHotPlasmaCell</defName>
 		<label>hot plasma cell</label>
 		<parent>AmmoAdvanced</parent>
-		<iconPath>Spacer Arsenal/PlasmaCell/HotPlasmaCell_c</iconPath>
+		<iconPath>ThirdParty/Spacer Arsenal/PlasmaCell/HotPlasmaCell_c</iconPath>
 	</ThingCategoryDef>
-
-	<!-- ==================== Ammo Category ========================== -->
-
-	<CombatExtended.AmmoCategoryDef>
-		<defName>PlasmaBolt</defName>
-		<label>plasma bolt</label>
-		<description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
-	</CombatExtended.AmmoCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
@@ -76,10 +68,10 @@
 		<defName>Ammo_HotPlasmaCell</defName>
 		<label>hot plasma cell</label>
 		<graphicData>
-			<texPath>Spacer Arsenal/PlasmaCell</texPath>
+			<texPath>ThirdParty/Spacer Arsenal/PlasmaCell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<ammoClass>PlasmaBolt</ammoClass>
+		<ammoClass>Plasma</ammoClass>
 		<cookOffProjectile>Bullet_Bolt_PlasmaBlaster</cookOffProjectile>
 	</ThingDef>
 
@@ -93,8 +85,8 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>CE_Plasma</damageDef>
-			<speed>170</speed>
+			<damageDef>Burn</damageDef>
+			<speed>151</speed>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -102,14 +94,14 @@
 	<ThingDef ParentName="BasePlasmaBlastBullet">
 		<defName>Bullet_Bolt_PlasmaBlaster</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>CE_Plasma</damageDef>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationSharp>15</armorPenetrationSharp>
-			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			<empShieldBreakChance>0.2</empShieldBreakChance>
 			<secondaryDamage>
 				<li>
-					<def>Flame_Secondary</def>
-					<amount>10</amount>
+					<def>EMP</def>
+					<amount>3</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -187,7 +179,7 @@
 		<defName>AmmoPhotonCell</defName>
 		<label>photon cell</label>
 		<parent>AmmoAdvanced</parent>
-		<iconPath>Spacer Arsenal/PhotonCell/PhotonCell_c</iconPath>
+		<iconPath>ThirdParty/Spacer Arsenal/PhotonCell/PhotonCell_c</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== Ammo Category ========================== -->
@@ -231,7 +223,7 @@
 		<defName>Ammo_PhotonCell</defName>
 		<label>charged photon cell</label>
 		<graphicData>
-			<texPath>Spacer Arsenal/PhotonCell</texPath>
+			<texPath>ThirdParty/Spacer Arsenal/PhotonCell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>PhotonCell</ammoClass>
@@ -248,7 +240,7 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>CE_Photon</damageDef>
+			<damageDef>DV_PhotonDamage</damageDef>
 			<speed>156</speed>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
@@ -257,10 +249,9 @@
 	<ThingDef ParentName="BasePhotonBoltBullet">
 		<defName>Bullet_Bolt_PhotonBlaster</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>CE_Photon</damageDef>
-			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationSharp>10.5</armorPenetrationSharp>
-			<armorPenetrationBlunt>7</armorPenetrationBlunt>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -316,7 +307,7 @@
 		<defName>AmmoNeutronCell</defName>
 		<label>neutron cell</label>
 		<parent>AmmoAdvanced</parent>
-		<iconPath>Spacer Arsenal/NeutronCell/NeutronCell_c</iconPath>
+		<iconPath>ThirdParty/Spacer Arsenal/NeutronCell/NeutronCell_c</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== Ammo Category ========================== -->
@@ -357,7 +348,7 @@
 		<defName>Ammo_NeutronCell</defName>
 		<label>neutron cell</label>
 		<graphicData>
-			<texPath>Spacer Arsenal/NeutronCell</texPath>
+			<texPath>ThirdParty/Spacer Arsenal/NeutronCell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>NeutronParticle</ammoClass>
@@ -382,10 +373,9 @@
 	<ThingDef ParentName="BaseNeutronStreamerBullet">
 		<defName>Bullet_NeutronStreamer</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>CE_Neutron</damageDef>
-			<damageAmountBase>9</damageAmountBase>
-			<armorPenetrationSharp>25</armorPenetrationSharp>
-			<armorPenetrationBlunt>2</armorPenetrationBlunt>
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationSharp>0.001</armorPenetrationSharp>
+			<armorPenetrationBlunt>30</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
