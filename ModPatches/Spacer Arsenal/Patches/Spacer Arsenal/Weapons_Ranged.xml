@@ -492,26 +492,24 @@
 						<li>Longrifle</li>
 					</weaponTags>
 				</li>
+				<li Class="PatchOperationAddModExtension">
+				  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+					  <value>
+						  <li Class="EBSGFramework.EquipRestrictExtension">
+								<requiredGenesToEquip>
+									<li>DV_Farsighted</li>
+								</requiredGenesToEquip>
+						  </li>
+					  </value>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+					  <value>
+						<equippedAngleOffset>45</equippedAngleOffset>
+					  </value>
+				</li>
 			</operations>
 		</match>
-	</Operation>
-	
-	<Operation Class="PatchOperationAddModExtension">
-	  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
-		  <value>
-			  <li Class="EBSGFramework.EquipRestrictExtension">
-					<requiredGenesToEquip>
-						<li>DV_Farsighted</li>
-					</requiredGenesToEquip>
-			  </li>
-		  </value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-	  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
-		  <value>
-			<equippedAngleOffset>45</equippedAngleOffset>
-		  </value>
 	</Operation>
 	
 </Patch>
