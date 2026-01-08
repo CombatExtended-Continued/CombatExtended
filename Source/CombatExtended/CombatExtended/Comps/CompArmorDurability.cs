@@ -115,13 +115,17 @@ public class CompArmorDurability : ThingComp
     {
         if (durabilityProps.Regenerates)
         {
+            // Regenerate natural armor if more than RegenInterval ticks elapsed since the last regeneration.
+            // It's possible for the VTR to be larger than RegenInterval with mods that aggressively slow tick rate,
+            // in which case the regeneration value must be scaled accordingly.
             if (timer >= durabilityProps.RegenInterval)
             {
+                int elapsedIntervals = timer / durabilityProps.RegenInterval;
                 if (curDurability < maxDurability)
                 {
-                    curDurability += Math.Min(durabilityProps.RegenValue * delta, maxDurability - curDurability);
+                    curDurability += Math.Min(durabilityProps.RegenValue * elapsedIntervals, maxDurability - curDurability);
                 }
-                timer = 0;
+                timer -= elapsedIntervals * durabilityProps.RegenInterval;
             }
             timer += delta;
         }
@@ -264,7 +268,10 @@ public class CompProperties_ArmorDurability : CompProperties
 
     public bool Regenerates;
 
-    public float RegenInterval;
+    /// <summary>
+    /// Interval in ticks at which natural armor regenerates.
+    /// </summary>
+    public int RegenInterval;
 
     public float RegenValue;
 
@@ -293,6 +300,19 @@ public class CompProperties_ArmorDurability : CompProperties
     public float MinArmorValueElectric = -1;
 
     public float MinArmorPct = 0.25f;
+
+    public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
+    {
+        foreach (string error in base.ConfigErrors(parentDef))
+        {
+            yield return error;
+        }
+
+        if (RegenInterval < 0)
+        {
+            yield return parentDef.defName + " has negative natural armor regeneration interval";
+        }
+    }
 }
 
 public class JobDriver_RepairNaturalArmor : JobDriver
