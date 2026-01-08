@@ -1,34 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-    <!-- ========== Radburn Hediff ========== -->
-    
-	<Operation Class="PatchOperationRemove">
-		<xpath>/Defs/HediffDef[defName="DV_RadBurn_Hediff"]/comps/li[@Class="HediffCompProperties_Infecter"]</xpath>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>/Defs/HediffDef[defName="DV_RadBurn_Hediff"]/comps</xpath>
+	<!-- ========== Photon Shot ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="DV_PhotonDamage"]</xpath>
 		<value>
-		<li Class="CombatExtended.HediffCompProperties_InfecterCE">
-			<infectionChancePerHourUntended>0.27</infectionChancePerHourUntended>
-		</li>
-		</value>
-	</Operation>
-  
-	<Operation Class="PatchOperationRemove">
-		<xpath>/Defs/HediffDef[defName="DV_RadBurn_Hediff"]/comps/li[@Class="HediffCompProperties_GetsPermanent"]</xpath>
-	</Operation>
-  
-	<Operation Class="PatchOperationAdd">
-		<xpath>/Defs/HediffDef[defName="DV_RadBurn_Hediff"]/comps</xpath>
-		<value>
-		<li Class="HediffCompProperties_GetsPermanent">
-			<becomePermanentChanceFactor>0.021</becomePermanentChanceFactor>
-			<permanentLabel>old radburn scar</permanentLabel>
-			<instantlyPermanentLabel>permanent radburn scar</instantlyPermanentLabel>
-		</li>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+				<canCauseWallFragmentation>false</canCauseWallFragmentation>
+			</li>
 		</value>
 	</Operation>
 
-    
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/DamageDef[defName="DV_PhotonDamage"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Sharp</armorCategory>
+		</value>
+	</Operation>
+
+	<!-- ========== Vaporize ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="DV_PlasmaVaporize"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/DamageDef[defName="DV_PlasmaVaporize"]/defaultDamage</xpath>
+		<value>
+			<defaultDamage>1000</defaultDamage>
+		</value>
+	</Operation>
+
 </Patch>
