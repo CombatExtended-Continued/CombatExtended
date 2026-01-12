@@ -73,7 +73,6 @@ public struct CollisionVertical
         }
         float collisionHeight = 0f;
         float shotHeightOffset = 0;
-        float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);
 
         var pawn = thing as Pawn;
         if (pawn != null)
@@ -82,10 +81,6 @@ public struct CollisionVertical
 
             shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
 
-            if (pawn.Flying)
-            {
-                heightAdjust += 0.5f * pawn.flight.PositionOffsetFactor;
-            }
 
             // Humanlikes in combat crouch to reduce their profile
             if (pawn.IsCrouching())
@@ -101,7 +96,7 @@ public struct CollisionVertical
                         Thing cover = curCell.GetCover(map);
                         if (cover != null && cover.def.Fillage == FillCategory.Partial && !cover.IsPlant())
                         {
-                            var coverHeight = new CollisionVertical(cover).Max - heightAdjust;
+                            var coverHeight = new CollisionVertical(cover).Max;
                             if (coverHeight > crouchHeight)
                             {
                                 crouchHeight = coverHeight;
@@ -126,7 +121,7 @@ public struct CollisionVertical
             }
         }
         float fillPercent2 = collisionHeight;
-        heightRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2) + heightAdjust, Mathf.Max(edificeHeight, edificeHeight + fillPercent2) + heightAdjust);
+        heightRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2), Mathf.Max(edificeHeight, edificeHeight + fillPercent2));
         shotHeight = heightRange.max - shotHeightOffset;
     }
 
