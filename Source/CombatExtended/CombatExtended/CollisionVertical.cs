@@ -102,7 +102,7 @@ public struct CollisionVertical
                         Thing cover = curCell.GetCover(map);
                         if (cover != null && cover.def.Fillage == FillCategory.Partial && !cover.IsPlant())
                         {
-                            var coverHeight = new CollisionVertical(cover).Max;
+                            var coverHeight = new CollisionVertical(cover).Max - heightAdjust;
                             if (coverHeight > crouchHeight)
                             {
                                 crouchHeight = coverHeight;
