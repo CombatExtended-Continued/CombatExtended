@@ -73,6 +73,7 @@ public struct CollisionVertical
         }
         float collisionHeight = 0f;
         float shotHeightOffset = 0;
+        float heightAdjust = 0;
 
         var pawn = thing as Pawn;
         if (pawn != null)
@@ -80,6 +81,11 @@ public struct CollisionVertical
             collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
 
             shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
+
+            if (pawn.Flying)
+            {
+                heightAdjust += 0.5f * pawn.flight.PositionOffsetFactor;
+            }
 
 
             // Humanlikes in combat crouch to reduce their profile
@@ -121,7 +127,7 @@ public struct CollisionVertical
             }
         }
         float fillPercent2 = collisionHeight;
-        heightRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2), Mathf.Max(edificeHeight, edificeHeight + fillPercent2));
+        heightRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2) + heightAdjust, Mathf.Max(edificeHeight, edificeHeight + fillPercent2) + heightAdjust);
         shotHeight = heightRange.max - shotHeightOffset;
     }
 
