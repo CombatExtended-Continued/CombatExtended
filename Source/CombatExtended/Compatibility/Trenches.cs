@@ -39,6 +39,25 @@ public class CETrenches
         return false;
     }
 
+    private static bool CheckTrench(IntVec3 cell, Map map, out float heightAdjust)
+    {
+        heightAdjust = 0f;
+        List<Thing> thingList = cell.GetThingList(map);
+        foreach (Thing thing in thingList)
+        {
+            ModExtensionCover modExtProperties = thing.def.GetModExtension<ModExtensionCover>();
+            if (modExtProperties == null)
+            {
+                continue;
+            }
+
+            heightAdjust = modExtProperties.heightOffset;
+            return true;
+        }
+
+        return false;
+    }
+
     public static float GetHeightAdjust(IntVec3 cell, Map map)
     {
         if (cell == null || map == null)
@@ -46,14 +65,18 @@ public class CETrenches
             return 0;
         }
 
-        if (vfeInstalled)
+        float heightAdjust = 0;
+
+        if (vfeInstalled && checkVFE(cell, map, out heightAdjust))
         {
-            float heightAdjust = 0;
-            if (checkVFE(cell, map, out heightAdjust))
-            {
-                return heightAdjust;
-            }
+            return heightAdjust;
         }
+
+        if (CheckTrench(cell, map, out heightAdjust))
+        {
+            return heightAdjust;
+        }
+
         return 0f;
     }
 }
