@@ -620,7 +620,8 @@ public class Verb_LaunchProjectileCE : Verb
         rotation += recoilMagnitude * Rand.Range(minX, maxX);
         var trd = Rand.Range(minY, maxY);
         angle += recoilMagnitude * Mathf.Deg2Rad * trd;
-        lastRecoilDeg += nextRecoilMagnitude * trd;
+        Log.Message($"{EquipmentSource.def.label}: {lastRecoilDeg + nextRecoilMagnitude * recoil} = {lastRecoilDeg} + {nextRecoilMagnitude} * {recoil}");
+        lastRecoilDeg += nextRecoilMagnitude * recoil; //always store max recoil for subsequent shot purposes
     }
 
     /// <summary>

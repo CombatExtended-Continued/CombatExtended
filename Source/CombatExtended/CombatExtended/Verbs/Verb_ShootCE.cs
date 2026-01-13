@@ -30,6 +30,8 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
 
     public Vector3 drawPos;
 
+    internal static SimpleCurve SubsequentShotCurve = new SimpleCurve(); // Populated on game start from a SetupStepDef
+
     #endregion
 
     #region Properties
@@ -327,13 +329,15 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
 
         var d = v - u;
         var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
-        var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
-        lastRecoilDeg = 0;
+        var delta = Mathf.Abs(newShotRotation - lastShotRotation);
+
         var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ?
-                                                   0.1f :
-                                                   (_isAiming ? 0.5f : 0.25f));
-        var reduction = Mathf.Max(maxReduction, delta / 45f);
+                                                   0.1f + RecoilAmount*RecoilAmount/10 :
+                                                   (_isAiming ? 0.5f : 0.25f)) + RecoilAmount*RecoilAmount/10;
+        var reduction = Mathf.Max(maxReduction, delta / 45f + SubsequentShotCurve.Evaluate(lastRecoilDeg) * Controller.settings.FasterRepeatShotsRecoilMult);
+        lastRecoilDeg = 0;
         storedShotReduction = reduction;
+        Log.Message($"reduction {reduction}; maxReduction {maxReduction} lastRecoilDeg {lastRecoilDeg}; storedShotReduction {storedShotReduction};");
 
         if (reduction < 1.0f)
         {
