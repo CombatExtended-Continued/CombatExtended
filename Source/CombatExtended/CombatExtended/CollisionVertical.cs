@@ -22,8 +22,8 @@ public struct CollisionVertical
     public FloatRange HeightRange => new FloatRange(heightRange.min, heightRange.max);
     public float Min => heightRange.min;
     public float Max => heightRange.max;
-    public float BottomHeight => Max * BodyRegionBottomHeight;
-    public float MiddleHeight => Max * BodyRegionMiddleHeight;
+    public float BottomHeight => Max - (heightRange.Span * (1 - BodyRegionBottomHeight));
+    public float MiddleHeight => Max - (heightRange.Span * (1 - BodyRegionMiddleHeight));
 
     public CollisionVertical(Thing thing)
     {
