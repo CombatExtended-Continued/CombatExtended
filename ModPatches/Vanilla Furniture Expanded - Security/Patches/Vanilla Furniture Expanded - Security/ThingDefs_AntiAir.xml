@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Switch the 'fuel' system to consume ammo as fuel -->
+	
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelFilter/thingDefs</xpath>
+			<value>
+				<categories>
+					<li>Ammo20x102mmNATO</li>
+				</categories>
+			</value>
+		</standard>
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelFilter/thingDefs</xpath>
+			<value>
+				<categories>
+					<li>AmmoAutocannon</li>
+				</categories>
+			</value>
+		</generic>
+	</Operation>
+	
+	<!-- Update labels -->
+	
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelLabel</xpath>
+			<value>
+				<fuelLabel>20x102mm NATO</fuelLabel>
+			</value>
+		</standard>
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelLabel</xpath>
+			<value>
+				<fuelLabel>Autocannon shells</fuelLabel>
+			</value>
+		</generic>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelGizmoLabel</xpath>
+			<value>
+				<fuelGizmoLabel>20x102mm NATO</fuelGizmoLabel>
+			</value>
+		</standard>
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelGizmoLabel</xpath>
+			<value>
+				<fuelGizmoLabel>Autocannon shells</fuelGizmoLabel>
+			</value>
+		</generic>
+	</Operation>
+	
+	<!-- Larger 'magazine', to account for Combat Extended balance  -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelCapacity</xpath>
+		<value>
+			<fuelCapacity>240</fuelCapacity>
+		</value>
+	</Operation>
+	
+	<!-- Set initial fuel to 0 -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/initialFuelPercent</xpath>
+		<value>
+			<initialFuelPercent>0</initialFuelPercent>
+		</value>
+	</Operation>
+	
+	<!-- Ammo hyperlinks -->
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/descriptionHyperlinks</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]</xpath>
+			<value>
+				<descriptionHyperlinks/>
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/descriptionHyperlinks</xpath>
+			<value>
+				<CombatExtended.AmmoSetDef>AmmoSet_20x102mmNATO</CombatExtended.AmmoSetDef>
+			</value>
+		</standard>
+		<generic Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/descriptionHyperlinks</xpath>
+			<value>
+				<CombatExtended.AmmoSetDef>AmmoSet_Autocannon</CombatExtended.AmmoSetDef>
+			</value>
+		</generic>
+	</Operation>
+	
+	<!-- Range tweaks -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="VFESecurity.CompProperties_PointDefense"]/interceptionRadius</xpath>
+		<value>
+			<interceptionRadius>84.5</interceptionRadius>
+		</value>
+	</Operation>
+	
+	<!-- For future reference, this 'turret' is basically for show. The verb doesn't even do anything. The point defense comp on the turret is what does all the magic -->
+	<!-- I'm just patching it so the visual display of the turret's range matches its function -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Gun_PointDefense"]/verbs/li/range</xpath>
+		<value>
+			<range>84.5</range>
+		</value>
+	</Operation>
+</Patch>
