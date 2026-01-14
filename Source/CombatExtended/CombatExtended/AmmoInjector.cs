@@ -233,6 +233,7 @@ public static class AmmoInjector
         BenchesByTag["CE_AutoEnableCrafting_ElectricSmithy"] = ResolveBenches(opts.CE_AutoEnableCrafting_ElectricSmithy, "CE_AutoEnableCrafting_ElectricSmithy");
         BenchesByTag["CE_AutoEnableCrafting_DrugLab"] = ResolveBenches(opts.CE_AutoEnableCrafting_DrugLab, "CE_AutoEnableCrafting_DrugLab");
         BenchesByTag["CE_AutoEnableCrafting_TableMachining"] = ResolveBenches(opts.CE_AutoEnableCrafting_TableMachining, "CE_AutoEnableCrafting_TableMachining");
+        BenchesByTag["CE_AutoEnableCrafting_FabricationBench"] = ResolveBenches(opts.CE_AutoEnableCrafting_FabricationBench, "CE_AutoEnableCrafting_FabricationBench");
     }
 
     private static HashSet<ThingDef> ResolveBenches(List<string> defNames, string tag)
