@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+    <!-- Jaghatai Khan: Alakh Geh -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/GeneDef[defName="BEWH_AlakhGeh"]/stages/li/statFactors</xpath>
+        <value>
+            <Suppressability>0</Suppressability>
+        </value>
+    </Operation>
+
+    <!-- Horus: War Planning -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/HediffDef[defName="BEWH_WarPlanning"]/stages/li/statFactors/ShootingAccuracyFactor_Short</xpath>
+        <value>
+            <ShootingAccuracyPawn>1.3</ShootingAccuracyPawn>
+        </value>
+    </Operation>
+
+    <!-- Living Saint Inviolable Aura Other -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/HediffDef[defName="BEWH_LivingSaintInviolableAuraOther"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+        <value>
+            <ArmorRating_Blunt>16</ArmorRating_Blunt>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/HediffDef[defName="BEWH_LivingSaintInviolableAuraOther"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+        <value>
+            <ArmorRating_Sharp>4</ArmorRating_Sharp>
+        </value>
+    </Operation>
+
+    <!-- Captains Orders -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/GeneDef[defName="BEWH_AlakhGeh"]/stages/li/statOffsets</xpath>
+        <value>
+            <Suppressability>-0.5</Suppressability>
+        </value>
+    </Operation>
+
+</Patch>
