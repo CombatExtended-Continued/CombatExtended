@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/statBases/AccuracyTouch</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/statBases/AccuracyShort</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/statBases/AccuracyMedium</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/statBases/AccuracyLong</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>0.85</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+
+	<!-- Turret Gun -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BEWH_SteelRainDropPodTurret</defName>
+		<statBases>
+			<SwayFactor>1.1</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1.4</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+		</statBases>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_Bolter75</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>6</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BEWH_SteelRainDropPodTurret"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<recoilAmount>0.75</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+					<warmupTime>0.85</warmupTime>
+					<range>69</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+					<soundCast>BEWH_SFX_BolterShot</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
 	<!-- ============== Betcher's Spit ================ -->
 
 	<Operation Class="PatchOperationReplace">
