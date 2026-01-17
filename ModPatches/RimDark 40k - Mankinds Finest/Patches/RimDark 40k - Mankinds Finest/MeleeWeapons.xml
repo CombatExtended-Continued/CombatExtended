@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+    <!--Power Sword-->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesPowerSword"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>10</Bulk>
+                <MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.0</MeleeCritChance>
+                <MeleeParryChance>0.75</MeleeParryChance>
+                <MeleeDodgeChance>0.5</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/ThingDef[defName="BEWH_AstartesPowerSword"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>edge</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>58</power>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>EMP</def>
+                            <amount>2</amount>
+                        </li>
+                    </extraMeleeDamages>
+                    <cooldownTime>2.2</cooldownTime>
+                    <armorPenetrationBlunt>6</armorPenetrationBlunt>
+                    <armorPenetrationSharp>40</armorPenetrationSharp>
+                    <soundMeleeHit>BEWH_SFX_PowerswordHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>36</power>
+                    <cooldownTime>2.2</cooldownTime>
+                    <armorPenetrationBlunt>40</armorPenetrationBlunt>
+                    <soundMeleeHit>BEWH_SFX_PowerswordHit</soundMeleeHit>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!-- Living Saint Sword -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_LSaintSword"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>10</Bulk>
+                <MeleeCounterParryBonus>1.7</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.2</MeleeCritChance>
+                <MeleeParryChance>0.95</MeleeParryChance>
+                <MeleeDodgeChance>0.7</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_LSaintSword"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>edge</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>60</power>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>EMP</def>
+                            <amount>10</amount>
+                        </li>
+                    </extraMeleeDamages>
+                    <cooldownTime>2.2</cooldownTime>
+                    <armorPenetrationBlunt>10</armorPenetrationBlunt>
+                    <armorPenetrationSharp>45</armorPenetrationSharp>
+                    <soundMeleeHit>BEWH_SFX_PowerswordHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>10</power>
+                    <cooldownTime>1.8</cooldownTime>
+                    <armorPenetrationBlunt>40</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!-- Chain Sword -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesChainsword"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>10</Bulk>
+                <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.5</MeleeCritChance>
+                <MeleeParryChance>0.3</MeleeParryChance>
+                <MeleeDodgeChance>0.3</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesChainsword"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>chain</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>45</power>
+                    <cooldownTime>2.0</cooldownTime>
+                    <armorPenetrationBlunt>7</armorPenetrationBlunt>
+                    <armorPenetrationSharp>30</armorPenetrationSharp>
+                    <soundMeleeHit>BEWH_SFX_ChainswordHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>10</power>
+                    <cooldownTime>1.8</cooldownTime>
+                    <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+    <!-- Proto-Chain Sword -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_proto-Chainsword"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>10</Bulk>
+                <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.6</MeleeCritChance>
+                <MeleeParryChance>0.4</MeleeParryChance>
+                <MeleeDodgeChance>0.4</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_proto-Chainsword"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>chain</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>45</power>
+                    <cooldownTime>2.0</cooldownTime>
+                    <armorPenetrationBlunt>10</armorPenetrationBlunt>
+                    <armorPenetrationSharp>40</armorPenetrationSharp>
+                    <soundMeleeHit>BEWH_SFX_Proto-ChainswordHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>10</power>
+                    <cooldownTime>1.8</cooldownTime>
+                    <armorPenetrationBlunt>40</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!--Narthecium-->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_Narthecium"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>5</Bulk>
+                <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>0.8</MeleeCritChance>
+                <MeleeParryChance>0.4</MeleeParryChance>
+                <MeleeDodgeChance>0.2</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/ThingDef[defName="BEWH_Narthecium"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>drill</label>
+                    <capacities>
+                        <li>Stab</li>
+                    </capacities>
+                    <power>35</power>
+                    <cooldownTime>1.5</cooldownTime>
+                    <armorPenetrationBlunt>6</armorPenetrationBlunt>
+                    <armorPenetrationSharp>40</armorPenetrationSharp>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>gauntlet</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>24</power>
+                    <cooldownTime>1.5</cooldownTime>
+                    <armorPenetrationBlunt>10</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+</Patch>
