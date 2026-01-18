@@ -201,6 +201,50 @@
     </Operation>
 
 
+    <!-- Graviton Maul-->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_GravitonMaul"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>100</Bulk> <!-- Decription says it's too large for unaugmented human -->
+                <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.5</MeleeCritChance>
+                <MeleeParryChance>0.3</MeleeParryChance>
+                <MeleeDodgeChance>0.3</MeleeDodgeChance>
+            </equippedStatOffsets>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/ThingDef[defName="BEWH_GravitonMaul"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>head</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>60</power>
+                    <cooldownTime>2.5</cooldownTime>
+                    <armorPenetrationBlunt>200</armorPenetrationBlunt>
+                    <soundMeleeHit>BEWH_SFX_GravitonMaulHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Poke</li>
+                    </capacities>
+                    <power>35</power>
+                    <cooldownTime>2</cooldownTime>
+                    <armorPenetrationBlunt>10</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
     <!--Narthecium-->
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/ThingDef[defName="BEWH_Narthecium"]</xpath>
@@ -214,9 +258,6 @@
                 <MeleeParryChance>0.4</MeleeParryChance>
                 <MeleeDodgeChance>0.2</MeleeDodgeChance>
             </equippedStatOffsets>
-            <weaponTags>
-                <li>CE_OneHandedWeapon</li>
-            </weaponTags>
         </value>
     </Operation>
     <Operation Class="PatchOperationReplace">
