@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Sealed Vault ========== -->
+	
+	<!-- I've chosen to go with slugs here because this is a relatively strong start. You start with one superpowered colonist and three more in cryosleep, alongside a big hoard of supplies in the vault you start in -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ScenarioDef[defName="VQE_NewVault"]/scenario/parts</xpath>
+		<value>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Ammo_12Gauge_Slug</thingDef>
+				<count>120</count>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Cargo Cult ========== -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ScenarioDef[defName="VQEA_CargoCult"]/scenario/parts</xpath>
+		<value>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Ammo_Arrow_Steel</thingDef>
+				<count>60</count>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ScenarioDef[defName="VQEA_CargoCult"]/scenario/parts/li[thingDef="Pila"]</xpath>
+		<value>
+			<count>20</count>
+		</value>
+	</Operation>
+
+</Patch>

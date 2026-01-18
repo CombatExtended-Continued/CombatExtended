@@ -5,7 +5,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
-class JobDriver_HunkerDown : JobDriver
+public class JobDriver_HunkerDown : JobDriver
 {
     private const int GetUpCheckInterval = 60;
 

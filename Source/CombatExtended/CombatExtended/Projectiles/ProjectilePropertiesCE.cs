@@ -70,6 +70,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
 
     public int armingDelay = 0;
     public float aimHeightOffset = 0;
+    public float airburstDistanceOffset = 0f;
 
     public float empShieldBreakChance = 1f;
     public float shieldDamageMultiplier = 1f;
