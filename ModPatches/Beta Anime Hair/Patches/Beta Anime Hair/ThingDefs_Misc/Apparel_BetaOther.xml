@@ -3,10 +3,7 @@
     <!-- ============================ Coat ============================ -->
     <!-- Uses Uniforms CarryWeight 2 for Base; 4 for Advanced/Mod3 -->
     <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[
-            defName="22Uniform" or
-            defName="33Uniform"
-            ]/statBases</xpath>
+        <xpath>Defs/ThingDef[defName="22Uniform" or defName="33Uniform"]/statBases</xpath>
         <value>
             <Bulk>4</Bulk>
             <WornBulk>2</WornBulk>
@@ -14,17 +11,14 @@
     </Operation>
 
     <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[
-            defName="22Uniform" or
-            defName="33Uniform"
-            ]/equippedStatOffsets</xpath>
+        <xpath>Defs/ThingDef[defName="22Uniform" or defName="33Uniform"]/equippedStatOffsets</xpath>
         <value>
             <ToxicEnvironmentResistance MayRequire="Ludeon.RimWorld.Biotech">1.0</ToxicEnvironmentResistance>
             <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1.0</VacuumResistance>
         </value>
     </Operation>
 
-    <!--22 Uniform Coat-->
+    <!-- 22 Uniform Coat -->
     <Operation Class="PatchOperationReplace">
         <xpath>Defs/ThingDef[defName="22Uniform"]/statBases/ArmorRating_Sharp</xpath>
         <value>
@@ -65,7 +59,7 @@
         </value>
     </Operation>
 
-    <!--33 Uniform Coat-->
+    <!-- 33 Uniform Coat -->
     <Operation Class="PatchOperationReplace">
         <xpath>Defs/ThingDef[defName="33Uniform"]/statBases/ArmorRating_Sharp</xpath>
         <value>
@@ -105,4 +99,5 @@
             <CarryWeight>2</CarryWeight>
         </value>
     </Operation>
+
 </Patch>
