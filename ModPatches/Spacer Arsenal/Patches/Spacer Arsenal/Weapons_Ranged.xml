@@ -342,7 +342,6 @@
 		</value>
 	</Operation>
 
-
 	<!-- Clash Rifle -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -386,9 +385,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DV_Gun_ClashRifle"]/description</xpath>
 		<value>
-			<description>A bullpup assault rifle chambered in full power rifle cartridge. Recoil
-				mitigation technology helps to reduce felt recoil, improving accuracy and handling,
-				compared to industrial tech weapons.</description>
+			<description>A bullpup assault rifle chambered in full power rifle cartridge. Recoil mitigation technology helps to reduce felt recoil, improving accuracy and handling compared to industrial weapons.</description>
 		</value>
 	</Operation>
 
@@ -397,21 +394,19 @@
 	<!-- Due to complications with patching (Yet another case of adding Defs with patches) I have
 	been forced to do this-->
 
-	<!-- Delete the Vanilla Def -->
-
-	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
-		<attribute>ParentName</attribute>
-		<value>BaseHumanMakeableGun</value>
-	</Operation>
-	<!-- Add the CE-fied Def -->
-
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Det's Xenotypes - Venators</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseHumanMakeableGun</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]/tools
 					</xpath>
@@ -451,6 +446,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>DV_Gun_LaserpulseLongrifle</defName>
 					<statBases>
@@ -492,22 +488,25 @@
 						<li>Longrifle</li>
 					</weaponTags>
 				</li>
+
 				<li Class="PatchOperationAddModExtension">
 				  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
 					  <value>
 						  <li Class="EBSGFramework.EquipRestrictExtension">
-								<requiredGenesToEquip>
-									<li>DV_Farsighted</li>
-								</requiredGenesToEquip>
+							<requiredGenesToEquip>
+								<li>DV_Farsighted</li>
+							</requiredGenesToEquip>
 						  </li>
 					  </value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 				  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
-					  <value>
+					<value>
 						<equippedAngleOffset>45</equippedAngleOffset>
-					  </value>
+					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
