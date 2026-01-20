@@ -74,4 +74,49 @@
             </tools>
         </value>
     </Operation>
+
+
+    <!-- Domitar Olympia Bolter 
+    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>BEWH_PerturaboDomitar</defName>
+        <statBases>
+            <Mass>8.50</Mass>
+            <Bulk>8.00</Bulk>
+            <SwayFactor>1.35</SwayFactor>
+            <ShotSpread>0.06</ShotSpread>
+            <SightsEfficiency>1.10</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+        </statBases>
+        <AmmoUser>
+            <magazineSize>12</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_Bolter998</ammoSet>
+        </AmmoUser>
+        <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>2</aimedBurstShotCount>
+        </FireModes>
+    </Operation>-->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_PerturaboDomitar"]/verbs</xpath>
+        <value>
+            <verbs> <!-- This Works, But Infinite Ammo -->
+                <li Class="CombatExtended.VerbPropertiesCE">
+                    <recoilAmount>0.95</recoilAmount>
+                    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                    <label>Olympia Bolter</label>
+                    <hasStandardCommand>True</hasStandardCommand>
+                    <defaultProjectile>Bullet_Bolter998_Standard</defaultProjectile>
+                    <warmupTime>1</warmupTime>
+                    <range>69</range>
+                    <burstShotCount>3</burstShotCount>
+                    <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+                    <soundCast>BEWH_SFX_BolterShot</soundCast>
+                    <soundCastTail>GunTail_Heavy</soundCastTail>
+                    <muzzleFlashScale>16</muzzleFlashScale>
+                </li>
+            </verbs>
+        </value>
+    </Operation>
 </Patch>
