@@ -16,7 +16,7 @@ public class VerbCIWSSkyfaller : VerbCIWS<Skyfaller>
     protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(Caster));
     protected override IEnumerable<Vector3> PredictPositions(Skyfaller target, int maxTicks)
     {
-        return target.PredictPositions(maxTicks);
+        return target.PredictPositions();
     }
 
 }
