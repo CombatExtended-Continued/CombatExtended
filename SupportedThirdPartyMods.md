@@ -89,6 +89,7 @@ Alpha Ships |
 Alpha Vehicles - Neolithic  |
 Alpha Vehicles - Age of Sail  |
 Altered Carbon |
+Ancient Armory |
 Ancient Arsenal: Warcaskets |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
@@ -363,6 +364,7 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medieval Overhaul   |
 Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
+Medieval Overhaul: Hornetkeeping   |
 Medieval Overhaul: House Roxmont  |
 Medieval Overhaul: Royalty  |
 Medieval Tailor   |
