@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- This content is only available with Vanilla Weapons Expanded - Non-Lethal, so we have to do a FindMod patch here -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Non-Lethal</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+				<!-- Remove refuelable property -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFES_Turret_NonLethalTurret"]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
+				</li>
+				
+				<!-- Remove Explosive comp -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFES_Turret_NonLethalTurret"]/comps/li[@Class="CompProperties_Explosive"] </xpath>
+				</li>
+				
+				<!-- Replace vanilla thingClass -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFES_Turret_NonLethalTurret"]/thingClass </xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+				
+				<!-- Make turrets taller -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFES_Turret_NonLethalTurret"]/fillPercent </xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFES_Turret_NonLethalTurret"]/statBases </xpath>
+					<value>
+						<AimingAccuracy>0.5</AimingAccuracy>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFES_Turret_NonLethalTurret"]/statBases </xpath>
+					<value>
+						<NightVisionEfficiency>0.5</NightVisionEfficiency>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFES_Turret_NonLethalTurret"]/statBases/ShootingAccuracyTurret </xpath>
+					<value>
+						<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFES_Turret_NonLethalTurret"]/building/turretBurstCooldownTime </xpath>
+					<value>
+						<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+					</value>
+				</li>
+				
+				<!-- Non-Lethal Turret -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>VFES_Gun_NonLethalTurret</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>0.82</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.58</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_43cal_NL</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>36</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>GunShotA</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_43cal_NL</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

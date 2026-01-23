@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- This content is only available with Anomaly, so we have to do a FindMod patch here -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+				<!-- Heavy Incinerator Complex -->
+				<!-- Stats here are mostly based on the Anomaly incinerator, for obvious reasons -->
+				
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFES_Complex_HeavyIncineratorComplex"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFES_Complex_HeavyIncineratorComplex"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFES_Complex_HeavyIncineratorComplex"]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFES_ComplexHeavyIncinerator_Top"]/modExtensions/li[@Class="VFESecurity.BurnerFireSpewExtension"]</xpath>
+				</li>
+				
+				<!-- Removing the custom verb and the custom placement worker -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFES_ComplexHeavyIncinerator_Top"]/verbs/li[verbClass="VFESecurity.Verb_BurnerFireSpew"]</xpath>
+				</li>			
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFES_Complex_HeavyIncineratorComplex"]/placeWorkers/li[text()="VEF.Weapons.PlaceWorker_ExpandedShowTurretRadius"]</xpath>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>VFES_ComplexHeavyIncinerator_Top</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.34</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>5.0</ShotSpread>
+						<SwayFactor>1.38</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.24</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>14</range>
+						<minRange>3</minRange>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<burstShotCount>20</burstShotCount>
+						<soundCast>HissFlamethrower</soundCast>
+						<muzzleFlashScale>0</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+						<targetParams>
+							<canTargetLocations>True</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>120</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_Flamethrower</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags Inherit="False">
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
