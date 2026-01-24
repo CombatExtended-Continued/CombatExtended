@@ -1,120 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-
-	<!-- Switch the 'fuel' system to consume ammo as fuel -->
-	
-	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
-		<standard Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelFilter/thingDefs</xpath>
-			<value>
-				<categories>
-					<li>Ammo20x102mmNATO</li>
-				</categories>
-			</value>
-		</standard>
-		<generic Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelFilter/thingDefs</xpath>
-			<value>
-				<categories>
-					<li>AmmoAutocannon</li>
-				</categories>
-			</value>
-		</generic>
+	<!-- Remove refuelable property -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
 	</Operation>
-	
-	<!-- Update labels -->
-	
-	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
-		<standard Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelLabel</xpath>
-			<value>
-				<fuelLabel>20x102mm NATO</fuelLabel>
-			</value>
-		</standard>
-		<generic Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelLabel</xpath>
-			<value>
-				<fuelLabel>Autocannon shells</fuelLabel>
-			</value>
-		</generic>
+	<!-- Remove Explosive comp -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Explosive"] </xpath>
 	</Operation>
-	
-	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
-		<standard Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelGizmoLabel</xpath>
-			<value>
-				<fuelGizmoLabel>20x102mm NATO</fuelGizmoLabel>
-			</value>
-		</standard>
-		<generic Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelGizmoLabel</xpath>
-			<value>
-				<fuelGizmoLabel>Autocannon shells</fuelGizmoLabel>
-			</value>
-		</generic>
-	</Operation>
-	
-	<!-- Larger 'magazine', to account for Combat Extended balance  -->
-	
+	<!-- Replace vanilla thingClass -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/fuelCapacity</xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/thingClass </xpath>
 		<value>
-			<fuelCapacity>240</fuelCapacity>
+			<thingClass>CombatExtended.Building_CIWS_CE</thingClass>
 		</value>
 	</Operation>
-	
-	<!-- Set initial fuel to 0 -->
-	
+	<!-- Make turrets taller -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="CompProperties_Refuelable"]/initialFuelPercent</xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/fillPercent </xpath>
 		<value>
-			<initialFuelPercent>0</initialFuelPercent>
+			<fillPercent>0.85</fillPercent>
 		</value>
 	</Operation>
-	
-	<!-- Ammo hyperlinks -->
-	
+	<!-- This is a CIWS turret with a visible radar module on it. Darkness wouldn't affect it that much, so I gave it above-average night vision -->
+	<!-- It can't fire at ground targets either, so -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/statBases </xpath>
+		<value>
+			<AimingAccuracy>0.96</AimingAccuracy>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/statBases </xpath>
+		<value>
+			<NightVisionEfficiency>0.8</NightVisionEfficiency>
+		</value>
+	</Operation>
+	<!-- The Anti-Air Turret is not really a traditional turret and lacks many stat entries, so we have to conditional patch them on if they're not present -->
+	<!-- I'm not just doing PatchOperationAdd here in case they ever change how they handle anti-air and add these stats -->
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/descriptionHyperlinks</xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/statBases/ShootingAccuracyTurret</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]</xpath>
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/statBases</xpath>
 			<value>
-				<descriptionHyperlinks/>
+				<ShootingAccuracyTurret/>
 			</value>
 		</nomatch>
 	</Operation>
-	
-	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
-		<standard Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/descriptionHyperlinks</xpath>
-			<value>
-				<CombatExtended.AmmoSetDef>AmmoSet_20x102mmNATO</CombatExtended.AmmoSetDef>
-			</value>
-		</standard>
-		<generic Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/descriptionHyperlinks</xpath>
-			<value>
-				<CombatExtended.AmmoSetDef>AmmoSet_Autocannon</CombatExtended.AmmoSetDef>
-			</value>
-		</generic>
-	</Operation>
-	
-	<!-- Range tweaks -->
-	
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="VFESecurity.CompProperties_PointDefense"]/interceptionRadius</xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/statBases/ShootingAccuracyTurret </xpath>
 		<value>
-			<interceptionRadius>84.5</interceptionRadius>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
 		</value>
 	</Operation>
-	
-	<!-- For future reference, this 'turret' is basically for show. The verb doesn't even do anything. The point defense comp on the turret is what does all the magic -->
-	<!-- I'm just patching it so the visual display of the turret's range matches its function -->
-	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/building/turretBurstCooldownTime</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/building</xpath>
+			<value>
+				<turretBurstCooldownTime/>
+			</value>
+		</nomatch>
+	</Operation>
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFES_Gun_PointDefense"]/verbs/li/range</xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/building/turretBurstCooldownTime </xpath>
 		<value>
-			<range>84.5</range>
+			<turretBurstCooldownTime>0.2</turretBurstCooldownTime>
+		</value>
+	</Operation>
+	<!-- Removing the VE anti-air comp -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/comps/li[@Class="VFESecurity.CompProperties_PointDefense"]</xpath>
+	</Operation>
+	<!-- PlaceWorker_ShowTurretRadius explodes on turrets with no regular ground verb, so we patch it out -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]/placeWorkers/li[text()="PlaceWorker_ShowTurretRadius"]</xpath>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AntiAir"]</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+	<!-- Anti-Air Turret -->
+	<!-- The verbs are patched in seperately here, as PatchOperationMakeGunCECompatible does not support adding only CIWS verbs -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Gun_PointDefense</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>0.12</SwayFactor>
+			<Mass>150.0</Mass>
+			<RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
+		</statBases>
+		<AmmoUser>
+			<magazineSize>240</magazineSize>
+			<reloadTime>9.2</reloadTime>
+			<ammoSet>AmmoSet_145x114mm</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+			<aimedBurstShotCount>20</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Gun_PointDefense"]/verbs/li[verbClass="Verb_Shoot"]</xpath>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Gun_PointDefense"]/verbs</xpath>
+		<value>
+			<li Class="CombatExtended.VerbProperties_CIWSProjectile">
+				<verbClass>CombatExtended.VerbCIWSProjectile</verbClass>
+				<recoilAmount>0.24</recoilAmount>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+				<warmupTime>0.1</warmupTime>
+				<range>86</range>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<burstShotCount>12</burstShotCount>
+				<soundCast>GunShotA</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>15</muzzleFlashScale>
+				<recoilPattern>Mounted</recoilPattern>
+				<holdFireLabel>HoldCloseInProjectilesFire</holdFireLabel>
+				<holdFireDesc>HoldCloseInProjectilesFireDesc</holdFireDesc>
+			</li>
+			<li Class="CombatExtended.VerbProperties_CIWSSkyfaller">
+				<verbClass>CombatExtended.VerbCIWSSkyfaller</verbClass>
+				<recoilAmount>0.24</recoilAmount>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_145x114mm_FMJ</defaultProjectile>
+				<warmupTime>0.1</warmupTime>
+				<range>86</range>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<burstShotCount>12</burstShotCount>
+				<soundCast>GunShotA</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>15</muzzleFlashScale>
+				<recoilPattern>Mounted</recoilPattern>
+				<holdFireLabel>HoldCloseInSkyfallersFire</holdFireLabel>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Gun_PointDefense"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompVerbDisabler</compClass>
+			</li>
 		</value>
 	</Operation>
 </Patch>
