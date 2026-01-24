@@ -42,6 +42,16 @@ public class CETrenches
     private static bool CheckTrench(IntVec3 cell, Map map, out float heightAdjust)
     {
         heightAdjust = 0f;
+
+        //consider swimming pawns to be in a trench
+        TerrainDef terrain = cell.GetTerrain(map);
+        if (terrain != null && terrain.IsWater)
+        {
+            heightAdjust = terrain.passability == Traversability.Impassable ? -0.75f : -0.5f;
+            return true;
+        }
+
+        //find trench building
         List<Thing> thingList = cell.GetThingList(map);
         foreach (Thing thing in thingList)
         {
