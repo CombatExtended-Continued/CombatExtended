@@ -12,7 +12,7 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<OutputPath>..\..\ModPatches\Vanilla Gravship Expanded\Assemblies</OutputPath>
+		<OutputPath>..\..\ModPatches\Vanilla Gravship Expanded - Chapter 1\Assemblies</OutputPath>
 		<DebugType>embedded</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -20,7 +20,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<OutputPath>..\..\ModPatches\Vanilla Gravship Expanded\Assemblies</OutputPath>
+		<OutputPath>..\..\ModPatches\Vanilla Gravship Expanded - Chapter 1\Assemblies</OutputPath>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
@@ -36,19 +36,34 @@
 	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-      <Reference Include="VGE">
+    <Reference Include="VGE">
 	    <HintPath>..\packages\VanillaGravshipExpanded-reference.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
+    <Reference Include="VEF">
+      <HintPath>..\packages\VEF-reference.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
 	</ItemGroup>
 
-	<ItemGroup>
-          <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
-			  <PrivateAssets>all</PrivateAssets>
-			  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-          </PackageReference>
-          <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4543" GeneratePathProperty="true" />
-          <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
+  <!-- VGE dll was stripped and publicized to avoid adding ~300Ko to CE. -->
+  <Target Name="RemoveIgnoresAccessChecksToAttributeCs" AfterTargets="PublicizeAssemblies">
+    <ItemGroup>
+      <FilesToRemove Include="@(Compile)" Condition="'%(Filename)' == 'IgnoresAccessChecksToAttribute'" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="@(FilesToRemove)" />
+    </ItemGroup>
+  </Target>
+
+
+  <ItemGroup>
+    <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4543" GeneratePathProperty="true" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
 	</ItemGroup>
 	<ItemGroup>
 		<Publicize Include="Assembly-CSharp" />
