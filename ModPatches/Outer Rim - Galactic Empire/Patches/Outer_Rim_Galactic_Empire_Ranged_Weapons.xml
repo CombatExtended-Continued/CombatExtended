@@ -486,11 +486,13 @@
 	</Operation>
 	
 	<!-- === D72 Flamethrower === -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="OuterRim_D72wOppressor"]/statBases/AccuracyTouch
-			| Defs/ThingDef[defName="OuterRim_D72wOppressor"]/statBases/AccuracyShort
-			| Defs/ThingDef[defName="OuterRim_D72wOppressor"]/statBases/AccuracyMedium
-			| Defs/ThingDef[defName="OuterRim_D72wOppressor"]/statBases/AccuracyLong </xpath>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "OuterRim_D72wOppressor"]/verbs/li/verbClass
+		</xpath>
+		<value>
+			<verbClass>Verb_Shoot</verbClass>
+		</value>
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">

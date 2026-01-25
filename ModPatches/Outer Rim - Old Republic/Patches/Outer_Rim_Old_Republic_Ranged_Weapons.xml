@@ -367,11 +367,15 @@
 	
 	<!-- === Flamethrowers === -->
 	
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="OuterRim_OldRepublicFlameProjector"]/statBases/AccuracyTouch
-			| Defs/ThingDef[defName="OuterRim_OldRepublicFlameProjector"]/statBases/AccuracyShort
-			| Defs/ThingDef[defName="OuterRim_OldRepublicFlameProjector"]/statBases/AccuracyMedium
-			| Defs/ThingDef[defName="OuterRim_OldRepublicFlameProjector"]/statBases/AccuracyLong </xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "OuterRim_OldRepublicFlameProjector" or
+			defName = "OuterRim_SithFlameProjector"
+			]/verbs/li/verbClass
+		</xpath>
+		<value>
+			<verbClass>Verb_Shoot</verbClass>
+		</value>
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -412,13 +416,6 @@
 			<aimedBurstShotCount>10</aimedBurstShotCount>
 		</FireModes>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
-	</Operation>
-	
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="OuterRim_SithFlameProjector"]/statBases/AccuracyTouch
-			| Defs/ThingDef[defName="OuterRim_SithFlameProjector"]/statBases/AccuracyShort
-			| Defs/ThingDef[defName="OuterRim_SithFlameProjector"]/statBases/AccuracyMedium
-			| Defs/ThingDef[defName="OuterRim_SithFlameProjector"]/statBases/AccuracyLong </xpath>
 	</Operation>
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
