@@ -190,6 +190,7 @@ public abstract class ProjectileCE : ThingWithComps
     public float startingTicksToImpact;
 
     public int FlightTicks = 0;
+    public float intendedTargetHeight = 0f;
 
     #endregion
 
