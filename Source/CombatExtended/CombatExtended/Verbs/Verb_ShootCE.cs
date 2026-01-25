@@ -322,7 +322,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
         Vector3 v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
         if (currentTarget.Pawn is Pawn dtPawn)
         {
-            v += dtPawn.Drawer.leaner.LeanOffset * 0.5f;
+            v += dtPawn.Drawer.leaner.LeanOffset;
         }
 
         var d = v - u;
