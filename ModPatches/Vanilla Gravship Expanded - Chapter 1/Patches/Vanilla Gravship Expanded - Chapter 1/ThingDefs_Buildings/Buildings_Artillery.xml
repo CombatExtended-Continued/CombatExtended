@@ -1,8 +1,22 @@
 <Patch>
+
+	<!-- Patch Weapons -->
     <Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_GaussGun"
+			]/comps/li[
+				@Class = "CompProperties_Refuelable" or
+				@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery" or
+				@Class = "VanillaGravshipExpanded.CompProperties_BoxRefuel"
+			]
+		</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName = "VGE_GaussGun"
-			]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+			defName = "VGE_Gun_GaussGun"
+			]/verbs</xpath>
 	</Operation>
 
 	<!-- Replace vanilla thingClass -->
@@ -18,35 +32,63 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_GaussGun</defName>
 		<statBases>
-			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.07</ShotSpread>
-			<SwayFactor>0.82</SwayFactor>
+			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>11.38</SwayFactor>
 		</statBases>
 		<Properties>
-			<recoilAmount>0.85</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<range>99999</range>
+			<minRange>14.9</minRange>
+			<burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<soundCast>VGE_GravshipHowitzer</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<requireLineOfSight>false</requireLineOfSight>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-			<warmupTime>1.3</warmupTime>
-			<range>48</range>
-			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			<burstShotCount>12</burstShotCount>
-			<soundCast>GunShotA</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
+			<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
+			<warmupTime>1.8</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>120</magazineSize>
+			<magazineSize>60</magazineSize>
 			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+			<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
-			<noSnapshot>true</noSnapshot>
-			<noSingleShot>true</noSingleShot>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
 
+	<!-- <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="VGE_GaussGun"
+			]/building </xpath>
+		<value>
+			<building>
+				<turretTopDrawSize>4.2</turretTopDrawSize>
+			    <turretGunDef>VGE_Gun_GaussGun</turretGunDef>
+				<relatedBuildCommands>
+					<li>VGE_AmmoBox_GaussShell</li>
+					<li>VGE_TargetingTerminal</li>
+				</relatedBuildCommands>
+			</building>
+		</value>
+	</Operation> -->
 </Patch>

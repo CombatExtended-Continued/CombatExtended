@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+	<!-- =============== Mech Weapons =============== -->
 	<!-- === Ammo Sets === -->
 	<!-- A part of this weapon's description reads ''It fires dense slugs at incredible velocities, capable of destroying even heavily armored gravships.'' so I've made it a relatively strong railgun weapon and tweaked its warmup and cooldown stats accordingly -->
 
@@ -23,6 +24,31 @@
 			<damageAmountBase>36</damageAmountBase>
 			<armorPenetrationSharp>86.4</armorPenetrationSharp>
 			<armorPenetrationBlunt>381</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- =============== Artillery Weapons =============== -->
+	<!-- === Ammo Sets === -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_12mmRailgun_mortar</defName>
+		<label>12mm Railgun</label>
+		<ammoTypes>
+			<Ammo_12mmRailgun_Sabot>Bullet_12mmRailgun_Sabot_mortar</Ammo_12mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Projectiles === -->
+
+	<ThingDef ParentName="Bullet_12mmRailgun_Sabot">
+		<defName>Bullet_12mmRailgun_Sabot_mortar</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>true</flyOverhead>
+			<shellingProps>
+				<iconPath>Things/Projectiles/Rocket_Javelin</iconPath>
+				<tilesPerTick>0.05</tilesPerTick>
+				<range>16</range>
+			</shellingProps>
 		</projectile>
 	</ThingDef>
 

@@ -1,0 +1,61 @@
+<Patch>
+	<!-- Patch Targeting terminal -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_TargetingTerminal"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_TargetingTerminalCE</thingClass>
+		</value>
+	</Operation>
+
+
+	<!-- VGE Ammo Box -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_AmmoBox_GaussShell"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_AutoLoaderCE</thingClass>
+		</value>
+	</Operation>
+
+    <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_AmmoBox_GaussShell"]/drawerType</xpath>
+		<value>
+			<drawerType>MapMeshAndRealTime</drawerType>
+		</value>
+	</Operation>	
+
+    <Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "VGE_AmmoBox_GaussShell"]</xpath>
+		<value>
+            <tickerType>Normal</tickerType>
+            <comps>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+                    <magazineSize>60</magazineSize>
+                    <reloadTime>7.8</reloadTime>
+                    <ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
+				</li>
+			</comps>
+		</value>
+	</Operation>	
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_AmmoBox_GaussShell"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>40</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_AmmoBox_GaussShell"]</xpath>
+		<value>
+			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
+				<allowedTurrets>
+					<li>VGE_GaussGun</li>
+				</allowedTurrets>		
+			</li>
+		</value>
+	</Operation>
+</Patch>
