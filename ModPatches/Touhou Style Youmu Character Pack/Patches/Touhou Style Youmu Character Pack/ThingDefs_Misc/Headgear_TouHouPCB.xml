@@ -1,166 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
 
-    <!-- ============================ Hat & Headset ============================ -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[
-            defName="Apparel_TH_ZUNhatBBA" or
-            defName="Apparel_TH_ZUNhatYYZ" or
-            defName="Apparel_TH_ZUNhatRAN" or
-            defName="Apparel_TH_ZUNhatCHEN" or
-            defName="Apparel_TH_ZUNhatYM"
-            ]/statBases</xpath>
-        <value>
-            <Bulk>3</Bulk>
-            <WornBulk>1</WornBulk>
-        </value>
-    </Operation>
+	<!-- ============================ Hat & Headset ============================ -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="Apparel_TH_ZUNhatBBA" or
+			defName="Apparel_TH_ZUNhatYYZ" or
+			defName="Apparel_TH_ZUNhatRAN" or
+			defName="Apparel_TH_ZUNhatCHEN"
+			]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
 
-    <!--Nightcap Yukari Hat-->
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/statBases/ArmorRating_Sharp</xpath>
-        <value>
-            <ArmorRating_Sharp>7.0</ArmorRating_Sharp>
-        </value>
-    </Operation>
+	<!--Nightcap Yukari Hat-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>5.6</ArmorRating_Sharp>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/statBases/ArmorRating_Blunt</xpath>
-        <value>
-            <ArmorRating_Blunt>5.6</ArmorRating_Blunt>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6.8</ArmorRating_Blunt>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
-        <value>
-            <ShootingAccuracyPawn>0.04</ShootingAccuracyPawn>
-            <AimingAccuracy>0.020</AimingAccuracy>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.04</ShootingAccuracyPawn>
+			<AimingAccuracy>0.02</AimingAccuracy>
+			<Suppressability>-0.1</Suppressability>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/equippedStatOffsets/Flammability</xpath>
-        <value>
-            <Flammability>-1.0</Flammability>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/equippedStatOffsets/Flammability</xpath>
+		<value>
+			<Flammability>-1</Flammability>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/statBases</xpath>
-        <value>
-            <ArmorRating_Heat>1.0</ArmorRating_Heat>
-        </value>
-    </Operation>
+	<!--Nightcap Yuyuko Hat-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYYZ"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3.3</ArmorRating_Sharp>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatBBA"]/equippedStatOffsets</xpath>
-        <value>
-            <Suppressability>-0.1</Suppressability>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYYZ"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>2.6</ArmorRating_Blunt>
+		</value>
+	</Operation>
 
-    <!--Nightcap Yuyuko Hat-->
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYYZ"]/statBases/ArmorRating_Sharp</xpath>
-        <value>
-            <ArmorRating_Sharp>3.3</ArmorRating_Sharp>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYYZ"]/equippedStatOffsets</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<AimingAccuracy>0.03</AimingAccuracy>
+			<Suppressability>-0.1</Suppressability>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYYZ"]/statBases/ArmorRating_Blunt</xpath>
-        <value>
-            <ArmorRating_Blunt>2.2</ArmorRating_Blunt>
-        </value>
-    </Operation>
+	<!--Nightcap Ran Hat-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatRAN"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYYZ"]/statBases</xpath>
-        <value>
-            <ArmorRating_Heat>0.50</ArmorRating_Heat>
-        </value>
-    </Operation>
+	<!--Nightcap Chen Hat-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatCHEN"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYYZ"]/equippedStatOffsets</xpath>
-        <value>
-            <Flammability>-1.0</Flammability>
-            <ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-            <AimingAccuracy>0.025</AimingAccuracy>
-            <Suppressability>-0.1</Suppressability>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatCHEN"]/equippedStatOffsets</xpath>
+		<value>
+			<Flammability>-1</Flammability>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<AimingAccuracy>0.025</AimingAccuracy>
+			<Suppressability>-0.1</Suppressability>
+		</value>
+	</Operation>
 
-    <!--Nightcap Ran Hat-->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatRAN"]/statBases</xpath>
-        <value>
-            <ArmorRating_Sharp>2.0</ArmorRating_Sharp>
-            <ArmorRating_Blunt>2.0</ArmorRating_Blunt>
-            <ArmorRating_Heat>1.0</ArmorRating_Heat>
-        </value>
-    </Operation>
+	<!--Youmu Hair Grip Hat-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0.5</WornBulk>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatRAN"]/equippedStatOffsets</xpath>
-        <value>
-            <Flammability>-1.0</Flammability>
-            <ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-            <AimingAccuracy>0.025</AimingAccuracy>
-            <Suppressability>-0.1</Suppressability>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4.4</ArmorRating_Sharp>
+		</value>
+	</Operation>
 
-    <!--Nightcap Chen Hat-->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatCHEN"]/statBases</xpath>
-        <value>
-            <ArmorRating_Sharp>7.0</ArmorRating_Sharp>
-            <ArmorRating_Blunt>5.6</ArmorRating_Blunt>
-            <ArmorRating_Heat>1.0</ArmorRating_Heat>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>5.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatCHEN"]/equippedStatOffsets</xpath>
-        <value>
-            <Flammability>-1.0</Flammability>
-            <ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-            <AimingAccuracy>0.025</AimingAccuracy>
-            <Suppressability>-0.1</Suppressability>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/equippedStatOffsets</xpath>
+		<value>
+			<Suppressability>-0.1</Suppressability>
+		</value>
+	</Operation>
 
-    <!--Youmu Hair Grip Hat-->
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/statBases/ArmorRating_Sharp</xpath>
-        <value>
-            <ArmorRating_Sharp>4.4</ArmorRating_Sharp>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.7</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/statBases/ArmorRating_Blunt</xpath>
-        <value>
-            <ArmorRating_Blunt>5.5</ArmorRating_Blunt>
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/statBases/ArmorRating_Heat</xpath>
-        <value>
-            <ArmorRating_Heat>0.50</ArmorRating_Heat>
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/equippedStatOffsets</xpath>
-        <value>
-            <ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-            <AimingAccuracy>0.025</AimingAccuracy>
-            <Suppressability>-0.1</Suppressability>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_TH_ZUNhatYM"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>1.05</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
 
 </Patch>
