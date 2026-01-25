@@ -131,6 +131,8 @@ Auto-Mortars	|
 Beast Man Tribes  |
 Beeralope Squad	|
 Beliar Xenotype |
+Beta Anime Hair	|
+Beta Girls und Panzer Hair and Apparel	|
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
 Big and Small - Heaven and Hell
@@ -268,6 +270,7 @@ Gestalt Engine  |
 Giddy-Up 2    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
+Girls' Frontline Styles - AR Team	|
 Girls' Frontline Styles - DEFY Team	|
 Girls' Frontline Styles - GF2	|
 Girls' Frontline Styles - NL	|
@@ -586,6 +589,7 @@ Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 Tools O'Plenty  |
 TouhouStyle	|
+Touhou Style Youmu Character Pack	|
 Tox Weapons Pack	|
 Tribal Warrior Set! |
 Tsar Armory	|
