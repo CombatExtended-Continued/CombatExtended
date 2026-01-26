@@ -635,8 +635,9 @@ Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
-Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Quests Expanded - Ancients  |
+Vanilla Quests Expanded - Cryptoforge  |
+Vanilla Quests Expanded - Deadlife  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
