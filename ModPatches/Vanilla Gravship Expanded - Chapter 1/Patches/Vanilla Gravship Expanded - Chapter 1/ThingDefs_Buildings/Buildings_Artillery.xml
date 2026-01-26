@@ -13,11 +13,11 @@
 		</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
+	<!-- <Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
 			defName = "VGE_Gun_GaussGun"
 			]/verbs</xpath>
-	</Operation>
+	</Operation> -->
 
 	<!-- Replace vanilla thingClass -->
 	<Operation Class="PatchOperationReplace">
@@ -29,7 +29,7 @@
 		</value>
 	</Operation>
 
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<!-- <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_GaussGun</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
@@ -66,15 +66,90 @@
 			<aiAimMode>AimedShot</aiAimMode>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
-	</Operation>
+	</Operation> -->
 	
 	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>4.2</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VGE_Gun_GaussGun"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VGE_Gun_GaussGun"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_Gun_GaussGun"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>
+				</chargeSpeeds>
+			</li>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>12</magazineSize>
+				<reloadTime>6.5</reloadTime>
+				<ammoSet>AmmoSet_50mmRocket</ammoSet>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_Gun_GaussGun"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<recoilAmount>1.73</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<requireLineOfSight>false</requireLineOfSight>
+					<defaultProjectile>Bullet_50mmRocket_HE</defaultProjectile>
+					<warmupTime>3.6</warmupTime>
+					<range>86</range>
+					<minRange>14</minRange>
+					<burstShotCount>4</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>RocketswarmLauncher_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>39</muzzleFlashScale>
+					<circularError>1</circularError>
+					<indirectFirePenalty>0.25</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- <Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]/statBases</xpath>
 		<value>
 			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
 			<AimingAccuracy>1.0</AimingAccuracy>
 		</value>
-	</Operation>
+	</Operation> -->
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]</xpath>
