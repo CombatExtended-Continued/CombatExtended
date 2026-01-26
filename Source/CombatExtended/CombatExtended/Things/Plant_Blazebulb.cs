@@ -7,7 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
-class Plant_Blazebulb : Plant
+public class Plant_Blazebulb : Plant
 {
     private const int IgnitionTemp = 28;                    // Temperature (in Celsius) above which the plant will start catching fire
 

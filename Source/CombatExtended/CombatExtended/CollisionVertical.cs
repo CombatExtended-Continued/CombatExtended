@@ -73,7 +73,7 @@ public struct CollisionVertical
         }
         float collisionHeight = 0f;
         float shotHeightOffset = 0;
-        float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);
+        float heightAdjust = 0;
 
         var pawn = thing as Pawn;
         if (pawn != null)
@@ -86,6 +86,7 @@ public struct CollisionVertical
             {
                 heightAdjust += 0.5f * pawn.flight.PositionOffsetFactor;
             }
+
 
             // Humanlikes in combat crouch to reduce their profile
             if (pawn.IsCrouching())

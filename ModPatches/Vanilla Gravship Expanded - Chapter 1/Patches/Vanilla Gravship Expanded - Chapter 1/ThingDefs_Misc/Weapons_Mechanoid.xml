@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Rocketswarm Pod ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_RocketswarmPod"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!-- Stats are roughly based on an RPG -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_RocketswarmPod</defName>
+		<statBases>
+			<Mass>12.00</Mass>
+			<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.16</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.68</SwayFactor>
+			<Bulk>4.00</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_M6_HEAT</defaultProjectile>
+			<warmupTime>2.035</warmupTime>
+			<recoilAmount>2.43</recoilAmount>
+			<range>42</range>
+			<minRange>3</minRange>
+			<burstShotCount>2</burstShotCount>
+			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+			<soundCast>RocketswarmLauncher_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<muzzleFlashScale>15</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<!-- I've stayed true to the original mod's vision of this weapon having a two rocket burst -->
+			<!-- To that end, I've gone with a burst of two (relatively) weaker rockets instead of, say, an RPG warhead -->
+			<!-- The reload stats here come out of my ass, they felt good in testing. Feel free to suggest better values -->
+			<reloadTime>7.6</reloadTime>
+			<!-- This may not be the best ammoset but the rockets are light enough to go on the small mech and still quite effective -->
+			<ammoSet>AmmoSet_M6Rocket</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<!-- No additional CE weaponTags needed -->
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- ========== Mass Lance ========== -->
+	<!-- In the original mod, this weapon is more like a tank railgun, if that makes sense. Has a decent AOE attack -->
+	<!-- A part of this weapon's description reads ''It fires dense slugs at incredible velocities, capable of destroying even heavily armored gravships.'' so I've made it a relatively strong railgun weapon and tweaked its warmup and cooldown stats accordingly -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_MassLance"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_MassLance</defName>
+		<statBases>
+			<Mass>24.00</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>0.84</SwayFactor>
+			<Bulk>36.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.92</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_VGE_MassLance</defaultProjectile>
+			<warmupTime>3.2</warmupTime>
+			<range>64</range>
+			<soundCast>VGE_GravshipHowitzer</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>6.2</reloadTime>
+			<ammoSet>AmmoSet_VGE_MassLance</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

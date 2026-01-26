@@ -7,7 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
-class ThoughtWorker_Suppressed : ThoughtWorker
+public class ThoughtWorker_Suppressed : ThoughtWorker
 {
     public override ThoughtState CurrentStateInternal(Pawn p)
     {
