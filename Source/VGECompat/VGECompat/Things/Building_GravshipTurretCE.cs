@@ -5,41 +5,46 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using VanillaGravshipExpanded;
-using VEF.Graphics;
 using Verse;
-using Verse.Sound;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
+#region License
+// Any VGE Code used for compatibility has been taken from the following source
+// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/Things/Building_GravshipTurret.cs
+#endregion
+
+
+/*
+ * I tried to do a composition approach here. So `GravshipTurretWrapperCE composite` is the real business instance, Building_GravshipTurretCE
+ * only retrieves data from it and passes calls to it.
+ * If a technical limitation prevents this logic, I fall back to duplication.
+ */
+
 public class Building_GravshipTurretCE: Building_TurretGunCE
 {
-    #region License
-    // Any VGE Code used for compatibility has been taken from the following source
-    // https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/Things/Building_GravshipTurret.cs
-    #endregion
+    private GravshipTurretWrapperCE composite;
 
-    private GravshipTurretWrapperCE composition;
-
-    public Building_GravshipTurret ToBuilding_GravshipTurret => composition;
+    public Building_GravshipTurret ToBuilding_GravshipTurret => composite;
 
     public Building_TargetingTerminalCE linkedTerminal;
   
-    public virtual bool CanFire => composition?.CanFire ?? false;
+    public virtual bool CanFire => composite?.CanFire ?? false;
 
-    public virtual bool CanAutoAttack => composition?.CanAutoAttack ?? false;
-    public Pawn ManningPawn => composition?.ManningPawn;
+    public virtual bool CanAutoAttack => composite?.CanAutoAttack ?? false;
+    public Pawn ManningPawn => composite?.ManningPawn;
 
-    public virtual float GravshipTargeting => composition?.GravshipTargeting ?? 0f;
+    public virtual float GravshipTargeting => composite?.GravshipTargeting ?? 0f;
 
-    protected virtual bool ShowNoLinkedTerminalOverlay => composition?.ShowNoLinkedTerminalOverlay ?? true;
+    protected virtual bool ShowNoLinkedTerminalOverlay => composite?.ShowNoLinkedTerminalOverlay ?? true;
 
     public Vector3 CastSource
     {
         get
         {
-            if (composition != null)
+            if (composite != null)
             {
-                return composition.CastSource;
+                return composite.CastSource;
             }
             return DrawPos;
         }
@@ -49,14 +54,14 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
 
     public void TrySwitchBarrel()
     {
-        composition?.TrySwitchBarrel();
+        composite?.TrySwitchBarrel();
     }
 
     protected override bool CanSetForcedTarget
     {
         get
         {
-            if (composition.CanSetForcedTarget)
+            if (composite.CanSetForcedTarget)
             {
                 return true;
             }
@@ -67,53 +72,55 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
-        composition = new GravshipTurretWrapperCE(this);
-        composition.gun = Gun;
+
+        // filling the composition
+        composite = new GravshipTurretWrapperCE(this);
+        composite.gun = Gun;
 
         var ext = def.GetModExtension<TurretExtension_RotationSpeed>();
         if (ext != null)
         {
-            composition.rotationSpeed = ext.rotationSpeed;
+            composite.rotationSpeed = ext.rotationSpeed;
         }
 
         var barrelExt = def.GetModExtension<TurretExtension_Barrels>();
         if (barrelExt != null)
         {
-            composition.barrels = barrelExt.barrels;
+            composite.barrels = barrelExt.barrels;
         }
 
         if (linkedTerminal == null && ShowNoLinkedTerminalOverlay)
         {
-            composition.EnableOverlay();
+            composite.EnableOverlay();
         }
         else
         {
-            composition.DisableOverlay();    
+            composite.DisableOverlay();    
         }
     }
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
         base.DeSpawn(mode);
-        composition.overlayDrawer = null;
-        composition = null;
+        composite.overlayDrawer = null;
+        composite = null;
     }
 
     public override void Tick()
     {
         base.Tick();
-        composition.Tick();
+        composite.Tick();
 
-        linkedTerminal = (Building_TargetingTerminalCE)composition.linkedTerminal;
+        linkedTerminal = (Building_TargetingTerminalCE)composite.linkedTerminal;
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref composition.rotationVelocity, "rotationVelocity");
-        Scribe_Values.Look(ref composition.barrelIndex, "barrelIndex", -1);
+        Scribe_Values.Look(ref composite.rotationVelocity, "rotationVelocity");
+        Scribe_Values.Look(ref composite.barrelIndex, "barrelIndex", -1);
         Scribe_References.Look(ref linkedTerminal, "linkedTerminal");
-        Scribe_Values.Look(ref composition.curAngle, "curAngle");
+        Scribe_Values.Look(ref composite.curAngle, "curAngle");
     }
 
     public override string GetInspectString()
@@ -125,6 +132,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
             stringBuilder.AppendLine(inspectString);
         }
 
+        // Logic from VGE
         if (Faction == Faction.OfPlayer && linkedTerminal == null)
         {
             stringBuilder.Append("VGE_NeedsLinkedTargetingTerminal".Translate());
@@ -134,35 +142,31 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
 
     public void LinkTo(Building_TargetingTerminalCE terminal)
     {
-        composition.LinkTo(terminal);
-        linkedTerminal = (Building_TargetingTerminalCE)composition.linkedTerminal;
+        composite.LinkTo(terminal);
+        linkedTerminal = (Building_TargetingTerminalCE)composite.linkedTerminal;
         terminal.linkedTurretCE = this;
     }
 
     public void Unlink()
     {
-        composition?.Unlink();
+        composite?.Unlink();
         linkedTerminal = null;
     }
 
     private void SelectLinkedTerminal()
     {
-        composition.SelectLinkedTerminal();
+        composite.SelectLinkedTerminal();
     }
     private void StartLinking()
     {
-        var targetingParameters = new TargetingParameters
-        {
-            canTargetPawns = false,
-            canTargetBuildings = true,
-            mapObjectTargetsMustBeAutoAttackable = false,
-            validator = (TargetInfo t) => t.Thing is Building_TargetingTerminal && t.Thing.Position.InHorDistOf(this.Position, 36)
-        };
-        Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
+        composite.StartLinking();
+        // intercept the targeting logic
+        Find.Targeter.targetParams.validator = (TargetInfo t) => t.Thing is Building_TargetingTerminal && t.Thing.Position.InHorDistOf(this.Position, 36);
+        Find.Targeter.action = delegate (LocalTargetInfo t)
         {
             var terminal = t.Thing as Building_TargetingTerminalCE;
             LinkTo(terminal);
-        }, onGuiAction: delegate { GenDraw.DrawRadiusRing(this.Position, 36f); });
+        };
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -184,11 +188,22 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
                 holdFire = command2;
                 continue;
             }
+
+            if (gizmo is Command_ArtilleryTarget command3 && command3.defaultLabel == "CE_ArtilleryTargetLabel".Translate())
+            {
+                command3.icon = CompWorldArtillery.WorldTargetIcon;
+                if (!CanFire)
+                {
+                    // skip this gizmo if we cannot fire
+                    continue;
+                }
+            }
+
             yield return gizmo;
     
         }
 
-        foreach (var gizmo in composition.GetGizmos())
+        foreach (var gizmo in composite.GetGizmos())
         {
             if (forceAttack != null && gizmo is Command_VerbTarget command1 && command1.defaultLabel == "CommandSetForceAttackTarget".Translate())
             {

@@ -1,11 +1,7 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using VanillaGravshipExpanded;
 using Verse;
-using Verse.Sound;
-using static UnityEngine.GraphicsBuffer;
 
 namespace CombatExtended.Compatibility.VGECompat;
 

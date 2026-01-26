@@ -1,10 +1,10 @@
 <Patch>
-
-	<!-- Patch Weapons -->
+	<!-- Patch Buildings -->
     <Operation Class="PatchOperationRemove">
 		<xpath>
 			Defs/ThingDef[
-				defName = "VGE_GaussGun"
+				defName = "VGE_GaussGun" or
+				defName = "VGE_JavelinPod"
 			]/comps/li[
 				@Class = "CompProperties_Refuelable" or
 				@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery" or
@@ -15,19 +15,25 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName = "VGE_Gun_GaussGun"
+			defName = "VGE_Gun_GaussGun" or
+			defName = "VGE_Gun_JavelinPod"
 			]/verbs</xpath>
 	</Operation>
 
 	<!-- Replace vanilla thingClass -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName = "VGE_GaussGun"
-			]/thingClass </xpath>
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_GaussGun" or
+				defName = "VGE_JavelinPod"
+			]/thingClass 
+		</xpath>
 		<value>
-			<thingClass>CombatExtended.Compatibility.VGECompat.Building_GravshipTurretCE</thingClass>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_GravshipTurretAutoAttackCE</thingClass>
 		</value>
 	</Operation>
+
+	<!-- === GaussGun === -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_GaussGun</defName>
@@ -38,6 +44,8 @@
 			<SwayFactor>11.38</SwayFactor>
 		</statBases>
 		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
+			<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
 			<range>99999</range>
 			<minRange>14.9</minRange>
 			<burstShotCount>1</burstShotCount>
@@ -47,18 +55,18 @@
 			<muzzleFlashScale>10</muzzleFlashScale>
 			<requireLineOfSight>false</requireLineOfSight>
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<isMortar>false</isMortar>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
-			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
 			<warmupTime>1.8</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>60</magazineSize>
+			<!-- Maybe a poor choice, we should make special ammo -->
+			<magazineSize>24</magazineSize>
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
 		</AmmoUser>
@@ -86,7 +94,74 @@
 		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]</xpath>
 		<value>
 			<li Class="CombatExtended.NonSnapTurretExtension">
-				<speed>0.45</speed>
+				<speed>0.25</speed>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === JavelinPod === -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_JavelinPod</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>11.38</SwayFactor>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<defaultProjectile>VGE_Rocket_JavelinRocket</defaultProjectile>
+			<range>99999</range>
+			<minRange>14</minRange>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<soundCast>Bullet_50mmRocket_HE</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<forcedMissRadius>9</forcedMissRadius>
+			<requireLineOfSight>false</requireLineOfSight>
+			<consumeFuelPerShot>10</consumeFuelPerShot>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+
+			<hasStandardCommand>true</hasStandardCommand>
+			<warmupTime>3.6</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<!-- Maybe a poor choice, we should make special ammo -->
+			<magazineSize>36</magazineSize>
+			<reloadTime>6.5</reloadTime>
+			<ammoSet>AmmoSet_50mmRocket</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+	</Operation>	
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_Gun_JavelinPod"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_Gun_JavelinPod"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.125</speed>
 			</li>
 		</value>
 	</Operation>
