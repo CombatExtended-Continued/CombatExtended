@@ -2,6 +2,7 @@
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using VanillaGravshipExpanded;
 using VEF.Graphics;
@@ -17,64 +18,43 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     // https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/Things/Building_GravshipTurret.cs
     #endregion
 
-    private float curAngle;
-    private float rotationSpeed;
-    private float rotationVelocity;
-    private int barrelIndex = -1;
-    private List<Vector3> barrels;
+    private GravshipTurretWrapperCE composition;
+   
     public Building_TargetingTerminalCE linkedTerminal;
-    private CustomOverlayDrawer overlayDrawer;
-    private static readonly Texture2D ForceTargetIcon = ContentFinder<Texture2D>.Get("UI/Gizmos/GravshipArtilleryForceTarget");
-    private static readonly Texture2D HoldFireIcon = ContentFinder<Texture2D>.Get("UI/Gizmos/GravshipArtilleryHoldFire");
-    private static readonly Texture2D LinkIcon = ContentFinder<Texture2D>.Get("UI/Gizmos/LinkWithTerminal");
-    private static readonly Texture2D UnlinkIcon = ContentFinder<Texture2D>.Get("UI/Gizmos/UnlinkWithTerminal");
-    private static readonly Texture2D SelectIcon = ContentFinder<Texture2D>.Get("UI/Gizmos/SelectLinkedTerminal");
-    public virtual bool CanFire => linkedTerminal?.MannedByPlayer ?? false;
+  
+    public virtual bool CanFire => composition?.CanFire ?? false;
 
-    public virtual bool CanAutoAttack => false;
-    public Pawn ManningPawn => linkedTerminal?.MannableComp?.ManningPawn;
+    public virtual bool CanAutoAttack => composition?.CanAutoAttack ?? false;
+    public Pawn ManningPawn => composition?.ManningPawn;
 
-    public virtual float GravshipTargeting => linkedTerminal?.GravshipTargeting ?? 0f;
+    public virtual float GravshipTargeting => composition?.GravshipTargeting ?? 0f;
 
-    protected virtual bool ShowNoLinkedTerminalOverlay => true;
+    protected virtual bool ShowNoLinkedTerminalOverlay => composition?.ShowNoLinkedTerminalOverlay ?? true;
 
     public Vector3 CastSource
     {
         get
         {
-            if (barrels != null)
+            if (composition != null)
             {
-                if (barrelIndex < 0)
-                {
-                    barrelIndex = 0;
-                }
-                var result = DrawPos + barrels[barrelIndex].RotatedBy(top.CurRotation);
-                return result;
+                return composition.CastSource;
             }
             return DrawPos;
         }
     }
 
-    public static Vector3 GetCastSource(Thing thing) => thing is Building_GravshipTurret turret ? turret.CastSource : thing.DrawPos;
+    public static Vector3 GetCastSource(Thing thing) => thing is Building_GravshipTurretCE turret ? turret.CastSource : thing.DrawPos;
 
     public void TrySwitchBarrel()
     {
-        if (barrels != null)
-        {
-            barrelIndex = (barrelIndex + 1) % barrels.Count;
-        }
+        composition?.TrySwitchBarrel();
     }
 
     protected override bool CanSetForcedTarget
     {
         get
         {
-            if (base.CanSetForcedTarget)
-            {
-                return true;
-            }
-
-            if (linkedTerminal != null && linkedTerminal.MannedByPlayer)
+            if (composition.CanSetForcedTarget)
             {
                 return true;
             }
@@ -85,128 +65,88 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
+        composition = new GravshipTurretWrapperCE(this);
 
         var ext = def.GetModExtension<TurretExtension_RotationSpeed>();
         if (ext != null)
         {
-            rotationSpeed = ext.rotationSpeed;
+            composition.rotationSpeed = ext.rotationSpeed;
         }
 
         var barrelExt = def.GetModExtension<TurretExtension_Barrels>();
         if (barrelExt != null)
         {
-            barrels = barrelExt.barrels;
+            composition.barrels = barrelExt.barrels;
         }
 
-        overlayDrawer = map.GetComponent<CustomOverlayDrawer>();
         if (linkedTerminal == null && ShowNoLinkedTerminalOverlay)
         {
-           EnableOverlay();
+            composition.EnableOverlay();
+        }
+        else
+        {
+            composition.DisableOverlay();    
         }
     }
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
         base.DeSpawn(mode);
-
-        overlayDrawer = null;
+        composition.overlayDrawer = null;
     }
 
-    protected float angleDiff;
     public override void Tick()
     {
         base.Tick();
-        if (linkedTerminal != null && (linkedTerminal.Destroyed || !linkedTerminal.Spawned))
-        {
-            Unlink();
-        }
+        composition.Tick();
 
-        if (rotationSpeed > 0)
-        {
-            if (CanFire && CurrentTarget.IsValid && Active && AttackVerb.Available())
-            {
-                var targetAngle = (CurrentTarget.Cell.ToVector3Shifted() - DrawPos).AngleFlat();
-                if (targetAngle < 0)
-                {
-                    targetAngle += 360;
-                }
-                curAngle = top.CurRotation = Mathf.SmoothDampAngle(curAngle, targetAngle, ref rotationVelocity, 0.01f, rotationSpeed, 1f / GenTicks.TicksPerRealSecond);
-                if (curAngle < 0)
-                {
-                    curAngle += 360;
-                }
-                else if (curAngle > 360)
-                {
-                    curAngle -= 360;
-                }
-                angleDiff = Mathf.Min(Mathf.Abs(curAngle - targetAngle), 360 - Mathf.Abs(curAngle - targetAngle));
-                if (angleDiff > 0.1f && AttackVerb.state != VerbState.Bursting && burstCooldownTicksLeft <= 0)
-                {
-                    burstWarmupTicksLeft++;
-                }
-            }
-            else
-            {
-                curAngle = top.CurRotation;
-            }
-        }
+
+        linkedTerminal = (Building_TargetingTerminalCE)composition.linkedTerminal;
+        top.CurRotation = composition.top.CurRotation;
+        burstWarmupTicksLeft = composition.burstWarmupTicksLeft;
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref rotationVelocity, "rotationVelocity");
-        Scribe_Values.Look(ref barrelIndex, "barrelIndex", -1);
+        Scribe_Values.Look(ref composition.rotationVelocity, "rotationVelocity");
+        Scribe_Values.Look(ref composition.barrelIndex, "barrelIndex", -1);
         Scribe_References.Look(ref linkedTerminal, "linkedTerminal");
-        Scribe_Values.Look(ref curAngle, "curAngle");
+        Scribe_Values.Look(ref composition.curAngle, "curAngle");
     }
 
     public override string GetInspectString()
     {
-        string text = base.GetInspectString();
+        StringBuilder stringBuilder = new StringBuilder();
+        string inspectString = base.GetInspectString();
+        if (!inspectString.NullOrEmpty())
+        {
+            stringBuilder.AppendLine(inspectString);
+        }
+
         if (Faction == Faction.OfPlayer && linkedTerminal == null)
         {
-            if (!text.NullOrEmpty())
-            {
-                text += "\n";
-            }
-            text += "VGE_NeedsLinkedTargetingTerminal".Translate();
+            stringBuilder.Append("VGE_NeedsLinkedTargetingTerminal".Translate());
         }
-        return text;
+        return stringBuilder.ToString().TrimEndNewlines();
     }
 
     public void LinkTo(Building_TargetingTerminalCE terminal)
     {
-        terminal.linkedTurretCE?.Unlink();
-        linkedTerminal = terminal;
+        composition.LinkTo(terminal);
+        linkedTerminal = (Building_TargetingTerminalCE)composition.linkedTerminal;
         terminal.linkedTurretCE = this;
-        SoundDefOf.Tick_High.PlayOneShotOnCamera();
-        DisableOverlay();
-        linkedTerminal.DisableOverlay();
     }
 
     public void Unlink()
     {
-        if (linkedTerminal != null)
-        {
-            linkedTerminal.EnableOverlay();
-            linkedTerminal.linkedTurret = null;
-        }
+        composition.Unlink();
         linkedTerminal = null;
-        SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-        if (ShowNoLinkedTerminalOverlay)
-        {
-            EnableOverlay();
-        }
     }
 
     private void SelectLinkedTerminal()
     {
-        if (linkedTerminal != null)
-        {
-            Find.Selector.ClearSelection();
-            Find.Selector.Select(linkedTerminal);
-        }
+        composition.SelectLinkedTerminal();
     }
     private void StartLinking()
     {
@@ -223,61 +163,42 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
             LinkTo(terminal);
         }, onGuiAction: delegate { GenDraw.DrawRadiusRing(this.Position, 36f); });
     }
+
     public override IEnumerable<Gizmo> GetGizmos()
     {
         foreach (var gizmo in base.GetGizmos())
         {
-            if (gizmo is Command_VerbTarget command && command.defaultLabel == "CommandSetForceAttackTarget".Translate())
+            if (gizmo is Command_VerbTarget command && command.defaultLabel == "CommandSetForceAttackTarget".Translate()
+                || gizmo is Command_Toggle command2 && command2.defaultLabel == "CommandHoldFire".Translate())
             {
-                command.icon = ForceTargetIcon;
-                if (!CanFire)
-                {
-                    command.Disable("VGE_NeedsMannedTargetingTerminal".Translate());
-                }
+                // skip these ones
             }
-            else if (gizmo is Command_Toggle command2 && command2.defaultLabel == "CommandHoldFire".Translate())
+            else
             {
-                command2.icon = HoldFireIcon;
+                yield return gizmo;
             }
+        }
+
+        foreach (var gizmo in composition.GetGizmos())
+        {
+            // rewrite gizmos
+            if (gizmo is Command_Action command && command.defaultLabel == "VGE_LinkWithTerminal".Translate())
+            {
+                command.action = StartLinking;
+            }
+
+            if (gizmo is Command_Action command2 && command2.defaultLabel == "VGE_UnlinkWithTerminal".Translate())
+            {
+                command2.action = Unlink;
+            }
+
+            if (gizmo is Command_Action command3 && command3.defaultLabel == "VGE_SelectLinkedTerminal".Translate())
+            {
+                command3.action = SelectLinkedTerminal;
+            }
+
             yield return gizmo;
         }
-
-        if (Faction != Faction.OfPlayer)
-        {
-            yield break;
-        }
-
-        if (linkedTerminal == null)
-        {
-            yield return new Command_Action
-            {
-                defaultLabel = "VGE_LinkWithTerminal".Translate(),
-                defaultDesc = "VGE_LinkWithTerminalDesc".Translate(),
-                icon = LinkIcon,
-                action = delegate { StartLinking(); }
-            };
-        }
-        else
-        {
-            yield return new Command_Action
-            {
-                defaultLabel = "VGE_UnlinkWithTerminal".Translate(),
-                defaultDesc = "VGE_UnlinkWithTerminalDesc".Translate(),
-                icon = UnlinkIcon,
-                action = delegate { Unlink(); }
-            };
-            yield return new Command_Action
-            {
-                defaultLabel = "VGE_SelectLinkedTerminal".Translate(),
-                defaultDesc = "VGE_SelectLinkedTerminalDesc".Translate(),
-                icon = SelectIcon,
-                action = delegate { SelectLinkedTerminal(); }
-            };
-        }
     }
-
-    public void EnableOverlay() => overlayDrawer?.Enable(this, VGEDefOf.VGE_NoLinkedTerminalOverlay);
-
-    public void DisableOverlay() => overlayDrawer?.Disable(this, VGEDefOf.VGE_NoLinkedTerminalOverlay);
 }
 

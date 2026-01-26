@@ -48,15 +48,11 @@ public class GravshipTurretWrapperCE: Building_GravshipTurret
 
         var properties = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic).Where(p => p.CanRead && p.CanWrite);
 
-        Log.Message("hum" + properties.ToString());
-
         foreach (var property in properties)
         {
             var sourceProperty = sourceType.GetProperty(property.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             if (sourceProperty != null && sourceProperty.CanRead && sourceProperty.CanWrite)
             {
-                Log.Message("uh" + turretCE?.ToString() + " " + sourceProperty?.ToString());
-
                 var value = sourceProperty.GetValue(turretCE);
                 property.SetValue(this, value);
             }

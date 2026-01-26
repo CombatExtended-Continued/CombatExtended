@@ -39,7 +39,7 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
 
     public override void Tick()
     {
-        base.Tick();
+        // base.Tick(); // use harmony to call the grand parent Tick method ?
 
         if (linkedTurretCE != null && (linkedTurretCE.Destroyed || !linkedTurretCE.Spawned))
         {
