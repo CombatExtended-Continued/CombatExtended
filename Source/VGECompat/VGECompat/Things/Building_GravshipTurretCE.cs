@@ -21,9 +21,13 @@ namespace CombatExtended.Compatibility.VGECompat;
  * If a technical limitation prevents this logic, I fall back to duplication.
  */
 
-public class Building_GravshipTurretCE: Building_TurretGunCE
+public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
 {
-    private Building_GravshipTurret composite;
+
+    public override Building_GravshipTurret GetBuilding_GravshipTurret(Building_TurretGunCEWithVGEAdapter instance)
+    {
+        return AdapterUtils<Building_GravshipTurretCE, Building_GravshipTurret>.DelegateValuesToTargetType((Building_GravshipTurretCE) instance);
+    }
 
     // serialization fields
     // must duplicate composite fields here for saving/loading
@@ -31,26 +35,25 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     private float rotationVelocity;
     private int barrelIndex = -1;
 
-    public Building_GravshipTurret ToBuilding_GravshipTurret => composite;
 
     public Building_TargetingTerminalCE linkedTerminal;
   
-    public virtual bool CanFire => composite?.CanFire ?? false;
+    public virtual bool CanFire => ToBuilding_GravshipTurret?.CanFire ?? false;
 
-    public virtual bool CanAutoAttack => composite?.CanAutoAttack ?? false;
-    public Pawn ManningPawn => composite?.ManningPawn;
+    public virtual bool CanAutoAttack => ToBuilding_GravshipTurret?.CanAutoAttack ?? false;
+    public Pawn ManningPawn => ToBuilding_GravshipTurret?.ManningPawn;
 
-    public virtual float GravshipTargeting => composite?.GravshipTargeting ?? 0f;
+    public virtual float GravshipTargeting => ToBuilding_GravshipTurret?.GravshipTargeting ?? 0f;
 
-    protected virtual bool ShowNoLinkedTerminalOverlay => composite?.ShowNoLinkedTerminalOverlay ?? true;
+    protected virtual bool ShowNoLinkedTerminalOverlay => ToBuilding_GravshipTurret?.ShowNoLinkedTerminalOverlay ?? true;
 
     public Vector3 CastSource
     {
         get
         {
-            if (composite != null)
+            if (ToBuilding_GravshipTurret != null)
             {
-                return composite.CastSource;
+                return ToBuilding_GravshipTurret.CastSource;
             }
             return DrawPos;
         }
@@ -60,15 +63,15 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
 
     public void TrySwitchBarrel()
     {
-        composite?.TrySwitchBarrel();
-        barrelIndex = composite.barrelIndex;
+        ToBuilding_GravshipTurret?.TrySwitchBarrel();
+        barrelIndex = ToBuilding_GravshipTurret.barrelIndex;
     }
 
     protected override bool CanSetForcedTarget
     {
         get
         {
-            if (composite.CanSetForcedTarget)
+            if (ToBuilding_GravshipTurret.CanSetForcedTarget)
             {
                 return true;
             }
@@ -80,47 +83,43 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
-        // filling the composite element
-        composite = AdapterUtils<Building_GravshipTurretCE, Building_GravshipTurret>.DelegateValuesToTargetType(this);
-        composite.gun = Gun;
-
         var ext = def.GetModExtension<TurretExtension_RotationSpeed>();
         if (ext != null)
         {
-            composite.rotationSpeed = ext.rotationSpeed;
+            ToBuilding_GravshipTurret.rotationSpeed = ext.rotationSpeed;
         }
 
         var barrelExt = def.GetModExtension<TurretExtension_Barrels>();
         if (barrelExt != null)
         {
-            composite.barrels = barrelExt.barrels;
+            ToBuilding_GravshipTurret.barrels = barrelExt.barrels;
         }
 
         if (linkedTerminal == null && ShowNoLinkedTerminalOverlay)
         {
-            composite.EnableOverlay();
+            ToBuilding_GravshipTurret.EnableOverlay();
         }
         else
         {
-            composite.DisableOverlay();    
+            ToBuilding_GravshipTurret.DisableOverlay();    
         }
     }
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
         base.DeSpawn(mode);
-        composite.overlayDrawer = null;
-        composite = null;
+        ToBuilding_GravshipTurret.overlayDrawer = null;
+        ToBuilding_GravshipTurret = null;
     }
 
     public override void Tick()
     {
         base.Tick();
-        composite.Tick();
+        ToBuilding_GravshipTurret.Tick();
 
-        linkedTerminal = (Building_TargetingTerminalCE)composite.linkedTerminal;
-        rotationVelocity = composite.rotationVelocity;
-        curAngle = composite.curAngle;
+        linkedTerminal = (Building_TargetingTerminalCE)ToBuilding_GravshipTurret.linkedTerminal;
+        rotationVelocity = ToBuilding_GravshipTurret.rotationVelocity;
+        curAngle = ToBuilding_GravshipTurret.curAngle;
     }
 
     public override void ExposeData()
@@ -151,24 +150,24 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
 
     public void LinkTo(Building_TargetingTerminalCE terminal)
     {
-        composite.LinkTo(terminal);
-        linkedTerminal = (Building_TargetingTerminalCE)composite.linkedTerminal;
+        ToBuilding_GravshipTurret.LinkTo(terminal);
+        linkedTerminal = (Building_TargetingTerminalCE)ToBuilding_GravshipTurret.linkedTerminal;
         terminal.linkedTurretCE = this;
     }
 
     public void Unlink()
     {
-        composite?.Unlink();
+        ToBuilding_GravshipTurret?.Unlink();
         linkedTerminal = null;
     }
 
     private void SelectLinkedTerminal()
     {
-        composite.SelectLinkedTerminal();
+        ToBuilding_GravshipTurret.SelectLinkedTerminal();
     }
     private void StartLinking()
     {
-        composite.StartLinking();
+        ToBuilding_GravshipTurret.StartLinking();
         // intercept the targeting logic
         Find.Targeter.targetParams.validator = (TargetInfo t) => t.Thing is Building_TargetingTerminal && t.Thing.Position.InHorDistOf(this.Position, 36);
         Find.Targeter.action = delegate (LocalTargetInfo t)
@@ -212,7 +211,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     
         }
 
-        foreach (var gizmo in composite.GetGizmos())
+        foreach (var gizmo in ToBuilding_GravshipTurret.GetGizmos())
         {
             if (forceAttack != null && gizmo is Command_VerbTarget command1 && command1.defaultLabel == "CommandSetForceAttackTarget".Translate())
             {

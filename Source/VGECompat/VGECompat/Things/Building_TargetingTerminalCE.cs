@@ -17,7 +17,7 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
 
     public override void ExposeData()
     {
-        // skip the linkedTurret save, we will load it later
+        // skip the linkedTurret save/load, we don't need it
         linkedTurret = null;
         base.ExposeData();
 
@@ -44,8 +44,10 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
         // skip the turret unlink from base.Tick (because this instance is not spawned and never will be)
         linkedTurret = null;
         base.Tick();
+        // restore the linked turret reference
         linkedTurret = linkedTurretCE?.ToBuilding_GravshipTurret;
 
+        // VGE logic
         if (linkedTurretCE != null && (linkedTurretCE.Destroyed || !linkedTurretCE.Spawned))
         {
             UnlinkCE();
