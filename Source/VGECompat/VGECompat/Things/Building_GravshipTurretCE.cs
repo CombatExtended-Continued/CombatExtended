@@ -19,7 +19,9 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     #endregion
 
     private GravshipTurretWrapperCE composition;
-   
+
+    public Building_GravshipTurret ToBuilding_GravshipTurret => composition;
+
     public Building_TargetingTerminalCE linkedTerminal;
   
     public virtual bool CanFire => composition?.CanFire ?? false;
@@ -94,6 +96,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     {
         base.DeSpawn(mode);
         composition.overlayDrawer = null;
+        composition = null;
     }
 
     public override void Tick()
@@ -138,7 +141,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
 
     public void Unlink()
     {
-        composition.Unlink();
+        composition?.Unlink();
         linkedTerminal = null;
     }
 

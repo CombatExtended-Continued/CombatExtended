@@ -1,8 +1,11 @@
 ﻿using RimWorld;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using VanillaGravshipExpanded;
 using Verse;
 using Verse.Sound;
+using static UnityEngine.GraphicsBuffer;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
@@ -15,7 +18,7 @@ namespace CombatExtended.Compatibility.VGECompat;
 public class Building_TargetingTerminalCE : Building_TargetingTerminal
 {
     public Building_GravshipTurretCE linkedTurretCE;
-
+    
     public override void ExposeData()
     {
         base.ExposeData();
@@ -39,7 +42,15 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
 
     public override void Tick()
     {
-        // base.Tick(); // use harmony to call the grand parent Tick method ?
+        // Run ThingWitComps.Tick without calling Building_TargetingTerminal.Tick again to avoid double-processing its logic
+        if (comps != null)
+        {
+            int i = 0;
+            for (int count = comps.Count; i < count; i++)
+            {
+                comps[i].CompTick();
+            }
+        }
 
         if (linkedTurretCE != null && (linkedTurretCE.Destroyed || !linkedTurretCE.Spawned))
         {
@@ -47,93 +58,82 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
         }
     }
 
-    public override void DrawExtraSelectionOverlays()
-    {
-        base.DrawExtraSelectionOverlays();
-        if (linkedTurretCE != null)
-        {
-            GenDraw.DrawLineBetween(this.TrueCenter(), linkedTurretCE.TrueCenter(), SimpleColor.White);
-        }
-    }
-
     public override IEnumerable<Gizmo> GetGizmos()
     {
+        Gizmo LinkWithTurretGizmo = null;
+        Gizmo UnlinkWithTurretGizmo = null;
+        Gizmo SelectLinkedTurretGizmo = null;
         foreach (var gizmo in base.GetGizmos())
         {
-            if (gizmo is Command_Action command &&
-                (command.defaultLabel == "VGE_LinkWithTurret".Translate()
-                || command.defaultLabel == "VGE_UnlinkWithTurret".Translate()
-                || command.defaultLabel == "VGE_SelectLinkedTurret".Translate()
-                ))
+            if (gizmo is Command_Action command)
             {
-                // skip base class gizmos
-            } else {
-                yield return gizmo;
-            }
+                if (command.defaultLabel == "VGE_LinkWithTurret".Translate())
+                {
+                    command.action = StartLinkingCE;
+                    LinkWithTurretGizmo = command;
+                    continue;
+                }
+
+                if (command.defaultLabel == "VGE_UnlinkWithTurret".Translate())
+                {
+                    command.action = UnlinkCE;
+                    UnlinkWithTurretGizmo = command;
+                    continue;
+                }
+
+                if (command.defaultLabel == "VGE_SelectLinkedTurret".Translate())
+                {
+                    command.action = SelectLinkedTurretCE;
+                    SelectLinkedTurretGizmo = command;
+                    continue;
+                }
+            } 
+
+            yield return gizmo;
         }
 
+        // copy VGE logic
         if (linkedTurretCE == null)
         {
-            yield return new Command_Action
+            if (LinkWithTurretGizmo != null)
             {
-                defaultLabel = "VGE_LinkWithTurret".Translate(),
-                defaultDesc = "VGE_LinkWithTurretDesc".Translate(),
-                icon = LinkIcon,
-                action = delegate { StartLinkingCE(); }
-            };
+                yield return LinkWithTurretGizmo;
+            }
         }
-        else
+        else if (UnlinkWithTurretGizmo != null && SelectLinkedTurretGizmo != null)
         {
-            yield return new Command_Action
-            {
-                defaultLabel = "VGE_UnlinkWithTurret".Translate(),
-                defaultDesc = "VGE_UnlinkWithTurretDesc".Translate(),
-                icon = UnlinkIcon,
-                action = delegate { UnlinkCE(); }
-            };
-            yield return new Command_Action
-            {
-                defaultLabel = "VGE_SelectLinkedTurret".Translate(),
-                defaultDesc = "VGE_SelectLinkedTurretDesc".Translate(),
-                icon = SelectIcon,
-                action = delegate { SelectLinkedTurretCE(); }
-            };
+            yield return UnlinkWithTurretGizmo;
+            yield return SelectLinkedTurretGizmo;
         }
     }
     private void StartLinkingCE()
     {
-        var targetingParameters = new TargetingParameters
-        {
-            canTargetPawns = false,
-            canTargetBuildings = true,
-            mapObjectTargetsMustBeAutoAttackable = false,
-            validator = (TargetInfo t) => t.Thing is Building_GravshipTurretCE && t.Thing.Position.InHorDistOf(this.Position, 36)
-        };
-        Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
+        StartLinking();
+        // intercept the targeting logic
+        Find.Targeter.targetParams.validator = (TargetInfo t) => t.Thing is Building_GravshipTurretCE && t.Thing.Position.InHorDistOf(this.Position, 36);
+        Find.Targeter.action = delegate (LocalTargetInfo t)
         {
             var turret = t.Thing as Building_GravshipTurretCE;
             LinkToCE(turret);
-        }, onGuiAction: delegate { GenDraw.DrawRadiusRing(this.Position, 36f); });
+        };
     }
 
     public void LinkToCE(Building_GravshipTurretCE turret)
     {
+        LinkTo(turret.ToBuilding_GravshipTurret);
         if (turret.linkedTerminal != null)
         {
             turret.linkedTerminal?.Unlink();
         }
         linkedTurretCE = turret;
         turret.LinkTo(this);
-        SoundDefOf.Tick_High.PlayOneShotOnCamera();
-        DisableOverlay();
     }
 
     public void UnlinkCE()
     {
+        Unlink();
         linkedTurretCE?.Unlink();
         linkedTurretCE = null;
-        SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-        EnableOverlay();
     }
 
     public void SelectLinkedTurretCE()
