@@ -66,6 +66,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     {
         base.SpawnSetup(map, respawningAfterLoad);
         composition = new GravshipTurretWrapperCE(this);
+        composition.gun = Gun;
 
         var ext = def.GetModExtension<TurretExtension_RotationSpeed>();
         if (ext != null)
@@ -100,10 +101,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
         base.Tick();
         composition.Tick();
 
-
         linkedTerminal = (Building_TargetingTerminalCE)composition.linkedTerminal;
-        top.CurRotation = composition.top.CurRotation;
-        burstWarmupTicksLeft = composition.burstWarmupTicksLeft;
     }
 
     public override void ExposeData()
@@ -166,35 +164,58 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
+        Command_VerbTarget forceAttack = null;
+        Command_Toggle holdFire = null;
         foreach (var gizmo in base.GetGizmos())
         {
-            if (gizmo is Command_VerbTarget command && command.defaultLabel == "CommandSetForceAttackTarget".Translate()
-                || gizmo is Command_Toggle command2 && command2.defaultLabel == "CommandHoldFire".Translate())
+            // skip these ones and save them because we will call them according to VGE logic
+
+            if (gizmo is Command_VerbTarget command && command.defaultLabel == "CommandSetForceAttackTarget".Translate())
             {
-                // skip these ones
+                forceAttack = command;
+                continue;
             }
-            else
+
+            if (gizmo is Command_Toggle command2 && command2.defaultLabel == "CommandHoldFire".Translate())
             {
-                yield return gizmo;
+                holdFire = command2;
+                continue;
             }
+            yield return gizmo;
+    
         }
 
         foreach (var gizmo in composition.GetGizmos())
         {
-            // rewrite gizmos
-            if (gizmo is Command_Action command && command.defaultLabel == "VGE_LinkWithTerminal".Translate())
+            if (forceAttack != null && gizmo is Command_VerbTarget command1 && command1.defaultLabel == "CommandSetForceAttackTarget".Translate())
             {
-                command.action = StartLinking;
+                forceAttack.icon = command1.icon;
+                forceAttack.disabled = command1.disabled;
+                forceAttack.disabledReason = command1.disabledReason;
+                yield return forceAttack;
+                continue;
             }
 
-            if (gizmo is Command_Action command2 && command2.defaultLabel == "VGE_UnlinkWithTerminal".Translate())
+            if (holdFire != null && gizmo is Command_Toggle command2 && command2.defaultLabel == "CommandHoldFire".Translate())
             {
-                command2.action = Unlink;
+                holdFire.icon = command2.icon;
+                yield return holdFire;
+                continue;
             }
 
-            if (gizmo is Command_Action command3 && command3.defaultLabel == "VGE_SelectLinkedTerminal".Translate())
+            if (gizmo is Command_Action command3 && command3.defaultLabel == "VGE_LinkWithTerminal".Translate())
             {
-                command3.action = SelectLinkedTerminal;
+                command3.action = StartLinking;
+            }
+
+            if (gizmo is Command_Action command4 && command4.defaultLabel == "VGE_UnlinkWithTerminal".Translate())
+            {
+                command4.action = Unlink;
+            }
+
+            if (gizmo is Command_Action command5 && command5.defaultLabel == "VGE_SelectLinkedTerminal".Translate())
+            {
+                command5.action = SelectLinkedTerminal;
             }
 
             yield return gizmo;
