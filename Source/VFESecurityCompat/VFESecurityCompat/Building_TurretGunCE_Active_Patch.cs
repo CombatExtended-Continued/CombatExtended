@@ -12,7 +12,6 @@ namespace CombatExtended.Compatibility.VFES
             CompConcealed comp = __instance.GetComp<CompConcealed>();
             if (comp != null && comp.Submerged)
             {
-                Log.Message($"Prevented a submerged turret from firing.");
                 __result = false;
                 return false;
             }
