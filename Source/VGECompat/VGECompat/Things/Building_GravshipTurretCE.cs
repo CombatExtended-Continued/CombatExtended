@@ -23,7 +23,13 @@ namespace CombatExtended.Compatibility.VGECompat;
 
 public class Building_GravshipTurretCE: Building_TurretGunCE
 {
-    private GravshipTurretWrapperCE composite;
+    private Building_GravshipTurret composite;
+
+    // serialization fields
+    // must duplicate composite fields here for saving/loading
+    private float curAngle;
+    private float rotationVelocity;
+    private int barrelIndex = -1;
 
     public Building_GravshipTurret ToBuilding_GravshipTurret => composite;
 
@@ -55,6 +61,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     public void TrySwitchBarrel()
     {
         composite?.TrySwitchBarrel();
+        barrelIndex = composite.barrelIndex;
     }
 
     protected override bool CanSetForcedTarget
@@ -73,8 +80,8 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
-        // filling the composition
-        composite = new GravshipTurretWrapperCE(this);
+        // filling the composite element
+        composite = AdapterUtils<Building_GravshipTurretCE, Building_GravshipTurret>.DelegateValuesToTargetType(this);
         composite.gun = Gun;
 
         var ext = def.GetModExtension<TurretExtension_RotationSpeed>();
@@ -112,15 +119,17 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
         composite.Tick();
 
         linkedTerminal = (Building_TargetingTerminalCE)composite.linkedTerminal;
+        rotationVelocity = composite.rotationVelocity;
+        curAngle = composite.curAngle;
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref composite.rotationVelocity, "rotationVelocity");
-        Scribe_Values.Look(ref composite.barrelIndex, "barrelIndex", -1);
+        Scribe_Values.Look(ref rotationVelocity, "rotationVelocity");
+        Scribe_Values.Look(ref barrelIndex, "barrelIndex", -1);
         Scribe_References.Look(ref linkedTerminal, "linkedTerminal");
-        Scribe_Values.Look(ref composite.curAngle, "curAngle");
+        Scribe_Values.Look(ref curAngle, "curAngle");
     }
 
     public override string GetInspectString()

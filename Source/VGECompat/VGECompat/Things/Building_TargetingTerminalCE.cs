@@ -14,10 +14,13 @@ namespace CombatExtended.Compatibility.VGECompat;
 public class Building_TargetingTerminalCE : Building_TargetingTerminal
 {
     public Building_GravshipTurretCE linkedTurretCE;
-    
+
     public override void ExposeData()
     {
+        // skip the linkedTurret save, we will load it later
+        linkedTurret = null;
         base.ExposeData();
+
         Scribe_References.Look(ref linkedTurretCE, "linkedTurretCE");
     }
 
@@ -38,15 +41,10 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
 
     public override void Tick()
     {
-        // Run ThingWitComps.Tick without calling Building_TargetingTerminal.Tick again to avoid double-processing its logic
-        if (comps != null)
-        {
-            int i = 0;
-            for (int count = comps.Count; i < count; i++)
-            {
-                comps[i].CompTick();
-            }
-        }
+        // skip the turret unlink from base.Tick (because this instance is not spawned and never will be)
+        linkedTurret = null;
+        base.Tick();
+        linkedTurret = linkedTurretCE?.ToBuilding_GravshipTurret;
 
         if (linkedTurretCE != null && (linkedTurretCE.Destroyed || !linkedTurretCE.Spawned))
         {
