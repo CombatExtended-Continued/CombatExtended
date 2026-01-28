@@ -20,10 +20,8 @@ namespace CombatExtended;
  */
 public static class AmmoInjector
 {
-
-    private static readonly AmmoInjectorOptions AmmoInjectorOptions = CE_MiscDefOf.ammoInjectorOptions;
     private static readonly Dictionary<string, HashSet<ThingDef>> BenchesByTag = new Dictionary<string, HashSet<ThingDef>>();
-    private static readonly bool _cacheBuilt = false;
+    private static bool _cacheBuilt;
     public const string destroyWithAmmoDisabledTag = "CE_AmmoInjector";               // The trade tag which automatically deleted this ammo with the ammo system disabled
     private const string enableTradeTag = "CE_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
     private const string enableCraftingTag = "CE_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
@@ -58,7 +56,7 @@ public static class AmmoInjector
     public static bool InjectAmmos()
     {
         bool enabled = Controller.settings.EnableAmmoSystem;
-        BuildBenchCache(AmmoInjectorOptions);
+        BuildBenchCache();
 
         // Initialize list of all weapons
         CE_Utility.allWeaponDefs.Clear();
@@ -205,13 +203,12 @@ public static class AmmoInjector
                                     Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
                                     continue;
                                 }
-                                if (!BenchesByTag.TryGetValue(curTag, out HashSet<ThingDef> benchHashSet))
+                                if (BenchesByTag.TryGetValue(curTag, out HashSet<ThingDef> benchHashSet))
                                 {
-                                    continue;
-                                }
-                                foreach (ThingDef optionBench in benchHashSet)
-                                {
-                                    ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
+                                    foreach (ThingDef optionBench in benchHashSet)
+                                    {
+                                        ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
+                                    }
                                 }
                             }
                             ToggleRecipeOnBench(recipe, bench, ammoEnabled);
@@ -223,17 +220,25 @@ public static class AmmoInjector
         return true;
     }
 
-    private static void BuildBenchCache(AmmoInjectorOptions opts)
+    private static void BuildBenchCache()
     {
         if (_cacheBuilt)
         {
             return;
         }
-        BenchesByTag["CE_AutoEnableCrafting_FueledSmithy"] = ResolveBenches(opts.CE_AutoEnableCrafting_FueledSmithy, "CE_AutoEnableCrafting_FueledSmithy");
-        BenchesByTag["CE_AutoEnableCrafting_ElectricSmithy"] = ResolveBenches(opts.CE_AutoEnableCrafting_ElectricSmithy, "CE_AutoEnableCrafting_ElectricSmithy");
-        BenchesByTag["CE_AutoEnableCrafting_DrugLab"] = ResolveBenches(opts.CE_AutoEnableCrafting_DrugLab, "CE_AutoEnableCrafting_DrugLab");
-        BenchesByTag["CE_AutoEnableCrafting_TableMachining"] = ResolveBenches(opts.CE_AutoEnableCrafting_TableMachining, "CE_AutoEnableCrafting_TableMachining");
-        BenchesByTag["CE_AutoEnableCrafting_FabricationBench"] = ResolveBenches(opts.CE_AutoEnableCrafting_FabricationBench, "CE_AutoEnableCrafting_FabricationBench");
+        List<AmmoInjectorOptions> ammoInjectorOptionList = DefDatabase<AmmoInjectorOptions>.AllDefsListForReading;
+        foreach (AmmoInjectorOptions opts in ammoInjectorOptionList)
+        {
+            if (opts?.benchesByTag == null)
+            {
+                continue;
+            }
+            foreach (var kvp in opts.benchesByTag.data)
+            {
+                BenchesByTag[kvp.Key] = ResolveBenches(kvp.Value, kvp.Key);
+            }
+        }
+        _cacheBuilt = true;
     }
 
     private static HashSet<ThingDef> ResolveBenches(List<string> defNames, string tag)
@@ -266,7 +271,7 @@ public static class AmmoInjector
             {
                 recipeDef.recipeUsers = new List<ThingDef>();
             }
-            recipeDef.recipeUsers.Add(benchDef);
+            recipeDef.recipeUsers.AddDistinct(benchDef);
         }
         else
         {
