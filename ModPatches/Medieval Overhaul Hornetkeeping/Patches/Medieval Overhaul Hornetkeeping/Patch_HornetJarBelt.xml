@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SV_Apparel_DeathstingerJar"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountToRefill</xpath>
+		<value>
+			<ammoCountPerCharge>1</ammoCountPerCharge>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SV_Apparel_DeathstingerJar"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>throw deathstinger jar</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.8</warmupTime>
+					<range>10</range>
+					<minRange>3</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>SV_Proj_DeathstingerJar</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SV_Proj_DeathstingerJar"]</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SV_Proj_DeathstingerJar"]/projectile</xpath>
+		<value>
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SV_Proj_DeathstingerJar"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>SV_Swarm</damageDef>
+				<preExplosionSpawnThingDef>Filth_Slime</preExplosionSpawnThingDef>
+				<damageAmountBase>2</damageAmountBase>
+				<armorPenetrationSharp>10</armorPenetrationSharp>
+				<dropsCasings>false</dropsCasings>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<speed>12</speed>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+				<ballisticCoefficient>2.0~2.0</ballisticCoefficient>
+				<mass>400~400</mass>
+				<diameter>64~64</diameter>
+			</projectile>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="SV_Swarm"]</xpath>
+		<value>
+			<defaultArmorPenetration>3</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+</Patch>

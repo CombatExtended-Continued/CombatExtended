@@ -89,6 +89,7 @@ Alpha Ships |
 Alpha Vehicles - Neolithic  |
 Alpha Vehicles - Age of Sail  |
 Altered Carbon |
+Ancient Armory |
 Ancient Arsenal: Warcaskets |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
@@ -130,6 +131,8 @@ Auto-Mortars	|
 Beast Man Tribes  |
 Beeralope Squad	|
 Beliar Xenotype |
+Beta Anime Hair	|
+Beta Girls und Panzer Hair and Apparel	|
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
 Big and Small - Heaven and Hell
@@ -267,6 +270,7 @@ Gestalt Engine  |
 Giddy-Up 2    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
+Girls' Frontline Styles - AR Team	|
 Girls' Frontline Styles - DEFY Team	|
 Girls' Frontline Styles - GF2	|
 Girls' Frontline Styles - NL	|
@@ -363,6 +367,7 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medieval Overhaul   |
 Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
+Medieval Overhaul: Hornetkeeping   |
 Medieval Overhaul: House Roxmont  |
 Medieval Overhaul: Royalty  |
 Medieval Tailor   |
@@ -584,6 +589,7 @@ Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 Tools O'Plenty  |
 TouhouStyle	|
+Touhou Style Youmu Character Pack	|
 Tox Weapons Pack	|
 Tribal Warrior Set! |
 Tsar Armory	|
@@ -629,8 +635,9 @@ Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
-Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Quests Expanded - Ancients  |
+Vanilla Quests Expanded - Cryptoforge  |
+Vanilla Quests Expanded - Deadlife  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
