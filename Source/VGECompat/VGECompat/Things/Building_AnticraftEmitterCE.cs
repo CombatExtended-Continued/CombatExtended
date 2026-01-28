@@ -1,9 +1,4 @@
 ﻿using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VanillaGravshipExpanded;
 using Verse;
 
@@ -41,6 +36,7 @@ public class Building_AnticraftEmitterCE: Building_GravshipTurretCE
     public override void Tick()
     {
         base.Tick();
+        ToBuilding_AnticraftEmitter.Tick();
         isFiringBurst = ToBuilding_AnticraftEmitter.IsFiringBurst;
         UpdatePowerOutput();
     }
@@ -58,6 +54,5 @@ public class Building_AnticraftEmitterCE: Building_GravshipTurretCE
     {
         base.ExposeData();
         Scribe_Values.Look(ref isFiringBurst, "isFiringBurst");
-
     }
 }

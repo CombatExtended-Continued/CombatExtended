@@ -47,7 +47,7 @@
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
-			<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
+			<defaultProjectile>VGE_Bullet_GaussGun_CE</defaultProjectile>
 			<range>99999</range>
 			<minRange>14.9</minRange>
 			<burstShotCount>1</burstShotCount>
@@ -70,7 +70,7 @@
 			<!-- Maybe a poor choice, we should make special ammo -->
 			<magazineSize>24</magazineSize>
 			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
+			<ammoSet>AmmoSet_VGE_Bullet_GaussGun</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -83,10 +83,7 @@
 		<value>
 			<li Class="CombatExtended.CompProperties_Charges">
 				<chargeSpeeds>
-					<li>30</li>
-					<li>50</li>
 					<li>70</li>
-					<li>90</li>
 				</chargeSpeeds>
 			</li>
 		</value>
@@ -118,7 +115,7 @@
 			<minRange>14</minRange>
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-			<soundCast>Bullet_50mmRocket_HE</soundCast>
+			<soundCast>RocketswarmLauncher_Fire</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
 			<forcedMissRadius>9</forcedMissRadius>
@@ -173,7 +170,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName = "VGE_AnticraftCaster"]/thingClass</xpath>
 		<value>
-			<thingClass>CombatExtended.Compatibility.VGECompat.Building_AnticraftCasterCE</thingClass>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_AnticraftEmitterCE</thingClass>
 		</value>
 	</Operation>
 
@@ -187,7 +184,7 @@
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-			<defaultProjectile>VGE_Bullet_AnticraftCaster</defaultProjectile>
+			<defaultProjectile>Bullet_Laser_BeamRepeater</defaultProjectile>
 			<range>9999</range>
 			<minRange>14</minRange>
 			<forcedMissRadius>0</forcedMissRadius>
@@ -209,38 +206,18 @@
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
-		<AmmoUser>
-			<!-- Maybe a poor choice, we should make special ammo -->
-			<magazineSize>36</magazineSize>
-			<reloadTime>6.5</reloadTime>
-			<ammoSet>AmmoSet_50mmRocket</ammoSet>
-		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
-	</Operation>	
+	</Operation>		
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VGE_Gun_JavelinPod"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Charges">
-				<chargeSpeeds>
-					<li>20</li>
-					<li>30</li>
-					<li>40</li>
-					<li>50</li>
-					<li>60</li>
-				</chargeSpeeds>
-			</li>
-		</value>
-	</Operation>	
-
+	<!-- doesnt work -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="VGE_Gun_JavelinPod"]</xpath>
+		<xpath>Defs/ThingDef[defName="VGE_Gun_AnticraftCaster"]</xpath>
 		<value>
 			<li Class="CombatExtended.NonSnapTurretExtension">
-				<speed>0.125</speed>
+				<speed>0.6</speed>
 			</li>
 		</value>
 	</Operation>

@@ -29,13 +29,6 @@ public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
         return AdapterUtils<Building_GravshipTurretCE, Building_GravshipTurret>.DelegateValuesToTargetType((Building_GravshipTurretCE) instance);
     }
 
-    // serialization fields
-    // must duplicate composite fields here for saving/loading
-    private float curAngle;
-    private float rotationVelocity;
-    private int barrelIndex = -1;
-
-
     public Building_TargetingTerminalCE linkedTerminal;
   
     public virtual bool CanFire => ToBuilding_GravshipTurret?.CanFire ?? false;
@@ -60,12 +53,6 @@ public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
     }
 
     public static Vector3 GetCastSource(Thing thing) => thing is Building_GravshipTurretCE turret ? turret.CastSource : thing.DrawPos;
-
-    public void TrySwitchBarrel()
-    {
-        ToBuilding_GravshipTurret?.TrySwitchBarrel();
-        barrelIndex = ToBuilding_GravshipTurret.barrelIndex;
-    }
 
     protected override bool CanSetForcedTarget
     {
@@ -118,17 +105,12 @@ public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
         ToBuilding_GravshipTurret.Tick();
 
         linkedTerminal = (Building_TargetingTerminalCE)ToBuilding_GravshipTurret.linkedTerminal;
-        rotationVelocity = ToBuilding_GravshipTurret.rotationVelocity;
-        curAngle = ToBuilding_GravshipTurret.curAngle;
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref rotationVelocity, "rotationVelocity");
-        Scribe_Values.Look(ref barrelIndex, "barrelIndex", -1);
         Scribe_References.Look(ref linkedTerminal, "linkedTerminal");
-        Scribe_Values.Look(ref curAngle, "curAngle");
     }
 
     public override string GetInspectString()
