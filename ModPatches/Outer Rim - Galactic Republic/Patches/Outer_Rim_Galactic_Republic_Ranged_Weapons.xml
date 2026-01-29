@@ -83,7 +83,7 @@
 		<value>
 			<li Class="CombatExtended.CompProperties_UnderBarrel">
 				<standardLabel>switch to standard mode</standardLabel>
-				<underBarrelLabel>switch to grenade launcher</underBarrelLabel>
+				<underBarrelLabel>switch to anti-armor attachment</underBarrelLabel>
 				<propsUnderBarrel>
 					<magazineSize>1</magazineSize>
 					<reloadTime>2.2</reloadTime>
@@ -283,13 +283,6 @@
 		</AmmoUser>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="OuterRim_Z6RotaryBlaster"]/statBases/AccuracyTouch
-			| Defs/ThingDef[defName="OuterRim_Z6RotaryBlaster"]/statBases/AccuracyShort
-			| Defs/ThingDef[defName="OuterRim_Z6RotaryBlaster"]/statBases/AccuracyMedium
-			| Defs/ThingDef[defName="OuterRim_Z6RotaryBlaster"]/statBases/AccuracyLong </xpath>
-	</Operation>
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_Z6RotaryBlaster</defName>
 		<statBases>
@@ -308,7 +301,7 @@
 			<warmupTime>2.5</warmupTime>
 			<range>62</range>
 			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-			<burstShotCount>50</burstShotCount>
+			<burstShotCount>20</burstShotCount>
 			<soundCast>OuterRim_Shot_HeavyMinigunBlasterBolt</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
@@ -319,13 +312,15 @@
 		</Properties>
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
-			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aimedBurstShotCount>10</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
 		</FireModes>
 		<AmmoUser>
 			<magazineSize>600</magazineSize>
 			<reloadTime>9.5</reloadTime>
 			<ammoSet>AmmoSet_PlasmaGasCartridgeBlue_Rifle</ammoSet>
 		</AmmoUser>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 	
 	<!-- === RPS6 RL === -->

@@ -79,6 +79,37 @@
 		</AmmoUser>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_SE14RBlaster"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to stun mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>24</magazineSize>
+					<reloadTime>3.84</reloadTime>
+					<ammoSet>AmmoSet_PlasmaGasCartridgeStun_Pistol</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1.2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_BlasterPistol_Stun</defaultProjectile>
+					<warmupTime>1.25</warmupTime>
+					<range>12</range>
+					<soundCast>OuterRim_Shot_SonicBlasterBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_DLT20ABlaster</defName>
 		<statBases>
@@ -328,13 +359,6 @@
 		</AmmoUser>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="OuterRim_DLT19HeavyBlasterRifle"]/statBases/AccuracyTouch
-			| Defs/ThingDef[defName="OuterRim_DLT19HeavyBlasterRifle"]/statBases/AccuracyShort
-			| Defs/ThingDef[defName="OuterRim_DLT19HeavyBlasterRifle"]/statBases/AccuracyMedium
-			| Defs/ThingDef[defName="OuterRim_DLT19HeavyBlasterRifle"]/statBases/AccuracyLong </xpath>
-	</Operation>
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_DLT19HeavyBlasterRifle</defName>
 		<statBases>
@@ -365,6 +389,7 @@
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
 			<aimedBurstShotCount>10</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
 		</FireModes>
 		<AmmoUser>
 			<magazineSize>250</magazineSize>
@@ -409,13 +434,6 @@
 		</AmmoUser>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="OuterRim_TL50HeavyRepeaterBlaster"]/statBases/AccuracyTouch
-			| Defs/ThingDef[defName="OuterRim_TL50HeavyRepeaterBlaster"]/statBases/AccuracyShort
-			| Defs/ThingDef[defName="OuterRim_TL50HeavyRepeaterBlaster"]/statBases/AccuracyMedium
-			| Defs/ThingDef[defName="OuterRim_TL50HeavyRepeaterBlaster"]/statBases/AccuracyLong </xpath>
-	</Operation>
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OuterRim_TL50HeavyRepeaterBlaster</defName>
 		<statBases>
@@ -434,7 +452,7 @@
 			<warmupTime>1.25</warmupTime>
 			<range>55</range>
 			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-			<burstShotCount>50</burstShotCount>
+			<burstShotCount>20</burstShotCount>
 			<soundCast>OuterRim_Shot_HeavyMinigunBlasterBolt</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
@@ -445,7 +463,8 @@
 		</Properties>
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
-			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aimedBurstShotCount>10</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
 		</FireModes>
 		<AmmoUser>
 			<magazineSize>400</magazineSize>
@@ -510,10 +529,10 @@
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
-			<burstShotCount>20</burstShotCount>
-			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<burstShotCount>8</burstShotCount>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 			<warmupTime>1.1</warmupTime>
-			<range>11</range>
+			<range>16</range>
 			<minRange>3</minRange>
 			<soundCast>OuterRim_Shot_FlameProjector</soundCast>
 			<muzzleFlashScale>0</muzzleFlashScale>
@@ -530,7 +549,8 @@
 		<FireModes>
 			<aiAimMode>SuppressFire</aiAimMode>
 			<aiUseBurstMode>True</aiUseBurstMode>
-			<aimedBurstShotCount>10</aimedBurstShotCount>
+			<aimedBurstShotCount>4</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
 		</FireModes>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>

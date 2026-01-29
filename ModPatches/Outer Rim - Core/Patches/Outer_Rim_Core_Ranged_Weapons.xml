@@ -9,8 +9,35 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			@Name="OuterRimBlasterBase_Pistol" or
 			@Name="OuterRimBlasterBase_Rifle" or
 			@Name="OuterRimBlasterBase_SniperRifle" or
 			@Name="OuterRimBlasterBase_HeavyWeapon"
@@ -50,27 +77,6 @@
 				</li>
 			</tools>
 		</value>
-	</Operation>
-					
-	<Operation Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/statBases/AccuracyTouch
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/statBases/AccuracyShort
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/statBases/AccuracyMedium
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/statBases/AccuracyLong </xpath>
-	</Operation>
-					
-	<Operation Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[@Name="OuterRimBlasterBase_Rifle"]/statBases/AccuracyTouch
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_Rifle"]/statBases/AccuracyShort
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_Rifle"]/statBases/AccuracyMedium
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_Rifle"]/statBases/AccuracyLong </xpath>
-	</Operation>
-					
-	<Operation Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[@Name="OuterRimBlasterBase_SniperRifle"]/statBases/AccuracyTouch
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_SniperRifle"]/statBases/AccuracyShort
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_SniperRifle"]/statBases/AccuracyMedium
-				| Defs/ThingDef[@Name="OuterRimBlasterBase_SniperRifle"]/statBases/AccuracyLong </xpath>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -540,6 +546,7 @@
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
 			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
 		</FireModes>
 		<AmmoUser>
 			<magazineSize>225</magazineSize>
