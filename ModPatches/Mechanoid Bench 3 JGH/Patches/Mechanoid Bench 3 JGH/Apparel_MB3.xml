@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- ===== Add Bodypart Groups and Layers ===== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="ApparelMBHelmetBase"]/apparel/layers</xpath>
@@ -110,10 +111,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaHeavyArmor"]/equippedStatOffsets/WorkSpeedGlobal</xpath>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_MechaHeavyArmor"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
@@ -197,17 +194,30 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/equippedStatOffsets/MoveSpeed</xpath>
-		<value>
-			<CarryWeight>90</CarryWeight>
-			<CarryBulk>13.5</CarryBulk>
-			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
-			<MoveSpeed>0.1</MoveSpeed>
-		</value>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_MechaCombatArmor"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>90</CarryWeight>
+						<CarryBulk>13.5</CarryBulk>
+						<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+						<MoveSpeed>0.1</MoveSpeed>
+					</value>
+				</li>
+			</operations>
+		</nomatch>
 	</Operation>
-
+	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
@@ -315,4 +325,5 @@
 			<ArmorRating_Blunt>48</ArmorRating_Blunt>
 		</value>
 	</Operation>
+
 </Patch>
