@@ -17,8 +17,7 @@
 
 	<!-- Heavy Bolter Turret -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>
-			Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]
+		<xpath>Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]
 			| Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases/AccuracyTouch
 			| Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases/AccuracyShort
 			| Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases/AccuracyMedium
@@ -114,12 +113,10 @@
 		</value>
 	</Operation>
 
-	<!--Lascannon
-	Turret-->
+	<!--Lascannon Turret-->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>
-			Defs/ThingDef[defName="GW_SM_Building_Lascannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_SM_Building_Lascannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -130,13 +127,11 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[defName="GW_SM_Building_Lascannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_SM_Building_Lascannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
-				<basePowerConsumption>500</basePowerConsumption> <!--Power
-				lowered because the turret gets physical ammo now-->
+				<basePowerConsumption>500</basePowerConsumption> <!--Power lowered because the turret gets physical ammo now-->
 			</li>
 		</value>
 	</Operation>
