@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="UNAGIDDress" or defName="UNAGIDcoat" or defName="UNAGIDsailor"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<xpath>Defs/ThingDef[
+			defName="UNAGIDDress" or
+			defName="UNAGIDcoat" or
+			defName="UNAGIDsailor"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
-		</value>
-	</Operation>
-
-    <Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="UNAGIDDress" or defName="UNAGIDcoat" or defName="UNAGIDsailor"]/statBases</xpath>
-		<value>
 			<Bulk>7.5</Bulk>
-			<WornBulk>2</WornBulk>
+			<WornBulk>2</WornBulk>			
 		</value>
 	</Operation>
 
@@ -28,4 +27,5 @@
 			<costStuffCount>25</costStuffCount>
 		</value>
 	</Operation>
+
 </Patch>
