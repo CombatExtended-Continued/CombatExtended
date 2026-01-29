@@ -82,17 +82,19 @@
             <graphicClass>Graphic_Single</graphicClass>
             <shaderType>TransparentPostLight</shaderType>
         </graphicData>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<thingClass>CombatExtended.Compatibility.VGECompat.ProjectileCE_GravshipTurret</thingClass>
         <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
             <damageDef>Bomb</damageDef>
             <damageAmountBase>40</damageAmountBase>
             <armorPenetrationBase>0.15</armorPenetrationBase>
-            <speed>1</speed>
+            <speed>155</speed>
             <explosionRadius>3.9</explosionRadius>
             <flyOverhead>true</flyOverhead>
 			<dropsCasings>false</dropsCasings>
             <stoppingPower>2</stoppingPower>
-			<gravityFactor>50</gravityFactor><!-- value intentionally because in VGE, the shell should not fly too high -->
+			<gravityFactor>10</gravityFactor>
+			<castShadow>false</castShadow>
 			<shellingProps>
 				<tilesPerTick>0.05</tilesPerTick>
 				<range>16</range>
