@@ -1,4 +1,5 @@
 using VanillaGravshipExpanded;
+using Verse;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
@@ -7,7 +8,7 @@ namespace CombatExtended.Compatibility.VGECompat;
 // https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Verbs/Verb_ShootWithSmoke.cs
 #endregion
 
-public class Verb_ShootWithSmokeCE : Verb_ShootWithWorldTargetingCE
+public class Verb_ShootWithSmokeCE : Verb_LaunchProjectile
 {
     public override bool TryCastShot()
     {
