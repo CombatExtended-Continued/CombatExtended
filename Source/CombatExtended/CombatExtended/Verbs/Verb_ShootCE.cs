@@ -336,8 +336,8 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
                                                    (_isAiming ? 0.5f : 0.25f)) + RecoilAmount*RecoilAmount/10;
         var reduction = Mathf.Max(maxReduction, delta / 45f + SubsequentShotCurve.Evaluate(lastRecoilDeg) * Controller.settings.FasterRepeatShotsRecoilMult);
         lastRecoilDeg = 0;
-        storedShotReduction = reduction;
         Log.Message($"reduction {reduction}; maxReduction {maxReduction} lastRecoilDeg {lastRecoilDeg}; storedShotReduction {storedShotReduction};");
+        storedShotReduction = reduction;
 
         if (reduction < 1.0f)
         {
