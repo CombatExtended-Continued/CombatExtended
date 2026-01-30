@@ -13,7 +13,7 @@ namespace CombatExtended.Compatibility.VGECompat;
 public class Verb_ShootWithWorldTargetingCE : Verb_ShootMortarCE
 {
     public Building_GravshipTurretCE Turret => (Building_GravshipTurretCE)caster;
-  
+
     public override bool TryCastShot()
     {
         if (Turret == null || !Turret.Active || Turret.ManningPawn == null)

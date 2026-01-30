@@ -99,9 +99,14 @@ public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
         ToBuilding_GravshipTurret = null;
     }
 
-    public override void Tick()
+    protected void BaseTick()
     {
         base.Tick();
+    }
+
+    public override void Tick()
+    {
+        BaseTick();
         ToBuilding_GravshipTurret.Tick();
 
         linkedTerminal = (Building_TargetingTerminalCE)ToBuilding_GravshipTurret.linkedTerminal;
@@ -181,16 +186,25 @@ public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
 
             if (gizmo is Command_ArtilleryTarget command3 && command3.defaultLabel == "CE_ArtilleryTargetLabel".Translate())
             {
-                command3.icon = CompWorldArtillery.WorldTargetIcon;
-                if (!CanFire)
-                {
-                    // skip this gizmo if we cannot fire
-                    continue;
-                }
+                // skip this gizmo as we will add our own later
+                continue;
             }
 
             yield return gizmo;
-    
+
+            // Add artillery command ourself
+            if (CanFire)
+            {
+                Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
+                {
+                    defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
+                    defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
+                    turret = this,
+                    icon = CompWorldArtillery.WorldTargetIcon, // new icon
+                    hotKey = KeyBindingDefOf.Misc5
+                };
+                yield return wt;
+            }
         }
 
         foreach (var gizmo in ToBuilding_GravshipTurret.GetGizmos())

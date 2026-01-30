@@ -32,11 +32,19 @@
 		</xpath>
 		<value>
 			<thingClass>CombatExtended.Compatibility.VGECompat.Building_GravshipTurretAutoAttackCE</thingClass>
-			<!-- <fillPercent>1.5</fillPercent> -->
 		</value>
 	</Operation>
 
 	<!-- === GaussGun === -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.25</speed>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_GaussGun</defName>
@@ -47,7 +55,7 @@
 			<SwayFactor>11.38</SwayFactor>
 		</statBases>
 		<Properties>
-			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 			<defaultProjectile>VGE_Bullet_GaussGun_CE</defaultProjectile>
 			<range>99999</range>
 			<minRange>14.9</minRange>
@@ -56,7 +64,9 @@
 			<soundCast>VGE_GravshipHowitzer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
+			<!-- <forcedMissRadius>6.75</forcedMissRadius> -->
 			<requireLineOfSight>false</requireLineOfSight>
+			<!-- <consumeFuelPerShot>5</consumeFuelPerShot> -->
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 			<isMortar>false</isMortar>
 			<targetParams>
@@ -68,7 +78,6 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<!-- Maybe a poor choice, we should make special ammo -->
 			<magazineSize>24</magazineSize>
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_VGE_Bullet_GaussGun</ammoSet>
@@ -77,29 +86,18 @@
 			<aiAimMode>AimedShot</aiAimMode>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
-	</Operation>	
-
-	<!-- <Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VGE_Gun_GaussGun"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Charges">
-				<chargeSpeeds>
-					<li>100</li>
-				</chargeSpeeds>
-			</li>
-		</value>
-	</Operation>	 -->
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]</xpath>
-		<value>
-			<li Class="CombatExtended.NonSnapTurretExtension">
-				<speed>0.25</speed>
-			</li>
-		</value>
 	</Operation>
 
 	<!-- === JavelinPod === -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_JavelinPod"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.125</speed>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_JavelinPod</defName>
@@ -111,7 +109,7 @@
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-			<defaultProjectile>VGE_Rocket_JavelinRocket</defaultProjectile>
+			<defaultProjectile>VGE_Bullet_JavelinPod_CE</defaultProjectile>
 			<range>99999</range>
 			<minRange>14</minRange>
 			<burstShotCount>6</burstShotCount>
@@ -119,7 +117,7 @@
 			<soundCast>RocketswarmLauncher_Fire</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
-			<forcedMissRadius>9</forcedMissRadius>
+			<!-- <forcedMissRadius>9</forcedMissRadius> -->
 			<requireLineOfSight>false</requireLineOfSight>
 			<consumeFuelPerShot>10</consumeFuelPerShot>
 			<targetParams>
@@ -134,7 +132,7 @@
 			<!-- Maybe a poor choice, we should make special ammo -->
 			<magazineSize>36</magazineSize>
 			<reloadTime>6.5</reloadTime>
-			<ammoSet>AmmoSet_50mmRocket</ammoSet>
+			<ammoSet>AmmoSet_VGE_Bullet_JavelinPod</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -155,18 +153,18 @@
 				</chargeSpeeds>
 			</li>
 		</value>
-	</Operation>	
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="VGE_Gun_JavelinPod"]</xpath>
-		<value>
-			<li Class="CombatExtended.NonSnapTurretExtension">
-				<speed>0.125</speed>
-			</li>
-		</value>
 	</Operation>
 
 	<!-- === Anticraft Caster === -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_AnticraftCaster"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.6</speed>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName = "VGE_AnticraftCaster"]/thingClass</xpath>
@@ -184,8 +182,8 @@
 			<SwayFactor>11.38</SwayFactor>
 		</statBases>
 		<Properties>
-			<verbClass>VanillaGravshipExpanded.Verb_ShootWithSmoke</verbClass>
-			<defaultProjectile>Bullet_Laser_BeamRepeater</defaultProjectile>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<defaultProjectile>VGE_Bullet_AnticraftCaster_CE</defaultProjectile>
 			<range>9999</range>
 			<minRange>14</minRange>
 			<forcedMissRadius>0</forcedMissRadius>
@@ -212,15 +210,5 @@
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
 	</Operation>		
-
-	<!-- doesnt work -->
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="VGE_Gun_AnticraftCaster"]</xpath>
-		<value>
-			<li Class="CombatExtended.NonSnapTurretExtension">
-				<speed>0.6</speed>
-			</li>
-		</value>
-	</Operation>
 
 </Patch>

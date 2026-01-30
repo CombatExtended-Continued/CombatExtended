@@ -19,6 +19,9 @@ public class Building_AnticraftEmitterCE: Building_GravshipTurretCE
         return AdapterUtils<Building_AnticraftEmitterCE, Building_AnticraftEmitter>.DelegateValuesToTargetType((Building_AnticraftEmitterCE) instance);
     }
 
+    // we don't have ammo set, so we get the defaultProjectile directly
+    protected override ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile;
+
     public Building_AnticraftEmitter ToBuilding_AnticraftEmitter => (Building_AnticraftEmitter)ToBuilding_GravshipTurret;
 
     public override void PostSwapMap()
@@ -35,7 +38,7 @@ public class Building_AnticraftEmitterCE: Building_GravshipTurretCE
 
     public override void Tick()
     {
-        base.Tick();
+        BaseTick();
         ToBuilding_AnticraftEmitter.Tick();
         isFiringBurst = ToBuilding_AnticraftEmitter.IsFiringBurst;
         UpdatePowerOutput();
