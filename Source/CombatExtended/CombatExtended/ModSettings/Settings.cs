@@ -122,6 +122,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool debugDisplayCellCoverRating = false;
     private bool debugDisplayAttritionInfo = false;
     private bool debugWorldShellingDamageRandomness = false;
+    private bool debugSubsequentShotLogging = false;
 
     public bool DebuggingMode => debuggingMode;
     public bool DebugVerbose => debugVerbose;
@@ -137,6 +138,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool DebugDisplayCellCoverRating => debugDisplayCellCoverRating && debuggingMode;
     public bool DebugDisplayAttritionInfo => debugDisplayAttritionInfo && debuggingMode;
     public bool DebugWorldShellingDamageRandomness => debugWorldShellingDamageRandomness && debuggingMode;
+    public bool DebugSubsequentShotLogging => debugSubsequentShotLogging && debuggingMode;
     #endregion
 
     #region Autopatcher
@@ -222,6 +224,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
         Scribe_Values.Look(ref debugDisplayAttritionInfo, "debugDisplayAttritionInfo", false);
         Scribe_Values.Look(ref debugWorldShellingDamageRandomness, "debugWorldShellingDamageRandomness", false);
+        Scribe_Values.Look(ref debugSubsequentShotLogging, "debugSubsequentShotLogging", false);
         Scribe_Values.Look(ref debugGenClosetPawn, "debugGenClosetPawn", false);
         Scribe_Values.Look(ref debugVerbose, "debugVerbose", false);
         Scribe_Values.Look(ref debugMuzzleFlash, "debugMuzzleFlash", false);
@@ -440,6 +443,7 @@ public class Settings : ModSettings, ISettingsCE
             list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
             list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
             list.CheckboxLabeled("Disable randomness in world shelling", ref debugWorldShellingDamageRandomness);
+            list.CheckboxLabeled("Log subsequent shot calculations", ref debugSubsequentShotLogging);
         }
 #endif
         list.Gap();
@@ -573,6 +577,7 @@ public class Settings : ModSettings, ISettingsCE
         debugDisplayDangerBuildup = false;
         debugDisplayCellCoverRating = false;
         debugWorldShellingDamageRandomness = false;
+        debugSubsequentShotLogging = false;
 #endif
     }
     #endregion

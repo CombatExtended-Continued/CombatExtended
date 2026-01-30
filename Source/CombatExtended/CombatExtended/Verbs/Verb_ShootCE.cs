@@ -331,13 +331,26 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
         var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
         var delta = Mathf.Abs(newShotRotation - lastShotRotation);
 
-        var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ?
-                                                   0.1f + RecoilAmount*RecoilAmount/10 :
-                                                   (_isAiming ? 0.5f : 0.25f)) + RecoilAmount*RecoilAmount/10;
-        var reduction = Mathf.Max(maxReduction, delta / 45f + SubsequentShotCurve.Evaluate(lastRecoilDeg) * Controller.settings.FasterRepeatShotsRecoilMult);
+        //max possible reduction for this weapon
+        float maxReduction = CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : _isAiming ? 0.5f : 0.25f;
+        maxReduction += RecoilAmount * RecoilAmount * 0.1f;
+
+        //current reduction after pawn stats
+        float reduction = (delta / 45f) + (SubsequentShotCurve.Evaluate(lastRecoilDeg) * Controller.settings.FasterRepeatShotsRecoilMult);
+
+        if (storedShotReduction != null)
+        {
+            reduction *= (float)storedShotReduction;
+        }
+
+        reduction = Mathf.Max(maxReduction, reduction);
+        if (Controller.settings.DebugSubsequentShotLogging)
+        {
+            Log.Message($"{caster?.LabelShort} ({EquipmentSource?.LabelShort}) subsequent shot:\nreduction {reduction}; storedShotReduction {storedShotReduction}; maxReduction {maxReduction}; lastRecoilDeg {lastRecoilDeg}; delta {delta}; delta/45 {delta/45f}");
+        }
+
         lastRecoilDeg = 0;
-        Log.Message($"reduction {reduction}; maxReduction {maxReduction} lastRecoilDeg {lastRecoilDeg}; storedShotReduction {storedShotReduction};");
-        storedShotReduction = reduction;
+        storedShotReduction = Mathf.Clamp01(reduction);
 
         if (reduction < 1.0f)
         {
