@@ -346,7 +346,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
         reduction = Mathf.Max(maxReduction, reduction);
         if (Controller.settings.DebugSubsequentShotLogging)
         {
-            Log.Message($"{caster?.LabelShort} ({EquipmentSource?.LabelShort}) subsequent shot:\nreduction {reduction}; storedShotReduction {storedShotReduction}; maxReduction {maxReduction}; lastRecoilDeg {lastRecoilDeg}; delta {delta}; delta/45 {delta/45f}");
+            Log.Message($"{caster?.LabelShort} ({EquipmentSource?.LabelShort}) subsequent shot:\nreduction {reduction}; storedShotReduction {storedShotReduction}; maxReduction {maxReduction}; lastRecoilDeg {lastRecoilDeg}; delta {delta}; delta/45 {delta / 45f}");
         }
 
         lastRecoilDeg = 0;
