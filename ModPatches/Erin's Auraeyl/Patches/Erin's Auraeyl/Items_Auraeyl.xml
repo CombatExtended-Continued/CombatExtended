@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Frystelk Horn -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="ERN_FrystelkHorn"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="ERN_FrystelkHorn"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ERN_FrystelkHorn"]/statBases/Mass</xpath>
+		<value>
+			<Mass>10</Mass>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Thick Birdskin & Frystelk Feathers -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ERN_ThickBirdLeather" or defName="ERN_FrystelkFeathers"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.07</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ERN_ThickBirdLeather" or defName="ERN_FrystelkFeathers"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.056</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+</Patch>

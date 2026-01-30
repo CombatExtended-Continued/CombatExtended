@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+	<!-- ==== lightbow arrow magic bow that deals fire damage so no flame & venom arrows  ==== -->
+	<!--==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LightbowArrows</defName>
+		<label>lightbow arrows</label>
+		<ammoTypes>
+			<Ammo_GreatArrow_Stone>Projectile_LightbowArrow_Stone</Ammo_GreatArrow_Stone>
+			<Ammo_GreatArrow_Steel>Projectile_LightbowArrow_Steel</Ammo_GreatArrow_Steel>
+			<Ammo_GreatArrow_Plasteel>Projectile_LightbowArrow_Plasteel</Ammo_GreatArrow_Plasteel>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_LightbowArrow_Stone</defName>
+		<label>lightbow arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Weapons/Proj_LightArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>26</speed>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance><!-- 12.5 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Stone</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.75</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_LightbowArrow_Steel</defName>
+		<label>lightbow arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Weapons/Proj_LightArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>31</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>2.340</armorPenetrationBlunt>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>4</amount>
+				</li>
+			</secondaryDamage>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Steel</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.75</StuckProjectileFleckSize>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_LightbowArrow_Plasteel</defName>
+		<label>lightbow arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Weapons/Proj_LightArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>26</speed>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>2.96</armorPenetrationBlunt>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance><!-- 40 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+		<modExtensions>
+			<li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Plasteel</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.75</StuckProjectileFleckSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+</Defs>
