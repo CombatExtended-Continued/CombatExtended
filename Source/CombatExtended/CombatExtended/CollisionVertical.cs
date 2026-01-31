@@ -19,7 +19,7 @@ public struct CollisionVertical
     private readonly FloatRange heightRange;
     public readonly float shotHeight;
 
-    public FloatRange HeightRange => new FloatRange(heightRange.min, heightRange.max);
+    public FloatRange HeightRange => new FloatRange(Mathf.Max(0, heightRange.min), Mathf.Max(0.1f, heightRange.max));
     public float Min => heightRange.min;
     public float Max => heightRange.max;
     public float BottomHeight => Max - (heightRange.Span * (1 - BodyRegionBottomHeight));
@@ -126,8 +126,9 @@ public struct CollisionVertical
             }
         }
         float fillPercent2 = collisionHeight;
-        heightRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2) + heightAdjust, Mathf.Max(edificeHeight, edificeHeight + fillPercent2) + heightAdjust);
-        shotHeight = heightRange.max - shotHeightOffset;
+        heightRange = new FloatRange(
+            Mathf.Min(edificeHeight, edificeHeight + fillPercent2) + heightAdjust,
+            Mathf.Max(0.1f, Mathf.Max(edificeHeight, edificeHeight + fillPercent2) + heightAdjust));
     }
 
     /// <summary>

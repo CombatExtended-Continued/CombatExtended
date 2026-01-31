@@ -56,7 +56,7 @@ public class CETrenches
         foreach (Thing thing in thingList)
         {
             ModExtensionCover modExtProperties = thing.def.GetModExtension<ModExtensionCover>();
-            if (modExtProperties == null)
+            if (modExtProperties == null || modExtProperties.heightOffset == 0f)
             {
                 continue;
             }
