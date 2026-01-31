@@ -15,18 +15,22 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
-		<defName>Projectile_LightbowArrow_Stone</defName>
+	<ThingDef Name="BaseLightBowProjectile" ParentName="BaseGreatArrowProjectile" Abstract="true">
 		<label>lightbow arrow (stone)</label>
 		<graphicData>
 			<texPath>Things/Weapons/Proj_LightArrow</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseLightBowProjectile">
+		<defName>Projectile_LightbowArrow_Stone</defName>
+		<label>lightbow arrow (stone)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>26</speed>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
+			<armorPenetrationBlunt>1.66</armorPenetrationBlunt>
 			<armorPenetrationSharp>1</armorPenetrationSharp>
 			<secondaryDamage>
 				<li>
@@ -47,14 +51,9 @@
         </modExtensions>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+	<ThingDef ParentName="BaseLightBowProjectile">
 		<defName>Projectile_LightbowArrow_Steel</defName>
 		<label>lightbow arrow (steel)</label>
-		<graphicData>
-			<texPath>Things/Weapons/Proj_LightArrow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>31</speed>
 			<damageAmountBase>10</damageAmountBase>
@@ -79,14 +78,9 @@
         </modExtensions>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+	<ThingDef ParentName="BaseLightBowProjectile">
 		<defName>Projectile_LightbowArrow_Plasteel</defName>
 		<label>lightbow arrow (plasteel)</label>
-		<graphicData>
-			<texPath>Things/Weapons/Proj_LightArrow</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>26</speed>
 			<damageAmountBase>8</damageAmountBase>
