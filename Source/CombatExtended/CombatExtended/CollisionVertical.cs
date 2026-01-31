@@ -129,6 +129,7 @@ public struct CollisionVertical
         heightRange = new FloatRange(
             Mathf.Min(edificeHeight, edificeHeight + fillPercent2) + heightAdjust,
             Mathf.Max(0.1f, Mathf.Max(edificeHeight, edificeHeight + fillPercent2) + heightAdjust));
+        shotHeight = Mathf.Max(0.1f, heightRange.max - shotHeightOffset);
     }
 
     /// <summary>
