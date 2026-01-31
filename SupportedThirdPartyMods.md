@@ -216,6 +216,7 @@ Epochs - Pyrinth    |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auraeyl  |
 Erin's Auronya   |
 Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
