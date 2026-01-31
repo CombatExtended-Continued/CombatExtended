@@ -11,34 +11,6 @@ namespace CombatExtended.Compatibility;
 [StaticConstructorOnStartup]
 public class CETrenches
 {
-    private static bool vfeInstalled;
-    private const string VFES_ModName = "Vanilla Furniture Expanded - Security";
-    static CETrenches()
-    {
-        vfeInstalled = ModLister.HasActiveModWithName(VFES_ModName);
-    }
-
-    private static bool checkVFE(IntVec3 cell, Map map, out float heightAdjust)
-    {
-        heightAdjust = 0f;
-        List<Thing> thingList = GridsUtility.GetThingList(cell, map);
-        foreach (Thing thing in thingList)
-        {
-            CompProperties_TerrainSetter compProperties = thing.def.GetCompProperties<CompProperties_TerrainSetter>();
-            if (compProperties == null)
-            {
-                return false;
-            }
-
-            TerrainDef terrainDef = compProperties.terrainDef;
-            TerrainDefExtension terrainDefExtension = TerrainDefExtension.Get(terrainDef);
-            heightAdjust = -terrainDefExtension.coverEffectiveness * CollisionVertical.WallCollisionHeight;
-            return true;
-
-        }
-        return false;
-    }
-
     private static bool CheckTrench(IntVec3 cell, Map map, out float heightAdjust)
     {
         heightAdjust = 0f;
@@ -76,12 +48,7 @@ public class CETrenches
         }
 
         float heightAdjust = 0;
-
-        if (vfeInstalled && checkVFE(cell, map, out heightAdjust))
-        {
-            return heightAdjust;
-        }
-
+        
         if (CheckTrench(cell, map, out heightAdjust))
         {
             return heightAdjust;
