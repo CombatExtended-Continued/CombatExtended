@@ -131,6 +131,8 @@ Auto-Mortars	|
 Beast Man Tribes  |
 Beeralope Squad	|
 Beliar Xenotype |
+Beta Anime Hair	|
+Beta Girls und Panzer Hair and Apparel	|
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
 Big and Small - Heaven and Hell
@@ -214,6 +216,7 @@ Epochs - Pyrinth    |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auraeyl  |
 Erin's Auronya   |
 Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
@@ -268,6 +271,7 @@ Gestalt Engine  |
 Giddy-Up 2    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
+Girls' Frontline Styles - AR Team	|
 Girls' Frontline Styles - DEFY Team	|
 Girls' Frontline Styles - GF2	|
 Girls' Frontline Styles - NL	|
@@ -586,6 +590,7 @@ Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 Tools O'Plenty  |
 TouhouStyle	|
+Touhou Style Youmu Character Pack	|
 Tox Weapons Pack	|
 Tribal Warrior Set! |
 Tsar Armory	|
@@ -594,6 +599,7 @@ Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
 T's Wild Child Rags |
+UNAGI Another Duster Coat   |
 Useless Clothes |
 Ushankas Glittertech Expansion  |
 VacSlipsuit |
@@ -631,8 +637,9 @@ Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
-Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Quests Expanded - Ancients  |
+Vanilla Quests Expanded - Cryptoforge  |
+Vanilla Quests Expanded - Deadlife  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
