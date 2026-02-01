@@ -82,6 +82,8 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
         }
     }
 
+    public override bool ShouldSpawnAimingSound => !_isAiming;
+
     public override float SwayAmplitude // TODO: Fix SwayAmplitude and SwayAmplitudeFor code re-use
     {
         get
