@@ -9,4 +9,6 @@ public static class CE_WorldObjectDefOf
         DefOfHelper.EnsureInitializedInCtor(typeof(CE_WorldObjectDefOf));
     }
     public static WorldObjectDef TravelingShell;
+    public static WorldObjectDef TravelingRaycast;
+
 }
