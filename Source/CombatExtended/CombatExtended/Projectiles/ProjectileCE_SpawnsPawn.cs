@@ -40,13 +40,28 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
         
         PawnKindDef spawnsPawnKind = this.def.projectile.spawnsPawnKind;
         Faction factionlauncher = this.launcher?.Faction;
-        Faction faction = factionlauncher;
-        if (faction != null)
+        
+        // Get CE projectile properties
+        ProjectilePropertiesCE props = this.def.projectile as ProjectilePropertiesCE;
+        
+        // Use configured faction if specified, otherwise use launcher's faction
+        Faction faction = null;
+        if (props?.factionDef != null)
         {
-
+            faction = Find.FactionManager.FirstFactionOfDef(props.factionDef);
+            if (faction == null)
+            {
+                Log.Warning($"Could not find faction {props.factionDef.defName} for projectile {this.def.defName}");
+            }
         }
         
-        bool alwaysHostile = (this.def.projectile as ProjectilePropertiesCE)?.alwaysHostile ?? false;
+        // Fallback to launcher's faction if no configured faction or faction not found
+        if (faction == null)
+        {
+            faction = factionlauncher;
+        }
+
+        bool alwaysHostile = props?.alwaysHostile ?? false;
         if (alwaysHostile && faction == Faction.OfPlayer)
         {
             Faction hostileFaction = Find.FactionManager.AllFactions
@@ -59,8 +74,6 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
                 faction = hostileFaction;
             }
         }
-        
-        ProjectilePropertiesCE props = this.def.projectile as ProjectilePropertiesCE;
         
         PlanetTile? tile = new PlanetTile?();
         float? minChanceToRedressWorldPawn = new float?();
@@ -93,10 +106,6 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
         if (alwaysHostile)
         {
             pawn.mindState.enemyTarget = this.launcher;
-            if (pawn.Faction != null && this.launcher?.Faction != null)
-            {
-                pawn.Faction.RelationWith(this.launcher.Faction, true).kind = FactionRelationKind.Hostile;
-            }
         }
         
         GenSpawn.Spawn((Thing)pawn, loc, map);

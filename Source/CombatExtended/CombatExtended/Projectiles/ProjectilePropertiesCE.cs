@@ -77,6 +77,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float impactChance = 1f;
     #region Spawnpawn fields
     public bool alwaysHostile = false;
+    public FactionDef factionDef = null;
     
     // Age settings for spawned pawns
     public float? fixedBiologicalAge = null;
