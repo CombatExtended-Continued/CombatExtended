@@ -356,6 +356,7 @@ Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
 Mechadroids |
 Mechanized Armor Set    |
+Mechanitor Balance Tweaks      |
 Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
