@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>AV_Toxic</defName>
+		<label>Toxic</label>
+		<description>Filled with tox gas, a caustic agent that burns the lungs and eyes. Continued exposure to it results in toxic buildup which can be lethal.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>AV_Deployment</defName>
+		<label>Deployment</label>
+		<description>A shell filled with a sleeping warurchin. On impact it will activate and hunt down any hostile creatures. While this makes a good surprise attack, their data processing is limited which makes them see nearly everybody as hostile.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_81mmMortarShell_Utilitydirectfire</defName>
+		<label>81mm mortar shells utility</label>
+		<ammoTypes>
+			<Shell_Firefoam>Bullet_81mmMortarShell_UtilityDirectfire_Firefoam</Shell_Firefoam>
+			<Shell_Smoke>Bullet_81mmMortarShell_UtilityDirectfire_Smoke</Shell_Smoke>
+			<Shell_Toxic MayRequire="Ludeon.RimWorld.Biotech">Bullet_81mmMortarShell_UtilityDirectfire_Tox</Shell_Toxic>
+			<Shell_Deadlife MayRequire="Ludeon.RimWorld.Anomaly">Bullet_81mmMortarShell_UtilityDirectfire_Deadlife</Shell_Deadlife>
+		</ammoTypes>
+		<isMortarAmmoSet>true</isMortarAmmoSet>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Name="Base81mmMortarShellUtilityDirectfire" ParentName="BaseExplosiveBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>80</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShellUtilityDirectfire">
+		<defName>Bullet_81mmMortarShell_UtilityDirectfire_Firefoam</defName>
+		<label>81mm mortar shell (Foam)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Firefoam</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Extinguish</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<explosionRadius>5</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1</postExplosionSpawnChance>
+			<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShellUtilityDirectfire">
+		<defName>Bullet_81mmMortarShell_UtilityDirectfire_Smoke</defName>
+		<label>81mm mortar shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShellUtilityDirectfire" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_81mmMortarShell_UtilityDirectfire_Tox</defName>
+		<label>81mm mortar shell (Toxic)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Toxic</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ToxGas</damageDef>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<explosionRadius>0.1</explosionRadius>
+			<soundExplode>ToxicShellLanded</soundExplode>
+			<postExplosionSpawnThingDef>Shell_Toxic_Releasing</postExplosionSpawnThingDef>
+			<postExplosionSpawnThingDefWater>Shell_Toxic_Releasing_Water</postExplosionSpawnThingDefWater>
+			<shellingProps>
+				<damage>0.12</damage>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShellUtilityDirectfire" MayRequire="Ludeon.RimWorld.Anomaly">
+		<defName>Bullet_81mmMortarShell_UtilityDirectfire_Deadlife</defName>
+		<label>81mm mortar shell (Deadlife)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Deadlife</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>DeadlifeDust</damageDef>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<explosionRadius>0.1</explosionRadius>
+			<soundExplode>ToxicShellLanded</soundExplode>
+			<postExplosionSpawnThingDef>Shell_Deadlife_Releasing</postExplosionSpawnThingDef>
+			<shellingProps>
+				<damage>0</damage>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+
+
+</Defs>

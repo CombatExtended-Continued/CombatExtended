@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- apparition -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Apparition"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>3</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Apparition"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>7</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.15</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Apparition"]/statBases</xpath>
+					<value>
+						<CarryWeight>50</CarryWeight>
+						<CarryBulk>20</CarryBulk>
+						<MeleeDodgeChance>0.12</MeleeDodgeChance>
+						<MeleeCritChance>0.11</MeleeCritChance>
+						<MeleeParryChance>0.09</MeleeParryChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Apparition"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>2.07</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>40</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>2.07</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>spike</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>5.9</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Apparition"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
+				<!-- Sinistre -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Sinistre"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Sinistre"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>12</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.15</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Sinistre"]/statBases</xpath>
+					<value>
+						<CarryWeight>50</CarryWeight>
+						<CarryBulk>20</CarryBulk>
+						<MeleeDodgeChance>0.12</MeleeDodgeChance>
+						<MeleeCritChance>0.11</MeleeCritChance>
+						<MeleeParryChance>0.09</MeleeParryChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Sinistre"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>2.07</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>40</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>2.07</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>spike</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>5.9</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Sinistre"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_SinistreEssence"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+					</value>
+				</li>
+
+				<!-- Reshaper -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="AV_Mech_Reshaper"]</xpath>
+					<value>
+						<aiAvoidCover>false</aiAvoidCover>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="AV_Mech_Reshaper"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>4</min>
+								<max>6</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Reshaper"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Reshaper"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>1.0</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Reshaper"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.85</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+
+</Patch>
