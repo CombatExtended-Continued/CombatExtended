@@ -22,20 +22,18 @@
 			]/verbs</xpath>
 	</Operation>
 
-	<!-- Replace vanilla thingClass -->
+	<!-- === GaussGun === -->
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>
 			Defs/ThingDef[
-				defName = "VGE_GaussGun" or
-				defName = "VGE_JavelinPod"
+				defName = "VGE_GaussGun"
 			]/thingClass 
 		</xpath>
 		<value>
 			<thingClass>CombatExtended.Compatibility.VGECompat.Building_GravshipTurretAutoAttackCE</thingClass>
 		</value>
 	</Operation>
-
-	<!-- === GaussGun === -->
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]</xpath>
@@ -55,7 +53,7 @@
 			<SwayFactor>11.38</SwayFactor>
 		</statBases>
 		<Properties>
-			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
 			<defaultProjectile>VGE_Bullet_GaussGun_CE</defaultProjectile>
 			<range>99999</range>
 			<minRange>14.9</minRange>
@@ -90,6 +88,17 @@
 
 	<!-- === JavelinPod === -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_GaussGun"
+			]/thingClass 
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_JavelinPodCE</thingClass>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="VGE_JavelinPod"]</xpath>
 		<value>
@@ -108,7 +117,7 @@
 			<SwayFactor>11.38</SwayFactor>
 		</statBases>
 		<Properties>
-			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
 			<defaultProjectile>VGE_Bullet_JavelinPod_CE</defaultProjectile>
 			<range>99999</range>
 			<minRange>14</minRange>
@@ -157,19 +166,20 @@
 
 	<!-- === Anticraft Caster === -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_AnticraftCaster"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_AnticraftCasterCE</thingClass>
+		</value>
+	</Operation>
+
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="VGE_AnticraftCaster"]</xpath>
 		<value>
 			<li Class="CombatExtended.NonSnapTurretExtension">
 				<speed>0.6</speed>
 			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VGE_AnticraftCaster"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.Compatibility.VGECompat.Building_AnticraftEmitterCE</thingClass>
 		</value>
 	</Operation>
 
@@ -182,7 +192,7 @@
 			<SwayFactor>11.38</SwayFactor>
 		</statBases>
 		<Properties>
-			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
 			<defaultProjectile>VGE_Bullet_AnticraftCaster_CE</defaultProjectile>
 			<range>9999</range>
 			<minRange>14</minRange>

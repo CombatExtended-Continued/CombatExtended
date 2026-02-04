@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using VanillaGravshipExpanded;
 using Verse;
-using Verse.Sound;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
@@ -12,9 +11,9 @@ namespace CombatExtended.Compatibility.VGECompat;
 #endregion
 
 [StaticConstructorOnStartup]
-public class Building_TargetingTerminalCE : Building_TargetingTerminal
+public class Building_TargetingTerminalCE_o : Building_TargetingTerminal
 {
-    public Building_GravshipTurretCE linkedTurretCE;
+    public Building_GravshipTurretCE_o linkedTurretCE;
 
     public override void ExposeData()
     {
@@ -27,12 +26,16 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        linkedTurret = new Building_GravshipTurret(); // dummy to skip overlaty logic in base.SpawnSetup
         base.SpawnSetup(map, respawningAfterLoad);
 
         if (linkedTurretCE == null)
         {
             EnableOverlay();
+        } 
+        else
+        {
+            // Remove the overlay drawn by the base class
+            DisableOverlay();
         }
     }
 
@@ -49,24 +52,8 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
         }
     }
 
-    public override void DrawExtraSelectionOverlays()
-    {
-        linkedTurret = null; // skip the turret unlink from base.DrawExtraSelectionOverlays
-        base.DrawExtraSelectionOverlays();
-
-        if (linkedTurretCE != null)
-        {
-            GenDraw.DrawLineBetween(this.TrueCenter(), linkedTurretCE.TrueCenter(), SimpleColor.White);
-        }
-    }
-
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        if (linkedTurretCE != null)
-        {
-            linkedTurret = new Building_GravshipTurret(); // dummy to skip base unlink logic
-        }
-
         Gizmo LinkWithTurretGizmo = null;
         Gizmo UnlinkWithTurretGizmo = null;
         Gizmo SelectLinkedTurretGizmo = null;
@@ -117,32 +104,30 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal
     {
         base.StartLinking();
         // intercept the targeting logic
-        Find.Targeter.targetParams.validator = (TargetInfo t) => t.Thing is Building_GravshipTurretCE && t.Thing.Position.InHorDistOf(this.Position, 36);
+        Find.Targeter.targetParams.validator = (TargetInfo t) => t.Thing is Building_GravshipTurretCE_o && t.Thing.Position.InHorDistOf(this.Position, 36);
         Find.Targeter.action = delegate (LocalTargetInfo t)
         {
-            var turret = t.Thing as Building_GravshipTurretCE;
+            var turret = t.Thing as Building_GravshipTurretCE_o;
             LinkTo(turret);
         };
     }
 
-    public void LinkTo(Building_GravshipTurretCE turret)
+    public void LinkTo(Building_GravshipTurretCE_o turret)
     {
+        LinkTo(turret.ToBuilding_GravshipTurret);
         if (turret.linkedTerminal != null)
         {
             turret.linkedTerminal?.Unlink();
         }
-        linkedTurretCE= turret;
+        linkedTurretCE = turret;
         turret.LinkTo(this);
-        SoundDefOf.Tick_High.PlayOneShotOnCamera();
-        DisableOverlay();
     }
 
     public new void Unlink()
     {
+        base.Unlink();
         linkedTurretCE?.Unlink();
         linkedTurretCE = null;
-        SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-        EnableOverlay();
     }
 
     public new void SelectLinkedTurret()

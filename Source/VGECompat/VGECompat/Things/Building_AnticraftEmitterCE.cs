@@ -1,10 +1,10 @@
 ﻿using RimWorld;
-using VanillaGravshipExpanded;
+using UnityEngine;
 using Verse;
 
 #region License
 // Any VGE Code used for compatibility has been taken from the following source
-// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/Things/Building_AnticraftEmitterCE.cs
+// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/Things/Building_AnticraftEmitter.cs
 #endregion
 
 namespace CombatExtended.Compatibility.VGECompat;
@@ -13,43 +13,81 @@ public class Building_AnticraftEmitterCE: Building_GravshipTurretCE
 {
     // serialization fields
     private bool isFiringBurst = false;
-
-    public override Building_GravshipTurret GetBuilding_GravshipTurret(Building_TurretGunCEWithVGEAdapter instance)
-    {
-        return AdapterUtils<Building_AnticraftEmitterCE, Building_AnticraftEmitter>.DelegateValuesToTargetType((Building_AnticraftEmitterCE) instance);
-    }
+    private Mote aimChargeMote;
 
     // we don't have ammo set, so we get the defaultProjectile directly
     protected override ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile;
 
-    public Building_AnticraftEmitter ToBuilding_AnticraftEmitter => (Building_AnticraftEmitter)ToBuilding_GravshipTurret;
-
     public override void PostSwapMap()
     {
-        ToBuilding_AnticraftEmitter.PostSwapMap();
+        base.PostSwapMap();
+
         UpdatePowerOutput();
     }
 
     public override void PostMapInit()
     {
-        ToBuilding_AnticraftEmitter.PostSwapMap();
+        base.PostSwapMap();
+
         UpdatePowerOutput();
     }
 
     public override void Tick()
     {
-        BaseTick();
-        ToBuilding_AnticraftEmitter.Tick();
-        isFiringBurst = ToBuilding_AnticraftEmitter.IsFiringBurst;
-        UpdatePowerOutput();
+        base.Tick();
+
+        bool shouldBeFiringBurst = CanFire && CurrentTarget.IsValid && Active && AttackVerb.state == VerbState.Bursting;
+
+        if (shouldBeFiringBurst != isFiringBurst)
+        {
+            isFiringBurst = shouldBeFiringBurst;
+            UpdatePowerOutput();
+        }
+
+        if (isFiringBurst && PowerComp is not CompPowerTrader { PowerOn: true })
+        {
+            ResetCurrentTarget();
+            isFiringBurst = false;
+            UpdatePowerOutput();
+        }
+        // use SignedAngle instead of their angleDiff
+        if (DeltaAngle <= 10 && CanFire && CurrentTarget.IsValid && Active && burstWarmupTicksLeft > 0)
+        {
+            if (aimChargeMote == null || aimChargeMote.Destroyed)
+            {
+                var verbProps = AttackVerb.verbProps;
+                if (verbProps.aimingChargeMote != null)
+                {
+                    aimChargeMote = MoteMaker.MakeStaticMote(Position.ToVector3Shifted(), Map, verbProps.aimingChargeMote, 1f, makeOffscreen: true);
+                }
+            }
+            if (aimChargeMote != null && !aimChargeMote.Destroyed)
+            {
+                var verbProps = AttackVerb.verbProps;
+                Vector3 vector = (CurrentTarget.CenterVector3 - Position.ToVector3Shifted());
+                vector.y = 0f;
+                vector.Normalize();
+                float exactRotation = vector.AngleFlat();
+                bool stunned = IsStunned;
+                aimChargeMote.paused = stunned;
+                aimChargeMote.exactRotation = exactRotation;
+                aimChargeMote.exactPosition = Position.ToVector3Shifted() + vector * verbProps.aimingChargeMoteOffset;
+                aimChargeMote.Maintain();
+            }
+        }
+        else if (aimChargeMote != null && !aimChargeMote.Destroyed)
+        {
+            aimChargeMote.Destroy();
+            aimChargeMote = null;
+        }
     }
 
     private void UpdatePowerOutput()
     {
-        // Update power output to match the original emitter
-        if (PowerComp is CompPowerTrader powerTrader && ToBuilding_AnticraftEmitter.PowerComp is CompPowerTrader powerTrader2)
+        if (PowerComp is CompPowerTrader powerTrader)
         {
-            powerTrader.PowerOutput = powerTrader2.PowerOutput;
+            var currentPowerConsumption = isFiringBurst ? PowerComp.Props.basePowerConsumption : PowerComp.Props.idlePowerDraw;
+            powerTrader.PowerOutput = 0f - currentPowerConsumption;
         }
     }
 

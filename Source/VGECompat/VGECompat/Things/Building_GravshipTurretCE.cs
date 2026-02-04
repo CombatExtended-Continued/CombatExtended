@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using VanillaGravshipExpanded;
+using VEF.Graphics;
 using Verse;
+using Verse.Sound;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
@@ -14,51 +16,30 @@ namespace CombatExtended.Compatibility.VGECompat;
 // https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/Things/Building_GravshipTurret.cs
 #endregion
 
-
 /*
- * I tried to do a composition approach here. So `GravshipTurretWrapperCE composite` is the real business instance, Building_GravshipTurretCE
- * only retrieves data from it and passes calls to it.
- * If a technical limitation prevents this logic, I fall back to duplication.
+ * I duplicated the code from Building_GravshipTurret here, adapting it to work with CE.
  */
-
-public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
+[StaticConstructorOnStartup]
+public class Building_GravshipTurretCE: Building_TurretGunCE
 {
-
-    public override Building_GravshipTurret GetBuilding_GravshipTurret(Building_TurretGunCEWithVGEAdapter instance)
-    {
-        return AdapterUtils<Building_GravshipTurretCE, Building_GravshipTurret>.DelegateValuesToTargetType((Building_GravshipTurretCE) instance);
-    }
-
     public Building_TargetingTerminalCE linkedTerminal;
-  
-    public virtual bool CanFire => ToBuilding_GravshipTurret?.CanFire ?? false;
+    private CustomOverlayDrawer overlayDrawer;
 
-    public virtual bool CanAutoAttack => ToBuilding_GravshipTurret?.CanAutoAttack ?? false;
-    public Pawn ManningPawn => ToBuilding_GravshipTurret?.ManningPawn;
+    public virtual bool CanFire => linkedTerminal?.MannedByPlayer ?? false;
 
-    public virtual float GravshipTargeting => ToBuilding_GravshipTurret?.GravshipTargeting ?? 0f;
+    public virtual bool CanAutoAttack => false;
+    public Pawn ManningPawn => linkedTerminal?.MannableComp?.ManningPawn;
 
-    protected virtual bool ShowNoLinkedTerminalOverlay => ToBuilding_GravshipTurret?.ShowNoLinkedTerminalOverlay ?? true;
+    // TODO: This field should be used to modify accuracy
+    public virtual float GravshipTargeting => linkedTerminal?.GravshipTargeting ?? 0f;
 
-    public Vector3 CastSource
-    {
-        get
-        {
-            if (ToBuilding_GravshipTurret != null)
-            {
-                return ToBuilding_GravshipTurret.CastSource;
-            }
-            return DrawPos;
-        }
-    }
-
-    public static Vector3 GetCastSource(Thing thing) => thing is Building_GravshipTurretCE turret ? turret.CastSource : thing.DrawPos;
+    protected virtual bool ShowNoLinkedTerminalOverlay => true;
 
     protected override bool CanSetForcedTarget
     {
         get
         {
-            if (ToBuilding_GravshipTurret.CanSetForcedTarget)
+            if (linkedTerminal != null && linkedTerminal.MannedByPlayer)
             {
                 return true;
             }
@@ -69,47 +50,27 @@ public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
-
-        var ext = def.GetModExtension<TurretExtension_RotationSpeed>();
-        if (ext != null)
-        {
-            ToBuilding_GravshipTurret.rotationSpeed = ext.rotationSpeed;
-        }
-
-        var barrelExt = def.GetModExtension<TurretExtension_Barrels>();
-        if (barrelExt != null)
-        {
-            ToBuilding_GravshipTurret.barrels = barrelExt.barrels;
-        }
-
+        overlayDrawer = map.GetComponent<CustomOverlayDrawer>();
         if (linkedTerminal == null && ShowNoLinkedTerminalOverlay)
         {
-            ToBuilding_GravshipTurret.EnableOverlay();
-        }
-        else
-        {
-            ToBuilding_GravshipTurret.DisableOverlay();    
+            EnableOverlay();
         }
     }
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
         base.DeSpawn(mode);
-        ToBuilding_GravshipTurret.overlayDrawer = null;
-        ToBuilding_GravshipTurret = null;
-    }
 
-    protected void BaseTick()
-    {
-        base.Tick();
+        overlayDrawer = null;
     }
 
     public override void Tick()
     {
-        BaseTick();
-        ToBuilding_GravshipTurret.Tick();
-
-        linkedTerminal = (Building_TargetingTerminalCE)ToBuilding_GravshipTurret.linkedTerminal;
+        base.Tick();
+        if (linkedTerminal != null && (linkedTerminal.Destroyed || !linkedTerminal.Spawned))
+        {
+            Unlink();
+        }
     }
 
     public override void ExposeData()
@@ -120,70 +81,91 @@ public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
 
     public override string GetInspectString()
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        string inspectString = base.GetInspectString();
-        if (!inspectString.NullOrEmpty())
-        {
-            stringBuilder.AppendLine(inspectString);
-        }
-
-        // Logic from VGE
+        string text = base.GetInspectString();
         if (Faction == Faction.OfPlayer && linkedTerminal == null)
         {
-            stringBuilder.Append("VGE_NeedsLinkedTargetingTerminal".Translate());
+            if (!text.NullOrEmpty())
+            {
+                text += "\n";
+            }
+            text += "VGE_NeedsLinkedTargetingTerminal".Translate();
         }
-        return stringBuilder.ToString().TrimEndNewlines();
+        return text;
     }
 
     public void LinkTo(Building_TargetingTerminalCE terminal)
     {
-        ToBuilding_GravshipTurret.LinkTo(terminal);
-        linkedTerminal = (Building_TargetingTerminalCE)ToBuilding_GravshipTurret.linkedTerminal;
+        terminal.linkedTurretCE?.Unlink();
+        linkedTerminal = terminal;
         terminal.linkedTurretCE = this;
+        SoundDefOf.Tick_High.PlayOneShotOnCamera();
+        DisableOverlay();
+        linkedTerminal.DisableOverlay();
     }
 
     public void Unlink()
     {
-        ToBuilding_GravshipTurret?.Unlink();
+        // Add these two lines to stop targeting
+        // Equivalent to Building_TurretGun_OrderAttack_Patch and Building_TurretGun_ResetForcedTarget_Patch (but better)
+        ResetForcedTarget();
+        ResetCurrentTarget();
+
+        if (linkedTerminal != null)
+        {
+            linkedTerminal.EnableOverlay();
+            linkedTerminal.linkedTurretCE = null;
+        }
         linkedTerminal = null;
+        SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+        if (ShowNoLinkedTerminalOverlay)
+        {
+            EnableOverlay();
+        }
     }
 
     private void SelectLinkedTerminal()
     {
-        ToBuilding_GravshipTurret.SelectLinkedTerminal();
+        if (linkedTerminal != null)
+        {
+            Find.Selector.ClearSelection();
+            Find.Selector.Select(linkedTerminal);
+        }
     }
     private void StartLinking()
     {
-        ToBuilding_GravshipTurret.StartLinking();
-        // intercept the targeting logic
-        Find.Targeter.targetParams.validator = (TargetInfo t) => t.Thing is Building_TargetingTerminal && t.Thing.Position.InHorDistOf(this.Position, 36);
-        Find.Targeter.action = delegate (LocalTargetInfo t)
+        var targetingParameters = new TargetingParameters
+        {
+            canTargetPawns = false,
+            canTargetBuildings = true,
+            mapObjectTargetsMustBeAutoAttackable = false,
+            validator = (TargetInfo t) => t.Thing is Building_TargetingTerminalCE && t.Thing.Position.InHorDistOf(this.Position, 36)
+        };
+        Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
         {
             var terminal = t.Thing as Building_TargetingTerminalCE;
             LinkTo(terminal);
-        };
+        }, onGuiAction: delegate { GenDraw.DrawRadiusRing(this.Position, 36f); });
     }
-
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        Command_VerbTarget forceAttack = null;
-        Command_Toggle holdFire = null;
         foreach (var gizmo in base.GetGizmos())
         {
-            // skip these ones and save them because we will call them according to VGE logic
-
             if (gizmo is Command_VerbTarget command && command.defaultLabel == "CommandSetForceAttackTarget".Translate())
             {
-                forceAttack = command;
-                continue;
+                command.icon = Building_GravshipTurret.ForceTargetIcon;
+                if (!CanFire)
+                {
+                    command.Disable("VGE_NeedsMannedTargetingTerminal".Translate());
+                }
             }
-
-            if (gizmo is Command_Toggle command2 && command2.defaultLabel == "CommandHoldFire".Translate())
+            else if (gizmo is Command_Toggle command2 && command2.defaultLabel == "CommandHoldFire".Translate())
             {
-                holdFire = command2;
-                continue;
+                command2.icon = Building_GravshipTurret.HoldFireIcon;
             }
 
+            // Gravship Turret should always have a world Artillery command.
+            // To avoid changing to much code in CE core, I skip it here, and add it again later
+            // (my conflict was with the AnitcraftEmitter, which does not use AmmoComp, which denies the ArtilleryCommand button).
             if (gizmo is Command_ArtilleryTarget command3 && command3.defaultLabel == "CE_ArtilleryTargetLabel".Translate())
             {
                 // skip this gizmo as we will add our own later
@@ -191,57 +173,94 @@ public class Building_GravshipTurretCE: Building_TurretGunCEWithVGEAdapter
             }
 
             yield return gizmo;
-
-            // Add artillery command ourself
-            if (CanFire)
-            {
-                Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
-                {
-                    defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
-                    defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
-                    turret = this,
-                    icon = CompWorldArtillery.WorldTargetIcon, // new icon
-                    hotKey = KeyBindingDefOf.Misc5
-                };
-                yield return wt;
-            }
         }
 
-        foreach (var gizmo in ToBuilding_GravshipTurret.GetGizmos())
+        if (Faction != Faction.OfPlayer)
         {
-            if (forceAttack != null && gizmo is Command_VerbTarget command1 && command1.defaultLabel == "CommandSetForceAttackTarget".Translate())
-            {
-                forceAttack.icon = command1.icon;
-                forceAttack.disabled = command1.disabled;
-                forceAttack.disabledReason = command1.disabledReason;
-                yield return forceAttack;
-                continue;
-            }
+            yield break;
+        }
 
-            if (holdFire != null && gizmo is Command_Toggle command2 && command2.defaultLabel == "CommandHoldFire".Translate())
+        // Add artillery command ourself
+        if (CanFire)
+        {
+            Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
             {
-                holdFire.icon = command2.icon;
-                yield return holdFire;
-                continue;
-            }
+                defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
+                defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
+                turret = this,
+                icon = CompWorldArtillery.WorldTargetIcon, // new icon
+                hotKey = KeyBindingDefOf.Misc5
+            };
+            yield return wt;
+        }
 
-            if (gizmo is Command_Action command3 && command3.defaultLabel == "VGE_LinkWithTerminal".Translate())
+        if (linkedTerminal == null)
+        {
+            yield return new Command_Action
             {
-                command3.action = StartLinking;
-            }
-
-            if (gizmo is Command_Action command4 && command4.defaultLabel == "VGE_UnlinkWithTerminal".Translate())
+                defaultLabel = "VGE_LinkWithTerminal".Translate(),
+                defaultDesc = "VGE_LinkWithTerminalDesc".Translate(),
+                icon = Building_GravshipTurret.LinkIcon,
+                action = delegate { StartLinking(); }
+            };
+        }
+        else
+        {
+            yield return new Command_Action
             {
-                command4.action = Unlink;
-            }
-
-            if (gizmo is Command_Action command5 && command5.defaultLabel == "VGE_SelectLinkedTerminal".Translate())
+                defaultLabel = "VGE_UnlinkWithTerminal".Translate(),
+                defaultDesc = "VGE_UnlinkWithTerminalDesc".Translate(),
+                icon = Building_GravshipTurret.UnlinkIcon,
+                action = delegate { Unlink(); }
+            };
+            yield return new Command_Action
             {
-                command5.action = SelectLinkedTerminal;
-            }
-
-            yield return gizmo;
+                defaultLabel = "VGE_SelectLinkedTerminal".Translate(),
+                defaultDesc = "VGE_SelectLinkedTerminalDesc".Translate(),
+                icon = Building_GravshipTurret.SelectIcon,
+                action = delegate { SelectLinkedTerminal(); }
+            };
         }
     }
+
+    public void EnableOverlay() => overlayDrawer?.Enable(this, VGEDefOf.VGE_NoLinkedTerminalOverlay);
+
+    public void DisableOverlay() => overlayDrawer?.Disable(this, VGEDefOf.VGE_NoLinkedTerminalOverlay);
+
+    #region adapting patch
+    // HarmonyPatches/Building_TurretGun_Active_Patch
+    public override bool Active {
+        get {
+            if (!CanFire)
+            {
+                return false;
+            }
+            return base.Active;
+        }
+    }
+
+    // HarmonyPatches/Building_TurretGun_IsMortarOrProjectileFliesOverhead_Patch
+    // No need to override IsMortarOrProjectileFliesOverhead, our code works
+
+    // HarmonyPatches/Building_TurretGun_OrderAttack_Patch
+    // No need to override OrderAttack, we don't use VGE CompWorldArtillery
+
+    // HarmonyPatches/Building_TurretGun_ResetForcedTarget_Patch
+    // No need to override ResetForcedTarget, we don't use VGE CompWorldArtillery
+
+    // HarmonyPatches/Building_TurretGun_TryFindNewTarget_Patch
+    public override LocalTargetInfo TryFindNewTarget()
+    {
+        if (!CanAutoAttack)
+        {
+            return LocalTargetInfo.Invalid;
+        }
+        return base.TryFindNewTarget();
+    }
+
+    // HarmonyPatches/Building_TurretGun_TryStartShootSomething_Patch
+    // No need to override TryStartShootSomething, as we don't use their code for turret rotation
+
+    #endregion
 }
 
