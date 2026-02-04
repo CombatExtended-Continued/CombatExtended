@@ -73,7 +73,7 @@ public struct CollisionVertical
         }
         float collisionHeight = 0f;
         float shotHeightOffset = 0;
-        float heightAdjust = 0;
+        float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);
 
         var pawn = thing as Pawn;
         if (pawn != null)

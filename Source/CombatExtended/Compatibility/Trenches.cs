@@ -15,11 +15,11 @@ public class CETrenches
     {
         heightAdjust = 0f;
 
-        //consider swimming pawns to be in a trench
+        //consider swimming pawns to be partially underground
         TerrainDef terrain = cell.GetTerrain(map);
         if (terrain != null && terrain.IsWater)
         {
-            heightAdjust = terrain.passability == Traversability.Impassable ? -0.75f : -0.5f;
+            heightAdjust = terrain.passability == Traversability.Impassable ? -0.5f : -0.25f;
             return true;
         }
 
@@ -48,7 +48,7 @@ public class CETrenches
         }
 
         float heightAdjust = 0;
-        
+
         if (CheckTrench(cell, map, out heightAdjust))
         {
             return heightAdjust;
