@@ -18,13 +18,13 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
     {
         Map map = this.Map;
         base.Impact(hitThing);
-        
+
         if (this.def?.projectile?.spawnsPawnKind == null)
         {
             Log.Warning($"Projectile {this.def?.defName} missing spawnsPawnKind definition");
             return;
         }
-        
+
         IntVec3 loc = this.Position;
         if (this.def.projectile.tryAdjacentFreeSpaces && this.Position.GetFirstBuilding(map) != null)
         {
@@ -37,13 +37,13 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
                 }
             }
         }
-        
+
         PawnKindDef spawnsPawnKind = this.def.projectile.spawnsPawnKind;
         Faction factionlauncher = this.launcher?.Faction;
-        
+
         // Get CE projectile properties
         ProjectilePropertiesCE props = this.def.projectile as ProjectilePropertiesCE;
-        
+
         // Use configured faction if specified, otherwise use launcher's faction
         Faction faction = null;
         if (props?.factionDef != null)
@@ -54,7 +54,7 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
                 Log.Warning($"Could not find faction {props.factionDef.defName} for projectile {this.def.defName}");
             }
         }
-        
+
         // Fallback to launcher's faction if no configured faction or faction not found
         if (faction == null)
         {
@@ -68,13 +68,13 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
                 .Where(f => f != Faction.OfPlayer && !f.defeated && f.HostileTo(Faction.OfPlayer))
                 .OrderBy(f => f.PlayerGoodwill)
                 .FirstOrDefault();
-            
+
             if (hostileFaction != null)
             {
                 faction = hostileFaction;
             }
         }
-        
+
         PlanetTile? tile = new PlanetTile?();
         float? minChanceToRedressWorldPawn = new float?();
         float? fixedBiologicalAge = props?.fixedBiologicalAge;
@@ -82,7 +82,7 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
         Gender? fixedGender = new Gender?();
         FloatRange? excludeBiologicalAgeRange = props?.excludeBiologicalAgeRange;
         FloatRange? biologicalAgeRange = props?.biologicalAgeRange;
-        
+
         PawnGenerationRequest request = new PawnGenerationRequest(
             kind: spawnsPawnKind,
             faction: faction,
@@ -94,23 +94,23 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
             excludeBiologicalAgeRange: excludeBiologicalAgeRange,
             biologicalAgeRange: biologicalAgeRange
         );
-        
+
         Pawn pawn = PawnGenerator.GeneratePawn(request);
-        
+
         if (pawn == null)
         {
             Log.Warning($"Failed to generate pawn of kind {spawnsPawnKind.defName}");
             return;
         }
-        
+
         if (alwaysHostile)
         {
             pawn.mindState.enemyTarget = this.launcher;
         }
-        
+
         GenSpawn.Spawn((Thing)pawn, loc, map);
-        
-        
+
+
         if (pawn.Faction != faction && pawn.def.CanHaveFaction)
         {
             pawn.SetFaction(faction);
