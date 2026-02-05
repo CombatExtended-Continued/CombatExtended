@@ -61,7 +61,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
         {
             faction = this.launcher?.Faction;
         }
-        
+
         if (alwaysHostile && faction == Faction.OfPlayer)
         {
             Faction bestCandidate = null;
@@ -82,7 +82,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
 
                 // Inverse scoring since lower goodwill is better
                 float score = -candidate.PlayerGoodwill;
-    
+
                 if (score > bestScore)
                 {
                     bestScore = score;
