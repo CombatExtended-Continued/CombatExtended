@@ -1,53 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="AV_ThermalPlating"]/stages</xpath>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[
+			defName="AV_ThermalPlating" or
+			defName="AV_FrigidPlating" or 
+			defName="AV_SubdermalArmor"]/stages/li/capMods</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="AV_ThermalPlating" or defName="AV_FrigidPlating"]/stages/li/statOffsets</xpath>
 		<value>
-			<stages>
-				<li>
-					<statOffsets>
-						<ComfyTemperatureMin>-30</ComfyTemperatureMin>		<!-- minus = good -->
-						<ComfyTemperatureMax>-10</ComfyTemperatureMax>		<!-- plus = good -->
-						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
-						<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-						<ArmorRating_Heat>0.15</ArmorRating_Heat>
-						<ImmunityGainSpeed>-0.02</ImmunityGainSpeed>
-					</statOffsets>
-				</li>
-			</stages>
+			<MoveSpeed>-0.25</MoveSpeed>
+			<MeleeDodgeChance>-0.02</MeleeDodgeChance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="AV_FrigidPlating"]/stages</xpath>
+		<xpath>Defs/HediffDef[defName="AV_ThermalPlating"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
 		<value>
-			<stages>
-				<li>
-					<statOffsets>
-						<ComfyTemperatureMin>10</ComfyTemperatureMin>		<!-- minus = good -->
-						<ComfyTemperatureMax>30</ComfyTemperatureMax>		<!-- plus = good -->
-						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-						<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
-						<!-- <ArmorRating_Heat>0.0</ArmorRating_Heat> -->
-						<ImmunityGainSpeed>-0.02</ImmunityGainSpeed>
-					</statOffsets>
-				</li>
-			</stages>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="AV_SubdermalArmor"]/stages</xpath>
+		<xpath>Defs/HediffDef[defName="AV_ThermalPlating"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
 		<value>
-			<stages>
-				<li>
-					<statOffsets>
-						<IncomingDamageFactor>-0.15</IncomingDamageFactor>
-						<ArmorRating_Heat>0.25</ArmorRating_Heat>
-						<ImmunityGainSpeed>-0.02</ImmunityGainSpeed>
-					</statOffsets>
-				</li>
-			</stages>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AV_FrigidPlating"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AV_FrigidPlating"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AV_SubdermalArmor"]/stages/li/statOffsets/IncomingDamageFactor</xpath>
+		<value>
+			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>3.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="AV_SubdermalArmor"]/stages/li/statOffsets</xpath>
+		<value>
+			<MoveSpeed>-0.5</MoveSpeed>
+			<MeleeDodgeChance>-0.05</MeleeDodgeChance>
 		</value>
 	</Operation>
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RimWorld;
@@ -10,7 +9,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended;
-public class ProjectileCE_SpawnsPawn : ProjectileCE
+public class ProjectileCE_SpawnPawnkind : ProjectileCE
 {
     public override bool AnimalsFleeImpact => false;
 
@@ -18,10 +17,16 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
     {
         Map map = this.Map;
         base.Impact(hitThing);
-
-        if (this.def?.projectile?.spawnsPawnKind == null)
+        if (this.def.projectile is not ProjectilePropertiesCE props)
         {
-            Log.Warning($"Projectile {this.def?.defName} missing spawnsPawnKind definition");
+            return;
+        }
+        bool alwaysHostile = props.alwaysHostile;
+
+        PawnKindDef spawnsPawnKind = props.spawnsPawnKind;
+        if (spawnsPawnKind == null)
+        {
+            Log.ErrorOnce($"Projectile {this.def.defName} missing spawnsPawnKind definition", this.def.GetHashCode());
             return;
         }
 
@@ -38,15 +43,11 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
             }
         }
 
-        PawnKindDef spawnsPawnKind = this.def.projectile.spawnsPawnKind;
-        Faction factionlauncher = this.launcher?.Faction;
 
-        // Get CE projectile properties
-        ProjectilePropertiesCE props = this.def.projectile as ProjectilePropertiesCE;
 
         // Use configured faction if specified, otherwise use launcher's faction
         Faction faction = null;
-        if (props?.factionDef != null)
+        if (props.factionDef != null)
         {
             faction = Find.FactionManager.FirstFactionOfDef(props.factionDef);
             if (faction == null)
@@ -58,36 +59,53 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
         // Fallback to launcher's faction if no configured faction or faction not found
         if (faction == null)
         {
-            faction = factionlauncher;
+            faction = this.launcher?.Faction;
         }
-
-        bool alwaysHostile = props?.alwaysHostile ?? false;
+        
         if (alwaysHostile && faction == Faction.OfPlayer)
         {
-            Faction hostileFaction = Find.FactionManager.AllFactions
-                .Where(f => f != Faction.OfPlayer && !f.defeated && f.HostileTo(Faction.OfPlayer))
-                .OrderBy(f => f.PlayerGoodwill)
-                .FirstOrDefault();
+            Faction bestCandidate = null;
+            float bestScore = float.MinValue;
 
-            if (hostileFaction != null)
+            foreach (Faction candidate in Find.FactionManager.AllFactionsListForReading)
             {
-                faction = hostileFaction;
+                if (candidate == Faction.OfPlayer || candidate.defeated || !candidate.HostileTo(Faction.OfPlayer))
+                {
+                    continue;
+                }
+
+                // Ensure faction compatibility with pawn kind
+                if (spawnsPawnKind?.RaceProps?.Humanlike != candidate.def.humanlikeFaction)
+                {
+                    continue;
+                }
+
+                // Inverse scoring since lower goodwill is better
+                float score = -candidate.PlayerGoodwill;
+    
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestCandidate = candidate;
+                }
+            }
+            if (bestCandidate != null)
+            {
+                faction = bestCandidate;
             }
         }
 
-        PlanetTile? tile = new PlanetTile?();
-        float? minChanceToRedressWorldPawn = new float?();
-        float? fixedBiologicalAge = props?.fixedBiologicalAge;
-        float? fixedChronologicalAge = props?.fixedChronologicalAge;
-        Gender? fixedGender = new Gender?();
-        FloatRange? excludeBiologicalAgeRange = props?.excludeBiologicalAgeRange;
-        FloatRange? biologicalAgeRange = props?.biologicalAgeRange;
+        PlanetTile? tile = null;
+        float? fixedBiologicalAge = props.fixedBiologicalAge;
+        float? fixedChronologicalAge = props.fixedChronologicalAge;
+        Gender? fixedGender = null;
+        FloatRange? excludeBiologicalAgeRange = props.excludeBiologicalAgeRange;
+        FloatRange? biologicalAgeRange = props.biologicalAgeRange;
 
         PawnGenerationRequest request = new PawnGenerationRequest(
             kind: spawnsPawnKind,
             faction: faction,
             tile: tile,
-            minChanceToRedressWorldPawn: minChanceToRedressWorldPawn,
             fixedBiologicalAge: fixedBiologicalAge,
             fixedChronologicalAge: fixedChronologicalAge,
             fixedGender: fixedGender,
@@ -99,17 +117,11 @@ public class ProjectileCE_SpawnsPawn : ProjectileCE
 
         if (pawn == null)
         {
-            Log.Warning($"Failed to generate pawn of kind {spawnsPawnKind.defName}");
+            Log.ErrorOnce($"Failed to generate pawn of kind {spawnsPawnKind.defName}", Gen.HashCombine(this.def.GetHashCode(), "PawnGenFailed"));
             return;
         }
 
-        if (alwaysHostile)
-        {
-            pawn.mindState.enemyTarget = this.launcher;
-        }
-
         GenSpawn.Spawn((Thing)pawn, loc, map);
-
 
         if (pawn.Faction != faction && pawn.def.CanHaveFaction)
         {
