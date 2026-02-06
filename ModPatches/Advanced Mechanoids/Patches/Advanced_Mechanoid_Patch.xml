@@ -119,18 +119,24 @@
 			</value>
 		</nomatch>
 	</Operation>
-
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedCleansweeper"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_AdvancedCleansweeper"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<!-- ========== ARMOR DURABILITIES ========== -->
+	
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="Mech_AdvancedMilitor" or
-			defName="Mech_AdvancedLifter" or
-			defName="Mech_AdvancedConstructoid" or
-			defName="Mech_AdvancedFabricor" or
-			defName="Mech_AdvancedAgrihand" or
-			defName="Mech_AdvancedParamedic"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedMilitor"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ArmorDurability">
-				<Durability>850</Durability>
+				<Durability>675</Durability>
 				<Regenerates>true</Regenerates>
 				<RegenInterval>1125</RegenInterval>
 				<RegenValue>8</RegenValue>
@@ -142,6 +148,127 @@
 				<RepairTime>250</RepairTime>
 				<RepairValue>200</RepairValue>
 				<MinArmorPct>0.65</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedLifter"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>780</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1125</RegenInterval>
+				<RegenValue>8</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>250</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.65</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedConstructoid"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>550</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1125</RegenInterval>
+				<RegenValue>8</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>250</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.65</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+		<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedFabricor"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>550</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1125</RegenInterval>
+				<RegenValue>8</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>250</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.65</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedAgrihand"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>550</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1125</RegenInterval>
+				<RegenValue>8</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>250</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.65</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedParamedic"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>425</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1125</RegenInterval>
+				<RegenValue>8</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>250</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.65</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedCleansweeper"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>425</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1150</RegenInterval>
+				<RegenValue>6</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>250</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.55</MinArmorPct>
 			</li>
 		</value>
 	</Operation>
@@ -223,7 +350,7 @@
 		</value>
 	</Operation>
 
-	<!-- ========== Fabricor ========== -->
+	<!-- ========== Advanced Fabricor ========== -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedFabricor"]</xpath>
 		<value>
@@ -288,36 +415,6 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Vehicle</bodyShape>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Mech_AdvancedCleansweeper"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Mech_AdvancedCleansweeper"]</xpath>
-			<value>
-				<comps />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Mech_AdvancedCleansweeper"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_ArmorDurability">
-				<Durability>550</Durability>
-				<Regenerates>true</Regenerates>
-				<RegenInterval>1150</RegenInterval>
-				<RegenValue>6</RegenValue>
-				<Repairable>true</Repairable>
-				<RepairIngredients>
-					<Steel>5</Steel>
-					<Plasteel>5</Plasteel>
-				</RepairIngredients>
-				<RepairTime>250</RepairTime>
-				<RepairValue>200</RepairValue>
-				<MinArmorPct>0.55</MinArmorPct>
 			</li>
 		</value>
 	</Operation>
