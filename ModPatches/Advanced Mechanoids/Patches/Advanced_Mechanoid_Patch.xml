@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <Patch>
 
 	<!-- ======= Small PawnKindDef Patch ======= -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/PawnKindDef[defName="Mech_AdvancedMilitor"]/combatPower</xpath>
 		<value>
@@ -24,7 +22,6 @@
 	</Operation>
 
 	<!-- ========== Advanced Mechanoids Common ========== -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="AdvancedMechanoid"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
@@ -124,7 +121,13 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Mech_AdvancedMilitor" or defName="Mech_AdvancedLifter" or defName="Mech_AdvancedConstructoid" or defName="Mech_AdvancedFabricor" or defName="Mech_AdvancedAgrihand" or defName="Mech_AdvancedParamedic"]/comps</xpath>
+		<xpath>Defs/ThingDef[
+			defName="Mech_AdvancedMilitor" or
+			defName="Mech_AdvancedLifter" or
+			defName="Mech_AdvancedConstructoid" or
+			defName="Mech_AdvancedFabricor" or
+			defName="Mech_AdvancedAgrihand" or
+			defName="Mech_AdvancedParamedic"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ArmorDurability">
 				<Durability>850</Durability>
@@ -144,7 +147,6 @@
 	</Operation>
 
 	<!-- ========== Advanced Militor ========== -->
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedMilitor"]</xpath>
 		<value>
@@ -170,7 +172,6 @@
 	</Operation>
 
 	<!-- ========== Advanced Lifter ========== -->
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedLifter"]</xpath>
 		<value>
@@ -189,7 +190,6 @@
 	</Operation>
 
 	<!-- ========== Advanced Constructoid ========== -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedConstructoid"]/tools</xpath>
 		<value>
@@ -224,7 +224,6 @@
 	</Operation>
 
 	<!-- ========== Fabricor ========== -->
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedFabricor"]</xpath>
 		<value>
@@ -234,8 +233,26 @@
 		</value>
 	</Operation>
 
-	<!-- ========== Agrihand ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedFabricor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>2.0</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
 
+	<!-- ========== Agrihand ========== -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedAgrihand"]</xpath>
 		<value>
@@ -246,31 +263,19 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Mech_Agrihand"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Mech_AdvancedAgrihand"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<label>right blade</label>
+					<label>power blade</label>
 					<capacities>
 						<li>Cut</li>
 					</capacities>
 					<power>21</power>
 					<cooldownTime>1.74</cooldownTime>
-					<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+					<linkedBodyPartsGroup>PowerBlade</linkedBodyPartsGroup>
 					<armorPenetrationSharp>1.2</armorPenetrationSharp>
 					<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
-					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>right blade</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>14</power>
-					<cooldownTime>1.11</cooldownTime>
-					<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-					<armorPenetrationSharp>18.5</armorPenetrationSharp>
-					<armorPenetrationBlunt>12</armorPenetrationBlunt>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 			</tools>
@@ -278,7 +283,6 @@
 	</Operation>
 
 	<!-- ========== Advanced Cleansweeper ========== -->
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedCleansweeper"]</xpath>
 		<value>
@@ -317,8 +321,8 @@
 			</li>
 		</value>
 	</Operation>
-	<!-- ========== Advanced Paramedic ========== -->
 
+	<!-- ========== Advanced Paramedic ========== -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedParamedic"]</xpath>
 		<value>
