@@ -25,24 +25,20 @@
 					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyLong</xpath>
 				</li>
 
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statOffsets/RangedWeapon_DamageMultiplier</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors</xpath>
 					<value>
 						<CE_RangedWeapon_RecoilMultiplier>1.25</CE_RangedWeapon_RecoilMultiplier>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors</xpath>
-					<value>
-						<ShotSpread>1.15</ShotSpread>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/description</xpath>
-					<value>
-						<description>Special mechanisms allow this weapon to overcharge photon bolts to make them more powerful. The increased recoil and muzzle dispersion makes it harder to control and hit targets.</description>
+						<RangedWeapon_DamageMultiplier>0.1</RangedWeapon_DamageMultiplier>
+						<RangedWeapon_ArmorPenetrationMultiplier>0.1</RangedWeapon_ArmorPenetrationMultiplier>	
 					</value>
 				</li>
 

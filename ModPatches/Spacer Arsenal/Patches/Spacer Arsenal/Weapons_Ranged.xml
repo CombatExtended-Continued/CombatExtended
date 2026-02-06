@@ -2,11 +2,9 @@
 <Patch>
 
 	<!-- Tools -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="DV_Gun_ClashHMG" or
-			defName="DV_Gun_SonicStunner" or
 			defName="DV_Gun_BruteRifle" or
 			defName="DV_Gun_PhotonSMG" or
 			defName="DV_Gun_PlasmaBlaster" or
@@ -51,8 +49,37 @@
 		</value>
 	</Operation>
 
-	<!-- Clash HMG -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_Gun_SonicStunner"]/tools
+		</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+	</Operation>
 
+	<!-- Clash HMG -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_ClashHMG</defName>
 		<statBases>
@@ -95,17 +122,7 @@
 		<xpath>Defs/ThingDef[defName="DV_Gun_ClashHMG"]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DV_Gun_ClashHMG"]/description</xpath>
-		<value>
-			<description>A portable heavy machine gun chambered in high caliber cartridge. Recoil
-				mitigation technology helps to reduce felt recoil, improving accuracy and handling,
-				compared to industrial tech weapons.</description>
-		</value>
-	</Operation>
-
 	<!-- Coilgun Sniper -->
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_CoilgunLance</defName>
 		<statBases>
@@ -130,7 +147,7 @@
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_8mmRailgun_CoilgunLance</ammoSet>
+			<ammoSet>AmmoSet_6mmRailgun_CoilgunLance</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -143,7 +160,6 @@
 	</Operation>
 
 	<!-- Photon Blaster -->
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_PhotonSMG</defName>
 		<statBases>
@@ -224,7 +240,6 @@
 	</Operation>
 
 	<!-- Brute Rifle -->
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_BruteRifle</defName>
 		<statBases>
@@ -261,13 +276,6 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="DV_Gun_BruteRifle"]/equippedStatOffsets/MoveSpeed</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DV_Gun_BruteRifle"]/description</xpath>
-		<value>
-			<description>A super-heavy assault weapon chambered in high-caliber cartridge.</description>
-		</value>
 	</Operation>
 
 	<!-- Neutron Streamer -->
@@ -358,8 +366,8 @@
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-			<burstShotCount>7</burstShotCount>
-			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
 			<warmupTime>1.2</warmupTime>
 			<range>54</range>
 			<soundCast>Shot_Minigun</soundCast>
@@ -380,13 +388,6 @@
 			<li>CE_AI_AssaultWeapon</li>
 			<li>IndustrialGunAdvanced</li>
 		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DV_Gun_ClashRifle"]/description</xpath>
-		<value>
-			<description>A bullpup assault rifle chambered in full power rifle cartridge. Recoil mitigation technology helps to reduce felt recoil, improving accuracy and handling compared to industrial weapons.</description>
-		</value>
 	</Operation>
 
 	<!-- Laserpulse Longrifle -->
