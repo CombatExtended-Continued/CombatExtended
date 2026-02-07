@@ -573,6 +573,7 @@ Supernatural Weapons    |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
+Tiered Mechs    |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
 The Profaned	|
