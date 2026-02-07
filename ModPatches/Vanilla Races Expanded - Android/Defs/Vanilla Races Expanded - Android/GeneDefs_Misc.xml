@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<VREAndroids.AndroidGeneDef ParentName="VREA_SubroutineBase">
+		<defName>VREA_CE_Supressable</defName>
+		<label>self-preserve protocols</label>
+		<description>Androids with this subroutine will be programmed to emulate fear from incoming fire and will seek cover when subjected to ranged attack.</description>
+		<iconPath>ThirdParty/Vanilla Races Expanded - Android/UI/Icons/Genes/Subroutines/Gene_Suppressable</iconPath>
+		<displayOrderInCategory>25</displayOrderInCategory>
+		<statOffsets>
+			<!-- As unawakened androids always have suppressability set to 0, we offset it to 0.8 when this gene is active -->
+			<Suppressability>0.8</Suppressability>
+		</statOffsets>
+		<biostatCpx>1</biostatCpx>
+		<!-- If the android awakes, this gene will be removed, and cannot be added anymore (as reprogramming is disabled for awakened androids) -->
+		<removeWhenAwakened>true</removeWhenAwakened>
+	</VREAndroids.AndroidGeneDef>
+</Defs>

@@ -516,6 +516,10 @@ public static class ArmorUtilityCE
             {
                 localPenAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationBlunt;
             }
+            else if (dinfo.defInt.defaultArmorPenetration > 0)
+            {
+                localPenAmount = dinfo.defInt.defaultArmorPenetration;
+            }
             else
             {
                 //LastAttackVerb is already checked in GetAfterArmorDamage(). Only known case of code arriving here is with the ancient soldiers
