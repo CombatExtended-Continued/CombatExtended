@@ -26,19 +26,28 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="VEE_Hunter"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_Backpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
 	<!-- Tribal Hunter -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="VEE_TribalHunter"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>4</min>
-					<max>6</max>
+					<min>5</min>
+					<max>7</max>
 				</primaryMagazineCount>
 				<forcedAmmoCategory>StoneArrow</forcedAmmoCategory> <!-- Prevent the AI lighting the colony map on fire with flame arrows. -->
 				<sidearms>
 					<li>
-						<generateChance>0.25</generateChance>					
+						<generateChance>0.4</generateChance>					
 						<sidearmMoney>
 							<min>80</min>
 							<max>160</max>
