@@ -456,7 +456,19 @@ public abstract class ProjectileCE : ThingWithComps
     #endregion
 
     #region Raycast
-    public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null, bool useSameHeight = false)
+    public virtual void RayCast(
+        Thing launcher,
+        VerbProperties verbProps,
+        Vector2 origin,
+        float shotAngle,
+        float shotRotation,
+        float shotHeight = 0f,
+        float shotSpeed = -1f,
+        float spreadDegrees = 0f,
+        float aperatureSize = 0.03f,
+        Thing equipment = null,
+        bool useSameHeight = false
+    )
     {
         float magicSpreadFactor = Mathf.Sin(0.06f / 2 * Mathf.Deg2Rad) + aperatureSize;
         float magicLaserDamageConstant = 1 / (magicSpreadFactor * magicSpreadFactor * 3.14159f);
@@ -592,8 +604,7 @@ public abstract class ProjectileCE : ThingWithComps
         Verb_ShootCE verbToUse,
         Vector2 originLocal,
         float shotAngle,
-        float shotRotation,
-        float shotHeight = 0f,
+        float shotHeight,
         float shotSpeed = -1f,
         float spreadDegrees = 0f,
         float aperatureSize = 0.03f,
@@ -606,22 +617,28 @@ public abstract class ProjectileCE : ThingWithComps
             return;
         }
 
+        // Let's fire only on the exit cell
+        Vector3 u = verbToUse.Caster.TrueCenter();
+        Vector3 v = verbToUse.currentTarget.Cell.ToVector3Shifted();
+        var d = v - u;
+        var precisedShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
+
         // create the local raycast
         this.RayCast(
             launcher,
             verbToUse.verbProps,
             originLocal,
-            shotAngle,
-            shotRotation,
+            0, // set angle to 0 so the raycast goes straight (it won't touch anything so it doesn't matter)
+            precisedShotRotation,
             shotHeight,
             shotSpeed,
-            0,
-            0,
+            0, // no need
+            0, // no need
             equipment
         );
-
        
-        Props.shellingProps.tilesPerTick = 99999; // instant speeed
+
+        Props.shellingProps.tilesPerTick = 99999; // instant speeeeed !
 
         TravelingRaycast travelingRaycast = (TravelingRaycast)WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingRaycast);
         if (launcher?.Faction != null)

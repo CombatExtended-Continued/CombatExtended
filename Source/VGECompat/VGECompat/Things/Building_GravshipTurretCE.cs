@@ -183,13 +183,14 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
         // Add artillery command ourself
         if (CanFire)
         {
-            Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
+            Command_VGEArtilleryTarget wt = new Command_VGEArtilleryTarget()
             {
                 defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
                 defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
                 turret = this,
                 icon = CompWorldArtillery.WorldTargetIcon, // new icon
-                hotKey = KeyBindingDefOf.Misc5
+                hotKey = KeyBindingDefOf.Misc5,
+                compWorldArtillery = this.TryGetComp<CompWorldArtillery>()
             };
             yield return wt;
         }

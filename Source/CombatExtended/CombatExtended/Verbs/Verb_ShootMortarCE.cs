@@ -29,7 +29,7 @@ public class Verb_ShootMortarCE : Verb_ShootCE
     /// <summary>
     /// Wether the target is marked
     /// </summary>
-    private bool targetHasMarker = false;
+    protected bool targetHasMarker = false;
 
     // for global target only
     //        
@@ -204,7 +204,6 @@ public class Verb_ShootMortarCE : Verb_ShootCE
                     this,
                     sourceLoc,
                     shotAngle,
-                    shotRotation,
                     ShotHeight,
                     ShotSpeed,
                     spreadDegrees,

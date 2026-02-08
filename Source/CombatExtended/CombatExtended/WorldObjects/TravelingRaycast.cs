@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using CombatExtended.WorldObjects;
-using RimWorld;
-using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -50,7 +44,7 @@ public class TravelingRaycast : TravelingShell
                 spreadDegrees,
                 aperatureSize,
                 null,
-                true // Allow beam to be draw correctly
+                true // Allow beam to be drawn correctly
             );
         }
         else

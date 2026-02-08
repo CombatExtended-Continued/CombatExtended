@@ -1,38 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using VanillaGravshipExpanded;
 using Verse;
 
 namespace CombatExtended;
-public class Command_ArtilleryTarget : Command
+public class Command_VGEArtilleryTarget : Command_ArtilleryTarget
 {
-    public Building_TurretGunCE turret;
-
-    public List<Command_ArtilleryTarget> others = null;
-
-    public IEnumerable<Building_TurretGunCE> SelectedTurrets => others?.Select(o => o.turret) ?? new List<Building_TurretGunCE>() { turret };
-
-    public override bool GroupsWith(Gizmo other) => other is Command_ArtilleryTarget;
-
-    public override void MergeWith(Gizmo other)
-    {
-        var order = other as Command_ArtilleryTarget;
-        if (others == null)
-        {
-            others = new List<Command_ArtilleryTarget>();
-            others.Add(this);
-        }
-        others.Add(order);
-    }
-
-    protected void CommandProcessInput(Event ev)
-    {
-        base.ProcessInput(ev);
-    }
-
+    public CompWorldArtillery compWorldArtillery;
     public override void ProcessInput(Event ev)
     {
         CameraJumper.TryJump(CameraJumper.GetWorldTarget(turret));
@@ -52,6 +29,16 @@ public class Command_ArtilleryTarget : Command
         int radius = (int)turret.MaxWorldRange;
         Find.WorldTargeter.BeginTargeting((targetInfo) =>
         {
+            // ----- Add FiringMode check -----
+            if (compWorldArtillery != null)
+            {
+                string failReason;
+                compWorldArtillery.IsValidTargetForFiringMode(targetInfo, out failReason);
+                Messages.Message(failReason, MessageTypeDefOf.RejectInput, false);
+                return false;
+            }
+            // --------------------------------
+
             IEnumerable<Building_TurretGunCE> turrets = SelectedTurrets;
             Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;
             // We only want player to target world object when there's no colonist in the map
@@ -77,17 +64,14 @@ public class Command_ArtilleryTarget : Command
                     GenDraw.DrawTargetHighlight(target);
                 }, targetValidator: (target) =>
                 {
+                    // ----- Remove mark condition -----
                     RoofDef roof = map.roofGrid.RoofAt(target.Cell);
-                    if ((roof == null || roof == RoofDefOf.RoofConstructed) &&
-                            target.Cell.GetFirstThing<ArtilleryMarker>(map) != null)
+                    if ((roof == null || roof == RoofDefOf.RoofConstructed))
                     {
                         return true;
                     }
-                    else
-                    {
-                        Messages.Message("CE_ArtilleryTarget_MustTargetMark".Translate(), MessageTypeDefOf.RejectInput);
-                        return false;
-                    }
+                    return false;
+                    // ---------------------------------
                 });
                 return false;
             }
@@ -190,18 +174,5 @@ public class Command_ArtilleryTarget : Command
             return true;
         });
         CommandProcessInput(ev);
-    }
-
-    protected bool TryAttack(IEnumerable<Building_TurretGunCE> turrets, GlobalTargetInfo targetInfo, LocalTargetInfo localTargetInfo)
-    {
-        bool attackStarted = false;
-        foreach (var t in turrets)
-        {
-            if (t.Active && t.TryAttackWorldTarget(targetInfo, localTargetInfo))
-            {
-                attackStarted = attackStarted || true;
-            }
-        }
-        return attackStarted;
     }
 }
