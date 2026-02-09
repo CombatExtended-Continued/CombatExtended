@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Verse;
+﻿using UnityEngine;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
@@ -17,24 +11,34 @@ public class DirectOverheadTrajectoryWorker : LerpedTrajectoryWorker
             return base.ShotAngle(projectilePropsCE, source, targetPos, speed);
         }
 
-        var targetHeight = targetPos.y;
-        var shotHeight = source.y;
-        var newTargetLoc = new Vector2(targetPos.x, targetPos.z);
-        var sourceV2 = new Vector2(source.x, source.z);
+        float? shotAngle = TryFindShotAngle(projectilePropsCE, source, targetPos, speed);
+        if (shotAngle is float angle)
+        {
+            return angle;
+        }
 
-        var _speed = speed ?? projectilePropsCE.speed;
-        var gravityPerWidth = projectilePropsCE.GravityPerWidth;
-        var heightDifference = targetHeight - shotHeight;
-        var range = (newTargetLoc - sourceV2).magnitude;
+        return base.ShotAngle(projectilePropsCE, source, targetPos, speed);
+    }
+
+    private static float? TryFindShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed)
+    {
+        float targetHeight = targetPos.y;
+        float shotHeight = source.y;
+        Vector2 newTargetLoc = new Vector2(targetPos.x, targetPos.z);
+        Vector2 sourceV2 = new Vector2(source.x, source.z);
+
+        float _speed = speed ?? projectilePropsCE.speed;
+        float gravityPerWidth = projectilePropsCE.GravityPerWidth;
+        float heightDifference = targetHeight - shotHeight;
+        float range = (newTargetLoc - sourceV2).magnitude;
         float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_speed, 4f) - gravityPerWidth * (gravityPerWidth * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_speed, 2f)));
+
         if (float.IsNaN(squareRootCheck))
         {
-            //Target is too far to hit with given velocity/range/gravity params
-            //set firing angle for maximum distance
-            Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
-            return 45.0f * Mathf.Deg2Rad;
+            return null;
         }
-        // Remove the projectilePropsCE.flyOverhead angle to get a direct shot
-        return Mathf.Atan((Mathf.Pow(_speed, 2f) + -1f * squareRootCheck) / (gravityPerWidth * range));
+
+        // Remove the projectilePropsCE.flyOverhead angle to always get a direct shot
+        return Mathf.Atan((Mathf.Pow(_speed, 2f) - squareRootCheck) / (gravityPerWidth * range));
     }
 }

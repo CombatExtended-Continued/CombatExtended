@@ -1,8 +1,5 @@
 using RimWorld.Planet;
-using System;
-using System.Data.SqlTypes;
 using Verse;
-using static UnityEngine.GraphicsBuffer;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
