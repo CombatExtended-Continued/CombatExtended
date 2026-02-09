@@ -347,8 +347,8 @@ public class Settings : ModSettings, ISettingsCE
         {
             GUI.contentColor = Color.gray;
         }
-        opportunisticReloadSafeDistance = left.SliderLabeled("CE_Settings_OpportunisticReload_SafeDistance_Title".Translate(opportunisticReloadSafeDistance), opportunisticReloadSafeDistance, 0f, 34.9f, tooltip: "CE_Settings_OpportunisticReload_SafeDistance_Desc".Translate());
-        secondsAfterFightToOpportunisticReload = (int)left.SliderLabeled("CE_Settings_OpportunisticReload_SecondsAfterFight_Title".Translate(secondsAfterFightToOpportunisticReload), secondsAfterFightToOpportunisticReload, 0f, 15f, tooltip: "CE_Settings_OpportunisticReload_SecondsAfterFight_Desc".Translate());
+        opportunisticReloadSafeDistance = left.SliderLabeled("CE_Settings_OpportunisticReload_SafeDistance_Title".Translate(opportunisticReloadSafeDistance), opportunisticReloadSafeDistance, 0f, 50.9f, tooltip: "CE_Settings_OpportunisticReload_SafeDistance_Desc".Translate());
+        secondsAfterFightToOpportunisticReload = (int)left.SliderLabeled("CE_Settings_OpportunisticReload_SecondsAfterFight_Title".Translate(secondsAfterFightToOpportunisticReload), secondsAfterFightToOpportunisticReload, 0f, 60f, tooltip: "CE_Settings_OpportunisticReload_SecondsAfterFight_Desc".Translate());
         GUI.contentColor = Color.white;
         left.End();
 
