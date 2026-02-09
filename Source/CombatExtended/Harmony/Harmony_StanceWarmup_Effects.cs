@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using Verse;
-using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
 
@@ -31,14 +29,15 @@ public static class Harmony_StanceWarmup_Effects
                 var brIns = list[i + 1];
                 var label = (Label)brIns.operand;
                 list.InsertRange(i + 2,
-                    new CodeInstruction[] {
-                        new CodeInstruction(OpCodes.Ldarg_0),
-                        CodeInstruction.Call(typeof(Harmony_StanceWarmup_Effects), nameof(ShouldSpawnAimingSound)),
-                        new CodeInstruction(OpCodes.Brfalse_S, label)
-                    });
+                [
+                    new CodeInstruction(OpCodes.Ldarg_0),
+                    CodeInstruction.Call(typeof(Harmony_StanceWarmup_Effects), nameof(ShouldSpawnAimingSound)),
+                    new CodeInstruction(OpCodes.Brfalse_S, label)
+                ]);
                 aimingSoundPatched = true;
             }
         }
+        if (!aimingSoundPatched) { Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}"); }
         return list;
     }
     private static bool ShouldSpawnAimingSound(Stance_Warmup stance)
