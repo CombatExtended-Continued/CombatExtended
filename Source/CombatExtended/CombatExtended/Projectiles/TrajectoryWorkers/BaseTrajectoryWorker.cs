@@ -73,62 +73,80 @@ public abstract class BaseTrajectoryWorker
     /// <returns>angle in radians</returns>
     public virtual float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null)
     {
-        var targetHeight = targetPos.y;
-        var shotHeight = source.y;
-        var newTargetLoc = new Vector2(targetPos.x, targetPos.z);
-        var sourceV2 = new Vector2(source.x, source.z);
+        float? shotAngle = TryFindShotAngle(projectilePropsCE, source, targetPos, speed);
+        if (shotAngle is float angle)
+        {
+            return angle;
+        }
+
+        //Target is too far to hit with given velocity/range/gravity params
+        //set firing angle for maximum distance
+        Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
+        return 45.0f * Mathf.Deg2Rad;
+    }
+
+    /// <summary>
+    /// Try to find the shot angle in radians needed to hit the given target, returning null if no valid shot angle exists.
+    /// </summary>
+    /// <param name="source">Source shot, including shot height</param>
+    /// <param name="targetPos">Target position, including target height</param>
+    /// <param name="speed">speed (cells / second)</param>
+    /// <returns>angle in radians, or null if the target cannot be hit from the given source with the given speed</returns>
+    private static float? TryFindShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed)
+    {
+        float targetHeight = targetPos.y;
+        float shotHeight = source.y;
+        Vector2 newTargetLoc = new(targetPos.x, targetPos.z);
+        Vector2 sourceV2 = new(source.x, source.z);
         if (projectilePropsCE.isInstant)
         {
             return Mathf.Atan2(targetHeight - shotHeight, (newTargetLoc - sourceV2).magnitude);
         }
-        else
+
+        float _speed = speed ?? projectilePropsCE.speed;
+
+        float gravityPerWidth = projectilePropsCE.GravityPerWidth;
+        float heightDifference = targetHeight - shotHeight;
+        float range = (newTargetLoc - sourceV2).magnitude;
+        float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_speed, 4f) - gravityPerWidth * (gravityPerWidth * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_speed, 2f)));
+        if (float.IsNaN(squareRootCheck))
         {
-            var _speed = speed ?? projectilePropsCE.speed;
-            var gravityPerWidth = projectilePropsCE.GravityPerWidth;
-            var heightDifference = targetHeight - shotHeight;
-            var range = (newTargetLoc - sourceV2).magnitude;
-            float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_speed, 4f) - gravityPerWidth * (gravityPerWidth * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_speed, 2f)));
-            if (float.IsNaN(squareRootCheck))
-            {
-                //Target is too far to hit with given velocity/range/gravity params
-                //set firing angle for maximum distance
-                Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
-                return 45.0f * Mathf.Deg2Rad;
-            }
-            return Mathf.Atan((Mathf.Pow(_speed, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravityPerWidth * range));
+            return null;
         }
+        return Mathf.Atan((Mathf.Pow(_speed, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravityPerWidth * range));
     }
+
     public virtual float ShotRotation(ProjectilePropertiesCE projectilePropertiesCE, Vector3 source, Vector3 targetPos)
     {
         var w = targetPos - source;
         return (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x)) % 360;
     }
 
+    /// <summary>
+    /// Determine whether a projectile can hit the given target from its current position considering its speed.
+    /// </summary>
+    /// <param name="props">projectile properties</param>
+    /// <param name="speed">Speed of the projectile in cells / second.</param>
+    /// <param name="source">Source shot, including shot height.</param>
+    /// <param name="pos">Target position, including target height.</param>
+    /// <param name="ticksToReach">The number of ticks needed for the projectile to reach the target.</param>
+    /// <returns>true if the projectile can hit the target, false otherwise.</returns>
     public virtual bool CanReachPos(ProjectilePropertiesCE props, float speed, Vector3 source, Vector3 pos, out int ticksToReach)
     {
-        var distance = (pos - source).MagnitudeHorizontal();
-        var heightOffset = pos.y - source.y;
-        var gravityPerWidth = props.GravityPerWidth;
-        var shotAngle = ShotAngle(props, source, pos, speed);
-        var v_xz = speed * Mathf.Sin(shotAngle);
-        var d = v_xz * v_xz - 2 * gravityPerWidth * heightOffset;
-        if (d < 0) // cannot actually reach the given location, probably too high up
+        float? shotAngle = TryFindShotAngle(props, source, pos, speed);
+
+        // If we have a valid angle, we know we can hit the target position and can determine the time needed using the horizontal velocity.
+        // https://en.wikipedia.org/wiki/Projectile_motion#Time_of_flight_to_the_target's_position
+        if (shotAngle is float angle)
         {
-            ticksToReach = 0;
-            return false;
+            float distance = (pos - source).MagnitudeHorizontal();
+            float secondsToReach = distance / (speed * Mathf.Cos(angle));
+            ticksToReach = Mathf.FloorToInt(secondsToReach * GenTicks.TicksPerRealSecond);
+            return true;
         }
-        var ticksToReachFloat = (v_xz + Mathf.Sqrt(d)) / gravityPerWidth;
-        if (Mathf.Abs(ticksToReachFloat * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way up, must be after the zenith
-        {
-            ticksToReachFloat = (v_xz - Mathf.Sqrt(d)) / gravityPerWidth;
-            if (Mathf.Abs(ticksToReachFloat * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, it's probably landed, or otherwise invalid
-            {
-                ticksToReach = 0;
-                return false;
-            }
-        }
-        ticksToReach = Mathf.CeilToInt(ticksToReachFloat);
-        return true;
+
+        ticksToReach = 0;
+        return false;
     }
     public virtual bool GuidedProjectile => false;
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+				<!-- Overcharged Bolts -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyTouch</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyShort</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyMedium</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors/AccuracyLong</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statOffsets/RangedWeapon_DamageMultiplier</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="DV_OverchargedBolts"]/statFactors</xpath>
+					<value>
+						<CE_RangedWeapon_RecoilMultiplier>1.25</CE_RangedWeapon_RecoilMultiplier>
+						<RangedWeapon_DamageMultiplier>0.1</RangedWeapon_DamageMultiplier>
+						<RangedWeapon_ArmorPenetrationMultiplier>0.1</RangedWeapon_ArmorPenetrationMultiplier>	
+					</value>
+				</li>
+
+				<!-- Extended Cell -->
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="DV_ExtendedCell"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="DV_ExtendedCell"]/burstShotCountMultiplier</xpath>
+					<value>
+						<magazineCapacityFactor>1.50</magazineCapacityFactor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="DV_ExtendedCell"]/description</xpath>
+					<value>
+						<description>This weapon's energy cell holds 50% more charge than normal.</description>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -171,22 +171,23 @@ public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     //public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && TryFindCEShootLineFromTo(Caster.Position, target, out _, out _) && base.ValidateTarget(target, showMessages);
     public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targetInfo, out ShootLine resultingLine, out Vector3 targetPos)
     {
-
+        // Default to the last known target position even if no shootline is found,
+        // as KeepBurstOnNoShootLine() will allow all CIWS to continue bursting if the target is still present.
+        // Not setting a reasonable default here would cause these burst shots to be targeted at the origin.
+        targetPos = lastExactPos != Vector3.negativeInfinity ? lastExactPos : default;
         if (!(targetInfo.Thing is TargetType target))
         {
             resultingLine = default;
-            targetPos = default;
             return false;
         }
         var maxDistSqr = Props.range * Props.range;
         var originV3 = Caster.Position.ToVector3Shifted();
-        int maxTicks = (int)(this.verbProps.range / ShotSpeed) + 5;
+        int maxTicks = GenTicks.TicksPerRealSecond;
         if (TrajectoryWorker.GuidedProjectile)
         {
             if ((originV3 - target.DrawPos).MagnitudeHorizontalSquared() > maxDistSqr)
             {
                 resultingLine = default;
-                targetPos = default;
                 return false;
             }
             var y = PredictPositions(target, 1).FirstOrDefault().y;
@@ -238,7 +239,7 @@ public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
             {
                 if (debug)
                 {
-                    Log.Message($"Can hit target, but not at the right time, checking next position");
+                    Log.Message($"Can hit {pos} in {ticksToIntercept} ticks, target gets there in {i} ticks, checking next position");
                 }
                 i++;
                 continue;
@@ -247,20 +248,19 @@ public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
             {
                 if (debug)
                 {
-                    Log.Message($"Can hit target, but not yet. Need to delay {i - ticksToIntercept} ticks;");
+                    Log.Message($"Can hit {pos} in {ticksToIntercept} ticks, target gets there in {i} ticks, need to delay {i - ticksToIntercept} ticks");
                 }
                 break;
             }
             if (debug)
             {
-                Log.Message("Found shot line at the right delay");
+                Log.Message($"Can hit {pos} in {ticksToIntercept} ticks, firing");
             }
             resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.z));
             targetPos = pos;
             return true;
         }
         resultingLine = default;
-        targetPos = default;
         return false;
     }
     public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
