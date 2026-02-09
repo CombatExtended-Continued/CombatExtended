@@ -23,6 +23,11 @@ public class TravelingShellProperties
     /// </summary>
     public string iconPath;
 
+    /// <summary>
+    /// Projectile arrive at the same height they exit the map.
+    /// </summary>
+    public bool arrivedAtSameHeight = false;
+
     public Type workerClass = typeof(WorldObjectDamageWorker);
     public WorldObjectDamageWorker Worker
     {

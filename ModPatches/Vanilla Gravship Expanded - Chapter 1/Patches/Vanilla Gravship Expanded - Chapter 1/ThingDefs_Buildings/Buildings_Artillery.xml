@@ -22,6 +22,19 @@
 			]/verbs</xpath>
 	</Operation>
 
+	<!-- === MassDriver (Ennemy turret) === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_MassDriver"
+			]/thingClass 
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_EnemyMechTurretCE</thingClass>
+		</value>
+	</Operation>
+
 	<!-- === GaussGun === -->
 
 	<Operation Class="PatchOperationReplace">
@@ -62,7 +75,6 @@
 			<soundCast>VGE_GravshipHowitzer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
-			<!-- <forcedMissRadius>6.75</forcedMissRadius> -->
 			<requireLineOfSight>false</requireLineOfSight>
 			<!-- <consumeFuelPerShot>5</consumeFuelPerShot> -->
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
@@ -126,7 +138,6 @@
 			<soundCast>RocketswarmLauncher_Fire</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
-			<!-- <forcedMissRadius>9</forcedMissRadius> -->
 			<requireLineOfSight>false</requireLineOfSight>
 			<consumeFuelPerShot>10</consumeFuelPerShot>
 			<targetParams>
@@ -138,7 +149,6 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<!-- Maybe a poor choice, we should make special ammo -->
 			<magazineSize>36</magazineSize>
 			<reloadTime>6.5</reloadTime>
 			<ammoSet>AmmoSet_VGE_Bullet_JavelinPod</ammoSet>

@@ -6,7 +6,8 @@ using UnityEngine;
 using VanillaGravshipExpanded;
 using Verse;
 
-namespace CombatExtended;
+namespace CombatExtended.Compatibility.VGECompat;
+
 public class Command_VGEArtilleryTarget : Command_ArtilleryTarget
 {
     public CompWorldArtillery compWorldArtillery;

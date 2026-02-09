@@ -1355,6 +1355,10 @@ public abstract class ProjectileCE : ThingWithComps
                 shell.globalSource.worldObjectInt = Map.Parent;
                 shell.shellDef = def;
                 shell.globalTarget = globalTargetInfo;
+                if (Props.shellingProps?.arrivedAtSameHeight ?? false)
+                {
+                    shell.arrivedShotHeight = shotHeight;
+                }
                 if (!shell.TryTravel(Map.Tile, globalTargetInfo.Tile))
                 {
                     Log.Error($"CE: Travling shell {this.def} failed to launch!");
