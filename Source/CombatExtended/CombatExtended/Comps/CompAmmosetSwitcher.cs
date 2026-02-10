@@ -101,6 +101,8 @@ public class CompUnderBarrel : CompRangedGizmoGiver
 
     public bool OneAmmoHolder => Props.oneAmmoHolder;
 
+    public bool requiresReload => Props.requiresReload;
+
     public AmmoDef mainGunLoadedAmmo;
 
     public int mainGunMagCount;
@@ -122,6 +124,10 @@ public class CompUnderBarrel : CompRangedGizmoGiver
     [Compatibility.Multiplayer.SyncMethod]
     public void SwitchToUB()
     {
+        if (requiresReload)
+        {
+            CompAmmo.TryUnload(true);
+        }
         if (!OneAmmoHolder)
         {
             mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
@@ -167,6 +173,10 @@ public class CompUnderBarrel : CompRangedGizmoGiver
     [Compatibility.Multiplayer.SyncMethod]
     public void SwithToB()
     {
+        if (requiresReload)
+        {
+            CompAmmo.TryUnload(true);
+        }
         if (!OneAmmoHolder)
         {
             UnderBarrelLoadedAmmo = CompAmmo.CurrentAmmo;
@@ -175,6 +185,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
             CompAmmo.CurrentAmmo = mainGunLoadedAmmo;
             CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
         }
+
         CompAmmo.props = CompPropsAmmo;
 
         CompEq.PrimaryVerb.verbProps = DefVerbProps.MemberwiseClone();
@@ -326,6 +337,8 @@ public class CompProperties_UnderBarrel : CompProperties
     public bool targetHighVal;
 
     public bool oneAmmoHolder = false;
+
+    public bool requiresReload = true;
 
     [MustTranslate]
     public string underBarrelLabel;
