@@ -16,7 +16,27 @@ namespace CombatExtended.Compatibility.VGECompat;
 [StaticConstructorOnStartup]
 public class Building_JavelinLauncherCE : Building_GravshipTurretCE
 {
-    public CompRefuelable RefuelableComp => Gun.TryGetComp<CompRefuelable>();
+    public CompRefuelable RefuelableComp => this.TryGetComp<CompRefuelable>();
+    public override bool CanFire
+    {
+        get
+        {
+            // make a check here to prevent false artillery command
+            if (AttackVerb.verbProps.consumeFuelPerShot > 0)
+            {
+                if (RefuelableComp == null)
+                {
+                    return false;
+                }
+
+                if (RefuelableComp.Fuel < AttackVerb.verbProps.consumeFuelPerShot)
+                {
+                    return false;
+                }
+            }
+            return base.CanFire;
+        }
+    }
     public override Material TurretTopMaterial
     {
         get

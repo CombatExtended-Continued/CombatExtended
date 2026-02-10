@@ -33,9 +33,11 @@ public class Command_VGEArtilleryTarget : Command_ArtilleryTarget
             if (compWorldArtillery != null)
             {
                 string failReason;
-                compWorldArtillery.IsValidTargetForFiringMode(targetInfo, out failReason);
-                Messages.Message(failReason, MessageTypeDefOf.RejectInput, false);
-                return false;
+                if (!compWorldArtillery.IsValidTargetForFiringMode(targetInfo, out failReason))
+                {
+                    Messages.Message(failReason, MessageTypeDefOf.RejectInput, false);
+                    return false;
+                }                
             }
             // --------------------------------
 

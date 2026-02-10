@@ -23,6 +23,14 @@
 		<attribute>Class</attribute>
 		<value>CombatExtended.Compatibility.VGECompat.CompProperties_WorldArtilleryCE</value>
 	</Operation>
+
+    <Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_GaussGun" or
+				defName = "VGE_AnticraftCaster"
+			]/comps/li[
+				@Class = "CompProperties_Refuelable"
 			]
 		</xpath>
 	</Operation>
@@ -112,7 +120,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>
 			Defs/ThingDef[
-				defName = "VGE_GaussGun"
+				defName = "VGE_JavelinPod"
 			]/thingClass 
 		</xpath>
 		<value>
@@ -156,7 +164,7 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>36</magazineSize>
+			<magazineSize>60</magazineSize>
 			<reloadTime>6.5</reloadTime>
 			<ammoSet>AmmoSet_VGE_Bullet_JavelinPod</ammoSet>
 		</AmmoUser>
