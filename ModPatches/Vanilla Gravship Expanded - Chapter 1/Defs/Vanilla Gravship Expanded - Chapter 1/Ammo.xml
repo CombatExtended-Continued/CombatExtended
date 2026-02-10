@@ -28,72 +28,44 @@
 	</ThingDef>
 
 	<!-- =============== Artillery Weapons =============== -->
-
-	<!-- === GaussGun === -->
+	<!-- ====== GaussGun ====== -->
+	<!-- === Ammo Sets === -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_VGE_Bullet_GaussGun</defName>
-		<label>VGE_Bullet_GaussGun</label>
+		<defName>AmmoSet_155mmHowitzerShell_GaussGun</defName>
+		<label>155mm howitzer shells</label>
 		<ammoTypes>
-			<Ammo_Bullet_GaussGun_CE>VGE_Bullet_GaussGun_CE</Ammo_Bullet_GaussGun_CE>
+			<Ammo_155mmHowitzerShell_HE>VGE_Bullet_GaussGun_CE_HE</Ammo_155mmHowitzerShell_HE>
+			<Ammo_155mmHowitzerShell_HE_HFuzed>VGE_Bullet_GaussGun_CE_HE_HFuzed</Ammo_155mmHowitzerShell_HE_HFuzed>
+			<Ammo_155mmHowitzerShell_Incendiary>VGE_Bullet_GaussGun_CE_Incendiary</Ammo_155mmHowitzerShell_Incendiary>
+			<Ammo_155mmHowitzerShell_EMP>VGE_Bullet_GaussGun_CE_EMP</Ammo_155mmHowitzerShell_EMP>
+			<Ammo_155mmHowitzerShell_Smoke>VGE_Bullet_GaussGun_CE_Smoke</Ammo_155mmHowitzerShell_Smoke>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HeavyAmmoBase">
-		<description>Large cannon shell used by howitzers.</description>
-		<thingCategories>
-			<li>Ammo155mmHowitzerShells</li>
-		</thingCategories>
-		<stackLimit>25</stackLimit>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
-		</tradeTags>
-		<statBases>
-			<MaxHitPoints>300</MaxHitPoints>
-			<Mass>46.7</Mass>
-			<Bulk>47.67</Bulk>
-		</statBases>
-		<cookOffFlashScale>40</cookOffFlashScale>
-		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	<!-- === Projectiles === -->
 
-		<defName>Ammo_Bullet_GaussGun_CE</defName>
-		<label>VGE_Bullet_GaussGun</label>
-		<graphicData>
-			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<ammoClass>GrenadeHE</ammoClass>
-		<detonateProjectile>VGE_Bullet_GaussGun_CE</detonateProjectile>
-	</ThingDef>
-
-  	<ThingDef ParentName="BaseBulletCE">
-        <defName>VGE_Bullet_GaussGun_CE</defName>
-        <label>Gauss gun shot</label>
-        <graphicData>
-            <texPath>Things/Projectiles/GaussShot_VerySmall</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <shaderType>TransparentPostLight</shaderType>
-        </graphicData>
+	<ThingDef Name="Base155mmHowitzerShell_GaussGun" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<trajectoryWorker>CombatExtended.Compatibility.VGECompat.DirectOverheadTrajectoryWorker</trajectoryWorker>
-            <damageDef>Bomb</damageDef>
-            <damageAmountBase>40</damageAmountBase>
-            <armorPenetrationBase>0.15</armorPenetrationBase>
             <speed>115</speed>
-            <explosionRadius>3.9</explosionRadius>
-            <flyOverhead>true</flyOverhead>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<flyOverhead>true</flyOverhead>
 			<dropsCasings>false</dropsCasings>
-            <stoppingPower>2</stoppingPower>
 			<gravityFactor>10</gravityFactor>
 			<shellingProps>
 				<tilesPerTick>0.05</tilesPerTick>
 				<range>16</range> <!-- based on VanillaGravshipExpanded.CompProperties_WorldArtillery.worldMapAttackRange -->
-				<damage>0.1</damage>
 				<arrivedAtSameProps>true</arrivedAtSameProps>
 			</shellingProps>
-        </projectile>
+		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ProjectileFleck">
 				<FleckDatas>
@@ -113,86 +85,179 @@
 				</FleckDatas>
 			</li>
 		</comps>
-    </ThingDef>
+	</ThingDef>
 
-	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
-		<defName>MakeAmmo_Bullet_GaussGun_CE</defName>
-		<label>make VGE_Bullet_GaussGun</label>
-		<description>Craft a VGE_Bullet_GaussGun.</description>
-		<jobString>Making VGE_Bullet_GaussGun.</jobString>
-		<researchPrerequisite Inherit="False" />
-        <researchPrerequisites>
-            <li>VGE_GravshipWeaponry</li>
-        </researchPrerequisites>
-		<workAmount>17400</workAmount>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>94</count>
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussGun_CE_HE</defName>
+		<label>155mm Howitzer shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>546</damageAmountBase>
+			<explosionRadius>5.5</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<shellingProps>
+				<damage>0.33</damage>
+			</shellingProps>
+			<preExplosionSpawnSingleThingDef>CraterMedium</preExplosionSpawnSingleThingDef>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>80</Fragment_Small>
+				</fragments>
 			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>17</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>ComponentIndustrial</li>
-				<li>FSX</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_Bullet_GaussGun_CE>1</Ammo_Bullet_GaussGun_CE>
-		</products>
-	</RecipeDef>
+		</comps>
+	</ThingDef>
 
-	<!-- === JavelinPod === -->
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussGun_CE_HE_HFuzed</defName>
+		<label>155mm Howitzer shell (Airburst)</label>
+		<thingClass>CombatExtended.ProjectileCE_HeightFuse</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/AB</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<explosionRadius>5.5</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>12</aimHeightOffset>
+			<shellingProps>
+				<damage>0.33</damage>
+			</shellingProps>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>80</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-90~-40</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussGun_CE_Incendiary</defName>
+		<label>155mm Howitzer shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>31</damageAmountBase>
+			<explosionRadius>11.5</explosionRadius>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.20</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+			<shellingProps>
+				<damage>0.33</damage>
+			</shellingProps>
+			<preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>253</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>4</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussGun_CE_EMP</defName>
+		<label>155mm Howitzer shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>452</damageAmountBase>
+			<explosionRadius>9.5</explosionRadius>
+			<shellingProps>
+				<damage>0.23</damage>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussGun_CE_Smoke</defName>
+		<label>155mm Howitzer shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<explosionRadius>10.5</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<!-- ====== JavelinPod ====== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoGravshipRocket</defName>
+		<label />
+		<parent>AmmoRockets</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+	</ThingCategoryDef>
+
+	<!-- === Ammo Sets === -->
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_VGE_Bullet_JavelinPod</defName>
-		<label>VGE_Bullet_JavelinPod</label>
+		<label>Gravship javelin missile</label>
 		<ammoTypes>
 			<Ammo_Bullet_JavelinPod_CE>VGE_Bullet_JavelinPod_CE</Ammo_Bullet_JavelinPod_CE>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HeavyAmmoBase">
-		<description>Large cannon shell used by howitzers.</description>
-		<thingCategories>
-			<li>Ammo155mmHowitzerShells</li>
-		</thingCategories>
-		<stackLimit>25</stackLimit>
+	<!-- === Ammo === -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="VGERocketBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
+		<description>An unguided javelin missile equipped with an explosive warhead and a contact fuse. Propelled with Gravship fuel.</description>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<Mass>4.5</Mass>
+			<Bulk>7.07</Bulk>
+		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting_TableMachining</li>
 		</tradeTags>
-		<statBases>
-			<MaxHitPoints>300</MaxHitPoints>
-			<Mass>46.7</Mass>
-			<Bulk>47.67</Bulk>
-		</statBases>
-		<cookOffFlashScale>40</cookOffFlashScale>
+		<thingCategories>
+			<li>AmmoGravshipRocket</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<cookOffFlashScale>25</cookOffFlashScale>
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
 
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="VGERocketBase">
 		<defName>Ammo_Bullet_JavelinPod_CE</defName>
-		<label>VGE_Bullet_JavelinPod</label>
+		<label>Gravship javelin (HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rocket/70mmAPKWS</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -202,28 +267,20 @@
 		<detonateProjectile>VGE_Bullet_JavelinPod_CE</detonateProjectile>
 	</ThingDef>
 
-  	<ThingDef ParentName="BaseBulletCE">
-        <defName>VGE_Bullet_JavelinPod_CE</defName>
-        <label>Javelin rocket</label>
-        <graphicData>
-            <texPath>Things/Projectiles/Rocket_Javelin</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
+	<!-- === Projectile === -->
+
+	<ThingDef Name="BaseVGERocket" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
             <shaderType>TransparentPostLight</shaderType>
-            <drawSize>(2,2)</drawSize>
         </graphicData>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-        <projectile Class="CombatExtended.ProjectilePropertiesCE">
-            <damageDef>Bomb</damageDef>
- 			<damageAmountBase>24</damageAmountBase>
-            <armorPenetrationBase>0.1</armorPenetrationBase>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>0</speed>
-            <explosionRadius>2.9</explosionRadius>
-            <flyOverhead>true</flyOverhead>
-            <stoppingPower>0.5</stoppingPower>
-            <soundImpact>BulletImpact_Metal</soundImpact>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<soundImpact>BulletImpact_Metal</soundImpact>
             <soundExplode>MortarBomb_Explode</soundExplode>
-            <soundAmbient>MortarRound_Ambient</soundAmbient>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 			<dropsCasings>false</dropsCasings>
+			<flyOverhead>true</flyOverhead>
 			<gravityFactor>5</gravityFactor>
 			<shellingProps>
 				<iconPath>Things/Projectiles/Rocket_Javelin</iconPath>
@@ -231,7 +288,7 @@
 				<range>16</range> <!-- based on VanillaGravshipExpanded.CompProperties_WorldArtillery.worldMapAttackRange -->
 				<damage>0.1</damage>
 			</shellingProps>
-        </projectile>
+		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ProjectileFleck">
 				<FleckDatas>
@@ -259,18 +316,39 @@
 				</FleckDatas>
 			</li>
 		</comps>
+	</ThingDef>
+
+  	<ThingDef ParentName="BaseVGERocket">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+        <defName>VGE_Bullet_JavelinPod_CE</defName>
+        <label>Gravship javelin rocket</label>
+        <graphicData>
+            <texPath>Things/Projectiles/Rocket_Javelin</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>147</damageAmountBase>
+            <explosionRadius>2.9</explosionRadius>
+        </projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>23</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
     </ThingDef>
 
-	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
+	<!-- === Recipes === -->
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
 		<defName>MakeAmmo_Bullet_JavelinPod_CE</defName>
-		<label>make VGE_Bullet_JavelinPod</label>
-		<description>Craft a VGE_Bullet_JavelinPod.</description>
-		<jobString>Making VGE_Bullet_JavelinPod.</jobString>
-		<researchPrerequisite Inherit="False" />
-        <researchPrerequisites>
-            <li>VGE_GravshipWeaponry</li>
-        </researchPrerequisites>
-		<workAmount>17400</workAmount>
+		<label>make Gravship (HE) javelin rockets x10</label>
+		<description>Craft 10 Gravship (HE) javelin rockets.</description>
+		<jobString>Making Gravship (HE) javelin rockets.</jobString>
+		<workAmount>11000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -278,7 +356,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>94</count>
+				<count>46</count>
 			</li>
 			<li>
 				<filter>
@@ -286,38 +364,31 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>17</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
 				<li>ComponentIndustrial</li>
-				<li>FSX</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Bullet_GaussGun_CE>1</Ammo_Bullet_GaussGun_CE>
+			<Ammo_Bullet_JavelinPod_CE>10</Ammo_Bullet_JavelinPod_CE>
 		</products>
 	</RecipeDef>
 
-	<!-- === AnticraftCaster === -->
+	<!-- ====== AnticraftCaster ====== -->
 
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletWhite">
+	<!-- === Projectile === -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
 		<defName>VGE_Bullet_AnticraftCaster_CE</defName>
         <thingClass>CombatExtended.Compatibility.VGECompat.Projectile_ArtilleryBeamCE</thingClass>
-		<label>anticraft caster beam</label>
+		<label>Anticraft caster beam</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>VGE_AnticraftBeamBypassShields</damageDef>
-            <damageAmountBase>5</damageAmountBase>
+            <damageAmountBase>12</damageAmountBase> <!-- Apply same damage than our Bullet_Laser_BeamRepeater (as it's comparable with VGE bullet) -->
             <flyOverhead>true</flyOverhead>
             <beamMoteDef>VGE_Mote_BeamRepeaterLaser</beamMoteDef>
             <beamStartOffset>1.25</beamStartOffset>
@@ -325,7 +396,7 @@
 			<shellingProps>
 				<tilesPerTick>99999</tilesPerTick>
 				<range>36</range> <!-- based on VanillaGravshipExpanded.CompProperties_WorldArtillery.worldMapAttackRange -->
-				<damage>0.1</damage>
+				<damage>0.05</damage>
 			</shellingProps>
 		</projectile>
 		<modExtensions>

@@ -67,7 +67,7 @@
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
-			<defaultProjectile>VGE_Bullet_GaussGun_CE</defaultProjectile>
+			<defaultProjectile>VGE_Bullet_GaussGun_CE_HE</defaultProjectile>
 			<range>99999</range>
 			<minRange>14.9</minRange>
 			<burstShotCount>1</burstShotCount>
@@ -90,7 +90,7 @@
 		<AmmoUser>
 			<magazineSize>24</magazineSize>
 			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_VGE_Bullet_GaussGun</ammoSet>
+			<ammoSet>AmmoSet_155mmHowitzerShell_GaussGun</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -123,10 +123,8 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_JavelinPod</defName>
 		<statBases>
-			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.00</SightsEfficiency>
-			<ShotSpread>0.01</ShotSpread>
-			<SwayFactor>11.38</SwayFactor>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -196,10 +194,12 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_AnticraftCaster</defName>
 		<statBases>
-			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.00</SightsEfficiency>
-			<ShotSpread>0.01</ShotSpread>
-			<SwayFactor>11.38</SwayFactor>
+			<!-- Based on VEFS Graser Cannon Complex patch -->
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<AccuracyTouch>1</AccuracyTouch>
+			<AccuracyShort>1</AccuracyShort>
+			<AccuracyMedium>1</AccuracyMedium>	
+			<AccuracyLong>1</AccuracyLong>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
