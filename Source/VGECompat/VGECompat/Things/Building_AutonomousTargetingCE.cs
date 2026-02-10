@@ -2,12 +2,16 @@
 using VanillaGravshipExpanded;
 using Verse;
 
-namespace CombatExtended.Compatibility.VGECompat;
-
 #region License
-// Any VGE Code used for compatibility has been taken from the following source
+// This file includes modified portions of code from:
 // https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/Things/Building_AutonomousTargeting.cs
+//
+// Original code © Oskar Potocki and the Vanilla Gravship Expanded Team.
+// Incorporated with permission for Combat Extended–Vanilla Gravship Expended compatibility purposes only.
+// All rights to the original code remain with the original authors.
 #endregion
+
+namespace CombatExtended.Compatibility.VGECompat;
 
 [StaticConstructorOnStartup]
 public class Building_AutonomousTargetingCE: Building_TargetingTerminalCE

@@ -1,20 +1,20 @@
-﻿using CombatExtended;
-using RimWorld;
-using System;
+﻿using RimWorld;
 using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
 using VanillaGravshipExpanded;
 using VEF.Graphics;
 using Verse;
 using Verse.Sound;
 
-namespace CombatExtended.Compatibility.VGECompat;
-
 #region License
-// Any VGE Code used for compatibility has been taken from the following source
+// This file includes modified portions of code from:
 // https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/Things/Building_GravshipTurret.cs
+//
+// Original code © Oskar Potocki and the Vanilla Gravship Expanded Team.
+// Incorporated with permission for Combat Extended–Vanilla Gravship Expended compatibility purposes only.
+// All rights to the original code remain with the original authors.
 #endregion
+
+namespace CombatExtended.Compatibility.VGECompat;
 
 /*
  * I duplicated the code from Building_GravshipTurret here, adapting it to work with CE.
