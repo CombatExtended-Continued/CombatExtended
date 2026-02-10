@@ -166,7 +166,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
             // Gravship Turret should always have a world Artillery command.
             // To avoid changing to much code in CE core, I skip it here, and add it again later
             // (my conflict was with the AnitcraftEmitter, which does not use AmmoComp, which denies the ArtilleryCommand button).
-            if (gizmo is Command_ArtilleryTarget command3 && command3.defaultLabel == "CE_ArtilleryTargetLabel".Translate())
+            if (gizmo is Command_ArtilleryTarget command4 && command4.defaultLabel == "CE_ArtilleryTargetLabel".Translate())
             {
                 // skip this gizmo as we will add our own later
                 continue;
@@ -190,7 +190,7 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
                 turret = this,
                 icon = CompWorldArtillery.WorldTargetIcon, // new icon
                 hotKey = KeyBindingDefOf.Misc5,
-                compWorldArtillery = this.TryGetComp<CompWorldArtillery>()
+                compWorldArtillery = this.TryGetComp<CompWorldArtilleryCE>()
             };
             yield return wt;
         }

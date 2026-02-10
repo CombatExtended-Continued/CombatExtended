@@ -3,14 +3,13 @@ using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using VanillaGravshipExpanded;
 using Verse;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
 public class Command_VGEArtilleryTarget : Command_ArtilleryTarget
 {
-    public CompWorldArtillery compWorldArtillery;
+    public CompWorldArtilleryCE compWorldArtillery;
     public override void ProcessInput(Event ev)
     {
         CameraJumper.TryJump(CameraJumper.GetWorldTarget(turret));

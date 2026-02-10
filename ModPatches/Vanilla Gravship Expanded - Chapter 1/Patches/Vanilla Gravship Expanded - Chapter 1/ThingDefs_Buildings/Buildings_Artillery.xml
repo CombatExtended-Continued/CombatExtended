@@ -3,13 +3,26 @@
     <Operation Class="PatchOperationRemove">
 		<xpath>
 			Defs/ThingDef[
+				defName = "VGE_GaussGun"
+			]/comps/li[
+				@Class = "VanillaGravshipExpanded.CompProperties_BoxRefuel"
+			]
+		</xpath>
+	</Operation>
+	
+    <Operation Class="PatchOperationAttributeSet">
+		<xpath>
+			Defs/ThingDef[
 				defName = "VGE_GaussGun" or
 				defName = "VGE_JavelinPod" or
 				defName = "VGE_AnticraftCaster"
 			]/comps/li[
-				@Class = "CompProperties_Refuelable" or
-				@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery" or
-				@Class = "VanillaGravshipExpanded.CompProperties_BoxRefuel"
+				@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery"
+			]
+		</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.Compatibility.VGECompat.CompProperties_WorldArtilleryCE</value>
+	</Operation>
 			]
 		</xpath>
 	</Operation>
@@ -92,10 +105,6 @@
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_155mmHowitzerShell_GaussGun</ammoSet>
 		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-		</FireModes>
 	</Operation>
 
 	<!-- === JavelinPod === -->
@@ -225,10 +234,6 @@
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-		</FireModes>
 	</Operation>		
 
 </Patch>

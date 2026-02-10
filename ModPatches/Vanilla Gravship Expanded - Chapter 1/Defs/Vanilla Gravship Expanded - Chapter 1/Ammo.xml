@@ -237,7 +237,7 @@
 	<!-- === Ammo === -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="VGERocketBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
-		<description>An unguided javelin missile equipped with an explosive warhead and a contact fuse. Propelled with Gravship fuel.</description>
+		<description>An unguided javelin missile equipped with an explosive warhead and a contact fuse. Propelled with Gravship fuel. Need to be fueled from its turret.</description>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<Mass>4.5</Mass>
@@ -251,8 +251,6 @@
 			<li>AmmoGravshipRocket</li>
 		</thingCategories>
 		<stackLimit>25</stackLimit>
-		<cookOffFlashScale>25</cookOffFlashScale>
-		<cookOffSound>MortarBomb_Explode</cookOffSound>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="VGERocketBase">
@@ -263,8 +261,6 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.70</drawSize>
 		</graphicData>
-		<ammoClass>GrenadeHE</ammoClass>
-		<detonateProjectile>VGE_Bullet_JavelinPod_CE</detonateProjectile>
 	</ThingDef>
 
 	<!-- === Projectile === -->
@@ -343,20 +339,32 @@
 
 	<!-- === Recipes === -->
 
+	<!-- Thought on VGE :
+	
+	To stay true to the design philosophy of VGE, each turret has its own distinctive refueling method:
+	 - The Gauss gun uses ammo boxes.
+	 - The Anticrafter relies on power.
+	 - The Rocket Turret consumes gravship fuel through a pipeline connection.
+	With that in mind, I decided to introduce a special empty rocket shell that cannot explode on its own
+	and is instead loaded and filled directly within the rocket turret building.
+	
+	-->
+
 	<RecipeDef ParentName="LauncherAmmoRecipeBase">
 		<defName>MakeAmmo_Bullet_JavelinPod_CE</defName>
-		<label>make Gravship (HE) javelin rockets x10</label>
-		<description>Craft 10 Gravship (HE) javelin rockets.</description>
-		<jobString>Making Gravship (HE) javelin rockets.</jobString>
-		<workAmount>11000</workAmount>
+		<label>make empty gravship (HE) javelin rockets x10</label>
+		<description>Craft 50 empty gravship (HE) javelin rockets.</description>
+		<jobString>Making empty gravship (HE) javelin rockets.</jobString>
+		<workAmount>22000</workAmount>
 		<ingredients>
+			<!-- Recipe is based on MakeAmmo_50mmRocket_HE craft, multiplied by 5, but I removed FSX need -->
 			<li>
 				<filter>
 					<thingDefs>
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>46</count>
+				<count>230</count>
 			</li>
 			<li>
 				<filter>
@@ -364,7 +372,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>20</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -374,7 +382,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Bullet_JavelinPod_CE>10</Ammo_Bullet_JavelinPod_CE>
+			<Ammo_Bullet_JavelinPod_CE>50</Ammo_Bullet_JavelinPod_CE>
 		</products>
 	</RecipeDef>
 
