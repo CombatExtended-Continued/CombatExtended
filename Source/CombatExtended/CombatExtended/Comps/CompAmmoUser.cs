@@ -222,6 +222,14 @@ public class CompAmmoUser : CompRangedGizmoGiver
         }
     }
 
+    public float ReloadTime
+    {
+        get
+        {
+            return Props.reloadTime * selectedAmmo.reloadTimeMultiplier;
+        }
+    }
+
     public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
     public CompInventory CompInventory
     {

@@ -187,7 +187,7 @@ public class JobDriver_Reload : JobDriver
         waitToil.initAction = () => waitToil.actor.pather.StopDead();
         waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
         WeaponPlatform platform = weapon as WeaponPlatform;
-        waitToil.defaultDuration = Mathf.CeilToInt(((platform?.GetStatValue(CE_StatDefOf.ReloadTime) ?? compReloader.Props.reloadTime).SecondsToTicks()) * weapon.GetStatValue(CE_StatDefOf.CE_RangedWeapon_ReloadFactor) / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+        waitToil.defaultDuration = Mathf.CeilToInt(((platform?.GetStatValue(CE_StatDefOf.ReloadTime) ?? compReloader.ReloadTime).SecondsToTicks()) * weapon.GetStatValue(CE_StatDefOf.CE_RangedWeapon_ReloadFactor) / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
         //If we're 30 ticks through the reload timer or if reload was too fast, before it completes, drop casings if dropcasingwhenreload.
         waitToil.AddPreTickAction(() =>
         {

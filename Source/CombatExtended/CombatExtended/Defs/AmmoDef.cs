@@ -19,6 +19,7 @@ public class AmmoDef : ThingDef
     public SoundDef cookOffSound = null;
     public SoundDef cookOffTailSound = null;
     public ThingDef detonateProjectile = null;
+    public float reloadTimeMultiplier = 1f;
 
     // mortar ammo should still availabe when the ammo system is off        
     public bool isMortarAmmo = false;

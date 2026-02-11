@@ -414,7 +414,7 @@ public class Building_AutoloaderCE : Building
         if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || canReplaceAmmo)
         {
             TargetTurret = TurretMagazine.turret;
-            ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            ticksToComplete = Mathf.CeilToInt(TurretMagazine.ReloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
             ticksToCompleteInitial = ticksToComplete;
             turret.SetReloading(true);
             return true;
