@@ -338,7 +338,7 @@ public class CompProperties_UnderBarrel : CompProperties
 
     public bool oneAmmoHolder = false;
 
-    public bool requiresReload = true;
+    public bool requiresReload = false;
 
     [MustTranslate]
     public string underBarrelLabel;
