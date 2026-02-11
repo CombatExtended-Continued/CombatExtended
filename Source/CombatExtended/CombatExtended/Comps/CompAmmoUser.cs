@@ -226,7 +226,12 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         get
         {
-            return Props.reloadTime * selectedAmmo.reloadTimeMultiplier;
+            float multiplier = 1f;
+            if (CurAmmoProjectile?.projectile is ProjectilePropertiesCE projectileProperties)
+            {
+                multiplier = projectileProperties.reloadTimeMultiplier;
+            }
+            return Mathf.Max(0.1f, Props.reloadTime * multiplier);
         }
     }
 
