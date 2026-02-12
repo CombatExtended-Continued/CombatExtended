@@ -227,15 +227,16 @@ public class CompAmmoUser : CompRangedGizmoGiver
         get
         {
             float multiplier = 1f;
-            if (CurAmmoProjectile?.projectile is ProjectilePropertiesCE projectileProperties)
+            if (SelectedAmmoProjectile?.projectile is ProjectilePropertiesCE projectileProperties)
             {
                 multiplier = projectileProperties.reloadTimeMultiplier;
             }
-            return Mathf.Max(0.1f, Props.reloadTime * multiplier);
+            return Mathf.Max(0.01f, Props.reloadTime * multiplier);
         }
     }
 
     public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
+    public ThingDef SelectedAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == SelectedAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
     public CompInventory CompInventory
     {
         get
