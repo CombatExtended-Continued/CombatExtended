@@ -4,9 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
 using Verse;
-using CombatExtended.WorldObjects;
 
 namespace CombatExtended;
 public static class ShellingUtility
@@ -15,6 +13,31 @@ public static class ShellingUtility
     private static ThingDef shellDef;
     private static ProjectilePropertiesCE props;
     private static DamageDef projectileDamageDef;
+
+    private struct DistanceCache
+    {
+        public PlanetTile aTileId;
+        public PlanetTile bTileId;
+        public int distance;
+    }
+    private static DistanceCache distanceCache = new DistanceCache();
+
+    public static int GetDistancePlanetTiles(PlanetTile a, PlanetTile b, int maxDist = int.MaxValue)
+    {
+        if (distanceCache.aTileId == a.tileId && distanceCache.bTileId == b.tileId)
+        {
+            return distanceCache.distance;
+        }
+
+        if (a.layerId != b.layerId)
+        {
+            a = b.Layer.GetClosestTile_NewTemp(a);
+        }
+        distanceCache.aTileId = a.tileId;
+        distanceCache.bTileId = b.tileId;
+
+        return distanceCache.distance = Find.WorldGrid.TraversalDistanceBetween(a, b, true, maxDist);
+    }
 
     public static IntVec3 FindRandomImpactCell(Map map, ThingDef shellDef = null)
     {

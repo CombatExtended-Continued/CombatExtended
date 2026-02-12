@@ -617,6 +617,8 @@ public abstract class ProjectileCE : ThingWithComps
             return;
         }
 
+        // --- Graphical part
+
         // Let's fire only on the exit cell
         Vector3 u = verbToUse.Caster.TrueCenter();
         Vector3 v = verbToUse.currentTarget.Cell.ToVector3Shifted();
@@ -637,6 +639,7 @@ public abstract class ProjectileCE : ThingWithComps
             equipment
         );
        
+        // --- Creating shell to use linked mechanics
 
         Props.shellingProps.tilesPerTick = 99999; // instant speeeeed !
 
@@ -1339,32 +1342,7 @@ public abstract class ProjectileCE : ThingWithComps
         {
             if (globalTargetInfo.IsValid)
             {
-                TravelingShell shell = (TravelingShell)WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
-                if (launcher?.Faction != null)
-                {
-                    shell.SetFaction(launcher.Faction);
-                }
-                shell.Tile = Map.Tile;
-                shell.SpawnSetup();
-                Find.World.worldObjects.Add(shell);
-                shell.launcher = launcher;
-                shell.equipmentDef = equipmentDef;
-                shell.globalSource = new GlobalTargetInfo(OriginIV3, Map);
-                shell.globalSource.tileInt = Map.Tile;
-                shell.globalSource.mapInt = Map;
-                shell.globalSource.worldObjectInt = Map.Parent;
-                shell.shellDef = def;
-                shell.globalTarget = globalTargetInfo;
-                if (Props.shellingProps?.arrivedAtSameProps ?? false)
-                {
-                    shell.arrivedShotHeight = shotHeight;
-                    shell.arrivedShotSpeed = shotSpeed;
-                }
-                if (!shell.TryTravel(Map.Tile, globalTargetInfo.Tile))
-                {
-                    Log.Error($"CE: Travling shell {this.def} failed to launch!");
-                    shell.Destroy();
-                }
+                CreateShellWorldObject();
             }
             Destroy();
             return;
@@ -1418,6 +1396,36 @@ public abstract class ProjectileCE : ThingWithComps
         if (ignoreRoof && def.projectile.flyOverhead && shotAngle < 0)
         {
             ignoreRoof = false;
+        }
+    }
+
+    protected void CreateShellWorldObject()
+    {
+        TravelingShell shell = (TravelingShell)WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
+        if (launcher?.Faction != null)
+        {
+            shell.SetFaction(launcher.Faction);
+        }
+        shell.Tile = Map.Tile;
+        shell.SpawnSetup();
+        Find.World.worldObjects.Add(shell);
+        shell.launcher = launcher;
+        shell.equipmentDef = equipmentDef;
+        shell.globalSource = new GlobalTargetInfo(OriginIV3, Map);
+        shell.globalSource.tileInt = Map.Tile;
+        shell.globalSource.mapInt = Map;
+        shell.globalSource.worldObjectInt = Map.Parent;
+        shell.shellDef = def;
+        shell.globalTarget = globalTargetInfo;
+        if (Props.shellingProps?.arrivedAtSameProps ?? false)
+        {
+            shell.arrivedShotHeight = shotHeight;
+            shell.arrivedShotSpeed = shotSpeed;
+        }
+        if (!shell.TryTravel(Map.Tile, globalTargetInfo.Tile))
+        {
+            Log.Error($"CE: Travling shell {this.def} failed to launch!");
+            shell.Destroy();
         }
     }
 

@@ -190,7 +190,8 @@ public class Building_GravshipTurretCE: Building_TurretGunCE
                 turret = this,
                 icon = CompWorldArtillery.WorldTargetIcon, // new icon
                 hotKey = KeyBindingDefOf.Misc5,
-                compWorldArtillery = this.TryGetComp<CompWorldArtilleryCE>()
+                compWorldArtillery = this.TryGetComp<CompWorldArtilleryCE>(),
+                mandatoryMarkToFireOutBounds = false
             };
             yield return wt;
         }

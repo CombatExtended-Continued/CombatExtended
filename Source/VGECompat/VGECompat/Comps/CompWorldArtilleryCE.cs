@@ -35,11 +35,6 @@ public class CompWorldArtilleryCE : ThingComp
         }
         bool sourceIsOnGround = sourceMap.Tile.Valid && !sourceMap.Tile.LayerDef.isSpace;
         var mapParent = Find.WorldObjects.MapParentAt(target.Tile);
-        if (mapParent == null || mapParent.Map == null)
-        {
-            failReason = "VGE_GravshipArtilleryNeedsVisibleMap".Translate();
-            return false;
-        }
         bool targetIsOnGround = mapParent.Map.Tile.Valid && !mapParent.Map.Tile.LayerDef.isSpace;
 
         ArtilleryFiringMode requiredMode;
