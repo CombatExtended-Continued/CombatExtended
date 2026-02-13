@@ -268,11 +268,6 @@ public class Building_TurretGunCE : Building_Turret
         BackCompatibility.PostExposeData(this);
     }
 
-    public float GetMaxWorldRangeForLayer(PlanetLayer layer)
-    {
-        return MaxWorldRange / layer.Def.rangeDistanceFactor;
-    }
-
     public override AcceptanceReport ClaimableBy(Faction by)        // Core method
     {
         return base.ClaimableBy(by) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (((this.dormantComp == null || this.dormantComp.Awake) && (this.initiatableComp == null || this.initiatableComp.Initiated)) || (this.powerComp != null && !this.powerComp.PowerOn));
@@ -678,12 +673,9 @@ public class Building_TurretGunCE : Building_Turret
     {
         ResetCurrentTarget();
         ResetForcedTarget();
-        float maxWorldRange = GetMaxWorldRangeForLayer(targetInfo.Tile.Layer);
-        int distanceToTarget = ShellingUtility.GetDistancePlanetTiles(Map.Tile, targetInfo.Tile, (int)(maxWorldRange * 1.5f));
+        int distanceToTarget = ShellingUtility.GetDistancePlanetTiles(Map.Tile, targetInfo.Tile, (int)(MaxWorldRange * 1.5f));
 
-        Log.Message("distance try attack " + distanceToTarget + " " + maxWorldRange + " " + (distanceToTarget > maxWorldRange));
-
-        if (distanceToTarget > maxWorldRange)
+        if (distanceToTarget > MaxWorldRange)
         {
             return false;
         }

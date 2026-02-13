@@ -16,27 +16,28 @@ public static class ShellingUtility
 
     private struct DistanceCache
     {
-        public PlanetTile aTileId;
-        public PlanetTile bTileId;
+        public PlanetTile sourceTileId;
+        public PlanetTile targetTileId;
         public int distance;
     }
     private static DistanceCache distanceCache = new DistanceCache();
 
-    public static int GetDistancePlanetTiles(PlanetTile a, PlanetTile b, int maxDist = int.MaxValue)
+    public static int GetDistancePlanetTiles(PlanetTile source, PlanetTile target, int maxDist = int.MaxValue)
     {
-        if (distanceCache.aTileId == a.tileId && distanceCache.bTileId == b.tileId)
+        if (distanceCache.sourceTileId == source.tileId && distanceCache.targetTileId == target.tileId)
         {
             return distanceCache.distance;
         }
 
-        if (a.layerId != b.layerId)
+        if (source.layerId != target.layerId)
         {
-            a = b.Layer.GetClosestTile_NewTemp(a);
+            source = target.Layer.GetClosestTile_NewTemp(source);
         }
-        distanceCache.aTileId = a.tileId;
-        distanceCache.bTileId = b.tileId;
+        distanceCache.sourceTileId = source.tileId;
+        distanceCache.targetTileId = target.tileId;
 
-        return distanceCache.distance = Find.WorldGrid.TraversalDistanceBetween(a, b, true, maxDist);
+        distanceCache.distance = (int)(Find.WorldGrid.TraversalDistanceBetween(source, target, true, maxDist) * target.LayerDef.rangeDistanceFactor);
+        return distanceCache.distance;
     }
 
     public static IntVec3 FindRandomImpactCell(Map map, ThingDef shellDef = null)

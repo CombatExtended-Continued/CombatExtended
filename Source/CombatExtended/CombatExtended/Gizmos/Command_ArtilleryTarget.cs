@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Verse;
+using static UnityEngine.GraphicsBuffer;
 
 namespace CombatExtended;
 public class Command_ArtilleryTarget : Command
@@ -52,7 +53,7 @@ public class Command_ArtilleryTarget : Command
             return;
         }
         PlanetTile turretTile = turret.Map.Tile;
-        int radius = (int)turret.GetMaxWorldRangeForLayer(turretTile.Layer);
+        int radius = Mathf.FloorToInt(turret.MaxWorldRange);
 
         Find.WorldTargeter.BeginTargeting(
             action: (GlobalTargetInfo targetInfo) =>
@@ -67,7 +68,8 @@ public class Command_ArtilleryTarget : Command
                 Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;
 
                 // We only want player to target world object when there's no colonist in the map
-                if (map != null && map.mapPawns.AnyPawnBlockingMapRemoval)
+                // Only if mark is needed
+                if (map != null && (!mandatoryMarkToFireOutBounds || map.mapPawns.AnyPawnBlockingMapRemoval))
                 {
                     return AttackWorldTile(turrets, targetInfo, map);
                 }
@@ -82,28 +84,15 @@ public class Command_ArtilleryTarget : Command
                 {
                     foreach (var t in SelectedTurrets)
                     {
-                        int radius2 = (int)t.GetMaxWorldRangeForLayer(t.Tile.Layer);
+                        int radius2 = Mathf.FloorToInt(t.MaxWorldRange);
                         if (radius2 != radius)
                         {
-                            GenDraw.DrawWorldRadiusRing(PlanetLayer.Selected.GetClosestTile_NewTemp(t.Tile), radius2);
+                            GenDraw.DrawWorldRadiusRing(PlanetLayer.Selected.GetClosestTile_NewTemp(t.Tile), Mathf.FloorToInt(radius2 / PlanetLayer.Selected.Def.rangeDistanceFactor));
                         }
                     }
                 }
                 
-                GenDraw.DrawWorldRadiusRing(PlanetLayer.Selected.GetClosestTile_NewTemp(turretTile), radius);
-
-                //PlanetTile planetTile;
-                //planetTile = Find.WorldSelector.SelectedLayer.GetClosestTile(tile);
-                //int num = MaxLaunchDistanceEver(planetTile.Layer);
-                //int num = Mathf.FloorToInt(fuelLevel / (Props.fuelPerTile * layer.Def.rangeDistanceFactor));
-                //if (num <= 0)
-                //{
-                //    num = int.MaxValue;
-                //}
-                //if (Props.fixedLaunchDistanceMax >= 0)
-                //{
-                //    num = Mathf.Min(num, Mathf.RoundToInt((float)Props.fixedLaunchDistanceMax / layer.Def.rangeDistanceFactor));
-                //}
+                GenDraw.DrawWorldRadiusRing(PlanetLayer.Selected.GetClosestTile_NewTemp(turretTile), Mathf.FloorToInt(radius / PlanetLayer.Selected.Def.rangeDistanceFactor));
             },
             extraLabelGetter: (targetInfo) =>
             {
@@ -113,7 +102,7 @@ public class Command_ArtilleryTarget : Command
                     return "";
                 }
                 int distanceToTarget = ShellingUtility.GetDistancePlanetTiles(turretTile, targetInfo.Tile);
-                float maxWorldRange = turret.GetMaxWorldRangeForLayer(targetInfo.Tile.Layer);
+                float maxWorldRange = turret.MaxWorldRange;
                 string distanceMessage = null;
                 if (others != null)
                 {
@@ -122,7 +111,7 @@ public class Command_ArtilleryTarget : Command
                     foreach (var t in SelectedTurrets)
                     {
                         count++;
-                        if (t.GetMaxWorldRangeForLayer(targetInfo.Tile.Layer) >= distanceToTarget)
+                        if (t.MaxWorldRange >= distanceToTarget)
                         {
                             inRangeCount++;
                         }
@@ -247,6 +236,12 @@ public class Command_ArtilleryTarget : Command
 
         if (targetInfo.WorldObject.Faction != null)
         {
+            if (targetInfo.WorldObject.Faction == Faction.OfPlayer)
+            {
+                // We should not be able to target our own faction
+                return false;
+            }
+
             Faction targetFaction = targetInfo.WorldObject.Faction;
             FactionRelation relation = targetFaction.RelationWith(turret.Faction, true);
             if (relation == null)
