@@ -55,6 +55,8 @@ public class Command_ArtilleryTarget : Command
         PlanetTile turretTile = turret.Map.Tile;
         int radius = Mathf.FloorToInt(turret.MaxWorldRange);
 
+        ShellingUtility.ClearRadiusCache();
+
         Find.WorldTargeter.BeginTargeting(
             action: (GlobalTargetInfo targetInfo) =>
             {
@@ -87,12 +89,11 @@ public class Command_ArtilleryTarget : Command
                         int radius2 = Mathf.FloorToInt(t.MaxWorldRange);
                         if (radius2 != radius)
                         {
-                            GenDraw.DrawWorldRadiusRing(PlanetLayer.Selected.GetClosestTile_NewTemp(t.Tile), Mathf.FloorToInt(radius2 / PlanetLayer.Selected.Def.rangeDistanceFactor));
+                            ShellingUtility.CachedDrawTurretRadiusRing(t.Tile, radius2);
                         }
                     }
                 }
-                
-                GenDraw.DrawWorldRadiusRing(PlanetLayer.Selected.GetClosestTile_NewTemp(turretTile), Mathf.FloorToInt(radius / PlanetLayer.Selected.Def.rangeDistanceFactor));
+                ShellingUtility.CachedDrawTurretRadiusRing(turretTile, radius);
             },
             extraLabelGetter: (targetInfo) =>
             {
@@ -120,7 +121,6 @@ public class Command_ArtilleryTarget : Command
                 }
                 else
                 {
-                    Log.Message("extraLabelGetter " + distanceToTarget + " " + maxWorldRange);
                     distanceMessage = "CE_ArtilleryTarget_Distance".Translate().Formatted(distanceToTarget, maxWorldRange);
                 }
                 if (maxWorldRange > 0 && distanceToTarget > maxWorldRange)

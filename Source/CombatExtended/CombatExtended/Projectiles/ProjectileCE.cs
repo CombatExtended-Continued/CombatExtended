@@ -576,7 +576,6 @@ public abstract class ProjectileCE : ThingWithComps
 
                 lbce.SpawnBeam(muzzle, destination);
                 RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
-
                 lbce.Impact(thing, muzzle);
 
                 return;
