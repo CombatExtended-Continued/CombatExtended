@@ -125,24 +125,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VWE_Gun_FireExtinguisher"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>tank</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
 	<!-- === Compound Bow === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Bow_Compound</defName>
@@ -470,7 +452,7 @@
 		<weaponTags>
 			<li>IndustrialGunAdvanced</li>
 		</weaponTags>
-		<researchPrerequisite>CE_TubeFedWeapons</researchPrerequisite>
+		<researchPrerequisite>Gunsmithing</researchPrerequisite>
 	</Operation>
 
 	<!-- === Battle Rifle === -->
@@ -839,49 +821,6 @@
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<!-- === Fire Extinguisher === -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>VWE_Gun_FireExtinguisher</defName>
-		<statBases>
-			<WorkToMake>12500</WorkToMake>
-			<Mass>5.08</Mass>
-			<Bulk>7.40</Bulk>
-			<SwayFactor>1.28</SwayFactor>
-			<ShotSpread>0.15</ShotSpread>
-			<SightsEfficiency>1</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<Steel>40</Steel>
-			<Chemfuel>5</Chemfuel>
-			<ComponentIndustrial>3</ComponentIndustrial>
-		</costList>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_VWE_Extinguisher</defaultProjectile>
-			<burstShotCount>20</burstShotCount>
-			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
-			<warmupTime>1.1</warmupTime>
-			<range>10</range>
-			<soundCast>VWE_Shot_FireExtinguisher</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>0</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>500</magazineSize>
-			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_VWE_Extinguisher</ammoSet>
-		</AmmoUser>
-		<FireModes />
-		<weaponTags Inherit="False">
-			<li>ToolDecent</li>
-		</weaponTags>
-	</Operation>
-
 	<!-- === Flamethrower === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_Flamethrower</defName>
@@ -909,7 +848,7 @@
 			<warmupTime>1.1</warmupTime>
 			<range>11</range>
 			<minRange>3</minRange>
-			<soundCast>VWE_Shot_Flamethrower</soundCast>
+			<soundCast>InfernoCannon_Fire</soundCast>
 			<muzzleFlashScale>0</muzzleFlashScale>
 			<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
 			<targetParams>

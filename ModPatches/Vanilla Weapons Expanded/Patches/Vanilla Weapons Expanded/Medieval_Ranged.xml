@@ -120,6 +120,7 @@
 			<thingClass>CombatExtended.AmmoThing</thingClass>
 			<stackLimit>75</stackLimit>
 			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>true</smeltable>
 			<smeltProducts>
 				<Steel>1</Steel>
 			</smeltProducts>
@@ -184,48 +185,6 @@
 					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 					<armorPenetrationSharp>0.42</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- === Whip === -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>VWE_Tool_Whip</defName>
-		<statBases>
-			<WorkToMake>6800</WorkToMake>
-			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.5</ShotSpread>
-			<SwayFactor>0.26</SwayFactor>
-			<Bulk>1.5</Bulk>
-			<Mass>0.9</Mass>
-			<RangedWeapon_Cooldown>.48</RangedWeapon_Cooldown>
-		</statBases>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_VWE_Whip</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>6</range>
-			<soundCast>VWE_Shot_Whip</soundCast>
-		</Properties>
-	</Operation>
-
-	<!-- Tools -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VWE_Tool_Whip"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>3</power>
-					<cooldownTime>2</cooldownTime>
-					<chanceFactor>1.33</chanceFactor>
-					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 				</li>
 			</tools>
 		</value>
