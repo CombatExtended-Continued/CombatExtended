@@ -196,6 +196,8 @@
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 			<warmupTime>0.6</warmupTime>
 			<range>12</range>
 			<soundCast>Shot_Autopistol</soundCast>
@@ -209,6 +211,8 @@
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
 		</FireModes>
 		<weaponTags>
 			<li>SimpleGun</li>
@@ -217,38 +221,38 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- === Hand Cannon === -->
+	<!-- === Heavy Revolver === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_HandCannon</defName>
 		<statBases>
-			<WorkToMake>4500</WorkToMake>
-			<Mass>0.90</Mass>
-			<Bulk>2.41</Bulk>
-			<ShotSpread>0.17</ShotSpread>
-			<SwayFactor>1.10</SwayFactor>
-			<SightsEfficiency>0.7</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<WorkToMake>4800</WorkToMake>
+			<Mass>1.40</Mass>
+			<Bulk>2.80</Bulk>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>1.30</SwayFactor>
+			<SightsEfficiency>0.75</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>20</Steel>
+			<Steel>25</Steel>
 			<WoodLog>5</WoodLog>
 			<ComponentIndustrial>2</ComponentIndustrial>
 		</costList>
 		<Properties>
-			<recoilAmount>2.5</recoilAmount>
+			<recoilAmount>3.2</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_357Magnum_FMJ</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
-			<range>12</range>
+			<defaultProjectile>Bullet_44Magnum_FMJ</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>20</range>
 			<soundCast>VWE_Shot_Handcannon</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
 			<magazineSize>6</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_357Magnum</ammoSet>
+			<ammoSet>AmmoSet_44Magnum</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
@@ -284,7 +288,7 @@
 			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
 			<range>25</range>
-			<burstShotCount>6</burstShotCount>
+			<burstShotCount>4</burstShotCount>
 			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 			<soundCast>VWE_Shot_LightSMG</soundCast>
 			<soundCastTail>GunTail_Light</soundCastTail>
@@ -395,6 +399,78 @@
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
 		<researchPrerequisite>Gunsmithing</researchPrerequisite>
+	</Operation>
+
+	<!-- === Trench Gun === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_TrenchGun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWE_TrenchGun</defName>
+		<statBases>
+			<WorkToMake>21000</WorkToMake>
+			<Mass>3.60</Mass>
+			<Bulk>8.50</Bulk>
+			<SwayFactor>1.30</SwayFactor>
+			<ShotSpread>0.12</ShotSpread>
+			<SightsEfficiency>0.9</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.60</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>50</Steel>
+			<WoodLog>10</WoodLog>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.8</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>15</range>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>1.2</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>IndustrialGunAdvanced</li>
+		</weaponTags>
+		<researchPrerequisite>CE_TubeFedWeapons</researchPrerequisite>
 	</Operation>
 
 	<!-- === Battle Rifle === -->
@@ -588,7 +664,7 @@
 			<SwayFactor>1.67</SwayFactor>
 			<ShotSpread>0.02</ShotSpread>
 			<SightsEfficiency>1</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.77</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<Steel>60</Steel>
