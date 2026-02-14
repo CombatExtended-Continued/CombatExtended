@@ -171,7 +171,7 @@
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
-			<burstShotCount>4</burstShotCount>
+			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
 			<warmupTime>0.5</warmupTime>
 			<range>31</range>
@@ -346,32 +346,31 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_ChargeRocketLauncher</defName>
 		<statBases>
-			<WorkToMake>45000</WorkToMake>
-			<Mass>18.0</Mass>
-			<Bulk>16.00</Bulk>
-			<SwayFactor>2.50</SwayFactor>
-			<ShotSpread>0.12</ShotSpread>
-			<SightsEfficiency>1.5</SightsEfficiency>
-			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<WorkToMake>88000</WorkToMake>
+			<Mass>24.0</Mass>
+			<Bulk>15.65</Bulk>
+			<SwayFactor>3.24</SwayFactor>
+			<ShotSpread>0.01</ShotSpread>
+			<SightsEfficiency>2.5</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>80</Steel>
-			<Plasteel>30</Plasteel>
-			<FSX>5</FSX>
+			<Steel>125</Steel>
+			<Plasteel>45</Plasteel>
+			<FSX>10</FSX>
 			<ComponentIndustrial>4</ComponentIndustrial>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_RPG32Rocket_HEAT</defaultProjectile>
-			<warmupTime>3.5</warmupTime>
-			<range>55</range>
+			<defaultProjectile>Bullet_AntiGrainRocket</defaultProjectile>
+			<warmupTime>2</warmupTime>
+			<range>52</range>
 			<soundCast>InfernoCannon_Fire</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
 			<onlyManualCast>True</onlyManualCast>
-			<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
@@ -381,7 +380,6 @@
 		</FireModes>
 		<weaponTags>
 			<li>GunHeavy</li>
-			<li>CE_AI_Launcher</li>
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
