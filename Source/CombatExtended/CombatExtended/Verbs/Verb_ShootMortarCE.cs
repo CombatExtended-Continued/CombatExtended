@@ -33,8 +33,8 @@ public class Verb_ShootMortarCE : Verb_ShootCE
 
     // for global target only
     //        
-    private int startingTile;
-    private int destinationTile;
+    private PlanetTile startingTile;
+    private PlanetTile destinationTile;
     private int globalDistance;
     private Vector3 direction;
     private new int numShotsFired;

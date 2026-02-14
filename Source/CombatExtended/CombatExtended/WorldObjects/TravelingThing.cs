@@ -58,7 +58,13 @@ public abstract class TravelingThing : WorldObject
         this.startingTile = this.Tile = startingTile;
         this.destinationTile = destinationTile;
         this.tilesPerTick = TilesPerTick;
-        this.distanceInTiles = (int)Find.WorldGrid.ApproxDistanceInTiles(startingTile, destinationTile);
+         
+        PlanetLayer layerToUse = Find.WorldGrid.PlanetLayers.TryGetValue(0); // gound layer
+        if (startingTile.Layer == destinationTile.Layer)
+        {
+            layerToUse = startingTile.Layer;
+        }
+        this.distanceInTiles = (int)layerToUse.ApproxDistanceInTiles(startingTile, destinationTile);
 
         return true;
     }

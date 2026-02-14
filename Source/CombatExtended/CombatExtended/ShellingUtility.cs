@@ -17,33 +17,34 @@ public static class ShellingUtility
 
     private struct DistanceCache
     {
-        public PlanetTile originTileId;
-        public PlanetTile targetTileId;
+        public PlanetTile startingTile;
+        public PlanetTile destinationTile;
         public int distance;
     }
     private static DistanceCache distanceCache = new DistanceCache();
 
-    public static int GetDistancePlanetTiles(PlanetTile origin, PlanetTile target, int maxDist = int.MaxValue)
+    public static int GetDistancePlanetTiles(PlanetTile startingTile, PlanetTile destinationTile, int maxDist = int.MaxValue)
     {
-        if (distanceCache.originTileId == origin.tileId && distanceCache.targetTileId == target.tileId)
+        if (distanceCache.startingTile == startingTile && distanceCache.destinationTile == destinationTile)
         {
             return distanceCache.distance;
         }
 
-        if (origin.layerId != target.layerId)
+        if (startingTile.layerId != destinationTile.layerId)
         {
-            origin = target.Layer.GetClosestTile_NewTemp(origin);
+            startingTile = destinationTile.Layer.GetClosestTile_NewTemp(startingTile);
         }
-        distanceCache.originTileId = origin.tileId;
-        distanceCache.targetTileId = target.tileId;
+        distanceCache.startingTile = startingTile;
+        distanceCache.destinationTile = destinationTile;
 
-        distanceCache.distance = (int)(Find.WorldGrid.TraversalDistanceBetween(origin, target, true, maxDist) * target.LayerDef.rangeDistanceFactor);
+        distanceCache.distance =
+            (int)(Find.WorldGrid.TraversalDistanceBetween(startingTile, destinationTile, true, maxDist) * destinationTile.LayerDef.rangeDistanceFactor);
         return distanceCache.distance;
     }
 
     private struct RadiusCache
     {
-        public PlanetTile realTile;
+        public PlanetTile realCenterTile;
         public int radius;
     }
     private static Dictionary<int, RadiusCache> radiusCache = new Dictionary<int, RadiusCache>();
@@ -53,25 +54,25 @@ public static class ShellingUtility
         radiusCache.Clear();
     }
 
-    public static void CachedDrawTurretRadiusRing(PlanetTile origin, int radius)
+    public static void CachedDrawTurretRadiusRing(PlanetTile center, int radius)
     {
-        PlanetTile realTile;
+        PlanetTile realCenterTile;
         int realRadius;
         RadiusCache cache;
         // We cache these operations, because there is no need to overcharge the update.
-        if (radiusCache.TryGetValue(origin.tileId, out cache))
+        if (radiusCache.TryGetValue(center.tileId, out cache))
         {
-            realTile = cache.realTile;
+            realCenterTile = cache.realCenterTile;
             realRadius = cache.radius;
         } 
         else
         {
-            realTile = PlanetLayer.Selected.GetClosestTile_NewTemp(origin);
+            realCenterTile = PlanetLayer.Selected.GetClosestTile_NewTemp(center);
             realRadius = Mathf.FloorToInt(radius / PlanetLayer.Selected.Def.rangeDistanceFactor);
             // Add cache
-            radiusCache.Add(origin.tileId, new RadiusCache() { realTile = realTile, radius = realRadius });
+            radiusCache.Add(center.tileId, new RadiusCache() { realCenterTile = center, radius = realRadius });
         }
-        GenDraw.DrawWorldRadiusRing(realTile, realRadius);
+        GenDraw.DrawWorldRadiusRing(realCenterTile, realRadius);
     }
 
 

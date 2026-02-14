@@ -696,8 +696,8 @@ public class Building_TurretGunCE : Building_Turret
 
     public virtual void TryOrderAttackWorldTile(GlobalTargetInfo targetInf, IntVec3? cell = null)
     {
-        int startingTile = Map.Tile;
-        int destinationTile = targetInf.Tile;
+        PlanetTile startingTile = Map.Tile;
+        PlanetTile destinationTile = targetInf.Tile;
 
         Vector3 direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
         Vector3 shotPos = DrawPos.Yto0();
