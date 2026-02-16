@@ -1,88 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
-    <!-- ============================ Industrial - Blade ============================ -->
-    <!-- Edge of Prognosis -->
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="RF_GF_LunaWP"]/tools</xpath>
-        <value>
-            <tools>
-                <li Class="CombatExtended.ToolCE">
-                    <label>handle</label>
-                    <capacities>
-                        <li>Poke</li>
-                    </capacities>
-                    <power>10</power>
-                    <cooldownTime>1.56</cooldownTime>
-                    <chanceFactor>0.05</chanceFactor>
-                    <armorPenetrationBlunt>2.0</armorPenetrationBlunt>
-                    <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-                </li>
-                <li Class="CombatExtended.ToolCE">
-                    <label>point</label>
-                    <capacities>
-                        <li>Stab</li>
-                    </capacities>
-                    <power>35</power>
-                    <extraMeleeDamages>
-                        <li>
-                            <def>EMP</def>
-                            <amount>19</amount>
-                            <chance>0.5</chance>
-                        </li>
-                    </extraMeleeDamages>
-                    <cooldownTime>2.28</cooldownTime>
-                    <chanceFactor>0.25</chanceFactor>
-                    <armorPenetrationBlunt>3.2</armorPenetrationBlunt>
-                    <armorPenetrationSharp>6.4</armorPenetrationSharp>
-                    <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-                </li>
-                <li Class="CombatExtended.ToolCE">
-                    <label>edge</label>
-                    <capacities>
-                        <li>Cut</li>
-                    </capacities>
-                    <power>35</power>
-                    <cooldownTime>1.87</cooldownTime>
-                    <chanceFactor>0.70</chanceFactor>
-                    <armorPenetrationBlunt>7.78</armorPenetrationBlunt>
-                    <armorPenetrationSharp>4.64</armorPenetrationSharp>
-                    <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-                </li>
-            </tools>
-        </value>
-    </Operation>
+	<!-- ============================ Industrial - Blade ============================ -->
+	<!-- Edge of Prognosis -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_GF_LunaWP"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.56</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>35</power>
+					<extraMeleeDamages>
+						<li>
+							<def>EMP</def>
+							<amount>19</amount>
+							<chance>0.5</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>2.28</cooldownTime>
+					<chanceFactor>0.25</chanceFactor>
+					<armorPenetrationBlunt>3.2</armorPenetrationBlunt>
+					<armorPenetrationSharp>6.4</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>1.87</cooldownTime>
+					<chanceFactor>0.70</chanceFactor>
+					<armorPenetrationBlunt>7.78</armorPenetrationBlunt>
+					<armorPenetrationSharp>4.64</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="RF_GF_LunaWP"]/label</xpath>
-        <value>
-            <label>GF Edge of Prognosis PNC</label>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_GF_LunaWP"]</xpath>
+		<value>
+			<statBases>
+				<Bulk>8.22</Bulk>
+				<MeleeCounterParryBonus>0.44</MeleeCounterParryBonus>
+			</statBases>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="RF_GF_LunaWP"]</xpath>
-        <value>
-            <statBases>
-                <Bulk>8.22</Bulk>
-                <MeleeCounterParryBonus>0.44</MeleeCounterParryBonus>
-            </statBases>
-            <costList>
-                <Plasteel>20</Plasteel>
-                <ComponentSpacer>1</ComponentSpacer>
-                <Silver>80</Silver>
-                <DevilstrandCloth>20</DevilstrandCloth>
-            </costList>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_GF_LunaWP"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.58</MeleeCritChance>
+				<MeleeParryChance>0.64</MeleeParryChance>
+				<MeleeDodgeChance>0.76</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="RF_GF_LunaWP"]</xpath>
-        <value>
-            <equippedStatOffsets>
-                <MeleeCritChance>0.58</MeleeCritChance>
-                <MeleeParryChance>0.64</MeleeParryChance>
-                <MeleeDodgeChance>0.76</MeleeDodgeChance>
-            </equippedStatOffsets>
-        </value>
-    </Operation>
 </Patch>
