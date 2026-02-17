@@ -1,83 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
-	<!-- ============================ Industrial - Ammunition ============================ -->
-	<!-- GF Assault Rifle Bullet -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Bullet_RF_AssaultRifle"]</xpath>
-	</Operation>
 
-	<!-- GF Vector Bullet -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="RF_Bullet_Vector"]</xpath>
-	</Operation>
-
-	<!-- GF G36 Bullet -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="RF_G36_Bullet"]</xpath>
-	</Operation>
-
-	<!-- GF MDR Bullet PTC -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="RF_MDR_Bullet"]</xpath>
-	</Operation>
-
-	<!-- ============================ Industrial - AR ============================ -->
-
-	<!-- GF Type 95-1/QBZ-95-1 -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>RFGun_Type95R</defName>
-		<statBases>
-			<WorkToMake>46000</WorkToMake> <!-- Base + 15% -->
-			<Bulk>6.10</Bulk>
-			<Mass>3.25</Mass>
-			<SightsEfficiency>1.60</SightsEfficiency>
-			<ShotSpread>0.07</ShotSpread>
-			<SwayFactor>1.04</SwayFactor>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<chemfuel>15</chemfuel>
-			<ComponentIndustrial>12</ComponentIndustrial>
-			<Steel>95</Steel>
-		</costList>
-		<Properties>
-			<recoilAmount>1.54</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_58x42mmDBP10_FMJ</defaultProjectile>
-			<warmupTime>0.9</warmupTime>
-			<range>52</range>
-			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-			<soundCast>Shot_AssaultRifle</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>30</magazineSize>
-			<reloadTime>3.8</reloadTime>
-			<ammoSet>AmmoSet_58x42mmDBP10</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-		<weaponTags>
-			<li>CE_AI_AR</li>
-			<li>IndustrialGunAdvanced</li>
-		</weaponTags>
-	</Operation>
+	<!-- ============================ Melee Tools ============================ -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_Type95R"]/label</xpath>
-		<value>
-			<label>GF Type 95-1 PTC</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_Type95R"]/tools</xpath>
+		<xpath>Defs/ThingDef[
+			defName="RFGun_Type95R" or
+			defName="RFGun_Type97R" or
+			defName="RFGun_G36K" or
+			defName="RFGun_MDR" or
+			defName="RFGun_Springfield" or
+			defName="RFGun_WA2000_SR" or
+			defName="RFGun_Vector"
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -112,620 +47,6 @@
 					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 				</li>
 			</tools>
-		</value>
-	</Operation>
-
-	<!-- GF Type 97 FTU/QBZ-97 FTU -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>RFGun_Type97R</defName>
-		<statBases>
-			<WorkToMake>46000</WorkToMake> <!-- Base + 15% -->
-			<Bulk>6.28</Bulk>
-			<Mass>3.38</Mass>
-			<SightsEfficiency>1.60</SightsEfficiency>
-			<ShotSpread>0.07</ShotSpread>
-			<SwayFactor>1.11</SwayFactor>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<chemfuel>15</chemfuel>
-			<ComponentIndustrial>12</ComponentIndustrial>
-			<Steel>97</Steel>
-		</costList>
-		<Properties>
-			<recoilAmount>1.54</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-			<warmupTime>0.9</warmupTime>
-			<range>52</range>
-			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-			<soundCast>Shot_AssaultRifle</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>30</magazineSize>
-			<reloadTime>3.8</reloadTime>
-			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-		<weaponTags>
-			<li>CE_AI_AR</li>
-			<li>IndustrialGunAdvanced</li>
-		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_Type97R"]/label</xpath>
-		<value>
-			<label>GF Type 97 FTU PTC</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_Type97R"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- GF G36K -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>RFGun_G36K</defName>
-		<statBases>
-			<WorkToMake>45000</WorkToMake> <!-- Base + 12.5% -->
-			<Bulk>7.66</Bulk>
-			<Mass>3.30</Mass>
-			<SightsEfficiency>1.60</SightsEfficiency>
-			<ShotSpread>0.08</ShotSpread>
-			<SwayFactor>1.22</SwayFactor>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<chemfuel>15</chemfuel>
-			<ComponentIndustrial>10</ComponentIndustrial>
-			<Plasteel>45</Plasteel>
-			<Steel>75</Steel>
-		</costList>
-		<Properties>
-			<recoilAmount>1.42</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-			<warmupTime>0.8</warmupTime>
-			<range>52</range>
-			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-			<soundCast>Shot_AssaultRifle</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>30</magazineSize>
-			<reloadTime>3.8</reloadTime>
-			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-		<weaponTags>
-			<li>CE_AI_AR</li>
-			<li>IndustrialGunAdvanced</li>
-		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_G36K"]/label</xpath>
-		<value>
-			<label>GF G36K PTC</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_G36K"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- GF MDRX .308/7.62 NATO -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>RFGun_MDR</defName>
-		<statBases>
-			<WorkToMake>45000</WorkToMake> <!-- Base + 12.5% -->
-			<Bulk>6.10</Bulk>
-			<Mass>3.75</Mass>
-			<SightsEfficiency>1.60</SightsEfficiency>
-			<ShotSpread>0.06</ShotSpread>
-			<SwayFactor>1.32</SwayFactor>
-			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<Chemfuel>15</Chemfuel>
-			<ComponentIndustrial>8</ComponentIndustrial>
-			<Plasteel>45</Plasteel>
-			<Steel>75</Steel>
-		</costList>
-		<Properties>
-			<recoilAmount>1.95</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-			<warmupTime>0.9</warmupTime>
-			<range>60</range>
-			<burstShotCount>5</burstShotCount>
-			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-			<soundCast>Shot_AssaultRifle</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>20</magazineSize>
-			<reloadTime>3.8</reloadTime>
-			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-		<weaponTags>
-			<li>CE_AI_AR</li>
-			<li>IndustrialGunAdvanced</li>
-		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_MDR"]/label</xpath>
-		<value>
-			<label>GF MDRX 308 PTC</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_MDR"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- ============================ Industrial - RF ============================ -->
-
-	<!-- GF Springfield M1903A1 "C-Stock" -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>RFGun_Springfield</defName>
-		<statBases>
-			<WorkToMake>18000</WorkToMake> <!-- Base + 50% -->
-			<Bulk>10.54</Bulk>
-			<Mass>3.90</Mass>
-			<NightVisionEfficiency_Weapon>0.2</NightVisionEfficiency_Weapon>
-			<SightsEfficiency>2.40</SightsEfficiency>
-			<ShotSpread>0.05</ShotSpread>
-			<SwayFactor>1.49</SwayFactor>
-			<RangedWeapon_Cooldown>1.12</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<Chemfuel>15</Chemfuel>
-			<ComponentIndustrial>8</ComponentIndustrial>
-			<Steel>75</Steel>
-		</costList>
-		<Properties>
-			<recoilAmount>2.14</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
-			<range>75</range>
-			<soundCast>Shot_BoltActionRifle</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>5</magazineSize>
-			<reloadTime>4.1</reloadTime>
-			<ammoSet>AmmoSet_3006Springfield</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>CE_AI_SR</li>
-			<li>SniperRifle</li>
-		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_Springfield"]/label</xpath>
-		<value>
-			<label>GF Springfield M1903A1 "C-Stock" PTC</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_Springfield"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- GF WA2000 -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>RFGun_WA2000_SR</defName>
-		<statBases>
-			<WorkToMake>50625</WorkToMake> <!-- Base + 12.5% -->
-			<Bulk>11.84</Bulk>
-			<Mass>6.16</Mass>
-			<NightVisionEfficiency_Weapon>0.8</NightVisionEfficiency_Weapon>
-			<SightsEfficiency>2.80</SightsEfficiency>
-			<ShotSpread>0.02</ShotSpread>
-			<SwayFactor>1.28</SwayFactor>
-			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<Chemfuel>12</Chemfuel>
-			<ComponentIndustrial>12</ComponentIndustrial>
-			<Plasteel>128</Plasteel>
-			<Silver>60</Silver>
-			<Steel>65</Steel>
-		</costList>
-		<Properties>
-			<recoilAmount>1.02</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_300WinchesterMagnum_FMJ</defaultProjectile>
-			<warmupTime>1.6</warmupTime>
-			<range>80</range>
-			<soundCast>Shot_SniperRifle</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>6</magazineSize>
-			<reloadTime>4.1</reloadTime>
-			<ammoSet>AmmoSet_300WinchesterMagnum</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-			<aiAimMode>AimedShot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>Bipod_DMR</li>
-			<li>CE_AI_SR</li>
-			<li>SniperRifle</li>
-		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_WA2000_SR"]/label</xpath>
-		<value>
-			<label>GF WA2000 PTC</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_WA2000_SR"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- ============================ Industrial - SMG ============================ -->
-
-	<!-- GF Vector Gen I .45 ACP -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>RFGun_Vector</defName>
-		<statBases>
-			<WorkToMake>32400</WorkToMake> <!-- Base + 35% -->
-			<Bulk>4.00</Bulk>
-			<Mass>2.82</Mass>
-			<SightsEfficiency>1.40</SightsEfficiency>
-			<ShotSpread>0.12</ShotSpread>
-			<SwayFactor>0.86</SwayFactor>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<Chemfuel>12</Chemfuel>
-			<ComponentIndustrial>10</ComponentIndustrial>
-			<Plasteel>25</Plasteel>
-			<Steel>70</Steel>
-		</costList>
-		<Properties>
-			<recoilAmount>0.92</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
-			<warmupTime>0.50</warmupTime>
-			<range>34</range>
-			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
-			<soundCast>Shot_HeavySMG</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>30</magazineSize>
-			<reloadTime>3.8</reloadTime>
-			<ammoSet>AmmoSet_45ACP</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-			<aiAimMode>Snapshot</aiAimMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-		<weaponTags>
-			<li>CE_AI_BROOM</li>
-			<li>CE_OneHandedWeapon</li>
-			<li>CE_SMG</li>
-			<li>IndustrialGunAdvanced</li>
-			<li>ShortShots</li>
-		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_Vector"]/label</xpath>
-		<value>
-			<label>GF Vector Gen I PTC</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_Vector"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- ============================ Industrial - HG ============================ -->
-	<!-- GF PA-15 -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>RFGun_PA15_AP</defName>
-		<statBases>
-			<WorkToMake>7500</WorkToMake> <!-- Base + 50% -->
-			<Bulk>2.26</Bulk>
-			<Mass>1.00</Mass>
-			<SightsEfficiency>1.20</SightsEfficiency>
-			<ShotSpread>0.14</ShotSpread>
-			<SwayFactor>1.10</SwayFactor>
-			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<Chemfuel>6</Chemfuel>
-			<ComponentIndustrial>4</ComponentIndustrial>
-			<Steel>30</Steel>
-		</costList>
-		<Properties>
-			<recoilAmount>2.50</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
-			<range>22</range>
-			<soundCast>Shot_Autopistol</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>15</magazineSize>
-			<reloadTime>3.2</reloadTime>
-			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-			<aiAimMode>Snapshot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>Autopistol</li>
-			<li>CE_AI_BROOM</li>
-			<li>CE_OneHandedWeapon</li>
-			<li>CE_Sidearm</li>
-			<li>ModernHandgun</li>
-		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_PA15_AP"]/label</xpath>
-		<value>
-			<label>GF PA-15 PTC</label>
 		</value>
 	</Operation>
 
@@ -757,4 +78,351 @@
 			</tools>
 		</value>
 	</Operation>
+
+	<!-- ============================ Industrial - AR ============================ -->
+
+	<!-- GF Type 95-1/QBZ-95-1 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RFGun_Type95R</defName>
+		<statBases>
+			<WorkToMake>45000</WorkToMake> <!-- Base + 12.5% -->
+			<Bulk>7.6</Bulk>
+			<Mass>3.25</Mass>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.09</SwayFactor>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.54</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_58x42mmDBP10_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_58x42mmDBP10</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>IndustrialGunAdvanced</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- GF Type 97 FTU/QBZ-97 FTU -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RFGun_Type97R</defName>
+		<statBases>
+			<WorkToMake>46000</WorkToMake> <!-- Base + 15% -->
+			<Bulk>7.6</Bulk>
+			<Mass>3.52</Mass>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.09</SwayFactor>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.49</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>IndustrialGunAdvanced</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- GF G36K -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RFGun_G36K</defName>
+		<statBases>
+			<WorkToMake>45000</WorkToMake> <!-- Base + 12.5% -->
+			<Bulk>6.15</Bulk>
+			<Mass>3.3</Mass>
+			<SightsEfficiency>1.18</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.21</SwayFactor>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Chemfuel>15</Chemfuel>
+			<ComponentIndustrial>7</ComponentIndustrial>
+			<Plasteel>30</Plasteel>
+			<Steel>65</Steel>
+		</costList>
+		<Properties>
+			<recoilAmount>1.5</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>IndustrialGunAdvanced</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- GF MDRX .308/7.62 NATO -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RFGun_MDR</defName>
+		<statBases>
+			<WorkToMake>45000</WorkToMake> <!-- Base + 12.5% -->
+			<Bulk>6.61</Bulk>
+			<Mass>3.94</Mass>
+			<SightsEfficiency>1.60</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.06</SwayFactor>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Chemfuel>15</Chemfuel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Plasteel>45</Plasteel>
+			<Steel>75</Steel>
+		</costList>
+		<Properties>
+			<recoilAmount>2.01</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>3.8</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>IndustrialGunAdvanced</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============================ Industrial - RF ============================ -->
+
+	<!-- GF Springfield M1903A1 "C-Stock" -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RFGun_Springfield</defName>
+		<statBases>
+			<WorkToMake>12000</WorkToMake>
+			<Bulk>11</Bulk>
+			<Mass>3.90</Mass>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.49</SwayFactor>
+			<RangedWeapon_Cooldown>1.12</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>50</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<WoodLog>15</WoodLog>
+		</costList>
+		<Properties>
+			<recoilAmount>2.14</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>62</range>
+			<soundCast>Shot_BoltActionRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_3006Springfield</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- GF WA2000 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RFGun_WA2000_SR</defName>
+		<statBases>
+			<WorkToMake>50625</WorkToMake> <!-- Base + 12.5% -->
+			<Bulk>9.05</Bulk>
+			<Mass>7.8</Mass>
+			<SightsEfficiency>2.60</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.79</SwayFactor>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.66</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_300WinchesterMagnum_FMJ</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>75</range>
+			<soundCast>Shot_SniperRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_300WinchesterMagnum</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>Bipod_DMR</li>
+			<li>CE_AI_SR</li>
+			<li>SniperRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============================ Industrial - SMG ============================ -->
+
+	<!-- GF Vector Gen I .45 ACP -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RFGun_Vector</defName>
+		<statBases>
+			<WorkToMake>32400</WorkToMake> <!-- Base + 35% -->
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>0.89</SwayFactor>
+			<Bulk>4.10</Bulk>
+			<Mass>2.70</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.84</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<warmupTime>0.6</warmupTime>
+			<range>14</range>
+			<soundCast>Shot_HeavySMG</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>25</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_45ACP</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_SMG</li>
+			<li>IndustrialGunAdvanced</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============================ Industrial - HG ============================ -->
+	<!-- GF PA-15 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RFGun_PA15_AP</defName>
+		<statBases>
+			<WorkToMake>7500</WorkToMake> <!-- Base + 50% -->
+			<Bulk>2.03</Bulk>
+			<Mass>1.1</Mass>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.16</SwayFactor>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.23</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Autopistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>Autopistol</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_Sidearm</li>
+		</weaponTags>
+	</Operation>
+
 </Patch>

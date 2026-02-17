@@ -6,32 +6,27 @@
 		<defName>RFGun_PA15_AP</defName>
 		<statBases>
 			<WorkToMake>7500</WorkToMake> <!-- Base + 50% -->
-			<Bulk>2.26</Bulk>
-			<Mass>1.00</Mass>
-			<SightsEfficiency>1.20</SightsEfficiency>
-			<ShotSpread>0.14</ShotSpread>
-			<SwayFactor>1.10</SwayFactor>
-			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<Bulk>2.03</Bulk>
+			<Mass>1.1</Mass>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.16</SwayFactor>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 		</statBases>
-		<costList>
-			<Chemfuel>6</Chemfuel>
-			<ComponentIndustrial>4</ComponentIndustrial>
-			<Steel>30</Steel>
-		</costList>
 		<Properties>
-			<recoilAmount>2.50</recoilAmount>
+			<recoilAmount>2.23</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
-			<range>22</range>
+			<range>12</range>
 			<soundCast>Shot_Autopistol</soundCast>
 			<soundCastTail>GunTail_Light</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
 			<magazineSize>15</magazineSize>
-			<reloadTime>3.2</reloadTime>
+			<reloadTime>4</reloadTime>
 			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
 		</AmmoUser>
 		<FireModes>
@@ -43,57 +38,19 @@
 			<li>CE_AI_BROOM</li>
 			<li>CE_OneHandedWeapon</li>
 			<li>CE_Sidearm</li>
-			<li>ModernHandgun</li>
 		</weaponTags>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_PA15_AP"]/label</xpath>
-		<value>
-			<label>GF PA-15 PTC</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_PA15_AP"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- ============================ Industrial - AR ============================ -->
 	<!-- GF MDRX .308/7.62 NATO -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RFGun_MDR</defName>
 		<statBases>
 			<WorkToMake>45000</WorkToMake> <!-- Base + 12.5% -->
-			<Bulk>6.10</Bulk>
-			<Mass>3.75</Mass>
+			<Bulk>6.61</Bulk>
+			<Mass>3.94</Mass>
 			<SightsEfficiency>1.60</SightsEfficiency>
-			<ShotSpread>0.06</ShotSpread>
-			<SwayFactor>1.32</SwayFactor>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.06</SwayFactor>
 			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
@@ -103,14 +60,14 @@
 			<Steel>75</Steel>
 		</costList>
 		<Properties>
-			<recoilAmount>1.95</recoilAmount>
+			<recoilAmount>2.01</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-			<warmupTime>0.9</warmupTime>
-			<range>60</range>
-			<burstShotCount>5</burstShotCount>
-			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 			<soundCast>Shot_AssaultRifle</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
@@ -129,13 +86,6 @@
 			<li>CE_AI_AR</li>
 			<li>IndustrialGunAdvanced</li>
 		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGun_MDR"]/label</xpath>
-		<value>
-			<label>GF MDRX 308 PTC</label>
-		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -177,9 +127,4 @@
 		</value>
 	</Operation>
 
-	<!-- ============================ Industrial - Ammunition ============================ -->
-	<!-- GF MDR Bullet NL -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="NL_MDR_Bullet"]</xpath>
-	</Operation>
 </Patch>
