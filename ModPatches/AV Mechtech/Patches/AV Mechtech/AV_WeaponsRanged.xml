@@ -1,46 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeBlasterHeavy"]</xpath>
-		<value>
-			<ThingDef ParentName="BaseWeaponTurret">
-				<defName>AV_Gun_ChargeBlasterHeavy</defName>
-				<label>super heavy charge turret</label>
-				<description>A huge charge turret designed for use on a defense turret.</description>
-				<tradeability>None</tradeability>
-				<destroyOnDrop>true</destroyOnDrop>
-				<techLevel>Spacer</techLevel>
-				<relicChance>0</relicChance>
-				<graphicData>
-					<texPath>Things/Item/Equipment/WeaponRanged/AV_ChargeBlasterHeavy</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-					<drawSize>(2.5,2.5)</drawSize>
-				</graphicData>
-				<statBases>
-					<Mass>12</Mass>
-					<SightsEfficiency>1.2</SightsEfficiency>
-					<ShotSpread>0.19</ShotSpread><!-- Manually adjusted from 0.08 due to accuracy concerns. -->
-					<SwayFactor>0.56</SwayFactor>
-					<Bulk>20.00</Bulk>
-				</statBases>
-				<verbs>
-					<li Class="CombatExtended.VerbPropertiesCE">
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_20x105mmCharged</defaultProjectile>
-						<range>55</range>
-						<burstShotCount>1</burstShotCount>
-						<soundCast>Shot_ChargeBlaster</soundCast>
-						<soundCastTail>GunTail_Heavy</soundCastTail>
-						<muzzleFlashScale>12</muzzleFlashScale>
-						<defaultCooldownTime>8.5</defaultCooldownTime>
-						<ensureLinkedBodyPartsGroupAlwaysUsable>false</ensureLinkedBodyPartsGroupAlwaysUsable>
-						<ticksBetweenBurstShots>120</ticksBetweenBurstShots>
-					</li>
-				</verbs>
-			</ThingDef>
-		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
