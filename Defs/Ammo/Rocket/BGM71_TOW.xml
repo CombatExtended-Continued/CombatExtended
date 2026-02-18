@@ -3,24 +3,24 @@
 
 	<ThingCategoryDef>
 		<defName>AmmoTOW2A</defName>
-		<label>152mm anti-tank guided missile</label>
+		<label>152mm ATGM</label>
 		<parent>AmmoRockets</parent>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_TOW2A</defName>
-		<label>152mm anti-tank guided missile</label>
+		<defName>AmmoSet_BGM71</defName>
+		<label>152mm ATGM</label>
 		<ammoTypes>
-			<Ammo_TOW2A_HEAT>Bullet_TOW2A</Ammo_TOW2A_HEAT>
+			<Ammo_BGM71_HEAT>Bullet_BGM71_HEAT</Ammo_BGM71_HEAT>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="TOW2ABase" ParentName="HeavyAmmoBase" Abstract="True">
-		<description>A wire-guided anti-tank missile launched from a stationary platform, capable of accurately striking ground targets at long range.</description>
+		<description>A wire-guided anti-tank missile, capable of accurately striking ground targets at long range.</description>
 		<statBases>
 			<MaxHitPoints>200</MaxHitPoints>
 		</statBases>
@@ -37,7 +37,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TOW2ABase">
-		<defName>Ammo_TOW2A_HEAT</defName>
+		<defName>Ammo_BGM71_HEAT</defName>
 		<label>152mm anti-tank guided missile (HEAT)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Missile/TOW2A</texPath>
@@ -48,13 +48,13 @@
 			<Mass>22</Mass>
 			<Bulk>14</Bulk>
 		</statBases>
-		<ammoClass>TOW2A</ammoClass>
-		<detonateProjectile>Bullet_TOW2A</detonateProjectile>
+		<ammoClass>RocketHEAT</ammoClass>
+		<detonateProjectile>Bullet_BGM71</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseTOW" ParentName="BaseExplosiveBullet" Abstract="true">
+	<ThingDef Name="BaseBGM71_TOW" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -93,8 +93,8 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseTOW">
-		<defName>Bullet_TOW2A</defName>
+	<ThingDef ParentName="BaseBGM71_TOW">
+		<defName>Bullet_BGM71_HEAT</defName>
 		<label>152mm AT guided missile (HEAT)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Missile/TOW2A</texPath>
@@ -112,7 +112,7 @@
 				<explosiveDamageType>Bomb</explosiveDamageType>
 				<explosiveRadius>2.5</explosiveRadius>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			  <explosionSound>MortarBomb_Explode</explosionSound>
+				<explosionSound>MortarBomb_Explode</explosionSound>
 				<preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
 			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
@@ -125,9 +125,9 @@
 	</ThingDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_TOW2A_HEAT</defName>
+		<defName>MakeAmmo_BGM71_HEAT</defName>
 		<label>make 152mm anti-tank guided missile</label>
-		<description>Craft 1 152mm anti-tank guided missile.</description>
+		<description>Craft a 152mm anti-tank guided missile.</description>
 		<jobString>Making 152mm anti-tank guided missile.</jobString>
 		<workAmount>9900</workAmount>
 		<ingredients>
@@ -164,7 +164,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_TOW2A_HEAT>1</Ammo_TOW2A_HEAT>
+			<Ammo_BGM71_HEAT>1</Ammo_BGM71_HEAT>
 		</products>
 	</RecipeDef>
 
