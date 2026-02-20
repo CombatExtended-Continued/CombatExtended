@@ -26,7 +26,23 @@ public class GizmoAmmoStatus : Gizmo_Slider
 
     public override float ValuePercent => (float)compAmmo.CurMagCount / compAmmo.MagSize;
 
-    public override string Title => prefix + (compAmmo.CurrentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.CurrentAmmo.ammoClass.LabelCap);
+    public override string Title
+    {
+        get
+        {
+            StringBuilder sb = new StringBuilder(prefix);
+            sb.Append(compAmmo.CurrentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.CurrentAmmo.ammoClass.LabelCap);
+            if (Find.Selector.SelectedPawns.Count > 1)
+            {
+                var holder = compAmmo?.Holder;
+                if (holder != null)
+                {
+                    sb.AppendInNewLine(holder.LabelShort);
+                }
+            }
+            return sb.ToString();
+        }
+    }
 
     private static bool draggingBar = false;
     public override bool DraggingBar
