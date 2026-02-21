@@ -1,11 +1,11 @@
 ﻿using Verse;
 using VFESecurity;
-
+#nullable enable
 namespace CombatExtended.Compatibility.VFES
 {
     public class Building_ConcealedTurretCE : Building_TurretGunCE
     {
-        private CompConcealed concealedComp;
+        private CompConcealed? concealedComp;
 
         public override bool IsEverThreat
         {
@@ -34,3 +34,4 @@ namespace CombatExtended.Compatibility.VFES
         }
     }
 }
+#nullable restore
