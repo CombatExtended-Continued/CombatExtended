@@ -1154,6 +1154,12 @@ public class Verb_LaunchProjectileCE : Verb
                     {
                         projectile.extraDamages.AddRange(trait.extraDamages);
                     }
+                    if (trait is CustomWeaponTraitDef { explosionRadius: > 0f } customTrait)
+                    {
+                        projectile.traitExplosionRadius = customTrait.explosionRadius;
+                        projectile.traitExplosionDamageDef = customTrait.explosionDamageDef;
+                        projectile.traitExplosionDamageAmount = customTrait.explosionDamageAmount;
+                    }
                 }
             }
 

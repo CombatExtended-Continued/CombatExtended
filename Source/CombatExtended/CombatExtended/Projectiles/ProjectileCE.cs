@@ -69,6 +69,11 @@ public abstract class ProjectileCE : ThingWithComps
 
     public DamageDef damageDefOverride;
 
+    // Per-instance explosion from weapon traits, set by Verb_LaunchProjectileCE
+    public float traitExplosionRadius;
+    public DamageDef traitExplosionDamageDef;
+    public int traitExplosionDamageAmount = -1;
+
     public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
 
     public Thing intendedTargetThing
@@ -1496,7 +1501,8 @@ public abstract class ProjectileCE : ThingWithComps
         }
 
         //If the comp exists, it'll already call CompFragments
-        if (explodingComp != null || (def.projectile.explosionRadius > 0f && DamageDef != null))
+        float effectiveExplosionRadius = traitExplosionRadius > 0f ? traitExplosionRadius : def.projectile.explosionRadius;
+        if (explodingComp != null || (effectiveExplosionRadius > 0f && DamageDef != null))
         {
             float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
             //Handle anything explosive
@@ -1505,20 +1511,33 @@ public abstract class ProjectileCE : ThingWithComps
                 ignoredThings.Add(pawn.Corpse);
             }
 
+            // Prevent double damage when trait adds explosion to a bullet that already did direct hit damage
+            if (traitExplosionRadius > 0f && hitThing != null)
+            {
+                ignoredThings.Add(hitThing);
+            }
+
             var suppressThings = new List<Pawn>();
             float dangerAmount = 0f;
             var dir = new float?(origin.AngleTo(new Vector2(ExactPosition.x, ExactPosition.z)));
 
             // Opt-out for things without explosionRadius
-            if (def.projectile.explosionRadius > 0f)
+            if (effectiveExplosionRadius > 0f)
             {
+                DamageDef explosionDamage = traitExplosionRadius > 0f
+                    ? (traitExplosionDamageDef ?? DamageDef)
+                    : DamageDef;
+                int explosionDamageAmt = traitExplosionRadius > 0f && traitExplosionDamageAmount >= 0
+                    ? traitExplosionDamageAmount
+                    : Mathf.FloorToInt(DamageAmount);
+
                 GenExplosionCE.DoExplosion(
                     explodePos.ToIntVec3(),
                     Map,
-                    def.projectile.explosionRadius,
-                    DamageDef,
+                    effectiveExplosionRadius,
+                    explosionDamage,
                     launcher,
-                    Mathf.FloorToInt(DamageAmount),
+                    explosionDamageAmt,
                     def.projectile.GetExplosionArmorPenetration(),
                     def.projectile.soundExplode,
                     equipmentDef,
@@ -1549,7 +1568,7 @@ public abstract class ProjectileCE : ThingWithComps
                 // Apply suppression around impact area
                 if (explodePos.y < SuppressionRadius)
                 {
-                    explosionSuppressionRadius += def.projectile.explosionRadius;
+                    explosionSuppressionRadius += effectiveExplosionRadius;
 
                     if (projectilePropsCE.suppressionFactor > 0f)
                     {

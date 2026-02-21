@@ -202,6 +202,20 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
                 burstShotCount = modified;
             }
         }
+
+        // Apply trait-based burst count multiplier
+        if (EquipmentSource?.TryGetComp(out CompUniqueWeapon comp) ?? false)
+        {
+            foreach (WeaponTraitDef trait in comp.TraitsListForReading)
+            {
+                if (trait is CustomWeaponTraitDef { burstShotCountMultipliers: { } multipliers })
+                {
+                    burstShotCount *= multipliers.RandomElement();
+                    break;
+                }
+            }
+        }
+
         return (int)burstShotCount;
     }
 
