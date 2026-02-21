@@ -168,6 +168,11 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         }
 
         ClearWeaponCaches(this.parent);
+
+        if (requiresReload)
+        {
+            CompAmmo.TryStartReload();
+        }
     }
 
     [Compatibility.Multiplayer.SyncMethod]
@@ -215,6 +220,11 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         }
 
         ClearWeaponCaches(this.parent);
+
+        if (requiresReload)
+        {
+            CompAmmo.TryStartReload();
+        }
     }
 
     private static void ClearWeaponCaches(Thing thing)
