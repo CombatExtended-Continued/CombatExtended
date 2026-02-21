@@ -208,7 +208,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
         {
             foreach (WeaponTraitDef trait in comp.TraitsListForReading)
             {
-                if (trait is CustomWeaponTraitDef { burstShotCountMultipliers: { } multipliers })
+                if (trait is CustomWeaponTraitDef { burstShotCountMultipliers: { Count: > 0 } multipliers })
                 {
                     burstShotCount *= multipliers.RandomElement();
                     break;

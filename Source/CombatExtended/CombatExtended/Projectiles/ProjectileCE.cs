@@ -1501,7 +1501,8 @@ public abstract class ProjectileCE : ThingWithComps
         }
 
         //If the comp exists, it'll already call CompFragments
-        float effectiveExplosionRadius = traitExplosionRadius > 0f ? traitExplosionRadius : def.projectile.explosionRadius;
+        bool hasTraitExplosion = traitExplosionRadius > 0f;
+        float effectiveExplosionRadius = hasTraitExplosion ? traitExplosionRadius : def.projectile.explosionRadius;
         if (explodingComp != null || (effectiveExplosionRadius > 0f && DamageDef != null))
         {
             float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
@@ -1512,7 +1513,7 @@ public abstract class ProjectileCE : ThingWithComps
             }
 
             // Prevent double damage when trait adds explosion to a bullet that already did direct hit damage
-            if (traitExplosionRadius > 0f && hitThing != null)
+            if (hasTraitExplosion && hitThing != null)
             {
                 ignoredThings.Add(hitThing);
             }
@@ -1524,10 +1525,10 @@ public abstract class ProjectileCE : ThingWithComps
             // Opt-out for things without explosionRadius
             if (effectiveExplosionRadius > 0f)
             {
-                DamageDef explosionDamage = traitExplosionRadius > 0f
+                DamageDef explosionDamage = hasTraitExplosion
                     ? (traitExplosionDamageDef ?? DamageDef)
                     : DamageDef;
-                int explosionDamageAmt = traitExplosionRadius > 0f && traitExplosionDamageAmount >= 0
+                int explosionDamageAmt = hasTraitExplosion && traitExplosionDamageAmount >= 0
                     ? traitExplosionDamageAmount
                     : Mathf.FloorToInt(DamageAmount);
 

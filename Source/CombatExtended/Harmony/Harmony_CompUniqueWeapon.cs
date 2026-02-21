@@ -12,6 +12,7 @@ namespace CombatExtended.HarmonyCE
         {
             internal static void Postfix(CompUniqueWeapon __instance, bool fromSave)
             {
+                bool verbOverrideApplied = false;
                 foreach (WeaponTraitDef trait in __instance.traits)
                 {
                     if (trait is CustomWeaponTraitDef customTrait)
@@ -22,18 +23,21 @@ namespace CombatExtended.HarmonyCE
                             compUnderBarrel.props = customTrait.underBarrelProps;
                         }
 
-                        // Verb override via direct assignment (same pattern as BipodComp)
-                        ApplyVerbOverride(__instance, customTrait);
+                        // First trait with a verb override wins
+                        if (!verbOverrideApplied)
+                        {
+                            verbOverrideApplied = ApplyVerbOverride(__instance, customTrait);
+                        }
                     }
                 }
             }
 
-            private static void ApplyVerbOverride(CompUniqueWeapon instance, CustomWeaponTraitDef customTrait)
+            private static bool ApplyVerbOverride(CompUniqueWeapon instance, CustomWeaponTraitDef customTrait)
             {
                 CompEquippable compEq = instance.parent.TryGetComp<CompEquippable>();
                 if (compEq?.PrimaryVerb == null)
                 {
-                    return;
+                    return false;
                 }
 
                 VerbPropertiesCE overrideVerb = null;
@@ -54,7 +58,10 @@ namespace CombatExtended.HarmonyCE
                 if (overrideVerb != null)
                 {
                     compEq.PrimaryVerb.verbProps = overrideVerb;
+                    return true;
                 }
+
+                return false;
             }
         }
     }
