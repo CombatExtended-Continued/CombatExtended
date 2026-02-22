@@ -69,10 +69,8 @@ public abstract class ProjectileCE : ThingWithComps
 
     public DamageDef damageDefOverride;
 
-    // Per-instance explosion from weapon traits, set by Verb_LaunchProjectileCE
-    public float traitExplosionRadius;
-    public DamageDef traitExplosionDamageDef;
-    public int traitExplosionDamageAmount = -1;
+    // Per-instance explosion override from weapon traits, set by Verb_LaunchProjectileCE
+    public TraitExplosionDef traitExplosion;
 
     public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
 
@@ -1501,8 +1499,8 @@ public abstract class ProjectileCE : ThingWithComps
         }
 
         //If the comp exists, it'll already call CompFragments
-        bool hasTraitExplosion = traitExplosionRadius > 0f;
-        float effectiveExplosionRadius = hasTraitExplosion ? traitExplosionRadius : def.projectile.explosionRadius;
+        bool hasTraitExplosion = traitExplosion is { radius: > 0f };
+        float effectiveExplosionRadius = hasTraitExplosion ? traitExplosion.radius : def.projectile.explosionRadius;
         if (explodingComp != null || (effectiveExplosionRadius > 0f && DamageDef != null))
         {
             float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
@@ -1513,7 +1511,7 @@ public abstract class ProjectileCE : ThingWithComps
             }
 
             // Prevent double damage when trait adds explosion to a bullet that already did direct hit damage
-            if (hasTraitExplosion && hitThing != null)
+            if (hasTraitExplosion && hitThing != null && this is BulletCE && !traitExplosion.damageHitTarget)
             {
                 ignoredThings.Add(hitThing);
             }
@@ -1526,10 +1524,10 @@ public abstract class ProjectileCE : ThingWithComps
             if (effectiveExplosionRadius > 0f)
             {
                 DamageDef explosionDamage = hasTraitExplosion
-                    ? (traitExplosionDamageDef ?? DamageDef)
+                    ? (traitExplosion.damageDef ?? DamageDef)
                     : DamageDef;
-                int explosionDamageAmt = hasTraitExplosion && traitExplosionDamageAmount >= 0
-                    ? traitExplosionDamageAmount
+                int explosionDamageAmt = hasTraitExplosion && traitExplosion.damageAmount >= 0
+                    ? traitExplosion.damageAmount
                     : Mathf.FloorToInt(DamageAmount);
 
                 float explosionAP = hasTraitExplosion

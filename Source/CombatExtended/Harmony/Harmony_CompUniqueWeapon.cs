@@ -12,13 +12,16 @@ namespace CombatExtended.HarmonyCE
         {
             internal static void Postfix(CompUniqueWeapon __instance, bool fromSave)
             {
+                CompUnderBarrel compUnderBarrel = __instance.parent.TryGetComp<CompUnderBarrel>();
+                bool underBarrelApplied = false;
+                bool verbOverrideApplied = false;
+
                 foreach (WeaponTraitDef trait in __instance.traits)
                 {
                     if (trait is CustomWeaponTraitDef customTrait)
                     {
-                        if (customTrait.underBarrelProps != null)
+                        if (!underBarrelApplied && customTrait.underBarrelProps != null)
                         {
-                            CompUnderBarrel compUnderBarrel = __instance.parent.TryGetComp<CompUnderBarrel>();
                             if (compUnderBarrel != null)
                             {
                                 compUnderBarrel.props = customTrait.underBarrelProps;
@@ -27,9 +30,15 @@ namespace CombatExtended.HarmonyCE
                             {
                                 Log.Warning($"[CE] Trait {customTrait.defName} has underBarrelProps but {__instance.parent.def.defName} lacks CompUnderBarrel");
                             }
+                            underBarrelApplied = true;
                         }
 
-                        if (ApplyVerbOverride(__instance, customTrait))
+                        if (!verbOverrideApplied && ApplyVerbOverride(__instance, customTrait))
+                        {
+                            verbOverrideApplied = true;
+                        }
+
+                        if (underBarrelApplied && verbOverrideApplied)
                         {
                             break;
                         }

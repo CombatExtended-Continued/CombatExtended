@@ -4,6 +4,17 @@ using Verse;
 
 namespace CombatExtended;
 
+/// <summary>
+/// Defines a complete explosion spec applied to projectiles on impact, overriding the base projectile's explosion.
+/// </summary>
+public class TraitExplosionDef
+{
+    public float radius;
+    public DamageDef damageDef;
+    public int damageAmount = -1;
+    public bool damageHitTarget = false;
+}
+
 public class CustomWeaponTraitDef : WeaponTraitDef
 {
     public int magazineCapacityIncrease;
@@ -14,14 +25,32 @@ public class CustomWeaponTraitDef : WeaponTraitDef
     public List<VerbPropertiesCE> verbsOverrideCE;
     public Dictionary<ThingDef, List<VerbPropertiesCE>> verbsOverridesCE;
 
-    // Per-instance explosion added to projectiles on impact
-    public float explosionRadius;
-    public DamageDef explosionDamageDef;
-    public int explosionDamageAmount = -1;
+    // Per-instance explosion override applied to projectiles on impact
+    public TraitExplosionDef explosionOverride;
 
     // Random burst count multiplier selected per burst
     public List<float> burstShotCountMultipliers;
 
     // Override melee damage type
     public DamageDef meleeDamageOverride;
+
+    public override IEnumerable<string> ConfigErrors()
+    {
+        foreach (string error in base.ConfigErrors())
+        {
+            yield return error;
+        }
+
+        if (explosionOverride != null)
+        {
+            if (explosionOverride.radius <= 0f)
+            {
+                yield return "explosionOverride.radius must be > 0";
+                if (explosionOverride.damageDef != null || explosionOverride.damageAmount >= 0)
+                {
+                    yield return "explosionOverride has damageDef/damageAmount but no radius — these will be ignored. Use damageDefOverride to change damage type without adding an explosion.";
+                }
+            }
+        }
+    }
 }
