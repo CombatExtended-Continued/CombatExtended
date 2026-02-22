@@ -87,7 +87,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     public float SafeDistanceToReload => Controller.settings.OpportunisticReloadSafeDistance;
 
     public int MinimalTicksAfterFight => GenTicks.TicksPerRealSecond * Controller.settings.SecondsAfterFightToOpportunisticReload;
-
+    public bool OpportunisticReloadActive => Controller.settings.OpportunisticReloadMode != OpportunisticReloadMode.Off && MagSize > 1 && !parent.def.weaponTags.Contains("OpportunisticReloadDisabled");
     public int MagSizeOverride
     {
         get
