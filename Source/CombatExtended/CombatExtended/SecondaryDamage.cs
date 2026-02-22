@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CombatExtended;
 public class SecondaryDamage
 {
-    private static readonly float SecExplosionPenPerDmg = 2f * AmmoUtility.ExplosiveArmorPenetrationMultiplier;
+    private const float SecExplosionPenPerDmg = 2f * AmmoUtility.ExplosiveArmorPenetrationMultiplier;
 
     public DamageDef def;
     public int amount;
