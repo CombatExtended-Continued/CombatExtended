@@ -2,19 +2,19 @@
 <Patch>
 	<!-- Remove refuelable property -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		<xpath>Defs/ThingDef[defName="Security_Turret_AC"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<!-- Replace vanilla thingClass -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="Security_Turret_AC"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="Security_Turret_AC"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>440</Steel>
@@ -26,21 +26,21 @@
 
 	<!-- Make turrets taller -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/fillPercent</xpath>
+		<xpath>Defs/ThingDef[defName="Security_Turret_AC"]/fillPercent</xpath>
 		<value>
 			<fillPercent>1</fillPercent>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="Security_Turret_AC"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/statBases/WorkToBuild</xpath>
+		<xpath>Defs/ThingDef[defName="Security_Turret_AC"]/statBases/WorkToBuild</xpath>
 		<value>
 			<WorkToBuild>60000</WorkToBuild>
 			<AimingAccuracy>0.33</AimingAccuracy>
@@ -48,14 +48,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="Security_Turret_AC"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="Security_Turret_AC"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
