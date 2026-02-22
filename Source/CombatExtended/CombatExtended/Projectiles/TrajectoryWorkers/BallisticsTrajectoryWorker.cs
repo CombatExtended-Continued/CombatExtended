@@ -88,9 +88,8 @@ public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
     /// </summary>
     /// <param name="source">Source shot, including shot height</param>
     /// <param name="targetPos">Target position, including target height</param>
-    /// <param name="forceIndirectFire">If true, selects the high-arc (indirect) trajectory instead of the low-arc (direct) trajectory</param>
     /// <returns>angle in radians</returns>
-    public override float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null, bool forceIndirectFire = false)
+    public override float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null)
     {
         /* Distance in cells
          * Speed in cells / second
@@ -105,7 +104,7 @@ public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
 
         if (acceleration == 0 && fuelLimit == 0)
         {
-            return base.ShotAngle(projectilePropsCE, source, targetPos, speed, forceIndirectFire);
+            return base.ShotAngle(projectilePropsCE, source, targetPos, speed);
         }
         /* First calculate the distance covered while the thrust is still applied
          * Then find the average speed over the whole flight
@@ -117,7 +116,7 @@ public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
             float D_remaining = D - D_accel;
             float time = fuelLimit + D_remaining / finalSpeed;
             float averageSpeed = D / time;
-            return base.ShotAngle(projectilePropsCE, source, targetPos, averageSpeed, forceIndirectFire);
+            return base.ShotAngle(projectilePropsCE, source, targetPos, averageSpeed);
         }
         else
         {
@@ -127,7 +126,7 @@ public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
             var discriminant = b * b - 4 * a * c;
             float time = (-b + Mathf.Sqrt(discriminant)) / (2 * a);
             float averageSpeed = D / time;
-            return base.ShotAngle(projectilePropsCE, source, targetPos, averageSpeed, forceIndirectFire);
+            return base.ShotAngle(projectilePropsCE, source, targetPos, averageSpeed);
         }
     }
 }

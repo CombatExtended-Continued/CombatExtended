@@ -34,9 +34,6 @@ public class CustomWeaponTraitDef : WeaponTraitDef
     // Override melee damage type
     public DamageDef meleeDamageOverride;
 
-    // Allow indirect fire (lob over walls, high-arc trajectory like mortars)
-    public bool allowIndirectFire;
-
     // Homing bullet acceleration (cells/s/s). If > 0, projectiles use HomingBulletTrajectoryWorker
     public float homingAcceleration;
 

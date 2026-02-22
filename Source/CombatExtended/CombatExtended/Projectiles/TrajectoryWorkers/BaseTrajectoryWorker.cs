@@ -70,11 +70,10 @@ public abstract class BaseTrajectoryWorker
     /// <param name="source">Source shot, including shot height</param>
     /// <param name="targetPos">Target position, including target height</param>
     /// <param name="speed">speed (cells / second)</param>
-    /// <param name="forceIndirectFire">If true, selects the high-arc (indirect) trajectory instead of the low-arc (direct) trajectory</param>
     /// <returns>angle in radians</returns>
-    public virtual float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null, bool forceIndirectFire = false)
+    public virtual float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null)
     {
-        float? shotAngle = TryFindShotAngle(projectilePropsCE, source, targetPos, speed, forceIndirectFire);
+        float? shotAngle = TryFindShotAngle(projectilePropsCE, source, targetPos, speed);
         if (shotAngle is float angle)
         {
             return angle;
@@ -92,9 +91,8 @@ public abstract class BaseTrajectoryWorker
     /// <param name="source">Source shot, including shot height</param>
     /// <param name="targetPos">Target position, including target height</param>
     /// <param name="speed">speed (cells / second)</param>
-    /// <param name="forceIndirectFire">If true, selects the high-arc (indirect) trajectory instead of the low-arc (direct) trajectory</param>
     /// <returns>angle in radians, or null if the target cannot be hit from the given source with the given speed</returns>
-    private static float? TryFindShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed, bool forceIndirectFire = false)
+    private static float? TryFindShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed)
     {
         float targetHeight = targetPos.y;
         float shotHeight = source.y;
@@ -115,7 +113,7 @@ public abstract class BaseTrajectoryWorker
         {
             return null;
         }
-        return Mathf.Atan((Mathf.Pow(_speed, 2f) + ((projectilePropsCE.flyOverhead || forceIndirectFire) ? 1f : -1f) * squareRootCheck) / (gravityPerWidth * range));
+        return Mathf.Atan((Mathf.Pow(_speed, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravityPerWidth * range));
     }
 
     public virtual float ShotRotation(ProjectilePropertiesCE projectilePropertiesCE, Vector3 source, Vector3 targetPos)

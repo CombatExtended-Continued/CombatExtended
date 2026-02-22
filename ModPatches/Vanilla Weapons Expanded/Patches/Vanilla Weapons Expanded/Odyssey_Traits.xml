@@ -771,7 +771,7 @@
 				</li>
 
 				<!-- VWE_HighAngleDraw (VFE Medieval 2) -->
-				<!-- CE indirect fire: lob arrows over walls, any roof blocks -->
+				<!-- Range specialist: arrows shot at high angle travel ~25% further -->
 				<li Class="PatchOperationSequence">
 					<success>Always</success>
 					<operations>
@@ -786,16 +786,14 @@
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/WeaponTraitDef[defName="VWE_HighAngleDraw"]</xpath>
 							<value>
-								<allowIndirectFire>true</allowIndirectFire>
 								<verbsOverrideCE>
 									<li Class="CombatExtended.VerbPropertiesCE">
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 										<hasStandardCommand>true</hasStandardCommand>
 										<defaultProjectile>Projectile_Arrow_Stone</defaultProjectile>
 										<warmupTime>1.35</warmupTime>
-										<range>22.9</range>
+										<range>28.5</range>
 										<soundCast>Bow_Small</soundCast>
-										<indirectFirePenalty>0.5</indirectFirePenalty>
 									</li>
 								</verbsOverrideCE>
 								<verbsOverridesCE>
@@ -807,9 +805,8 @@
 												<hasStandardCommand>true</hasStandardCommand>
 												<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
 												<warmupTime>1.5</warmupTime>
-												<range>29.9</range>
+												<range>25</range>
 												<soundCast>VWE_Shot_Crossbow</soundCast>
-												<indirectFirePenalty>0.4</indirectFirePenalty>
 											</li>
 										</value>
 									</li>
@@ -821,9 +818,8 @@
 												<hasStandardCommand>true</hasStandardCommand>
 												<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
 												<warmupTime>2.5</warmupTime>
-												<range>36.9</range>
+												<range>46</range>
 												<soundCast>Bow_Large</soundCast>
-												<indirectFirePenalty>0.3</indirectFirePenalty>
 											</li>
 										</value>
 									</li>
@@ -835,9 +831,8 @@
 												<hasStandardCommand>true</hasStandardCommand>
 												<defaultProjectile>Projectile_StreamlinedArrow_Steel</defaultProjectile>
 												<warmupTime>1.5</warmupTime>
-												<range>29.9</range>
+												<range>37</range>
 												<soundCast>VWE_Bow_Compound</soundCast>
-												<indirectFirePenalty>0.4</indirectFirePenalty>
 											</li>
 										</value>
 									</li>
