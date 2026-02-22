@@ -95,7 +95,6 @@
 					<xpath>Defs/WeaponTraitDef[defName="VWE_FireSelector"]/statFactors</xpath>
 					<value>
 						<SightsEfficiency>1.30</SightsEfficiency>
-						<SwayFactor>0.85</SwayFactor>
 					</value>
 				</li>
 				<li Class="PatchOperationAttributeSet">
@@ -112,7 +111,7 @@
 					</value>
 				</li>
 
-				<!-- VWE_Akimbo: Remove all Accuracy, add CE penalty stats -->
+				<!-- VWE_Akimbo: Remove all Accuracy, add CE penalty stats, convert to CustomWeaponTraitDef -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]/statFactors/AccuracyTouch</xpath>
 				</li>
@@ -133,6 +132,17 @@
 						<CE_RangedWeapon_RecoilMultiplier>1.5</CE_RangedWeapon_RecoilMultiplier>
 						<BurstShotCount>2</BurstShotCount>
 						<TicksBetweenBurstShots>0.5</TicksBetweenBurstShots>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]</xpath>
+					<value>
+						<magazineCapacityFactor>2.0</magazineCapacityFactor>
 					</value>
 				</li>
 
@@ -406,7 +416,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_SnakeShotLoads"]/statFactors</xpath>
 					<value>
-						<ShotSpread>0.8</ShotSpread>
+						<ShotSpread>1.3</ShotSpread>
 					</value>
 				</li>
 				<li Class="PatchOperationRemove">
@@ -425,14 +435,16 @@
 				<!-- BOW TRAITS (WeaponTraitDefs_Bow.xml) -->
 				<!-- ============================================== -->
 
-				<!-- VWE_PitchSoakedTips: Convert damageDefOverride to extraDamages -->
+				<!-- VWE_PitchSoakedTips: Convert damageDefOverride to extraDamages.
+				     No <chance> needed — Flame_Secondary_Incendiary DamageDef has built-in
+				     30% ignite curve via igniteChanceByTargetFlammability. -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_PitchSoakedTips"]/damageDefOverride</xpath>
 					<value>
 						<extraDamages>
 							<li>
 								<def>Flame_Secondary_Incendiary</def>
-								<amount>3</amount>
+								<amount>2</amount>
 							</li>
 						</extraDamages>
 					</value>
@@ -463,7 +475,7 @@
 					</value>
 				</li>
 
-				<!-- VWE_TwinNock: Remove all Accuracy, add CE spread/sway penalties -->
+				<!-- VWE_TwinNock: Remove all Accuracy, add CE spread/sway penalties, convert to CustomWeaponTraitDef -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]/statFactors/AccuracyTouch</xpath>
 				</li>
@@ -482,6 +494,17 @@
 						<ShotSpread>1.4</ShotSpread>
 						<SwayFactor>1.3</SwayFactor>
 						<BurstShotCount>2</BurstShotCount>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]</xpath>
+					<value>
+						<magazineCapacityFactor>2.0</magazineCapacityFactor>
 					</value>
 				</li>
 
@@ -704,7 +727,7 @@
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/WeaponTraitDef[defName="VWE_ThumpRetrofit"]/statOffsets</xpath>
 							<value>
-								<RangedWeapon_ArmorPenetrationMultiplier>0.2</RangedWeapon_ArmorPenetrationMultiplier>
+								<RangedWeapon_ArmorPenetrationMultiplier>0.15</RangedWeapon_ArmorPenetrationMultiplier>
 							</value>
 						</li>
 						<li Class="PatchOperationAttributeSet">
@@ -745,7 +768,7 @@
 				</li>
 
 				<!-- VWE_HighAngleDraw (VFE Medieval 2) -->
-				<!-- CE ballistic arcs replace VEF indirect fire. Roof check lost (acceptable) -->
+				<!-- CE indirect fire: lob arrows over walls, any roof blocks -->
 				<li Class="PatchOperationSequence">
 					<success>Always</success>
 					<operations>
@@ -760,6 +783,7 @@
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/WeaponTraitDef[defName="VWE_HighAngleDraw"]</xpath>
 							<value>
+								<allowIndirectFire>true</allowIndirectFire>
 								<verbsOverrideCE>
 									<li Class="CombatExtended.VerbPropertiesCE">
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -768,6 +792,7 @@
 										<warmupTime>1.35</warmupTime>
 										<range>22.9</range>
 										<soundCast>Bow_Small</soundCast>
+										<indirectFirePenalty>0.5</indirectFirePenalty>
 									</li>
 								</verbsOverrideCE>
 								<verbsOverridesCE>
@@ -781,6 +806,7 @@
 												<warmupTime>1.5</warmupTime>
 												<range>29.9</range>
 												<soundCast>VWE_Shot_Crossbow</soundCast>
+												<indirectFirePenalty>0.4</indirectFirePenalty>
 											</li>
 										</value>
 									</li>
@@ -794,6 +820,7 @@
 												<warmupTime>2.5</warmupTime>
 												<range>36.9</range>
 												<soundCast>Bow_Large</soundCast>
+												<indirectFirePenalty>0.3</indirectFirePenalty>
 											</li>
 										</value>
 									</li>
@@ -807,6 +834,7 @@
 												<warmupTime>1.5</warmupTime>
 												<range>29.9</range>
 												<soundCast>VWE_Bow_Compound</soundCast>
+												<indirectFirePenalty>0.4</indirectFirePenalty>
 											</li>
 										</value>
 									</li>
