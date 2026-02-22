@@ -40,6 +40,7 @@ public class Verb_LaunchProjectileCE : Verb
     protected int multiBarrelIndex;
 
     private float shotSpeed = -1;
+    private bool? _hasTraitIndirectFire;
 
     private float rotationDegrees = 0f;
     private float angleRadians = 0f;
@@ -577,6 +578,32 @@ public class Verb_LaunchProjectileCE : Verb
         multiBarrelIndex++;
         return multiBarrelExt?.GetOffsetFor(multiBarrelIndex).RotatedBy(shotRotation) ?? Vector2.zero;
     }
+    /// <summary>
+    /// Whether the weapon has a trait that allows indirect fire (high-arc trajectory over walls).
+    /// Cached on first access — traits don't change mid-combat.
+    /// </summary>
+    protected bool HasTraitIndirectFire
+    {
+        get
+        {
+            if (_hasTraitIndirectFire is bool cached)
+                return cached;
+            _hasTraitIndirectFire = false;
+            if (EquipmentSource?.TryGetComp(out CompUniqueWeapon comp) ?? false)
+            {
+                foreach (WeaponTraitDef trait in comp.TraitsListForReading)
+                {
+                    if (trait is CustomWeaponTraitDef { allowIndirectFire: true })
+                    {
+                        _hasTraitIndirectFire = true;
+                        break;
+                    }
+                }
+            }
+            return _hasTraitIndirectFire.Value;
+        }
+    }
+
     protected float ShotAngle(Vector3 targetPos)
     {
         return ShotAngle(caster.TrueCenter().WithY(ShotHeight), targetPos);
@@ -589,7 +616,7 @@ public class Verb_LaunchProjectileCE : Verb
     /// <returns>angle in radians</returns>
     protected virtual float ShotAngle(Vector3 source, Vector3 targetPos)
     {
-        return projectilePropsCE.TrajectoryWorker.ShotAngle(projectilePropsCE, source, targetPos, ShotSpeed);
+        return projectilePropsCE.TrajectoryWorker.ShotAngle(projectilePropsCE, source, targetPos, ShotSpeed, HasTraitIndirectFire);
     }
     protected float ShotRotation(Vector3 targetPos)
     {
@@ -676,6 +703,16 @@ public class Verb_LaunchProjectileCE : Verb
         report.cover = cover;
         report.smokeDensity = ignoreMalusesFlag ? 0 : smokeDensity;
         report.roofed = roofed;
+
+        // Generic indirect fire penalty: any weapon with indirectFirePenalty > 0 and no LOS
+        if (VerbPropsCE.indirectFirePenalty > 0
+            && !GenSight.LineOfSight(caster.Position, targetCell, caster.Map, true))
+        {
+            report.indirectFireShift = VerbPropsCE.indirectFirePenalty * report.shotDist;
+            report.weatherShift = 0f;
+            report.lightingShift = 0f;
+        }
+
         return report;
     }
 
@@ -884,11 +921,20 @@ public class Verb_LaunchProjectileCE : Verb
             }
             return true;
         }
-        // Check thick roofs
+        // Check thick roofs (mortars)
         if (Projectile.projectile.flyOverhead)
         {
             RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
             if (roofDef != null && roofDef.isThickRoof)
+            {
+                report = "CE_BlockedRoof".Translate();
+                return false;
+            }
+        }
+        // Trait indirect fire: any roof blocks, not just thick
+        else if (HasTraitIndirectFire)
+        {
+            if (caster.Map.roofGrid.RoofAt(targ.Cell) != null)
             {
                 report = "CE_BlockedRoof".Translate();
                 return false;
@@ -1158,6 +1204,10 @@ public class Verb_LaunchProjectileCE : Verb
                     {
                         projectile.traitExplosion = customTrait.explosionOverride;
                     }
+                    if (trait is CustomWeaponTraitDef { allowIndirectFire: true })
+                    {
+                        projectile.forceIndirectFireArc = true;
+                    }
                 }
             }
 
@@ -1355,7 +1405,7 @@ public class Verb_LaunchProjectileCE : Verb
             return false;
         }
         //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
-        if (Projectile.projectile.flyOverhead)
+        if (Projectile.projectile.flyOverhead || HasTraitIndirectFire)
         {
             resultingLine = new ShootLine(root, targetPos.ToIntVec3());
             return true;

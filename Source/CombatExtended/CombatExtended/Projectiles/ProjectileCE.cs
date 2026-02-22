@@ -72,6 +72,9 @@ public abstract class ProjectileCE : ThingWithComps
     // Per-instance explosion override from weapon traits, set by Verb_LaunchProjectileCE
     public TraitExplosionDef traitExplosion;
 
+    // Per-instance indirect fire arc override from weapon traits
+    public bool forceIndirectFireArc;
+
     public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
 
     public Thing intendedTargetThing
@@ -1313,7 +1316,7 @@ public abstract class ProjectileCE : ThingWithComps
             DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * dangerFactor);
         }
         //If a flyoverhead ignore roof projectile is descending, enable roof check.
-        if (ignoreRoof && def.projectile.flyOverhead && shotAngle < 0)
+        if (ignoreRoof && (def.projectile.flyOverhead || forceIndirectFireArc) && shotAngle < 0)
         {
             ignoreRoof = false;
         }

@@ -34,6 +34,9 @@ public class CustomWeaponTraitDef : WeaponTraitDef
     // Override melee damage type
     public DamageDef meleeDamageOverride;
 
+    // Allow indirect fire (lob over walls, high-arc trajectory like mortars)
+    public bool allowIndirectFire;
+
     public override IEnumerable<string> ConfigErrors()
     {
         foreach (string error in base.ConfigErrors())
