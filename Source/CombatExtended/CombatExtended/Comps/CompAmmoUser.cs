@@ -26,6 +26,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     public Building_Turret turret;         // Cross-linked from CE turret
 
     internal static Type rgStance = null;       // RunAndGun compatibility, set in relevent patch if needed
+    internal bool draggingAmmoSlider = false;
     #endregion
 
     #region Properties

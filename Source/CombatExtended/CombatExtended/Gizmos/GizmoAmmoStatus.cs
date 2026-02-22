@@ -44,11 +44,10 @@ public class GizmoAmmoStatus : Gizmo_Slider
         }
     }
 
-    private static bool draggingBar = false;
     public override bool DraggingBar
     {
-        get => draggingBar;
-        set => draggingBar = value;
+        get => compAmmo.draggingAmmoSlider;
+        set => compAmmo.draggingAmmoSlider = value;
     }
 
     public override string GetTooltip()
