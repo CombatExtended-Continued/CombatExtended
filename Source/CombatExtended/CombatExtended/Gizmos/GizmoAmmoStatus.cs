@@ -22,7 +22,7 @@ public class GizmoAmmoStatus : Gizmo_Slider
         set => compAmmo.TryReloadOn = Mathf.FloorToInt(value * compAmmo.MagSize);
     }
 
-    public override bool IsDraggable => compAmmo.OpportunisticReloadActive;
+    public override bool IsDraggable => compAmmo.IsOpportunisticReloadActive;
 
     public override float ValuePercent => (float)compAmmo.CurMagCount / compAmmo.MagSize;
 

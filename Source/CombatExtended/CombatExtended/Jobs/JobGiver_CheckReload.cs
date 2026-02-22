@@ -115,7 +115,7 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
         tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>();
         if (pawn.Drafted)
         {
-            if (Controller.settings.OpportunisticReloadMode == OpportunisticReloadMode.Off)
+            if (!tmpComp.IsOpportunisticReloadActive)
             {
                 return false;
             }
