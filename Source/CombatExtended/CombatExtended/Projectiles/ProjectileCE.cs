@@ -75,6 +75,9 @@ public abstract class ProjectileCE : ThingWithComps
     // Per-instance indirect fire arc override from weapon traits
     public bool forceIndirectFireArc;
 
+    // Per-instance homing acceleration from weapon traits (cells/s/s)
+    public float homingAcceleration;
+
     public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
 
     public Thing intendedTargetThing
@@ -399,7 +402,7 @@ public abstract class ProjectileCE : ThingWithComps
         Scribe_Values.Look(ref fuelTicks, "fuelTicks");
         Scribe_Values.Look(ref velocity, "velocity");
         Scribe_Values.Look(ref initialSpeed, "initialSpeed");
-
+        Scribe_Values.Look(ref homingAcceleration, "homingAcceleration");
 
         //To fix landed grenades sl problem
         Scribe_Values.Look(ref exactPosition, "exactPosition");
@@ -414,6 +417,10 @@ public abstract class ProjectileCE : ThingWithComps
 
             GravityPerHeight = this.Props.GravityPerHeight;
             GravityPerWidth = this.Props.GravityPerWidth;
+            if (homingAcceleration > 0f)
+            {
+                forcedTrajectoryWorker = HomingBulletTrajectoryWorker.Instance;
+            }
         }
     }
     #endregion

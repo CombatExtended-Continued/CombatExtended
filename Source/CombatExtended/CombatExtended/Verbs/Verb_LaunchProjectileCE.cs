@@ -1208,6 +1208,11 @@ public class Verb_LaunchProjectileCE : Verb
                     {
                         projectile.forceIndirectFireArc = true;
                     }
+                    if (trait is CustomWeaponTraitDef { homingAcceleration: > 0f } homingTrait)
+                    {
+                        projectile.homingAcceleration = homingTrait.homingAcceleration;
+                        projectile.forcedTrajectoryWorker = HomingBulletTrajectoryWorker.Instance;
+                    }
                 }
             }
 

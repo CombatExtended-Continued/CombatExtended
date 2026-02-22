@@ -187,13 +187,16 @@
 				<!-- CHARGE WEAPONS TRAITS (WeaponTraitDefs_ChargeWeapons.xml) -->
 				<!-- ============================================== -->
 
-				<!-- VWE_VectorCompensator: Homing projectile lost, compensate with accuracy -->
+				<!-- VWE_VectorCompensator: Homing "smart bullet" via HomingBulletTrajectoryWorker -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_VectorCompensator"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/WeaponTraitDef[defName="VWE_VectorCompensator"]/statFactors</xpath>
+					<xpath>Defs/WeaponTraitDef[defName="VWE_VectorCompensator"]</xpath>
 					<value>
-						<ShotSpread>0.1</ShotSpread>
-						<SwayFactor>0.1</SwayFactor>
-						<SightsEfficiency>1.5</SightsEfficiency>
+						<homingAcceleration>50</homingAcceleration>
 					</value>
 				</li>
 				<li Class="PatchOperationRemove">
@@ -202,7 +205,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_VectorCompensator"]/description</xpath>
 					<value>
-						<description>The barrel is lined with micro-magnetic coils that adjust the projectile's trajectory in mid-air. This "smart bullet" system significantly improves accuracy, but requires lighter, smaller projectiles to function. (CE: Homing disabled, accuracy greatly improved instead)</description>
+						<description>The barrel is lined with micro-magnetic coils that adjust the projectile's trajectory in mid-air. This "smart bullet" system guides projectiles toward their target after an initial scatter phase, but requires lighter, smaller projectiles to function.</description>
 					</value>
 				</li>
 
