@@ -12,9 +12,9 @@ public class Harmony_RenderNodeSetup_ProcessApparel
     {
         foreach ((PawnRenderNode node, PawnRenderNode parent) in input)
         {
-            if (ap?.def.HasModExtension<ApparelDefExtension>() ?? false)
+            var ext = ap?.def.GetModExtension<ApparelDefExtension>();
+            if (ext != null)
             {
-                var ext = ap.def.GetModExtension<ApparelDefExtension>();
                 if (ext.isBackpack)
                 {
                     if (node.Props.Worker is PawnRenderNodeWorker_Apparel_Body)
