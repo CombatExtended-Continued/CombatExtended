@@ -166,7 +166,7 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
             int magazineSize = tmpComp.MagSize;
 
             // Is the gun loaded with ammo not in a Loadout/HoldTracker?
-            if (tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
+            if (!pawn.Drafted && tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
             {
                 // Do we have ammo in the inventory that the gun uses which satisfies requirements? (expensive)
                 AmmoDef matchAmmo = tmpComp.Props.ammoSet.ammoTypes
