@@ -159,6 +159,10 @@ public class JobDriver_Reload : JobDriver
         // choose ammo to be loaded and set failstate for no ammo in inventory
         if (compReloader.UseAmmo)
         {
+            //choose next ammo once before do anything, so that next ammo props are known when reload timer starts
+            compReloader.TryFindAmmoInInventory(out initAmmo);
+
+            //fail if ammo disappears during reload timer
             this.FailOn(() => !compReloader.TryFindAmmoInInventory(out initAmmo));
         }
 
