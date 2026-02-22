@@ -3,19 +3,19 @@
 
 	<!-- Remove refuelable property -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/comps/li[@Class = "VFEPirates.CompProperties_Fueled"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]/comps/li[@Class="VFEPirates.CompProperties_Fueled"]</xpath>
 	</Operation>
 
 	<!-- Replace vanilla thingClass -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]</xpath>
 		<value>
 			<thingCategories/>
 		</value>
@@ -36,7 +36,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>0.5</turretBurstCooldownTime>
 		</value>
@@ -44,14 +44,14 @@
 
 	<!-- Make turrets taller -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]</xpath>
 		<value>
 			<fillPercent>0.95</fillPercent>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/fillPercent</xpath>
+		<xpath>Defs/ThingDef[@Name="VFEP_CrashedShip"]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.95</fillPercent>
 		</value>
@@ -98,7 +98,7 @@
 
 	<!-- Make the crashed ships don't destroy each other upon crashing -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]</xpath>
+		<xpath>Defs/ThingDef[@Name="VFEP_CrashedShip"]</xpath>
 		<value>
 			<damageMultipliers>
 				<li>
@@ -110,49 +110,49 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[@Name="VFEP_CrashedShip"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>0.99</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretGunDef</xpath>
+		<xpath>Defs/ThingDef[@Name="VFEP_CrashedShip"]/building/turretGunDef</xpath>
 		<value>
 			<turretGunDef>VFEP_GauntletChargeCanon_CE</turretGunDef>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[@Name="VFEP_CrashedShip"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>0.5</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building</xpath>
+		<xpath>Defs/ThingDef[@Name="VFEP_CrashedShip"]/building</xpath>
 		<value>
 			<turretBurstWarmupTime>2.3</turretBurstWarmupTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/damageAmountBase</xpath>
+		<xpath>Defs/ThingDef[defName="VFEP_Bullet_GauntletChargeCanon"]/projectile/damageAmountBase</xpath>
 		<value>
 			<damageAmountBase>20</damageAmountBase>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/armorPenetrationBase</xpath>
+		<xpath>Defs/ThingDef[defName="VFEP_Bullet_GauntletChargeCanon"]/projectile/armorPenetrationBase</xpath>
 		<value>
 			<armorPenetrationBase>25</armorPenetrationBase>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/speed</xpath>
+		<xpath>Defs/ThingDef[defName="VFEP_Bullet_GauntletChargeCanon"]/projectile/speed</xpath>
 		<value>
 			<speed>144</speed>
 		</value>
