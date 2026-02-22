@@ -186,8 +186,9 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
             // Is the gun low on ammo?
             if (tmpComp.CurMagCount < magazineSize)
             {
+                int requiredCount = pawn.Drafted ? 1 : magazineSize - tmpComp.CurMagCount;
                 // Do we have enough ammo in the inventory to top it off?
-                if (!tmpComp.UseAmmo || inventory.AmmoCountOfDef(ammoType) >= (magazineSize - tmpComp.CurMagCount))
+                if (!tmpComp.UseAmmo || inventory.AmmoCountOfDef(ammoType) >= requiredCount)
                 {
                     reloadWeapon = gun;
                     reloadAmmo = ammoType;
