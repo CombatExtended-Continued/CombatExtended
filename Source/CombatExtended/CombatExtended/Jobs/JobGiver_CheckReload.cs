@@ -115,11 +115,11 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
         tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>();
         if (pawn.Drafted)
         {
-            if (!tmpComp.IsOpportunisticReloadActive)
+            if (tmpComp == null)
             {
                 return false;
             }
-            if (tmpComp == null)
+            if (!tmpComp.IsOpportunisticReloadActive)
             {
                 return false;
             }
