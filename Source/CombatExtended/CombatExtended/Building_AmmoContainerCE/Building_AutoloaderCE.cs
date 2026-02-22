@@ -355,9 +355,14 @@ public class Building_AutoloaderCE : Building
     {
         foreach (Thing building in TurretsToReload())
         {
-            if (building is Building_TurretGunCE turret && (turret.GetAmmo().EmptyMagazine || turret.currentTargetInt == LocalTargetInfo.Invalid) && StartReload(turret.GetAmmo()))
+            if (building is Building_TurretGunCE turret)
             {
-                return true;
+                var ammo = turret.GetAmmo();
+                var reloadOn = ammo.IsOpportunisticReloadActive ? ammo.TryReloadOn : 0;
+                if (ammo.EmptyMagazine || (ammo.CurMagCount <= reloadOn && turret.currentTargetInt == LocalTargetInfo.Invalid) && StartReload(ammo))
+                {
+                    return true;
+                }
             }
         }
         return false;
