@@ -46,7 +46,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
     {
         get
         {
-            return CompFireModes != null ? ShotsPerBurstFor(CompFireModes.CurrentFireMode) : VerbPropsCE.burstShotCount;
+            return ShotsPerBurstFor(CompFireModes?.CurrentFireMode ?? FireMode.AutoFire);
         }
     }
 

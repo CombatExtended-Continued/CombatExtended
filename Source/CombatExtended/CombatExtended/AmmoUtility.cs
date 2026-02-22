@@ -8,7 +8,7 @@ public static class AmmoUtility
     /// <summary>
     /// Multiplier used to scale the armor penetration of a given projectile's explosion
     /// </summary>
-    private const float ExplosiveArmorPenetrationMultiplier = 0.4f;
+    internal const float ExplosiveArmorPenetrationMultiplier = 0.4f;
 
     /// <summary>
     ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for

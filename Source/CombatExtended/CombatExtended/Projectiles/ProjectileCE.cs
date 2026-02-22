@@ -1532,6 +1532,10 @@ public abstract class ProjectileCE : ThingWithComps
                     ? traitExplosionDamageAmount
                     : Mathf.FloorToInt(DamageAmount);
 
+                float explosionAP = hasTraitExplosion
+                    ? explosionDamageAmt * AmmoUtility.ExplosiveArmorPenetrationMultiplier
+                    : def.projectile.GetExplosionArmorPenetration();
+
                 GenExplosionCE.DoExplosion(
                     explodePos.ToIntVec3(),
                     Map,
@@ -1539,7 +1543,7 @@ public abstract class ProjectileCE : ThingWithComps
                     explosionDamage,
                     launcher,
                     explosionDamageAmt,
-                    def.projectile.GetExplosionArmorPenetration(),
+                    explosionAP,
                     def.projectile.soundExplode,
                     equipmentDef,
                     def,

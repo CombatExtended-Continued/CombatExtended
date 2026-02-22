@@ -12,7 +12,6 @@ namespace CombatExtended.HarmonyCE
         {
             internal static void Postfix(CompUniqueWeapon __instance, bool fromSave)
             {
-                bool verbOverrideApplied = false;
                 foreach (WeaponTraitDef trait in __instance.traits)
                 {
                     if (trait is CustomWeaponTraitDef customTrait)
@@ -20,13 +19,19 @@ namespace CombatExtended.HarmonyCE
                         if (customTrait.underBarrelProps != null)
                         {
                             CompUnderBarrel compUnderBarrel = __instance.parent.TryGetComp<CompUnderBarrel>();
-                            compUnderBarrel.props = customTrait.underBarrelProps;
+                            if (compUnderBarrel != null)
+                            {
+                                compUnderBarrel.props = customTrait.underBarrelProps;
+                            }
+                            else
+                            {
+                                Log.Warning($"[CE] Trait {customTrait.defName} has underBarrelProps but {__instance.parent.def.defName} lacks CompUnderBarrel");
+                            }
                         }
 
-                        // First trait with a verb override wins
-                        if (!verbOverrideApplied)
+                        if (ApplyVerbOverride(__instance, customTrait))
                         {
-                            verbOverrideApplied = ApplyVerbOverride(__instance, customTrait);
+                            break;
                         }
                     }
                 }
