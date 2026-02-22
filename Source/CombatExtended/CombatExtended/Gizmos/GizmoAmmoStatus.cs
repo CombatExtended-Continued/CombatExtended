@@ -32,14 +32,7 @@ public class GizmoAmmoStatus : Gizmo_Slider
         {
             StringBuilder sb = new StringBuilder(prefix);
             sb.Append(compAmmo.CurrentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.CurrentAmmo.ammoClass.LabelCap);
-            if (Find.Selector.SelectedPawns.Count > 1)
-            {
-                var holder = compAmmo?.Holder;
-                if (holder != null)
-                {
-                    sb.AppendInNewLine(holder.LabelShort);
-                }
-            }
+
             return sb.ToString();
         }
     }
@@ -70,9 +63,23 @@ public class GizmoAmmoStatus : Gizmo_Slider
     }
     public override void DrawHeader(Rect rect, ref bool mouseOverElement)
     {
-
         Text.Font = GameFont.Tiny;
-        base.DrawHeader(rect, ref mouseOverElement);
+        if (Find.Selector.SelectedObjects.Count > 1)
+        {
+            Thing holder = compAmmo?.Holder as Thing ?? compAmmo?.turret;
+            if (holder != null && !Mouse.IsOver(rect))
+            {
+                Widgets.Label(rect, holder.LabelShort);
+            }
+            else
+            {
+                base.DrawHeader(rect, ref mouseOverElement);
+            }
+        }
+        else
+        {
+            base.DrawHeader(rect, ref mouseOverElement);
+        }
         Text.Font = GameFont.Small;
     }
 
