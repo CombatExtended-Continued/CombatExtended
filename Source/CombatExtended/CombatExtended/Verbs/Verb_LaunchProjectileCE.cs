@@ -247,7 +247,7 @@ public class Verb_LaunchProjectileCE : Verb
             return verbProps.targetParams;
         }
     }
-    
+
     public virtual bool ShouldSpawnAimingSound => true;
 
     #endregion
