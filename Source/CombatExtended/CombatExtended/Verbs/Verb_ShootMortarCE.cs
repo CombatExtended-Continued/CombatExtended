@@ -29,12 +29,12 @@ public class Verb_ShootMortarCE : Verb_ShootCE
     /// <summary>
     /// Wether the target is marked
     /// </summary>
-    private bool targetHasMarker = false;
+    protected bool targetHasMarker = false;
 
     // for global target only
     //        
-    private int startingTile;
-    private int destinationTile;
+    private PlanetTile startingTile;
+    private PlanetTile destinationTile;
     private int globalDistance;
     private Vector3 direction;
     private new int numShotsFired;

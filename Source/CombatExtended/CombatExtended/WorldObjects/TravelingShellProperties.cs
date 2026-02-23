@@ -23,6 +23,11 @@ public class TravelingShellProperties
     /// </summary>
     public string iconPath;
 
+    /// <summary>
+    /// Projectile arrive at the same height and same speed they're launched.
+    /// </summary>
+    public bool arrivedAtSameProps = false;
+
     public Type workerClass = typeof(WorldObjectDamageWorker);
     public WorldObjectDamageWorker Worker
     {
