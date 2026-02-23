@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-<!-- ================================= Heavy Turret ================================= -->
+<!-- ============= Heavy Turret ============= -->
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>BTP_HeavyTurret</defName>
@@ -13,18 +13,18 @@
 			<Mass>40</Mass>
 		</statBases>
 		<Properties>
-				<recoilAmount>1.45</recoilAmount>
-				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
-				<warmupTime>1.6</warmupTime>
-				<range>52</range>
-				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<burstShotCount>6</burstShotCount>
-				<soundCast>BTP_HeavyTurret_Sound</soundCast>
-				<soundCastTail>GunTail_Heavy</soundCastTail>
-				<muzzleFlashScale>12</muzzleFlashScale>
-				<recoilPattern>Mounted</recoilPattern>
+			<recoilAmount>1.45</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>52</range>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>BTP_HeavyTurret_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
 			<magazineSize>300</magazineSize>
@@ -66,7 +66,7 @@
 		</value>
 	</Operation>
 	
-		<!-- ================================= Hellfire Sentry ================================= -->
+	<!-- ============= Hellfire Sentry ============= -->
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>BTP_HellfireSentry</defName>
@@ -96,7 +96,7 @@
 		<AmmoUser>
 			<magazineSize>8</magazineSize>
 			<reloadTime>3.8</reloadTime>
-			<ammoSet>AmmoSet_BTP_132mmM13</ammoSet>
+			<ammoSet>AmmoSet_132mmM13</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<noSnapshot>true</noSnapshot>
@@ -126,7 +126,7 @@
 		</value>
 	</Operation>
 	
-	<!-- ================================= Missile Launcher ================================= -->
+	<!-- ============= Missile Launcher ============= -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>BTP_MissileLauncher</defName>
@@ -178,7 +178,7 @@
 		</value>
 	</Operation>
 	
-	<!-- ================================= PhalanxSentry ================================= -->
+	<!-- ============= PhalanxSentry ============= -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>BTP_PhalanxSentry</defName>
 		<statBases>
@@ -264,7 +264,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BTP_PhalanxSentry_Base"]/description</xpath>
 		<value>
-    <description>The Phalanx Sentry is an automated, rapid-fire gatling gun designed to intercept incoming threats by utilizing advanced radar and computer systems to track down and destroy targets. It can't be directly controlled, so beware of friendly fire.</description>
+    		<description>The Phalanx Sentry is an automated, rapid-fire gatling gun designed to intercept incoming threats by utilizing advanced radar and computer systems to track down and destroy targets. It can't be directly controlled, so beware of friendly fire.</description>
 		</value>
 	</Operation>
 	
@@ -279,7 +279,7 @@
             </value>
     </Operation>
 
-	<!-- ================================= Common ================================= -->
+	<!-- ============= Common ============= -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="BTP_HellfireSentry_Base" or
@@ -304,14 +304,14 @@
 			defName="BTP_HellfireSentry_Base" or
 			defName="BTP_HeavyTurret_Base" or
 			defName="BTP_MissileLauncher_Base"
-			]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
+			]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
 			defName="BTP_PhalanxSentry_Base" or
 			defName="BTP_HellfireSentry_Base"
-			]/statBases </xpath>
+			]/statBases</xpath>
 		<value>
 			<AimingAccuracy>1.0</AimingAccuracy>
 		</value>
@@ -321,7 +321,7 @@
 		<xpath>Defs/ThingDef[
 		defName="BTP_HeavyTurret_Base" or
 		defName="BTP_MissileLauncher_Base"
-		]/statBases </xpath>
+		]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.5</AimingAccuracy>
 		</value>
@@ -340,7 +340,7 @@
 			defName="BTP_MissileLauncher_Base" or
 			defName="BTP_HellfireSentry_Base" or
 			defName="BTP_HeavyTurret_Base"
-			]/fillPercent </xpath>
+			]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
 		</value>
