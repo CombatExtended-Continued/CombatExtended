@@ -584,6 +584,11 @@ public abstract class ProjectileCE : ThingWithComps
         }
         if (lbce != null)
         {
+            if (useSameHeight)
+            {
+                muzzle.y = destination.y;
+            }
+
             lbce.SpawnBeam(muzzle, destination);
             RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
             Destroy(DestroyMode.Vanish);
