@@ -17,8 +17,6 @@ public class TravelingShell : TravelingThing
     public ThingDef equipmentDef;
     public ThingDef shellDef;
     public Thing launcher;
-    public float arrivedShotHeight = 200f;
-    public float arrivedShotSpeed = 55f;
     private Texture2D expandingIcon;
     public override Texture2D ExpandingIcon
     {
@@ -147,20 +145,20 @@ public class TravelingShell : TravelingThing
         return shelled;
     }
 
-    protected virtual void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map)
+    protected virtual void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 200)
     {
-        Vector3 source = new Vector3(sourceCell.x, arrivedShotHeight, sourceCell.z);
+        Vector3 source = new Vector3(sourceCell.x, shotHeight, sourceCell.z);
         Vector3 targetPos = target.Cell.ToVector3Shifted();
 
         ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(shellDef);
         ProjectilePropertiesCE pprops = projectile.def.projectile as ProjectilePropertiesCE;
         float shotRotation = pprops.TrajectoryWorker.ShotRotation(pprops, source, targetPos);
-        float shotAngle = pprops.TrajectoryWorker.ShotAngle(pprops, source, targetPos, arrivedShotSpeed);
+        float shotAngle = pprops.TrajectoryWorker.ShotAngle(pprops, source, targetPos, shotSpeed);
 
         projectile.canTargetSelf = false;
         projectile.Position = sourceCell;
         projectile.SpawnSetup(map, false);
-        projectile.Launch(launcher, new Vector2(source.x, source.z), shotAngle, shotRotation, arrivedShotHeight, arrivedShotSpeed);
+        projectile.Launch(launcher, new Vector2(source.x, source.z), shotAngle, shotRotation, shotHeight, shotSpeed);
         //projectile.cameraShakingInit = Rand.Range(0f, 2f);
     }
 
