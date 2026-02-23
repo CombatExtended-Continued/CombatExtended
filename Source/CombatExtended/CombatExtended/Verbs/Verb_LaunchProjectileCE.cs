@@ -239,7 +239,7 @@ public class Verb_LaunchProjectileCE : Verb
     {
         get
         {
-            if (projectilePropsCE.targetParams != null)
+            if (projectilePropsCE?.targetParams != null)
             {
                 return projectilePropsCE.targetParams;
             }
