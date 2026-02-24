@@ -35,10 +35,11 @@ public static class Toils_CombatCE
                 return;
             }
             startTick = GenTicks.TicksGame;
-            var verbPropsCE = (compAmmo.parent as ThingWithComps)?.TryGetComp<CompEquippable>()?.PrimaryVerb?.verbProps as VerbPropertiesCE;
-            float reloadTime = verbPropsCE?.useEquipmentStatValues == true
-                ? compAmmo.parent.GetStatValue(CE_StatDefOf.ReloadTime)
-                : compAmmo.Props.reloadTime;
+            var reloadTime = compAmmo.Props.reloadTime;
+            if (CE_Utility.GetPrimaryVerbPropsCE(compAmmo.parent) is { useEquipmentStatValues: true })
+            {
+                reloadTime = compAmmo.parent.GetStatValue(CE_StatDefOf.ReloadTime);
+            }
             reloadingTime = Mathf.CeilToInt((reloadTime.SecondsToTicks()) * compAmmo.parent.GetStatValue(CE_StatDefOf.CE_RangedWeapon_ReloadFactor) / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
         });
         waitToil.tickAction = () =>

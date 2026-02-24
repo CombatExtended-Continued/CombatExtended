@@ -43,6 +43,19 @@ public static class CE_Utility
 
     #endregion
 
+    #region Verb Utilities
+
+    /// <summary>
+    /// Retrieves the VerbPropertiesCE from the primary verb of a weapon.
+    /// Used for non-verb locations that need to check verb-level flags like useEquipmentStatValues.
+    /// </summary>
+    public static VerbPropertiesCE GetPrimaryVerbPropsCE(Thing thing)
+    {
+        return (thing as ThingWithComps)?.TryGetComp<CompEquippable>()?.PrimaryVerb?.verbProps as VerbPropertiesCE;
+    }
+
+    #endregion
+
     #region Attachments
 
     /// <summary>

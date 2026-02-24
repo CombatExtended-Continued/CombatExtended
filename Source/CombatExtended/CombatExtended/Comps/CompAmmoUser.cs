@@ -82,10 +82,11 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         get
         {
-            var verbPropsCE = (parent as ThingWithComps)?.TryGetComp<CompEquippable>()?.PrimaryVerb?.verbProps as VerbPropertiesCE;
-            return verbPropsCE?.useEquipmentStatValues == true
-                ? (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride)
-                : (int)Props.AmmoGenPerMagOverride;
+            if (CE_Utility.GetPrimaryVerbPropsCE(parent) is { useEquipmentStatValues: true })
+            {
+                return (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride);
+            }
+            return (int)Props.AmmoGenPerMagOverride;
         }
     }
     public int CurMagCount
