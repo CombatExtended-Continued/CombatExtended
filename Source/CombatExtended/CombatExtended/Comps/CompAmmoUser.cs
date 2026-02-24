@@ -661,7 +661,10 @@ public class CompAmmoUser : CompRangedGizmoGiver
             }
             if (!Holder.IsColonist || !parent.def.IsAOEWeapon())
             {
-                TryPickupAmmo();
+                if (TryPickupAmmo())
+                {
+                    return;
+                }
             }
         }
         CompInventory?.SwitchToNextViableWeapon(!this.parent.def.weaponTags.Contains("NoSwitch"), !Holder.IsColonist, stopJob: false);
@@ -704,6 +707,11 @@ public class CompAmmoUser : CompRangedGizmoGiver
             if (CompInventory.CanFitInInventory(thing, out int count))
             {
                 Thing ammo = thing;
+                int maxAmmoToPickup = (MagSizeOverride > 0) ? MagSizeOverride * 4 : MagSize * 4;
+                if (count > maxAmmoToPickup)
+                {
+                    count = maxAmmoToPickup;
+                }
                 if (!ammo.Position.AdjacentTo8WayOrInside(Holder))
                 {
                     Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, ammo);
@@ -717,6 +725,10 @@ public class CompAmmoUser : CompRangedGizmoGiver
                 }
                 Job reload = TryMakeReloadJob();
                 Holder.jobs.jobQueue.EnqueueFirst(reload);
+                if (Holder.Drafted)
+                {
+                    Holder.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                }
                 return true;
             }
         }

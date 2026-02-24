@@ -3,25 +3,25 @@
 
 	<!--
 
-        Summary of how this works:
+		Summary of how this works:
 
-        ========= stats
-        <gunStats> are the verbprops that are gived to the patched def
-        Mass, Bulk, Spread and Sway values are just the other base stats for it. If you add the stat curves, or special gun specs in <specialGuns> they will be overriden with those specified in the curves/specialguns
+		========= stats
+		<gunStats> are the verbprops that are gived to the patched def
+		Mass, Bulk, Spread and Sway values are just the other base stats for it. If you add the stat curves, or special gun specs in <specialGuns> they will be overriden with those specified in the curves/specialguns
 
-        ========= matching
-        for a gun to be autopatched they need to match the def. Only one of the determiners are needed for the def to be patched. The determiners are:
-        - names. Just a list of names (labels) the guns can have
-            ** DiscardDesignations can be used to ignore shit like A1 **
-        - tags. If a gun has one of these tags the gun matches the preset.
-        - <DamageRange>, <ProjSpeedRange>, <RangeRange> and <WarmupRange>. If a gun has the projectile and verb properties values included in ALL of these ranges the gun matches the preset.
-        - special guns. If one of the special gun specs includes the name of the gun the gun matches the preset BUT their stats will be taken from the special gun spec
+		========= matching
+		for a gun to be autopatched they need to match the def. Only one of the determiners are needed for the def to be patched. The determiners are:
+		- names. Just a list of names (labels) the guns can have
+			** DiscardDesignations can be used to ignore shit like A1 **
+		- tags. If a gun has one of these tags the gun matches the preset.
+		- <DamageRange>, <ProjSpeedRange>, <RangeRange> and <WarmupRange>. If a gun has the projectile and verb properties values included in ALL of these ranges the gun matches the preset.
+		- special guns. If one of the special gun specs includes the name of the gun the gun matches the preset BUT their stats will be taken from the special gun spec
 
-        ======== special guns and caliber ranges
-        - special guns - description WiP, most of it is explained in special guns section in ========matching 
-        - caliber ranges. DOES NOT take a part in matching. All this does is it makes the gun's caliber the one specified if the damage AND speed ranges include BOTH the damage and speed
-        
-    -->
+		======== special guns and caliber ranges
+		- special guns - description WiP, most of it is explained in special guns section in ========matching 
+		- caliber ranges. DOES NOT take a part in matching. All this does is it makes the gun's caliber the one specified if the damage AND speed ranges include BOTH the damage and speed
+		
+	-->
 
 	<CombatExtended.GunPatcherPresetDef>
 		<defName>SMGs</defName>
@@ -94,9 +94,9 @@
 		</tags>
 
 		<!--
-             this basically makes matcher ignore stuff like "A1" if it's not separated (for example MP5A2)
-             DONT use this to determine guns with capital A-s in name (like AK74)
-         -->
+			 this basically makes matcher ignore stuff like "A1" if it's not separated (for example MP5A2)
+			 DONT use this to determine guns with capital A-s in name (like AK74)
+		 -->
 		<DiscardDesignations>true</DiscardDesignations>
 
 		<!-- Verb properties values determiners -->
