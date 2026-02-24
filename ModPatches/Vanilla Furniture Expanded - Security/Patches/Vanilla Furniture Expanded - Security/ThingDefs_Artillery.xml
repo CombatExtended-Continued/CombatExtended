@@ -2,15 +2,11 @@
 <Patch>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_Ballista"
-			]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_Ballista"]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
 	</Operation>
 	
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_AutomatedMortar"
-			]/comps/li[@Class="VEF.Buildings.CompProperties_Refuelable_DualFuel"] </xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_AutomatedMortar"]/comps/li[@Class="VEF.Buildings.CompProperties_Refuelable_DualFuel"] </xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -25,9 +21,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_Ballista"
-			]/fillPercent </xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_Ballista"]/fillPercent </xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
 		</value>
@@ -73,7 +67,6 @@
 	</Operation>
 
 	<!-- ========== Catapult - Base ========== -->
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFES_Turret_Catapult"]/building</xpath>
 		<value>
@@ -100,7 +93,6 @@
 	</Operation>
 
 	<!-- ========== Catapult - Weapon ========== -->
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFES_Artillery_Catapult"]/statBases</xpath>
 		<value>
@@ -255,8 +247,6 @@
 	</Operation>
 	
 	<!-- ========== Auto-mortar - Base ========== -->
-	
-	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFES_Turret_AutomatedMortar"]/thingClass</xpath>
 		<value>
@@ -310,7 +300,6 @@
 	</Operation>
 	
 	<!-- ========== Auto-mortar - Weapon ========== -->
-	
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="Gun_AutomatedMortar"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -376,4 +365,5 @@
 			</verbs>
 		</value>
 	</Operation>
+
 </Patch>
