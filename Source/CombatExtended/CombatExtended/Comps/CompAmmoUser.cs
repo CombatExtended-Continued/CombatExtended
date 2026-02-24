@@ -82,8 +82,10 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         get
         {
-            WeaponPlatform platform = parent as WeaponPlatform;
-            return (int)(platform?.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride) ?? Props.AmmoGenPerMagOverride);
+            var verbPropsCE = (parent as ThingWithComps)?.TryGetComp<CompEquippable>()?.PrimaryVerb?.verbProps as VerbPropertiesCE;
+            return verbPropsCE?.useEquipmentStatValues == true
+                ? (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride)
+                : (int)Props.AmmoGenPerMagOverride;
         }
     }
     public int CurMagCount

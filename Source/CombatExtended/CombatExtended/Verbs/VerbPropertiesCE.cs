@@ -20,4 +20,5 @@ public class VerbPropertiesCE : VerbProperties
     public int minRangeInCover = -1;
     public float minCoverHeight = 0.35f;
     public List<ThingDef> disallowedProjectileDefs = new List<ThingDef>();
+    public bool useEquipmentStatValues = false;
 }
