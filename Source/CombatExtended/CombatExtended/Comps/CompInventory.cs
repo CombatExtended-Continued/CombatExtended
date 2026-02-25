@@ -121,7 +121,7 @@ public class CompInventory : ThingComp
     {
         get
         {
-            return MassBulkUtility.DodgeChanceFactor(currentBulk + currentWornBulkCached, capacityBulk) - (1 -  MassBulkUtility.DodgeChanceFactor(currentWornBulk, CE_StatDefOf.CarryBulk.defaultBaseValue));
+            return MassBulkUtility.DodgeChanceFactor(currentBulk + currentWornBulkCached, capacityBulk) - (1 - MassBulkUtility.DodgeChanceFactor(currentWornBulk, CE_StatDefOf.CarryBulk.defaultBaseValue));
         }
     }
     public float workSpeedFactor
