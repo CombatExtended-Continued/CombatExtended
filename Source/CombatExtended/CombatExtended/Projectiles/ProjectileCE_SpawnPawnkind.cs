@@ -57,7 +57,8 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
             }
         }
         // Fallback to launcher's faction if no configured faction or faction not found
-        faction ??= this.launcher?.Faction;
+
+
         if (alwaysHostile)
         {
             Faction bestCandidate = null;
@@ -87,6 +88,8 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
                 faction = bestCandidate;
             }
         }
+
+        faction ??= this.launcher?.Faction;
 
         PlanetTile? tile = null;
         float? fixedBiologicalAge = props.fixedBiologicalAge;
