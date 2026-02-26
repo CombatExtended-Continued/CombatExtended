@@ -76,6 +76,7 @@ ABF: Utility Synstructs   |
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
+Advanced Mechanoids |
 All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
@@ -216,6 +217,7 @@ Epochs - Pyrinth    |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auraeyl  |
 Erin's Auronya   |
 Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
@@ -269,6 +271,7 @@ Gas Traps And Shells	|
 Gestalt Engine  |
 Giddy-Up 2    |
 Girls' Frontline Apparel Pack	|
+Girls' Frontline PROJECT NEURAL CLOUD   |
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Styles - AR Team	|
 Girls' Frontline Styles - DEFY Team	|
@@ -355,6 +358,7 @@ Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
 Mechadroids |
 Mechanized Armor Set    |
+Mechanitor Balance Tweaks      |
 Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
@@ -420,6 +424,7 @@ Neclose Race	|
 Nephilim Xenotype Reborn    |
 New Mech: Mini-Miner    |
 Ni'Hal	|
+Nikke The Pilgrim   |
 Nukes   |
 Nyaron Race |
 Nomad Scavengers    |
@@ -571,6 +576,7 @@ Supernatural Weapons    |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
+Tiered Mechs    |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
 The Profaned	|
@@ -614,6 +620,7 @@ Vanilla Arsenal |
 Vanilla Base Generation Expanded    |
 Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
+Vanilla Events Expanded   |
 Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
 Vanilla Factions Expanded - Deserters  |
