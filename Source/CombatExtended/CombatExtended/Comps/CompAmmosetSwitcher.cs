@@ -105,6 +105,8 @@ public class CompUnderBarrel : CompRangedGizmoGiver
 
     public int mainGunMagCount;
 
+    public int previousTryReloadOn = 0;
+
     public AmmoDef UnderBarrelLoadedAmmo;
 
     public int UnderBarrelMagCount;
@@ -130,6 +132,13 @@ public class CompUnderBarrel : CompRangedGizmoGiver
             CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo ?? Props.propsUnderBarrel.ammoSet.ammoTypes[0].ammo; //same as AmmoUser's init
             CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
         }
+
+
+        var currentTryReloadOn = CompAmmo.TryReloadOn;
+        CompAmmo.TryReloadOn = previousTryReloadOn;
+        previousTryReloadOn = currentTryReloadOn;
+
+
         CompAmmo.props = this.Props.propsUnderBarrel;
 
         CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
@@ -176,6 +185,12 @@ public class CompUnderBarrel : CompRangedGizmoGiver
             CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
         }
         CompAmmo.props = CompPropsAmmo;
+
+
+        var currentTryReloadOn = CompAmmo.TryReloadOn;
+        CompAmmo.TryReloadOn = previousTryReloadOn;
+        previousTryReloadOn = currentTryReloadOn;
+
 
         CompEq.PrimaryVerb.verbProps = DefVerbProps.MemberwiseClone();
         _cachedUnderbarrelFireMode = CompFireModes.CurrentFireMode;
@@ -287,6 +302,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         Scribe_Values.Look(ref _cachedUnderbarrelFireMode, "cachedUnderbarrelFireMode");
         Scribe_Values.Look(ref _cachedBarrelAimMode, "cachedBarrelAimMode");
         Scribe_Values.Look(ref _cachedUnderbarrelAimMode, "cachedUnderbarrelAimMode");
+        Scribe_Values.Look(ref previousTryReloadOn, nameof(previousTryReloadOn));
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
             if (usingUnderBarrel)
