@@ -169,59 +169,59 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<!-- focusing tome -->
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>Royalty</li>
-    </mods>
-    <match Class="PatchOperationSequence">
-      <operations>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/statBases</xpath>
-        <value>
-          <Bulk>2</Bulk>
-          <MeleeCounterParryBonus>0.14</MeleeCounterParryBonus>
-        </value>
-      </li>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/equippedStatOffsets</xpath>
-        <value>
-          <MeleeCritChance>0.23</MeleeCritChance>
-          <MeleeParryChance>0.14</MeleeParryChance>
-          <MeleeDodgeChance>0.07</MeleeDodgeChance>
-        </value>
-      </li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<MeleeCounterParryBonus>0.14</MeleeCounterParryBonus>
+				</value>
+			</li>
 
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/tools</xpath>
-        <value>
-          <tools>
-            <li Class="CombatExtended.ToolCE">
-              <label>spine</label>
-              <capacities>
-                <li>Blunt</li>
-              </capacities>
-              <power>3</power>
-              <cooldownTime>2.0</cooldownTime>
-              <armorPenetrationBlunt>1.0</armorPenetrationBlunt>
-            </li>
-          </tools>
-        </value>
-      </li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.23</MeleeCritChance>
+					<MeleeParryChance>0.14</MeleeParryChance>
+					<MeleeDodgeChance>0.07</MeleeDodgeChance>
+				</value>
+			</li>
 
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]</xpath>
-        <value>
-          <weaponTags>
-            <li>CE_OneHandedWeapon</li>
-          </weaponTags>
-        </value>
-      </li>
-      </operations>
-    </match>
-    
-  </Operation>
-  
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>spine</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>2.0</cooldownTime>
+							<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]</xpath>
+				<value>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
 
 </Patch>
