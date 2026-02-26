@@ -3,20 +3,20 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName = "RNTurret_SentryGun" or
-			defName = "RNTurret_SentrySMG" or
-			defName = "RNTurret_SentrySniper" or
-			defName = "RNTurret_SentryNLAR"
-			]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+			defName="RNTurret_SentryGun" or
+			defName="RNTurret_SentrySMG" or
+			defName="RNTurret_SentrySniper" or
+			defName="RNTurret_SentryNLAR"
+			]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName = "RNTurret_SentryGun" or
-			defName = "RNTurret_SentrySMG" or
-			defName = "RNTurret_SentrySniper" or
-			defName = "RNTurret_SSMTurret" or
-			defName = "RNTurret_SentryNLAR"
+			defName="RNTurret_SentryGun" or
+			defName="RNTurret_SentrySMG" or
+			defName="RNTurret_SentrySniper" or
+			defName="RNTurret_SSMTurret" or
+			defName="RNTurret_SentryNLAR"
 			]/thingClass </xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -25,9 +25,9 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName = "RNTurret_SentryGun" or
-			defName = "RNTurret_SentrySniper" or
-			defName = "RNTurret_SentryNLAR"
+			defName="RNTurret_SentryGun" or
+			defName="RNTurret_SentrySniper" or
+			defName="RNTurret_SentryNLAR"
 			]/fillPercent </xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
@@ -36,8 +36,8 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName = "RNTurret_SentryGun" or
-			defName = "RNTurret_SentryNLAR"
+			defName="RNTurret_SentryGun" or
+			defName="RNTurret_SentryNLAR"
 			]/statBases </xpath>
 		<value>
 			<AimingAccuracy>0.25</AimingAccuracy>
@@ -46,17 +46,17 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName = "RNTurret_SentryGun" or
-			defName = "RNTurret_SentrySMG" or
-			defName = "RNTurret_SentrySniper" or
-			defName = "RNTurret_SSMTurret" or
-			defName = "RNTurret_SentryNLAR"
+			defName="RNTurret_SentryGun" or
+			defName="RNTurret_SentrySMG" or
+			defName="RNTurret_SentrySniper" or
+			defName="RNTurret_SSMTurret" or
+			defName="RNTurret_SentryNLAR"
 			]/comps/li[@Class="CompProperties_Explosive"] </xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName = "RNTurret_SentrySniper"
+			defName="RNTurret_SentrySniper"
 			]/statBases/ShootingAccuracyTurret </xpath>
 		<value>
 			<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
@@ -66,7 +66,7 @@
 	<!-- ========== Sentry Gun ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "RNTurret_SentryGun"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="RNTurret_SentryGun"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -153,7 +153,7 @@
 	<!-- ========== Sniper Turret ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "RNTurret_SentrySniper"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="RNTurret_SentrySniper"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -201,7 +201,7 @@
 	<!-- ========== NL Turret ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "RNTurret_SentryNLAR"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="RNTurret_SentryNLAR"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -289,9 +289,9 @@
 	<!-- Glitter Tech Fix -->
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="RNArtillery_SSMTurret"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]</xpath>
+			<xpath>Defs/ThingDef[defName="RNArtillery_SSMTurret"]</xpath>
 			<value>
 				<statBases>
 					<SightsEfficiency>1</SightsEfficiency>
@@ -299,7 +299,7 @@
 			</value>
 		</nomatch>
 		<match Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]/statBases</xpath>
+			<xpath>Defs/ThingDef[defName="RNArtillery_SSMTurret"]/statBases</xpath>
 			<value>
 				<SightsEfficiency>1</SightsEfficiency>
 			</value>
@@ -307,7 +307,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]</xpath>
+		<xpath>Defs/ThingDef[defName="RNArtillery_SSMTurret"]</xpath>
 		<value>
 			<comps>
 				<li Class="CombatExtended.CompProperties_Charges">
@@ -328,14 +328,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="RNArtillery_SSMTurret"]/weaponTags</xpath>
 		<value>
 			<li>TurretGun</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]/verbs</xpath>
+		<xpath>Defs/ThingDef[defName="RNArtillery_SSMTurret"]/verbs</xpath>
 		<value>
 			<verbs>
 				<li Class="CombatExtended.VerbPropertiesCE">

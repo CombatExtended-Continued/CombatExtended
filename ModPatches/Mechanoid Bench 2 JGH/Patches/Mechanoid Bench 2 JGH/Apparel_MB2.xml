@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- ===== Mecha Power Armor ===== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor"]/statBases/MaxHitPoints</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor_MechanoidBench"]/statBases/MaxHitPoints</xpath>
 		<value>
 			<Bulk>100</Bulk>
 			<WornBulk>16</WornBulk>
@@ -11,7 +12,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor"]/statBases/Mass</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor_MechanoidBench"]/statBases/Mass</xpath>
 		<value>
 			<Mass>47</Mass>
 		</value>
@@ -29,22 +30,15 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor"]/costList</xpath>
-		<value>
-			<DevilstrandCloth>100</DevilstrandCloth>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor_MechanoidBench"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>22</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor_MechanoidBench"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>50</ArmorRating_Blunt>
 		</value>
@@ -59,23 +53,24 @@
 	</Operation>
 
 	<!-- == Increase Mecha Armor Cost == -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor"]/costList/Plasteel</xpath>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor_MechanoidBench"]</xpath>
 		<value>
-			<Plasteel>210</Plasteel>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor"]/costList/Uranium</xpath>
-		<value>
-			<Uranium>70</Uranium>
+			<costList Inherit="False">
+				<MechanoidBench_MechaComponent>12</MechanoidBench_MechaComponent>
+				<ComponentSpacer>6</ComponentSpacer>
+				<Plasteel>210</Plasteel>
+				<Chemfuel>40</Chemfuel>
+				<Uranium>70</Uranium>
+				<DevilstrandCloth>100</DevilstrandCloth>
+			</costList>
 		</value>
 	</Operation>
 
 	<!-- ===== Mecha Power Helmet ===== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/statBases/MaxHitPoints</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet_MechanoidBench"]/statBases/MaxHitPoints</xpath>
 		<value>
 			<Bulk>5</Bulk>
 			<WornBulk>1</WornBulk>
@@ -84,16 +79,16 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/statBases/Mass</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet_MechanoidBench"]/statBases/Mass</xpath>
 		<value>
 			<Mass>2.5</Mass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet_MechanoidBench"]/apparel/immuneToToxGasExposure</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/apparel</xpath>
+			<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet_MechanoidBench"]/apparel</xpath>
 			<value>
 				<immuneToToxGasExposure>true</immuneToToxGasExposure>
 			</value>
@@ -101,7 +96,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet_MechanoidBench"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<AimingAccuracy>0.20</AimingAccuracy>
@@ -111,23 +106,29 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
-
+	
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaArmor_MechanoidBench"]</xpath>
 		<value>
-			<DevilstrandCloth>40</DevilstrandCloth>
+			<costList Inherit="False">
+				<MechanoidBench_MechaComponent>6</MechanoidBench_MechaComponent>
+				<ComponentSpacer>1</ComponentSpacer>
+				<Plasteel>50</Plasteel>
+				<Chemfuel>20</Chemfuel>
+				<DevilstrandCloth>40</DevilstrandCloth>
+			</costList>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet_MechanoidBench"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>18</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet_MechanoidBench"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>38</ArmorRating_Blunt>
 		</value>
@@ -140,4 +141,5 @@
 			<li>StrappedHead</li>
 		</value>
 	</Operation>
+
 </Patch>

@@ -20,7 +20,7 @@ public class CompCIWSTarget_Skyfaller : CompCIWSTarget
             {
                 end = skyfaller.LeaveMapAfterTicks - end;
             }
-            return skyfaller.PredictPositions(end);
+            return skyfaller.PredictPositions();
         }
     }
 
