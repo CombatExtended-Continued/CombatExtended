@@ -74,7 +74,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFEM2_Gun_Flintlock"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName = "VFEM2_Gun_Flintlock"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -103,7 +103,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFEM2_Gun_Musket"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName = "VFEM2_Gun_Musket"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -384,38 +384,40 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFEM2_Gun_Flintlock</defName>
 		<statBases>
-			<WorkToMake>3500</WorkToMake>
+			<WorkToMake>2500</WorkToMake>
 			<Mass>1.25</Mass>
-			<Bulk>3.90</Bulk>
-			<SwayFactor>1.22</SwayFactor>
-			<ShotSpread>0.36</ShotSpread>
+			<Bulk>3.50</Bulk>
+			<ShotSpread>0.42</ShotSpread>
+			<SwayFactor>1.58</SwayFactor>
 			<SightsEfficiency>0.5</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<Steel>25</Steel>
 			<WoodLog>5</WoodLog>
-			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
-			<warmupTime>1.66</warmupTime>
-			<range>12</range>
-			<soundCast>VWEM2_Shot_Musket</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
+				<recoilAmount>3.59</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
+				<warmupTime>0.9</warmupTime>
+				<range>12</range>
+				<soundCast>Shot_CE_Musket</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>1</magazineSize>
-			<reloadTime>6.5</reloadTime>
-			<ammoSet>AmmoSet_SlowMusketBall</ammoSet>
+				<magazineSize>1</magazineSize>
+				<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+				<reloadTime>5.9</reloadTime>
+				<ammoSet>AmmoSet_SlowMusketBall</ammoSet>
 		</AmmoUser>
 		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
+				<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
 		<weaponTags>
+			<li>VFEM2_MedievalRangedChempowder</li>
 			<li>NeolithicRangedHeavy</li>
 			<li>NeolithicRangedChief</li>
 			<li>CE_OneHandedWeapon</li>
@@ -437,38 +439,40 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFEM2_Gun_Musket</defName>
 		<statBases>
-			<WorkToMake>20000</WorkToMake>
-			<Mass>4.8</Mass>
-			<Bulk>14.9</Bulk>
-			<SwayFactor>1.92</SwayFactor>
-			<ShotSpread>0.30</ShotSpread>
-			<SightsEfficiency>1</SightsEfficiency>
-			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+			<WorkToMake>11000</WorkToMake>
+			<Mass>4.50</Mass>
+			<Bulk>14.0</Bulk>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.85</SwayFactor>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.03</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>65</Steel>
-			<WoodLog>15</WoodLog>
-			<ComponentIndustrial>1</ComponentIndustrial>
+			<Steel>70</Steel>
+			<WoodLog>10</WoodLog>
 		</costList>
 		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
-			<warmupTime>2.5</warmupTime>
-			<range>45</range>
-			<soundCast>VWEM2_Shot_Musket</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilAmount>2.53</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+				<warmupTime>1.4</warmupTime>
+				<range>35</range>
+				<soundCast>Shot_CE_Musket</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>1</magazineSize>
-			<reloadTime>10</reloadTime>
-			<ammoSet>AmmoSet_FastMusketBall</ammoSet>
+				<magazineSize>1</magazineSize>
+				<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
+				<reloadTime>7.9</reloadTime>
+				<ammoSet>AmmoSet_FastMusketBall</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 		<weaponTags>
+			<li>VFEM2_MedievalRangedChempowder</li>
 			<li>NeolithicRangedHeavy</li>
 			<li>NeolithicRangedChief</li>
 		</weaponTags>
@@ -539,6 +543,7 @@
 			</verbs>
 		</value>
 	</Operation>
+
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEM2_ThrowingAxe"]/tools</xpath>
