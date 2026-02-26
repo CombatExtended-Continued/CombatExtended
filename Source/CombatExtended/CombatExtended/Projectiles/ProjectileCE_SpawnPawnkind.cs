@@ -43,8 +43,6 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
             }
         }
 
-
-
         // Use configured faction if specified, otherwise use launcher's faction
         Faction faction = null;
         if (props.factionDef != null)
