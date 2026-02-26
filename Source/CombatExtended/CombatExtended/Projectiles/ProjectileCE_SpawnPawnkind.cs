@@ -17,13 +17,15 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
     {
         Map map = this.Map;
         base.Impact(hitThing);
+
         if (this.def.projectile is not ProjectilePropertiesCE props)
         {
             return;
         }
-        bool alwaysHostile = props.alwaysHostile;
 
+        bool alwaysHostile = props.alwaysHostile;
         PawnKindDef spawnsPawnKind = props.spawnsPawnKind;
+
         if (spawnsPawnKind == null)
         {
             Log.ErrorOnce($"Projectile {this.def.defName} missing spawnsPawnKind definition", this.def.GetHashCode());
@@ -45,6 +47,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
 
         // Use configured faction if specified, otherwise use launcher's faction
         Faction faction = null;
+
         if (props.factionDef != null)
         {
             faction = Find.FactionManager.FirstFactionOfDef(props.factionDef);
@@ -53,31 +56,23 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
                 Log.Warning($"Could not find faction {props.factionDef.defName} for projectile {this.def.defName}");
             }
         }
-
         // Fallback to launcher's faction if no configured faction or faction not found
-        if (faction == null)
-        {
-            faction = this.launcher?.Faction;
-        }
-
-        if (alwaysHostile && faction == Faction.OfPlayer)
+        faction ??= this.launcher?.Faction;
+        if (alwaysHostile)
         {
             Faction bestCandidate = null;
             float bestScore = float.MinValue;
-
             foreach (Faction candidate in Find.FactionManager.AllFactionsListForReading)
             {
                 if (candidate == Faction.OfPlayer || candidate.defeated || !candidate.HostileTo(Faction.OfPlayer))
                 {
                     continue;
                 }
-
                 // Ensure faction compatibility with pawn kind
                 if (spawnsPawnKind?.RaceProps?.Humanlike != candidate.def.humanlikeFaction)
                 {
                     continue;
                 }
-
                 // Inverse scoring since lower goodwill is better
                 float score = -candidate.PlayerGoodwill;
 
@@ -112,15 +107,13 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
         );
 
         Pawn pawn = PawnGenerator.GeneratePawn(request);
-
         if (pawn == null)
         {
             Log.ErrorOnce($"Failed to generate pawn of kind {spawnsPawnKind.defName}", Gen.HashCombine(this.def.GetHashCode(), "PawnGenFailed"));
             return;
         }
 
-        GenSpawn.Spawn((Thing)pawn, loc, map);
-
+        GenSpawn.Spawn(pawn, loc, map);
         if (pawn.Faction != faction && pawn.def.CanHaveFaction)
         {
             pawn.SetFaction(faction);
