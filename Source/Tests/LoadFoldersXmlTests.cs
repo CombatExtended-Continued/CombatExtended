@@ -19,6 +19,8 @@ public class LoadFoldersXmlTests
         var entries = root.FirstChild.SelectNodes("//li");
         HashSet<(string, string)> modsWithPath = [];
         Dictionary<string, string> relativePaths = [];
+        bool failed = false;
+        string failMessage = "";
 
         foreach (XmlNode entry in entries)
         {
@@ -29,7 +31,11 @@ public class LoadFoldersXmlTests
             modsWithPath.Add((packageId, modSpecificPath));
 
             DirectoryInfo loadFolder = new(Path.Combine(loadFoldersDir.FullName, modSpecificPath.TrimStart(Path.DirectorySeparatorChar)));
-            Assert.True(loadFolder.Exists, $"Mod {packageId} has an invalid patch directory {modSpecificPath} in LoadFolders.xml");
+            if (!loadFolder.Exists)
+            {
+                failMessage += $"Mod {packageId} has an invalid patch directory {modSpecificPath} in LoadFolders.xml\n   ";
+                failed = true;
+            }
 
             foreach (var xmlFile in GetPatchesAndDefs(loadFolder))
             {
@@ -42,6 +48,8 @@ public class LoadFoldersXmlTests
                 relativePaths[relPath] = packageId;
             }
         }
+
+        Assert.False(failed, failMessage);
 
         Assert.True(modsWithPath.Count > 0, "No entries found while checking LoadFolders.xml, is the file valid?");
     }
