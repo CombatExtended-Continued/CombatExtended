@@ -2,6 +2,8 @@
 using Verse;
 
 namespace CombatExtended;
+
+[Obsolete]
 public class PawnRenderNodeWorker_Backpack : PawnRenderNodeWorker_Apparel_Body
 {
     public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)

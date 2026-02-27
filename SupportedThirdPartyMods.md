@@ -76,6 +76,7 @@ ABF: Utility Synstructs   |
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
+Advanced Mechanoids |
 All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
@@ -270,6 +271,7 @@ Gas Traps And Shells	|
 Gestalt Engine  |
 Giddy-Up 2    |
 Girls' Frontline Apparel Pack	|
+Girls' Frontline PROJECT NEURAL CLOUD   |
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Styles - AR Team	|
 Girls' Frontline Styles - DEFY Team	|
@@ -422,6 +424,7 @@ Neclose Race	|
 Nephilim Xenotype Reborn    |
 New Mech: Mini-Miner    |
 Ni'Hal	|
+Nikke The Pilgrim   |
 Nukes   |
 Nyaron Race |
 Nomad Scavengers    |
