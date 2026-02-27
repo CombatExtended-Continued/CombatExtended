@@ -7,6 +7,8 @@ namespace CombatExtended.Compatibility.VFES
     {
         private CompConcealed? concealedComp;
 
+        public override bool Active => (!(concealedComp?.Submerged ?? false) && base.Active);
+
         public override bool IsEverThreat
         {
             get
