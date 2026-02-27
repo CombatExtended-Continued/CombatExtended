@@ -82,6 +82,8 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
         }
     }
 
+    public override bool ShouldSpawnAimingSound => !_isAiming;
+
     public override float SwayAmplitude // TODO: Fix SwayAmplitude and SwayAmplitudeFor code re-use
     {
         get
@@ -220,8 +222,8 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
             }
             if (ShooterPawn != null)
             {
-                ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
                 _isAiming = true;
+                ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
                 RecalculateWarmupTicks();
                 return;
             }

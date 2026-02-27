@@ -235,6 +235,21 @@ public class Verb_LaunchProjectileCE : Verb
 
     public override float WarmupTime => Mathf.Max(0, base.WarmupTime * (1f + (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_WarmupMultiplier) - 1f ?? 0f) + (projectilePropsCE?.warmupMultiplier - 1f ?? 0f)) + (projectilePropsCE?.warmupOffset ?? 0f));
 
+    public override TargetingParameters targetParams
+    {
+        get
+        {
+            if (projectilePropsCE?.targetParams != null)
+            {
+                return projectilePropsCE.targetParams;
+            }
+
+            return verbProps.targetParams;
+        }
+    }
+
+    public virtual bool ShouldSpawnAimingSound => true;
+
     #endregion
 
     #region Methods

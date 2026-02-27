@@ -82,6 +82,19 @@ public class ProjectileCE_CIWS : ProjectileCE
         {
             return ciwsTargetCompResult.Value;
         }
+
+        // When targeting skyfallers, consider the whole trajectory of the interceptor between its current and previous position
+        // to check if we intercepted the target, akin to what we do for regular projectiles.
+        if (thing is Skyfaller skyfaller)
+        {
+            Vector3 targetPos = Skyfaller_Utility.CurrentPosition(skyfaller);
+
+            // Skyfallers mostly don't really have a fill percent, so assume they fill a full cell.
+            Bounds bounds = new(targetPos, Vector3.one);
+
+            return bounds.IntersectRay(ShotLine, out dist);
+        }
+
         dist = (thing.DrawPos.Yto0() - this.DrawPos.Yto0()).MagnitudeHorizontalSquared();
         var collideDistance = CollideDistance;
         if (dist < collideDistance * collideDistance)
