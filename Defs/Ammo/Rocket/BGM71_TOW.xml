@@ -31,22 +31,22 @@
 		<thingCategories>
 			<li>AmmoTOW2A</li>
 		</thingCategories>
-		<stackLimit>10</stackLimit>
+		<stackLimit>25</stackLimit>
 		<cookOffFlashScale>28</cookOffFlashScale>
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TOW2ABase">
 		<defName>Ammo_BGM71_HEAT</defName>
-		<label>152mm anti-tank guided missile (HEAT)</label>
+		<label>BGM-71 TOW missile (HEAT)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Missile/TOW2A</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>1</drawSize>
 		</graphicData>
 		<statBases>
-			<Mass>22</Mass>
-			<Bulk>14</Bulk>
+			<Mass>18.8</Mass>
+			<Bulk>63.15</Bulk>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<detonateProjectile>Bullet_BGM71_HEAT</detonateProjectile>
@@ -95,30 +95,30 @@
 
 	<ThingDef ParentName="BaseBGM71_TOW">
 		<defName>Bullet_BGM71_HEAT</defName>
-		<label>152mm AT guided missile (HEAT)</label>
+		<label>BGM-71 TOW missile (HEAT)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Missile/TOW2A</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>281</damageAmountBase>
-			<armorPenetrationSharp>430</armorPenetrationSharp>
-			<armorPenetrationBlunt>141.675</armorPenetrationBlunt>
+			<damageAmountBase>286</damageAmountBase>
+			<armorPenetrationSharp>900</armorPenetrationSharp>
+			<armorPenetrationBlunt>83.747</armorPenetrationBlunt>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>458</damageAmountBase>
+				<damageAmountBase>279</damageAmountBase>
 				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>2.5</explosiveRadius>
+				<explosiveRadius>2</explosiveRadius>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<explosionSound>MortarBomb_Explode</explosionSound>
 				<preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
 			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Large>8</Fragment_Large>
-					<Fragment_Small>28</Fragment_Small>
+					<Fragment_Large>29</Fragment_Large>
+					<Fragment_Small>33</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -126,10 +126,10 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_BGM71_HEAT</defName>
-		<label>make 152mm anti-tank guided missile</label>
-		<description>Craft a 152mm anti-tank guided missile.</description>
-		<jobString>Making 152mm anti-tank guided missile.</jobString>
-		<workAmount>9900</workAmount>
+		<label>make BGM-71 TOW missile</label>
+		<description>Craft a BGM-71 TOW missile.</description>
+		<jobString>Making BGM-71 TOW missile.</jobString>
+		<workAmount>11000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -137,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>72</count>
+				<count>38</count>
 			</li>
 			<li>
 				<filter>
@@ -145,7 +145,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>8</count>
 			</li>
 			<li>
 				<filter>

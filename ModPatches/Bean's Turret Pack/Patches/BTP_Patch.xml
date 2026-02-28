@@ -139,7 +139,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_TOW2A</defaultProjectile>
+			<defaultProjectile>Bullet_BGM71_HEAT</defaultProjectile>
 			<warmupTime>2.7</warmupTime>
 			<range>66</range>
 			<soundCast>BTP_HellfireSentry_Sound</soundCast>
@@ -154,7 +154,7 @@
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
 			<reloadTime>7</reloadTime>
-			<ammoSet>AmmoSet_TOW2A</ammoSet>
+			<ammoSet>AmmoSet_BGM71</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -308,9 +308,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="BTP_PhalanxSentry_Base" or
-			defName="BTP_HellfireSentry_Base"
+		<xpath>Defs/ThingDef[defName="BTP_PhalanxSentry_Base" or defName="BTP_HellfireSentry_Base"
 			]/statBases</xpath>
 		<value>
 			<AimingAccuracy>1.0</AimingAccuracy>
@@ -318,9 +316,7 @@
 	</Operation>
 	
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-		defName="BTP_HeavyTurret_Base" or
-		defName="BTP_MissileLauncher_Base"
+		<xpath>Defs/ThingDef[defName="BTP_HeavyTurret_Base" or defName="BTP_MissileLauncher_Base"
 		]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.5</AimingAccuracy>
@@ -356,10 +352,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[
-		defName="BTP_HeavyTurret_Base" or
-		defName="BTP_MissileLauncher_Base"
-		]/castEdgeShadows</xpath>
+        <xpath>Defs/ThingDef[defName="BTP_HeavyTurret_Base" or defName="BTP_MissileLauncher_Base"]/castEdgeShadows</xpath>
 		<value>
 			<castEdgeShadows>false</castEdgeShadows>
 		</value>
