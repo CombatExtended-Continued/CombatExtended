@@ -202,7 +202,7 @@ public class JobDriver_ReloadTurret : JobDriver
             }
         };
         waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-        waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+        waitToil.defaultDuration = Mathf.CeilToInt(compReloader.ReloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
         yield return waitToil.WithProgressBarToilDelay(TargetIndex.A);
 
         //Actual reloader

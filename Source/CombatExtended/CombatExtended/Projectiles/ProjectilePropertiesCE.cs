@@ -38,6 +38,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float effectiveRangeOffset = 0f;
     public float muzzleFlashMultiplier = 1;
     public float muzzleFlashOffset = 0f;
+    public float reloadTimeMultiplier = 1f;
 
     public float suppressionFactor = 1;
     public float airborneSuppressionFactor = 1;

@@ -176,7 +176,7 @@ public class JobDriver_ReloadAutoLoader : JobDriver
             }
         };
         waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-        waitToil.defaultDuration = Mathf.CeilToInt(AmmoUser.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+        waitToil.defaultDuration = Mathf.CeilToInt(AmmoUser.ReloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
         yield return waitToil.WithProgressBarToilDelay(TargetIndex.A);
 
         //Actual reloader
