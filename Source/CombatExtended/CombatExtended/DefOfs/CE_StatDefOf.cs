@@ -50,6 +50,8 @@ public static class CE_StatDefOf
     public static StatDef BodyPartBluntArmor;
     public static StatDef AverageSharpArmor;
     public static StatDef NightVisionEfficiency;
+    public static StatDef ThermalVisionEfficiency;
+    public static StatDef VisibilityConcealmentEfficiency;
 
     public static StatDef SmokeSensitivity;
 

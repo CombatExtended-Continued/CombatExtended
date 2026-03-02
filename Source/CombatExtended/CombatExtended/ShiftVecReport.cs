@@ -70,6 +70,10 @@ public class ShiftVecReport
                     se = 0.02f;
                 }
                 visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
+                if (targetPawn != null)
+                {
+                    enviromentShiftInt *= targetPawn.GetStatValue(CE_StatDefOf.VisibilityConcealmentEfficiency);
+                }
             }
             return visibilityShiftInt;
         }
@@ -216,6 +220,10 @@ public class ShiftVecReport
             stringBuilder.AppendLine("   " + $"DEBUG: lightingShift\t\t{lightingShift}");
         }
 
+        if (visibilityShift > 0 && Controller.settings.VisibilityWarmupPenalty)
+        {
+            stringBuilder.AppendLine("   " + "CE_VisibilityTimeDelay".Translate() + ":\t" + GenText.ToStringByStyle(((int)(visibilityShift * Controller.settings.VisibilityPenaltyMultiplier)).TicksToSeconds(), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate());
+        }
         if (lightingShift > 0)
         {
             stringBuilder.AppendLine("      " + "Darkness".Translate() + "\t" + AsPercent(lightingShift));
