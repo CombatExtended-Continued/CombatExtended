@@ -77,10 +77,9 @@ internal static class Harmony_Verb_TryCastNextBurstShot
     private static int GetTicksBetweenBurstShots(Verb verb)
     {
         float ticksBetweenBurstShots = verb.verbProps.ticksBetweenBurstShots;
-        WeaponPlatform platform = verb.EquipmentSource as WeaponPlatform;
-        if (verb is Verb_LaunchProjectileCE && platform != null)
+        if (verb is Verb_LaunchProjectileCE && verb.verbProps is VerbPropertiesCE verbPropsCE && verbPropsCE.useEquipmentStatValues && verb.EquipmentSource != null)
         {
-            float modified = platform.GetStatValue(CE_StatDefOf.TicksBetweenBurstShots);
+            float modified = verb.EquipmentSource.GetStatValue(CE_StatDefOf.TicksBetweenBurstShots);
             if (modified > 0)
             {
                 ticksBetweenBurstShots = modified;

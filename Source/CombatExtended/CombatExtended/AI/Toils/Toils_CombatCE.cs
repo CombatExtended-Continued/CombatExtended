@@ -35,8 +35,12 @@ public static class Toils_CombatCE
                 return;
             }
             startTick = GenTicks.TicksGame;
-            WeaponPlatform platform = compAmmo.parent as WeaponPlatform;
-            reloadingTime = Mathf.CeilToInt(((platform?.GetStatValue(CE_StatDefOf.ReloadTime) ?? compAmmo.ReloadTime).SecondsToTicks()) * compAmmo.parent.GetStatValue(CE_StatDefOf.CE_RangedWeapon_ReloadFactor) / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            var reloadTime = compAmmo.Props.reloadTime;
+            if (CE_Utility.GetPrimaryVerbPropsCE(compAmmo.parent) is { useEquipmentStatValues: true })
+            {
+                reloadTime = compAmmo.parent.GetStatValue(CE_StatDefOf.ReloadTime);
+            }
+            reloadingTime = Mathf.CeilToInt((reloadTime.SecondsToTicks()) * compAmmo.parent.GetStatValue(CE_StatDefOf.CE_RangedWeapon_ReloadFactor) / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
         });
         waitToil.tickAction = () =>
         {

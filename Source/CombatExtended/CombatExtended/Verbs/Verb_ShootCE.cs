@@ -193,10 +193,9 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
             }
         }
         float burstShotCount = VerbPropsCE.burstShotCount;
-        WeaponPlatform platform = WeaponPlatform;
-        if (platform != null && (!platform.TryGetComp<CompUnderBarrel>()?.usingUnderBarrel ?? false))
+        if (VerbPropsCE.useEquipmentStatValues && EquipmentSource != null && (!EquipmentSource.TryGetComp<CompUnderBarrel>()?.usingUnderBarrel ?? false))
         {
-            float modified = platform.GetStatValue(CE_StatDefOf.BurstShotCount);
+            float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
             if (modified > 0)
             {
                 burstShotCount = modified;
