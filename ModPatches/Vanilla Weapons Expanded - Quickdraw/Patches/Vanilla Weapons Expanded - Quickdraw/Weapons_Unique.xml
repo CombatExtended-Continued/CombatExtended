@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Unique PDW -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_PDW_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>50</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_FN57x28mm</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Bullpup Rifle -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_BullpupRifle_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Bullpup DMR -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_BullpupDMR_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_762x54mmR</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>False</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Automatic Pistol -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_AutomaticPistol_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>17</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
