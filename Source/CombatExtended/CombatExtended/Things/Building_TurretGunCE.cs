@@ -48,6 +48,7 @@ public class Building_TurretGunCE : Building_Turret
     private CompAmmoUser compAmmo = null;
     private CompFireModes compFireModes = null;
     private CompChangeableProjectile compChangeable = null;
+    private CompOrbitalTurret compOrbitalTurret = null;
     public bool isReloading = false;
     private int ticksUntilAutoReload = 0;
     private bool everSpawned = false;
@@ -154,7 +155,20 @@ public class Building_TurretGunCE : Building_Turret
             return compFireModes;
         }
     }
-    private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
+
+    public CompOrbitalTurret CompOrbitalTurret
+    {
+        get
+        {
+            if (compOrbitalTurret == null && Gun != null)
+            {
+                compOrbitalTurret = Gun.TryGetComp<CompOrbitalTurret>();
+            }
+            return compOrbitalTurret;
+        }
+    }
+
+    private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)Projectile?.projectile;
     public float MaxWorldRange => ProjectileProps?.shellingProps.range ?? -1f;
     public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
     public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
@@ -741,7 +755,7 @@ public class Building_TurretGunCE : Building_Turret
                 yield return com;
             }
         }
-        if (IsMortar && Active && Faction.IsPlayerSafe() && (compAmmo?.UseAmmo ?? false) && ProjectileProps?.shellingProps != null)
+        if (IsMortar && Active && Faction.IsPlayerSafe() && ProjectileProps?.shellingProps != null)
         {
             Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
             {
