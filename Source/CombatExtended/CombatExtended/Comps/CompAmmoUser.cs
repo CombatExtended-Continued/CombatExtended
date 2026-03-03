@@ -17,6 +17,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     #region Fields
 
     private int curMagCountInt = 0;
+    private int tryReloadOn = 0;
     private AmmoDef currentAmmoInt = null;
     private AmmoDef selectedAmmo;
 
@@ -25,6 +26,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     public Building_Turret turret;         // Cross-linked from CE turret
 
     internal static Type rgStance = null;       // RunAndGun compatibility, set in relevent patch if needed
+    internal bool draggingAmmoSlider = false;
     #endregion
 
     #region Properties
@@ -78,6 +80,16 @@ public class CompAmmoUser : CompRangedGizmoGiver
         }
     }
 
+    public int TryReloadOn
+    {
+        get => tryReloadOn;
+        set => tryReloadOn = value;
+    }
+    public float SafeDistanceToReload => Controller.settings.OpportunisticReloadSafeDistance;
+
+    public int MinimalTicksAfterFight => GenTicks.TicksPerRealSecond * Controller.settings.SecondsAfterFightToOpportunisticReload;
+    public bool IsOpportunisticReloadActive => Controller.settings.OpportunisticReloadMode != OpportunisticReloadMode.Off && MagSize > 1 && (Wielder != null || IsTurretOpportunisticReloadActive) && !parent.def.weaponTags.Contains("OpportunisticReloadDisabled");
+    protected bool IsTurretOpportunisticReloadActive => turret != null && (turret.HasComp<CompMannable>() || (Map?.GetComponent<AutoLoaderTracker>().AutoLoaders.Any(x => x.TurretsToReload().Contains(this.turret)) ?? false));
     public int MagSizeOverride
     {
         get
@@ -341,6 +353,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         base.PostExposeData();
         Scribe_Values.Look(ref curMagCountInt, "count", 0);
+        Scribe_Values.Look(ref tryReloadOn, nameof(tryReloadOn));
         Scribe_Defs.Look(ref currentAmmoInt, "currentAmmo");
         Scribe_Defs.Look(ref selectedAmmo, "selectedAmmo");
     }
