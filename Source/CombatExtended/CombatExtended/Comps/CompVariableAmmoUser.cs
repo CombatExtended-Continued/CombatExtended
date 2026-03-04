@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -70,8 +72,28 @@ public abstract class CompVariableAmmoUser : CompAmmoUser
     [Compatibility.Multiplayer.SyncMethod]
     private void SyncedSelectAmmoSet(AmmoSetDef caliber)
     {
+        if (SelectedAmmoSet != caliber && currentAmmoInt != null)
+        {
+            TryDoUnload();
+        }
         SelectedAmmoSet = caliber;
         RegenSelectedAmmo();
+    }
+
+    private void TryDoUnload()
+    {
+        if (CurMagCount <= 0)
+        {
+            return;
+        }
+        Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
+        ammoThing.stackCount = CurMagCount;
+        if (!GenThing.TryDropAndSetForbidden(ammoThing, parent.Position, parent.Map, ThingPlaceMode.Near, out _, parent.Faction != Faction.OfPlayer))
+        {
+            Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
+                                      "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
+        }
+        CurMagCount = 0;
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -87,7 +109,7 @@ public abstract class CompVariableAmmoUser : CompAmmoUser
         command_Action.icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload", reportFailure: false);
         command_Action.action = delegate
         {
-            List<FloatMenuOption> list = new List<FloatMenuOption>();
+            List<FloatMenuOption> list = [];
             foreach (AmmoSetDef caliber in UsableAmmoSets)
             {
                 FloatMenuOption item = new FloatMenuOption(
