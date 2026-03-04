@@ -18,8 +18,8 @@ public class CompAmmoUser : CompRangedGizmoGiver
 
     private int curMagCountInt = 0;
     private int tryReloadOn = 0;
-    private AmmoDef currentAmmoInt = null;
-    private AmmoDef selectedAmmo;
+    protected AmmoDef currentAmmoInt = null;
+    protected AmmoDef selectedAmmo;
 
     private Thing ammoToBeDeleted;
 
@@ -252,6 +252,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
         }
     }
 
+    public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
     public ThingDef SelectedAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == SelectedAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
     public CompInventory CompInventory
     {
