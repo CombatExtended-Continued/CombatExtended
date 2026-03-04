@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- === Ammo Sets === -->
+	<!-- A part of this weapon's description reads ''It fires dense slugs at incredible velocities, capable of destroying even heavily armored gravships.'' so I've made it a relatively strong railgun weapon and tweaked its warmup and cooldown stats accordingly -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VGE_MassLance</defName>
+		<label>12mm Railgun</label>
+		<ammoTypes>
+			<Ammo_12mmRailgun_Sabot>Bullet_VGE_MassLance</Ammo_12mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Projectiles === -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
+		<defName>Bullet_VGE_MassLance</defName>
+		<label>mass lance shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>86.4</armorPenetrationSharp>
+			<armorPenetrationBlunt>381</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+</Defs>

@@ -1,4 +1,5 @@
 ﻿using System;
+using CombatExtended.AI;
 using HarmonyLib;
 using Verse;
 
@@ -35,3 +36,18 @@ public static class Harmony_Game_LoadGame
     }
 }
 
+[HarmonyPatch(typeof(Game), nameof(Game.ClearCaches))]
+public static class Harmony_Game_ClearCaches
+{
+    public static void Postfix()
+    {
+        try
+        {
+            AI_Utility.ResetCache();
+        }
+        catch (Exception er)
+        {
+            Log.Error($"CE: Harmony_Game_ClearCaches {er}");
+        }
+    }
+}

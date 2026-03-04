@@ -34,7 +34,7 @@
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting_TableMachining</li>
-    		<li>CE_40K_HeavyAmmo</li>
+			<li>CE_40K_HeavyAmmo</li>
 		</tradeTags>
 		<thingCategories>
 			<li>Ammo40x46mmGrenades</li>
@@ -156,15 +156,17 @@
 			<damageAmountBase>22</damageAmountBase>
 			<explosionRadius>1.0</explosionRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			<aimHeightOffset>1.4</aimHeightOffset>
-			<armingDelay>2</armingDelay>
+			<aimHeightOffset>1.4</aimHeightOffset> <!-- How much higher above the target to do we aim? -->
+			<armingDelay>2</armingDelay> <!-- Minimum ticks after launch before it can explode, so it doesn't go off in the shooter's face.-->
+			<airburstDistanceOffset>-3</airburstDistanceOffset> <!-- How many tiles in front of (negative) or behind (positive) the target does it explode? -->
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Small>20</Fragment_Small>
 				</fragments>
-				<fragAngleRange>-89~-5</fragAngleRange>
+				<fragAngleRange>-60~-2</fragAngleRange> <!-- Vertical frag spread in degrees, relative to the projectile's trajectory. 0 is coplanar. -->
+				<fragXZAngleRange>-45~45</fragXZAngleRange> <!-- Horizontal frag spread in degrees, relative to the projectile's trajectory. 0 is directly ahead. -->
 			</li>
 		</comps>
 	</ThingDef>

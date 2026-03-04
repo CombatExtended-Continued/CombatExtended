@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationReplace">
@@ -7,7 +7,7 @@
 			<fillPercent>0.85</fillPercent>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="GW_SM_Building_Lascannon"]/fillPercent</xpath>
 		<value>
@@ -17,7 +17,11 @@
 
 	<!-- Heavy Bolter Turret -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]
+			| Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases/AccuracyTouch
+			| Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases/AccuracyShort
+			| Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases/AccuracyMedium
+			| Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases/AccuracyLong</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -31,12 +35,6 @@
 		<xpath>Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_SM_Building_HeavyBolter"]/statBases/ShootingAccuracyTurret</xpath>
-		<value>
 			<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
 		</value>
 	</Operation>
@@ -134,7 +132,7 @@
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>500</basePowerConsumption> <!--Power lowered because the turret gets physical ammo now-->
-			</li>	
+			</li>
 		</value>
 	</Operation>
 

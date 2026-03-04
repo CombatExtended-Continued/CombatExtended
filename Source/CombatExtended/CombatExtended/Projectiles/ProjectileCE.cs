@@ -1031,15 +1031,16 @@ public abstract class ProjectileCE : ThingWithComps
         }
 
         var bounds = CE_Utility.GetBoundsFor(thing);
-        if (bounds.Contains(LastPos) || bounds.Contains(ExactPosition))
-        {
-            dist = 0f;
-            return true;
-        }
         if (!bounds.IntersectRay(ShotLine, out dist))
         {
             return false;
         }
+
+        if (bounds.Contains(LastPos) || bounds.Contains(ExactPosition))
+        {
+            return true;
+        }
+
         if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
         {
             return false;
@@ -1454,7 +1455,22 @@ public abstract class ProjectileCE : ThingWithComps
             }
         }
 
-        var explodePos = ExactPosition;
+        // The projectile's position will have been normalized to the point of impact with the Thing,
+        // which may sit exactly on a cell boundary for Things whose hitbox precisely lines up with a cell.
+        // This would always correspond to the cell due east or north of the boundary, which,
+        // when shooting south or west, would be the previous cell on the shotline.
+        // Since we always want explosion effects to occur in the impacted cell, shift the position accordingly
+        // if it is on a cell boundary.
+        Vector3 explodePos = ExactPosition;
+        if (ShotLine.direction.x < 0 && Mathf.Approximately(explodePos.x, (int)explodePos.x))
+        {
+            explodePos.x -= 0.5f;
+        }
+        if (ShotLine.direction.z < 0 && Mathf.Approximately(explodePos.z, (int)explodePos.z))
+        {
+            explodePos.z -= 0.5f;
+        }
+
 
         if (!explodePos.ToIntVec3().IsValid)
         {

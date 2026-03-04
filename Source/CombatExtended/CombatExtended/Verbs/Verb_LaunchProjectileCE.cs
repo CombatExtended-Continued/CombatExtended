@@ -77,10 +77,9 @@ public class Verb_LaunchProjectileCE : Verb
         get
         {
             float shotsPerBurst = base.ShotsPerBurst;
-            WeaponPlatform platform = this.WeaponPlatform;
-            if (platform != null)
+            if (VerbPropsCE.useEquipmentStatValues && EquipmentSource != null)
             {
-                float modified = platform.GetStatValue(CE_StatDefOf.BurstShotCount);
+                float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
                 if (modified > 0)
                 {
                     shotsPerBurst = modified;
@@ -204,10 +203,9 @@ public class Verb_LaunchProjectileCE : Verb
         get
         {
             float recoil = Mathf.Max(0, VerbPropsCE.recoilAmount * (1f + (EquipmentSource?.GetStatValue(CE_StatDefOf.CE_RangedWeapon_RecoilMultiplier) - 1f ?? 0f) + (projectilePropsCE?.recoilMultiplier - 1f ?? 0f)) + (projectilePropsCE?.recoilOffset ?? 0f));
-            WeaponPlatform platform = this.WeaponPlatform;
-            if (platform != null)
+            if (VerbPropsCE.useEquipmentStatValues && EquipmentSource != null)
             {
-                float modified = platform.GetStatValue(CE_StatDefOf.Recoil);
+                float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
                 if (modified > 0)
                 {
                     recoil = modified;
@@ -234,6 +232,21 @@ public class Verb_LaunchProjectileCE : Verb
     protected virtual bool LockRotationAndAngle => !didRetarget && MidBurst;
 
     public override float WarmupTime => Mathf.Max(0, base.WarmupTime * (1f + (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_WarmupMultiplier) - 1f ?? 0f) + (projectilePropsCE?.warmupMultiplier - 1f ?? 0f)) + (projectilePropsCE?.warmupOffset ?? 0f));
+
+    public override TargetingParameters targetParams
+    {
+        get
+        {
+            if (projectilePropsCE?.targetParams != null)
+            {
+                return projectilePropsCE.targetParams;
+            }
+
+            return verbProps.targetParams;
+        }
+    }
+
+    public virtual bool ShouldSpawnAimingSound => true;
 
     #endregion
 
@@ -1452,7 +1465,7 @@ public class Verb_LaunchProjectileCE : Verb
                 if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !(cover is Pawn && cover.HostileTo(caster)))
                 {
                     //Shooter pawns don't attempt to shoot targets partially obstructed by their own faction members or allies, except when close enough to fire over their shoulder
-                    if (cover is Pawn cellPawn && !cellPawn.Downed && cellPawn.Faction != null && ShooterPawn?.Faction != null && (ShooterPawn.Faction == cellPawn.Faction || ShooterPawn.Faction.RelationKindWith(cellPawn.Faction) == FactionRelationKind.Ally) && !cellPawn.AdjacentTo8WayOrInside(ShooterPawn))
+                    if (cover is Pawn { Downed: false, Faction: not null } cellPawn && ShooterPawn?.Faction != null && (ShooterPawn.Faction == cellPawn.Faction || ShooterPawn.Faction.RelationKindWith(cellPawn.Faction) == FactionRelationKind.Ally) && !cellPawn.AdjacentTo8WayOrInside(caster))
                     {
                         return false;
                     }

@@ -38,6 +38,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float effectiveRangeOffset = 0f;
     public float muzzleFlashMultiplier = 1;
     public float muzzleFlashOffset = 0f;
+    public float reloadTimeMultiplier = 1f;
 
     public float suppressionFactor = 1;
     public float airborneSuppressionFactor = 1;
@@ -70,6 +71,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
 
     public int armingDelay = 0;
     public float aimHeightOffset = 0;
+    public float airburstDistanceOffset = 0f;
 
     public float empShieldBreakChance = 1f;
     public float collideDistance = 1f;
@@ -90,6 +92,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
 
     public SimpleCurve explosionFalloffCurve;
+    public TargetingParameters targetParams;
 
     public BaseTrajectoryWorker TrajectoryWorker
     {

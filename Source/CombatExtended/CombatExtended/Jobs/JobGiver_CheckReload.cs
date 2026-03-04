@@ -112,14 +112,40 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
         {
             return false;    // There isn't any work to do since the pawn doesn't have a CE Inventory.
         }
+        tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>();
+        if (pawn.Drafted)
+        {
+            if (tmpComp == null)
+            {
+                return false;
+            }
+            if (!tmpComp.IsOpportunisticReloadActive)
+            {
+                return false;
+            }
+            if (Find.TickManager.TicksGame - pawn.LastAttackTargetTick < tmpComp.MinimalTicksAfterFight)
+            {
+                return false;
+            }
+            var enemiesAround = pawn.Map.mapPawns.AllPawnsSpawned.Where(x => x.Position.InHorDistOf(pawn.Position, tmpComp.SafeDistanceToReload) && !x.IsPsychologicallyInvisible() && x.HostileTo(pawn));
+            if (enemiesAround.Any())
+            {
+                return false;
+            }
 
-        if ((tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>()) != null && tmpComp.HasMagazine)
+        }
+
+        if (tmpComp != null && tmpComp.HasMagazine)
         {
             guns.Add(pawn.equipment.Primary);
         }
 
-        // CompInventory doesn't track equipment and it's desired to check the pawn's equipped weapon before inventory items so need to copy stuff from Inventory Cache.
-        guns.AddRange(inventory.rangedWeaponList.Where(t => t.TryGetComp<CompAmmoUser>() != null && t.GetComp<CompAmmoUser>().HasMagazine));
+        // We don't reload other guns if pawn is drafted
+        if (!pawn.Drafted)
+        {
+            // CompInventory doesn't track equipment and it's desired to check the pawn's equipped weapon before inventory items so need to copy stuff from Inventory Cache.
+            guns.AddRange(inventory.rangedWeaponList.Where(t => t.TryGetComp<CompAmmoUser>() != null && t.GetComp<CompAmmoUser>().HasMagazine));
+        }
 
         if (guns.NullOrEmpty())
         {
@@ -133,10 +159,14 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
             tmpComp = gun.TryGetComp<CompAmmoUser>();
             AmmoDef ammoType = tmpComp.SelectedAmmo;
             int ammoAmount = tmpComp.CurMagCount;
+            if ((Controller.settings.OpportunisticReloadMode == OpportunisticReloadMode.Any || (Controller.settings.OpportunisticReloadMode == OpportunisticReloadMode.DraftedOnly && pawn.Drafted)) && ammoAmount > tmpComp.TryReloadOn)
+            {
+                continue;
+            }
             int magazineSize = tmpComp.MagSize;
 
             // Is the gun loaded with ammo not in a Loadout/HoldTracker?
-            if (tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
+            if (!pawn.Drafted && tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
             {
                 // Do we have ammo in the inventory that the gun uses which satisfies requirements? (expensive)
                 AmmoDef matchAmmo = tmpComp.CurAmmoSet.ammoTypes
@@ -156,8 +186,9 @@ public class JobGiver_CheckReload : ThinkNode_JobGiver
             // Is the gun low on ammo?
             if (tmpComp.CurMagCount < magazineSize)
             {
+                int requiredCount = pawn.Drafted ? 1 : magazineSize - tmpComp.CurMagCount;
                 // Do we have enough ammo in the inventory to top it off?
-                if (!tmpComp.UseAmmo || inventory.AmmoCountOfDef(ammoType) >= (magazineSize - tmpComp.CurMagCount))
+                if (!tmpComp.UseAmmo || inventory.AmmoCountOfDef(ammoType) >= requiredCount)
                 {
                     reloadWeapon = gun;
                     reloadAmmo = ammoType;

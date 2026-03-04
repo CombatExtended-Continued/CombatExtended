@@ -149,7 +149,7 @@ public static class ImpactFleckThrower
             map.flecks.CreateFleck(creationData);
         }
 
-        if (Controller.settings.StuckArrowsAsFlecks && StuckProjectileFleck != null)
+        if (Controller.settings.StuckArrowsAsFlecks && StuckProjectileFleck != null && hitThing is not Pawn)
         {
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, StuckProjectileFleck);
             creationData.scale = ext.StuckProjectileFleckSize;

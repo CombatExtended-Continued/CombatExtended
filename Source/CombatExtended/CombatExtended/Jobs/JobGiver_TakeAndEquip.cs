@@ -206,7 +206,7 @@ public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
         {
             return null;
         }
-        if (pawn.IsPrisoner && (pawn.HostFaction != Faction.OfPlayer || pawn.guest.interactionMode == PrisonerInteractionModeDefOf.Release))
+        if (pawn.IsPrisoner && (pawn.HostFaction != Faction.OfPlayer || pawn.guest.interactionMode == PrisonerInteractionModeDefOf.Release || pawn.guest.Released))
         {
             return null;
         }
