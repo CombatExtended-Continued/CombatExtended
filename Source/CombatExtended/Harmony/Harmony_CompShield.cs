@@ -34,7 +34,6 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
     internal static bool Prefix(out bool absorbed, DamageInfo dinfo, CompShield __instance)
     {
         absorbed = false;
-
         if (__instance.ShieldState != ShieldState.Active)
         {
             return false;
@@ -43,62 +42,62 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
         {
             return false;
         }
-        if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
+        if (!dinfo.Def.isRanged && !dinfo.Def.isExplosive && dinfo.Def != DamageDefOf.EMP)
         {
-            absorbed = true;
-            float shieldDamageMultiplier = 1f;
-            float secondaryShieldDamageAmount = 0f;
-            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
+            return false;
+        }
+        absorbed = true;
+        float shieldDamageMultiplier = 1f;
+        float secondaryShieldDamageAmount = 0f;
+        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
+        {
+            shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
+            List<SecondaryDamage> secondaryDamageProperties = projectilePropertiesCe.secondaryDamage;
+            if (!secondaryDamageProperties.NullOrEmpty())
             {
-                shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
-                List<SecondaryDamage> secondaryDamageProperties = projectilePropertiesCe.secondaryDamage;
-                if (!secondaryDamageProperties.NullOrEmpty())
+                foreach (SecondaryDamage secondaryDamageInfo in secondaryDamageProperties)
                 {
-                    foreach (SecondaryDamage secondaryDamageInfo in secondaryDamageProperties)
+                    var secondaryDamageModExt = secondaryDamageInfo.def.GetModExtension<DamageDefExtensionCE>();
+                    if ((secondaryDamageInfo.def.harmsHealth || (secondaryDamageModExt?.secondaryDamageShieldOverride ?? false)) && Rand.Chance(secondaryDamageInfo.chance))
                     {
-                        var secondaryDamageModExt = secondaryDamageInfo.def.GetModExtension<DamageDefExtensionCE>();
-                        if ((secondaryDamageInfo.def.harmsHealth || (secondaryDamageModExt?.secondaryDamageShieldOverride ?? false)) && Rand.Chance(secondaryDamageInfo.chance))
+                        var secondaryDamageMultiplierValue = secondaryDamageInfo.shieldDamageMultiplier;
+                        if (secondaryDamageMultiplierValue == 1f && secondaryDamageModExt != null && secondaryDamageModExt.shieldDamageMultiplier != secondaryDamageMultiplierValue)
                         {
-                            var secondaryDamageMultiplierValue = secondaryDamageInfo.shieldDamageMultiplier;
-                            if (secondaryDamageMultiplierValue == 1f && secondaryDamageModExt != null && secondaryDamageModExt.shieldDamageMultiplier != secondaryDamageMultiplierValue)
-                            {
-                                secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
-                            }
-                            secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
-                            dinfo.amountInt += secondaryDamageInfo.amount;
-
+                            secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
                         }
+                        secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
+                        dinfo.amountInt += secondaryDamageInfo.amount;
+
                     }
                 }
             }
-            if (shieldDamageMultiplier == 1f)
+        }
+        if (shieldDamageMultiplier == 1f)
+        {
+            DamageDefExtensionCE primaryDamageModExt = dinfo.defInt.GetModExtension<DamageDefExtensionCE>();
+            if (primaryDamageModExt != null && primaryDamageModExt.shieldDamageMultiplier != shieldDamageMultiplier)
             {
-                DamageDefExtensionCE primaryDamageModExt = dinfo.defInt.GetModExtension<DamageDefExtensionCE>();
-                if (primaryDamageModExt != null && primaryDamageModExt.shieldDamageMultiplier != shieldDamageMultiplier)
-                {
-                    shieldDamageMultiplier = primaryDamageModExt.shieldDamageMultiplier;
-                }
+                shieldDamageMultiplier = primaryDamageModExt.shieldDamageMultiplier;
             }
-
-
-            float totalDamage = ((dinfo.Amount * shieldDamageMultiplier) + secondaryShieldDamageAmount) * __instance.Props.energyLossPerDamage;
+        }
+        float primaryDamage = dinfo.Amount * shieldDamageMultiplier;
+        float totalDamage = (primaryDamage + secondaryShieldDamageAmount) * __instance.Props.energyLossPerDamage;
 #if DEBUG
-            if (Controller.settings.DebugVerbose)
-            {
-                Log.Message($"Shield Energy Damage: {totalDamage} Physical Damage: {dinfo.Amount + secondaryShieldDamageAmount} Amount: {dinfo.Amount} secondaryDamage: {secondaryShieldDamageAmount}");
-            }
+        if (Controller.settings.DebugVerbose)
+        {
+            Log.Message($"Primary Damage: {primaryDamage} Secondary Damage: {secondaryShieldDamageAmount}  Shield Energy Loss Per Damage: {__instance.Props.energyLossPerDamage} Shield Damage Before Energy Multiplier: {primaryDamage + secondaryShieldDamageAmount} Actual Shield Energy Damage: {totalDamage * 100} ");
+        }
 #endif
-            __instance.energy -= totalDamage;
+        __instance.energy -= totalDamage;
 
-            if (__instance.energy < 0f)
-            {
-                __instance.Break();
-            }
-            else
-            {
-                dinfo.amountInt -= secondaryShieldDamageAmount;
-                __instance.AbsorbedDamage(dinfo);
-            }
+        if (__instance.energy < 0f)
+        {
+            __instance.Break();
+        }
+        else
+        {
+            dinfo.amountInt -= secondaryShieldDamageAmount;
+            __instance.AbsorbedDamage(dinfo);
         }
         return false;
     }
