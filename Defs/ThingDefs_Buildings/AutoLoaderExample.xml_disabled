@@ -1,48 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<!--
-	
-		===Auto loader example def
+
+	<!-- === Autoloader Example === -->
 	
 	<ThingDef ParentName="BuildingBase">
-		<defName>BDsAutoLoaderTest</defName>
-		<label>auto loader test</label>
+		<defName>CE_AutoLoaderExample</defName>
+		<label>auto loader example</label>
 		<description>An ammo crate with magical autoloaders.</description>
 
-		===Thing class, ticker type and drawer type are mandatory===
-
-		<thingClass>CombatExtended.Building_AutoLoaderCE</thingClass>
+		<thingClass>CombatExtended.Building_AutoLoaderCE</thingClass> <!-- thingClass. Mandatory to make the autoloader work. -->
 		<tickerType>Normal</tickerType>
 		<drawerType>MapMeshAndRealTime</drawerType>
 
-		===This Ammo user is the autoloader's ammo capacity and reload time===
-
 		<comps>
 			<li Class="CombatExtended.CompProperties_AmmoListUser">
-				<magazineSize>400</magazineSize>
-				<reloadTime>7.8</reloadTime>
+				<magazineSize>400</magazineSize> <!-- How much ammo the autloader holds. -->
+				<reloadTime>7.8</reloadTime> <!-- How long it takes to reload the autoloader. -->
 				<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
-				<allowSimilarAmmo>true</allowSimilarAmmo>
-				<additionalAmmoSets>
-					<li>AmmoSet_44Magnum</li>
+				<allowSimilarAmmo>true</allowSimilarAmmo> <!-- If true, the autoloader will also calibers with the same similiarTo ammoSet as the assigned ammoSet. *****NOT CURRENTLY WORKING*****-->
+				<additionalAmmoSets> <!-- Other caibers the autoloader will accept. -->
+					<li>AmmoSet_12Gauge</li>
 				</additionalAmmoSets>
 			</li>
-			
-		===If CompMannable and CompPowerTrader are present, they'll be taken into account too, same goes for CompInitiatable and CompCanBeDormant===
-			
-			<li Class="CompProperties_Mannable">
+
+			<li Class="CompProperties_Mannable"> <!-- If CompProperties_Mannable is present, the autoloader will have to be manned to operate. -->
 				<manWorkType>Hauling</manWorkType>
 			</li>
-			<li Class="CompProperties_Power">
+			<li Class="CompProperties_Power"> <!-- If CompProperties_Power is present, the autoloader will have to be powered to operate. -->
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>300</basePowerConsumption>
 			</li>
 		</comps>
 	
-		===Different graphics can be applied at empty, half full (above 0) and full (above 75%) if this mod extension exists===
-	
-	<modExtensions>
-			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
+		<modExtensions>
+			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics"> <!-- Different graphics can be applied at empty, half full (above 0) and full (above 75%) if this mod extension exists -->
 				<fullGraphic>
 					<texPath>Things/Building/Misc/ToolCabinet</texPath>
 					<graphicClass>Graphic_Multi</graphicClass>
@@ -56,12 +47,10 @@
 					</damageData>
 				</fullGraphic>
 		
-		<halfFullGraphic>
+				<halfFullGraphic> <!-- If a stage is left empty, the code should fall back to default graphic. -->
 
-		===This is left deliberately empty, The code should fall back to default graphic if the current situation's graphics is left blank===
-
-		</halfFullGraphic>
-		
+				</halfFullGraphic>
+				
 				<emptyGraphic>
 					<texPath>Things/Building/Misc/ToolCabinet</texPath>
 					<graphicClass>Graphic_Multi</graphicClass>
@@ -74,30 +63,19 @@
 						<cornerBR>Damage/Corner</cornerBR>
 					</damageData>
 				</emptyGraphic>
-	  
-===Only turrets in this list will be reloaded, if it's not empty===
-	  
-		<allowedTurrets>
-		  <li>Turret_Heavy</li>
-		</allowedTurrets>
-		
-==The tag here is buildingTags under building node, Not weapon tag. See the def of KPV for example
-		
-		<allowedTurretTags>
-		  <li>CE_TurretHeavy</li>
-		</allowedTurretTags>
 
-===if left empty, a default machine cranking sound will play===
-
-		<reloadingSustainer>Ingest_Drink</reloadingSustainer>
-	  
-===if left empty, the intereact sound of the turret gun will play===
-
-		<reloadCompleteSound>Pawn_Chicken_Call</reloadCompleteSound>
-	  </li>
-	  </modExtensions>
+				<allowedTurrets> <!-- Whitelist of turrets that can be reloaded, if not blank. Uses defName of the structure, not the top. -->
+					<li>Turret_Heavy</li>
+				</allowedTurrets>
+				<allowedTurretTags> <!-- Whitelist of turret buildingTags, if not blank. See the KPV def for an example. -->
+					<li>CE_TurretHeavy</li>
+				</allowedTurretTags>
+				<reloadingSustainer>Ingest_Drink</reloadingSustainer> <!-- Sound that plays while the autoloader is reloading a turret.If left empty, a default machine cranking sound will play. -->
+				<reloadCompleteSound>Pawn_Chicken_Call</reloadCompleteSound> <!--- Sound that plays when the autoloader is done reloading a turret. If left empty, the intereact sound of the turret gun will play. -->
+			</li>
+		</modExtensions>
 		
-		===Generic stuffs here===
+		<!-- === Generic stuffs here === -->
 
 		<graphicData>
 			<texPath>Things/Building/Misc/ToolCabinet</texPath>
@@ -115,8 +93,8 @@
 		<passability>PassThroughOnly</passability>
 		<castEdgeShadows>true</castEdgeShadows>
 		<staticSunShadowHeight>0.35</staticSunShadowHeight>
-	<hasInteractionCell>True</hasInteractionCell>
-	<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<fillPercent>0.5</fillPercent>
 		<canOverlapZones>false</canOverlapZones>
 		<pathCost>42</pathCost>
@@ -132,10 +110,7 @@
 			<WorkToBuild>1800</WorkToBuild>
 			<Mass>20</Mass>
 			<Flammability>0.5</Flammability>
-			
-		===Look at this reload speed. this controls how fast/slow autoloader loads===
-			
-			<ReloadSpeed>0.5</ReloadSpeed>
+			<ReloadSpeed>0.5</ReloadSpeed>	<!-- How fast/slow autoloader loads -->
 		</statBases>
 		<designationCategory>Misc</designationCategory>
 		<minifiedDef>MinifiedThing</minifiedDef>
@@ -143,6 +118,5 @@
 			<li>BuildingsMisc</li>
 		</thingCategories>
 	</ThingDef>
-	-->
 
 </Defs>
