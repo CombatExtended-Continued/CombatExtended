@@ -19,45 +19,47 @@ public class CompAmmoListUser : CompVariableAmmoUser
         {
             if (usableAmmoSets.NullOrEmpty())
             {
-                var allowedAmmoSets = new List<AmmoSetDef> { Props.ammoSet };
+                List<AmmoSetDef> allowedAmmoSets = [Props.ammoSet];
                 allowedAmmoSets.AddRange(Props.additionalAmmoSets);
 
                 // Generalize allowed ammosets in generic ammo mode, unless they were already a generic ammoset.
                 if (Controller.settings.GenericAmmo)
                 {
-                    foreach (var def in allowedAmmoSets.Select(def => def.similarTo ?? def))
+                    foreach (AmmoSetDef allowedAmmo in allowedAmmoSets)
                     {
+                        AmmoSetDef def = allowedAmmo.similarTo ?? allowedAmmo;
                         if (IsUsableAmmoSet(def))
                         {
                             usableAmmoSets.Add(def);
                         }
                     }
-
                     return usableAmmoSets;
                 }
-
                 foreach (var def in allowedAmmoSets)
                 {
-                    if (Props.allowSimilarAmmo)
+
+                    List<AmmoSetDef> similarAmmoSets = [];
+                    foreach (AmmoSetDef other in DefDatabase<AmmoSetDef>.AllDefs)
                     {
-                        var similarAmmoSets = DefDatabase<AmmoSetDef>.AllDefs
-                                .Where(other => other.similarTo == def)
-                                .ToList();
-
-                        // Allow specifying a generic ammoset directly, and allow its constituent ammosets in this case.
-                        if (similarAmmoSets.Any())
+                        if (other.similarTo == def)
                         {
-                            foreach (var similarAmmoSet in similarAmmoSets)
-                            {
-                                if (IsUsableAmmoSet(similarAmmoSet))
-                                {
-                                    usableAmmoSets.Add(similarAmmoSet);
-                                }
-                            }
-
-                            continue;
+                            similarAmmoSets.Add(other);
                         }
                     }
+
+                    // Allow specifying a generic ammoset directly, and allow its constituent ammosets in this case.
+                    if (similarAmmoSets.Any())
+                    {
+                        foreach (var similarAmmoSet in similarAmmoSets)
+                        {
+                            if (IsUsableAmmoSet(similarAmmoSet))
+                            {
+                                usableAmmoSets.Add(similarAmmoSet);
+                            }
+                        }
+                        continue;
+                    }
+
 
                     if (IsUsableAmmoSet(def))
                     {
@@ -73,7 +75,7 @@ public class CompAmmoListUser : CompVariableAmmoUser
     //Merge ammosets with identical ammo usage. I'm worried about its performance and I might want to caculate this during game start up.
     private bool IsUsableAmmoSet(AmmoSetDef def)
     {
-        if (def.ammoTypes.First().ammo.menuHidden)
+        if (def.ammoTypes[0].ammo.menuHidden)
         {
             return false;
         }
