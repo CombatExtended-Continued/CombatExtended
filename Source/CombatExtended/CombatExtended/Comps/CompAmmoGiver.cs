@@ -36,7 +36,7 @@ public class CompAmmoGiver : ThingComp
 
                         foreach (AmmoThing ammo in selPawn.TryGetComp<CompInventory>().ammoList)
                         {
-                            if (ammo.AmmoDef.AmmoSetDefs.Contains(user.Props.ammoSet))
+                            if (ammo.AmmoDef.AmmoSetDefs.Contains(user.CurAmmoSet))
                             {
                                 int outAmmoCount = 0;
                                 if ((dad.TryGetComp<CompInventory>()?.CanFitInInventory(ammo, out outAmmoCount) ?? false) && outAmmoCount >= ammo.stackCount)
