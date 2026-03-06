@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using System.Linq;
@@ -33,41 +34,70 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
     internal static bool Prefix(out bool absorbed, DamageInfo dinfo, CompShield __instance)
     {
         absorbed = false;
-
         if (__instance.ShieldState != ShieldState.Active)
         {
-            return false;
-        }
-        float bc = 1.0f;
-        bool isEMP = dinfo.Def == DamageDefOf.EMP;
-        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE pce)
-        {
-            bc = pce.empShieldBreakChance;
-            isEMP = isEMP || pce.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP) != null;
-        }
-        if (isEMP && Rand.Chance(bc))
-        {
-            __instance.energy = 0f;
-            __instance.Break();
-            absorbed = true;
             return false;
         }
         if (dinfo.Def.ignoreShields)
         {
             return false;
         }
-        if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
+        if (!dinfo.Def.isRanged && !dinfo.Def.isExplosive && dinfo.Def != DamageDefOf.EMP)
         {
-            absorbed = true;
-            __instance.energy -= dinfo.Amount * __instance.Props.energyLossPerDamage * (isEMP ? (1 + bc) : 1);
-            if (__instance.energy < 0f)
+            return false;
+        }
+        absorbed = true;
+        float shieldDamageMultiplier = 1f;
+        float secondaryShieldDamageAmount = 0f;
+        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectilePropertiesCe)
+        {
+            shieldDamageMultiplier = projectilePropertiesCe.shieldDamageMultiplier;
+            List<SecondaryDamage> secondaryDamageProperties = projectilePropertiesCe.secondaryDamage;
+            if (!secondaryDamageProperties.NullOrEmpty())
             {
-                __instance.Break();
+                foreach (SecondaryDamage secondaryDamageInfo in secondaryDamageProperties)
+                {
+                    var secondaryDamageModExt = secondaryDamageInfo.def.GetModExtension<DamageDefExtensionCE>();
+                    if ((secondaryDamageInfo.def.harmsHealth || (secondaryDamageModExt?.secondaryDamageShieldOverride ?? false)) && Rand.Chance(secondaryDamageInfo.chance))
+                    {
+                        var secondaryDamageMultiplierValue = secondaryDamageInfo.shieldDamageMultiplier;
+                        if (secondaryDamageMultiplierValue == 1f && secondaryDamageModExt != null && secondaryDamageModExt.shieldDamageMultiplier != secondaryDamageMultiplierValue)
+                        {
+                            secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
+                        }
+                        secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
+                        dinfo.amountInt += secondaryDamageInfo.amount;
+
+                    }
+                }
             }
-            else
+        }
+        if (shieldDamageMultiplier == 1f)
+        {
+            DamageDefExtensionCE primaryDamageModExt = dinfo.defInt.GetModExtension<DamageDefExtensionCE>();
+            if (primaryDamageModExt != null && primaryDamageModExt.shieldDamageMultiplier != shieldDamageMultiplier)
             {
-                __instance.AbsorbedDamage(dinfo);
+                shieldDamageMultiplier = primaryDamageModExt.shieldDamageMultiplier;
             }
+        }
+        float primaryDamage = dinfo.Amount * shieldDamageMultiplier;
+        float totalDamage = (primaryDamage + secondaryShieldDamageAmount) * __instance.Props.energyLossPerDamage;
+#if DEBUG
+        if (Controller.settings.DebugVerbose)
+        {
+            Log.Message($"Primary Damage: {primaryDamage} Secondary Damage: {secondaryShieldDamageAmount}  Shield Energy Loss Per Damage: {__instance.Props.energyLossPerDamage} Shield Damage Before Energy Multiplier: {primaryDamage + secondaryShieldDamageAmount} Actual Shield Energy Damage: {totalDamage * 100} ");
+        }
+#endif
+        __instance.energy -= totalDamage;
+
+        if (__instance.energy < 0f)
+        {
+            __instance.Break();
+        }
+        else
+        {
+            dinfo.amountInt -= secondaryShieldDamageAmount;
+            __instance.AbsorbedDamage(dinfo);
         }
         return false;
     }
