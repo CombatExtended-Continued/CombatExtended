@@ -34,7 +34,6 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
     internal static bool Prefix(out bool absorbed, DamageInfo dinfo, CompShield __instance)
     {
         absorbed = false;
-
         if (__instance.ShieldState != ShieldState.Active || __instance.PawnOwner == null)
         {
             return false;
