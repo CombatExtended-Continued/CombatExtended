@@ -14,4 +14,6 @@ public class DamageDefExtensionCE : DefModExtension
     public bool isAmbientDamage = false;
     public float worldDamageMultiplier = -1f;
     public bool canCauseWallFragmentation = true;
+    public bool secondaryDamageShieldOverride = false;
+    public float shieldDamageMultiplier = 1f;
 }

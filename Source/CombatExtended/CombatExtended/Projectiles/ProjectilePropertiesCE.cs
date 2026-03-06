@@ -74,6 +74,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float airburstDistanceOffset = 0f;
 
     public float empShieldBreakChance = 1f;
+    public float shieldDamageMultiplier = 1f;
     public float collideDistance = 1f;
     public float impactChance = 1f;
 

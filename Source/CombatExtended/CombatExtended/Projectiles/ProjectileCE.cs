@@ -70,6 +70,7 @@ public abstract class ProjectileCE : ThingWithComps
     public DamageDef damageDefOverride;
 
     public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
+    public float ShieldDamageMultiplier => Props.shieldDamageMultiplier;
 
     public Thing intendedTargetThing
     {
@@ -708,16 +709,16 @@ public abstract class ProjectileCE : ThingWithComps
         {
             return false;
         }
+        // Don't normalize away the 3D component of the projectile position when checking for collisions
+        // between indirect fire projectiles and shields that protect against them
+        // (e.g. mortar shells targeting a high-shield).
         if (CE_Utility.IntersectionPoint(
-                LastPos,
-                newExactPos,
-                shieldPosition,
-                radius,
-                out Vector3[] sect,
-                // Don't normalize away the 3D component of the projectile position when checking for collisions
-                // between indirect fire projectiles and shields that protect against them
-                // (e.g. mortar shells targeting a high-shield).
-                spherical: interceptorComp.Props.interceptAirProjectiles && def.projectile.flyOverhead
+            LastPos,
+            newExactPos,
+            shieldPosition,
+            radius,
+            out Vector3[] sect,
+            spherical: interceptorComp.Props.interceptAirProjectiles && def.projectile.flyOverhead
         ))
         {
             ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
@@ -731,40 +732,74 @@ public abstract class ProjectileCE : ThingWithComps
         interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
 
         var projectileProperties = def.projectile as ProjectilePropertiesCE;
-        var areWeLucky = Rand.Chance(projectileProperties?.empShieldBreakChance ?? 0);
-        if (areWeLucky && interceptorComp.Props.disarmedByEmpForTicks > 0)
+        // EMP insta break if shield with no hit points. Default hitpoints are -1
+        if (interceptorComp.currentHitPoints < 0)
         {
-            // If the chance check for this EMP projectile succeeds, break the shield using the appropriate damage type
-            // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
-            // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
-            // may still technically pass the chance check.
-            var empDamageDef = DamageDef == DamageDefOf.EMP
-                               ? DamageDef
-                               : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
-
-            if (empDamageDef != null)
+            var areWeLucky = Rand.Chance(projectileProperties?.empShieldBreakChance ?? 0);
+            if (areWeLucky && interceptorComp.Props.disarmedByEmpForTicks > 0)
             {
-                interceptorComp.BreakShieldEmp(new DamageInfo(empDamageDef, empDamageDef.defaultDamage));
+                // If the chance check for this EMP projectile succeeds, break the shield using the appropriate damage type
+                // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
+                // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
+                // may still technically pass the chance check.
+                var empDamageDef = DamageDef == DamageDefOf.EMP ? DamageDef : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
 
-                // Ensure we reset hit points for Biotech's new shields if broken by EMP
-                interceptorComp.currentHitPoints = 0;
-                interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
+                if (empDamageDef != null)
+                {
+                    interceptorComp.BreakShieldEmp(new DamageInfo(empDamageDef, empDamageDef.defaultDamage));
+
+                    // Ensure we reset hit points for Biotech's new shields if broken by EMP
+                    interceptorComp.currentHitPoints = 0;
+                    interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
+                }
             }
         }
-
         // Handle Biotech's new shields used e.g. on the Centurion mech, which, unlike mech cluster shields, can only take
         // a finite amount of damage before breaking.
         // This simply mirrors the corresponding vanilla logic - we apply the incoming damage from our projectile to the shield
         // and break it if we manage to decrease its hitpoints to zero or lower.
         if (interceptorComp.currentHitPoints > 0)
         {
-            interceptorComp.currentHitPoints -= Mathf.FloorToInt(this.DamageAmount);
+
+            float secondaryShieldDamageAmount = 0f;
+            List<SecondaryDamage> secondaryDamageProperties = projectileProperties?.secondaryDamage;
+            DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>();
+            var shieldDamageMultiplier = ShieldDamageMultiplier;
+            if (damDefCE != null && damDefCE.shieldDamageMultiplier > ShieldDamageMultiplier)
+            {
+                shieldDamageMultiplier = damDefCE.shieldDamageMultiplier;
+            }
+
+            if (!secondaryDamageProperties.NullOrEmpty())
+            {
+                foreach (SecondaryDamage secondaryDamageInfo in secondaryDamageProperties)
+                {
+                    var secondaryDamageModExt = secondaryDamageInfo.def.GetModExtension<DamageDefExtensionCE>();
+                    if ((secondaryDamageInfo.def.harmsHealth || (secondaryDamageModExt?.secondaryDamageShieldOverride ?? false)) && Rand.Chance(secondaryDamageInfo.chance))
+                    {
+                        var secondaryDamageMultiplierValue = secondaryDamageInfo.shieldDamageMultiplier;
+                        if (secondaryDamageModExt != null && secondaryDamageModExt.shieldDamageMultiplier != secondaryDamageMultiplierValue)
+                        {
+                            secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
+                        }
+                        secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
+
+                    }
+                }
+            }
+            float shieldDamage = this.DamageAmount * shieldDamageMultiplier;
+            int totalShieldDamage = Mathf.FloorToInt(shieldDamage + secondaryShieldDamageAmount);
+            if (Rand.Value > shieldDamage - damageAmount)
+            {
+                totalShieldDamage++;
+            }
+            interceptorComp.currentHitPoints -= totalShieldDamage;
 
             if (interceptorComp.currentHitPoints <= 0)
             {
                 interceptorComp.currentHitPoints = 0;
                 interceptorComp.startedChargingTick = Find.TickManager.TicksGame;
-                interceptorComp.BreakShieldHitpoints(new DamageInfo(DamageDef, this.DamageAmount));
+                interceptorComp.BreakShieldHitpoints(new DamageInfo(DamageDef, totalShieldDamage));
                 return true;
             }
         }
