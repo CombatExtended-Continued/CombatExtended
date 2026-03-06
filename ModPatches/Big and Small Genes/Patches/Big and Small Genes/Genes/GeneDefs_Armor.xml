@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- Commneted out in B&S mod.
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/GeneDef[defName="BS_ToughSkin"]/customEffectDescriptions</xpath>
+	<!-- Tough Skin -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/GeneDef[defName="BS_ToughSkin"]</xpath>
 		<value>
 			<customEffectDescriptions>
 				<li>+0.5 mm natural sharp armor</li>
@@ -13,23 +13,67 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/GeneDef[defName="BS_NaturalArmor"]/customEffectDescriptions</xpath>
+		<xpath>Defs/GeneDef[defName="BS_ToughSkin"]/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="BS_ToughSkin"]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<!-- Natural Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/GeneDef[defName="BS_NaturalArmor"]</xpath>
 		<value>
 			<customEffectDescriptions>
-				<li>+1 mm natural sharp armor</li>
-				<li>+1.5 mPA natural blunt armor</li>
+				<li>+2 mm natural sharp armor</li>
+				<li>+4 mPA natural blunt armor</li>
 			</customEffectDescriptions>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/GeneDef[defName="BS_NaturalArmor_Great"]/customEffectDescriptions</xpath>
+		<xpath>Defs/GeneDef[defName="BS_NaturalArmor"]/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="BS_NaturalArmor"]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<!-- Greater Natural Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/GeneDef[defName="BS_NaturalArmor_Great"]</xpath>
 		<value>
 			<customEffectDescriptions>
-				<li>+1.5 mm natural sharp armor</li>
-				<li>+2 mPA natural blunt armor</li>
+				<li>+3 mm natural sharp armor</li>
+				<li>+9 mPA natural blunt armor</li>
 			</customEffectDescriptions>
 		</value>
 	</Operation>
-	-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="BS_NaturalArmor_Great"]/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>9</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="BS_NaturalArmor_Great"]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
 </Patch>

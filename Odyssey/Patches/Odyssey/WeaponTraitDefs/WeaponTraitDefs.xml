@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<!-- Remove Vanilla Accuracy -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[
+			defName="AimAssistance" or
+			defName="CustomGrip" or
+			defName="StabilizerBrace" or
+			defName="PulseCharger" or
+			defName="ImprovedSights"]/statFactors/AccuracyTouch
+		</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[
+			defName="AimAssistance" or
+			defName="CustomGrip" or
+			defName="StabilizerBrace" or
+			defName="PulseCharger" or
+			defName="ImprovedSights"]/statFactors/AccuracyShort
+		</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[
+			defName="AimAssistance" or
+			defName="StabilizerBrace" or
+			defName="PulseCharger" or
+			defName="ImprovedSights" or
+			defName="ShoddySights"]/statFactors/AccuracyMedium
+		</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[
+			defName="AimAssistance" or
+			defName="StabilizerBrace" or
+			defName="PulseCharger" or
+			defName="ImprovedSights" or
+			defName="ShoddySights"]/statFactors/AccuracyLong
+		</xpath>
+	</Operation>
+
+	<!-- Quick Reload -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="QuickReload"]/statOffsets</xpath>
+		<value>
+			<CE_RangedWeapon_ReloadFactor>-0.15</CE_RangedWeapon_ReloadFactor>
+		</value>
+	</Operation>
+
+	<!-- Aim Assistance -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="AimAssistance"]/statOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.15</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- Custom Grip -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="CustomGrip"]/statFactors</xpath>
+		<value>
+			<statFactors>
+				<CE_RangedWeapon_RecoilMultiplier>0.95</CE_RangedWeapon_RecoilMultiplier>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<!-- Stabilizer Brace -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="StabilizerBrace"]/statFactors</xpath>
+		<value>
+			<SwayFactor>0.85</SwayFactor>
+		</value>
+	</Operation>
+
+	<!-- Pulse Charger -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="PulseCharger"]</xpath>
+		<value>
+			<statFactors>
+				<ShotSpread>1.75</ShotSpread>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<!-- Toxic Rounds -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ToxRounds"]/damageDefOverride</xpath>
+		<value>
+			<extraDamages>
+				<li>
+					<def>Bullet_TraitTox</def>
+					<amount>2</amount>
+				</li>
+			</extraDamages>
+		</value>
+	</Operation>
+
+	<!-- Toxic Pellets -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ToxPellets"]/damageDefOverride</xpath>
+		<value>
+			<extraDamages>
+				<li>
+					<def>Bullet_TraitTox</def>
+					<amount>1</amount>
+				</li>
+			</extraDamages>
+		</value>
+	</Operation>
+
+	<!-- Magazine Size Increase -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.CustomWeaponTraitDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]/burstShotCountMultiplier</xpath>
+		<value>
+			<magazineCapacityFactor>1.50</magazineCapacityFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ExtendedMagazine"]/description</xpath>
+		<value>
+			<description>This weapon's magazine holds 50% more ammunition than normal.</description>
+		</value>
+	</Operation>
+
+	<!-- Armor Penetration Increase -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[defName="OversizedRounds"]/additionalStoppingPower</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="OversizedRounds"]/statOffsets</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>0.1</RangedWeapon_ArmorPenetrationMultiplier>
+		</value>
+	</Operation>
+
+	<!-- Hollow-Point Rounds -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HollowPointRounds"]/label</xpath>
+		<value>
+			<label>improved terminal ballistics</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HollowPointRounds"]/description</xpath>
+		<value>
+			<description>This weapon's bullets have been designed for maximum fragmentation after striking a target, dealing more damage than normal.</description>
+		</value>
+	</Operation>
+
+	<!-- High Power Rounds -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HighPowerRounds"]/statFactors</xpath>
+		<value>
+			<statFactors>
+				<CE_RangedWeapon_RecoilMultiplier>1.3</CE_RangedWeapon_RecoilMultiplier>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HighPowerRounds"]/statOffsets/RangedWeapon_DamageMultiplier</xpath>
+		<value>
+			<RangedWeapon_DamageMultiplier>0.25</RangedWeapon_DamageMultiplier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="HighPowerRounds"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>0.2</RangedWeapon_ArmorPenetrationMultiplier>
+		</value>
+	</Operation>
+
+	<!-- Extra Damage -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="IncendiaryRounds"]/damageDefOverride</xpath>
+		<value>
+			<extraDamages>
+				<li>
+					<def>Flame_Secondary_Incendiary</def>
+					<amount>2</amount>
+				</li>
+			</extraDamages>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="IncendiaryPellets"]/damageDefOverride</xpath>
+		<value>
+			<extraDamages>
+				<li>
+					<def>Flame_Secondary_Incendiary</def>
+					<amount>1</amount>
+				</li>
+			</extraDamages>
+		</value>
+	</Operation>
+
+	<!-- Birdshot -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="BirdshotPellets"]/statFactors</xpath>
+		<value>
+			<statFactors>
+				<ShotSpread>1.5</ShotSpread>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[defName="BirdshotPellets"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="BirdshotPellets"]/label</xpath>
+		<value>
+			<label>wide bore</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="BirdshotPellets"]/description</xpath>
+		<value>
+			<description>This weapon has a wider bore than normal, causing considerably larger spread.</description>
+		</value>
+	</Operation>
+
+	<!-- Bows -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="ParalyticArrows"]/damageDefOverride</xpath>
+		<value>
+			<extraDamages>
+				<li>
+					<def>Nerve</def>
+					<amount>1</amount> <!-- Amount shouldn't matter for stun duration -->
+				</li>
+			</extraDamages>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="PiercingArrows"]/statOffsets/RangedWeapon_ArmorPenetrationMultiplier</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>0.5</RangedWeapon_ArmorPenetrationMultiplier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="LightweightArrows"]/statOffsets</xpath>
+		<value>
+			<RangedWeapon_ArmorPenetrationMultiplier>-0.1</RangedWeapon_ArmorPenetrationMultiplier>
+		</value>
+	</Operation>
+
+	<!-- Barrels -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="ExtendedBarrel"]</xpath>
+		<value>
+			<statFactors>
+				<ShotSpread>0.95</ShotSpread>
+				<Bulk>1.1</Bulk>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="ShortenedBarrel"]</xpath>
+		<value>
+			<statFactors>
+				<ShotSpread>1.05</ShotSpread>
+				<Bulk>0.9</Bulk>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<!-- Sights -->
+	<!-- Improved Sights -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="ImprovedSights"]/statFactors</xpath>
+		<value>
+			<SightsEfficiency>1.10</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<!-- Shoddy Sights -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="ShoddySights"]/statFactors</xpath>
+		<value>
+			<SightsEfficiency>0.90</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<!-- Scoped -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="PrecisionScope"]/statOffsets</xpath>
+		<value>
+			<SightsEfficiency>0.4</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="RangefinderScope"]/statOffsets</xpath>
+		<value>
+			<SightsEfficiency>0.2</SightsEfficiency>
+		</value>
+	</Operation>
+
+	<!-- Lightweight -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="Lightweight"]/description</xpath>
+		<value>
+			<description>This weapon is much lighter than normal, lowering its aiming time at the cost of increased recoil.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WeaponTraitDef[defName="Lightweight"]/statFactors</xpath>
+		<value>
+			<CE_RangedWeapon_RecoilMultiplier>1.25</CE_RangedWeapon_RecoilMultiplier>
+		</value>
+	</Operation>
+
+	<!-- Attachments -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/WeaponTraitDef[defName="EMPLauncher" or defName="SmokeLauncher" or defName="BioferriteBurner"]</xpath>
+	</Operation>
+
+	<!-- Grenade launcher -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]/description</xpath>
+		<value>
+			<description>This weapon has an attached grenade launcher capable of firing a variety of different munitions.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.CustomWeaponTraitDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="GrenadeLauncher"]/abilityProps</xpath>
+		<value>
+			<underBarrelProps>
+				<underBarrelLabel>switch to grenade launcher</underBarrelLabel>
+				<propsUnderBarrel>
+					<magazineSize>1</magazineSize>
+					<reloadTime>3</reloadTime>
+					<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+					<warmupTime>0.55</warmupTime>
+					<range>35</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>5</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</underBarrelProps>
+		</value>
+	</Operation>
+
+	<!-- Incendiary Launcher -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/WeaponTraitDef[defName="IncendiaryLauncher"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.CustomWeaponTraitDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/WeaponTraitDef[defName="IncendiaryLauncher"]/abilityProps</xpath>
+		<value>
+			<underBarrelProps>
+				<underBarrelLabel>switch to incendiary launcher</underBarrelLabel>
+				<propsUnderBarrel>
+					<magazineSize>1</magazineSize>
+					<reloadTime>3</reloadTime>
+					<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_30x64mmFuel_Incendiary</defaultProjectile>
+					<warmupTime>0.55</warmupTime>
+					<range>35</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Shot_IncendiaryLauncher</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</underBarrelProps>
+		</value>
+	</Operation>
+
+</Patch>

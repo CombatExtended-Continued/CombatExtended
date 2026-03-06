@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class ApparelModBlacklist : Def
 {
-    public class ApparelModBlacklist : Def
-    {
-        public List<string> modIDs;
-        public List<string> defNames;
-    }
+    public List<string> modIDs;
+    public List<string> defNames;
 }

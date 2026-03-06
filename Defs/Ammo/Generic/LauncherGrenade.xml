@@ -21,6 +21,9 @@
 			<Ammo_LauncherGrenade_HEDP>Bullet_40x46mmGrenade_HEDP</Ammo_LauncherGrenade_HEDP>
 			<Ammo_LauncherGrenade_EMP>Bullet_40x46mmGrenade_EMP</Ammo_LauncherGrenade_EMP>
 			<Ammo_LauncherGrenade_Smoke>Bullet_40x46mmGrenade_Smoke</Ammo_LauncherGrenade_Smoke>
+			<Ammo_LauncherGrenade_AP>Bullet_20x42mm_AP</Ammo_LauncherGrenade_AP>
+			<Ammo_LauncherGrenade_Incendiary>Bullet_20x42mm_Incendiary</Ammo_LauncherGrenade_Incendiary>
+			<Ammo_LauncherGrenade_APHE>Bullet_20x42mm_APHE</Ammo_LauncherGrenade_APHE>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -50,9 +53,6 @@
 			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>2.27</MarketValue>
-		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
 	</ThingDef>
@@ -64,9 +64,6 @@
 			<texPath>Things/Ammo/GrenadeLauncher/AIR</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>3.25</MarketValue>
-		</statBases>
 		<ammoClass>GrenadeHETF</ammoClass>
 		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
 	</ThingDef>
@@ -78,9 +75,6 @@
 			<texPath>Things/Ammo/GrenadeLauncher/DP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>2.12</MarketValue>
-		</statBases>
 		<ammoClass>GrenadeHEDP</ammoClass>
 		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
 	</ThingDef>
@@ -92,9 +86,6 @@
 			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>4.57</MarketValue>
-		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
 		<detonateProjectile>Bullet_40x46mmGrenade_EMP</detonateProjectile>
 	</ThingDef>
@@ -106,9 +97,6 @@
 			<texPath>Things/Ammo/GrenadeLauncher/SMK</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>1.84</MarketValue>
-		</statBases>
 		<ammoClass>Smoke</ammoClass>
 		<generateAllowChance>0</generateAllowChance>
 		<detonateProjectile>Bullet_40x46mmGrenade_Smoke</detonateProjectile>
@@ -121,12 +109,42 @@
 			<texPath>Things/Ammo/GrenadeLauncher/Tox</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>1.84</MarketValue>
-		</statBases>
 		<ammoClass>Toxic</ammoClass>
 		<generateAllowChance>0</generateAllowChance>
 		<detonateProjectile>Bullet_40x46mmGrenade_Tox</detonateProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
+		<defName>Ammo_LauncherGrenade_AP</defName>
+		<label>launcher grenade (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<detonateProjectile>Bullet_20x42mm_AP</detonateProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
+		<defName>Ammo_LauncherGrenade_Incendiary</defName>
+		<label>launcher grenade (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<detonateProjectile>Bullet_20x42mm_Incendiary</detonateProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
+		<defName>Ammo_LauncherGrenade_APHE</defName>
+		<label>launcher grenade (AP-HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<detonateProjectile>Bullet_20x42mm_APHE</detonateProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -393,6 +411,102 @@
 			<Ammo_LauncherGrenade_Tox>100</Ammo_LauncherGrenade_Tox>
 		</products>
 		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_LauncherGrenade_AP</defName>
+		<label>make launcher AP cartridge x100</label>
+		<description>Craft 100 launcher AP cartridges.</description>
+		<jobString>Making launcher AP cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>34</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_LauncherGrenade_AP>100</Ammo_LauncherGrenade_AP>
+		</products>
+		<workAmount>4080</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_LauncherGrenade_Incendiary</defName>
+		<label>make launcher AP-I cartridge x100</label>
+		<description>Craft 100 launcher AP-I cartridges.</description>
+		<jobString>Making launcher AP-I cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>34</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_LauncherGrenade_Incendiary>100</Ammo_LauncherGrenade_Incendiary>
+		</products>
+		<workAmount>5800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_LauncherGrenade_APHE</defName>
+		<label>make launcher AP-HE cartridge x100</label>
+		<description>Craft 100 launcher AP-HE cartridges.</description>
+		<jobString>Making launcher AP-HE cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>34</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>11</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_LauncherGrenade_APHE>100</Ammo_LauncherGrenade_APHE>
+		</products>
+		<workAmount>7800</workAmount>
 	</RecipeDef>
 
 </Defs>

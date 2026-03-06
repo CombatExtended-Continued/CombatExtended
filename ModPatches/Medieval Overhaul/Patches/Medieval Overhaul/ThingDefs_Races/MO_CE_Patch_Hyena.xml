@@ -18,6 +18,8 @@
 			<MeleeDodgeChance>0.26</MeleeDodgeChance>
 			<MeleeCritChance>0.09</MeleeCritChance>
 			<MeleeParryChance>0.05</MeleeParryChance>
+			<ArmorRating_Sharp>0.7</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1.05</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -100,6 +102,29 @@
 		<xpath>Defs/PawnKindDef[defName="DankPyon_Hyena"]/combatPower</xpath>
 		<value>
 			<combatPower>80</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DankPyon_Hyena"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_Hyena"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Hyena"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>725</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 

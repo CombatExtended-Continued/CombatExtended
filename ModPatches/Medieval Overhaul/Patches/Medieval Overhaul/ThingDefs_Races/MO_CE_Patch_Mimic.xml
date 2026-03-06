@@ -118,6 +118,29 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DankPyon_RusticMimic"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_RusticMimic"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_RusticMimic"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>750</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>900</RegenInterval><!-- One and half than average, reduce durability -->
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- === Royal Mimic === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="DankPyon_RoyalMimic"]/statBases</xpath>
@@ -229,6 +252,29 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DankPyon_RoyalMimic"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_RoyalMimic"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_RoyalMimic"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>900</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>900</RegenInterval><!-- One and half than average, reduce durability -->
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
 			</li>
 		</value>
 	</Operation>

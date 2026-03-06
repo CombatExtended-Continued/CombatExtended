@@ -591,6 +591,13 @@
 
 	<!-- ========== Traps ========== -->
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="TrapIEDBase"]</xpath>
+		<value>
+			<fillPercent>0.01</fillPercent>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="TrapIED_HighExplosive"]/costList</xpath>
 		<value>
@@ -629,6 +636,7 @@
 					<min>5</min>
 					<max>30</max>
 				</wickTicks>
+				<preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
 			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
@@ -657,6 +665,7 @@
 					<min>5</min>
 					<max>20</max>
 				</wickTicks>
+				<preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
 			</li>
 		</value>
 	</Operation>

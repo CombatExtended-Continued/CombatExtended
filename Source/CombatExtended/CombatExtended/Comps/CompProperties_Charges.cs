@@ -6,16 +6,14 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class CompProperties_Charges : CompProperties
 {
-    public class CompProperties_Charges : CompProperties
-    {
-        // Charges are paired as velocity / range
-        public List<int> chargeSpeeds = new List<int>();
+    // Charges are paired as velocity / range
+    public List<int> chargeSpeeds = new List<int>();
 
-        public CompProperties_Charges()
-        {
-            compClass = typeof(CompCharges);
-        }
+    public CompProperties_Charges()
+    {
+        compClass = typeof(CompCharges);
     }
 }

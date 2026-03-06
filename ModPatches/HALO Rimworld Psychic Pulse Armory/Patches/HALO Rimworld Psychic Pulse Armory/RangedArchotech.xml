@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Tools === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="HRPPA_PsychicPulseCannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[
+			defName="HRPPA_PsychicPulseRepeater" or
+			defName="HRPPA_PsychicPulseSpinner" or
+			defName="HRPPA_PsychicPulseScatter" or
+			defName="HRPPA_PsychicPulseReacher" or
+			defName="HRPPA_PsychicPulseLancer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+
+	<!-- === Halo 4 Forerunner Cannon === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRPPA_PsychicPulseCannon</defName>
+		<statBases>
+			<Mass>1.40</Mass>
+			<Bulk>2.40</Bulk>
+			<SwayFactor>1.17</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>HRPPA_Bullet_PsychicPulseCannonCE</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>16</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>HRPPA_Shot_PsychicPulseCannon</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>21</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>ArchotechWeapons</li>
+			<li>HRPPAGun</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+
+	<!-- === Halo 4 Forerunner Repeater === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRPPA_PsychicPulseRepeater</defName>
+		<statBases>
+			<Mass>2.6</Mass>
+			<Bulk>7.5</Bulk>
+			<SwayFactor>0.92</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>HRPPA_Bullet_PsychicPulseRepeaterCE</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>28</range>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<soundCast>HRPPA_Shot_PsychicPulseRepeater</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>40</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>ArchotechWeapons</li>
+			<li>HRPPAGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Halo 4 Forerunner Scatter === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRPPA_PsychicPulseScatter</defName>
+		<statBases>
+			<Mass>4.40</Mass>
+			<Bulk>11.00</Bulk>
+			<SwayFactor>1.24</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.01</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>HRPPA_Bullet_PsychicPulseShotgunCE</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>17</range>
+			<soundCast>HRPPA_Shot_PsychicPulseScatter</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+		</FireModes>
+		<weaponTags>
+			<li>ArchotechWeapons</li>
+			<li>HRPPAGun</li>
+		</weaponTags>
+	</Operation>
+
+
+	<!-- === Halo 4 Forerunner Reacher === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRPPA_PsychicPulseReacher</defName>
+		<statBases>
+			<Mass>4.80</Mass>
+			<Bulk>13.00</Bulk>
+			<SwayFactor>1.19</SwayFactor>
+			<ShotSpread>0.04</ShotSpread>
+			<SightsEfficiency>3</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>HRPPA_Bullet_PsychicPulseReacherCE</defaultProjectile>
+			<warmupTime>1.7</warmupTime>
+			<range>86</range>
+			<soundCast>HRPPA_Shot_PsychicPulseReacher</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>ArchotechWeapons</li>
+			<li>HRPPAGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Halo 4 Forerunner Lancer === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRPPA_PsychicPulseLancer</defName>
+		<statBases>
+			<Mass>5.20</Mass>
+			<Bulk>15.00</Bulk>
+			<SwayFactor>1.45</SwayFactor>
+			<ShotSpread>0.04</ShotSpread>
+			<SightsEfficiency>2.5</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>HRPPA_Bullet_PsychicPulseLancerCE</defaultProjectile>
+			<warmupTime>1.7</warmupTime>
+			<range>86</range>
+			<soundCast>HRPPA_Shot_PsychicPulseLancer</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>6</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>ArchotechWeapons</li>
+			<li>HRPPAGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Halo 4 Forerunner Spinner === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRPPA_PsychicPulseSpinner</defName>
+		<statBases>
+			<Mass>3.8</Mass>
+			<Bulk>10.40</Bulk>
+			<SwayFactor>2.64</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>HRPPA_Bullet_PsychicPulseSpinnerCE</defaultProjectile>
+			<burstShotCount>25</burstShotCount>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<warmupTime>2</warmupTime>
+			<range>75</range>
+			<soundCast>HRPPA_Shot_PsychicPulseSpinner</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilAmount>0.01</recoilAmount>
+			<recoilPattern>Regular</recoilPattern>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>6</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>10</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>ArchotechWeapons</li>
+			<li>HRPPAGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseGrenade"]/verbs</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseGrenade"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseGrenade"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseGrenade"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRPPA_PsychicPulseGrenade</defName>
+		<statBases>
+			<MarketValue>16</MarketValue>
+			<Mass>0.4</Mass>
+			<Bulk>0.87</Bulk>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>HRPPA_Proj_PsychicPulseGrenadeCE</defaultProjectile>
+			<warmupTime>0.85</warmupTime>
+			<range>16</range>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<noiseRadius>4</noiseRadius>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+			<li>ArchotechWeapons</li>
+			<li>HRPPAGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseGrenade"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosiveDamageType>Neuralizer_weak</explosiveDamageType>
+				<explosiveRadius>6.66</explosiveRadius>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseGrenade"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1</cooldownTime>
+					<armorPenetrationSharp>0.55</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseGrenade"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+
+</Patch>

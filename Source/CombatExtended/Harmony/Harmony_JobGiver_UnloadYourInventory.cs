@@ -21,64 +21,62 @@ using Verse.AI;
  *
  */
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+[HarmonyPatch(typeof(JobGiver_UnloadYourInventory), "TryGiveJob", new Type[] { typeof(Pawn) })]
+static class Harmony_JobGiver_UnloadYourInventory
 {
-    [HarmonyPatch(typeof(JobGiver_UnloadYourInventory), "TryGiveJob", new Type[] { typeof(Pawn) })]
-    static class Harmony_JobGiver_UnloadYourInventory
+    static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase source, ILGenerator il)
     {
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase source, ILGenerator il)
+        // another new thing, find the desired parameter instead of assuming it will be the same.
+        ParameterInfo[] args = source.GetParameters();
+        int argIndex = -1;
+        for (int i = 0; i < args.Length; i++)
         {
-            // another new thing, find the desired parameter instead of assuming it will be the same.
-            ParameterInfo[] args = source.GetParameters();
-            int argIndex = -1;
-            for (int i = 0; i < args.Length; i++)
+            if (args[i].ParameterType.Equals(typeof(Pawn)))
             {
-                if (args[i].ParameterType.Equals(typeof(Pawn)))
-                {
-                    argIndex = i + 1; // parrameters are 0 based because of instance.
-                    break;
-                }
+                argIndex = i + 1; // parrameters are 0 based because of instance.
+                break;
+            }
+        }
+
+        Label branchFalse = il.DefineLabel(); // since the logic is gettin changed more than I thought, need a new label.
+
+
+        int patchPhase = 0;
+        foreach (CodeInstruction instruction in instructions)
+        {
+            // Looking for the ldnull instruction to add a label to it.
+            if (patchPhase == 1 && instruction.opcode.Equals(OpCodes.Ldnull))
+            {
+                instruction.labels.Add(branchFalse);
+
+                patchPhase = 2;
             }
 
-            Label branchFalse = il.DefineLabel(); // since the logic is gettin changed more than I thought, need a new label.
-
-
-            int patchPhase = 0;
-            foreach (CodeInstruction instruction in instructions)
+            // The first branch we find is the one to remember.  This is also the insertion point...
+            if (patchPhase == 0 && instruction.opcode.Equals(OpCodes.Brtrue_S))
             {
-                // Looking for the ldnull instruction to add a label to it.
-                if (patchPhase == 1 && instruction.opcode.Equals(OpCodes.Ldnull))
-                {
-                    instruction.labels.Add(branchFalse);
 
-                    patchPhase = 2;
-                }
+                // If the inventory isn't set to unload mode, short circuit and jump to return null path...
+                yield return new CodeInstruction(OpCodes.Brfalse, branchFalse);
 
-                // The first branch we find is the one to remember.  This is also the insertion point...
-                if (patchPhase == 0 && instruction.opcode.Equals(OpCodes.Brtrue_S))
-                {
+                // load the arg which is the pawn.
+                yield return new CodeInstruction(OpCodes.Ldarg, argIndex);
+                // load call to see if the pawn has anything they can drop according to loadout/holdtracker.
+                yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Utility_HoldTracker), "HasAnythingForDrop"));
 
-                    // If the inventory isn't set to unload mode, short circuit and jump to return null path...
-                    yield return new CodeInstruction(OpCodes.Brfalse, branchFalse);
+                // leave the current instruction, branch true, alone...
 
-                    // load the arg which is the pawn.
-                    yield return new CodeInstruction(OpCodes.Ldarg, argIndex);
-                    // load call to see if the pawn has anything they can drop according to loadout/holdtracker.
-                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Utility_HoldTracker), "HasAnythingForDrop"));
-
-                    // leave the current instruction, branch true, alone...
-
-                    patchPhase = 1;
-                }
-
-                yield return instruction;
-
+                patchPhase = 1;
             }
 
-            if (patchPhase < 2)
-            {
-                Log.Warning("CombatExtended :: Harmony-JobGiver_UnloadYourInventory patch failed to complete all its steps");
-            }
+            yield return instruction;
+
+        }
+
+        if (patchPhase < 2)
+        {
+            Log.Warning("CombatExtended :: Harmony-JobGiver_UnloadYourInventory patch failed to complete all its steps");
         }
     }
 }

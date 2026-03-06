@@ -8,38 +8,36 @@ using RimWorld;
 using HarmonyLib;
 using System.Reflection;
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+[HarmonyPatch]
+class Harmony_PlaceWorker_ShowTurretRadius
 {
-    [HarmonyPatch]
-    class Harmony_PlaceWorker_ShowTurretRadius
+    const string className = "<>c";
+    const string methodName = "<AllowsPlacing>";
+
+    public static MethodBase TargetMethod()
     {
-        const string className = "<>c";
-        const string methodName = "<AllowsPlacing>";
+        var targets = typeof(PlaceWorker_ShowTurretRadius).GetNestedTypes(AccessTools.all)
+                      .Where(x => x.Name.Contains(className));
 
-        public static MethodBase TargetMethod()
+        if (!targets.Any())
         {
-            var targets = typeof(PlaceWorker_ShowTurretRadius).GetNestedTypes(AccessTools.all)
-                          .Where(x => x.Name.Contains(className));
-
-            if (!targets.Any())
-            {
-                Log.Error("CombatExtended :: Harmony_PlaceWorker_ShowTurretRadius couldn't find part `" + className + "`");
-            }
-
-            var method = targets.SelectMany(x => x.GetMethods(AccessTools.all)).FirstOrDefault(x => x.Name.Contains(methodName));
-
-            if (method == null)
-            {
-                Log.Error("CombatExtended :: Harmony_PlaceWorker_ShowTurretRadius couldn't find `<>c` sub-class containing `" + methodName + "`");
-            }
-
-            return method;
+            Log.Error("CombatExtended :: Harmony_PlaceWorker_ShowTurretRadius couldn't find part `" + className + "`");
         }
 
-        [HarmonyPostfix]
-        public static void PostFix(VerbProperties v, ref bool __result)
+        var method = targets.SelectMany(x => x.GetMethods(AccessTools.all)).FirstOrDefault(x => x.Name.Contains(methodName));
+
+        if (method == null)
         {
-            __result = __result || v.verbClass == typeof(Verb_ShootCE);
+            Log.Error("CombatExtended :: Harmony_PlaceWorker_ShowTurretRadius couldn't find `<>c` sub-class containing `" + methodName + "`");
         }
+
+        return method;
+    }
+
+    [HarmonyPostfix]
+    public static void PostFix(VerbProperties v, ref bool __result)
+    {
+        __result = __result || v.verbClass == typeof(Verb_ShootCE);
     }
 }

@@ -4,10 +4,10 @@
 	<!-- ========== Longgun Melee Tools =========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="Roren_OldShotgun" or 
-			defName="Roren_OldRifle" or 
+			defName="Roren_OldShotgun" or
+			defName="Roren_OldRifle" or
 			defName="Roren_OldMarksmanRifle"
-		]/tools</xpath>
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -44,7 +44,7 @@
 			</tools>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Roren_OldPistol"]/tools</xpath>
 		<value>
@@ -120,7 +120,7 @@
 	</Operation>
 
 	<!-- === Shotgun === -->
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Roren_OldShotgun</defName>
 		<statBases>
@@ -157,9 +157,9 @@
 			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
 	</Operation>
-	
+
 	<!-- === Rifle === -->
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Roren_OldRifle</defName>
 		<statBases>
@@ -197,9 +197,9 @@
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 	</Operation>
-	
+
 	<!-- === Marksman Rifle === -->
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Roren_OldMarksmanRifle</defName>
 		<statBases>
@@ -241,16 +241,15 @@
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
-	
-	
+
 	<!-- ========== Grenade ========== -->
-	
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="Roren_Hand_Grenade"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Roren_Hand_Grenade"]</xpath>
 		<value>
@@ -292,7 +291,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Roren_Hand_Grenade"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -313,7 +312,6 @@
 		<statBases>
 			<Mass>0.82</Mass>
 			<Bulk>0.36</Bulk>
-			<MarketValue>12.22</MarketValue>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<SightsEfficiency>1.0</SightsEfficiency>
 		</statBases>
@@ -377,7 +375,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Roren_Proj_GrenadeFrag"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>

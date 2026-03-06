@@ -20,8 +20,6 @@
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FabricationBench</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
 		</tradeTags>
 		<thingCategories>
 			<li>AmmoLaserChargePack</li>
@@ -32,14 +30,33 @@
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="LaserChargePackBase">
 		<defName>Ammo_LaserChargePack</defName>
 		<label>laser charge pack</label>
+		<tradeTags>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
 		<graphicData>
 			<texPath>Things/Ammo/LaserPack</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>0.69</MarketValue>
-		</statBases>
 		<ammoClass>Laser</ammoClass>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="LaserChargePackBase">
+		<defName>Ammo_LaserChargePack_Mech</defName>
+		<label>mechanoid laser pack</label>
+		<tradeTags>
+			<li>CE_AutoEnableTrade_Sellable</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
+		<statBases>
+			<MarketValue>0.05</MarketValue>
+		</statBases>
+		<description>A mechanoid manufactured charge pack for laser weapons.</description>
+		<graphicData>
+			<texPath>Things/Ammo/LaserPack</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>Laser_Mech</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -84,6 +101,50 @@
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_LaserChargePack>500</Ammo_LaserChargePack>
+		</products>
+		<workAmount>8400</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_LaserChargePack_Mech</defName>
+		<label>make mechanoid laser charge pack x500</label>
+		<description>Craft 500 mechanoid laser charge pack.</description>
+		<jobString>Making mechanoid laser charge pack.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_LaserChargePack_Mech>500</Ammo_LaserChargePack_Mech>
 		</products>
 		<workAmount>8400</workAmount>
 	</RecipeDef>

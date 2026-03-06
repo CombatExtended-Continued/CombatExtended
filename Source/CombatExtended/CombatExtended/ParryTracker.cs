@@ -1,94 +1,139 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class ParryTracker : MapComponent
 {
-    public class ParryTracker : MapComponent
+    private struct ParryCounter
     {
-        private struct ParryCounter
+        public int parries;
+        private int timeoutTick;
+
+        public ParryCounter(int timeoutTicks)
         {
-            public int parries;
-            private int timeoutTick;
-
-            public ParryCounter(int timeoutTicks)
-            {
-                parries = 0;
-                timeoutTick = Find.TickManager.TicksGame + timeoutTicks;
-            }
-
-            public bool ShouldTimeout()
-            {
-                return Find.TickManager.TicksGame >= timeoutTick;
-            }
+            parries = 0;
+            timeoutTick = Find.TickManager.TicksGame + timeoutTicks;
         }
 
-        private const int SkillPerParry = 4;    // Award another parry per this many skill levels
-        private const int TicksToTimeout = 120; // Reset parry counter after this many ticks
-
-        private Dictionary<Pawn, ParryCounter> parryTracker = new Dictionary<Pawn, ParryCounter>();
-
-        public ParryTracker(Map map) : base(map)
+        public bool ShouldTimeout()
         {
+            return Find.TickManager.TicksGame >= timeoutTick;
         }
+    }
 
-        private int GetUsedParriesFor(Pawn pawn)
+    private const int SkillPerParry = 4;    // Award another parry per this many skill levels
+    private const int TicksToTimeout = 120; // Reset parry counter after this many ticks
+
+    private Dictionary<Pawn, ParryCounter> parryTracker = new Dictionary<Pawn, ParryCounter>();
+    private List<Pawn> reusablePawnList = new List<Pawn>();
+
+    public ParryTracker(Map map) : base(map)
+    {
+    }
+
+    private int GetUsedParriesFor(Pawn pawn)
+    {
+        if (!parryTracker.TryGetValue(pawn, out ParryCounter counter))
         {
-            ParryCounter counter;
-            if (!parryTracker.TryGetValue(pawn, out counter))
+            return 0;
+        }
+        return counter.parries;
+    }
+
+    public bool CheckCanParry(Pawn pawn)
+    {
+        if (pawn == null)
+        {
+            Log.Error("CE tried checking CanParry with Null-Pawn");
+            return false;
+        }
+        var skill = pawn.skills?.GetSkill(SkillDefOf.Melee);
+        int parrySkill;
+        if (skill != null)
+        {
+            parrySkill = Mathf.RoundToInt(skill.Level / SkillPerParry);
+        }
+        else
+        {
+            parrySkill = pawn.def.GetModExtension<RacePropertiesExtensionCE>()?.maxParry ?? 1;
+        }
+        int parriesLeft = parrySkill - GetUsedParriesFor(pawn);
+        return parriesLeft > 0;
+    }
+
+    public void RegisterParryFor(Pawn pawn, int timeoutTicks)
+    {
+        if (!parryTracker.TryGetValue(pawn, out ParryCounter counter))
+        {
+            // Register new pawn in tracker
+            counter = new ParryCounter(timeoutTicks);
+            parryTracker.Add(pawn, counter);
+        }
+        counter.parries++;
+    }
+
+    public void ResetParriesFor(Pawn pawn)
+    {
+        parryTracker.Remove(pawn);
+    }
+
+    public override void MapComponentTick()
+    {
+        if (Find.TickManager.TicksGame % 10 == 0)
+        {
+            reusablePawnList.Clear();
+
+            foreach (var kvp in parryTracker)
             {
-                return 0;
-            }
-            return counter.parries;
-        }
-
-        public bool CheckCanParry(Pawn pawn)
-        {
-            if (pawn == null)
-            {
-                Log.Error("CE tried checking CanParry with Null-Pawn");
-                return false;
-            }
-
-            int parriesLeft = Mathf.RoundToInt(pawn.skills.GetSkill(SkillDefOf.Melee).Level / SkillPerParry) - GetUsedParriesFor(pawn);
-            return parriesLeft > 0;
-        }
-
-        public void RegisterParryFor(Pawn pawn, int timeoutTicks)
-        {
-            ParryCounter counter;
-            if (!parryTracker.TryGetValue(pawn, out counter))
-            {
-                // Register new pawn in tracker
-                counter = new ParryCounter(timeoutTicks);
-                parryTracker.Add(pawn, counter);
-            }
-            counter.parries++;
-        }
-
-        public void ResetParriesFor(Pawn pawn)
-        {
-            parryTracker.Remove(pawn);
-        }
-
-        public override void MapComponentTick()
-        {
-            if (Find.TickManager.TicksGame % 10 == 0)
-            {
-                foreach (var entry in parryTracker.Where(kvp => kvp.Value.ShouldTimeout()).ToArray())
+                if (kvp.Value.ShouldTimeout())
                 {
-                    parryTracker.Remove(entry.Key);
+                    reusablePawnList.Add(kvp.Key);
                 }
             }
-        }
 
-        public override void ExposeData()
+            for (int i = 0; i < reusablePawnList.Count; i++)
+            {
+                parryTracker.Remove(reusablePawnList[i]);
+            }
+        }
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        List<Pawn> pawns = null;
+        List<ParryCounter> counters = null;
+        if (Scribe.mode == LoadSaveMode.Saving)
         {
-            // TODO Save parryTracker
+            pawns = new List<Pawn>();
+            counters = new List<ParryCounter>();
+
+            foreach (var kvp in parryTracker)
+            {
+                pawns.Add(kvp.Key);
+                counters.Add(kvp.Value);
+            }
+        }
+        Scribe_Collections.Look(ref pawns, "parryPawns", LookMode.Reference);
+        Scribe_Collections.Look(ref counters, "parryCounters", LookMode.Deep);
+        if (Scribe.mode == LoadSaveMode.LoadingVars)
+        {
+            parryTracker.Clear();
+
+            if (pawns != null && counters != null && pawns.Count == counters.Count)
+            {
+                for (int i = 0; i < pawns.Count; i++)
+                {
+                    if (pawns[i] != null)
+                    {
+                        parryTracker[pawns[i]] = counters[i];
+                    }
+
+                }
+            }
         }
     }
 }

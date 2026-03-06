@@ -1,34 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Patch>
-	<!--M4A1 Hat-->
+	<!-- ============================ Hat & Headset ============================ -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RFGirlsFrontline_M4A1headset" or
+			defName="RFGirlsFrontline_M4SOP2headset"
+			]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
 
+	<!--M4A1 Headset-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1headset"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>9</ArmorRating_Sharp>
+			<ArmorRating_Sharp>8.25</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1headset"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>11</ArmorRating_Blunt>
+			<ArmorRating_Blunt>4.51</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
-	<!--M4SOP2 Hat-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1headset"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+		</value>
+	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1headset"]/statBases</xpath>
+		<value>
+			<Flammability>0.5</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1headset"]/equippedStatOffsets</xpath>
+		<value>
+			<Flammability>-1.0</Flammability>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<AimingAccuracy>0.025</AimingAccuracy>
+			<Suppressability>-0.1</Suppressability>
+		</value>
+	</Operation>
+
+	<!--M4SOP2 Headset-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2headset"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>10.2</ArmorRating_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2headset"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>8.1</ArmorRating_Blunt>
+			<ArmorRating_Sharp>11.9</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -40,128 +67,293 @@
 		</value>
 	</Operation>
 
-	<!--All Uniforms-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2headset"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4.2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2headset"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>1.0</ArmorRating_Heat>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1uni" or
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2headset"]/statBases</xpath>
+		<value>
+			<Flammability>0.0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2headset"]/equippedStatOffsets</xpath>
+		<value>
+			<Flammability>-1.0</Flammability>
+			<Suppressability>-0.1</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- ============================ Uniform ============================ -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RFGirlsFrontline_M4A1uni" or
 			defName="RFGirlsFrontline_AR15uni" or
-			defName="RFGirlsFrontline_M4SOP2uni" or
-			defName="RFGirlsFrontline_RO635uni" or
-			defName="RFGirlsFrontline_M16A1uni"
-			]/statBases </xpath>
+			defName="RFGirlsFrontline_RO635uni"
+			]/statBases</xpath>
 		<value>
 			<Bulk>10</Bulk>
-			<WornBulk>8</WornBulk>
+			<WornBulk>5</WornBulk>
+			<Flammability>0.5</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RFGirlsFrontline_M4SOP2uni" or
+			defName="RFGirlsFrontline_M16A1uni"
+			]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>4</WornBulk>
+			<Flammability>0.0</Flammability>
 		</value>
 	</Operation>
 
 	<!--M4A1 Uniform-->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1uni"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>6.25</ArmorRating_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1uni"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>0.84</ArmorRating_Blunt>
+			<ArmorRating_Sharp>9.6</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1uni"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
-			<ShootingAccuracyPawn>0.08</ShootingAccuracyPawn>
-			<AimingAccuracy>0.04</AimingAccuracy>
+			<ShootingAccuracyPawn>0.28</ShootingAccuracyPawn>
+			<AimingAccuracy>0.14</AimingAccuracy>
 		</value>
 	</Operation>
 
-	<!--AR15 Uniform-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1uni"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>7.6</ArmorRating_Blunt>
+		</value>
+	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4A1uni"]/equippedStatOffsets</xpath>
+		<value>
+			<Flammability>-1.0</Flammability>
+			<Suppressability>-0.1</Suppressability>
+			<CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.05</ReloadSpeed>
+			<CarryWeight>2</CarryWeight>
+		</value>
+	</Operation>
+
+	<!--ST AR-15 Uniform-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_AR15uni"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>5.65</ArmorRating_Sharp>
+			<ArmorRating_Sharp>7.2</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_AR15uni"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>0.48</ArmorRating_Blunt>
+			<ArmorRating_Blunt>7.2</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
-	<!--M4SOP2 Uniform-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_AR15uni"]/equippedStatOffsets</xpath>
+		<value>
+			<Flammability>-1.0</Flammability>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<AimingAccuracy>0.025</AimingAccuracy>
+			<Suppressability>-0.1</Suppressability>
+			<CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.05</ReloadSpeed>
+			<CarryWeight>2</CarryWeight>
+		</value>
+	</Operation>
 
+	<!--M4 SOPMOD II Uniform-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2uni"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>7.20</ArmorRating_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2uni"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>0.96</ArmorRating_Blunt>
+			<ArmorRating_Sharp>13.5</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2uni"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
-			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-			<AimingAccuracy>0.075</AimingAccuracy>
+			<ShootingAccuracyPawn>0.35</ShootingAccuracyPawn>
+			<AimingAccuracy>0.175</AimingAccuracy>
 		</value>
 	</Operation>
 
-	<!--RO635 Uniform-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2uni"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>9.0</ArmorRating_Blunt>
+		</value>
+	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2uni"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>1.0</ArmorRating_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M4SOP2uni"]/equippedStatOffsets</xpath>
+		<value>
+			<Flammability>-1.0</Flammability>
+			<Suppressability>-0.1</Suppressability>
+			<CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.05</ReloadSpeed>
+			<CarryWeight>2</CarryWeight>
+		</value>
+	</Operation>
+	
+	<!--RO635 Uniform-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635uni"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>5.95</ArmorRating_Sharp>
+			<ArmorRating_Sharp>7.6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635uni"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.35</ShootingAccuracyPawn>
+			<AimingAccuracy>0.175</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635uni"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>0.72</ArmorRating_Blunt>
+			<ArmorRating_Blunt>7.2</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635uni"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635uni"]/equippedStatOffsets</xpath>
 		<value>
-			<MeleeDodgeChance>0.0635</MeleeDodgeChance>
+			<Flammability>-1.0</Flammability>
+			<Suppressability>-0.1</Suppressability>
+			<CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.05</ReloadSpeed>
+			<CarryWeight>2</CarryWeight>
 		</value>
 	</Operation>
 
-	<!--M16A4 Uniform-->
-
+	<!--M16A1 Uniform-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M16A1uni"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+			<ArmorRating_Sharp>9.0</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M16A1uni"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.35</ShootingAccuracyPawn>
+			<AimingAccuracy>0.175</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M16A1uni"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>1.39</ArmorRating_Blunt>
+			<ArmorRating_Blunt>11.6</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M16A1uni"]/equippedStatOffsets/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M16A1uni"]/statBases/ArmorRating_Heat</xpath>
 		<value>
-			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>1.0</ArmorRating_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_M16A1uni"]/equippedStatOffsets</xpath>
+		<value>
+			<Flammability>-1.0</Flammability>
+			<Suppressability>-0.1</Suppressability>
+			<CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.05</ReloadSpeed>
+			<CarryWeight>2</CarryWeight>
+		</value>
+	</Operation>
+
+	<!-- ============================ Hat Neural Upgrade ============================ -->
+
+	<!--XX Hat UM-->
+
+	<!--XX Hat UM-->
+	
+	<!--XX Hat UM-->
+
+	<!--XX Hat UM-->
+
+
+	<!-- ============================ Uniform Neural Upgrade ============================ -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RFGirlsFrontline_RO635upgrade"
+			]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>3</WornBulk>
+			<Flammability>0.0</Flammability>
+		</value>
+	</Operation>
+
+	<!--RO635 Uniform MP-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635upgrade"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22.2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635upgrade"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.55</ShootingAccuracyPawn>
+			<AimingAccuracy>0.275</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635upgrade"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>21.6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RFGirlsFrontline_RO635upgrade"]/equippedStatOffsets</xpath>
+		<value>
+			<Flammability>-1.0</Flammability>
+			<Suppressability>-0.2</Suppressability>
+			<CarryBulk>10</CarryBulk>
+			<ReloadSpeed>0.1</ReloadSpeed>
+			<CarryWeight>4</CarryWeight>
 		</value>
 	</Operation>
 </Patch>

@@ -1,43 +1,41 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+
+public class CompMilkableRenameable : CompMilkable
 {
 
-    public class CompMilkableRenameable : CompMilkable
+    private string growthLabel = "MilkFullness".Translate();
+
+    private CompProperties_MilkableRenameable properties
     {
-
-        private string growthLabel = "MilkFullness".Translate();
-
-        private CompProperties_MilkableRenameable properties
+        get
         {
-            get
-            {
-                return props as CompProperties_MilkableRenameable;
-            }
+            return props as CompProperties_MilkableRenameable;
         }
+    }
 
-        public override void Initialize(CompProperties props)
+    public override void Initialize(CompProperties props)
+    {
+        base.Initialize(props);
+        if (
+            (properties != null) &&
+            (!properties.growthLabel.NullOrEmpty())
+        )
         {
-            base.Initialize(props);
-            if (
-                (properties != null) &&
-                (!properties.growthLabel.NullOrEmpty())
-            )
-            {
-                growthLabel = properties.growthLabel;
-            }
+            growthLabel = properties.growthLabel;
         }
+    }
 
-        public override string CompInspectStringExtra()
+    public override string CompInspectStringExtra()
+    {
+        if (!Active)
         {
-            if (!Active)
-            {
-                return (string)null;
-            }
-            return growthLabel + ": " + Fullness.ToStringPercent();
+            return (string)null;
         }
-
+        return growthLabel + ": " + Fullness.ToStringPercent();
     }
 
 }
+

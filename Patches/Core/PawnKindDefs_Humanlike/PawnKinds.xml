@@ -28,6 +28,22 @@
 						<li>CE_Sidearm_Melee</li>
 					</weaponTags>
 				</forcedSidearm>
+				<sidearms>
+					<li>
+						<generateChance>0.2</generateChance>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>GrenadeSmoke</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>1</max>
+						</magazineCount>
+					</li>
+				</sidearms>
 			</li>
 		</value>
 	</Operation>
@@ -40,9 +56,15 @@
 					<min>10</min>
 					<max>30</max>
 				</primaryMagazineCount>
+				<weightedAmmoCategories>
+					<GrenadeHE>0.5</GrenadeHE>
+					<GrenadeHETF>0.25</GrenadeHETF>
+					<GrenadeHEDP>0.25</GrenadeHEDP>
+					<GrenadeEMP>0.1</GrenadeEMP>
+				</weightedAmmoCategories>
 				<forcedSidearm>
 					<sidearmMoney>
-						<min>100</min>
+						<min>170</min>
 						<max>250</max>
 					</sidearmMoney>
 					<weaponTags>
@@ -80,15 +102,8 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="Mercenary_Gunner"]</xpath>
-		<value>
-			<weaponMoney>250~350</weaponMoney>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mercenary_Gunner" or defName="Mercenary_Gunner_Acidifier"]</xpath>
+		<xpath>Defs/PawnKindDef[@Name="MercenaryGunnerBase" or defName="Mercenary_Gunner_Acidifier"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -129,20 +144,36 @@
 							<max>3</max>
 						</magazineCount>
 					</li>
+					<li>
+						<generateChance>0.1</generateChance>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_GrenadeFlashbang</li>
+							<li>GrenadeSmoke</li>
+							<li>GrenadeDestructive</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>1</max>
+						</magazineCount>
+					</li>
 				</sidearms>
 			</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="Mercenary_Sniper" or defName="Mercenary_Sniper_Acidifier"]</xpath>
+		<xpath>Defs/PawnKindDef[@Name="MercenarySniperBase" or defName="Mercenary_Sniper_Acidifier"]</xpath>
 		<value>
-			<weaponMoney>415~550</weaponMoney>
+			<weaponMoney>415~600</weaponMoney>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mercenary_Sniper" or defName="Mercenary_Sniper_Acidifier"]</xpath>
+		<xpath>Defs/PawnKindDef[@Name="MercenarySniperBase" or defName="Mercenary_Sniper_Acidifier"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -163,12 +194,26 @@
 					<li>
 						<generateChance>0.5</generateChance>
 						<sidearmMoney>
-							<min>80</min>
-							<max>120</max>
+							<min>170</min>
+							<max>250</max>
 						</sidearmMoney>
 						<weaponTags>
 							<li>CE_Sidearm</li>
 						</weaponTags>
+					</li>
+					<li>
+						<generateChance>0.15</generateChance>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>GrenadeSmoke</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>0</max>
+						</magazineCount>
 					</li>
 				</sidearms>
 			</li>
@@ -176,7 +221,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mercenary_Heavy"]</xpath>
+		<xpath>Defs/PawnKindDef[@Name="MercenaryHeavyBase"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -206,6 +251,20 @@
 						<weaponTags>
 							<li>CE_Sidearm_Melee</li>
 						</weaponTags>
+					</li>
+					<li>
+						<generateChance>0.15</generateChance>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>GrenadeSmoke</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>0</max>
+						</magazineCount>
 					</li>
 				</sidearms>
 			</li>
@@ -258,16 +317,6 @@
 		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/weaponMoney</xpath>
-		<value>
-			<weaponMoney>
-				<min>850</min>
-				<max>1100</max>
-			</weaponMoney>
-		</value>
-	</Operation>
-
 	<!-- Gives all elite-tier pirates and mercs access to charge weapons. -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/weaponTags</xpath>
@@ -284,6 +333,14 @@
 					<min>3</min>
 					<max>5</max>
 				</primaryMagazineCount>
+				<weightedAmmoCategories>
+					<FullMetalJacket>0.2</FullMetalJacket>
+					<ArmorPiercing>0.2</ArmorPiercing>
+					<HollowPoint>0.1</HollowPoint>
+					<IncendiaryAP>0.33</IncendiaryAP>
+					<ExplosiveAP>0.33</ExplosiveAP>
+					<Sabot>0.25</Sabot>
+				</weightedAmmoCategories>
 				<shieldMoney>
 					<min>1000</min>
 					<max>1600</max>
@@ -315,7 +372,36 @@
 							<min>1</min>
 							<max>3</max>
 						</magazineCount>
-					</li>					
+					</li>
+					<li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+							<min>160</min>
+							<max>320</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>GrenadeDestructive</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>2</max>
+						</magazineCount>
+					</li>
+					<li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+							<min>160</min>
+							<max>320</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_GrenadeFlashbang</li>
+							<li>GrenadeSmoke</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>1</max>
+						</magazineCount>
+					</li>
 				</sidearms>
 			</li>
 		</value>
@@ -324,7 +410,7 @@
 	<!-- ========== Outlander ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Villager" or defName="Town_Trader" or defName="Town_Councilman"]</xpath>
+		<xpath>Defs/PawnKindDef[@Name="VillagerBase" or @Name="TraderBase" or @Name="CouncilmanBase"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -348,7 +434,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Town_Guard"]</xpath>
+		<xpath>Defs/PawnKindDef[@Name="GuardBase"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -379,7 +465,7 @@
 							<min>1</min>
 							<max>3</max>
 						</magazineCount>
-					</li>					
+					</li>
 				</sidearms>
 			</li>
 		</value>
@@ -388,17 +474,17 @@
 	<!-- ========== Pirate ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Scavenger"]/weaponMoney</xpath>
+		<xpath>Defs/PawnKindDef[@Name="ScavengerBase"]/weaponMoney</xpath>
 		<value>
 			<weaponMoney>
-				<min>147</min>
-				<max>250</max>
+				<min>160</min>
+				<max>300</max>
 			</weaponMoney>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Scavenger"]</xpath>
+		<xpath>Defs/PawnKindDef[@Name="ScavengerBase"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -421,18 +507,8 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Pirate"]/weaponMoney</xpath>
-		<value>
-			<weaponMoney>
-				<min>150</min>
-				<max>350</max>
-			</weaponMoney>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Pirate"]</xpath>
+		<xpath>Defs/PawnKindDef[@Name="PirateKindBase"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -462,6 +538,22 @@
 						<magazineCount>
 							<min>2</min>
 							<max>5</max>
+						</magazineCount>
+					</li>
+					<li>
+						<generateChance>0.1</generateChance>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_GrenadeFlashbang</li>
+							<li>GrenadeSmoke</li>
+							<li>GrenadeDestructive</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>0</max>
 						</magazineCount>
 					</li>
 				</sidearms>
@@ -518,7 +610,7 @@
 						</weaponTags>
 					</li>
 					<li>
-						<generateChance>0.1</generateChance>
+						<generateChance>0.4</generateChance>
 						<sidearmMoney>
 							<min>10</min>
 							<max>100</max>
@@ -527,8 +619,8 @@
 							<li>GrenadeSmoke</li>
 						</weaponTags>
 						<magazineCount>
-							<min>1</min>
-							<max>2</max>
+							<min>0</min>
+							<max>1</max>
 						</magazineCount>
 					</li>
 					<li>
@@ -553,23 +645,9 @@
 	<!-- ========== Tribal ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Tribal_Penitent"]/weaponMoney</xpath>
-		<value>
-			<weaponMoney>52~150</weaponMoney>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/PawnKindDef[defName="Tribal_Penitent"]/combatPower</xpath>
 		<value>
 			<combatPower>16</combatPower>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Tribal_Warrior"]/weaponMoney</xpath>
-		<value>
-			<weaponMoney>115~150</weaponMoney>
 		</value>
 	</Operation>
 
@@ -601,8 +679,8 @@
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>20</min>
-					<max>40</max>
+					<min>4</min>
+					<max>6</max>
 				</primaryMagazineCount>
 				<shieldMoney>
 					<min>100</min>
@@ -639,8 +717,8 @@
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>25</min>
-					<max>50</max>
+					<min>5</min>
+					<max>7</max>
 				</primaryMagazineCount>
 				<shieldMoney>
 					<min>100</min>
@@ -677,8 +755,8 @@
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>20</min>
-					<max>40</max>
+					<min>4</min>
+					<max>7</max>
 				</primaryMagazineCount>
 				<shieldMoney>
 					<min>100</min>
@@ -697,6 +775,20 @@
 						<weaponTags>
 							<li>CE_Sidearm_Tribal</li>
 						</weaponTags>
+					</li>
+					<li>
+						<generateChance>0.1</generateChance>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_GrenadeNeolithic_Incendiary</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>0</max>
+						</magazineCount>
 					</li>
 				</sidearms>
 			</li>
@@ -805,16 +897,6 @@
 		<xpath>Defs/PawnKindDef[defName="Tribal_ChiefRanged"]/weaponTags/li[.="NeolithicRangedChief"]</xpath>
 		<value>
 			<li>SimpleGun</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="TribalChiefBase"]/weaponMoney</xpath>
-		<value>
-			<weaponMoney>
-				<min>230</min>
-				<max>300</max>
-			</weaponMoney>
 		</value>
 	</Operation>
 

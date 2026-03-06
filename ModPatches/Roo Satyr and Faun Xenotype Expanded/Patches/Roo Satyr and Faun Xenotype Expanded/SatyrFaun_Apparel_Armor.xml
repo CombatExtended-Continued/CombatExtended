@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSFE_Faegarms" or defName="RBSFE_KidFaegarms" or defName="RBSFE_Faepron" or defName="RBSFE_Faeleaf" or defName="RBSFE_Faecrown" or defName="RBSFE_Faecap" or defName="RBSFE_Faescarf"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>0.5</WornBulk>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSFE_Faecloak"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>0.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSFE_Faerose"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0.05</WornBulk>
+			<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Fae Chainmail -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSFE_Faemail"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSFE_Faemail"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1.85</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSFE_Faemail"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RBSFE_Faemail"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<!-- Fae Chainmail -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSF_Faehelm"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSF_Faehelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1.85</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+</Patch>

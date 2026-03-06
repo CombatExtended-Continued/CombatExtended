@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="DA_Shot_Phrak"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseBulletCE</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DA_Shot_Phrak"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>DA_ToxicBarbpike</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<speed>32</speed>
+				<armorPenetrationSharp>1.5</armorPenetrationSharp>
+				<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

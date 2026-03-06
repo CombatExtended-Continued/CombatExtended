@@ -38,16 +38,17 @@ jobs:
         
     - name: build core
       run: |
-        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer --csc $PWD/csc
+        sed -i "s_UNKNOWN_$(git rev-parse HEAD | head -c 10)-pr${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}_" Source/CombatExtended/Version.cs
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer --csc $PWD/csc --debug
 
     - name: build compat
       run: |
-        TEMP=${{ runner.temp }}/ python BuildCompat.py --csc $PWD/csc
+        TEMP=${{ runner.temp }}/ python BuildCompat.py --csc $PWD/csc --debug
         
     - name: package
       run: |
         mkdir CombatExtended
-        cp -r Source/ Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Biotech/ Anomaly/ Sounds/ Textures/ ModPatches/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        cp -r Source/ Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Biotech/ Anomaly/ Odyssey/ Sounds/ Textures/ ModPatches/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
         zip -9 -r build.zip CombatExtended
     - name: Upload to DO
       run: |

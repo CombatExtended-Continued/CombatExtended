@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Replace conflicting apparel layer === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementArcher"]/apparelRequired</xpath>
+		<value>
+			<apparelRequired Inherit="False">
+				<li>DankPyon_Apparel_Padded_Surcoat</li>
+				<li>DankPyon_Apparel_Trousers</li>
+				<li>DankPyon_Apparel_ChaussesPadded</li>
+				<li>DankPyon_Handwear_GlovesLeather</li>
+				<li>DankPyon_Footwear_BootsLeather</li>
+				<li>DankPyon_Apparel_Quiver</li>
+				<li>DankPyon_Headgear_ChainKettleHelmet</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementFootman"]/apparelRequired</xpath>
+		<value>
+			<apparelRequired Inherit="False">
+				<li>DankPyon_Apparel_Padded_Surcoat</li>
+				<li>DankPyon_Apparel_Trousers</li>
+				<li>DankPyon_Apparel_ChaussesPadded</li>
+				<li>DankPyon_Handwear_GlovesLeather</li>
+				<li>DankPyon_Footwear_BootsLeather</li>
+				<li>DankPyon_Apparel_Quiver</li>
+				<li>DankPyon_Headgear_ClosedChain_FlatTopHelmet</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementKnight"]/apparelRequired</xpath>
+		<value>
+			<apparelRequired Inherit="False">
+				<li>DankPyon_Apparel_Padded_Surcoat</li>
+				<li>DankPyon_Apparel_Trousers</li>
+				<li>DankPyon_Apparel_FullPlate</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<!-- === Give backpack to melee pawn with shield chance === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementKnight"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
+
+	<!-- === Give Shields === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementKnight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_Shield</li>
+					<li>DankPyon_ShieldKite</li>
+					<li>DankPyon_ShieldHeater</li>
+				</shieldTags>
+				<shieldChance>0.4</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Replace hard requirement shield === -->
+
+	<!-- Amboisse -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Amboisse_Knight"]/apparelRequired/li[.="DankPyon_ShieldHeater_Amboise"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Amboisse_Knight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Amboise</li>
+				</shieldTags>
+				<shieldChance>0.40</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Soren -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Soren_Knight"]/apparelRequired/li[.="DankPyon_ShieldHeater_Soren"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Soren_Knight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Soren</li>
+				</shieldTags>
+				<shieldChance>0.40</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Oswin -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Oswin_Knight"]/apparelRequired/li[.="DankPyon_ShieldHeater_Oswin"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Oswin_Knight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Oswin</li>
+				</shieldTags>
+				<shieldChance>0.40</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Hesse -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Hesse_Knight"]/apparelRequired/li[.="DankPyon_ShieldHeater_Hesse"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_Hesse_Knight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Hesse</li>
+				</shieldTags>
+				<shieldChance>0.40</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give Ammo === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementArcher"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>4~8</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>50~150</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementArcher"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementArcher"]/weaponTags</xpath>
+		<value>
+			<li>CE_XBow</li>
+			<li>CE_Bow</li>
+		</value>
+	</Operation>
+
+</Patch>

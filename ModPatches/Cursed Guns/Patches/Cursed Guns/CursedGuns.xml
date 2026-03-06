@@ -891,14 +891,20 @@
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>Blunt</damageDef>
-				<damageAmountBase>20</damageAmountBase>
+				<damageAmountBase>14</damageAmountBase>
 				<flyOverhead>false</flyOverhead>
-				<speed>35</speed>
+				<speed>24</speed>
 				<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
-				<armorPenetrationSharp>0</armorPenetrationSharp>
-				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<preExplosionSpawnChance>0.9</preExplosionSpawnChance>
 				<preExplosionSpawnThingDef>CursedGun_ZipTwoTwoThrown</preExplosionSpawnThingDef>
 			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bullet_ZipTwoTwoThrown"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
 		</value>
 	</Operation>
 

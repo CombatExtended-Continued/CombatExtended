@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Lute -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSF_Lute"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<extraMeleeDamages>
+						<li>
+							<def>RBSF_BluntLuteDamage</def>
+							<amount>1</amount>
+							<chance>1</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>0.99</cooldownTime>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSF_Lute"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- Lyre -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSF_Lyre"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<extraMeleeDamages>
+						<li>
+							<def>RBSF_BluntLyreDamage</def>
+							<amount>1</amount>
+							<chance>1</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>0.99</cooldownTime>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSF_Lyre"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- Reed Flute -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSF_ReedFlute"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<extraMeleeDamages>
+						<li>
+							<def>RBSF_BluntReedFluteDamage</def>
+							<amount>1</amount>
+							<chance>1</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>0.99</cooldownTime>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSF_ReedFlute"]/statBases</xpath>
+		<value>
+			<Bulk>0.5</Bulk>
+			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- Bodhran / Drum -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="RBSF_Bodhran"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSF_Bodhran"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSF_Bodhran"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>0.99</cooldownTime>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSF_Bodhran"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>RBSF_Bullet_Bodhran</defaultProjectile>
+					<warmupTime>0.8</warmupTime>
+					<range>9</range>
+					<!--<soundCast>Interact_BeatFire</soundCast>-->
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSF_Bullet_Bodhran"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSF_Bullet_Bodhran"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RBSF_BluntBodhranDamage</damageDef>
+				<gravityFactor>1.5</gravityFactor>
+				<damageAmountBase>5</damageAmountBase>
+				<speed>14</speed>
+				<armorPenetrationBlunt>0.12</armorPenetrationBlunt>
+				<armorPenetrationSharp>0</armorPenetrationSharp>
+			</projectile>
+		</value>
+	</Operation>
+	
+	
+
+</Patch>

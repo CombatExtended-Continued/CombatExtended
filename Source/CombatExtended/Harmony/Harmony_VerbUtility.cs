@@ -7,20 +7,18 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace CombatExtended.HarmonyCE
+namespace CombatExtended.HarmonyCE;
+[HarmonyPatch(typeof(VerbUtility), "GetProjectile")]
+internal static class Harmony_VerbUtility
 {
-    [HarmonyPatch(typeof(VerbUtility), "GetProjectile")]
-    internal static class Harmony_VerbUtility
+    internal static bool Prefix(Verb verb, ref ThingDef __result)
     {
-        internal static bool Prefix(Verb verb, ref ThingDef __result)
+        if (verb is Verb_LaunchProjectileCE verbCE)
         {
-            if (verb is Verb_LaunchProjectileCE verbCE)
-            {
-                __result = verbCE.Projectile;
-                return false;
-            }
-
-            return true;
+            __result = verbCE.Projectile;
+            return false;
         }
+
+        return true;
     }
 }

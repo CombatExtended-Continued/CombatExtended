@@ -3,7 +3,7 @@
 
 	<!-- === Schrat === -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DankPyon_Schrat"]/statBases</xpath>
+		<xpath>Defs/ThingDef[@Name="DankPyon_SchratBase"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.12</MeleeDodgeChance>
 			<MeleeCritChance>0.14</MeleeCritChance>
@@ -12,7 +12,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DankPyon_Schrat"]/tools</xpath>
+		<xpath>Defs/ThingDef[@Name="DankPyon_SchratBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DankPyon_SchratBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DankPyon_SchratBase"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -42,10 +56,33 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="DankPyon_Schrat"]</xpath>
+		<xpath>Defs/ThingDef[@Name="DankPyon_SchratBase"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="DankPyon_SchratBase"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="DankPyon_SchratBase"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DankPyon_SchratBase"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>3000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
 			</li>
 		</value>
 	</Operation>

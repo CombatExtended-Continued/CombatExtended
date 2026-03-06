@@ -45,9 +45,6 @@
 			<texPath>ThirdParty/PsyBlasters/ShotgunPsy</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>2.66</MarketValue>
-		</statBases>
 		<ammoClass>ChargedPsychic</ammoClass>
 	</ThingDef>
 
@@ -58,9 +55,6 @@
 			<texPath>ThirdParty/PsyBlasters/ShotgunFocus</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>2.66</MarketValue>
-		</statBases>
 		<ammoClass>ChargedPsychicFocus</ammoClass>
 	</ThingDef>
 
@@ -71,9 +65,6 @@
 			<texPath>ThirdParty/PsyBlasters/ShotgunNeuro</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<statBases>
-			<MarketValue>2.66</MarketValue>
-		</statBases>
 		<ammoClass>ChargedPsychicNeuro</ammoClass>
 	</ThingDef>
 
@@ -100,16 +91,16 @@
 			<armorPenetrationBlunt>9.8</armorPenetrationBlunt>
 			<pelletCount>6</pelletCount>
 			<spreadMult>8.9</spreadMult>
+			<shieldDamageMultiplier>0.25</shieldDamageMultiplier>
 		</projectile>
-		<comps>
-			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
-				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
-				<psyDamageMulti>0.5</psyDamageMulti>
-				<psyPenMulti>0.5</psyPenMulti>
-				<psyCost>0.01</psyCost> <!-- Roughly divided by the 6 pellets-->
+		<modExtensions>
+			<li Class="CombatExtended.Compatibility.PsyBlastersCompat.PsychicProjectileExtension">
+				<psyDamageMultiplier>0.5</psyDamageMultiplier>
+				<psyPenMultiplier>0.5</psyPenMultiplier>
+				<psyfocusCost>0.01</psyfocusCost>
 				<entropyCost>2</entropyCost>
 			</li>
-		</comps>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="Base12GaugePsychicBullet">
@@ -121,16 +112,16 @@
 			<armorPenetrationBlunt>9.8</armorPenetrationBlunt>
 			<pelletCount>6</pelletCount>
 			<spreadMult>8.9</spreadMult>
+			<shieldDamageMultiplier>0.25</shieldDamageMultiplier>
 		</projectile>
-		<comps>
-			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
-				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
-				<psyDamageMulti>0.8</psyDamageMulti>
-				<psyPenMulti>0.6</psyPenMulti>
-				<psyCost>0.02</psyCost>
+		<modExtensions>
+			<li Class="CombatExtended.Compatibility.PsyBlastersCompat.PsychicProjectileExtension">
+				<psyDamageMultiplier>0.8</psyDamageMultiplier>
+				<psyPenMultiplier>0.6</psyPenMultiplier>
+				<psyfocusCost>0.02</psyfocusCost>
 				<entropyCost>1</entropyCost>
 			</li>
-		</comps>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="Base12GaugePsychicBullet">
@@ -142,16 +133,16 @@
 			<armorPenetrationBlunt>9.8</armorPenetrationBlunt>
 			<pelletCount>6</pelletCount>
 			<spreadMult>8.9</spreadMult>
+			<shieldDamageMultiplier>0.25</shieldDamageMultiplier>
 		</projectile>
-		<comps>
-			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
-				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
-				<psyDamageMulti>0.5</psyDamageMulti>
-				<psyPenMulti>0.5</psyPenMulti>
-				<psyCost>0.005</psyCost>
+		<modExtensions>
+			<li Class="CombatExtended.Compatibility.PsyBlastersCompat.PsychicProjectileExtension">
+				<psyDamageMultiplier>0.5</psyDamageMultiplier>
+				<psyPenMultiplier>0.5</psyPenMultiplier>
+				<psyfocusCost>0.005</psyfocusCost>
 				<entropyCost>3</entropyCost>
 			</li>
-		</comps>
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--Melee Attacks for Guns-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_AC8_Autocannon"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ============ Autocannon ============ -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNGun_AC8_Autocannon"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>0.10</AimingAccuracy>
+				<AimingDelayFactor>-0.10</AimingDelayFactor>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_AC8_Autocannon</defName>
+		<statBases>
+			<WorkToMake>58000</WorkToMake>
+			<SightsEfficiency>2.18</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.61</SwayFactor>
+			<Bulk>10.50</Bulk>
+			<Mass>6.6</Mass>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20x102mmNATO_HE</defaultProjectile>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<warmupTime>2.05</warmupTime>
+			<range>75</range>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>RNShotAC8AutocannonShot</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>15</muzzleFlashScale>
+			<recoilAmount>2.34</recoilAmount>
+			<ticksBetweenBurstShots>22</ticksBetweenBurstShots>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>5.2</reloadTime>
+			<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

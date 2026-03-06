@@ -6,26 +6,24 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class Alert_ColonistHasShieldAndTwoHandedWeapon : Alert
 {
-    public class Alert_ColonistHasShieldAndTwoHandedWeapon : Alert
+    public Alert_ColonistHasShieldAndTwoHandedWeapon()
     {
-        public Alert_ColonistHasShieldAndTwoHandedWeapon()
-        {
-            defaultLabel = "CE_ColonistHasShieldAndTwoHandedWeapon".Translate();
-            defaultExplanation = "CE_ColonistHasShieldAndTwoHandedWeaponDesc".Translate();
-        }
+        defaultLabel = "CE_ColonistHasShieldAndTwoHandedWeapon".Translate();
+        defaultExplanation = "CE_ColonistHasShieldAndTwoHandedWeaponDesc".Translate();
+    }
 
-        public override AlertReport GetReport()
+    public override AlertReport GetReport()
+    {
+        foreach (Pawn current in PawnsFinder.AllMaps_FreeColonistsSpawned)
         {
-            foreach (Pawn current in PawnsFinder.AllMaps_FreeColonistsSpawned)
+            if (WorkGiver_HunterHuntCE.HasMeleeShieldAndTwoHandedWeapon(current))
             {
-                if (WorkGiver_HunterHuntCE.HasMeleeShieldAndTwoHandedWeapon(current))
-                {
-                    return current;
-                }
+                return current;
             }
-            return false;
         }
+        return false;
     }
 }

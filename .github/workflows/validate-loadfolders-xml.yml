@@ -1,0 +1,24 @@
+name: LoadFolders.xml validation
+on:
+  pull_request:
+    branches: [ master, Development, backports-1.4 ]
+
+# Restrict the permissions of the ephemeral GitHub token used by this workflow
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v5
+        with:
+          # Note: Runners may have different, newer .NET SDKs preinstalled.
+          # Use global.json to control the maximum acceptable version.
+          dotnet-version: '9.x'
+      - name: Validate LoadFolders.xml
+        run: dotnet test Source/CombatExtended.sln

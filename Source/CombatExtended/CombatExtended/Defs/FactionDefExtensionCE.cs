@@ -1,14 +1,12 @@
 ﻿using System;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class FactionDefExtensionCE : DefModExtension
 {
-    public class FactionDefExtensionCE : DefModExtension
-    {
-        /// <summary>
-        /// Shelling response override
-        /// </summary>
-        public ShellingResponseDef shellingResponse;
-    }
+    /// <summary>
+    /// Shelling response override
+    /// </summary>
+    public ShellingResponseDef shellingResponse;
 }
 

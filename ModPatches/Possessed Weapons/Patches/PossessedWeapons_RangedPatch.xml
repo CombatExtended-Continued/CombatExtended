@@ -34,6 +34,7 @@
 		</Properties>
 		<AmmoUser>
 			<ammoSet>AmmoSet_DragonFireArrow</ammoSet>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
 		</AmmoUser>
 		<FireModes />
 		<weaponTags>
@@ -214,6 +215,7 @@
 			<magazineSize>3</magazineSize>
 			<reloadTime>5</reloadTime>
 			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+			<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
 		</AmmoUser>
 		<FireModes>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -237,7 +239,7 @@
 					<li Class="CombatExtended.CompProperties_AmmoUser">
 						<magazineSize>3</magazineSize>
 						<reloadTime>5</reloadTime>
-						<ammoSet>AmmoSet_ArbalestBolt</ammoSet>
+						<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
 					</li>
 					<li Class="CombatExtended.CompProperties_FireModes">
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -290,6 +292,7 @@
 		</Properties>
 		<AmmoUser>
 			<ammoSet>AmmoSet_VerdantArrow</ammoSet>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
 		</AmmoUser>
 		<FireModes />
 		<weaponTags>
@@ -308,7 +311,8 @@
 			<value>
 				<comps>
 					<li Class="CombatExtended.CompProperties_AmmoUser">
-						<ammoSet>AmmoSet_VerdantMOArrow</ammoSet>
+						<ammoSet>AmmoSet_VerdantArrow</ammoSet>
+						<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
 					</li>
 				</comps>
 			</value>
@@ -478,6 +482,48 @@
 				<MeleeCritChance>0.5</MeleeCritChance>
 				<MeleeParryChance>0.15</MeleeParryChance>
 			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_PossessedShroudedDagger"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.18</cooldownTime>
+					<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.32</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.42</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 

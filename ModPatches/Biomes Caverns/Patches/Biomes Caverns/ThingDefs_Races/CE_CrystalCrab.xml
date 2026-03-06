@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[@Name="BMT_CrystalCrab_Base"]</xpath>
 		<value>
@@ -12,7 +13,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BMT_CrystalCrab_Base"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.00</MeleeDodgeChance>
+			<MeleeDodgeChance>0</MeleeDodgeChance>
 			<MeleeCritChance>0.1</MeleeCritChance>
 			<MeleeParryChance>0.34</MeleeParryChance>
 			<ArmorRating_Blunt>30</ArmorRating_Blunt>
@@ -49,4 +50,28 @@
 			</tools>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="BMT_CrystalCrab_Base"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="BMT_CrystalCrab_Base"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BMT_CrystalCrab_Base"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1100</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>

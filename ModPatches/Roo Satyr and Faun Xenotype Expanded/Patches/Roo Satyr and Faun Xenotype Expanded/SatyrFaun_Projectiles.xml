@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSFE_FaemoreBullet"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSFE_FaemoreBullet"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RBSFE_FaemoreDamage</damageDef>
+				<damageAmountBase>9</damageAmountBase>
+				<speed>12</speed>
+				<armorPenetrationBlunt>6</armorPenetrationBlunt>
+				<armorPenetrationSharp>0</armorPenetrationSharp>
+				<arcHeightFactor>1.2</arcHeightFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSFE_AnimaBullet"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>5.6</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>RBSFE_AnimaDamage</damageDef>
+				<damageAmountBase>5</damageAmountBase>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+				<speed>30</speed>
+				<armorPenetrationSharp>5</armorPenetrationSharp>
+				<armorPenetrationBlunt>25</armorPenetrationBlunt>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

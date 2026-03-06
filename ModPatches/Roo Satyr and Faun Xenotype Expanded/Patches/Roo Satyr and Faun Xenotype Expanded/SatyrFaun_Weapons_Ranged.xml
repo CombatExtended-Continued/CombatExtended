@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RBSFE_Faerrow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_SatyrFaunArrow_Steel</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>22</range>
+			<soundCast>Bow_Recurve</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_SatyrFaunArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>Fae</li>
+			<li>FaeRanged</li>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<researchPrerequisite>RecurveBow</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSFE_Faerrow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Anima Rod -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSFE_AnimaRod"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.85</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RBSFE_AnimaRod"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.00</MeleeCritChance>
+			<MeleeParryChance>0.70</MeleeParryChance>
+			<MeleeDodgeChance>0.47</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RBSFE_AnimaRod"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core">
+					<verbClass>Verb_LaunchProjectile</verbClass>
+					<label>anima blast</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>false</onlyManualCast>
+					<defaultProjectile>RBSFE_AnimaBullet</defaultProjectile>
+					<burstShotCount>1</burstShotCount>
+					<warmupTime>4.9</warmupTime>
+					<range>24.4</range>
+					<soundCast>RBSFE_AnimaFire</soundCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<forcedMissRadius>2.4</forcedMissRadius>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<commandIcon>Things/Equipment/WeaponMelee/RBSFE_AnimaRod</commandIcon>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+</Patch>

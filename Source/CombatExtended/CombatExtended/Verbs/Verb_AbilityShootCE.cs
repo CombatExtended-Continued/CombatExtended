@@ -2,38 +2,36 @@
 using RimWorld;
 using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class Verb_AbilityShootCE : Verb_ShootCE, IAbilityVerb
 {
-    public class Verb_AbilityShootCE : Verb_ShootCE, IAbilityVerb
+    private Ability ability;
+
+    public Ability Ability
     {
-        private Ability ability;
-
-        public Ability Ability
+        get
         {
-            get
-            {
-                return ability;
-            }
-            set
-            {
-                ability = value;
-            }
+            return ability;
         }
-
-        public override bool TryCastShot()
+        set
         {
-            bool flag = base.TryCastShot();
-            if (flag)
-            {
-                ability.StartCooldown(ability.def.cooldownTicksRange.RandomInRange);
-            }
-            return flag;
+            ability = value;
         }
+    }
 
-        public override void ExposeData()
+    public override bool TryCastShot()
+    {
+        bool flag = base.TryCastShot();
+        if (flag)
         {
-            Scribe_References.Look(ref ability, "ability");
-            base.ExposeData();
+            ability.StartCooldown(ability.def.cooldownTicksRange.RandomInRange);
         }
+        return flag;
+    }
+
+    public override void ExposeData()
+    {
+        Scribe_References.Look(ref ability, "ability");
+        base.ExposeData();
     }
 }

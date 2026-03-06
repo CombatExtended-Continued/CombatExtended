@@ -1,16 +1,14 @@
 ﻿using Verse;
 
-namespace CombatExtended
+namespace CombatExtended;
+public class HediffCompProperties_Venom : HediffCompProperties
 {
-    public class HediffCompProperties_Venom : HediffCompProperties
-    {
-        public float VenomPerSeverity;
-        public int MinTicks;
-        public int MaxTicks;
+    public float VenomPerSeverity;
+    public int MinTicks;
+    public int MaxTicks;
 
-        public HediffCompProperties_Venom()
-        {
-            compClass = typeof(HediffComp_Venom);
-        }
+    public HediffCompProperties_Venom()
+    {
+        compClass = typeof(HediffComp_Venom);
     }
 }

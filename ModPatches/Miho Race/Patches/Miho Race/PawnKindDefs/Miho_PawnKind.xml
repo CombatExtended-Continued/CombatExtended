@@ -32,8 +32,8 @@
 			</li>
 		</value>
 	</Operation>
-	<!--Backpack-->
 
+	<!--Backpack-->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
 		<value>
@@ -47,4 +47,61 @@
 			<li>CE_Apparel_Backpack</li>
 		</value>
 	</Operation>
+
+	<!-- Mechs -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="Miho_Mech_Sapsal" or
+			defName="Miho_Mech_HeavyMechCore" or
+			defName="Miho_Mech_HeavyRocketCore"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>IncendiaryMiho</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Miho_Mech_Bulgasal"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>IncendiaryMiho</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Miho_Mech_BulgasalGrenade"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>BuckShot</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Miho_Mech_Balbari"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>IncendiaryMiho</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>

@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- No VE shield system -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[
-			defName="pphhyy_Barbarian_Thrall" or
-			defName="pphhyy_Barbarian_MarauderShield" or
-			defName="pphhyy_Barbarian_WarriorShield" or
-			defName="pphhyy_Barbarian_ChosenShield" or
-			defName="pphhyy_Barbarian_WarlordFactionLeader"
-			]/modExtensions/li[@Class="VFECore.PawnKindDefExtension"]</xpath>
-	</Operation>
-
-	<!-- <Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_MarauderShield" or defName="pphhyy_Barbarian_WarriorShield" or defName="pphhyy_Barbarian_ChosenShield"]/weaponTags/li[.="pphhyy_Barbarian_BarbThrown"]</xpath>
-	</Operation> -->
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_Thrall"]</xpath>
 		<value>

@@ -152,14 +152,22 @@
 				</RepairIngredients>
 				<RepairTime>300</RepairTime>
 				<RepairValue>200</RepairValue>
-				<CanOverHeal>true</CanOverHeal>
-				<MaxOverHeal>70</MaxOverHeal>
 				<MinArmorPct>0.5</MinArmorPct>
 			</li>
 		</value>
 	</Operation>
 
 	<!-- Combat Laborers -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<canParry>true</canParry>
+				<maxParry>3</maxParry>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]/statBases/ArmorRating_Blunt</xpath>
@@ -179,6 +187,16 @@
 		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>1.15</baseHealthScale>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<canParry>true</canParry>
+				<maxParry>5</maxParry>
+			</li>
 		</value>
 	</Operation>
 

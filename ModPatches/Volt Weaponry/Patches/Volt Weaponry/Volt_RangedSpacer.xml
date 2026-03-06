@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Tools === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName ="DV_Gun_VoltPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="DV_Gun_VoltRifle" or
+			defName="DV_Gun_VoltCarbine" or
+			defName="DV_Gun_VoltTrenchgun" or
+			defName="DV_Gun_VoltDMR" or
+			defName="DV_Gun_VoltSniper"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_Gun_VoltChaingun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Volt Pistol === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_VoltPistol</defName>
+		<statBases>
+			<Mass>1.20</Mass>
+			<Bulk>2.25</Bulk>
+			<SwayFactor>0.90</SwayFactor>
+			<ShotSpread>0.17</ShotSpread>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.51</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VoltLaserLow</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>20</range>
+			<soundCast>DV_Shot_WattPistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_VoltLaserCellLight</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Volt Carbine === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_VoltCarbine</defName>
+		<statBases>
+			<Mass>6</Mass>
+			<Bulk>8</Bulk>
+			<SwayFactor>1.35</SwayFactor>
+			<ShotSpread>0.17</ShotSpread>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VoltLaserLow</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>DV_Shot_WattPistol</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>40</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_VoltLaserCellLight</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Volt Rifle === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_VoltRifle</defName>
+		<statBases>
+			<Mass>3.5</Mass>
+			<Bulk>7</Bulk>
+			<SwayFactor>1.15</SwayFactor>
+			<ShotSpread>0.07</ShotSpread>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VoltLaserMedium</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+			<range>55</range>
+			<soundCast>DV_Shot_WattRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_VoltLaserCellMedium</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Volt DMR === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_VoltDMR</defName>
+		<statBases>
+			<Mass>6</Mass>
+			<Bulk>10.15</Bulk>
+			<SwayFactor>1.20</SwayFactor>
+			<ShotSpread>0.03</ShotSpread>
+			<SightsEfficiency>2.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.82</RangedWeapon_Cooldown>
+			<NightVisionEfficiency_Weapon>0.6</NightVisionEfficiency_Weapon>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VoltLaserMedium</defaultProjectile>
+			<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+			<burstShotCount>2</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<warmupTime>1.5</warmupTime>
+			<range>75</range>
+			<soundCast>DV_Shot_WattPistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>32</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_VoltLaserCellMedium</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Volt Slugthrower === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_VoltTrenchgun</defName>
+		<statBases>
+			<Mass>6</Mass>
+			<Bulk>8</Bulk>
+			<SwayFactor>1.50</SwayFactor>
+			<ShotSpread>0.07</ShotSpread>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VoltLaserShotgun</defaultProjectile>
+			<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<soundCast>DV_Shot_WattPistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_VoltLaserCellShotgun</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- === Volt LMG === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_VoltChaingun</defName>
+		<statBases>
+			<Mass>35</Mass>
+			<Bulk>20</Bulk>
+			<SwayFactor>2.64</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VoltLaserMedium</defaultProjectile>
+			<warmupTime>1.8</warmupTime>
+			<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+			<range>65</range>
+			<soundCast>DV_Shot_WattPistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<burstShotCount>30</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<recoilPattern>Regular</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>300</magazineSize>
+			<reloadTime>8</reloadTime>
+			<ammoSet>AmmoSet_VoltLaserCellMedium</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+			<aimedBurstShotCount>15</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_LMG</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DV_Gun_VoltChaingun"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>1.30,1.30</DrawSize>
+				<DrawOffset>0.1,-0.15</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Volt Sniper === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_VoltSniper</defName>
+		<statBases>
+			<Mass>6</Mass>
+			<Bulk>10.15</Bulk>
+			<SwayFactor>1.20</SwayFactor>
+			<ShotSpread>0.03</ShotSpread>
+			<SightsEfficiency>2.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.82</RangedWeapon_Cooldown>
+			<NightVisionEfficiency_Weapon>0.6</NightVisionEfficiency_Weapon>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VoltLaserHeavy</defaultProjectile>
+			<ammoConsumedPerShotCount>6</ammoConsumedPerShotCount>
+			<warmupTime>1.5</warmupTime>
+			<range>86</range>
+			<soundCast>DV_Shot_WattRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_VoltLaserCellHeavy</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+			<li>Bipod_AMR</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DV_Gun_VoltSniper"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>1.25,1.25</DrawSize>
+				<DrawOffset>0.2,-0.1</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

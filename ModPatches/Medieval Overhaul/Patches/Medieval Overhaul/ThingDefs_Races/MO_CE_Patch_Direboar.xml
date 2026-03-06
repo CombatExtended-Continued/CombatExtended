@@ -8,6 +8,8 @@
 			<MeleeDodgeChance>0.12</MeleeDodgeChance>
 			<MeleeCritChance>0.33</MeleeCritChance>
 			<MeleeParryChance>0.34</MeleeParryChance>
+			<ArmorRating_Sharp>1.4</ArmorRating_Sharp>
+			<ArmorRating_Blunt>2.1</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -93,9 +95,32 @@
 	</Operation>
 	
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_Daer"]/combatPower</xpath>
+		<xpath>Defs/PawnKindDef[defName="DankPyon_DireBoar"]/combatPower</xpath>
 		<value>
 			<combatPower>140</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DankPyon_DireBoar"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_DireBoar"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_DireBoar"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1125</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 

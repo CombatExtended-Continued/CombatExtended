@@ -7,25 +7,8 @@
 	 -->
 
 	<!-- ==================== Thing Categories ========================== -->
-
-	<!-- Vikings -->
-	<ThingCategoryDef>
-		<defName>AmmoCryptoCannon</defName>
-		<label>Crypto Fuel</label>
-		<parent>AmmoAdvanced</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
-	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
-
-	<!-- Vikings -->
-	<CombatExtended.AmmoSetDef MayRequire="OskarPotocki.VFE.Vikings">
-		<defName>AmmoSet_CryptoCannon</defName>
-		<label>Crypto Cannon</label>
-		<ammoTypes>
-			<Ammo_CryptoCannon>Bullet_Flamethrower_CryptoCannon</Ammo_CryptoCannon>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
 
 	<!-- Lasers -->
 	<CombatExtended.AmmoSetDef>
@@ -37,31 +20,6 @@
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ================== Projectiles ================== -->
-
-	<!-- Vikings -->
-	<ThingDef ParentName="Base6x24mmChargedBullet" MayRequire="OskarPotocki.VFE.Vikings">
-		<defName>Bullet_Flamethrower_CryptoCannon</defName>
-		<graphicData>
-			<texPath>Things/Projectile/CryptoBullet</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-			<drawSize>1.50</drawSize>
-		</graphicData>
-		<label>Crygenic stream</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>CE_Cryptofuel</damageDef>
-			<damageAmountBase>1</damageAmountBase>
-			<soundExplode>CE_FlamethrowerExplosion</soundExplode>
-		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>4</damageAmountBase>
-				<explosiveDamageType>CE_Cryptofuel</explosiveDamageType>
-				<explosiveRadius>1.5</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
-	</ThingDef>
 
 	<!-- Lasers -->
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">

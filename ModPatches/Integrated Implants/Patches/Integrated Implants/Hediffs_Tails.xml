@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Venom Tail/Scorpion Tail -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_ScorpionTail"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>toxic stab</label>
+					<capacities>
+						<li>StabToxic</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationSharp>0.72</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.72</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Bionic Tail -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_BionicTail"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetrationSharp>0.25</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!-- Manipulator Tail -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="LTS_ManipulationTail"]/stages/li/statOffsets</xpath>
+		<value>
+			<CarryBulk>15</CarryBulk>
+		</value>
+	</Operation>
+	
+</Patch>

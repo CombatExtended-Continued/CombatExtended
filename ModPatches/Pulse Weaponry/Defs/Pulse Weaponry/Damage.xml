@@ -2,17 +2,17 @@
 <Defs>
 
   <ManeuverDef>
-    <defName>StunstickSmash</defName>
-    <requiredCapacity>PW_Taser</requiredCapacity>
-	<verb>
-		<verbClass Class="CombatExtended.VerbPropertiesCE">CombatExtended.Verb_MeleeAttackCE</verbClass>
+	<defName>StunstickSmash</defName>
+	<requiredCapacity>PW_Taser</requiredCapacity>
+	<verb Class="CombatExtended.VerbPropertiesCE">
+		<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
 		<meleeDamageDef>PW_Taser</meleeDamageDef>
 	</verb>
-    <logEntryDef>MeleeAttack</logEntryDef>
-    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
-    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
-    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
-    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+	<logEntryDef>MeleeAttack</logEntryDef>
+	<combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+	<combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+	<combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+	<combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
   </ManeuverDef>
 
 	<ToolCapacityDef>
@@ -26,7 +26,7 @@
 		<deathMessage>{0} has been shocked to death.</deathMessage>
 		<hediff>StunstickBurn</hediff>
 		<defaultArmorPenetration>0.45</defaultArmorPenetration>
-    	<causeStun>true</causeStun>		
+		<causeStun>true</causeStun>		
 		<modExtensions>
 			<li Class="CombatExtended.DamageDefExtensionCE">
 				<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
