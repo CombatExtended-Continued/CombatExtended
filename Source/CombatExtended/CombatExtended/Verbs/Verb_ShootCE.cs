@@ -346,6 +346,10 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
     //For revolvers and break actions. Intended to be called by compammouser on reload
     public void ExternalCallDropCasing(int randomSeedOffset = -1)
     {
+        if (caster == null)
+        {
+            return;
+        }
         bool fromPawn = false;
         GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
         if (ShooterPawn != null)
