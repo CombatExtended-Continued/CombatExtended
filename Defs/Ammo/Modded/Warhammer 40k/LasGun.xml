@@ -42,6 +42,14 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Lasgun_CannonDouble</defName>
+		<label>lasgun power pack</label>
+		<ammoTypes>
+			<Ammo_LasgunPowerPack>Bullet_Lasgun_CannonDouble</Ammo_LasgunPowerPack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="LasgunPowerPackBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
@@ -55,7 +63,7 @@
 			<li>CE_AutoEnableCrafting_FabricationBench</li>
 			<li>CE_AutoEnableCrafting_TableMachining</li>
 			<li>CE_AutoEnableCrafting_GWAmmoBench</li>
-    		<li>CE_40K_Ammo</li>
+			<li>CE_40K_Ammo</li>
 		</tradeTags>
 		<thingCategories>
 			<li>AmmoLasgunPowerPack</li>
@@ -116,6 +124,18 @@
 			<damageAmountBase>80</damageAmountBase>
 			<armorPenetrationSharp>558</armorPenetrationSharp>
 			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+		<defName>Bullet_Lasgun_CannonDouble</defName>
+		<label>laser beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>80</damageAmountBase>
+			<armorPenetrationSharp>558</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+			<pelletCount>2</pelletCount>
 		</projectile>
 	</ThingDef>
 

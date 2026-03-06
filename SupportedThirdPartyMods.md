@@ -76,6 +76,7 @@ ABF: Utility Synstructs   |
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
+Advanced Mechanoids |
 All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
@@ -128,9 +129,12 @@ Astra Militarum Regimentum - Krieg  |
 Astra Militarum Regimentum - Krieg: Officer Helmet  |
 Autocleaner	|
 Auto-Mortars	|
+Bean's Turret Pack  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Beliar Xenotype |
+Beta Anime Hair	|
+Beta Girls und Panzer Hair and Apparel	|
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
 Big and Small - Heaven and Hell
@@ -214,6 +218,7 @@ Epochs - Pyrinth    |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auraeyl  |
 Erin's Auronya   |
 Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
@@ -267,7 +272,9 @@ Gas Traps And Shells	|
 Gestalt Engine  |
 Giddy-Up 2    |
 Girls' Frontline Apparel Pack	|
+Girls' Frontline PROJECT NEURAL CLOUD   |
 Girls' Frontline Styles - 404 Team	|
+Girls' Frontline Styles - AR Team	|
 Girls' Frontline Styles - DEFY Team	|
 Girls' Frontline Styles - GF2	|
 Girls' Frontline Styles - NL	|
@@ -352,6 +359,7 @@ Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
 Mechadroids |
 Mechanized Armor Set    |
+Mechanitor Balance Tweaks      |
 Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
@@ -417,6 +425,7 @@ Neclose Race	|
 Nephilim Xenotype Reborn    |
 New Mech: Mini-Miner    |
 Ni'Hal	|
+Nikke The Pilgrim   |
 Nukes   |
 Nyaron Race |
 Nomad Scavengers    |
@@ -568,6 +577,7 @@ Supernatural Weapons    |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
+Tiered Mechs    |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
 The Profaned	|
@@ -586,6 +596,7 @@ Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 Tools O'Plenty  |
 TouhouStyle	|
+Touhou Style Youmu Character Pack	|
 Tox Weapons Pack	|
 Tribal Warrior Set! |
 Tsar Armory	|
@@ -594,6 +605,7 @@ Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
 T's Wild Child Rags |
+UNAGI Another Duster Coat   |
 Useless Clothes |
 Ushankas Glittertech Expansion  |
 VacSlipsuit |
@@ -609,6 +621,7 @@ Vanilla Arsenal |
 Vanilla Base Generation Expanded    |
 Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
+Vanilla Events Expanded   |
 Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
 Vanilla Factions Expanded - Deserters  |
@@ -631,8 +644,9 @@ Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
-Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Quests Expanded - Ancients  |
+Vanilla Quests Expanded - Cryptoforge  |
+Vanilla Quests Expanded - Deadlife  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |

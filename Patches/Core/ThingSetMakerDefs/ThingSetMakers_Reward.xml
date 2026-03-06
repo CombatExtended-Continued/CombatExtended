@@ -2,25 +2,25 @@
 <Patch>
   <!--Make quest reward weapon include ammo-->
   <Operation Class="PatchOperationAttributeSet">
-    <xpath>
-      Defs/ThingSetMakerDef[defName="Reward_ItemsStandard"]
-      /root/options/li[1]
-      /thingSetMaker/options/li[thingSetMaker[@Class="ThingSetMaker_MarketValue"]/fixedParams/filter/thingSetMakerTagsToAllow/li[text()="RewardStandardHighFreq" or text()="RewardStandardMidFreq" or text()="RewardStandardLowFreq" or text()="RewardStandardQualitySuper"]]
-      /thingSetMaker
-    </xpath>
-    <attribute>Class</attribute>
-    <value>CombatExtended.ThingSetMaker_MarketValueWithAmmo</value>
+	<xpath>
+	  Defs/ThingSetMakerDef[defName="Reward_ItemsStandard"]
+	  /root/options/li[1]
+	  /thingSetMaker/options/li[thingSetMaker[@Class="ThingSetMaker_MarketValue"]/fixedParams/filter/thingSetMakerTagsToAllow/li[text()="RewardStandardHighFreq" or text()="RewardStandardMidFreq" or text()="RewardStandardLowFreq" or text()="RewardStandardQualitySuper"]]
+	  /thingSetMaker
+	</xpath>
+	<attribute>Class</attribute>
+	<value>CombatExtended.ThingSetMaker_MarketValueWithAmmo</value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>
-      Defs/ThingSetMakerDef[defName="Reward_ItemsStandard"]
-      /root/options/li[1]
-      /thingSetMaker/options/li[thingSetMaker[@Class="CombatExtended.ThingSetMaker_MarketValueWithAmmo"]]
-      /thingSetMaker
-    </xpath>
-    <value>
-      <random>true</random>
-    </value>
+	<xpath>
+	  Defs/ThingSetMakerDef[defName="Reward_ItemsStandard"]
+	  /root/options/li[1]
+	  /thingSetMaker/options/li[thingSetMaker[@Class="CombatExtended.ThingSetMaker_MarketValueWithAmmo"]]
+	  /thingSetMaker
+	</xpath>
+	<value>
+	  <random>true</random>
+	</value>
   </Operation>
 </Patch>

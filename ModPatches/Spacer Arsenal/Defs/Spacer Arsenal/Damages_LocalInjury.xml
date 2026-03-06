@@ -1,17 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+	<!-- ========== Neutron ========== -->
+
 	<DamageDef ParentName="Bullet">
-		<defName>Photon</defName>
-		<label>Photon Scorch</label>
-		<deathMessage>{0} has been scorched to death.</deathMessage>
-		<hediff>BurnSecondary</hediff>
-		<hasForcefulImpact>false</hasForcefulImpact>
+		<defName>CE_Neutron</defName>
+		<label>neutron particle</label>
+		<deathMessage>{0} has been irradiated to death.</deathMessage>
+		<hediff>DV_RadBurn_Hediff</hediff>
+		<impactSoundType>Electric</impactSoundType>
 		<minDamageToFragment>99999</minDamageToFragment>
-		<defaultDamage>1</defaultDamage>
-		<defaultArmorPenetration>0</defaultArmorPenetration>
-		<buildingDamageFactor>0.1</buildingDamageFactor>
-		<plantDamageFactor>2</plantDamageFactor>
+		<defaultArmorPenetration>0.5</defaultArmorPenetration>
+		<modExtensions>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<canCauseWallFragmentation>false</canCauseWallFragmentation>
+			</li>
+		</modExtensions>
 	</DamageDef>
-	
+
 </Defs>

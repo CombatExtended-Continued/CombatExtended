@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using CombatExtended;
-using CombatExtended.AI;
 using CombatExtended.Compatibility;
 using RimWorld;
-using RimWorld.Planet;
 using UnityEngine;
 using Verse;
-using Verse.AI;
-using Verse.Noise;
 using Verse.Sound;
-
 namespace CombatExtended;
 [StaticConstructorOnStartup]
 public class Building_AutoloaderCE : Building
@@ -45,6 +37,10 @@ public class Building_AutoloaderCE : Building
     public CompInitiatable initiatableComp;
     public CompMannable mannableComp;
 
+    private Graphic cachedFullGraphic;
+    private Graphic cachedHalfFullGraphic;
+    private Graphic cachedEmptyGraphic;
+
     public ModExtension_AutoLoaderGraphics graphicsExt;
 
     public bool shouldBeOn => ShouldBeOn();
@@ -72,48 +68,46 @@ public class Building_AutoloaderCE : Building
     {
         base.ExposeData();
 
-        Scribe_Values.Look(ref shouldReplaceAmmo, "shouldReplaceAmmo", false);
-        Scribe_Values.Look(ref ticksToCompleteInitial, "ticksToCompleteInitial", 0);
-        Scribe_Values.Look(ref ticksToComplete, "ticksToComplete", 0, false);
+        Scribe_Values.Look(ref shouldReplaceAmmo, "shouldReplaceAmmo");
+        Scribe_Values.Look(ref ticksToCompleteInitial, "ticksToCompleteInitial");
+        Scribe_Values.Look(ref ticksToComplete, "ticksToComplete");
         Scribe_Values.Look(ref isReloading, "isReloading");
 
-        Scribe_References.Look(ref TargetTurret, "Turret", false);
+        Scribe_References.Look(ref TargetTurret, "Turret");
     }
+
 
     public override Graphic Graphic
     {
         get
         {
-            Graphic graphic = null;
-            if (graphicsExt != null)
+            if (CompAmmoUser != null)
             {
                 if (CompAmmoUser.CurMagCount > CompAmmoUser.MagSize * 0.75f)
                 {
-                    graphic = graphicsExt.fullGraphic?.GraphicColoredFor(this);
+                    return cachedFullGraphic ?? base.Graphic;
                 }
-                else if (CompAmmoUser.EmptyMagazine)
+                if (CompAmmoUser.EmptyMagazine)
                 {
-                    graphic = graphicsExt.emptyGraphic?.GraphicColoredFor(this);
+                    return cachedEmptyGraphic ?? base.Graphic;
                 }
-                else
-                {
-                    graphic = graphicsExt.halfFullGraphic?.GraphicColoredFor(this);
-                }
+                return cachedHalfFullGraphic ?? base.Graphic;
             }
-            return graphic ?? base.Graphic;
+            return base.Graphic;
         }
     }
 
     public bool CanReplaceAmmo(CompAmmoUser ammoUser)
     {
-        return shouldReplaceAmmo && ammoUser.Props.ammoSet == CompAmmoUser.Props.ammoSet && ammoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo;
+        //return shouldReplaceAmmo && ammoUser.Props.ammoSet == CompAmmoUser.Props.ammoSet && ammoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo;
+        return shouldReplaceAmmo && ammoUser.CurAmmoSet == CompAmmoUser.CurAmmoSet && ammoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo;
     }
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
         Map.GetComponent<AutoLoaderTracker>().Register(this);
-        CompAmmoUser = GetComp<CompAmmoUser>();
+        CompAmmoUser = this.TryGetComp<CompAmmoUser>();
 
         dormantComp = GetComp<CompCanBeDormant>();
         initiatableComp = GetComp<CompInitiatable>();
@@ -121,6 +115,7 @@ public class Building_AutoloaderCE : Building
         mannableComp = GetComp<CompMannable>();
 
         graphicsExt = def.GetModExtension<ModExtension_AutoLoaderGraphics>();
+        CacheGraphics();
         if (CompAmmoUser == null)
         {
             Log.Error(this.GetCustomLabelNoCount() + " Requires CompAmmoUser to function properly.");
@@ -185,9 +180,9 @@ public class Building_AutoloaderCE : Building
             {
                 compAmmo = CompAmmoUser,
                 action = null,
-                defaultLabel = CompAmmoUser.HasMagazine ? (string)"CE_ReloadLabel".Translate() : "",
+                defaultLabel = CompAmmoUser.HasMagazine ? "CE_ReloadLabel".Translate() : "",
                 defaultDesc = "CE_ReloadDesc".Translate(),
-                icon = CompAmmoUser.CurrentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : CompAmmoUser.SelectedAmmo.IconTexture(),
+                icon = CompAmmoUser.CurrentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload") : CompAmmoUser.SelectedAmmo.IconTexture(),
                 tutorTag = "CE_AutoLoader"
             };
             yield return reloadCommandGizmo;
@@ -223,7 +218,7 @@ public class Building_AutoloaderCE : Building
                 Command_Action drop = new Command_Action();
                 drop.defaultLabel = "CE_AutoLoader_DropAmmo".Translate();
                 drop.defaultDesc = "CE_AutoLoader_DropAmmoDesc".Translate();
-                drop.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_Drop", true);
+                drop.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_Drop");
                 drop.action = delegate
                 {
                     DropAmmo();
@@ -234,7 +229,7 @@ public class Building_AutoloaderCE : Building
                 Command_Action reload = new Command_Action();
                 reload.defaultLabel = "CE_AutoLoader_ForceReload".Translate();
                 reload.defaultDesc = "CE_AutoLoader_ForceReloadDesc".Translate();
-                reload.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_Reload", true);
+                reload.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_Reload");
                 reload.action = delegate
                 {
                     List<Thing> adjThings = new List<Thing>();
@@ -252,7 +247,7 @@ public class Building_AutoloaderCE : Building
                         }
                         if (!success)
                         {
-                            Messages.Message(string.Format("CE_AutoLoader_NoTurretToReload".Translate(), Label, CompAmmoUser.Props.ammoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
+                            Messages.Message(string.Format("CE_AutoLoader_NoTurretToReload".Translate(), Label, CompAmmoUser.CurAmmoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
                         }
                     }
                 };
@@ -262,7 +257,7 @@ public class Building_AutoloaderCE : Building
             Command_Action toggleShouldReplace = new Command_Action();
             toggleShouldReplace.defaultLabel = shouldReplaceAmmo ? "CE_AutoLoader_ToggleReplaceOn".Translate() : "CE_AutoLoader_ToggleReplaceOff".Translate();
             toggleShouldReplace.defaultDesc = shouldReplaceAmmo ? "CE_AutoLoader_ToggleReplaceDescOn".Translate() : "CE_AutoLoader_ToggleReplaceDescOff".Translate();
-            toggleShouldReplace.icon = shouldReplaceAmmo ? ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_ReplaceOn", true) : ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_ReplaceOff", true);
+            toggleShouldReplace.icon = shouldReplaceAmmo ? ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_ReplaceOn") : ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_ReplaceOff");
             toggleShouldReplace.action = delegate
             {
                 shouldReplaceAmmo = !shouldReplaceAmmo;
@@ -355,9 +350,14 @@ public class Building_AutoloaderCE : Building
     {
         foreach (Thing building in TurretsToReload())
         {
-            if (building is Building_TurretGunCE turret && (turret.GetAmmo().EmptyMagazine || turret.currentTargetInt == LocalTargetInfo.Invalid) && StartReload(turret.GetAmmo()))
+            if (building is Building_TurretGunCE turret)
             {
-                return true;
+                var ammo = turret.GetAmmo();
+                var reloadOn = ammo.IsOpportunisticReloadActive ? ammo.TryReloadOn : 0;
+                if (ammo.EmptyMagazine || (ammo.CurMagCount <= reloadOn && turret.currentTargetInt == LocalTargetInfo.Invalid) && StartReload(ammo))
+                {
+                    return true;
+                }
             }
         }
         return false;
@@ -382,11 +382,11 @@ public class Building_AutoloaderCE : Building
         //if this is the right turret to reload
         if (graphicsExt != null)
         {
-            //if def exists and match
-            bool tagMatch = graphicsExt.allowedTurrets.Any() && graphicsExt.allowedTurrets.Contains(turret.def.defName);
+            //if turret type restriction is in place, if both are null, tag chech automatically pass
+            bool tagMatch = graphicsExt.allowedTurrets.NullOrEmpty() && graphicsExt.allowedTurretTags.NullOrEmpty();
 
             //if tag exists and match
-            if (!tagMatch && graphicsExt.allowedTurretTags.Any())
+            if (!tagMatch)
             {
                 foreach (string loadertag in graphicsExt.allowedTurretTags)
                 {
@@ -414,7 +414,7 @@ public class Building_AutoloaderCE : Building
         if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || canReplaceAmmo)
         {
             TargetTurret = TurretMagazine.turret;
-            ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            ticksToComplete = Mathf.CeilToInt(TurretMagazine.ReloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
             ticksToCompleteInitial = ticksToComplete;
             turret.SetReloading(true);
             return true;
@@ -450,5 +450,25 @@ public class Building_AutoloaderCE : Building
         TargetTurret = null;
         TryActiveReload();
         return true;
+    }
+
+    private void CacheGraphics()
+    {
+        if (graphicsExt == null)
+        {
+            return;
+        }
+        if (graphicsExt.fullGraphic != null && !string.IsNullOrEmpty(graphicsExt.fullGraphic.texPath))
+        {
+            cachedFullGraphic = graphicsExt.fullGraphic.GraphicColoredFor(this);
+        }
+        if (graphicsExt.halfFullGraphic != null && !string.IsNullOrEmpty(graphicsExt.halfFullGraphic.texPath))
+        {
+            cachedHalfFullGraphic = graphicsExt.halfFullGraphic.GraphicColoredFor(this);
+        }
+        if (graphicsExt.emptyGraphic != null && !string.IsNullOrEmpty(graphicsExt.emptyGraphic.texPath))
+        {
+            cachedEmptyGraphic = graphicsExt.emptyGraphic.GraphicColoredFor(this);
+        }
     }
 }

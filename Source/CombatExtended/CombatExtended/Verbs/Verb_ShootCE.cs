@@ -82,6 +82,8 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
         }
     }
 
+    public override bool ShouldSpawnAimingSound => !_isAiming;
+
     public override float SwayAmplitude // TODO: Fix SwayAmplitude and SwayAmplitudeFor code re-use
     {
         get
@@ -191,10 +193,9 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
             }
         }
         float burstShotCount = VerbPropsCE.burstShotCount;
-        WeaponPlatform platform = WeaponPlatform;
-        if (platform != null && (!platform.TryGetComp<CompUnderBarrel>()?.usingUnderBarrel ?? false))
+        if (VerbPropsCE.useEquipmentStatValues && EquipmentSource != null && (!EquipmentSource.TryGetComp<CompUnderBarrel>()?.usingUnderBarrel ?? false))
         {
-            float modified = platform.GetStatValue(CE_StatDefOf.BurstShotCount);
+            float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
             if (modified > 0)
             {
                 burstShotCount = modified;
@@ -220,8 +221,8 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
             }
             if (ShooterPawn != null)
             {
-                ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
                 _isAiming = true;
+                ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
                 RecalculateWarmupTicks();
                 return;
             }
@@ -345,6 +346,10 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
     //For revolvers and break actions. Intended to be called by compammouser on reload
     public void ExternalCallDropCasing(int randomSeedOffset = -1)
     {
+        if (caster == null)
+        {
+            return;
+        }
         bool fromPawn = false;
         GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
         if (ShooterPawn != null)

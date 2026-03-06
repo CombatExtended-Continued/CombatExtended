@@ -93,6 +93,11 @@ public class CompUrgentWeaponPickup : ICompTactics
         {
             return;
         }
+        if (SelPawn.guest.Released)
+        {
+            return;
+        }
+
         foreach (ThingWithComps thing in CompInventory.rangedWeaponList)
         {
             CompAmmoUser compAmmo = thing.TryGetComp<CompAmmoUser>();

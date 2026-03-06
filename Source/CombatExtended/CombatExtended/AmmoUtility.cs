@@ -134,6 +134,11 @@ public static class AmmoUtility
             stringBuilder.AppendLine("   " + "CE_DescDeteriorationHP".Translate() + ": " + props.weaponDeteriorationHP.min.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " ~ " + props.weaponDeteriorationHP.max.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " (" + props.weaponDeteriorationChance.ToStringByStyle(ToStringStyle.PercentZero) + " " + "CE_Chance".Translate() + ")");
         }
 
+        if (props.reloadTimeMultiplier != 1f)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescReloadTimeMult".Translate() + ": " + props.reloadTimeMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
+        }
+
         // Fragments
         var fragmentComp = projectileDef.GetCompProperties<CompProperties_Fragments>();
         if (fragmentComp != null)
