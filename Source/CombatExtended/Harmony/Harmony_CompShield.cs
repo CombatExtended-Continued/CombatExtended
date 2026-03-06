@@ -34,7 +34,7 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
     {
         absorbed = false;
 
-        if (__instance.ShieldState != ShieldState.Active)
+        if (__instance.ShieldState != ShieldState.Active || __instance.PawnOwner == null)
         {
             return false;
         }
