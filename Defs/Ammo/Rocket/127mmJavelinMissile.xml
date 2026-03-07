@@ -14,7 +14,7 @@
 		<defName>AmmoSet_127mmJavelinMissile</defName>
 		<label>Javelin Missile</label>
 		<ammoTypes>
-			<Ammo_127mmJavelinMissile>Bullet_127mmJavelinMissile</Ammo_127mmJavelinMissile>
+			<Ammo_127mmJavelinMissile>Bullet_127mmJavelinMissile_HEAT</Ammo_127mmJavelinMissile>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -44,13 +44,13 @@
 		<cookOffFlashScale>40</cookOffFlashScale>
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
 		<ammoClass>RocketHEAT</ammoClass>
-		<detonateProjectile>Bullet_127mmJavelinMissile</detonateProjectile>
+		<detonateProjectile>Bullet_127mmJavelinMissile_HEAT</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef ParentName="BaseRPG7Grenade">
-		<defName>Bullet_127mmJavelinMissile</defName>
+		<defName>Bullet_127mmJavelinMissile_HEAT</defName>
 		<label>127mm Javelin missile</label>
 		<graphicData>
 			<texPath>Things/Projectile/Missile/Javelin</texPath>
@@ -65,6 +65,7 @@
 			<trajectoryWorker>CombatExtended.SmartRocketTrajectoryWorker</trajectoryWorker>
 			<speed>30</speed>
 			<speedGain>16</speedGain>
+			<fuelTicks>100</fuelTicks>
 			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
 		</projectile>
 		<comps>
