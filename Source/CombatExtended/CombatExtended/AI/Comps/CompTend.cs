@@ -75,6 +75,11 @@ public class CompTend : ICompTactics
         }
         lastTendJobAt = GenTicks.TicksGame;
         Job job = JobMaker.MakeJob(CE_JobDefOf.TendSelf, SelPawn);
+        if (Rand.Chance(0.5f))
+        {
+            var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+            tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.TendingSelfMote, SelPawn);
+        }
         job.endAfterTendedOnce = false;
         return job;
     }

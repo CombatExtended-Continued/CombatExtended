@@ -91,6 +91,12 @@ public class CompGasMask : ICompTactics
                 SelPawn.inventory.innerContainer.Remove(apparel);
                 SelPawn.apparel.Wear(apparel);
                 maskEquiped = true;
+
+                if (Rand.Chance(0.5f))
+                {
+                    var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                    tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.GasMaskOnMote, SelPawn);
+                }
                 return;
             }
         }
@@ -104,6 +110,11 @@ public class CompGasMask : ICompTactics
             {
                 SelPawn.apparel.Remove(apparel);
                 SelPawn.inventory.innerContainer.TryAddOrTransfer(apparel);
+                if (Rand.Chance(0.2f))
+                {
+                    var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                    tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.GasMaskOffMote, SelPawn);
+                }
                 break;
             }
         }

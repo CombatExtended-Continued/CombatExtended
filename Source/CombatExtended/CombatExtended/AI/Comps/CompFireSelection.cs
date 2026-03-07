@@ -118,12 +118,25 @@ public class CompFireSelection : ICompTactics
                     {
                         fireModes.TrySetAimMode(AimMode.SuppressFire);
                         fireModes.TrySetFireMode(FireMode.AutoFire);
+
+                        if (Rand.Chance(0.5f))
+                        {
+                            var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                            tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.FireSel_SuppressingCloseMote, SelPawn);
+                        }
+
                         return;
                     }
                     if (shotDist <= 30)
                     {
                         fireModes.TrySetAimMode(AimMode.Snapshot);
                         fireModes.TrySetFireMode(FireMode.AutoFire);
+
+                        if (Rand.Chance(0.5f))
+                        {
+                            var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                            tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.FireSel_SuppressingFarMote, SelPawn);
+                        }
                         return;
                     }
                 }
@@ -134,6 +147,12 @@ public class CompFireSelection : ICompTactics
                 {
                     fireModes.TrySetAimMode(AimMode.AimedShot);
                     fireModes.TrySetFireMode(FireMode.BurstFire);
+
+                    if (Rand.Chance(0.5f))
+                    {
+                        var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                        tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.FireSel_AimingBadVisibilityMote, SelPawn);
+                    }
                     return;
                 }
                 if (recoilFactor <= 0.60f)
@@ -142,10 +161,21 @@ public class CompFireSelection : ICompTactics
                     {
                         fireModes.TrySetAimMode(AimMode.Snapshot);
                         fireModes.TrySetFireMode(FireMode.AutoFire);
+
+                        if (Rand.Chance(0.5f))
+                        {
+                            var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                            tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.FireSel_AutoCloseMote, SelPawn);
+                        }
                         return;
                     }
                     fireModes.TrySetAimMode(AimMode.AimedShot);
                     fireModes.TrySetFireMode(FireMode.AutoFire);
+                    if (Rand.Chance(0.5f))
+                    {
+                        var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                        tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.FireSel_AutoFarMote, SelPawn);
+                    }
                     return;
                 }
                 if (recoilFactor > 3.5f && shotDist / range >= 0.6f)
@@ -171,12 +201,22 @@ public class CompFireSelection : ICompTactics
             {
                 fireModes.TrySetAimMode(AimMode.AimedShot);
                 fireModes.TrySetFireMode(FireMode.SingleFire);
+                if (Rand.Chance(0.5f))
+                {
+                    var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                    tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.FireSel_VeryLowAmmoMote, SelPawn);
+                }
                 return;
             }
             if (bullets < verbShoot.CompAmmo.MagSize * 1.5f && shotDist > 35)
             {
                 fireModes.TrySetAimMode(AimMode.AimedShot);
                 fireModes.TrySetFireMode(FireMode.BurstFire);
+                if (Rand.Chance(0.5f))
+                {
+                    var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                    tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.FireSel_LowAmmoMote, SelPawn);
+                }
                 return;
             }
             fireModes.TrySetAimMode(AimMode.AimedShot);
