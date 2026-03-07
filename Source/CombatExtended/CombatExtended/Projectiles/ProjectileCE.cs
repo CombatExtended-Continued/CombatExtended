@@ -197,6 +197,7 @@ public abstract class ProjectileCE : ThingWithComps
     public float startingTicksToImpact;
 
     public int FlightTicks = 0;
+    public float intendedTargetHeight = 0f;
 
     #endregion
 
@@ -409,6 +410,7 @@ public abstract class ProjectileCE : ThingWithComps
         Scribe_Values.Look(ref FlightTicks, "flightTicks");
         Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
         Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
+        Scribe_Values.Look(ref intendedTargetHeight, nameof(intendedTargetHeight), 0f);
         // To insure saves don't get affected..
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {

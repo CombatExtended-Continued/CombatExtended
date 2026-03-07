@@ -501,14 +501,15 @@ public class Verb_LaunchProjectileCE : Verb
 
     public void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
     {
-        ShiftTarget(report, report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(), calculateMechanicalOnly, isInstant);
+        ShiftTarget(report, report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(), out _, calculateMechanicalOnly, isInstant);
     }
 
     /// <summary>
     /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
     /// </summary>
-    public virtual void ShiftTarget(ShiftVecReport report, Vector3 v, bool calculateMechanicalOnly = false, bool isInstant = false)
+    public virtual void ShiftTarget(ShiftVecReport report, Vector3 v, out float targetHeight, bool calculateMechanicalOnly = false, bool isInstant = false)
     {
+        targetHeight = 0f;
         if (!calculateMechanicalOnly)
         {
             Vector3 u = caster.TrueCenter();
@@ -554,7 +555,7 @@ public class Verb_LaunchProjectileCE : Verb
 
             // Height difference calculations for ShotAngle
 
-            var targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v);
+            targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v);
 
             if (!LockRotationAndAngle)
             {
@@ -1141,7 +1142,7 @@ public class Verb_LaunchProjectileCE : Verb
 
             ProjectileCE projectile = SpawnProjectile();
             GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-            ShiftTarget(report, targetLoc, pelletMechanicsOnly, instant);
+            ShiftTarget(report, targetLoc, out projectile.intendedTargetHeight, pelletMechanicsOnly, instant);
 
             //New aiming algorithm
             projectile.canTargetSelf = false;
