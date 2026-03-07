@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- AV Tarantula Missile Launcher -->
+	<ThingDef ParentName="Gun_ChargeBlasterHeavyBase">
+		<defName>Gun_AVTarantula</defName>
+		<label>tarantula missile launcher</label>
+		<description>Multi barrel missile launcher built in the back of tarantula.</description>
+		<graphicData>
+			<texPath>Things/Building/Turrets/Null</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.0,0.0</drawSize>
+		</graphicData>
+		<tradeability>None</tradeability>
+		<destroyOnDrop>true</destroyOnDrop>
+		<techLevel>Spacer</techLevel>
+		<relicChance>0</relicChance>
+		<weaponClasses>
+			<li>RangedHeavy</li>
+		</weaponClasses>
+		<statBases>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>1.68</SwayFactor>
+			<Bulk>20</Bulk>
+			<Mass>45.22</Mass>
+			<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<recoilAmount>1</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_SPG9Rocket_Frag</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<burstShotCount>2</burstShotCount>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<range>68</range>
+				<minRange>5</minRange>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>RocketswarmLauncher_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>CE_AI_AOE</li>
+			<li>NoSwitch</li>
+			<li>AV_TarantulaHeavyBlaster</li>
+		</weaponTags>
+		<comps>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>4</magazineSize>
+				<reloadTime>18</reloadTime>
+				<ammoSet>AmmoSet_SPG9Rocket</ammoSet>
+			</li>
+			<li Class="CombatExtended.CompProperties_FireModes">
+				<aiUseBurstMode>TRUE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</li>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<underBarrelLabel>switch to utility launcher</underBarrelLabel>
+				<propsUnderBarrel>
+					<magazineSize>8</magazineSize>
+					<reloadTime>18</reloadTime>
+					<ammoSet>AmmoSet_81mmMortarShell_Utilitydirectfire</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_81mmMortarShell_UtilityDirectfire_Firefoam</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>45</range>
+					<burstShotCount>2</burstShotCount>
+					<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>RocketswarmLauncher_Fire</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>8</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</comps>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>6.02</cooldownTime>
+				<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+		</tools>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>CE_AV_Gun_ChargeBlasterHeavy</defName>
+		<label>super heavy charge turret</label>
+		<description>A huge charge turret designed for use on a defense turret.</description>
+		<tradeability>None</tradeability>
+		<destroyOnDrop>true</destroyOnDrop>
+		<techLevel>Spacer</techLevel>
+		<relicChance>0</relicChance>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/AV_ChargeBlasterHeavy</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2.5,2.5)</drawSize>
+		</graphicData>
+		<statBases>
+			<Mass>12</Mass>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<ShotSpread>0.19</ShotSpread><!-- Manually adjusted from 0.08 due to accuracy concerns. -->
+			<SwayFactor>0.56</SwayFactor>
+			<Bulk>20.00</Bulk>
+		</statBases>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_20x105mmCharged</defaultProjectile>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Shot_ChargeBlaster</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<defaultCooldownTime>8.5</defaultCooldownTime>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>false</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<ticksBetweenBurstShots>120</ticksBetweenBurstShots>
+			</li>
+		</verbs>
+	</ThingDef>
+
+</Defs>

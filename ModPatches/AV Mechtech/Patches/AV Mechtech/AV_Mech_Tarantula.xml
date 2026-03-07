@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<parts>
+							<li>SightSensor</li>
+							<li>HearingSensor</li>
+							<li>SmellSensor</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+						<parts>
+							<li>SightSensor</li>
+							<li>HearingSensor</li>
+							<li>SmellSensor</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+			<CarryWeight>120</CarryWeight>
+			<CarryBulk>75</CarryBulk>
+			<AimingAccuracy>1.3</AimingAccuracy>
+			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.03</MeleeDodgeChance>
+			<MeleeCritChance>0.42</MeleeCritChance>
+			<MeleeParryChance>0.64</MeleeParryChance>
+			<MaxHitPoints>600</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>1</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>4.5</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>3.6</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>4600</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/race/renderTree</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="AV_Mech_Tarantula"]/abilities</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]/comps/li[@Class="AV_Framework.CompProperties_MechReloadableResourceHolder"]</xpath>
+		<value>
+			<li Class="CompProperties_TurretGun">
+				<turretDef>CE_AV_Gun_ChargeBlasterHeavy</turretDef>
+				<angleOffset>-90</angleOffset>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>PawnRenderNode_TurretGun</nodeClass>
+						<workerClass>PawnRenderNodeWorker_TurretGun</workerClass>
+						<parentTagDef>Body</parentTagDef>
+						<overrideMeshSize>(2, 2)</overrideMeshSize>
+						<baseLayer>90</baseLayer>
+						<pawnType>Any</pawnType>
+						<drawData>
+							<dataEast>
+								<offset>(-0.2, 0, 0.8)</offset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>180</rotationOffset>
+								<offset>(0.2, 0, 0.8)</offset>
+							</dataWest>
+							<dataNorth>
+								<offset>(0, 0, 0.5)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0, 0, 0.5)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Tarantula"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="AV_Mech_Tarantula"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>RocketThermobaric</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
