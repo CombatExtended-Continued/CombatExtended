@@ -203,12 +203,12 @@ public static class AmmoInjector
                                     Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
                                     continue;
                                 }
-                                if (BenchesByTag.TryGetValue(curTag, out HashSet<ThingDef> benchHashSet))
+                            }
+                            if (BenchesByTag.TryGetValue(curTag, out HashSet<ThingDef> benchHashSet))
+                            {
+                                foreach (ThingDef optionBench in benchHashSet)
                                 {
-                                    foreach (ThingDef optionBench in benchHashSet)
-                                    {
-                                        ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
-                                    }
+                                    ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
                                 }
                             }
                             ToggleRecipeOnBench(recipe, bench, ammoEnabled);
