@@ -229,12 +229,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
 		<defName>Shell_81mmMortar_Waste</defName>
 		<label>waster shell</label>
-		<description>An artillery shell containing compressed toxic waste. When fired, it will stick into the ground and pollute the area while releasing tox gas for some time
-			before
-			expiring.
-
-			Tox gas burns the lungs and eyes, causing a temporary shortness of breath and reduction in sight. Continued exposure to tox gas results in toxic buildup that can be
-			lethal.</description>
+		<description>An artillery shell containing compressed toxic waste. When fired, it will stick into the ground and pollute the area while releasing tox gas for some time before expiring.\n\nTox gas burns the lungs and eyes, causing a temporary shortness of breath and reduction in sight. Continued exposure to tox gas results in toxic buildup that can be lethal.</description>
 		<graphicData>
 			<texPath>Things/Item/Resource/Shell/AV_ShellWaster</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -272,8 +267,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
 		<defName>Shell_81mmMortar_Deployment</defName>
 		<label>mechanoid deployment shell</label>
-		<description>A shell filled with a sleeping warurchin. On impact it will activate and hunt down any hostile creatures. While this makes a good surprise attack, their data
-			processing is limited which makes them see nearly everybody as hostile.</description>
+		<description>A shell filled with a sleeping warurchin. On impact it will activate and hunt down any hostile creatures.\n\nWhile this makes a good surprise attack, their data processing is limited which makes them see nearly everybody as hostile.</description>
 		<graphicData>
 			<texPath>Things/Item/Resource/Shell/AV_ShellDeployment</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -338,6 +332,9 @@
 			<!-- Post-explosion effects -->
 			<postExplosionSpawnThingDef>AV_Shell_Deploy_Releasing</postExplosionSpawnThingDef>
 			<postExplosionSpawnThingDefWater>AV_Shell_Deploy_Releasing_Water</postExplosionSpawnThingDefWater>
+			<shellingProps>
+				<damage>0</damage>
+			</shellingProps>			
 		</projectile>
 	</ThingDef>
 
