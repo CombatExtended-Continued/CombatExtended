@@ -69,6 +69,12 @@ public abstract class ProjectileCE : ThingWithComps
 
     public DamageDef damageDefOverride;
 
+    // Per-instance explosion override from weapon traits, set by Verb_LaunchProjectileCE
+    public TraitExplosionDef traitExplosion;
+
+    // Per-instance homing acceleration from weapon traits (cells/s/s)
+    public float homingAcceleration;
+
     public DamageDef DamageDef => damageDefOverride ?? def.projectile.damageDef;
     public float ShieldDamageMultiplier => Props.shieldDamageMultiplier;
 
@@ -394,7 +400,7 @@ public abstract class ProjectileCE : ThingWithComps
         Scribe_Values.Look(ref fuelTicks, "fuelTicks");
         Scribe_Values.Look(ref velocity, "velocity");
         Scribe_Values.Look(ref initialSpeed, "initialSpeed");
-
+        Scribe_Values.Look(ref homingAcceleration, "homingAcceleration");
 
         //To fix landed grenades sl problem
         Scribe_Values.Look(ref exactPosition, "exactPosition");
@@ -409,6 +415,10 @@ public abstract class ProjectileCE : ThingWithComps
 
             GravityPerHeight = this.Props.GravityPerHeight;
             GravityPerWidth = this.Props.GravityPerWidth;
+            if (homingAcceleration > 0f)
+            {
+                forcedTrajectoryWorker = HomingBulletTrajectoryWorker.Instance;
+            }
         }
     }
     #endregion
@@ -1547,7 +1557,9 @@ public abstract class ProjectileCE : ThingWithComps
         }
 
         //If the comp exists, it'll already call CompFragments
-        if (explodingComp != null || (def.projectile.explosionRadius > 0f && DamageDef != null))
+        bool hasTraitExplosion = traitExplosion is { radius: > 0f };
+        float effectiveExplosionRadius = hasTraitExplosion ? traitExplosion.radius : def.projectile.explosionRadius;
+        if (explodingComp != null || (effectiveExplosionRadius > 0f && DamageDef != null))
         {
             float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
             //Handle anything explosive
@@ -1556,21 +1568,38 @@ public abstract class ProjectileCE : ThingWithComps
                 ignoredThings.Add(pawn.Corpse);
             }
 
+            // Prevent double damage when trait adds explosion to a bullet that already did direct hit damage
+            if (hasTraitExplosion && hitThing != null && this is BulletCE && !traitExplosion.damageHitTarget)
+            {
+                ignoredThings.Add(hitThing);
+            }
+
             var suppressThings = new List<Pawn>();
             float dangerAmount = 0f;
             var dir = new float?(origin.AngleTo(new Vector2(ExactPosition.x, ExactPosition.z)));
 
             // Opt-out for things without explosionRadius
-            if (def.projectile.explosionRadius > 0f)
+            if (effectiveExplosionRadius > 0f)
             {
+                DamageDef explosionDamage = hasTraitExplosion
+                    ? (traitExplosion.damageDef ?? DamageDef)
+                    : DamageDef;
+                int explosionDamageAmt = hasTraitExplosion && traitExplosion.damageAmount >= 0
+                    ? traitExplosion.damageAmount
+                    : Mathf.FloorToInt(DamageAmount);
+
+                float explosionAP = hasTraitExplosion
+                    ? explosionDamageAmt * AmmoUtility.ExplosiveArmorPenetrationMultiplier
+                    : def.projectile.GetExplosionArmorPenetration();
+
                 GenExplosionCE.DoExplosion(
                     explodePos.ToIntVec3(),
                     Map,
-                    def.projectile.explosionRadius,
-                    DamageDef,
+                    effectiveExplosionRadius,
+                    explosionDamage,
                     launcher,
-                    Mathf.FloorToInt(DamageAmount),
-                    def.projectile.GetExplosionArmorPenetration(),
+                    explosionDamageAmt,
+                    explosionAP,
                     def.projectile.soundExplode,
                     equipmentDef,
                     def,
@@ -1600,7 +1629,7 @@ public abstract class ProjectileCE : ThingWithComps
                 // Apply suppression around impact area
                 if (explodePos.y < SuppressionRadius)
                 {
-                    explosionSuppressionRadius += def.projectile.explosionRadius;
+                    explosionSuppressionRadius += effectiveExplosionRadius;
 
                     if (projectilePropsCE.suppressionFactor > 0f)
                     {

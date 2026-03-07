@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<!-- Crypto bullet damage: applies VQE_CryptoSlowdown hediff on hit.
+	     Replicates VQE Bullet_Cryptobolter.Impact() behavior via DamageDef additionalHediffs.
+	     Used by VWE_CryptoRounds trait via damageDefOverride. -->
+	<DamageDef MayRequire="vanillaquestsexpanded.cryptoforge" ParentName="Bullet">
+		<defName>CE_Bullet_CryptoSlowdown</defName>
+		<label>crypto bullet</label>
+		<additionalHediffs>
+			<li>
+				<hediff>VQE_CryptoSlowdown</hediff>
+				<severityPerDamageDealt>0.05</severityPerDamageDealt>
+				<victimSeverityScaling>ArmorRating_Heat</victimSeverityScaling>
+				<inverseStatScaling>true</inverseStatScaling>
+			</li>
+		</additionalHediffs>
+	</DamageDef>
+
+</Defs>

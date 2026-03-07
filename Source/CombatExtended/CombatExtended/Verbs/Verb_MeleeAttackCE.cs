@@ -363,12 +363,26 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
     {
         //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
         float damAmount = verbProps.AdjustedMeleeDamageAmount(this, CasterPawn);
-        var critModifier = isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp &&
+        DamageDef damDef = verbProps.meleeDamageDef;
+
+        // Check for trait-based melee damage override
+        if (EquipmentSource?.TryGetComp(out CompUniqueWeapon uniqueComp) ?? false)
+        {
+            foreach (WeaponTraitDef trait in uniqueComp.TraitsListForReading)
+            {
+                if (trait is CustomWeaponTraitDef { meleeDamageOverride: { } overrideDef })
+                {
+                    damDef = overrideDef;
+                    break;
+                }
+            }
+        }
+
+        var critModifier = isCrit && damDef.armorCategory == DamageArmorCategoryDefOf.Sharp &&
                            !CasterPawn.def.race.Animal
                            ? 2
                            : 1;
-        var armorPenetration = (verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp ? ArmorPenetrationSharp : ArmorPenetrationBlunt) * critModifier;
-        DamageDef damDef = verbProps.meleeDamageDef;
+        var armorPenetration = (damDef.armorCategory == DamageArmorCategoryDefOf.Sharp ? ArmorPenetrationSharp : ArmorPenetrationBlunt) * critModifier;
         BodyPartGroupDef bodyPartGroupDef = null;
         HediffDef hediffDef = null;
 

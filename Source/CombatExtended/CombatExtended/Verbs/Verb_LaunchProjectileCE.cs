@@ -40,7 +40,6 @@ public class Verb_LaunchProjectileCE : Verb
     protected int multiBarrelIndex;
 
     private float shotSpeed = -1;
-
     private float rotationDegrees = 0f;
     private float angleRadians = 0f;
 
@@ -687,6 +686,7 @@ public class Verb_LaunchProjectileCE : Verb
         report.cover = cover;
         report.smokeDensity = ignoreMalusesFlag ? 0 : smokeDensity;
         report.roofed = roofed;
+
         return report;
     }
 
@@ -895,7 +895,7 @@ public class Verb_LaunchProjectileCE : Verb
             }
             return true;
         }
-        // Check thick roofs
+        // Check thick roofs (mortars)
         if (Projectile.projectile.flyOverhead)
         {
             RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
@@ -1164,6 +1164,15 @@ public class Verb_LaunchProjectileCE : Verb
                     if (!trait.extraDamages.NullOrEmpty())
                     {
                         projectile.extraDamages.AddRange(trait.extraDamages);
+                    }
+                    if (trait is CustomWeaponTraitDef { explosionOverride: { radius: > 0f } } customTrait)
+                    {
+                        projectile.traitExplosion = customTrait.explosionOverride;
+                    }
+                    if (trait is CustomWeaponTraitDef { homingAcceleration: > 0f } homingTrait)
+                    {
+                        projectile.homingAcceleration = homingTrait.homingAcceleration;
+                        projectile.forcedTrajectoryWorker = HomingBulletTrajectoryWorker.Instance;
                     }
                 }
             }
