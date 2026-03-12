@@ -19,11 +19,11 @@ public struct CollisionVertical
     private readonly FloatRange heightRange;
     public readonly float shotHeight;
 
-    public FloatRange HeightRange => new FloatRange(heightRange.min, heightRange.max);
+    public FloatRange HeightRange => new FloatRange(Mathf.Max(0, heightRange.min), Mathf.Max(0.1f, heightRange.max));
     public float Min => heightRange.min;
     public float Max => heightRange.max;
-    public float BottomHeight => Max * BodyRegionBottomHeight;
-    public float MiddleHeight => Max * BodyRegionMiddleHeight;
+    public float BottomHeight => Max - (heightRange.Span * (1 - BodyRegionBottomHeight));
+    public float MiddleHeight => Max - (heightRange.Span * (1 - BodyRegionMiddleHeight));
 
     public CollisionVertical(Thing thing)
     {
@@ -73,7 +73,7 @@ public struct CollisionVertical
         }
         float collisionHeight = 0f;
         float shotHeightOffset = 0;
-        float heightAdjust = 0;
+        float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);
 
         var pawn = thing as Pawn;
         if (pawn != null)
@@ -127,8 +127,10 @@ public struct CollisionVertical
             }
         }
         float fillPercent2 = collisionHeight;
-        heightRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2) + heightAdjust, Mathf.Max(edificeHeight, edificeHeight + fillPercent2) + heightAdjust);
-        shotHeight = heightRange.max - shotHeightOffset;
+        heightRange = new FloatRange(
+            Mathf.Min(edificeHeight, edificeHeight + fillPercent2) + heightAdjust,
+            Mathf.Max(0.1f, Mathf.Max(edificeHeight, edificeHeight + fillPercent2) + heightAdjust));
+        shotHeight = Mathf.Max(0.1f, heightRange.max - shotHeightOffset);
     }
 
     /// <summary>
