@@ -16,6 +16,94 @@ public static class ShellingUtility
     private static ProjectilePropertiesCE props;
     private static DamageDef projectileDamageDef;
 
+    private struct DistanceCache
+    {
+        public PlanetTile startingTile;
+        public PlanetTile destinationTile;
+        public int distance;
+    }
+    private static DistanceCache distanceCache = new DistanceCache();
+
+    public static int GetDistancePlanetTiles(PlanetTile startingTile, PlanetTile destinationTile, int maxDist = int.MaxValue)
+    {
+        if (distanceCache.startingTile == startingTile && distanceCache.destinationTile == destinationTile)
+        {
+            return distanceCache.distance;
+        }
+
+        if (startingTile.layerId != destinationTile.layerId)
+        {
+            // startingTile = destinationTile.Layer.GetClosestTile_NewTemp(startingTile);
+        }
+        distanceCache.startingTile = startingTile;
+        distanceCache.destinationTile = destinationTile;
+
+        distanceCache.distance =
+            (int)(Find.WorldGrid.TraversalDistanceBetween(startingTile, destinationTile, true, maxDist, true) * destinationTile.LayerDef.rangeDistanceFactor);
+        
+        return distanceCache.distance;
+    }
+
+    private struct RadiusCache
+    {
+        public PlanetTile realCenterTile;
+        public int radius;
+    }
+    private static Dictionary<int, RadiusCache> radiusCache = new Dictionary<int, RadiusCache>();
+
+    public static void ClearRadiusCache()
+    {
+        radiusCache.Clear();
+    }
+
+    public static void CachedDrawTurretRadiusRing(PlanetTile center, int radius, bool canShootOtherLayers = false)
+    {
+        PlanetTile realCenterTile;
+        int realRadius;
+        RadiusCache cache;
+
+        // Try to find cache.
+        bool cacheFound = radiusCache.TryGetValue(center.tileId, out cache);
+        
+        // If the result is not on the current layer, we need to recalculate it
+        if (cacheFound && cache.realCenterTile.Layer != PlanetLayer.Selected)
+        {
+            if (!canShootOtherLayers)
+            {
+                // Don't display radius
+                return;
+            }
+
+            cacheFound = false;
+            radiusCache.Remove(center.tileId);
+        }
+
+        // Use cached values
+        if (cacheFound)
+        {
+            realCenterTile = cache.realCenterTile;
+            realRadius = cache.radius;
+        }
+        else
+        {
+            // We cache these operations, because there is no need to overcharge the update.
+            realCenterTile = center;
+            float rangeDistanceFactor = PlanetLayer.Selected.Def.rangeDistanceFactor;
+            if (center.Layer != PlanetLayer.Selected)
+            { 
+                realCenterTile = PlanetLayer.Selected.GetClosestTile_NewTemp(center);
+            }
+            realRadius = Mathf.FloorToInt(radius / rangeDistanceFactor);
+            
+            // Add result to cache
+            radiusCache.Add(center.tileId, new RadiusCache() { 
+                realCenterTile = realCenterTile,
+                radius = realRadius
+            });
+        }
+        GenDraw.DrawWorldRadiusRing(realCenterTile, realRadius);
+    }
+
     public static IntVec3 FindRandomImpactCell(Map map, ThingDef shellDef = null)
     {
         ShellingUtility.map = map;
