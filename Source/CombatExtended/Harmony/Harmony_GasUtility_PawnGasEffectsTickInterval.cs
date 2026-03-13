@@ -11,14 +11,15 @@ using Verse;
 namespace CombatExtended.HarmonyCE;
 internal static class Harmony_GasUtility
 {
-    /// <summary>
-    /// Transpile <see cref="GasUtility.DoAirbornePawnToxicDamage"/> to tell AI pawns to wear mask
-    /// when exposed to toxic gas
-    /// </summary>
+
     [HarmonyPatch(typeof(GasUtility), nameof(GasUtility.PawnGasEffectsTickInterval))]
     static class Patch_PawnGasEffectsTickInterval
     {
 
+        /// <summary>
+        /// Transpile <see cref="GasUtility.DoAirbornePawnToxicDamage"/> to tell AI pawns to wear mask
+        /// when exposed to toxic gas
+        /// </summary>
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {
             List<CodeInstruction> codes = instructions.ToList();
@@ -45,6 +46,25 @@ internal static class Harmony_GasUtility
                 }
             }
             return codes;
+        }
+
+        /// <summary>
+        /// Apply black smoke health effects to a pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="delta">VTR delta.</param>
+        public static void Postfix(Pawn pawn, int delta)
+        {
+            if (!(Controller.settings.SmokeEffects && pawn.Spawned &&
+                  pawn.IsHashIntervalTick(GasUtility.GasCheckInterval, delta)))
+            {
+                return;
+            }
+
+            if (pawn.Position.GetGas(pawn.Map) is Smoke smoke)
+            {
+                smoke.ApplyHediffs(pawn);
+            }
         }
     }
 
