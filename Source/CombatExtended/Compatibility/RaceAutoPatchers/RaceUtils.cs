@@ -29,6 +29,7 @@ public static class RaceUtil
     {
         var newTool = new ToolCE()
         {
+            id = tool.id,
             capacities = tool.capacities,
             armorPenetrationSharp = tool.armorPenetration,
             armorPenetrationBlunt = tool.armorPenetration,

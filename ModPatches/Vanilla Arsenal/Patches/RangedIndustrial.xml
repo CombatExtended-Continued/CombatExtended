@@ -39,6 +39,7 @@
 			defName="DV_Gun_LightCarbine" or
 			defName="DV_Gun_CombatShotgun" or
 			defName="DV_Gun_DMR" or
+			defName="DV_Gun_GrenadeLauncher" or
 			defName="DV_Gun_ThermoRifle"
 			]/tools
 		</xpath>
@@ -305,6 +306,52 @@
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
+	</Operation>
+
+	<!-- Grenade Launcher -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_GrenadeLauncher</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>7.31</Bulk>
+			<Mass>2.70</Mass>
+			<RangedWeapon_Cooldown>0.93</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>3.28</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<warmupTime>1.1</warmupTime>
+			<range>44</range>
+			<minRange>5</minRange>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<soundCast>InfernoCannon_Fire</soundCast>
+    		<soundCastTail>GunTail_Medium</soundCastTail>			
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
+			<reloadTime>2.2</reloadTime>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>GunGrenadeLauncher</li>
+			<li>GunHeavy</li>
+			<li>GrenadeEMP</li>
+			<li>CE_AI_SMOKE</li>
+			<li>CE_AI_AOE</li>
+		</weaponTags>		
 	</Operation>
 
 	<!--ThermoRifle-->

@@ -69,7 +69,7 @@ public static class Harmony_VOID
 
             //Turret Ammo
             var ammoComp = newThing.CompAmmo;
-            var ammoTypes = ammoComp.Props.ammoSet.ammoTypes;
+            var ammoTypes = ammoComp.CurAmmoSet.ammoTypes;
             foreach (var ammoType in ammoTypes)
             {
                 if (ammoType.ammo.ammoClass == CE_AmmoCategoryDefOf.ExplosiveAP)

@@ -23,6 +23,7 @@ public class SmartRocketTrajectoryWorker : BallisticsTrajectoryWorker
         }
         projectile.fuelTicks--;
         var targetPos = currentTarget.Thing?.DrawPos ?? currentTarget.Cell.ToVector3Shifted();
+        targetPos = targetPos.WithY(projectile.intendedTargetHeight);
         var delta = targetPos - projectile.ExactPosition;
         projectile.velocity += delta.normalized * projectile.Props.speedGain / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
     }

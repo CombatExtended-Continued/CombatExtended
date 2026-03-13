@@ -17,14 +17,16 @@ public class CompAmmoUser : CompRangedGizmoGiver
     #region Fields
 
     private int curMagCountInt = 0;
-    private AmmoDef currentAmmoInt = null;
-    private AmmoDef selectedAmmo;
+    private int tryReloadOn = 0;
+    protected AmmoDef currentAmmoInt = null;
+    protected AmmoDef selectedAmmo;
 
     private Thing ammoToBeDeleted;
 
     public Building_Turret turret;         // Cross-linked from CE turret
 
     internal static Type rgStance = null;       // RunAndGun compatibility, set in relevent patch if needed
+    internal bool draggingAmmoSlider = false;
     #endregion
 
     #region Properties
@@ -45,7 +47,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
             {
                 CompInventory.UpdateInventory();
                 int count = 0;
-                foreach (AmmoLink link in Props.ammoSet.ammoTypes)
+                foreach (AmmoLink link in CurAmmoSet.ammoTypes)
                 {
                     count += CompInventory.AmmoCountOfDef(link.ammo);
                 }
@@ -78,12 +80,25 @@ public class CompAmmoUser : CompRangedGizmoGiver
         }
     }
 
+    public int TryReloadOn
+    {
+        get => tryReloadOn;
+        set => tryReloadOn = value;
+    }
+    public float SafeDistanceToReload => Controller.settings.OpportunisticReloadSafeDistance;
+
+    public int MinimalTicksAfterFight => GenTicks.TicksPerRealSecond * Controller.settings.SecondsAfterFightToOpportunisticReload;
+    public bool IsOpportunisticReloadActive => Controller.settings.OpportunisticReloadMode != OpportunisticReloadMode.Off && MagSize > 1 && (Wielder != null || IsTurretOpportunisticReloadActive) && !parent.def.weaponTags.Contains("OpportunisticReloadDisabled");
+    protected bool IsTurretOpportunisticReloadActive => turret != null && (turret.HasComp<CompMannable>() || (Map?.GetComponent<AutoLoaderTracker>().AutoLoaders.Any(x => x.TurretsToReload().Contains(this.turret)) ?? false));
     public int MagSizeOverride
     {
         get
         {
-            WeaponPlatform platform = parent as WeaponPlatform;
-            return (int)(platform?.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride) ?? Props.AmmoGenPerMagOverride);
+            if (CE_Utility.GetPrimaryVerbPropsCE(parent) is { useEquipmentStatValues: true })
+            {
+                return (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride);
+            }
+            return (int)Props.AmmoGenPerMagOverride;
         }
     }
     public int CurMagCount
@@ -139,7 +154,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         get
         {
-            return Props.ammoSet != null && AmmoUtility.IsAmmoSystemActive(Props.ammoSet);
+            return CurAmmoSet != null && AmmoUtility.IsAmmoSystemActive(CurAmmoSet);
         }
     }
     public bool IsAOEWeapon
@@ -174,7 +189,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         get
         {
-            return CompInventory != null && CompInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
+            return CompInventory != null && CompInventory.ammoList.Any(x => CurAmmoSet.ammoTypes.Any(a => a.ammo == x.def));
         }
     }
     public bool HasMagazine => MagSize > 0;
@@ -222,7 +237,23 @@ public class CompAmmoUser : CompRangedGizmoGiver
         }
     }
 
+    public virtual AmmoSetDef CurAmmoSet => Props.ammoSet;
+
+    public float ReloadTime
+    {
+        get
+        {
+            float multiplier = 1f;
+            if (SelectedAmmoProjectile?.projectile is ProjectilePropertiesCE projectileProperties)
+            {
+                multiplier = projectileProperties.reloadTimeMultiplier;
+            }
+            return Mathf.Max(0.01f, Props.reloadTime * multiplier);
+        }
+    }
+
     public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
+    public ThingDef SelectedAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == SelectedAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault()?.defaultProjectile;
     public CompInventory CompInventory
     {
         get
@@ -272,7 +303,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     }
     public bool ShouldThrowMote => Props.throwMote && MagSize > 1;
 
-    public AmmoDef SelectedAmmo
+    public virtual AmmoDef SelectedAmmo
     {
         get
         {
@@ -302,7 +333,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
         // Initialize ammo with default if none is set
         if (UseAmmo)
         {
-            if (Props.ammoSet.ammoTypes.NullOrEmpty())
+            if (CurAmmoSet.ammoTypes.NullOrEmpty())
             {
                 Log.Error(parent.Label + " has no available ammo types");
             }
@@ -310,7 +341,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
             {
                 if (currentAmmoInt == null)
                 {
-                    currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0].ammo;
+                    currentAmmoInt = CurAmmoSet.ammoTypes[0].ammo;
                 }
                 if (selectedAmmo == null)
                 {
@@ -324,6 +355,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     {
         base.PostExposeData();
         Scribe_Values.Look(ref curMagCountInt, "count", 0);
+        Scribe_Values.Look(ref tryReloadOn, nameof(tryReloadOn));
         Scribe_Defs.Look(ref currentAmmoInt, "currentAmmo");
         Scribe_Defs.Look(ref selectedAmmo, "selectedAmmo");
     }
@@ -661,7 +693,10 @@ public class CompAmmoUser : CompRangedGizmoGiver
             }
             if (!Holder.IsColonist || !parent.def.IsAOEWeapon())
             {
-                TryPickupAmmo();
+                if (TryPickupAmmo())
+                {
+                    return;
+                }
             }
         }
         CompInventory?.SwitchToNextViableWeapon(!this.parent.def.weaponTags.Contains("NoSwitch"), !Holder.IsColonist, stopJob: false);
@@ -688,7 +723,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
         {
             return false;
         }
-        IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
+        IEnumerable<AmmoDef> supportedAmmo = CurAmmoSet.ammoTypes.Select(a => a.ammo);
         foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo
                  && supportedAmmo.Contains(ammo.AmmoDef)
                  && (!Holder.IsColonist || (!ammo.IsForbidden(Holder) && ammo.Position.AdjacentTo8WayOrInside(Holder)))))
@@ -704,6 +739,11 @@ public class CompAmmoUser : CompRangedGizmoGiver
             if (CompInventory.CanFitInInventory(thing, out int count))
             {
                 Thing ammo = thing;
+                int maxAmmoToPickup = (MagSizeOverride > 0) ? MagSizeOverride * 4 : MagSize * 4;
+                if (count > maxAmmoToPickup)
+                {
+                    count = maxAmmoToPickup;
+                }
                 if (!ammo.Position.AdjacentTo8WayOrInside(Holder))
                 {
                     Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, ammo);
@@ -717,6 +757,10 @@ public class CompAmmoUser : CompRangedGizmoGiver
                 }
                 Job reload = TryMakeReloadJob();
                 Holder.jobs.jobQueue.EnqueueFirst(reload);
+                if (Holder.Drafted)
+                {
+                    Holder.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                }
                 return true;
             }
         }
@@ -857,7 +901,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
         }
 
         // Try finding ammo from different type
-        foreach (AmmoLink link in Props.ammoSet.ammoTypes)
+        foreach (AmmoLink link in CurAmmoSet.ammoTypes)
         {
             ammoThing = null;
             if (LoadedMagazine && selectedAmmo != link.ammo)
@@ -966,7 +1010,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
 
     public override string TransformLabel(string label)
     {
-        string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)Props.ammoSet.LabelCap + ")" : "";
+        string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)CurAmmoSet.LabelCap + ")" : "";
         return label + ammoSet;
     }
 

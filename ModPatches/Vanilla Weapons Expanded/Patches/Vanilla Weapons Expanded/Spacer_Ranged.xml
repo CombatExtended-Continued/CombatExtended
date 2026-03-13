@@ -6,7 +6,7 @@
 		<xpath>
 			Defs/ThingDef[
 			defName ="VWE_Gun_ChargePistol" or
-			defName = "VWE_Gun_ChargeSMG"]/tools
+			defName="VWE_Gun_ChargeSMG"]/tools
 		</xpath>
 		<value>
 			<tools>
@@ -38,10 +38,10 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>
 			Defs/ThingDef[
-			defName = "VWE_Gun_ChargeShotgun" or
-			defName = "VWE_Gun_ChargeSniperRifle" or
-			defName = "VWE_Gun_ChargeLMG" or
-			defName = "VWE_Gun_ChargeMinigun"
+			defName="VWE_Gun_ChargeShotgun" or
+			defName="VWE_Gun_ChargeSniperRifle" or
+			defName="VWE_Gun_ChargeLMG" or
+			defName="VWE_Gun_ChargeMinigun"
 			]/tools
 		</xpath>
 		<value>
@@ -99,40 +99,40 @@
 		</value>
 	</Operation>
 
-	<!-- === Charge Pistol === -->
+	<!-- === Charge Pistol, based on the P-6 from Combat Extended Guns === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_ChargePistol</defName>
 		<statBases>
-			<WorkToMake>16000</WorkToMake>
-			<Mass>1.50</Mass>
-			<Bulk>2.60</Bulk>
-			<SwayFactor>1.07</SwayFactor>
+			<WorkToMake>16500</WorkToMake>
+			<Mass>0.9</Mass>
+			<Bulk>2.0</Bulk>
+			<SwayFactor>0.97</SwayFactor>
 			<ShotSpread>0.15</ShotSpread>
 			<SightsEfficiency>0.8</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<Steel>20</Steel>
-			<Plasteel>30</Plasteel>
+			<Plasteel>20</Plasteel>
 			<Chemfuel>5</Chemfuel>
 			<ComponentIndustrial>2</ComponentIndustrial>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<Properties>
-			<recoilAmount>3.0</recoilAmount>
+			<recoilAmount>2.33</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
 			<burstShotCount>3</burstShotCount>
 			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 			<warmupTime>0.5</warmupTime>
-			<range>12</range>
+			<range>16</range>
 			<soundCast>VWE_Shot_ChargePistol</soundCast>
 			<soundCastTail>GunTail_Light</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>12</magazineSize>
+			<magazineSize>15</magazineSize>
 			<reloadTime>4</reloadTime>
 			<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
 		</AmmoUser>
@@ -142,33 +142,32 @@
 			<aimedBurstShotCount>2</aimedBurstShotCount>
 		</FireModes>
 		<weaponTags>
-			<li>SpacerGun</li>
 			<li>CE_Sidearm</li>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
 	</Operation>
 
-	<!-- === Charge SMG === -->
+	<!-- === Charge SMG, based on the S-6 from Combat Extended Guns === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_ChargeSMG</defName>
 		<statBases>
-			<WorkToMake>40000</WorkToMake>
+			<WorkToMake>56000</WorkToMake>
 			<Mass>2.80</Mass>
 			<Bulk>5.00</Bulk>
 			<SwayFactor>0.75</SwayFactor>
-			<ShotSpread>0.16</ShotSpread>
-			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SightsEfficiency>1.1</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>55</Steel>
-			<Plasteel>25</Plasteel>
-			<Chemfuel>15</Chemfuel>
+			<Steel>30</Steel>
+			<Plasteel>20</Plasteel>
+			<Chemfuel>10</Chemfuel>
 			<ComponentIndustrial>4</ComponentIndustrial>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<Properties>
-			<recoilAmount>1.20</recoilAmount>
+			<recoilAmount>1.40</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
@@ -181,7 +180,7 @@
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>30</magazineSize>
+			<magazineSize>40</magazineSize>
 			<reloadTime>4</reloadTime>
 			<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
 		</AmmoUser>
@@ -192,30 +191,32 @@
 		</FireModes>
 		<weaponTags>
 			<li>SpacerGun</li>
+			<li>CE_SMG</li>
+			<li>CE_AI_BROOM</li>
 		</weaponTags>
 	</Operation>
 
-	<!-- === Charge Shotgun === -->
+	<!-- === Charge Shotgun, based on the S-12 from Combat Extended Guns === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_ChargeShotgun</defName>
 		<statBases>
-			<WorkToMake>46000</WorkToMake>
-			<Mass>4.35</Mass>
-			<Bulk>6.0</Bulk>
+			<WorkToMake>38000</WorkToMake>
+			<Mass>4.0</Mass>
+			<Bulk>8.5</Bulk>
 			<SwayFactor>1.25</SwayFactor>
 			<ShotSpread>0.14</ShotSpread>
-			<SightsEfficiency>1</SightsEfficiency>
+			<SightsEfficiency>1.1</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<Steel>50</Steel>
 			<Plasteel>25</Plasteel>
-			<Chemfuel>15</Chemfuel>
-			<ComponentIndustrial>4</ComponentIndustrial>
+			<Chemfuel>10</Chemfuel>
+			<ComponentIndustrial>2</ComponentIndustrial>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<Properties>
-			<recoilAmount>3.0</recoilAmount>
+			<recoilAmount>2.68</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
@@ -227,106 +228,105 @@
 		</Properties>
 		<AmmoUser>
 			<magazineSize>12</magazineSize>
-			<reloadTime>4.5</reloadTime>
+			<reloadTime>0.85</reloadTime>
+			<reloadOneAtATime>true</reloadOneAtATime>
 			<ammoSet>AmmoSet_12GaugeCharged</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
 		<weaponTags>
-			<li>SpacerGun</li>
+			<li>CE_AI_BROOM</li>
 			<li>CE_AI_AssaultWeapon</li>
 		</weaponTags>
 	</Operation>
 
-	<!-- === Charge Sniper Rifle === -->
+	<!-- === Charge Sniper Rifle, based on the R-8 from Combat Extended Guns === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_ChargeSniperRifle</defName>
 		<statBases>
-			<WorkToMake>49000</WorkToMake>
-			<Mass>8</Mass>
-			<Bulk>14.5</Bulk>
-			<SwayFactor>2.25</SwayFactor>
-			<ShotSpread>0.05</ShotSpread>
+			<WorkToMake>50500</WorkToMake>
+			<Mass>7.0</Mass>
+			<Bulk>14.0</Bulk>
+			<SwayFactor>1.47</SwayFactor>
+			<ShotSpread>0.03</ShotSpread>
 			<SightsEfficiency>2.6</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 			<NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
 		</statBases>
 		<costList>
-			<Steel>75</Steel>
-			<Plasteel>40</Plasteel>
+			<Steel>70</Steel>
+			<Plasteel>35</Plasteel>
 			<Chemfuel>15</Chemfuel>
-			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentIndustrial>5</ComponentIndustrial>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<Properties>
-			<recoilAmount>1.5</recoilAmount>
+			<recoilAmount>1.82</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_8x35mmCharged_Triple</defaultProjectile>
+			<defaultProjectile>Bullet_8x50mmCharged</defaultProjectile>
 			<warmupTime>1.6</warmupTime>
-			<range>75</range>
+			<range>86</range>
 			<soundCast>VWE_Shot_ChargeSniperRifle</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>11</muzzleFlashScale>
-			<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+			<!-- This weapon previously had a three-shot burst in the base mod. However, with the 'remake' of VWE, this was removed and the gun's description explicitly states it fires a single charged slug. We can thus remove this three-shot ability -->
 		</Properties>
 		<AmmoUser>
-			<magazineSize>15</magazineSize>
+			<magazineSize>10</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_8x35mmCharged_Triple</ammoSet>
+			<ammoSet>AmmoSet_8x50mmCharged</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 		<weaponTags>
-			<li>SniperRifle</li>
-			<li>SpacerGun</li>
+			<li>CE_AI_SR</li>
 			<li>Bipod_DMR</li>
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<!-- === Charge LMG === -->
+	<!-- === Charge Blaster, based on the L-8 from Combat Extended Guns === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_ChargeLMG</defName>
 		<statBases>
-			<WorkToMake>55000</WorkToMake>
-			<Mass>9.0</Mass>
-			<Bulk>16.46</Bulk>
+			<WorkToMake>56000</WorkToMake>
+			<Mass>7.0</Mass>
+			<Bulk>14.00</Bulk>
 			<SwayFactor>1.26</SwayFactor>
 			<ShotSpread>0.05</ShotSpread>
 			<SightsEfficiency>1.1</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>65</Steel>
-			<Plasteel>30</Plasteel>
+			<Steel>80</Steel>
+			<Plasteel>40</Plasteel>
 			<Chemfuel>15</Chemfuel>
-			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentIndustrial>5</ComponentIndustrial>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<Properties>
-			<recoilAmount>1.16</recoilAmount>
+			<recoilAmount>1.40</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
 			<burstShotCount>10</burstShotCount>
-			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			<warmupTime>1.2</warmupTime>
-			<range>62</range>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>1.25</warmupTime>
+			<range>50</range>
 			<soundCast>Shot_ChargeBlaster</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
-			<recoilPattern>Mounted</recoilPattern>
 			<targetParams>
 				<canTargetLocations>True</canTargetLocations>
 			</targetParams>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>200</magazineSize>
+			<magazineSize>100</magazineSize>
 			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+			<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>SuppressFire</aiAimMode>
@@ -334,61 +334,67 @@
 			<aimedBurstShotCount>5</aimedBurstShotCount>
 		</FireModes>
 		<weaponTags>
-			<li>SpacerGun</li>
 			<li>CE_MachineGun</li>
-			<li>Bipod_SAW</li>
+			<li>CE_AI_LMG</li>
+			<li>AdvancedGun</li>
+			<li>SpacerGun</li>
+			<li>Bipod_LMG</li>
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<!-- === Charge Minigun === -->
+	<!-- === Heavy Charge Blaster, very roughly based on the regular minigun as it's a charged minigun === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_ChargeMinigun</defName>
 		<statBases>
-			<WorkToMake>60000</WorkToMake>
-			<Mass>20.0</Mass>
-			<Bulk>12.0</Bulk>
-			<SwayFactor>1.35</SwayFactor>
-			<ShotSpread>0.10</ShotSpread>
-			<SightsEfficiency>1</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<WorkToMake>100000</WorkToMake>
+			<Mass>24.0</Mass>
+			<Bulk>14.0</Bulk>
+			<SwayFactor>2.20</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.80</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<Steel>120</Steel>
-			<Plasteel>40</Plasteel>
-			<Chemfuel>15</Chemfuel>
+			<Plasteel>50</Plasteel>
+			<Chemfuel>20</Chemfuel>
 			<ComponentIndustrial>6</ComponentIndustrial>
-			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<Properties>
-			<recoilAmount>1.0</recoilAmount>
+			<recoilAmount>1.80</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
-			<burstShotCount>50</burstShotCount>
+			<burstShotCount>40</burstShotCount>
 			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-			<warmupTime>2.5</warmupTime>
+			<warmupTime>2.2</warmupTime>
 			<range>62</range>
 			<soundCast>VWE_Shot_ChargeMinigun</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>True</canTargetLocations>
+			</targetParams>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>500</magazineSize>
+			<magazineSize>240</magazineSize>
 			<reloadTime>9.2</reloadTime>
 			<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
 		</AmmoUser>
 		<FireModes>
-			<aiAimMode>Snapshot</aiAimMode>
-			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>20</aimedBurstShotCount>
 		</FireModes>
 		<weaponTags>
-			<li>SpacerGun</li>
+			<li>CE_AI_Suppressive</li>
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<!-- === Charge Rocket Launcher === -->
+	<!-- === Charge Missile Launcher === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_ChargeRocketLauncher</defName>
 		<statBases>
@@ -401,18 +407,17 @@
 			<RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>125</Steel>
-			<Plasteel>45</Plasteel>
-			<FSX>10</FSX>
+			<Steel>30</Steel>
+			<Plasteel>60</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_AntiGrainRocket</defaultProjectile>
 			<warmupTime>2</warmupTime>
-			<range>52</range>
+			<range>62</range>
 			<soundCast>InfernoCannon_Fire</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -421,11 +426,17 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>5.6</reloadTime>
+			<ammoSet>AmmoSet_ChargedRockets</ammoSet>
+		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 		<weaponTags>
 			<li>GunHeavy</li>
+			<li>CE_AI_AOE</li>
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>

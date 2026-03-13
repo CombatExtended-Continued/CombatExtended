@@ -8,7 +8,7 @@ public static class AmmoUtility
     /// <summary>
     /// Multiplier used to scale the armor penetration of a given projectile's explosion
     /// </summary>
-    private const float ExplosiveArmorPenetrationMultiplier = 0.4f;
+    internal const float ExplosiveArmorPenetrationMultiplier = 0.4f;
 
     /// <summary>
     ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for
@@ -132,6 +132,11 @@ public static class AmmoUtility
         if (props.weaponDeteriorationChance > 0)
         {
             stringBuilder.AppendLine("   " + "CE_DescDeteriorationHP".Translate() + ": " + props.weaponDeteriorationHP.min.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " ~ " + props.weaponDeteriorationHP.max.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " (" + props.weaponDeteriorationChance.ToStringByStyle(ToStringStyle.PercentZero) + " " + "CE_Chance".Translate() + ")");
+        }
+
+        if (props.reloadTimeMultiplier != 1f)
+        {
+            stringBuilder.AppendLine("   " + "CE_DescReloadTimeMult".Translate() + ": " + props.reloadTimeMultiplier.ToStringByStyle(ToStringStyle.PercentZero));
         }
 
         // Fragments

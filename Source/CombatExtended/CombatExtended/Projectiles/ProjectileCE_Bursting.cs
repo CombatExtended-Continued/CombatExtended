@@ -12,7 +12,7 @@ using ProjectileImpactFX;
 using CombatExtended.Utilities;
 
 namespace CombatExtended;
-class ProjectileCE_Bursting : ProjectileCE
+public class ProjectileCE_Bursting : ProjectileCE
 {
     private int ticksToBurst;
 

@@ -84,7 +84,7 @@ public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
     }
 
     /// <summary>
-    /// Shot angle in radians
+    /// Shot angle in radians. Accounts for reactive acceleration (fuel-based rockets) by computing average speed over flight.
     /// </summary>
     /// <param name="source">Source shot, including shot height</param>
     /// <param name="targetPos">Target position, including target height</param>

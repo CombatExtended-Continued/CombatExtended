@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +38,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float effectiveRangeOffset = 0f;
     public float muzzleFlashMultiplier = 1;
     public float muzzleFlashOffset = 0f;
+    public float reloadTimeMultiplier = 1f;
 
     public float suppressionFactor = 1;
     public float airborneSuppressionFactor = 1;
@@ -73,9 +74,18 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float airburstDistanceOffset = 0f;
 
     public float empShieldBreakChance = 1f;
+    public float shieldDamageMultiplier = 1f;
     public float collideDistance = 1f;
     public float impactChance = 1f;
+    #region Spawnpawn fields
+    public bool alwaysHostile = false;
+    public FactionDef factionDef = null;
 
+    public float? fixedBiologicalAge = null;
+    public float? fixedChronologicalAge = null;
+    public FloatRange? excludeBiologicalAgeRange = null;
+    public FloatRange? biologicalAgeRange = null;
+    #endregion
     public FloatRange weaponDeteriorationHP = new FloatRange(1f, 1f);
     public float weaponDeteriorationChance = 0f;
 
@@ -91,6 +101,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
 
     public SimpleCurve explosionFalloffCurve;
+    public TargetingParameters targetParams;
 
     public BaseTrajectoryWorker TrajectoryWorker
     {

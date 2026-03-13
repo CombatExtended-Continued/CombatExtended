@@ -95,7 +95,7 @@ public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
             // Number of things in inventory that could be put in the weapon
             int viableAmmoCarried = 0;
             float viableAmmoBulk = 0;
-            foreach (AmmoLink link in primaryAmmoUser.Props.ammoSet.ammoTypes)
+            foreach (AmmoLink link in primaryAmmoUser.CurAmmoSet.ammoTypes)
             {
                 var count = compInventory.AmmoCountOfDef(link.ammo);
                 viableAmmoCarried += count;
@@ -206,7 +206,7 @@ public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
         {
             return null;
         }
-        if (pawn.IsPrisoner && (pawn.HostFaction != Faction.OfPlayer || pawn.guest.interactionMode == PrisonerInteractionModeDefOf.Release))
+        if (pawn.IsPrisoner && (pawn.HostFaction != Faction.OfPlayer || pawn.guest.interactionMode == PrisonerInteractionModeDefOf.Release || pawn.guest.Released))
         {
             return null;
         }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Landmine -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VEFS_TrapLandmine"]/costList/Shell_HighExplosive</xpath>
+		<value>
+			<FSX>12</FSX>
+		</value>
+	</Operation>
+	
+	<!-- Shockmine -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VEFS_TrapShockmine"]/damageMultipliers</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VEFS_TrapShockmine"]</xpath>
+			<value>
+				<damageMultipliers />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VEFS_TrapShockmine"]/damageMultipliers</xpath>
+		<value>
+			<li>
+				<damageDef>EMP</damageDef>
+				<multiplier>0</multiplier>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
