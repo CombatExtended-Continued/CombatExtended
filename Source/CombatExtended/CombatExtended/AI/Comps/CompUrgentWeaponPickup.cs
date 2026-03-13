@@ -167,6 +167,11 @@ public class CompUrgentWeaponPickup : ICompTactics
 
                         Job equip = JobMaker.MakeJob(JobDefOf.Equip, weapon);
                         SelPawn.jobs.jobQueue.EnqueueFirst(equip);
+                        if (Rand.Chance(0.5f))
+                        {
+                            var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                            tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.WeaponPickupRangedMote, SelPawn);
+                        }
                         return;
                     }
                 }
@@ -192,6 +197,11 @@ public class CompUrgentWeaponPickup : ICompTactics
 
                 Job job = JobMaker.MakeJob(JobDefOf.Equip, thing);
                 SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, resumeCurJobAfterwards: true);
+                if (Rand.Chance(0.5f))
+                {
+                    var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                    tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.WeaponPickupMeleeMote, SelPawn);
+                }
                 return;
             }
         }

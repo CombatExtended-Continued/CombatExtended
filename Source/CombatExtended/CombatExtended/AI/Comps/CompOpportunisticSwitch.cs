@@ -163,6 +163,11 @@ public class CompOpportunisticSwitch : ICompTactics
                     var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon, targetInfo);
                     job.maxNumStaticAttacks = 1;
                     SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, cancelBusyStances: false);
+                    if (Rand.Chance(0.5f))
+                    {
+                        var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                        tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.AoeDeployedMote, SelPawn);
+                    }
                     return true;
                 }
             }
@@ -210,6 +215,11 @@ public class CompOpportunisticSwitch : ICompTactics
                     job.maxNumStaticAttacks = 1;
 
                     SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                    if (Rand.Chance(0.5f))
+                    {
+                        var tauntThrower = (TauntThrower)(SelPawn.Map.GetComponent(typeof(TauntThrower)));
+                        tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.FlareDeployedMote, SelPawn);
+                    }
                     return true;
                 }
             }

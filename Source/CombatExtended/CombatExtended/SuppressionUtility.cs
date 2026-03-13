@@ -59,6 +59,11 @@ public static class SuppressionUtility
             {
                 continue;
             }
+            if (Rand.Chance(0.4f))
+            {
+                var tauntThrower = (TauntThrower)(pawn.Map.GetComponent(typeof(TauntThrower)));
+                tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.SmokeCoverMote, pawn);
+            }
             Job job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, grenade, pawn.Position);
             job.maxNumStaticAttacks = 1;
             other.jobs.StartJob(job, JobCondition.InterruptForced);
