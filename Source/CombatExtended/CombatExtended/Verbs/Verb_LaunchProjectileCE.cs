@@ -524,7 +524,7 @@ public class Verb_LaunchProjectileCE : Verb
 
             if (report.targetPawn != null)
             {
-                v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
+                v += report.targetPawn.Drawer.leaner.LeanOffset;
             }
 
             newTargetLoc.Set(v.x, v.z);
@@ -1456,7 +1456,7 @@ public class Verb_LaunchProjectileCE : Verb
                 var targPawn = targetThing as Pawn;
                 if (targPawn != null)
                 {
-                    targetPos += targPawn.Drawer.leaner.LeanOffset * 0.6f;
+                    targetPos += targPawn.Drawer.leaner.LeanOffset;
                 }
             }
             else
