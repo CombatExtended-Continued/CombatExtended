@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
@@ -54,9 +53,35 @@ public class StatWorker_MeleeDamageBase : StatWorker_MeleeStats
         return true;
     }
 
-    public static float GetAdjustedDamage(ToolCE tool, Thing thingOwner)
+
+    /// <summary>
+    /// Get the melee damaged dealt by a single VerbProperties + Tool combination of a weapon,
+    /// adjusted according to the wielder's (if any) stats/capacities and multipliers from the weapon's stuff.
+    /// </summary>
+    /// <param name="vps">Verb data (VerbProperties + Tool + Maneuver)</param>
+    /// <param name="pawn">The wielder of the weapon, or null if the stat request is for an unwielded weapon.</param>
+    /// <param name="req">Stat request for a weapon or weapon def</param>
+    /// <returns>Melee damage adjusted for the wielder and weapon.</returns>
+    protected float AdjustedMeleeDamageAmount(VerbUtility.VerbPropertiesWithSource vps, Pawn pawn, StatRequest req)
     {
-        return tool.AdjustedBaseMeleeDamageAmount(thingOwner, tool.capacities?.First()?.VerbsProperties?.First()?.meleeDamageDef);
+        return req.HasThing ?
+            vps.verbProps.AdjustedMeleeDamageAmount(vps.tool, pawn, req.Thing, hediffCompSource: null) :
+            vps.verbProps.AdjustedMeleeDamageAmount(vps.tool, pawn, req.Def as ThingDef, req.StuffDef, hediffCompSource: null);
+    }
+
+    /// <summary>
+    /// Get the cooldown (in seconds) a single VerbProperties + Tool combination of a weapon,
+    /// adjusted according to the wielder's (if any) stats/capacities and multipliers from the weapon's stuff.
+    /// </summary>
+    /// <param name="vps">Verb data (VerbProperties + Tool + Maneuver)</param>
+    /// <param name="pawn">The wielder of the weapon, or null if the stat request is for an unwielded weapon.</param>
+    /// <param name="req">Stat request for a weapon or weapon def</param>
+    /// <returns>Cooldown time in seconds, adjusted for the wielder and weapon.</returns>
+    protected float AdjustedCooldown(VerbUtility.VerbPropertiesWithSource vps, Pawn pawn, StatRequest req)
+    {
+        return req.HasThing ?
+            vps.verbProps.AdjustedCooldown(vps.tool, pawn, req.Thing) :
+            vps.verbProps.AdjustedCooldown(vps.tool, pawn, req.Def as ThingDef, req.StuffDef);
     }
 
     #endregion
