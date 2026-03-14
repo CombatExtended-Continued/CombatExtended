@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ideology</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Companion" or defName="AV_Mech_Royallancer"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+									<parts>
+										<li>SightSensor</li>
+										<li>HearingSensor</li>
+										<li>SmellSensor</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+									<parts>
+										<li>SightSensor</li>
+										<li>HearingSensor</li>
+										<li>SmellSensor</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Collar"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Collar"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>0.01</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Companion"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Vehicle</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Companion"]/statBases</xpath>
+					<value>
+						<CarryWeight>75</CarryWeight>
+						<CarryBulk>50</CarryBulk>
+						<MeleeDodgeChance>0.02</MeleeDodgeChance>
+						<MeleeCritChance>0.22</MeleeCritChance>
+						<MeleeParryChance>0.22</MeleeParryChance>
+						<MaxHitPoints>150</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Companion"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>425</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Royallancer"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Royallancer"]/statBases</xpath>
+					<value>
+						<ArmorRating_Heat>0.5</ArmorRating_Heat>
+						<CarryWeight>45</CarryWeight>
+						<CarryBulk>35</CarryBulk>
+						<AimingAccuracy>1.3</AimingAccuracy>
+						<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.02</MeleeDodgeChance>
+						<MeleeCritChance>0.22</MeleeCritChance>
+						<MeleeParryChance>0.64</MeleeParryChance>
+						<MaxHitPoints>600</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="AV_Mech_Royallancer"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>9</min>
+								<max>10</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Royallancer"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Royallancer"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>25</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Royallancer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Mech_Royallancer"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>1850</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<MinArmorPct>0.5</MinArmorPct>
+							<MinArmorValueSharp>6.5</MinArmorValueSharp>
+							<MinArmorValueBlunt>5.4</MinArmorValueBlunt>
+						</li>
+					</value>
+				</li>
+
+				<!-- Ranged weapon patch -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AV_Gun_ChargeLance</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.5</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1</SwayFactor>
+						<Bulk>13.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.99</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>70</range>
+						<soundCast>ChargeLance_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>8</magazineSize>
+						<reloadTime>3.8</reloadTime>
+						<ammoSet>AmmoSet_12x64mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>NoSwitch</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance"]/comps</xpath>
+					<value>
+						<li Class="AV_Framework.CompProperties_SwitchCombatMode">
+							<label>Change to melee</label>
+							<description>Extend the heat sink blades to use them in close combat.\nThis changes the mech's combat behavior to melee.</description>
+							<iconPath>Things/Item/Equipment/WeaponRanged/AV_ChargeLance_swap_to_melee</iconPath>
+							<weaponDef>AV_Gun_ChargeLance_BladesMode</weaponDef>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.85</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>1.68</cooldownTime>
+								<armorPenetrationBlunt>2.1</armorPenetrationBlunt>
+								<armorPenetrationSharp>5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance"]</xpath>
+					<value>
+						<li Class="CombatExtended.ThingDefExtensionCE">
+							<MenuHidden>True</MenuHidden>
+						</li>
+					</value>
+				</li>
+
+				<!-- Melee mode patching -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.48</MeleeCritChance>
+							<MeleeParryChance>0.65</MeleeParryChance>
+							<MeleeDodgeChance>0.35</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<chanceFactor>0.33</chanceFactor>
+								<cooldownTime>1.78</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.81</cooldownTime>
+								<armorPenetrationBlunt>10.1</armorPenetrationBlunt>
+								<armorPenetrationSharp>20.4</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>1.68</cooldownTime>
+								<armorPenetrationBlunt>3.1</armorPenetrationBlunt>
+								<armorPenetrationSharp>5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

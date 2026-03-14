@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<!-- VWE2 Odyssey Traits - Combat Extended Compatibility -->
+	<!-- Only applies when Odyssey DLC is loaded -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ============================================== -->
+				<!-- UNIVERSAL TRAITS (WeaponTraitDefs_Universal.xml) -->
+				<!-- ============================================== -->
+
+				<!-- VWE_SkeletonizedFrame: Remove AccuracyLong x0.25, add CE stats -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SkeletonizedFrame"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SkeletonizedFrame"]/statFactors</xpath>
+					<value>
+						<ShotSpread>1.5</ShotSpread>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SkeletonizedFrame"]/statFactors</xpath>
+					<value>
+						<CE_RangedWeapon_RecoilMultiplier>1.05</CE_RangedWeapon_RecoilMultiplier>
+					</value>
+				</li>
+
+				<!-- VWE_WeightedStock: Convert to CustomWeaponTraitDef for melee damage override -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WeightedStock"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WeightedStock"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WeightedStock"]</xpath>
+					<value>
+						<meleeDamageOverride>VWE_StunBlunt</meleeDamageOverride>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WeightedStock"]/statFactors</xpath>
+					<value>
+						<CE_RangedWeapon_RecoilMultiplier>0.95</CE_RangedWeapon_RecoilMultiplier>
+					</value>
+				</li>
+
+				<!-- VWE_PortedBarrel: Add recoil reduction (realistic for ported barrel) -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_PortedBarrel"]/statFactors</xpath>
+					<value>
+						<CE_RangedWeapon_RecoilMultiplier>0.9</CE_RangedWeapon_RecoilMultiplier>
+					</value>
+				</li>
+
+				<!-- VWE_IlluminatedSights: Remove all Accuracy, add SightsEfficiency -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_IlluminatedSights"]/statFactors/AccuracyTouch</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_IlluminatedSights"]/statFactors/AccuracyShort</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_IlluminatedSights"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_IlluminatedSights"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_IlluminatedSights"]/statFactors</xpath>
+					<value>
+						<SightsEfficiency>1.10</SightsEfficiency>
+					</value>
+				</li>
+
+				<!-- VWE_MatchTrigger: Remove Accuracy, add SightsEfficiency -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_MatchTrigger"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_MatchTrigger"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_MatchTrigger"]/statFactors</xpath>
+					<value>
+						<SightsEfficiency>1.15</SightsEfficiency>
+					</value>
+				</li>
+
+				<!-- VWE_FireSelector: Convert to CustomWeaponTraitDef for burst count override -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FireSelector"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FireSelector"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FireSelector"]/statFactors</xpath>
+					<value>
+						<SightsEfficiency>1.30</SightsEfficiency>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FireSelector"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FireSelector"]</xpath>
+					<value>
+						<burstShotCountMultipliers>
+							<li>0</li>
+						</burstShotCountMultipliers>
+					</value>
+				</li>
+
+				<!-- VWE_Akimbo: Remove all Accuracy, add CE penalty stats, convert to CustomWeaponTraitDef -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]/statFactors/AccuracyTouch</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]/statFactors/AccuracyShort</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]/statFactors</xpath>
+					<value>
+						<ShotSpread>2.0</ShotSpread>
+						<SwayFactor>1.8</SwayFactor>
+						<CE_RangedWeapon_RecoilMultiplier>1.5</CE_RangedWeapon_RecoilMultiplier>
+						<BurstShotCount>2</BurstShotCount>
+						<TicksBetweenBurstShots>0.5</TicksBetweenBurstShots>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Akimbo"]</xpath>
+					<value>
+						<magazineCapacityFactor>2.0</magazineCapacityFactor>
+					</value>
+				</li>
+
+				<!-- ============================================== -->
+				<!-- HEAVY WEAPONS TRAITS (WeaponTraitDefs_HeavyWeapons.xml) -->
+				<!-- ============================================== -->
+
+				<!-- VWE_Bipod: REMOVED - CE has built-in bipod system (BipodComp) -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_Bipod"]</xpath>
+				</li>
+
+				<!-- VWE_SaturationFeed: Remove Accuracy, add CE penalty stats -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SaturationFeed"]/statFactors/AccuracyShort</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SaturationFeed"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SaturationFeed"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SaturationFeed"]/statFactors</xpath>
+					<value>
+						<ShotSpread>1.4</ShotSpread>
+						<SwayFactor>1.5</SwayFactor>
+						<CE_RangedWeapon_RecoilMultiplier>1.3</CE_RangedWeapon_RecoilMultiplier>
+						<BurstShotCount>2</BurstShotCount>
+					</value>
+				</li>
+
+				<!-- VWE_ShortStrokePiston: Add CE burst count reduction -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_ShortStrokePiston"]/statFactors</xpath>
+					<value>
+						<BurstShotCount>0.5</BurstShotCount>
+					</value>
+				</li>
+
+				<!-- ============================================== -->
+				<!-- CHARGE WEAPONS TRAITS (WeaponTraitDefs_ChargeWeapons.xml) -->
+				<!-- ============================================== -->
+
+				<!-- VWE_VectorCompensator: Homing "smart bullet" via HomingBulletTrajectoryWorker -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_VectorCompensator"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_VectorCompensator"]</xpath>
+					<value>
+						<homingAcceleration>0.15</homingAcceleration>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_VectorCompensator"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_VectorCompensator"]/description</xpath>
+					<value>
+						<description>The barrel is lined with micro-magnetic coils that adjust the projectile's trajectory in mid-air. This "smart bullet" system guides projectiles toward their target after an initial scatter phase, but requires lighter, smaller projectiles to function.</description>
+					</value>
+				</li>
+
+				<!-- ============================================== -->
+				<!-- SNIPER TRAITS (WeaponTraitDefs_Snipers.xml) -->
+				<!-- ============================================== -->
+
+				<!-- VWE_StraightPullAction: Remove AccuracyLong, add slight spread penalty -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_StraightPullAction"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_StraightPullAction"]/statFactors</xpath>
+					<value>
+						<ShotSpread>1.1</ShotSpread>
+					</value>
+				</li>
+
+				<!-- VWE_AccelerationRail: Remove AccuracyLong, add spread penalty, remove broken modExtension -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_AccelerationRail"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_AccelerationRail"]/statFactors</xpath>
+					<value>
+						<ShotSpread>1.1</ShotSpread>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_AccelerationRail"]/modExtensions</xpath>
+				</li>
+
+				<!-- VWE_CantedIronSights: Remove all Accuracy, add compromise SightsEfficiency -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_CantedIronSights"]/statFactors/AccuracyTouch</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_CantedIronSights"]/statFactors/AccuracyShort</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_CantedIronSights"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_CantedIronSights"]/statFactors</xpath>
+					<value>
+						<SightsEfficiency>0.95</SightsEfficiency>
+					</value>
+				</li>
+
+				<!-- VWE_FixedTeleLens: Convert to CustomWeaponTraitDef with CE verb overrides -->
+				<!-- Key feature: minRange 19.9 (can't be done with stats alone) -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FixedTeleLens"]/statOffsets</xpath>
+					<value>
+						<SightsEfficiency>0.4</SightsEfficiency>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FixedTeleLens"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FixedTeleLens"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_FixedTeleLens"]</xpath>
+					<value>
+						<verbsOverrideCE>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+								<warmupTime>3.5</warmupTime>
+								<range>44.9</range>
+								<minRange>19.9</minRange>
+								<soundCast>Shot_SniperRifle</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<recoilAmount>2.0</recoilAmount>
+							</li>
+						</verbsOverrideCE>
+						<verbsOverridesCE>
+							<li>
+								<key>VWE_Gun_AntiMaterialRifle_Unique</key>
+								<value>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+										<warmupTime>5</warmupTime>
+										<range>44.9</range>
+										<minRange>19.9</minRange>
+										<soundCast>VWE_Shot_AntiMaterialRifle</soundCast>
+										<soundCastTail>GunTail_Heavy</soundCastTail>
+										<muzzleFlashScale>9</muzzleFlashScale>
+										<recoilAmount>2.5</recoilAmount>
+									</li>
+								</value>
+							</li>
+							<li>
+								<key>VWE_Gun_MarksmanRifle_Unique</key>
+								<value>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+										<warmupTime>2.166666</warmupTime>
+										<range>42.9</range>
+										<minRange>19.9</minRange>
+										<soundCast>VWE_Shot_MarksmanRifle</soundCast>
+										<soundCastTail>GunTail_Heavy</soundCastTail>
+										<muzzleFlashScale>9</muzzleFlashScale>
+										<recoilAmount>1.94</recoilAmount>
+									</li>
+								</value>
+							</li>
+						</verbsOverridesCE>
+					</value>
+				</li>
+
+				<!-- ============================================== -->
+				<!-- REVOLVER TRAITS (WeaponTraitDefs_Revolvers.xml) -->
+				<!-- ============================================== -->
+
+				<!-- VWE_RecoilOpMechanism: Convert to CustomWeaponTraitDef with CE verb overrides -->
+				<!-- Key feature: 3-round burst with per-weapon tuning -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_RecoilOpMechanism"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_RecoilOpMechanism"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_RecoilOpMechanism"]/statFactors</xpath>
+					<value>
+						<ShotSpread>1.6</ShotSpread>
+						<SwayFactor>1.8</SwayFactor>
+						<CE_RangedWeapon_RecoilMultiplier>1.5</CE_RangedWeapon_RecoilMultiplier>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_RecoilOpMechanism"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_RecoilOpMechanism"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_RecoilOpMechanism"]</xpath>
+					<value>
+						<verbsOverrideCE>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_44Magnum_FMJ</defaultProjectile>
+								<warmupTime>0.3</warmupTime>
+								<range>25.9</range>
+								<soundCast>Shot_Revolver</soundCast>
+								<soundCastTail>GunTail_Light</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+								<burstShotCount>3</burstShotCount>
+								<recoilAmount>2.5</recoilAmount>
+							</li>
+						</verbsOverrideCE>
+						<verbsOverridesCE>
+							<li>
+								<key>VWE_Gun_HandCannon_Unique</key>
+								<value>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>Bullet_460SWMagnum_FMJ</defaultProjectile>
+										<warmupTime>0.366666</warmupTime>
+										<range>23.9</range>
+										<soundCast>VWE_Shot_Handcannon</soundCast>
+										<soundCastTail>GunTail_Medium</soundCastTail>
+										<muzzleFlashScale>9</muzzleFlashScale>
+										<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+										<burstShotCount>3</burstShotCount>
+										<recoilAmount>2.5</recoilAmount>
+									</li>
+								</value>
+							</li>
+						</verbsOverridesCE>
+					</value>
+				</li>
+
+				<!-- VWE_BuntlineBarrel: Remove AccuracyLong, add CE stats for long barrel -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BuntlineBarrel"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BuntlineBarrel"]/statFactors</xpath>
+					<value>
+						<SightsEfficiency>1.15</SightsEfficiency>
+						<ShotSpread>0.9</ShotSpread>
+						<Bulk>1.15</Bulk>
+					</value>
+				</li>
+
+				<!-- VWE_SnakeShotLoads: Remove Accuracy, add CE close-range pattern -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SnakeShotLoads"]/statFactors/AccuracyTouch</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SnakeShotLoads"]/statFactors/AccuracyShort</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SnakeShotLoads"]/statFactors</xpath>
+					<value>
+						<ShotSpread>1.3</ShotSpread>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SnakeShotLoads"]/modExtensions</xpath>
+				</li>
+
+				<!-- VWE_TopBreakAction: Add CE reload speed bonus -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TopBreakAction"]/statOffsets</xpath>
+					<value>
+						<CE_RangedWeapon_ReloadFactor>-0.15</CE_RangedWeapon_ReloadFactor>
+					</value>
+				</li>
+
+				<!-- ============================================== -->
+				<!-- BOW TRAITS (WeaponTraitDefs_Bow.xml) -->
+				<!-- ============================================== -->
+
+				<!-- VWE_PitchSoakedTips: Convert damageDefOverride to extraDamages.
+				     No <chance> needed — Flame_Secondary_Incendiary DamageDef has built-in
+				     30% ignite curve via igniteChanceByTargetFlammability. -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_PitchSoakedTips"]/damageDefOverride</xpath>
+					<value>
+						<extraDamages>
+							<li>
+								<def>Flame_Secondary_Incendiary</def>
+								<amount>2</amount>
+							</li>
+						</extraDamages>
+					</value>
+				</li>
+
+				<!-- VWE_WhisperFletching: Remove Accuracy, add SightsEfficiency -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WhisperFletching"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WhisperFletching"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WhisperFletching"]/statFactors</xpath>
+					<value>
+						<SightsEfficiency>1.08</SightsEfficiency>
+					</value>
+				</li>
+
+				<!-- VWE_BarbedHeads: Remove additionalStoppingPower, add pen buff -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BarbedHeads"]/additionalStoppingPower</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BarbedHeads"]/statOffsets</xpath>
+					<value>
+						<RangedWeapon_ArmorPenetrationMultiplier>0.15</RangedWeapon_ArmorPenetrationMultiplier>
+					</value>
+				</li>
+
+				<!-- VWE_TwinNock: Remove all Accuracy, add CE spread/sway penalties, convert to CustomWeaponTraitDef -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]/statFactors/AccuracyTouch</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]/statFactors/AccuracyShort</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]/statFactors</xpath>
+					<value>
+						<ShotSpread>1.4</ShotSpread>
+						<SwayFactor>1.3</SwayFactor>
+						<BurstShotCount>2</BurstShotCount>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_TwinNock"]</xpath>
+					<value>
+						<magazineCapacityFactor>2.0</magazineCapacityFactor>
+					</value>
+				</li>
+
+				<!-- VWE_BluntHeads: Remove additionalStoppingPower, add damage buff -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BluntHeads"]/additionalStoppingPower</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BluntHeads"]/statOffsets</xpath>
+					<value>
+						<RangedWeapon_DamageMultiplier>0.2</RangedWeapon_DamageMultiplier>
+					</value>
+				</li>
+
+				<!-- VWE_BlastTips: Convert to CustomWeaponTraitDef with explosion radius -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BlastTips"]/statFactors/AccuracyTouch</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BlastTips"]/statFactors/AccuracyShort</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BlastTips"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BlastTips"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BlastTips"]/statFactors</xpath>
+					<value>
+						<ShotSpread>2.0</ShotSpread>
+						<SwayFactor>1.5</SwayFactor>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BlastTips"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BlastTips"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BlastTips"]</xpath>
+					<value>
+						<explosionOverride>
+							<radius>1.9</radius>
+							<damageDef>Bomb</damageDef>
+							<damageAmount>20</damageAmount>
+						</explosionOverride>
+					</value>
+				</li>
+
+				<!-- VWE_SlipString: Convert to CustomWeaponTraitDef with CE verb overrides -->
+				<!-- Key feature: 3-round rapid burst with per-bow tuning -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SlipString"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SlipString"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_SlipString"]</xpath>
+					<value>
+						<verbsOverrideCE>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_Arrow_Stone</defaultProjectile>
+								<warmupTime>1.35</warmupTime>
+								<range>22.9</range>
+								<soundCast>Bow_Small</soundCast>
+								<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+								<burstShotCount>3</burstShotCount>
+							</li>
+						</verbsOverrideCE>
+						<verbsOverridesCE>
+							<li>
+								<key>VWE_Bow_Crossbow_Unique</key>
+								<value>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+										<warmupTime>1.5</warmupTime>
+										<range>29.9</range>
+										<soundCast>VWE_Shot_Crossbow</soundCast>
+										<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+										<burstShotCount>3</burstShotCount>
+									</li>
+								</value>
+							</li>
+							<li>
+								<key>VWE_Bow_Long_Unique</key>
+								<value>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+										<warmupTime>2.5</warmupTime>
+										<range>36.9</range>
+										<soundCast>Bow_Large</soundCast>
+										<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+										<burstShotCount>3</burstShotCount>
+									</li>
+								</value>
+							</li>
+							<li>
+								<key>VWE_Bow_Compound_Unique</key>
+								<value>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>Projectile_StreamlinedArrow_Steel</defaultProjectile>
+										<warmupTime>1.5</warmupTime>
+										<range>29.9</range>
+										<soundCast>VWE_Bow_Compound</soundCast>
+										<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+										<burstShotCount>3</burstShotCount>
+									</li>
+								</value>
+							</li>
+						</verbsOverridesCE>
+					</value>
+				</li>
+
+				<!-- ============================================== -->
+				<!-- NEGATIVE TRAITS (WeaponTraitDefs_Negative.xml) -->
+				<!-- ============================================== -->
+
+				<!-- VWE_WornRifling: Remove all Accuracy, add CE penalties -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WornRifling"]/statFactors/AccuracyTouch</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WornRifling"]/statFactors/AccuracyShort</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WornRifling"]/statFactors/AccuracyMedium</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WornRifling"]/statFactors/AccuracyLong</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_WornRifling"]/statFactors</xpath>
+					<value>
+						<ShotSpread>1.25</ShotSpread>
+						<SightsEfficiency>0.9</SightsEfficiency>
+					</value>
+				</li>
+
+				<!-- VWE_HeavyScrap: Add Bulk for CE handling -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_HeavyScrap"]/statFactors</xpath>
+					<value>
+						<Bulk>1.3</Bulk>
+					</value>
+				</li>
+
+				<!-- ============================================== -->
+				<!-- ATTACHABLES TRAITS (WeaponTraitDefs_Attachables.xml) -->
+				<!-- ============================================== -->
+
+				<!-- VWE_UnderbarrelShotgun: Convert to CE underbarrel system -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_UnderbarrelShotgun"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.CustomWeaponTraitDef</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_UnderbarrelShotgun"]/modExtensions</xpath>
+					<value>
+						<underBarrelProps>
+							<underBarrelLabel>switch to underbarrel shotgun</underBarrelLabel>
+							<propsUnderBarrel>
+								<magazineSize>2</magazineSize>
+								<reloadTime>3</reloadTime>
+								<ammoSet>AmmoSet_12Gauge</ammoSet>
+							</propsUnderBarrel>
+							<verbPropsUnderBarrel>
+								<recoilAmount>2.5</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+								<warmupTime>0.8</warmupTime>
+								<range>12</range>
+								<soundCast>Shot_Shotgun</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</verbPropsUnderBarrel>
+							<propsFireModesUnderBarrel>
+								<aiUseBurstMode>FALSE</aiUseBurstMode>
+								<aiAimMode>Snapshot</aiAimMode>
+							</propsFireModesUnderBarrel>
+						</underBarrelProps>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_UnderbarrelShotgun"]/description</xpath>
+					<value>
+						<description>This weapon features a stripped-down, under-barrel shotgun attachment. It provides the user with a secondary firing option using 12 gauge ammunition, specifically designed to breach doors or clear close-quarters threats without switching weapons.</description>
+					</value>
+				</li>
+
+				<!-- ============================================== -->
+				<!-- MODDED TRAITS (WeaponTraitDefs_Modded.xml)     -->
+				<!-- Each group wrapped in success="Always" since   -->
+				<!-- traits use MayRequire and may not exist         -->
+				<!-- ============================================== -->
+
+				<!-- VWE_ThumpRetrofit (VFE Empire) -->
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_ThumpRetrofit"]/additionalStoppingPower</xpath>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_ThumpRetrofit"]/statOffsets</xpath>
+							<value>
+								<RangedWeapon_ArmorPenetrationMultiplier>0.15</RangedWeapon_ArmorPenetrationMultiplier>
+							</value>
+						</li>
+						<li Class="PatchOperationAttributeSet">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_ThumpRetrofit"]</xpath>
+							<attribute>Class</attribute>
+							<value>CombatExtended.CustomWeaponTraitDef</value>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_ThumpRetrofit"]/modExtensions</xpath>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_ThumpRetrofit"]</xpath>
+							<value>
+								<explosionOverride>
+									<radius>0.9</radius>
+									<damageDef>Thump</damageDef>
+									<damageAmount>10</damageAmount>
+								</explosionOverride>
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<!-- VWE_AcidInjectorFlechettes (VFE Empire) -->
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_AcidInjectorFlechettes"]/modExtensions</xpath>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_AcidInjectorFlechettes"]</xpath>
+							<value>
+								<damageDefOverride>VFEE_Fletcher</damageDefOverride>
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<!-- VWE_HighAngleDraw (VFE Medieval 2) -->
+				<!-- Range specialist: arrows shot at high angle travel ~25% further -->
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationAttributeSet">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_HighAngleDraw"]</xpath>
+							<attribute>Class</attribute>
+							<value>CombatExtended.CustomWeaponTraitDef</value>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_HighAngleDraw"]/modExtensions</xpath>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_HighAngleDraw"]</xpath>
+							<value>
+								<verbsOverrideCE>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>Projectile_Arrow_Stone</defaultProjectile>
+										<warmupTime>1.35</warmupTime>
+										<range>28.5</range>
+										<soundCast>Bow_Small</soundCast>
+									</li>
+								</verbsOverrideCE>
+								<verbsOverridesCE>
+									<li>
+										<key>VWE_Bow_Crossbow_Unique</key>
+										<value>
+											<li Class="CombatExtended.VerbPropertiesCE">
+												<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+												<hasStandardCommand>true</hasStandardCommand>
+												<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+												<warmupTime>1.5</warmupTime>
+												<range>25</range>
+												<soundCast>VWE_Shot_Crossbow</soundCast>
+											</li>
+										</value>
+									</li>
+									<li>
+										<key>VWE_Bow_Long_Unique</key>
+										<value>
+											<li Class="CombatExtended.VerbPropertiesCE">
+												<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+												<hasStandardCommand>true</hasStandardCommand>
+												<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+												<warmupTime>2.5</warmupTime>
+												<range>46</range>
+												<soundCast>Bow_Large</soundCast>
+											</li>
+										</value>
+									</li>
+									<li>
+										<key>VWE_Bow_Compound_Unique</key>
+										<value>
+											<li Class="CombatExtended.VerbPropertiesCE">
+												<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+												<hasStandardCommand>true</hasStandardCommand>
+												<defaultProjectile>Projectile_StreamlinedArrow_Steel</defaultProjectile>
+												<warmupTime>1.5</warmupTime>
+												<range>37</range>
+												<soundCast>VWE_Bow_Compound</soundCast>
+											</li>
+										</value>
+									</li>
+								</verbsOverridesCE>
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<!-- VWE_MakeshiftTrait (VWE Makeshift) -->
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationAttributeSet">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_MakeshiftTrait"]</xpath>
+							<attribute>Class</attribute>
+							<value>CombatExtended.CustomWeaponTraitDef</value>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_MakeshiftTrait"]/modExtensions</xpath>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_MakeshiftTrait"]</xpath>
+							<value>
+								<burstShotCountMultipliers>
+									<li>0</li>
+									<li>0.5</li>
+									<li>1</li>
+									<li>1.5</li>
+									<li>2</li>
+								</burstShotCountMultipliers>
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<!-- VWE_CryptoRounds (VQE Cryptoforge) -->
+				<!-- Targeted field removal: keep soundOverride, remove broken projectile fields -->
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_CryptoRounds"]/modExtensions/li[@Class="VEF.Weapons.WeaponTraitDefExtension"]/projectileOverride</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_CryptoRounds"]/modExtensions/li[@Class="VEF.Weapons.WeaponTraitDefExtension"]/projectileOverrides</xpath>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/WeaponTraitDef[defName="VWE_CryptoRounds"]</xpath>
+							<value>
+								<damageDefOverride>CE_Bullet_CryptoSlowdown</damageDefOverride>
+							</value>
+						</li>
+					</operations>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

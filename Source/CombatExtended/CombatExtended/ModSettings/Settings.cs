@@ -3,6 +3,7 @@ using Verse;
 using UnityEngine;
 using CombatExtended.Loader;
 using System.Collections.Generic;
+using System;
 
 namespace CombatExtended;
 public class Settings : ModSettings, ISettingsCE
@@ -29,6 +30,9 @@ public class Settings : ModSettings, ISettingsCE
     private bool enableArcOfFire = false;
 
     private bool enableCIWS = false;
+    private OpportunisticReloadMode opportunisticReloadMode = OpportunisticReloadMode.Any;
+    private float opportunisticReloadSafeDistance = 12.9f;
+    private int secondsAfterFightToOpportunisticReload = 5;
 
     private bool showExtraTooltips = false;
     private bool detailedMeleeTooltip = false;
@@ -75,6 +79,9 @@ public class Settings : ModSettings, ISettingsCE
 
     public bool ShowExtraStats => showExtraStats;
     public bool EnableCIWS => enableCIWS;
+    public OpportunisticReloadMode OpportunisticReloadMode => opportunisticReloadMode;
+    public float OpportunisticReloadSafeDistance => opportunisticReloadSafeDistance;
+    public int SecondsAfterFightToOpportunisticReload => secondsAfterFightToOpportunisticReload;
 
     public float MedicineSearchRadiusSquared => medicineSearchRadius * medicineSearchRadius;
 
@@ -265,6 +272,11 @@ public class Settings : ModSettings, ISettingsCE
         lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
 
         Scribe_Values.Look(ref medicineSearchRadius, "medicineSearchRadius", 5f);
+
+        //OpportunisticReload
+        Scribe_Values.Look(ref opportunisticReloadMode, nameof(opportunisticReloadMode), OpportunisticReloadMode.Any);
+        Scribe_Values.Look(ref opportunisticReloadSafeDistance, nameof(opportunisticReloadSafeDistance), 12.9f);
+        Scribe_Values.Look(ref secondsAfterFightToOpportunisticReload, nameof(secondsAfterFightToOpportunisticReload), 5);
     }
     public void DoWindowContents(Listing_Standard list)
     {
@@ -289,7 +301,7 @@ public class Settings : ModSettings, ISettingsCE
     private void DoSettingsWindowContents_Mechanics(Listing_Standard list)
     {
 
-        Rect fullRect = list.GetRect(500f);
+        Rect fullRect = list.GetRect(600f);
         const float columnPadding = 16f;
         float columnWidth = (fullRect.width - columnPadding) / 2f;
 
@@ -319,6 +331,25 @@ public class Settings : ModSettings, ISettingsCE
         left.Gap();
         left.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+        left.GapLine();
+        if (left.ButtonTextLabeled("CE_Settings_OpportunisticReload_Title".Translate(), OpportunisticReloadModeLabel(this.OpportunisticReloadMode), anchor: TextAnchor.MiddleLeft, tooltip: "CE_Settings_OpportunisticReload_Desc".Translate()))
+        {
+            var floatMenuList = new List<FloatMenuOption>();
+            foreach (var option in Enum.GetValues(typeof(OpportunisticReloadMode)))
+            {
+                var enumOption = (OpportunisticReloadMode)option;
+                var menuOption = new FloatMenuOption(OpportunisticReloadModeLabel(enumOption), () => opportunisticReloadMode = enumOption);
+                floatMenuList.Add(menuOption);
+            }
+            Find.WindowStack.Add(new FloatMenu(floatMenuList));
+        }
+        if (OpportunisticReloadMode == OpportunisticReloadMode.Off)
+        {
+            GUI.contentColor = Color.gray;
+        }
+        opportunisticReloadSafeDistance = left.SliderLabeled("CE_Settings_OpportunisticReload_SafeDistance_Title".Translate(opportunisticReloadSafeDistance), opportunisticReloadSafeDistance, 0f, 50.9f, tooltip: "CE_Settings_OpportunisticReload_SafeDistance_Desc".Translate());
+        secondsAfterFightToOpportunisticReload = (int)left.SliderLabeled("CE_Settings_OpportunisticReload_SecondsAfterFight_Title".Translate(secondsAfterFightToOpportunisticReload), secondsAfterFightToOpportunisticReload, 0f, 60f, tooltip: "CE_Settings_OpportunisticReload_SecondsAfterFight_Desc".Translate());
+        GUI.contentColor = Color.white;
         left.End();
 
         // RIGHT COLUMN
@@ -512,6 +543,9 @@ public class Settings : ModSettings, ISettingsCE
         autosetup = true;
         medicineSearchRadius = 5f;
         suppressionCausesRunning = true;
+        opportunisticReloadMode = OpportunisticReloadMode.Any;
+        opportunisticReloadSafeDistance = 12.9f;
+        secondsAfterFightToOpportunisticReload = 5;
     }
     private void ResetToDefault_Ammo()
     {
@@ -600,6 +634,21 @@ public class Settings : ModSettings, ISettingsCE
             _dirtyTabs.Remove(tabIndex);
         }
         return height;
+    }
+
+    private string OpportunisticReloadModeLabel(OpportunisticReloadMode mode)
+    {
+        switch (mode)
+        {
+            case OpportunisticReloadMode.Off:
+                return "CE_Settings_OpportunisticReload_Off".Translate();
+            case OpportunisticReloadMode.DraftedOnly:
+                return "CE_Settings_OpportunisticReload_DraftedOnly".Translate();
+            case OpportunisticReloadMode.Any:
+                return "CE_Settings_OpportunisticReload_Any".Translate();
+            default:
+                return "";
+        }
     }
 
     #endregion

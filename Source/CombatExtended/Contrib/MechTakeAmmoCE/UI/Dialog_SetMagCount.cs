@@ -61,7 +61,7 @@ public class Dialog_SetMagCount : Window
         float curY = 0;
         string Maglabel = "MTA_MagazinePrefix".Translate(mechAmmo.AmmoUser.Props.magazineSize);
         DrawLabel(inRect, ref curY, Maglabel);
-        foreach (var ammoType in mechAmmo.AmmoUser.Props.ammoSet.ammoTypes)
+        foreach (var ammoType in mechAmmo.AmmoUser.CurAmmoSet.ammoTypes)
         {
             int value = 0;
             tmpLoadout.TryGetValue(ammoType.ammo, out value);

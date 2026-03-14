@@ -118,7 +118,7 @@ public class Command_Reload : Command_Action
             {
                 var user = other.compAmmo;
 
-                foreach (AmmoLink link in user.Props.ammoSet.ammoTypes)
+                foreach (AmmoLink link in user.CurAmmoSet.ammoTypes)
                 {
                     var ammoDef = link.ammo;
                     var ammoClass = ammoDef.ammoClass;

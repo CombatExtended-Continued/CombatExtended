@@ -21,7 +21,6 @@ namespace CombatExtended;
 [StaticConstructorOnStartup]
 public class Building_TurretGunCE : Building_Turret
 {
-    private const int minTicksBeforeAutoReload = 1800;              // This much time must pass before haulers will try to automatically reload an auto-turret
     private const int ticksBetweenAmmoChecks = 300;                 // Test nearby ammo every 5 seconds if there's many ammo changes
     private const int ticksBetweenSlowAmmoChecks = 3600;               // Test nearby ammo every minute if there's no ammo changes
     public bool isSlow = false;
@@ -196,7 +195,7 @@ public class Building_TurretGunCE : Building_Turret
             //Delay auto-reload for a few seconds after spawn, so player can operate the turret right after placing it, before other colonists start reserving it for reload jobs
             if (mannableComp != null)
             {
-                ticksUntilAutoReload = minTicksBeforeAutoReload;
+                ticksUntilAutoReload = Controller.settings.SecondsAfterFightToOpportunisticReload * GenTicks.TicksPerRealSecond;
             }
         }
 
@@ -528,7 +527,7 @@ public class Building_TurretGunCE : Building_Turret
 
     public virtual void BeginBurst()                     // Added handling for ticksUntilAutoReload
     {
-        ticksUntilAutoReload = minTicksBeforeAutoReload;
+        ticksUntilAutoReload = Controller.settings.SecondsAfterFightToOpportunisticReload * GenTicks.TicksPerRealSecond;
         if (AttackVerb is Verb_ShootMortarCE shootMortar)
         {
             if (globalTargetInfo.IsValid)
@@ -732,7 +731,7 @@ public class Building_TurretGunCE : Building_Turret
         // Ammo gizmos
         if (CompAmmo != null && (PlayerControlled || Prefs.DevMode))
         {
-            foreach (Command com in CompAmmo.CompGetGizmosExtra())
+            foreach (var com in CompAmmo.CompGetGizmosExtra())
             {
                 if (!PlayerControlled && Prefs.DevMode && com is GizmoAmmoStatus)
                 {
@@ -914,7 +913,7 @@ public class Building_TurretGunCE : Building_Turret
         }
 
         //Only have manningPawn reload after a long time of no firing
-        if (!forced && Reloadable && (compAmmo.CurMagCount != 0 || ticksUntilAutoReload > 0))
+        if (!forced && Reloadable && (compAmmo.CurMagCount > compAmmo.TryReloadOn || ticksUntilAutoReload > 0))
         {
             return;
         }

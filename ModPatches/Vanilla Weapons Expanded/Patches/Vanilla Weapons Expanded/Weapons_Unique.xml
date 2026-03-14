@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Unique Crossbow -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Bow_Crossbow_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>1</magazineSize>
+						<reloadTime>7</reloadTime>
+						<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+						<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Longbow -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Bow_Long_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<ammoSet>AmmoSet_GreatArrow</ammoSet>
+						<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Compound Bow -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Bow_Compound_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+						<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Hand Cannon -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_HandCannon_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>6</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_460SWMagnum</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>Snapshot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Combat Handgun -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_CombatHandgun_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_FN57x28mm</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>Snapshot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Sawed-Off Shotgun -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_SawedOffShotgun_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>2</magazineSize>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<reloadTime>1.2</reloadTime>
+						<ammoSet>AmmoSet_12Gauge_SB</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>Snapshot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Semi-Automatic Rifle -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_SemiAutomaticRifle_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Lever-Action Rifle -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_LeverActionRifle_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>12</magazineSize>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<reloadTime>0.85</reloadTime>
+						<ammoSet>AmmoSet_44Magnum_HV</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Trench Gun -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_TrenchGun_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>6</magazineSize>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<reloadTime>1.2</reloadTime>
+						<ammoSet>AmmoSet_12Gauge</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>Snapshot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Light SMG -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_LightSMG_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>32</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique SMG -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_SMG_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>Snapshot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique HMG -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_HMG_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>100</magazineSize>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aiUseBurstMode>False</aiUseBurstMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Service Rifle -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_ServiceRifle_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_762x39mmSoviet</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Battle Rifle -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_BattleRifle_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Carbine -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_Carbine_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Marksman Rifle -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_MarksmanRifle_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_762x54mmR</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Anti-Material Rifle -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_AntiMaterialRifle_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_50BMG</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Charge Pistol -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_ChargePistol_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>15</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>Snapshot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Charge Shotgun -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_ChargeShotgun_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>12</magazineSize>
+						<reloadTime>0.85</reloadTime>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<ammoSet>AmmoSet_12GaugeCharged</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>Snapshot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Charge SMG -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_ChargeSMG_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>40</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>Snapshot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Charge LMG -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_ChargeLMG_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>100</magazineSize>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aiUseBurstMode>False</aiUseBurstMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Charge Minigun -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_ChargeMinigun_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>240</magazineSize>
+						<reloadTime>9.2</reloadTime>
+						<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>20</aimedBurstShotCount>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			<!-- Unique Charge Sniper Rifle -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VWE_Gun_ChargeSniperRifle_Unique"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_8x50mmCharged</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+					<li Class="CombatExtended.CompProperties_UnderBarrel"/>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

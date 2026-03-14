@@ -98,7 +98,7 @@ public class MiscTurrets_CE_TurretWeaponBase : TurretWeaponBase.Building_TurretW
         var ammo = GetAmmo();
         if (ammo != null)
         {
-            foreach (Command com in ammo.CompGetGizmosExtra())
+            foreach (var com in ammo.CompGetGizmosExtra())
             {
                 if (base.Faction != Faction.OfPlayer && Prefs.DevMode && com is GizmoAmmoStatus)
                 {

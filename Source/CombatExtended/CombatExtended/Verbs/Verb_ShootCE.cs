@@ -47,7 +47,7 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
     {
         get
         {
-            return CompFireModes != null ? ShotsPerBurstFor(CompFireModes.CurrentFireMode) : VerbPropsCE.burstShotCount;
+            return ShotsPerBurstFor(CompFireModes?.CurrentFireMode ?? FireMode.AutoFire);
         }
     }
 
@@ -219,6 +219,20 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
                 burstShotCount = modified;
             }
         }
+
+        // Apply trait-based burst count multiplier
+        if (EquipmentSource?.TryGetComp(out CompUniqueWeapon comp) ?? false)
+        {
+            foreach (WeaponTraitDef trait in comp.TraitsListForReading)
+            {
+                if (trait is CustomWeaponTraitDef { burstShotCountMultipliers: { Count: > 0 } multipliers })
+                {
+                    burstShotCount *= multipliers.RandomElement();
+                    break;
+                }
+            }
+        }
+
         return (int)burstShotCount;
     }
 
@@ -364,6 +378,10 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
     //For revolvers and break actions. Intended to be called by compammouser on reload
     public void ExternalCallDropCasing(int randomSeedOffset = -1)
     {
+        if (caster == null)
+        {
+            return;
+        }
         bool fromPawn = false;
         GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
         if (ShooterPawn != null)

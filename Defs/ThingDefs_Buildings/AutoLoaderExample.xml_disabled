@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- === Autoloader Example === -->
+	
+	<ThingDef ParentName="BuildingBase">
+		<defName>CE_AutoLoaderExample</defName>
+		<label>auto loader example</label>
+		<description>An ammo crate with magical autoloaders.</description>
+
+		<thingClass>CombatExtended.Building_AutoLoaderCE</thingClass> <!-- thingClass. Mandatory to make the autoloader work. -->
+		<tickerType>Normal</tickerType>
+		<drawerType>MapMeshAndRealTime</drawerType>
+
+		<comps>
+			<li Class="CombatExtended.CompProperties_AmmoListUser">
+				<magazineSize>400</magazineSize> <!-- How much ammo the autloader holds. -->
+				<reloadTime>7.8</reloadTime> <!-- How long it takes to reload the autoloader. -->
+				<ammoSet>AmmoSet_762x51mmNATO</ammoSet> <!-- The ammmoSet accepted by the autoloader. If this is a generic ammoSet, the autoloader will accept any calibers that use it as similarTo.-->
+				<additionalAmmoSets> <!-- Other caibers the autoloader will accept. If any are generic, the autoloader will accept any calibers that use it as similarTo -->
+					<li>AmmoSet_Shotgun</li>
+				</additionalAmmoSets>
+			</li>
+
+			<li Class="CompProperties_Mannable"> <!-- If CompProperties_Mannable is present, the autoloader will have to be manned to operate. -->
+				<manWorkType>Hauling</manWorkType>
+			</li>
+			<li Class="CompProperties_Power"> <!-- If CompProperties_Power is present, the autoloader will have to be powered to operate. -->
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>300</basePowerConsumption>
+			</li>
+		</comps>
+	
+		<modExtensions>
+			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics"> <!-- Different graphics can be applied at empty, half full (above 0) and full (above 75%) if this mod extension exists -->
+				<fullGraphic>
+					<texPath>Things/Building/Misc/ToolCabinet</texPath>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<drawSize>(2,1)</drawSize>
+					<color>(0,0,0)</color>
+					<damageData>
+						<cornerTL>Damage/Corner</cornerTL>
+						<cornerTR>Damage/Corner</cornerTR>
+						<cornerBL>Damage/Corner</cornerBL>
+						<cornerBR>Damage/Corner</cornerBR>
+					</damageData>
+				</fullGraphic>
+		
+				<halfFullGraphic> <!-- If a stage is left empty, the code should fall back to default graphic. -->
+
+				</halfFullGraphic>
+				
+				<emptyGraphic>
+					<texPath>Things/Building/Misc/ToolCabinet</texPath>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<drawSize>(2,1)</drawSize>
+					<color>(0,0,114)</color>
+					<damageData>
+						<cornerTL>Damage/Corner</cornerTL>
+						<cornerTR>Damage/Corner</cornerTR>
+						<cornerBL>Damage/Corner</cornerBL>
+						<cornerBR>Damage/Corner</cornerBR>
+					</damageData>
+				</emptyGraphic>
+
+				<allowedTurrets> <!-- Whitelist of turrets that can be reloaded, if not blank. Uses defName of the structure, not the top. -->
+					<li>Turret_Heavy</li>
+				</allowedTurrets>
+				<allowedTurretTags> <!-- Whitelist of turret buildingTags, if not blank. See the KPV def for an example. -->
+					<li>CE_TurretHeavy</li>
+				</allowedTurretTags>
+				<reloadingSustainer>Ingest_Drink</reloadingSustainer> <!-- Sound that plays while the autoloader is reloading a turret.If left empty, a default machine cranking sound will play. -->
+				<reloadCompleteSound>Pawn_Chicken_Call</reloadCompleteSound> <!--- Sound that plays when the autoloader is done reloading a turret. If left empty, the intereact sound of the turret gun will play. -->
+			</li>
+		</modExtensions>
+		
+		<!-- === Generic stuffs here === -->
+
+		<graphicData>
+			<texPath>Things/Building/Misc/ToolCabinet</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2,1)</drawSize>
+			<color>(96,114,95)</color>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+			</damageData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<castEdgeShadows>true</castEdgeShadows>
+		<staticSunShadowHeight>0.35</staticSunShadowHeight>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<fillPercent>0.5</fillPercent>
+		<canOverlapZones>false</canOverlapZones>
+		<pathCost>42</pathCost>
+		<size>(2,1)</size>
+		<costList>
+			<Steel>200</Steel>
+		</costList>
+		<building>
+			<destroySound>BuildingDestroyed_Metal_Small</destroySound>
+		</building>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>1800</WorkToBuild>
+			<Mass>20</Mass>
+			<Flammability>0.5</Flammability>
+			<ReloadSpeed>0.5</ReloadSpeed>	<!-- How fast/slow autoloader loads -->
+		</statBases>
+		<designationCategory>Misc</designationCategory>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+	</ThingDef>
+
+</Defs>

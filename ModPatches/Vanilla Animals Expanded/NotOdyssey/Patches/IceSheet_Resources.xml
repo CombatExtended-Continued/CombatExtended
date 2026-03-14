@@ -25,4 +25,41 @@
 		</value>
 	</Operation>
 
+	<!-- === Raw Fish === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AEXP_RawFish"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>raw fish</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.39</cooldownTime>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_RawFish"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.1</MeleeCritChance>
+				<MeleeParryChance>0.1</MeleeParryChance>
+				<MeleeDodgeChance>0.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_RawFish"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+			<MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
 </Patch>
