@@ -153,7 +153,7 @@ public class Building_TurretGunCE : Building_Turret
             return compFireModes;
         }
     }
-    private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
+    protected virtual ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
     public float MaxWorldRange => ProjectileProps?.shellingProps.range ?? -1f;
     public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
     public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
@@ -672,7 +672,8 @@ public class Building_TurretGunCE : Building_Turret
     {
         ResetCurrentTarget();
         ResetForcedTarget();
-        int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(Map.Tile, targetInfo.Tile, true, maxDist: (int)(this.MaxWorldRange * 1.5f));
+        int distanceToTarget = ShellingUtility.GetDistancePlanetTiles(Map.Tile, targetInfo.Tile, (int)(MaxWorldRange * 1.5f));
+
         if (distanceToTarget > MaxWorldRange)
         {
             return false;
@@ -694,8 +695,8 @@ public class Building_TurretGunCE : Building_Turret
 
     public virtual void TryOrderAttackWorldTile(GlobalTargetInfo targetInf, IntVec3? cell = null)
     {
-        int startingTile = Map.Tile;
-        int destinationTile = targetInf.Tile;
+        PlanetTile startingTile = Map.Tile;
+        PlanetTile destinationTile = targetInf.Tile;
 
         Vector3 direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
         Vector3 shotPos = DrawPos.Yto0();

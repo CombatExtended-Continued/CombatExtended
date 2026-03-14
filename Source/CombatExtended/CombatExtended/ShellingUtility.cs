@@ -1,12 +1,11 @@
-﻿using System;
+﻿using RimWorld;
+using RimWorld.Planet;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using RimWorld;
-using RimWorld.Planet;
 using UnityEngine;
 using Verse;
-using CombatExtended.WorldObjects;
 
 namespace CombatExtended;
 public static class ShellingUtility
@@ -15,6 +14,67 @@ public static class ShellingUtility
     private static ThingDef shellDef;
     private static ProjectilePropertiesCE props;
     private static DamageDef projectileDamageDef;
+
+    private struct DistanceCache
+    {
+        public PlanetTile startingTile;
+        public PlanetTile destinationTile;
+        public int distance;
+    }
+    private static DistanceCache distanceCache = new DistanceCache();
+
+    public static int GetDistancePlanetTiles(PlanetTile startingTile, PlanetTile destinationTile, int maxDist = int.MaxValue)
+    {
+        if (distanceCache.startingTile == startingTile && distanceCache.destinationTile == destinationTile)
+        {
+            return distanceCache.distance;
+        }
+
+        if (startingTile.layerId != destinationTile.layerId)
+        {
+            startingTile = destinationTile.Layer.GetClosestTile_NewTemp(startingTile);
+        }
+        distanceCache.startingTile = startingTile;
+        distanceCache.destinationTile = destinationTile;
+
+        distanceCache.distance =
+            (int)(Find.WorldGrid.TraversalDistanceBetween(startingTile, destinationTile, true, maxDist) * destinationTile.LayerDef.rangeDistanceFactor);
+        return distanceCache.distance;
+    }
+
+    private struct RadiusCache
+    {
+        public PlanetTile realCenterTile;
+        public int radius;
+    }
+    private static Dictionary<int, RadiusCache> radiusCache = new Dictionary<int, RadiusCache>();
+
+    public static void ClearRadiusCache()
+    {
+        radiusCache.Clear();
+    }
+
+    public static void CachedDrawTurretRadiusRing(PlanetTile center, int radius)
+    {
+        PlanetTile realCenterTile;
+        int realRadius;
+        RadiusCache cache;
+        // We cache these operations, because there is no need to overcharge the update.
+        if (radiusCache.TryGetValue(center.tileId, out cache))
+        {
+            realCenterTile = cache.realCenterTile;
+            realRadius = cache.radius;
+        } 
+        else
+        {
+            realCenterTile = PlanetLayer.Selected.GetClosestTile_NewTemp(center);
+            realRadius = Mathf.FloorToInt(radius / PlanetLayer.Selected.Def.rangeDistanceFactor);
+            // Add cache
+            radiusCache.Add(center.tileId, new RadiusCache() { realCenterTile = center, radius = realRadius });
+        }
+        GenDraw.DrawWorldRadiusRing(realCenterTile, realRadius);
+    }
+
 
     public static IntVec3 FindRandomImpactCell(Map map, ThingDef shellDef = null)
     {

@@ -45,7 +45,7 @@ public class LaserBeamCE : BulletCE
         effecter.Cleanup();
     }
 
-    public void SpawnBeam(Vector3 a, Vector3 b)
+    public virtual void SpawnBeam(Vector3 a, Vector3 b)
     {
         LaserBeamGraphicCE graphic = ThingMaker.MakeThing(laserBeamDef.beamGraphic, null) as LaserBeamGraphicCE;
         if (graphic == null)

@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
-		<AssemblyName>SOS2Compat</AssemblyName>
+		<AssemblyName>VGECompat</AssemblyName>
 		<AssemblyVersion>15.6.3.1</AssemblyVersion>
 		<FileVersion>15.6.3.1</FileVersion>
 		<Version>15.6.3.1</Version>
@@ -12,7 +12,7 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<OutputPath>..\..\ModPatches\Save Our Ship 2\Assemblies</OutputPath>
+		<OutputPath>..\..\ModPatches\Vanilla Gravship Expanded - Chapter 1\Assemblies</OutputPath>
 		<DebugType>embedded</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -20,7 +20,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<OutputPath>..\..\ModPatches\Save Our Ship 2\Assemblies</OutputPath>
+		<OutputPath>..\..\ModPatches\Vanilla Gravship Expanded - Chapter 1\Assemblies</OutputPath>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
@@ -36,33 +36,33 @@
 	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Reference Include="SOS2">
-	    <HintPath>..\packages\ShipsHaveInsides-reference.dll</HintPath>
+    <Reference Include="VGE">
+	    <HintPath>..\packages\VanillaGravshipExpanded-reference.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
-    <Reference Include="Vehicles">
-	    <HintPath>..\packages\Vehicles-reference.dll</HintPath>
-	    <Private>False</Private>
-	  </Reference>
+    <Reference Include="VEF">
+      <HintPath>..\packages\VEF-reference.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
 	</ItemGroup>
-    
-	<!-- SoS2 itself uses Publicizer, so remove the duplicate type. -->
-	<Target Name="RemoveIgnoresAccessChecksToAttributeCs" AfterTargets="PublicizeAssemblies">
-		<ItemGroup>
-			<FilesToRemove Include="@(Compile)" Condition="'%(Filename)' == 'IgnoresAccessChecksToAttribute'" />
-        </ItemGroup>
-		<ItemGroup>
-			 <Compile Remove="@(FilesToRemove)" />
-		</ItemGroup>
-	</Target>
 
-	<ItemGroup>
-          <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
-			  <PrivateAssets>all</PrivateAssets>
-			  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-          </PackageReference>
-          <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4633" GeneratePathProperty="true" />
-          <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
+  <!-- VGE dll was stripped and publicized to avoid adding ~300Ko to CE. -->
+  <Target Name="RemoveIgnoresAccessChecksToAttributeCs" AfterTargets="PublicizeAssemblies">
+    <ItemGroup>
+      <FilesToRemove Include="@(Compile)" Condition="'%(Filename)' == 'IgnoresAccessChecksToAttribute'" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="@(FilesToRemove)" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4633" GeneratePathProperty="true" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
 	</ItemGroup>
 	<ItemGroup>
 		<Publicize Include="Assembly-CSharp" />
