@@ -1102,7 +1102,11 @@ public class Dialog_ManageLoadouts : Window
     {
         if (Compatibility.Multiplayer.InMultiplayer)
         {
-            Find.WindowStack.WindowOfType<Dialog_ManageLoadouts>().CurrentLoadout = null;
+            var loadOutWindow = Find.WindowStack.WindowOfType<Dialog_ManageLoadouts>();
+            if(loadOutWindow != null && loadOutWindow.CurrentLoadout.UniqueID == loadout.UniqueID)
+            {
+                loadOutWindow.CurrentLoadout = null;
+            }
         }
         LoadoutManager.RemoveLoadout(loadout);
     }

@@ -1,18 +1,23 @@
-﻿using System;
-using System.Diagnostics;
+﻿using CombatExtended.Loader;
+using HarmonyLib;
+using Multiplayer.API;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Multiplayer.API;
 using Verse;
-using CombatExtended.Loader;
-using System.Collections.Generic;
-
 using SyncMethodAttribute = global::CombatExtended.Compatibility.Multiplayer.SyncMethodAttribute;
 
 namespace CombatExtended.Compatibility.MultiplayerAPI;
 public class MultiplayerCompat : IModPart
 {
     public MultiplayerCompat() { }
+
+    public static ISyncField SyncGizmoAmmoStatusTryReloadOn;
+    //public static ISyncField SyncGizmoAmmoStatusGizmoSliderPct;
+
+    private static Harmony harmony = null;
+
     public Type GetSettingsType()
     {
         return null;
@@ -26,6 +31,7 @@ public class MultiplayerCompat : IModPart
 
     public void PostLoad(ModContentPack content, ISettingsCE _)
     {
+        harmony = new Harmony("MultiplayerCompat.HarmonyCE");
         LongEventHandler.QueueLongEvent(() => this.SlowInit(content), "CE_LongEvent_CompatibilityPatches", false, null);
     }
     public void SlowInit(ModContentPack content)
@@ -61,15 +67,71 @@ public class MultiplayerCompat : IModPart
                 syncMethod.ExposeParameter(parameter);
             }
         }
+        SyncGizmoAmmoStatusTryReloadOn = MP.RegisterSyncField(AccessTools.Field(typeof(CompAmmoUser), "tryReloadOn")).SetBufferChanges();
+        //SyncGizmoAmmoStatusGizmoSliderPct = MP.RegisterSyncField(AccessTools.Field(typeof(GizmoAmmoStatus), "targetValuePct")).SetBufferChanges();
+
+        var prefix = new HarmonyMethod(typeof(Patch_GizmoAmmoStatusGizmoOnGUI), nameof(Patch_GizmoAmmoStatusGizmoOnGUI.Prefix));
+        var postfix = new HarmonyMethod(typeof(Patch_GizmoAmmoStatusGizmoOnGUI), nameof(Patch_GizmoAmmoStatusGizmoOnGUI.Postfix));
+        harmony.Patch(AccessTools.Method(typeof(GizmoAmmoStatus), nameof(GizmoAmmoStatus.GizmoOnGUI)), prefix: prefix, postfix: postfix);
+
+
+        Type type = typeof(GizmoAmmoStatus);
+        MP.RegisterSyncWorker<GizmoAmmoStatus>(SyncGizmoAmmoStatus, type);
+
+        type = typeof(CompAmmoUser);
+        MP.RegisterSyncWorker<CompAmmoUser>(SyncCompAmmoUser, type);
+
+        type = typeof(CompFireModes);
+        MP.RegisterSyncWorker<CompFireModes>(SyncCompFireMode, type);
+
+        type = typeof(Loadout);
+        MP.RegisterSyncWorker<Loadout>(SyncLoadout, type);
+
+        type = typeof(LoadoutSlot);
+        MP.RegisterSyncWorker<LoadoutSlot>(SyncLoadoutSlot, type);
+
+        type = typeof(ITab_Inventory);
+        MP.RegisterSyncWorker<ITab_Inventory>(SyncITab_Inventory, type, shouldConstruct: true);
+
 
         MP.RegisterAll();
+
+
 
         global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((() => MP.IsInMultiplayer), (() => MP.IsExecutingSyncCommand), (() => MP.IsExecutingSyncCommandIssuedBySelf));
     }
 
+    public static class Patch_GizmoAmmoStatusGizmoOnGUI
+    {
+        public static void Prefix(GizmoAmmoStatus __instance)
+        {
+            MP.WatchBegin();
 
+            // SyncGizmoAmmoStatusGizmoSliderPct.Watch(__instance);
+            SyncGizmoAmmoStatusTryReloadOn.Watch(__instance.compAmmo);
+        }
+        public static void Postfix(GizmoAmmoStatus __instance)
+        {
+            MP.WatchEnd();
+        }
+    }
 
-    [SyncWorker]
+    //[SyncWorker]
+    private static void SyncGizmoAmmoStatus(SyncWorker sync, ref GizmoAmmoStatus gizmo)
+    {
+        if (sync.isWriting)
+        {
+            sync.Write<CompAmmoUser>(gizmo.compAmmo);
+        }
+        else
+        {
+            var compAmmo = sync.Read<CompAmmoUser>();
+            // Need some help fix pct sync
+            gizmo = new GizmoAmmoStatus { compAmmo = compAmmo };
+        }
+    }
+
+    //[SyncWorker]
     private static void SyncCompAmmoUser(SyncWorker sync, ref CompAmmoUser comp)
     {
         if (sync.isWriting)
@@ -105,7 +167,7 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
+    //[SyncWorker]
     private static void SyncCompFireMode(SyncWorker sync, ref CompFireModes comp)
     {
         if (sync.isWriting)
@@ -141,7 +203,7 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
+    //[SyncWorker]
     private static void SyncLoadout(SyncWorker sync, ref Loadout loadout)
     {
         if (sync.isWriting)
@@ -155,7 +217,7 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
+    //[SyncWorker(shouldConstruct = true)]
     private static void SyncLoadoutSlot(SyncWorker sync, ref LoadoutSlot loadoutSlot)
     {
         if (sync.isWriting)
@@ -198,7 +260,7 @@ public class MultiplayerCompat : IModPart
 
     // Don't sync anything, we just want a blank instance for method calling purposes
     // We only care about shouldConstruct being true
-    [SyncWorker(shouldConstruct = true)]
+    //[SyncWorker(shouldConstruct = true)]
     private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory inventory)
     { }
 }
