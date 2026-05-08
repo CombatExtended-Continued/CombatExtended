@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Reflection;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using RimWorld;
-using Verse;
-using Verse.AI;
-using Verse.Sound;
 using UnityEngine;
-
+using UnityEngine.Rendering;
+using Verse;
 namespace CombatExtended;
+
 public static class BoundsInjector
 {
     public enum GraphicType
@@ -18,35 +18,19 @@ public static class BoundsInjector
         Plant
     }
 
-    private static Dictionary<string, Vector2> boundMap = new Dictionary<string, Vector2>();
-
-    public static Vector2 BoundMap(Graphic graphic, GraphicType type, Graphic headGraphic, Vector2 headOffset)
-    {
-        string path = graphic.path + (headGraphic == null ? "" : "+" + headGraphic.path);
-        if (!boundMap.ContainsKey(path))
-        {
-            try
-            {
-                boundMap[path] = ExtractBounds(graphic, type, headGraphic, headOffset);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("BoundMap(,,,)", e);
-            }
-        }
-        return boundMap[path];
-    }
+    private static ConcurrentDictionary<string, Vector2> boundMap = [];
+    private static ConcurrentDictionary<Texture2D, (Color[] pixels, int width, int height)> _textureCache = [];
 
     public static Vector2 BoundMap(Graphic graphic, GraphicType type)
     {
-        if (boundMap.TryGetValue(graphic.path, out var cachedBounds))
+        if (boundMap.TryGetValue(graphic.path, out Vector2 cachedBounds))
         {
             return cachedBounds;
         }
 
         try
         {
-            var bounds = ExtractBounds(graphic, type);
+            Vector2 bounds = ExtractBounds(graphic, type);
             boundMap[graphic.path] = bounds;
             return bounds;
         }
@@ -56,91 +40,19 @@ public static class BoundsInjector
         }
     }
 
-    private static Vector2 ExtractBounds(Graphic graphic, GraphicType type, Graphic headGraphic, Vector2 headOffset)
-    {
-        int vWidth;
-        int vHeight;
-
-        IntRange vBounds;
-
-        try
-        {
-            vBounds = Def_Extensions.CropVertical((graphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + graphic.path + "_side", ex);
-        }
-
-        int hWidth;
-        int hHeight;
-
-        IntRange hBounds;
-
-        try
-        {
-            hBounds = Def_Extensions.CropHorizontal((graphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + graphic.path + "_front", ex);
-        }
-
-        int vWidthHead;
-        int vHeightHead;
-
-        IntRange vBoundsHead;
-
-        try
-        {
-            vBoundsHead = Def_Extensions.CropVertical((headGraphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidthHead, out vHeightHead), vWidthHead, vHeightHead);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + headGraphic.path + "_side", ex);
-        }
-
-        vBoundsHead.min -= (int)(headOffset.y * (float)vHeightHead);
-        vBoundsHead.max -= (int)(headOffset.y * (float)vHeightHead);
-
-        vBounds.min = Math.Min(vBounds.min, (int)((float)vBoundsHead.min * (float)vHeight / (float)vHeightHead));
-        vBounds.max = Math.Max(vBounds.max, (int)((float)vBoundsHead.max * (float)vHeight / (float)vHeightHead));
-
-        int hWidthHead;
-        int hHeightHead;
-
-        IntRange hBoundsHead;
-
-        try
-        {
-            hBoundsHead = Def_Extensions.CropHorizontal((headGraphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidthHead, out hHeightHead), hWidthHead, hHeightHead);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + headGraphic.path + "_front", ex);
-        }
-
-        hBoundsHead.min += (int)(headOffset.x * (float)hWidthHead);
-        hBoundsHead.max += (int)(headOffset.x * (float)hWidthHead);
-
-        hBounds.max = Math.Max(hBounds.max, (int)((float)hBoundsHead.max * (float)hWidth / (float)hWidthHead));
-        hBounds.min = Math.Min(hBounds.min, (int)((float)hBoundsHead.min * (float)hWidth / (float)hWidthHead));
-
-        return new Vector2(
-                   (float)(hBounds.max - hBounds.min) / (float)hWidth,
-                   (float)(vBounds.max - vBounds.min) / (float)vHeight);
-    }
-    private static Vector2 ExctractBoundCollection(Graphic_Collection graphic, GraphicType type)
+    private static Vector2 ExtractBoundCollection(Graphic_Collection graphic, GraphicType type)
     {
         IEnumerable<Vector2> bounds = graphic.subGraphics.Select(x => ExtractBounds(x, type));
         return new Vector2(bounds.Average(v => v.x), bounds.Average(v => v.y));
     }
+
     private static Vector2 ExtractBounds(Graphic graphic, GraphicType type)
     {
         if (graphic is Graphic_Collection graphic_collection)
         {
-            return ExctractBoundCollection(graphic_collection, type);
+            return ExtractBoundCollection(graphic_collection, type);
         }
+
         int vWidth;
         int vHeight;
 
@@ -148,7 +60,7 @@ public static class BoundsInjector
 
         try
         {
-            vBounds = Def_Extensions.CropVertical((graphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);
+            vBounds = Def_Extensions.CropVertical(GetCachedColors((graphic.MatEast.mainTexture as Texture2D), out vWidth, out vHeight), vWidth, vHeight);
         }
         catch (Exception ex)
         {
@@ -160,9 +72,7 @@ public static class BoundsInjector
         // TODO : Refactor
         if (type == GraphicType.Plant)
         {
-            return new Vector2(
-                       1f,
-                       (float)(vBounds.max - vBounds.min) / (float)vHeight);
+            return new Vector2(1f, (vBounds.max - vBounds.min) / (float)vHeight);
         }
 
         int hWidth;
@@ -172,7 +82,7 @@ public static class BoundsInjector
 
         try
         {
-            hBounds = Def_Extensions.CropHorizontal((graphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);
+            hBounds = Def_Extensions.CropHorizontal(GetCachedColors((graphic.MatSouth.mainTexture as Texture2D), out hWidth, out hHeight), hWidth, hHeight);
         }
         catch (Exception ex)
         {
@@ -180,107 +90,229 @@ public static class BoundsInjector
         }
 
         return new Vector2(
-                   (float)(hBounds.max - hBounds.min) / (float)hWidth,
-                   (float)(vBounds.max - vBounds.min) / (float)vHeight);
+            (hBounds.max - hBounds.min) / (float)hWidth,
+            (vBounds.max - vBounds.min) / (float)vHeight);
     }
+
+    private static void CollectGraphic(Graphic graphic, HashSet<Texture2D> textures)
+    {
+        if (graphic == null)
+        {
+            return;
+        }
+        if (graphic is Graphic_Collection col)
+        {
+            foreach (Graphic sub in col.subGraphics)
+            {
+                CollectGraphic(sub, textures);
+            }
+            return;
+        }
+        if (graphic.MatEast?.mainTexture is Texture2D east)
+        {
+            textures.Add(east);
+        }
+        if (graphic.MatSouth?.mainTexture is Texture2D south)
+        {
+            textures.Add(south);
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static Color[] GetCachedColors(Texture2D tex, out int width, out int height)
+    {
+        if (_textureCache.TryGetValue(tex, out var cached))
+        {
+            width = cached.width;
+            height = cached.height;
+            return cached.pixels;
+        }
+        //Can't fall back to original GetColorSafe as it is not thread safe
+        throw new Exception($"Combat Extended :: Texture '{tex.name}' was not cached. This is a bug - texture should have been collected in CollectTextures.");
+    }
+
 
     public static void Inject()
     {
-        foreach (PawnKindDef def in DefDatabase<PawnKindDef>.AllDefs.Where(x => !x.RaceProps.Humanlike))
+        List<PawnKindDef> pawnKindsToInject = [];
+        foreach (PawnKindDef pawnKindDef in DefDatabase<PawnKindDef>.AllDefs)
         {
-            for (int i = 0; i < def.lifeStages.Count; i++)
+            if (!pawnKindDef.RaceProps.Humanlike)
             {
-                PawnKindLifeStage lifeStage = def.lifeStages[i];
-
-                try
-                {
-                    if (lifeStage.bodyGraphicData != null && lifeStage.bodyGraphicData.Graphic != null)
-                    {
-                        BoundMap(lifeStage.bodyGraphicData.Graphic, GraphicType.Pawn);
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(def + ".lifeStages[" + i + "].bodyGraphicData", e);
-                }
-
-                try
-                {
-                    if (lifeStage.femaleGraphicData != null && lifeStage.femaleGraphicData.Graphic != null)
-                    {
-                        BoundMap(lifeStage.femaleGraphicData.Graphic, GraphicType.Pawn);
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(def + ".lifeStages[" + i + "].femaleGraphicData", e);
-                }
-
-                try
-                {
-                    if (lifeStage.dessicatedBodyGraphicData != null && lifeStage.dessicatedBodyGraphicData.Graphic != null)
-                    {
-                        BoundMap(lifeStage.dessicatedBodyGraphicData.Graphic, GraphicType.Pawn);
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(def + ".lifeStages[" + i + "].dessicatedBodyGraphicData", e);
-                }
-
-                try
-                {
-                    if (lifeStage.femaleDessicatedBodyGraphicData != null && lifeStage.femaleDessicatedBodyGraphicData.Graphic != null)
-                    {
-                        BoundMap(lifeStage.femaleDessicatedBodyGraphicData.Graphic, GraphicType.Pawn);
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(def + ".lifeStages[" + i + "].femaleDessicatedBodyGraphicData", e);
-                }
+                pawnKindsToInject.Add(pawnKindDef);
             }
         }
 
-        foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where<ThingDef>(x => x.plant != null))
+        List<ThingDef> plantsToInject = [];
+        foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs)
         {
-            try
+            if (thingDef.plant != null)
             {
-                if (def.graphicData != null && def.graphicData.Graphic != null)
-                {
-                    BoundMap(def.graphicData.Graphic, GraphicType.Plant);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(def + ".graphicData", e);
-            }
-
-            try
-            {
-                if (def.plant.leaflessGraphic != null)
-                {
-                    BoundMap(def.plant.leaflessGraphic, GraphicType.Plant);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(def + ".plant.leaflessGraphic", e);
-            }
-
-            try
-            {
-                if (def.plant.immatureGraphic != null)
-                {
-                    BoundMap(def.plant.immatureGraphic, GraphicType.Plant);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(def + ".plant.immatureGraphic", e);
+                plantsToInject.Add(thingDef);
             }
         }
 
+        // Textures need to be gathered on main thread
+        // Bulk of the time for this method, but no way to speed up texture gathering
+        HashSet<Texture2D> textures = CollectTextures(pawnKindsToInject, plantsToInject);
+
+        int pending = textures.Count;
+        foreach (Texture2D tex in textures)
+        {
+            // Needs to be done on main thread
+            Texture2D capturedTex = tex;
+            (int w, int h) = CE_Utility.GetScaledSize(tex);
+            RenderTexture rt = CE_Utility.BlitToRenderTexture(tex, w, h);
+
+            // Allows the GPU to do the work we need seperate from the CPU. This stops the CPU from stalling while the GPU does it's job
+            AsyncGPUReadback.Request(rt, 0, request =>
+            {
+                RenderTexture.ReleaseTemporary(rt);
+
+                if (!request.hasError)
+                {
+                    _textureCache[capturedTex] = (CE_Utility.ConvertToColors(request.GetData<Color32>()), w, h);
+                }
+                else
+                {
+                    Log.Error($"Combat Extended :: AsyncGPUReadback failed for {capturedTex.name}");
+                }
+
+                // Increments down as GPU gives the CPU the information. Only want to finish injecting after all textures are predone
+                if (Interlocked.Decrement(ref pending) != 0)
+                {
+                    return;
+                }
+
+                GenThreading.ParallelForEach(pawnKindsToInject, InjectPawnKinds);
+                GenThreading.ParallelForEach(plantsToInject, InjectPlants);
+                Log.Message("Combat Extended :: Bounds pre-generated");
+
+            });
+        }
+    }
+
+    private static HashSet<Texture2D> CollectTextures(List<PawnKindDef> pawnKinds, List<ThingDef> plants)
+    {
+        HashSet<Texture2D> textures = [];
+
+        for (int i = 0; i < pawnKinds.Count; i++)
+        {
+            PawnKindDef def = pawnKinds[i];
+            foreach (PawnKindLifeStage ls in def.lifeStages)
+            {
+                CollectGraphic(ls.bodyGraphicData?.Graphic, textures);
+                CollectGraphic(ls.femaleGraphicData?.Graphic, textures);
+                CollectGraphic(ls.dessicatedBodyGraphicData?.Graphic, textures);
+                CollectGraphic(ls.femaleDessicatedBodyGraphicData?.Graphic, textures);
+            }
+        }
+
+        foreach (ThingDef def in plants)
+        {
+            CollectGraphic(def.graphicData?.Graphic, textures);
+            CollectGraphic(def.plant?.leaflessGraphic, textures);
+            CollectGraphic(def.plant?.immatureGraphic, textures);
+        }
+
+        CollectGraphic(Plant.GraphicSowing, textures);
+
+        return textures;
+    }
+
+    private static void InjectPawnKinds(PawnKindDef pawnKindDef)
+    {
+        for (int i = 0; i < pawnKindDef.lifeStages.Count; i++)
+        {
+            PawnKindLifeStage lifeStage = pawnKindDef.lifeStages[i];
+
+            try
+            {
+                if (lifeStage.bodyGraphicData != null && lifeStage.bodyGraphicData.Graphic != null)
+                {
+                    BoundMap(lifeStage.bodyGraphicData.Graphic, GraphicType.Pawn);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(pawnKindDef + ".lifeStages[" + i + "].bodyGraphicData", e);
+            }
+
+            try
+            {
+                if (lifeStage.femaleGraphicData != null && lifeStage.femaleGraphicData.Graphic != null)
+                {
+                    BoundMap(lifeStage.femaleGraphicData.Graphic, GraphicType.Pawn);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(pawnKindDef + ".lifeStages[" + i + "].femaleGraphicData", e);
+            }
+
+            try
+            {
+                if (lifeStage.dessicatedBodyGraphicData != null && lifeStage.dessicatedBodyGraphicData.Graphic != null)
+                {
+                    BoundMap(lifeStage.dessicatedBodyGraphicData.Graphic, GraphicType.Pawn);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(pawnKindDef + ".lifeStages[" + i + "].dessicatedBodyGraphicData", e);
+            }
+
+            try
+            {
+                if (lifeStage.femaleDessicatedBodyGraphicData != null && lifeStage.femaleDessicatedBodyGraphicData.Graphic != null)
+                {
+                    BoundMap(lifeStage.femaleDessicatedBodyGraphicData.Graphic, GraphicType.Pawn);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(pawnKindDef + ".lifeStages[" + i + "].femaleDessicatedBodyGraphicData", e);
+            }
+        }
+    }
+
+    private static void InjectPlants(ThingDef plantDef)
+    {
+        try
+        {
+            if (plantDef.graphicData != null && plantDef.graphicData.Graphic != null)
+            {
+                BoundMap(plantDef.graphicData.Graphic, GraphicType.Plant);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new Exception(plantDef + ".graphicData", e);
+        }
+
+        try
+        {
+            if (plantDef.plant.leaflessGraphic != null)
+            {
+                BoundMap(plantDef.plant.leaflessGraphic, GraphicType.Plant);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new Exception(plantDef + ".plant.leaflessGraphic", e);
+        }
+
+        try
+        {
+            if (plantDef.plant.immatureGraphic != null)
+            {
+                BoundMap(plantDef.plant.immatureGraphic, GraphicType.Plant);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new Exception(plantDef + ".plant.immatureGraphic", e);
+        }
         Graphic graphicSowing = Plant.GraphicSowing;
 
         try
@@ -294,8 +326,6 @@ public static class BoundsInjector
         {
             throw new Exception("GraphicSowing", e);
         }
-
-        Log.Message("Combat Extended :: Bounds pre-generated");
     }
 
     public static Vector2 ForPawn(Pawn pawn)
@@ -411,28 +441,4 @@ public static class BoundsInjector
         return plant.def.plant.visualSizeRange.LerpThroughRange(plant.Growth) * BoundMap(plant.Graphic, GraphicType.Plant);
     }
 
-    /*public static void LogDatabase()
-    {
-        var str = new StringBuilder();
-
-        str.AppendLine("PAWNS");
-
-        foreach (PawnKindDef kindDef in DefDatabase<PawnKindDef>.AllDefs.Where(x => !x.race.race.Humanlike))
-        {
-            str.AppendLine(kindDef.ToString() + ", " + kindDef.race.race.baseBodySize +", " + String.Join(", ", boundMap[kindDef.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Key+"="+x.Value.Second).ToArray()));
-        }
-
-        str.AppendLine();
-        str.AppendLine("PLANTS");
-
-        //Fire is dummy name for a sowing plant's texture
-        str.AppendLine("Sowing Plant, " + String.Join(", ", boundMap[ThingDefOf.Fire.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Key+"="+x.Value.Second).ToArray()));
-
-        foreach (ThingDef plantDef in DefDatabase<ThingDef>.AllDefs.Where(x => x.plant != null))
-        {
-            str.AppendLine(plantDef.ToString() + ", " + plantDef.fillPercent + ", " +plantDef.plant.visualSizeRange.ToString() +", " + String.Join(", ", boundMap[plantDef.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Value.Second).ToArray()));
-        }
-
-        Log.Message(str.ToString());
-    }*/
 }

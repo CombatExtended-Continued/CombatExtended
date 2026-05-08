@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using CombatExtended.Compatibility;
 using RimWorld;
+using RimWorld.Planet;
+using Unity.Collections;
+using UnityEngine;
 using Verse;
 using Verse.AI;
-using UnityEngine;
-using RimWorld.Planet;
-
+using Random = UnityEngine.Random;
 namespace CombatExtended;
 public static class CE_Utility
 {
@@ -30,8 +33,8 @@ public static class CE_Utility
         float u, v, S;
         do
         {
-            u = 2.0f * UnityEngine.Random.value - 1.0f;
-            v = 2.0f * UnityEngine.Random.value - 1.0f;
+            u = 2.0f * Random.value - 1.0f;
+            v = 2.0f * Random.value - 1.0f;
             S = u * u + v * v;
         }
         while (S >= 1.0f);
@@ -68,7 +71,7 @@ public static class CE_Utility
     public static float GetWeaponStatWith(this WeaponPlatform platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
     {
         StatRequest req = StatRequest.For(platform);
-        float val = stat.Worker.GetValueUnfinalized(StatRequest.For(platform), true);
+        float val = stat.Worker.GetValueUnfinalized(StatRequest.For(platform));
         if (stat.parts != null)
         {
             for (int i = 0; i < stat.parts.Count; i++)
@@ -167,7 +170,7 @@ public static class CE_Utility
         bool anyFactors = false;
         foreach (AttachmentLink link in links)
         {
-            StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+            StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat) ?? null;
             if (modifier == null)
             {
                 continue;
@@ -178,7 +181,7 @@ public static class CE_Utility
         }
         foreach (AttachmentLink link in links)
         {
-            StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+            StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat) ?? null;
             if (modifier == null || modifier.value == 0)
             {
                 continue;
@@ -192,7 +195,7 @@ public static class CE_Utility
         }
         foreach (AttachmentLink link in links)
         {
-            StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+            StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat) ?? null;
             if (modifier == null || modifier.value == 0 || modifier.value == 1)
             {
                 continue;
@@ -226,7 +229,7 @@ public static class CE_Utility
             {
                 if (stat.parts[i] is StatPart_Quality || stat.parts[i] is StatPart_Quality_Offset)
                 {
-                    stat.parts[i].TransformValue(new StatRequest()
+                    stat.parts[i].TransformValue(new StatRequest
                     {
                         qualityCategoryInt = QualityCategory.Normal
                     }, ref val);
@@ -293,7 +296,7 @@ public static class CE_Utility
         for (int i = 0; i < links.Count; i++)
         {
             AttachmentLink link = links[i];
-            StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+            StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat) ?? null;
             if (modifier == null)
             {
                 continue;
@@ -305,7 +308,7 @@ public static class CE_Utility
         for (int i = 0; i < links.Count; i++)
         {
             AttachmentLink link = links[i];
-            StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+            StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat) ?? null;
             if (modifier == null)
             {
                 continue;
@@ -315,7 +318,7 @@ public static class CE_Utility
         for (int i = 0; i < links.Count; i++)
         {
             AttachmentLink link = links[i];
-            StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+            StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat) ?? null;
             if (modifier == null || modifier.value <= 0)
             {
                 continue;
@@ -375,23 +378,7 @@ public static class CE_Utility
     /// <returns>Color[] array after resizing to fit blitMaxDimensions</returns>
     public static Color[] GetColorSafe(this Texture2D texture, out int width, out int height)
     {
-        width = texture.width;
-        height = texture.height;
-        if (texture.width > texture.height)
-        {
-            width = Math.Min(width, blitMaxDimensions);
-            height = (int)((float)width * ((float)texture.height / (float)texture.width));
-        }
-        else if (texture.height > texture.width)
-        {
-            height = Math.Min(height, blitMaxDimensions);
-            width = (int)((float)height * ((float)texture.width / (float)texture.height));
-        }
-        else
-        {
-            width = Math.Min(width, blitMaxDimensions);
-            height = Math.Min(height, blitMaxDimensions);
-        }
+        (width, height) = GetScaledSize(texture);
 
         Color[] color = null;
 
@@ -416,9 +403,51 @@ public static class CE_Utility
         return color;
     }
 
+    public static (int width, int height) GetScaledSize(Texture2D texture)
+    {
+        int width = texture.width;
+        int height = texture.height;
+        if (texture.width > texture.height)
+        {
+            width = Math.Min(width, blitMaxDimensions);
+            height = (int)(width * (texture.height / (float)texture.width));
+        }
+        else if (texture.height > texture.width)
+        {
+            height = Math.Min(height, blitMaxDimensions);
+            width = (int)(height * (texture.width / (float)texture.height));
+        }
+        else
+        {
+            width = Math.Min(width, blitMaxDimensions);
+            height = Math.Min(height, blitMaxDimensions);
+        }
+        return (width, height);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static RenderTexture BlitToRenderTexture(Texture2D tex, int w, int h)
+    {
+        RenderTexture rt = RenderTexture.GetTemporary(w, h, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Default, 1);
+        rt.filterMode = FilterMode.Point;
+        Graphics.Blit(tex, rt);
+        return rt;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color[] ConvertToColors(NativeArray<Color32> raw)
+    {
+        Color[] colors = new Color[raw.Length];
+        for (int i = 0; i < raw.Length; i++)
+        {
+            colors[i] = new Color(raw[i].r / 255f, raw[i].g / 255f, raw[i].b / 255f, raw[i].a / 255f);
+        }
+        return colors;
+    }
+
     public static Texture2D BlitCrop(this Texture2D texture, Rect blitRect)
     {
-        return texture.Blit(blitRect, new int[] { texture.width, texture.height });
+        return texture.Blit(blitRect, new[] { texture.width, texture.height });
     }
     #endregion
 
@@ -481,7 +510,7 @@ public static class CE_Utility
         Building edifice = pawn.Position.GetEdifice(pawn.Map);
         if (edifice != null)
         {
-            movePerTick += (int)edifice.PathWalkCostFor(pawn);
+            movePerTick += edifice.PathWalkCostFor(pawn);
         }
 
         //Case switch to handle walking, jogging, etc.
@@ -525,7 +554,7 @@ public static class CE_Utility
 
     public static float DistanceBetweenTiles(int firstTile, int endTile, int maxCells = 500)
     {
-        return Find.WorldGrid.TraversalDistanceBetween(firstTile, endTile, true, maxDist: maxCells);
+        return Find.WorldGrid.TraversalDistanceBetween(firstTile, endTile, maxDist: maxCells);
     }
 
     public static IntVec3 ExitCell(this Ray ray, Map map)
@@ -823,7 +852,7 @@ public static class CE_Utility
 
 
         creationData.rotation = (flip ? shotRotation + 90 : shotRotation + 90) + Rand.Range(-3f, 4f);
-        creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
+        creationData.rotationRate = Rand.Range(-150, 150) / recoilAmount;
 
 
         float casingAngleOffset = 0;
@@ -879,7 +908,7 @@ public static class CE_Utility
         float makeFilthChance = Rand.Range(0f, 1f);
         if (makeFilthChance > 0.9f && position.Walkable(map))
         {
-            FilthMaker.TryMakeFilth(position, map, casingFilthDef, 1, FilthSourceFlags.None);
+            FilthMaker.TryMakeFilth(position, map, casingFilthDef);
         }
         Rand.PopState();
     }
@@ -1044,13 +1073,13 @@ public static class CE_Utility
             if (!catchOutbound || lp2sq < radSq) // Case 1 or 2
             {
 #if DEBUG
-                Message($"Case 1 or 2");
+                Message("Case 1 or 2");
 #endif
                 return false;
             }
             // Case 3
 #if DEBUG
-            Message($"Case 3");
+            Message("Case 3");
 #endif
             displacement = (lp2 - lp1);
             displacementSq = displacement.sqrMagnitude;
@@ -1058,14 +1087,14 @@ public static class CE_Utility
         else // case 4 or 5
         {
 #if DEBUG
-            Message($"Case 4 or 5");
+            Message("Case 4 or 5");
 #endif
             displacement = (lp2 - lp1);
             displacementSq = displacement.sqrMagnitude;
             if (lp2sq > radSq) // case 5
             {
 #if DEBUG
-                Message($"Case 5");
+                Message("Case 5");
 #endif
                 float length = Mathf.Sqrt(displacementSq);
                 // direction vector is a unit vector along the flight path
@@ -1078,7 +1107,7 @@ public static class CE_Utility
                 if (projectionDistance <= 0 || projectionDistance >= length) // One of the ends is closest, and both are outside, so we didn't cross
                 {
 #if DEBUG
-                    Log.Message($"Endpoint is closest");
+                    Log.Message("Endpoint is closest");
 #endif
                     return false;
                 }
@@ -1138,7 +1167,7 @@ public static class CE_Utility
         }
 
         Vector2 factors;
-        if (Compatibility.Patches.GetCollisionBodyFactors(pawn, out factors))
+        if (Patches.GetCollisionBodyFactors(pawn, out factors))
         {
             return factors;
         }
@@ -1162,7 +1191,7 @@ public static class CE_Utility
 
             if (shape == CE_BodyShapeDefOf.Invalid)
             {
-                Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(), 35000198 + pawn.GetHashCode());
+                Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn, 35000198 + pawn.GetHashCode());
             }
 
             factors.x *= shape.widthLaying / shape.width;
@@ -1421,7 +1450,7 @@ public static class CE_Utility
                                             float shotSpeed)
     {
         projectileDef = projectileDef.GetProjectile();
-        ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(projectileDef, null);
+        ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(projectileDef);
         GenSpawn.Spawn(projectile, shooter.Position, shooter.Map);
 
         projectile.ExactPosition = origin;
@@ -1452,12 +1481,12 @@ public static class CE_Utility
         if (thingDef is AmmoDef ammoDef)
         {
             ThingDef user;
-            if ((user = ammoDef.Users.FirstOrFallback(null)) != null)
+            if ((user = ammoDef.Users.FirstOrFallback()) != null)
             {
                 CompProperties_AmmoUser props = user.GetCompProperties<CompProperties_AmmoUser>();
                 AmmoSetDef asd = props.ammoSet;
                 AmmoLink ammoLink;
-                if ((ammoLink = asd.ammoTypes.FirstOrFallback(null)) != null)
+                if ((ammoLink = asd.ammoTypes.FirstOrFallback()) != null)
                 {
                     return ammoLink.projectile;
                 }
@@ -1501,7 +1530,7 @@ public static class CE_Utility
             return;
         }
 
-        Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, parent), pawn, null);
+        Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, parent), pawn);
         hediff_Injury.Part = parent;
         hediff_Injury.sourceDef = dinfo.Weapon;
         hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
@@ -1524,7 +1553,7 @@ public static class CE_Utility
         }
         Log.Warning($"CE: Couldn't find world pawns for faction {faction}. CE had to create a new one..");
         _validPawnKinds.Clear();
-        foreach (PawnGroupMaker group in capableOfCombat ? faction.def.pawnGroupMakers.Where((PawnGroupMaker x) => x.kindDef == PawnGroupKindDefOf.Combat) : faction.def.pawnGroupMakers)
+        foreach (PawnGroupMaker group in capableOfCombat ? faction.def.pawnGroupMakers.Where(x => x.kindDef == PawnGroupKindDefOf.Combat) : faction.def.pawnGroupMakers)
         {
             foreach (PawnGenOption option in group.options)
             {
@@ -1606,7 +1635,7 @@ public static class CE_Utility
         {
             projectileDef = projectileDef.GetProjectile();
         }
-        var p = ThingMaker.MakeThing(projectileDef, null);
+        var p = ThingMaker.MakeThing(projectileDef);
         ProjectileCE projectile = (ProjectileCE)p;
         GenSpawn.Spawn(projectile, launcher.Position, launcher.Map);
         projectile.ExactPosition = origin;
@@ -1738,7 +1767,7 @@ public static class CE_Utility
             if (allDefsListForReading[i].IsIngredient(thingDef))
             {
                 HediffDef hediffDef = allDefsListForReading[i].addsHediff;
-                HediffCompProperties_VerbGiver hediffCompProperties_VerbGiver = hediffDef?.comps?.FirstOrDefault((HediffCompProperties x) => x is HediffCompProperties_VerbGiver) as HediffCompProperties_VerbGiver;
+                HediffCompProperties_VerbGiver hediffCompProperties_VerbGiver = hediffDef?.comps?.FirstOrDefault(x => x is HediffCompProperties_VerbGiver) as HediffCompProperties_VerbGiver;
                 if (hediffCompProperties_VerbGiver != null && !hediffCompProperties_VerbGiver.tools.NullOrEmpty() && hediffCompProperties_VerbGiver.tools.All(t => t is ToolCE))
                 {
                     techHediffTools = hediffCompProperties_VerbGiver.tools.ToList();

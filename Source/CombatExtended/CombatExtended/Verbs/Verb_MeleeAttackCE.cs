@@ -566,10 +566,11 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         {
             return 1f;
         }
+
+        float chance = CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
+
         if (CasterPawn.skills != null)
         {
-            float chance = CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
-
             if (ModsConfig.IdeologyActive && target.HasThing)
             {
                 if (DarknessCombatUtility.IsOutdoorsAndLit(target.Thing))
@@ -604,10 +605,9 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                     chance *= 0.7f;
                     break;
             }
-
-            return chance;
         }
-        return DefaultHitChance;
+
+        return chance;
     }
 
     private float GetDodgeChance(Pawn defender)

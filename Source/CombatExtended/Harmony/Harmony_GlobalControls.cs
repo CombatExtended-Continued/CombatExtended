@@ -20,7 +20,7 @@ internal static class Harmony_GlobalControls
         if (cachedMap != Find.CurrentMap)
         {
             cachedMap = Find.CurrentMap;
-            weatherTracker = cachedMap.GetComponent<WeatherTracker>();
+            weatherTracker = cachedMap?.GetComponent<WeatherTracker>();
         }
 
         weatherTracker?.DoWindGUI(offsetXFromOriginalMethod + magicExtraOffset, ref curBaseY);

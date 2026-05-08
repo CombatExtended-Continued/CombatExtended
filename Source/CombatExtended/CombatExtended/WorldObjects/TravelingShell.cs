@@ -44,6 +44,7 @@ public class TravelingShell : TravelingThing
     {
         get => GenWorldUI.WorldToUIPosition(Start).x > GenWorldUI.WorldToUIPosition(End).x;
     }
+    public bool IsInstant => (shellDef.projectile as ProjectilePropertiesCE).isInstant;
 
     public override float ExpandingIconRotation
     {
@@ -124,12 +125,8 @@ public class TravelingShell : TravelingThing
             Ray ray = new Ray(targetCell.ToVector3(), -1 * direction);
             Bounds mapBounds = new Bounds((mapSize / 2f).Yto0(), mapSize);
             mapBounds.IntersectRay(ray, out float distanceToEdge);
-            IntVec3 sourceCell = ray.GetPoint(distanceToEdge * 0.75f).ToIntVec3();
-            LaunchProjectile(
-                sourceCell,
-                targetCell,
-                map: map,
-                shotSpeed: 55f);
+            IntVec3 sourceCell = ray.GetPoint(distanceToEdge * (IsInstant ? 1f : 0.75f)).ToIntVec3(); // Instant shells should start at the edge of the map
+            LaunchProjectile(sourceCell, targetCell, map);
         }
         WorldObjects.HostilityComp hostility = worldObject.GetComponent<WorldObjects.HostilityComp>();
         WorldObjects.HealthComp healthComp = worldObject.GetComponent<WorldObjects.HealthComp>();
@@ -148,7 +145,7 @@ public class TravelingShell : TravelingThing
         return shelled;
     }
 
-    private void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 200)
+    protected virtual void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 200)
     {
         Vector3 source = new Vector3(sourceCell.x, shotHeight, sourceCell.z);
         Vector3 targetPos = target.Cell.ToVector3Shifted();

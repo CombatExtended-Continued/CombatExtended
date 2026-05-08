@@ -163,9 +163,13 @@ public class Verb_ShootMortarCE : Verb_ShootCE
             return false;
         }
         bool instant = false;
+        float spreadDegrees = 0;
+        float aperatureSize = 0;
         if (Projectile.projectile is ProjectilePropertiesCE pprop)
         {
             instant = pprop.isInstant;
+            spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * pprop.spreadMult;
+            aperatureSize = 0.03f;
         }
 
         ShiftVecReport reportGlobal = ShiftVecReportFor(globalTargetInfo);
@@ -180,6 +184,7 @@ public class Verb_ShootMortarCE : Verb_ShootCE
             ShiftTarget(report, pelletMechanicsOnly, instant);
 
             float shotSpeed = ShotSpeed * 5;
+            var intendedTarget = globalTargetInfo.Thing ?? currentTarget;
             //The projectile shouldn't care about the target thing
             projectile.globalTargetInfo = new GlobalTargetInfo();
             projectile.globalTargetInfo.cellInt = shiftedGlobalCell;
@@ -191,15 +196,31 @@ public class Verb_ShootMortarCE : Verb_ShootCE
             projectile.globalSourceInfo = globalSourceInfo;
             projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
             projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-            projectile.Launch(
-                                Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
-                                sourceLoc,
-                                shotAngle,
-                                shotRotation,
-                                ShotHeight,
-                                shotSpeed,
-                                EquipmentSource);
-            pelletMechanicsOnly = true;
+
+            if (instant)
+            {
+                projectile.RayCastWorldTarget(
+                    Shooter,
+                    this,
+                    sourceLoc,
+                    shotAngle,
+                    ShotHeight,
+                    ShotSpeed,
+                    spreadDegrees,
+                    aperatureSize,
+                    EquipmentSource);
+            }
+            else
+            {
+                projectile.Launch(
+                    Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                    sourceLoc,
+                    shotAngle,
+                    shotRotation,
+                    ShotHeight,
+                    shotSpeed,
+                    EquipmentSource);
+            }
         }
 
         /*

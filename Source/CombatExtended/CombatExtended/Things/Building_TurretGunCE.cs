@@ -153,7 +153,7 @@ public class Building_TurretGunCE : Building_Turret
             return compFireModes;
         }
     }
-    private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
+    private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)Projectile?.projectile;
     public float MaxWorldRange => ProjectileProps?.shellingProps.range ?? -1f;
     public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
     public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
@@ -740,7 +740,7 @@ public class Building_TurretGunCE : Building_Turret
                 yield return com;
             }
         }
-        if (IsMortar && Active && Faction.IsPlayerSafe() && (compAmmo?.UseAmmo ?? false) && ProjectileProps?.shellingProps != null)
+        if (IsMortar && Active && Faction.IsPlayerSafe() && ProjectileProps?.shellingProps != null)
         {
             Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
             {

@@ -131,6 +131,22 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
 
     public override ThingDef Projectile => CompAmmo?.CurrentAmmo != null ? CompAmmo.CurAmmoProjectile : base.Projectile;
 
+    public override float ShotHeight
+    {
+        get
+        {
+            if (projectilePropsCE.isInstant && projectilePropsCE.flyOverhead)
+            {
+                // - Set the height to be above roofs as a instant projectile with flyOverhead should bypass roofs. Think big lasers for example.
+                // - Equivelant to 7m
+                // - Use for VGE patch
+                // - see also CombatExtended.Compatibility.SOS2Compat.Verb_ShootShip_CE.ShotHeight
+                return 4f;
+            }
+            return base.ShotHeight;
+        }
+    }
+
     #endregion
 
     #region Methods
