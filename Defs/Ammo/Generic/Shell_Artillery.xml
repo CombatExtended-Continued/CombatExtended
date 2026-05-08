@@ -21,6 +21,7 @@
 			<Ammo_ArtilleryShell_Incendiary>Bullet_155mmHowitzerShell_Incendiary</Ammo_ArtilleryShell_Incendiary>
 			<Ammo_ArtilleryShell_EMP>Bullet_155mmHowitzerShell_EMP</Ammo_ArtilleryShell_EMP>
 			<Ammo_ArtilleryShell_Smoke>Bullet_155mmHowitzerShell_Smoke</Ammo_ArtilleryShell_Smoke>
+			<Ammo_ArtilleryShell_Anti>Bullet_155mmHowitzerShell_Anti</Ammo_ArtilleryShell_Anti>
 		</ammoTypes>
 		<isMortarAmmoSet>true</isMortarAmmoSet>
 	</CombatExtended.AmmoSetDef>
@@ -101,6 +102,45 @@
 		<ammoClass>Smoke</ammoClass>
 		<spawnAsSiegeAmmo>false</spawnAsSiegeAmmo>
 		<detonateProjectile>Bullet_155mmHowitzerShell_Smoke</detonateProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HeavyMortarShellBase">
+		<defName>Ammo_ArtilleryShell_Anti</defName>
+		<label>artillery shell (Anti)</label>
+		<description>An ultra-tech artillery warhead packed with two grains of antimatter.</description>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/ANTI</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2100</MarketValue>
+			<Mass>24</Mass>
+			<Bulk>31.8</Bulk>
+		</statBases>
+		<thingSetMakerTags>
+			<li>RewardStandardCore</li>
+		</thingSetMakerTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade_Sellable</li>
+		</tradeTags>
+		<ammoClass>Antigrain</ammoClass>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>18.9</explosiveRadius>
+				<!-- One thirds of its projectile damage for cook-off -->
+				<damageAmountBase>436</damageAmountBase>
+				<explosiveDamageType>BombSuper</explosiveDamageType>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<chanceToStartFire>0.22</chanceToStartFire>
+				<damageFalloff>true</damageFalloff>
+				<explosionEffect>GiantExplosion</explosionEffect>
+				<explosionSound>Explosion_GiantBomb</explosionSound>
+				<preExplosionSpawnSingleThingDef>CraterMedium</preExplosionSpawnSingleThingDef>
+				<wickTicks>60~120</wickTicks>
+				<explodeOnKilled>True</explodeOnKilled>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
