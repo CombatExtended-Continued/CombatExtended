@@ -18,12 +18,12 @@
 
 <!-- === Remove EMP as Primary damage type === -->
 <Operation Class="PatchOperationRemove">
-  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/damageDef</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/projectile/damageDef</xpath>
 </Operation>
 
 <!-- === Change Base Damage === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/damageAmountBase</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/projectile/damageAmountBase</xpath>
   <value>
     <damageAmountBase>17</damageAmountBase>
   </value>
@@ -31,19 +31,20 @@
 
 <!-- === Insert EMP damage as Secondary damage === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <secondaryDamage>
 				<li>
 					<def>EMP</def>
 					<amount>19</amount>
 				</li>
+    <secondaryDamage>
   </value>
 </Operation>
 
 <!-- === Change Sharp Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <armorPenetrationSharp>4</armorPenetrationSharp>
   </value>
@@ -51,7 +52,7 @@
 
 <!-- === Change Blunt Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/armorPenetrationBlunt</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/projectile/armorPenetrationBlunt</xpath>
   <value>
     <armorPenetrationBlunt>64.5</armorPenetrationBlunt>
   </value>
@@ -59,7 +60,7 @@
 
 <!-- === Add recoil multiplier === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/casingMoteDefname</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_10Gauge_ElectroSlug"]/projectile/casingMoteDefname</xpath>
   <value>
     <recoilMultiplier>1.33</recoilMultiplier>
   </value>
@@ -102,12 +103,12 @@
 
 <!-- === Remove EMP as Primary damage type === -->
 <Operation Class="PatchOperationRemove">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/damageDef</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/projectile/damageDef</xpath>
 </Operation>
 
 <!-- === Change Base Damage === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/damageAmountBase</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/projectile/damageAmountBase</xpath>
   <value>
     <damageAmountBase>14</damageAmountBase>
   </value>
@@ -115,20 +116,21 @@
 
 <!-- === Insert EMP damage as Secondary damage === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <secondaryDamage>
 				<li>
 					<def>EMP</def>
 					<amount>12</amount>
 				</li>
+    <secondaryDamage>
   </value>
 </Operation>
 
 
 <!-- === Change Sharp Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <armorPenetrationSharp>4</armorPenetrationSharp>
   </value>
@@ -136,7 +138,7 @@
 
 <!-- === Change Blunt Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/armorPenetrationBlunt</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/projectile/armorPenetrationBlunt</xpath>
   <value>
     <armorPenetrationBlunt>42.6</armorPenetrationBlunt>
   </value>
@@ -144,7 +146,7 @@
 
 <!-- === Add recoil multiplier === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/casingMoteDefname</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug"]/projectile/casingMoteDefname</xpath>
   <value>
     <recoilMultiplier>1.33</recoilMultiplier>
   </value>
@@ -184,12 +186,12 @@
 
 <!-- === Remove EMP as Primary damage type === -->
 <Operation Class="PatchOperationRemove">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/damageDef</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/projectile/damageDef</xpath>
 </Operation>
 
 <!-- === Change Base Damage === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/damageAmountBase</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/projectile/damageAmountBase</xpath>
   <value>
     <damageAmountBase>13</damageAmountBase>
   </value>
@@ -197,19 +199,20 @@
 
 <!-- === Insert EMP damage as Secondary damage === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <secondaryDamage>
 				<li>
 					<def>EMP</def>
 					<amount>12</amount>
 				</li>
+    <secondaryDamage>
   </value>
 </Operation>
 
 <!-- === Change Sharp Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <armorPenetrationSharp>3.5</armorPenetrationSharp>
   </value>
@@ -217,7 +220,7 @@
 
 <!-- === Change Blunt Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/armorPenetrationBlunt</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/projectile/armorPenetrationBlunt</xpath>
   <value>
     <armorPenetrationBlunt>35.38</armorPenetrationBlunt>
   </value>
@@ -225,7 +228,7 @@
 
 <!-- === Add recoil multiplier === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/casingMoteDefname</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_12Gauge_ElectroSlug_SB"]/projectile/casingMoteDefname</xpath>
   <value>
     <recoilMultiplier>1.33</recoilMultiplier>
   </value>
@@ -265,12 +268,12 @@
 
 <!-- === Remove EMP as Primary damage type === -->
 <Operation Class="PatchOperationRemove">
-  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/damageDef</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/projectile/damageDef</xpath>
 </Operation>
 
 <!-- === Change Base Damage === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/damageAmountBase</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/projectile/damageAmountBase</xpath>
   <value>
     <damageAmountBase>12</damageAmountBase>
   </value>
@@ -278,19 +281,20 @@
 
 <!-- === Insert EMP damage as Secondary damage === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <secondaryDamage>
 				<li>
 					<def>EMP</def>
 					<amount>11</amount>
 				</li>
+    <secondaryDamage>
   </value>
 </Operation>
 
 <!-- === Change Sharp Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <armorPenetrationSharp>3.5</armorPenetrationSharp>
   </value>
@@ -298,7 +302,7 @@
 
 <!-- === Change Blunt Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/armorPenetrationBlunt</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/projectile/armorPenetrationBlunt</xpath>
   <value>
     <armorPenetrationBlunt>27.01</armorPenetrationBlunt>
   </value>
@@ -306,7 +310,7 @@
 
 <!-- === Add recoil multiplier === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/casingMoteDefname</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_16Gauge_ElectroSlug"]/projectile/casingMoteDefname</xpath>
   <value>
     <recoilMultiplier>1.33</recoilMultiplier>
   </value>
@@ -346,12 +350,12 @@
 
 <!-- === Remove EMP as Primary damage type === -->
 <Operation Class="PatchOperationRemove">
-  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/damageDef</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/projectile/damageDef</xpath>
 </Operation>
 
 <!-- === Change Base Damage === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/damageAmountBase</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/projectile/damageAmountBase</xpath>
   <value>
     <damageAmountBase>11</damageAmountBase>
   </value>
@@ -359,19 +363,20 @@
 
 <!-- === Insert EMP damage as Secondary damage === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <secondaryDamage>
 				<li>
 					<def>EMP</def>
 					<amount>9</amount>
 				</li>
+    <secondaryDamage>
   </value>
 </Operation>
 
 <!-- === Change Sharp Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <armorPenetrationSharp>2</armorPenetrationSharp>
   </value>
@@ -379,7 +384,7 @@
 
 <!-- === Change Blunt Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/armorPenetrationBlunt</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/projectile/armorPenetrationBlunt</xpath>
   <value>
     <armorPenetrationBlunt>20.57</armorPenetrationBlunt>
   </value>
@@ -387,7 +392,7 @@
 
 <!-- === Add recoil multiplier === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/casingMoteDefname</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_20Gauge_ElectroSlug"]/projectile/casingMoteDefname</xpath>
   <value>
     <recoilMultiplier>1.33</recoilMultiplier>
   </value>
@@ -427,12 +432,12 @@
 
 <!-- === Remove EMP as Primary damage type === -->
 <Operation Class="PatchOperationRemove">
-  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/damageDef</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/projectile/damageDef</xpath>
 </Operation>
 
 <!-- === Change Base Damage === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/damageAmountBase</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/projectile/damageAmountBase</xpath>
   <value>
     <damageAmountBase>19</damageAmountBase>
   </value>
@@ -440,19 +445,20 @@
 
 <!-- === Insert EMP damage as Secondary damage === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <secondaryDamage>
 				<li>
 					<def>EMP</def>
 					<amount>29</amount>
 				</li>
+    <secondaryDamage>
   </value>
 </Operation>
 
 <!-- === Change Sharp Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <armorPenetrationSharp>5</armorPenetrationSharp>
   </value>
@@ -460,7 +466,7 @@
 
 <!-- === Change Blunt Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/armorPenetrationBlunt</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/projectile/armorPenetrationBlunt</xpath>
   <value>
     <armorPenetrationBlunt>81.25</armorPenetrationBlunt>
   </value>
@@ -468,7 +474,7 @@
 
 <!-- === Add recoil multiplier === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/casingMoteDefname</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_23x75mmR_ElectroSlug"]/projectile/casingMoteDefname</xpath>
   <value>
     <recoilMultiplier>1.33</recoilMultiplier>
   </value>
@@ -508,12 +514,12 @@
 
 <!-- === Remove EMP as Primary damage type === -->
 <Operation Class="PatchOperationRemove">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/damageDef</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/projectile/damageDef</xpath>
 </Operation>
 
 <!-- === Change Base Damage === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/damageAmountBase</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/projectile/damageAmountBase</xpath>
   <value>
     <damageAmountBase>8</damageAmountBase>
   </value>
@@ -521,19 +527,20 @@
 
 <!-- === Insert EMP damage as Secondary damage === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <secondaryDamage>
 				<li>
 					<def>EMP</def>
 					<amount>7</amount>
 				</li>
+    <secondaryDamage>
   </value>
 </Operation>
 
 <!-- === Change Sharp Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <armorPenetrationSharp>3</armorPenetrationSharp>
   </value>
@@ -541,7 +548,7 @@
 
 <!-- === Change Blunt Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/armorPenetrationBlunt</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/projectile/armorPenetrationBlunt</xpath>
   <value>
     <armorPenetrationBlunt>10.68</armorPenetrationBlunt>
   </value>
@@ -549,7 +556,7 @@
 
 <!-- === Add recoil multiplier === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/casingMoteDefname</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug"]/projectile/casingMoteDefname</xpath>
   <value>
     <recoilMultiplier>1.33</recoilMultiplier>
   </value>
@@ -589,12 +596,12 @@
 
 <!-- === Remove EMP as Primary damage type === -->
 <Operation Class="PatchOperationRemove">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/damageDef</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/projectile/damageDef</xpath>
 </Operation>
 
 <!-- === Change Base Damage === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/damageAmountBase</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/projectile/damageAmountBase</xpath>
   <value>
     <damageAmountBase>6</damageAmountBase>
   </value>
@@ -602,19 +609,20 @@
 
 <!-- === Insert EMP damage as Secondary damage === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <secondaryDamage>
 				<li>
 					<def>EMP</def>
 					<amount>7</amount>
 				</li>
+    <secondaryDamage>
   </value>
 </Operation>
 
 <!-- === Change Sharp Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/armorPenetrationSharp</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/projectile/armorPenetrationSharp</xpath>
   <value>
     <armorPenetrationSharp>2.1</armorPenetrationSharp>
   </value>
@@ -622,7 +630,7 @@
 
 <!-- === Change Blunt Penetration === -->
 <Operation Class="PatchOperationReplace">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/armorPenetrationBlunt</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/projectile/armorPenetrationBlunt</xpath>
   <value>
     <armorPenetrationBlunt>5.36</armorPenetrationBlunt>
   </value>
@@ -630,7 +638,7 @@
 
 <!-- === Add recoil multiplier === -->
 <Operation Class="PatchOperationInsert">
-  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/casingMoteDefname</xpath>
+  <xpath>Defs/ThingDef[defName="Bullet_410Bore_ElectroSlug_SB"]/projectile/casingMoteDefname</xpath>
   <value>
     <recoilMultiplier>1.33</recoilMultiplier>
   </value>
