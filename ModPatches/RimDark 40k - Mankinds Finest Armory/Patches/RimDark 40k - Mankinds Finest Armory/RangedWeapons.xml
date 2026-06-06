@@ -3,10 +3,11 @@
     <!-- Gun Melee Tools-->
     <Operation Class="PatchOperationReplace">
         <xpath>Defs/ThingDef[
-        defName = "BEWH_AstartesPlasmaPistol" or
-        defName = "BEWH_AstartesBoltPistol" or
-        defName = "BEWH_AstartesBoltPistol_Heavy"
-        ]/tools</xpath>
+        defName="BEWH_AstartesPlasmaPistol" or
+        defName="BEWH_AstartesBoltPistol" or
+        defName="BEWH_AstartesBoltPistol_Heavy"
+        ]/tools
+        </xpath>
         <value>
             <tools>
                 <li Class="CombatExtended.ToolCE">
@@ -35,13 +36,14 @@
     </Operation>
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/ThingDef[
-        defName = "BEWH_AstartesBoltCarbine" or 
-        defName = "BEWH_AstartesBoltCarbine_Oculus" or
-        defName = "BEWH_AstartesBoltRifle_Stalker" or
-        defName = "BEWH_AstartesBoltRifle_Heavy" or
-        defName = "BEWH_AstartesBoltRifle_Sniper" or
-        defName = "BEWH_AstartesPlasmaIncinerator"
-        ]/tools</xpath>
+        defName="BEWH_AstartesBoltCarbine" or 
+        defName="BEWH_AstartesBoltCarbine_Oculus" or
+        defName="BEWH_AstartesBoltRifle_Stalker" or
+        defName="BEWH_AstartesBoltRifle_Heavy" or
+        defName="BEWH_AstartesBoltRifle_Sniper" or
+        defName="BEWH_AstartesPlasmaIncinerator"
+        ]/tools
+        </xpath>
         <value>
             <tools>
                 <li Class="CombatExtended.ToolCE">
@@ -110,7 +112,7 @@
                     <defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
                     <warmupTime>1</warmupTime>
                     <range>44</range>
-                    <burstShotCount>4</burstShotCount>
+                    <burstShotCount>2</burstShotCount>
                     <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
                     <soundCast>BEWH_SFX_BolterShot</soundCast>
                     <soundCastTail>GunTail_Medium</soundCastTail>
@@ -155,7 +157,7 @@
                     <defaultProjectile>Bullet_Bolter75_Standard_Relic</defaultProjectile>
                     <warmupTime>1</warmupTime>
                     <range>52</range>
-                    <burstShotCount>4</burstShotCount>
+                    <burstShotCount>2</burstShotCount>
                     <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
                     <soundCast>BEWH_SFX_BolterShot</soundCast>
                     <soundCastTail>GunTail_Medium</soundCastTail>
@@ -526,6 +528,6 @@
 
     <!--Removes Ammo Changing System-->
     <Operation Class="PatchOperationRemove">
-        <xpath>//li[@Class="Core40k.CompProperties_AmmoChanger" and compClass="Core40k.Comp_AmmoChanger"]</xpath>
+        <xpath>[@Class="Core40k.CompProperties_AmmoChanger" and compClass="Core40k.Comp_AmmoChanger"]</xpath>
     </Operation>
 </Patch>
