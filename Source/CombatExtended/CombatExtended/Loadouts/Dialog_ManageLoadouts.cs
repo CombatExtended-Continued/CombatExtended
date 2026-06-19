@@ -40,7 +40,7 @@ public class Dialog_ManageLoadouts : Window
     _iconMelee = ContentFinder<Texture2D>.Get("UI/Icons/melee"),
     _iconMinified = ContentFinder<Texture2D>.Get("UI/Icons/minified"),
     _iconGeneric = ContentFinder<Texture2D>.Get("UI/Icons/generic"),
-    _iconCustomGroup = ContentFinder<Texture2D>.Get("UI/Icons/cog"),
+    _iconCustomGroup = ContentFinder<Texture2D>.Get("UI/Icons/customGroup"),
     _iconExport = ContentFinder<Texture2D>.Get("UI/Icons/export"),
     _iconAll = ContentFinder<Texture2D>.Get("UI/Icons/all"),
     _iconAmmoAdd = ContentFinder<Texture2D>.Get("UI/Icons/ammoAdd"),
