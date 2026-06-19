@@ -1,4 +1,4 @@
-﻿using RimWorld;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,6 +41,7 @@ public class Dialog_ManageLoadouts : Window
     _iconMinified = ContentFinder<Texture2D>.Get("UI/Icons/minified"),
     _iconGeneric = ContentFinder<Texture2D>.Get("UI/Icons/generic"),
     _iconCustomGroup = ContentFinder<Texture2D>.Get("UI/Icons/cog"),
+    _iconExport = ContentFinder<Texture2D>.Get("UI/Icons/export"),
     _iconAll = ContentFinder<Texture2D>.Get("UI/Icons/all"),
     _iconAmmoAdd = ContentFinder<Texture2D>.Get("UI/Icons/ammoAdd"),
     _iconEditAttachments = ContentFinder<Texture2D>.Get("UI/Icons/gear"),
@@ -75,8 +76,7 @@ public class Dialog_ManageLoadouts : Window
     private bool _editingIsNew;
     private ListLoadoutGenericDef _editingGroup;
     private Def _draggedMember;
-    private List<ThingDef> _editBackupThings;
-    private List<LoadoutGenericDef> _editBackupGroups;
+    private List<Def> _editBackupMembers;
     private string _editBackupLabel;
     private readonly List<ThingDef> _allSuitableDefs;
     private readonly List<LoadoutGenericDef> _allDefsGeneric;
@@ -193,7 +193,7 @@ public class Dialog_ManageLoadouts : Window
             return;
         }
 
-        const int BUTTON_COUNT = 8;
+        const int BUTTON_COUNT = 7;
         float buttonWidth = (canvas.width - _margin * (BUTTON_COUNT - 1)) / BUTTON_COUNT;
 
         // SET UP RECTS
@@ -205,7 +205,6 @@ public class Dialog_ManageLoadouts : Window
         Rect loadRect = new Rect(deleteRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
         Rect saveRect = new Rect(loadRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
         Rect parentRect = new Rect(saveRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
-        Rect newGroupRect = new Rect(parentRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
 
         // main areas
         Rect nameRect = new Rect(
@@ -374,13 +373,6 @@ public class Dialog_ManageLoadouts : Window
             Find.WindowStack.Add(new FloatMenu(options));
         }
 
-
-        // new custom group
-        if (Widgets.ButtonText(newGroupRect, "CE_NewGroup".Translate()))
-        {
-            EnterNewGroup();
-            return;
-        }
 
         // draw notification if no loadout selected
         if (CurrentLoadout == null)
@@ -977,6 +969,23 @@ public class Dialog_ManageLoadouts : Window
 
     private void DrawSlotSelection(Rect canvas)
     {
+        // header for the custom groups tab (loadout view): create, or load-and-add, a group
+        if (_sourceType == SourceSelection.CustomGroup && !_groupEditMode)
+        {
+            float headerButtonWidth = (canvas.width - _margin) / 2f;
+            if (Widgets.ButtonText(new Rect(canvas.x, canvas.y, headerButtonWidth, _padding), "CE_NewGroup".Translate()))
+            {
+                EnterNewGroup();
+                return;
+            }
+            if (Widgets.ButtonText(new Rect(canvas.x + headerButtonWidth + _margin, canvas.y, headerButtonWidth, _padding), "CE_LoadGroup".Translate()))
+            {
+                LoadGroupFromFile();
+                return;
+            }
+            canvas.yMin += _padding + _margin;
+        }
+
         bool generic = IsGenericSource;
         int count = generic ? _sourceGeneric.Count : _source.Count;
         GUI.DrawTexture(canvas, _darkBackground);
@@ -1034,11 +1043,12 @@ public class Dialog_ManageLoadouts : Window
                 GUI.DrawTexture(row, _darkBackground);
             }
 
-            // custom group rows carry inline edit/copy/delete buttons and never act on a loadout's stock
+            // custom group rows carry inline edit/copy/export/delete buttons and never act on a loadout's stock
             if (_sourceType == SourceSelection.CustomGroup && _sourceGeneric[i] is ListLoadoutGenericDef customGroup)
             {
                 Rect deleteRect = new Rect(row.xMax - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
-                Rect copyRect = new Rect(deleteRect.xMin - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
+                Rect exportRect = new Rect(deleteRect.xMin - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
+                Rect copyRect = new Rect(exportRect.xMin - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
                 Rect editRect = new Rect(copyRect.xMin - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
                 labelRect.xMax = editRect.xMin - _margin;
                 clickRect.xMax = editRect.xMin - _margin;
@@ -1056,6 +1066,11 @@ public class Dialog_ManageLoadouts : Window
                     SetSource(SourceSelection.CustomGroup);
                 }
                 TooltipHandler.TipRegion(copyRect, "CE_CopyGroup".Translate());
+                if (Widgets.ButtonImage(exportRect, _iconExport))
+                {
+                    ExportGroup(customGroup);
+                }
+                TooltipHandler.TipRegion(exportRect, "CE_SaveGroup".Translate());
                 if (Widgets.ButtonImage(deleteRect, _iconClear))
                 {
                     ConfirmDeleteGroup(customGroup);
@@ -1075,7 +1090,14 @@ public class Dialog_ManageLoadouts : Window
                 Widgets.DrawHighlightIfMouseover(clickRect);
                 if (Widgets.ButtonInvisible(clickRect))
                 {
-                    OnSourceItemPicked(generic ? (Def)_sourceGeneric[i] : _source[i].thingDef);
+                    if (generic)
+                    {
+                        OnSourceItemPicked(_sourceGeneric[i]);
+                    }
+                    else
+                    {
+                        OnSourceItemPicked(_source[i].thingDef);
+                    }
                 }
             }
             // revert to original color
@@ -1084,38 +1106,47 @@ public class Dialog_ManageLoadouts : Window
         Widgets.EndScrollView();
     }
 
-    // Routes a clicked source item to the editing group (group mode) or the current loadout.
-    private void OnSourceItemPicked(Def def)
+    // Routes a clicked source item to the editing group or the current loadout.
+    private void OnSourceItemPicked(ThingDef def)
     {
         if (_groupEditMode)
         {
-            if (_editingGroup != null && !CustomLoadoutGroupManager.AddMember(_editingGroup, def))
-            {
-                Messages.Message("CE_GroupCycleRejected".Translate(), MessageTypeDefOf.RejectInput, false);
-            }
+            // cyclic nested groups are already greyed out in the picker, so an add here is always valid
+            _editingGroup?.Add(def);
             return;
         }
         if (CurrentLoadout == null)
         {
             return;
         }
-        if (def is LoadoutGenericDef generic)
-        {
-            AddLoadoutSlotGeneric(CurrentLoadout, generic);
-        }
-        else if (def is ThingDef thing)
-        {
-            AddLoadoutSlotSpecific(CurrentLoadout, thing);
-        }
+        AddLoadoutSlotSpecific(CurrentLoadout, def);
     }
 
-    private void EnterNewGroup()
+    // Routes a clicked source item to the editing group or the current loadout.
+    private void OnSourceItemPicked(LoadoutGenericDef def)
+    {
+        if (_groupEditMode)
+        {
+            _editingGroup?.Add(def);
+            return;
+        }
+        if (CurrentLoadout == null)
+        {
+            return;
+        }
+        AddLoadoutSlotGeneric(CurrentLoadout, def);
+    }
+
+    private void EnterNewGroup() => EnterDraft(CustomLoadoutGroupManager.CreateDraft());
+
+    // Opens the editor on an uncommitted draft (a blank New group, or one loaded from a file).
+    private void EnterDraft(ListLoadoutGenericDef draft)
     {
         if (_groupEditMode)
         {
             CommitGroupEdit();
         }
-        _editingGroup = CustomLoadoutGroupManager.CreateDraft();
+        _editingGroup = draft;
         _editingIsNew = true;
         _groupEditMode = true;
         SetSource(SourceSelection.All);
@@ -1129,8 +1160,7 @@ public class Dialog_ManageLoadouts : Window
         }
         _editingGroup = group;
         _editingIsNew = false;
-        _editBackupThings = new List<ThingDef>(group.things);
-        _editBackupGroups = new List<LoadoutGenericDef>(group.groups);
+        _editBackupMembers = new List<Def>(group.members);
         _editBackupLabel = group.label;
         _groupEditMode = true;
         SetSource(SourceSelection.All);
@@ -1146,7 +1176,6 @@ public class Dialog_ManageLoadouts : Window
         else
         {
             InvalidateLabelCap(_editingGroup);
-            CustomLoadoutGroupManager.Save();
         }
         ClearGroupEdit();
     }
@@ -1156,10 +1185,9 @@ public class Dialog_ManageLoadouts : Window
     {
         if (!_editingIsNew && _editingGroup != null)
         {
-            _editingGroup.SetMembers(_editBackupThings, _editBackupGroups);
+            _editingGroup.SetMembers(_editBackupMembers);
             _editingGroup.label = _editBackupLabel;
             InvalidateLabelCap(_editingGroup);
-            CustomLoadoutGroupManager.Save();
         }
         ClearGroupEdit();
     }
@@ -1170,13 +1198,41 @@ public class Dialog_ManageLoadouts : Window
         _editingIsNew = false;
         _editingGroup = null;
         _draggedMember = null;
-        _editBackupThings = null;
-        _editBackupGroups = null;
+        _editBackupMembers = null;
         _editBackupLabel = null;
         SetSource(SourceSelection.Ranged);
     }
 
     private static void InvalidateLabelCap(Def def) => def.cachedLabelCap = "";
+
+    private void ExportGroup(ListLoadoutGenericDef group)
+    {
+        Find.WindowStack.Add(new SaveLoadoutDialog("loadoutgroup", (fileInfo, dialog) =>
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(CustomGroupConfig));
+            using TextWriter writer = new StreamWriter(fileInfo.FullName);
+            serializer.Serialize(writer, CustomLoadoutGroupManager.ToConfig(group));
+            dialog.Close();
+        }, group.label));
+    }
+
+    private void LoadGroupFromFile()
+    {
+        Find.WindowStack.Add(new LoadLoadoutDialog("loadoutgroup", (fileInfo, dialog) =>
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(CustomGroupConfig));
+            using FileStream stream = new FileStream(fileInfo.FullName, FileMode.Open);
+            CustomGroupConfig config = (CustomGroupConfig)serializer.Deserialize(stream);
+            ListLoadoutGenericDef draft = CustomLoadoutGroupManager.CreateDraft();
+            CustomLoadoutGroupManager.ApplyConfig(draft, config, out List<string> unresolved);
+            EnterDraft(draft);
+            if (unresolved.Count > 0)
+            {
+                Messages.Message("CE_MissingGroupMembers".Translate(string.Join(", ", unresolved)), null, MessageTypeDefOf.RejectInput);
+            }
+            dialog.Close();
+        }));
+    }
 
     private void ConfirmDeleteGroup(ListLoadoutGenericDef group)
     {
@@ -1199,7 +1255,7 @@ public class Dialog_ManageLoadouts : Window
         float halfWidth = (canvas.width - _margin) / 2f;
         const float buttonWidth = 70f;
 
-        // title (top-left)
+        // title row (top-left)
         Rect titleRect = new Rect(0f, 0f, halfWidth, _topAreaHeight);
         Text.Anchor = TextAnchor.MiddleLeft;
         Widgets.Label(titleRect, "CE_EditingGroup".Translate());
@@ -1256,12 +1312,10 @@ public class Dialog_ManageLoadouts : Window
     private void DrawGroupMemberList(Rect canvas)
     {
         GUI.DrawTexture(canvas, _darkBackground);
-        // combined display: concrete things first, then nested groups
-        var display = new List<Def>(_editingGroup.things.Count + _editingGroup.groups.Count);
-        display.AddRange(_editingGroup.things);
-        display.AddRange(_editingGroup.groups);
+        List<Def> members = _editingGroup.members;
+        bool canDrag = members.Count > 1;
 
-        int totalRows = display.Count + (_draggedMember != null ? 1 : 0);
+        int totalRows = members.Count + (_draggedMember != null ? 1 : 0);
         Rect viewRect = new Rect(0f, 0f, canvas.width, _rowHeight * totalRows);
         if (viewRect.height > canvas.height)
         {
@@ -1270,10 +1324,9 @@ public class Dialog_ManageLoadouts : Window
 
         Widgets.BeginScrollView(canvas, ref _slotScrollPosition, viewRect);
         float curY = 0f;
-        for (int i = 0; i < display.Count; i++)
+        for (int i = 0; i < members.Count; i++)
         {
-            Def member = display[i];
-            bool canDrag = member is ThingDef ? _editingGroup.things.Count > 1 : _editingGroup.groups.Count > 1;
+            Def member = members[i];
             Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
             curY += _rowHeight;
 
@@ -1309,7 +1362,7 @@ public class Dialog_ManageLoadouts : Window
             GUI.color = Color.white;
         }
 
-        // drop at the bottom moves the member to the end of its section
+        // drop at the bottom moves the member to the end of the list
         if (_draggedMember != null)
         {
             Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
@@ -1320,7 +1373,7 @@ public class Dialog_ManageLoadouts : Window
                 GUI.color = Color.white;
                 if (Input.GetMouseButtonUp(0))
                 {
-                    CustomLoadoutGroupManager.MoveMember(_editingGroup, _draggedMember, display.Count - 1);
+                    CustomLoadoutGroupManager.MoveMember(_editingGroup, _draggedMember, members.Count - 1);
                     _draggedMember = null;
                 }
             }

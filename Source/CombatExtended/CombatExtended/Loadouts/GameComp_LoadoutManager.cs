@@ -35,6 +35,7 @@ public class LoadoutManager : GameComponent
         // there needs to be at least one default tagged loadout at all times
         _loadouts.Add(MakeDefaultLoadout());
         _current = null;    // this ensures the window of valid access is maintained by wiping the old instance.
+        CustomLoadoutGroupManager.Reset();    // a new game starts with no custom groups (a load repopulates them)
     }
     // constructor called on Load Game.  When this gets called there can actually be 2 instances of our Component...
     public LoadoutManager()
@@ -86,6 +87,9 @@ public class LoadoutManager : GameComponent
             PurgeHoldTrackerRolls();
             PurgeLoadoutRolls();
         }
+
+        // Must run before loadouts: registers custom group defs so loadout slots can resolve them by defName.
+        CustomLoadoutGroupManager.ExposeData();
 
         Scribe_Collections.Look(ref _loadouts, "loadouts", LookMode.Deep);
         Scribe_Collections.Look<Pawn, Loadout>(ref _assignedLoadouts, "assignmentLoadouts", LookMode.Reference, LookMode.Reference);

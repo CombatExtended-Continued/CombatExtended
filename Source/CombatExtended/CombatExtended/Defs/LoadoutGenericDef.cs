@@ -156,10 +156,6 @@ public class LoadoutGenericDef : Def
         DefDatabase<LoadoutGenericDef>.Add(defs);
         // fill defsByShortHash for LoadoutGenericDef, used by Multiplayer to quickly lookup defs
         DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
-
-        // Register player-defined custom groups from the global config. Runs after the built-in
-        // generics above so a custom group may nest them.
-        CustomLoadoutGroupManager.LoadAndRegisterAll();
     }
 
     #endregion Constructors

@@ -1,104 +1,100 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Xml.Serialization;
 using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
 /// <summary>
-/// Owns the player-defined custom loadout groups. Groups are global (shared across all saves): they
-/// are persisted to a single config file, registered into <see cref="DefDatabase{LoadoutGenericDef}"/>
-/// at startup, and added/removed live so edits take effect without a restart.
+/// Owns the custom loadout groups for the current game. Groups are stored per-save: their definitions
+/// are scribed by <see cref="LoadoutManager"/> (which registers them before loadout slots resolve) and
+/// rebuilt into <see cref="ListLoadoutGenericDef"/> instances on load. Editing mutates the live defs in
+/// memory; the game save persists them. Groups can also be exported/imported to standalone files.
 /// </summary>
 /// <remarks>
-/// Deletion uses a tombstone rather than removing the def from the database (RimWorld has no public
-/// removal): the def is hidden from <see cref="AllGroups"/> and references are stripped immediately,
-/// and because it is no longer written to the config it is simply not re-registered on next launch.
+/// Registered group defs linger in <see cref="DefDatabase{LoadoutGenericDef}"/> across game loads (RimWorld
+/// has no public def removal), so on load a def with a saved name is reused and overwritten rather than
+/// re-added. Only the groups in <see cref="_current"/> are live for the loaded game.
 /// </remarks>
-[StaticConstructorOnStartup]
 public static class CustomLoadoutGroupManager
 {
-    private const string _fileName = "CombatExtended_CustomLoadoutGroups.xml";
     private const string _defNamePrefix = "CE_CustomGroup_";
 
-    private static readonly HashSet<ListLoadoutGenericDef> _tombstoned = new();
-    private static bool _loaded;
+    private static readonly List<ListLoadoutGenericDef> _current = new();
 
-    private static string ConfigFilePath => Path.Combine(GenFilePaths.ConfigFolderPath, _fileName);
+    /// <summary>All custom groups in the current game.</summary>
+    public static IReadOnlyList<ListLoadoutGenericDef> AllGroups => _current;
 
-    /// <summary>All live (non-deleted) custom groups currently registered.</summary>
-    public static IEnumerable<ListLoadoutGenericDef> AllGroups =>
-        DefDatabase<LoadoutGenericDef>.AllDefs.OfType<ListLoadoutGenericDef>().Where(g => !_tombstoned.Contains(g));
+    /// <summary>Clears the current game's groups (called when a game is started or loaded).</summary>
+    public static void Reset() => _current.Clear();
 
-    #region Startup registration
+    #region Save/load (per-game)
 
     /// <summary>
-    /// Reads the global config and registers every custom group as a <see cref="ListLoadoutGenericDef"/>.
-    /// Called once from <see cref="LoadoutGenericDef"/>'s static constructor, after the built-in generics
-    /// exist so groups may nest them.
+    /// Scribes the groups. Called from <see cref="LoadoutManager.ExposeData"/> before the loadouts, so the
+    /// group defs are registered in time for loadout slots to resolve them by defName.
     /// </summary>
-    public static void LoadAndRegisterAll()
+    public static void ExposeData()
     {
-        if (_loaded)
+        List<CustomGroupConfig> configs = Scribe.mode == LoadSaveMode.Saving ? _current.Select(ToConfig).ToList() : null;
+        Scribe_Collections.Look(ref configs, "customLoadoutGroups", LookMode.Deep);
+        if (Scribe.mode == LoadSaveMode.LoadingVars)
         {
-            return;
-        }
-        _loaded = true;
-        try
-        {
-            CustomGroupConfig[] configs = ReadConfig().groups;
-            if (configs.NullOrEmpty())
-            {
-                return;
-            }
-
-            HashSet<ushort> takenHashes = SeedTakenHashes();
-            var byDefName = new Dictionary<string, CustomGroupConfig>();
-            var created = new List<ListLoadoutGenericDef>();
-
-            // Pass 1: create + register empty defs so nested references resolve regardless of file order.
-            foreach (CustomGroupConfig cfg in configs)
-            {
-                if (cfg.defName.NullOrEmpty() || byDefName.ContainsKey(cfg.defName)
-                    || DefDatabase<LoadoutGenericDef>.GetNamedSilentFail(cfg.defName) != null)
-                {
-                    continue;
-                }
-                byDefName[cfg.defName] = cfg;
-                var def = new ListLoadoutGenericDef
-                {
-                    defName = cfg.defName,
-                    label = cfg.label,
-                    defaultCount = cfg.defaultCount,
-                    defaultCountType = cfg.defaultCountType,
-                };
-                RegisterDef(def, takenHashes);
-                created.Add(def);
-            }
-            DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
-
-            // Pass 2: resolve members now that all group defs are present.
-            foreach (ListLoadoutGenericDef def in created)
-            {
-                PopulateMembers(def, byDefName[def.defName]);
-                def.RebuildLambda();
-            }
-        }
-        catch (Exception e)
-        {
-            Log.Error($"Combat Extended :: Failed to load custom loadout groups: {e}");
+            Reset();
+            RegisterFromConfigs(configs ?? new List<CustomGroupConfig>());
         }
     }
 
-    #endregion Startup registration
+    private static void RegisterFromConfigs(List<CustomGroupConfig> configs)
+    {
+        HashSet<ushort> takenHashes = SeedTakenHashes();
+        var byDefName = new Dictionary<string, CustomGroupConfig>();
+        // pass 1: ensure a registered def exists for each group (reusing a lingering one by defName)
+        foreach (CustomGroupConfig cfg in configs)
+        {
+            if (cfg.defName.NullOrEmpty() || byDefName.ContainsKey(cfg.defName))
+            {
+                continue;
+            }
+            byDefName[cfg.defName] = cfg;
+            _current.Add(GetOrCreateDef(cfg, takenHashes));
+        }
+        DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
+        // pass 2: resolve members now that every group def exists
+        foreach (ListLoadoutGenericDef def in _current)
+        {
+            PopulateMembers(def, byDefName[def.defName]);
+        }
+    }
 
-    #region Mutations (hot)
+    private static ListLoadoutGenericDef GetOrCreateDef(CustomGroupConfig cfg, HashSet<ushort> takenHashes)
+    {
+        // a def with this name may linger from a previously-loaded game this session; reuse and overwrite it
+        if (DefDatabase<LoadoutGenericDef>.GetNamedSilentFail(cfg.defName) is ListLoadoutGenericDef existing)
+        {
+            existing.label = cfg.label;
+            existing.defaultCount = cfg.defaultCount;
+            existing.defaultCountType = cfg.defaultCountType;
+            existing.cachedLabelCap = "";
+            return existing;
+        }
+        var def = new ListLoadoutGenericDef
+        {
+            defName = cfg.defName,
+            label = cfg.label,
+            defaultCount = cfg.defaultCount,
+            defaultCountType = cfg.defaultCountType,
+        };
+        RegisterDef(def, takenHashes);
+        return def;
+    }
+
+    #endregion Save/load (per-game)
+
+    #region Mutations
 
     /// <summary>
-    /// Creates an unregistered draft group for the editor. It is not added to the database or config
-    /// until <see cref="Commit"/> is called, so it stays invisible (and unsaved) until the user confirms.
+    /// Creates an unregistered draft group for the editor. It is added to the game only by
+    /// <see cref="Commit"/>, so it stays invisible until the user confirms.
     /// </summary>
     public static ListLoadoutGenericDef CreateDraft() => new()
     {
@@ -107,14 +103,14 @@ public static class CustomLoadoutGroupManager
         defaultCountType = LoadoutCountType.pickupDrop,
     };
 
-    /// <summary>Registers a draft from <see cref="CreateDraft"/> into the database and persists it.</summary>
+    /// <summary>Registers a draft from <see cref="CreateDraft"/> into the current game.</summary>
     public static void Commit(ListLoadoutGenericDef draft)
     {
         draft.defName = NewUniqueDefName();
         RegisterDef(draft, SeedTakenHashes());
         DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
         draft.RebuildLambda();
-        SaveAll();
+        _current.Add(draft);
     }
 
     public static ListLoadoutGenericDef Copy(ListLoadoutGenericDef source)
@@ -126,20 +122,19 @@ public static class CustomLoadoutGroupManager
             defaultCount = source.defaultCount,
             defaultCountType = source.defaultCountType,
         };
-        def.SetMembers(source.things, source.groups);
+        def.SetMembers(source.members);
         RegisterDef(def, SeedTakenHashes());
         DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
-        SaveAll();
+        _current.Add(def);
         return def;
     }
 
     public static void Delete(ListLoadoutGenericDef group)
     {
-        _tombstoned.Add(group);
-
-        foreach (ListLoadoutGenericDef other in AllGroups)
+        _current.Remove(group);
+        foreach (ListLoadoutGenericDef other in _current)
         {
-            other.RemoveGroup(group);
+            other.Remove(group);
         }
         if (LoadoutManager.Loadouts != null)
         {
@@ -148,78 +143,24 @@ public static class CustomLoadoutGroupManager
                 loadout.OwnSlots.RemoveAll(s => s.genericDef == group);
             }
         }
-        SaveAll();
     }
-
-    public static void Rename(ListLoadoutGenericDef group, string label)
-    {
-        group.label = label;
-        SaveAll();
-    }
-
-    /// <summary>Persists the current set of groups to the global config file.</summary>
-    public static void Save() => SaveAll();
 
     /// <summary>Adds a member (thing or nested group). Returns false (without modifying) if it would cycle.</summary>
     public static bool AddMember(ListLoadoutGenericDef group, Def member)
     {
-        bool changed;
-        if (member is ThingDef thing)
+        if (member is LoadoutGenericDef nested && WouldCreateCycle(group, nested))
         {
-            changed = group.AddThing(thing);
+            return false;
         }
-        else if (member is LoadoutGenericDef nested)
-        {
-            if (WouldCreateCycle(group, nested))
-            {
-                return false;
-            }
-            changed = group.AddGroup(nested);
-        }
-        else
-        {
-            return true;
-        }
-        if (changed)
-        {
-            SaveAll();
-        }
+        group.Add(member);
         return true;
     }
 
-    public static void RemoveMember(ListLoadoutGenericDef group, Def member)
-    {
-        bool changed = member switch
-        {
-            ThingDef thing => group.RemoveThing(thing),
-            LoadoutGenericDef nested => group.RemoveGroup(nested),
-            _ => false,
-        };
-        if (changed)
-        {
-            SaveAll();
-        }
-    }
+    public static void RemoveMember(ListLoadoutGenericDef group, Def member) => group.Remove(member);
 
-    /// <summary>
-    /// Reorders <paramref name="member"/> within its own list. <paramref name="displayToIndex"/> indexes
-    /// the combined things-then-groups display and is clamped to the member's own section.
-    /// </summary>
-    public static void MoveMember(ListLoadoutGenericDef group, Def member, int displayToIndex)
-    {
-        if (member is ThingDef thing)
-        {
-            int to = Mathf.Clamp(displayToIndex, 0, group.things.Count - 1);
-            group.MoveThing(group.things.IndexOf(thing), to);
-            SaveAll();
-        }
-        else if (member is LoadoutGenericDef nested)
-        {
-            int to = Mathf.Clamp(displayToIndex - group.things.Count, 0, group.groups.Count - 1);
-            group.MoveGroup(group.groups.IndexOf(nested), to);
-            SaveAll();
-        }
-    }
+    /// <summary>Reorders <paramref name="member"/> to <paramref name="toIndex"/> in the member list.</summary>
+    public static void MoveMember(ListLoadoutGenericDef group, Def member, int toIndex) =>
+        group.Move(group.members.IndexOf(member), Mathf.Clamp(toIndex, 0, group.members.Count - 1));
 
     /// <summary>True if nesting <paramref name="candidate"/> into <paramref name="container"/> would cycle.</summary>
     public static bool WouldCreateCycle(ListLoadoutGenericDef container, LoadoutGenericDef candidate) =>
@@ -227,9 +168,50 @@ public static class CustomLoadoutGroupManager
 
     // Graph edges for cycle detection: a list group points at the groups it nests; anything else is a leaf.
     private static IEnumerable<LoadoutGenericDef> NestedGroupsOf(LoadoutGenericDef def) =>
-        def is ListLoadoutGenericDef list ? list.groups : Enumerable.Empty<LoadoutGenericDef>();
+        def is ListLoadoutGenericDef list ? list.NestedGroups : Enumerable.Empty<LoadoutGenericDef>();
 
-    #endregion Mutations (hot)
+    #endregion Mutations
+
+    #region Export / import
+
+    /// <summary>Serializable snapshot of a group, for save scribing and file export.</summary>
+    public static CustomGroupConfig ToConfig(ListLoadoutGenericDef group) => new()
+    {
+        defName = group.defName,
+        label = group.label,
+        defaultCount = group.defaultCount,
+        defaultCountType = group.defaultCountType,
+        members = group.members.Select(m => new CustomGroupMember(m.defName, m is LoadoutGenericDef)).ToList(),
+    };
+
+    /// <summary>
+    /// Loads an imported config's label and members into <paramref name="group"/>, resolving def names
+    /// against the current game. Members that can't be resolved (or would create a cycle) are returned in
+    /// <paramref name="unresolved"/>. The group's own identity (defName) is left unchanged.
+    /// </summary>
+    public static void ApplyConfig(ListLoadoutGenericDef group, CustomGroupConfig cfg, out List<string> unresolved)
+    {
+        unresolved = new List<string>();
+        group.label = cfg.label;
+        group.defaultCount = cfg.defaultCount;
+        group.defaultCountType = cfg.defaultCountType;
+        group.cachedLabelCap = "";
+
+        var resolved = new List<Def>();
+        foreach (CustomGroupMember entry in cfg.members ?? new List<CustomGroupMember>())
+        {
+            Def member = ResolveMember(entry);
+            if (member == null || (member is LoadoutGenericDef nested && (nested == group || WouldCreateCycle(group, nested))))
+            {
+                unresolved.Add(entry?.defName);
+                continue;
+            }
+            resolved.Add(member);
+        }
+        group.SetMembers(resolved);
+    }
+
+    #endregion Export / import
 
     #region Helpers
 
@@ -244,37 +226,34 @@ public static class CustomLoadoutGroupManager
 
     private static void PopulateMembers(ListLoadoutGenericDef def, CustomGroupConfig cfg)
     {
-        var things = new List<ThingDef>();
-        var groups = new List<LoadoutGenericDef>();
-        foreach (string name in cfg.thingDefNames ?? Array.Empty<string>())
+        var resolved = new List<Def>();
+        foreach (CustomGroupMember entry in cfg.members ?? new List<CustomGroupMember>())
         {
-            if (name.NullOrEmpty())
+            if (entry == null || entry.defName.NullOrEmpty())
             {
                 continue;
             }
-            ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail(name);
-            if (thing == null)
+            Def member = ResolveMember(entry);
+            if (member == null)
             {
-                Log.Warning($"Combat Extended :: Custom loadout group '{def.defName}' references missing item '{name}'; dropping it.");
+                Log.Warning($"Combat Extended :: Custom loadout group '{def.defName}' references missing {(entry.isGroup ? "group" : "item")} '{entry.defName}'; dropping it.");
                 continue;
             }
-            things.Add(thing);
+            resolved.Add(member);
         }
-        foreach (string name in cfg.groupDefNames ?? Array.Empty<string>())
+        def.SetMembers(resolved);
+    }
+
+    // Resolves a stored member entry to its live def: groups from the generic database, items from the thing database.
+    private static Def ResolveMember(CustomGroupMember entry)
+    {
+        if (entry == null || entry.defName.NullOrEmpty())
         {
-            if (name.NullOrEmpty())
-            {
-                continue;
-            }
-            LoadoutGenericDef nested = DefDatabase<LoadoutGenericDef>.GetNamedSilentFail(name);
-            if (nested == null)
-            {
-                Log.Warning($"Combat Extended :: Custom loadout group '{def.defName}' references missing group '{name}'; dropping it.");
-                continue;
-            }
-            groups.Add(nested);
+            return null;
         }
-        def.SetMembers(things, groups);
+        return entry.isGroup
+               ? DefDatabase<LoadoutGenericDef>.GetNamedSilentFail(entry.defName)
+               : DefDatabase<ThingDef>.GetNamedSilentFail(entry.defName);
     }
 
     private static HashSet<ushort> SeedTakenHashes() =>
@@ -296,7 +275,7 @@ public static class CustomLoadoutGroupManager
     private static string NewUniqueLabel(string baseLabel = null)
     {
         string root = baseLabel.NullOrEmpty() ? (string)"CE_DefaultGroupLabel".Translate() : baseLabel;
-        var existing = new HashSet<string>(AllGroups.Select(g => g.label));
+        var existing = new HashSet<string>(_current.Select(g => g.label));
         if (!existing.Contains(root))
         {
             return root;
@@ -308,54 +287,6 @@ public static class CustomLoadoutGroupManager
         }
         return $"{root} {n}";
     }
-
-    private static CustomGroupConfigList ReadConfig()
-    {
-        string path = ConfigFilePath;
-        if (!File.Exists(path))
-        {
-            return new CustomGroupConfigList();
-        }
-        try
-        {
-            var serializer = new XmlSerializer(typeof(CustomGroupConfigList));
-            using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            return (CustomGroupConfigList)serializer.Deserialize(stream) ?? new CustomGroupConfigList();
-        }
-        catch (Exception e)
-        {
-            Log.Error($"Combat Extended :: Failed to read custom loadout groups from '{path}': {e}");
-            return new CustomGroupConfigList();
-        }
-    }
-
-    private static void SaveAll()
-    {
-        var list = new CustomGroupConfigList
-        {
-            groups = AllGroups.Select(ToConfig).ToArray(),
-        };
-        try
-        {
-            var serializer = new XmlSerializer(typeof(CustomGroupConfigList));
-            using var writer = new StreamWriter(ConfigFilePath);
-            serializer.Serialize(writer, list);
-        }
-        catch (Exception e)
-        {
-            Log.Error($"Combat Extended :: Failed to save custom loadout groups: {e}");
-        }
-    }
-
-    private static CustomGroupConfig ToConfig(ListLoadoutGenericDef group) => new()
-    {
-        defName = group.defName,
-        label = group.label,
-        defaultCount = group.defaultCount,
-        defaultCountType = group.defaultCountType,
-        thingDefNames = group.things.Select(t => t.defName).ToArray(),
-        groupDefNames = group.groups.Select(g => g.defName).ToArray(),
-    };
 
     #endregion Helpers
 }

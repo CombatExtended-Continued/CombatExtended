@@ -1,89 +1,89 @@
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace CombatExtended;
 /// <summary>
-/// A player-defined <see cref="LoadoutGenericDef"/> whose match set is the union of a list of concrete
-/// <see cref="ThingDef"/>s and a list of nested <see cref="LoadoutGenericDef"/>s (built-in generics or
-/// other custom groups, enabling nesting). Built and registered at runtime by
-/// <see cref="CustomLoadoutGroupManager"/> from the global config.
+/// A player-defined <see cref="LoadoutGenericDef"/> whose match set is an ordered list of members,
+/// each a concrete <see cref="ThingDef"/> or a nested <see cref="LoadoutGenericDef"/> (built-in
+/// generic or another custom group, enabling nesting). Built and registered at runtime by
+/// <see cref="CustomLoadoutGroupManager"/>.
 /// </summary>
 public class ListLoadoutGenericDef : LoadoutGenericDef
 {
-    public List<ThingDef> things = new();
-    public List<LoadoutGenericDef> groups = new();
-    // Mirrors `things` for O(1) membership tests in the match predicate; kept in sync by the mutators.
-    private readonly HashSet<ThingDef> _thingSet = new();
+    // Ordered members; each entry is a ThingDef or a LoadoutGenericDef.
+    public List<Def> members = new();
+    // Mirrors the ThingDef members for O(1) membership tests in the match predicate.
+    private readonly HashSet<string> _thingSet = new();
 
     public ListLoadoutGenericDef()
     {
         _lambda = MatchesAny;
     }
 
-    public bool AddThing(ThingDef thing)
+    /// <summary>Nested groups only (for cycle detection); concrete things are leaves.</summary>
+    public IEnumerable<LoadoutGenericDef> NestedGroups => members.OfType<LoadoutGenericDef>();
+
+    public bool Add(ThingDef member)
     {
-        if (thing == null || !_thingSet.Add(thing))
+        if (_thingSet.Contains(member.defName))
         {
             return false;
         }
-        things.Add(thing);
-        RebuildLambda();
+        members.Add(member);
+        _thingSet.Add(member.defName);
+        InvalidateStatCache();
         return true;
     }
 
-    public bool RemoveThing(ThingDef thing)
+    public bool Add(LoadoutGenericDef member)
     {
-        if (!_thingSet.Remove(thing))
+        if (NestedGroups.Any(g => ReferenceEquals(g, member)))
         {
             return false;
         }
-        things.Remove(thing);
-        RebuildLambda();
+        members.Add(member);
+        InvalidateStatCache();
         return true;
     }
 
-    public bool AddGroup(LoadoutGenericDef group)
+    public bool Remove(Def member)
     {
-        if (group == null || groups.Contains(group))
+        if (!members.Remove(member))
         {
             return false;
         }
-        groups.Add(group);
-        RebuildLambda();
-        return true;
-    }
-
-    public bool RemoveGroup(LoadoutGenericDef group)
-    {
-        if (!groups.Remove(group))
+        if (member is ThingDef thing)
         {
-            return false;
+            _thingSet.Remove(thing.defName);
         }
-        RebuildLambda();
+        InvalidateStatCache();
         return true;
     }
 
     // Reordering does not change the match set, so the lambda/cache stay valid.
-    public void MoveThing(int fromIndex, int toIndex) => Move(things, fromIndex, toIndex);
-
-    public void MoveGroup(int fromIndex, int toIndex) => Move(groups, fromIndex, toIndex);
-
-    /// <summary>Replaces all members at once (config load or edit revert) and resyncs caches.</summary>
-    public void SetMembers(IEnumerable<ThingDef> newThings, IEnumerable<LoadoutGenericDef> newGroups)
+    public void Move(int fromIndex, int toIndex)
     {
-        things.Clear();
-        things.AddRange(newThings);
-        groups.Clear();
-        groups.AddRange(newGroups);
-        _thingSet.Clear();
-        _thingSet.UnionWith(things);
-        RebuildLambda();
+        if (fromIndex < 0 || fromIndex >= members.Count || toIndex < 0 || toIndex >= members.Count || fromIndex == toIndex)
+        {
+            return;
+        }
+        Def def = members[fromIndex];
+        members.RemoveAt(fromIndex);
+        if (fromIndex + 1 < toIndex)
+        {
+            toIndex--;
+        }
+        members.Insert(toIndex, def);
     }
 
-    /// <summary>Re-affirms the match predicate and invalidates cached bulk/mass. Call after editing members.</summary>
-    public void RebuildLambda()
+    /// <summary>Replaces all members at once (config load or edit revert) and resyncs caches.</summary>
+    public void SetMembers(IEnumerable<Def> newMembers)
     {
-        _lambda = MatchesAny;
+        members.Clear();
+        members.AddRange(newMembers);
+        _thingSet.Clear();
+        _thingSet.UnionWith(members.OfType<ThingDef>().Select(d => d.defName));
         InvalidateStatCache();
     }
 
@@ -93,31 +93,17 @@ public class ListLoadoutGenericDef : LoadoutGenericDef
         {
             return false;
         }
-        if (_thingSet.Contains(td))
+        if (_thingSet.Contains(td.defName))
         {
             return true;
         }
-        foreach (var t in groups) {
-            if (t.lambda(td))
+        foreach (Def member in members)
+        {
+            if (member is LoadoutGenericDef g && g.lambda(td))
             {
                 return true;
             }
         }
         return false;
-    }
-
-    private static void Move<T>(List<T> list, int fromIndex, int toIndex)
-    {
-        if (fromIndex < 0 || fromIndex >= list.Count || toIndex < 0 || toIndex >= list.Count || fromIndex == toIndex)
-        {
-            return;
-        }
-        T item = list[fromIndex];
-        list.RemoveAt(fromIndex);
-        if (fromIndex + 1 < toIndex)
-        {
-            toIndex--;
-        }
-        list.Insert(toIndex, item);
     }
 }
