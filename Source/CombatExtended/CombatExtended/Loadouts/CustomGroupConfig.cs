@@ -13,6 +13,7 @@ public class CustomGroupConfig : IExposable
     public string label;
     public int defaultCount = 1;
     public LoadoutCountType defaultCountType = LoadoutCountType.pickupDrop;
+    public bool ordered;
     public List<CustomGroupMember> members = new();
 
     public void ExposeData()
@@ -21,6 +22,7 @@ public class CustomGroupConfig : IExposable
         Scribe_Values.Look(ref label, "label");
         Scribe_Values.Look(ref defaultCount, "defaultCount", 1);
         Scribe_Values.Look(ref defaultCountType, "defaultCountType", LoadoutCountType.pickupDrop);
+        Scribe_Values.Look(ref ordered, "ordered", false);
         Scribe_Collections.Look(ref members, "members", LookMode.Deep);
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {

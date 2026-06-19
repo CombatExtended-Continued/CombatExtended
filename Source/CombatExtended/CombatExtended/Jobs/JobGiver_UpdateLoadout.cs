@@ -190,30 +190,77 @@ public class JobGiver_UpdateLoadout : ThinkNode_JobGiver
     /// <remarks>Was split off into a sepearate method so the code could be run from multiple places in caller but that is no longer needed.</remarks>
     private static void FindPickup(Pawn pawn, LoadoutSlot curSlot, int findCount, out ItemPriority curPriority, out Thing curThing, out Pawn curCarrier)
     {
+        // An ordered custom group acquires its members strictly in list order: only fall back to a later
+        // member once nothing for an earlier one can be found anywhere reachable.
+        if (curSlot.genericDef is ListLoadoutGenericDef { ordered: true } listDef)
+        {
+            curPriority = ItemPriority.None;
+            curThing = null;
+            curCarrier = null;
+            foreach ((ThingRequest req, Predicate<ThingDef> matches) in OrderedMatchers(listDef, new HashSet<ListLoadoutGenericDef>()))
+            {
+                FindPickupMatching(pawn, curSlot, findCount, req, matches, out curPriority, out curThing, out curCarrier);
+                if (curThing != null)
+                {
+                    return;
+                }
+            }
+            return;
+        }
+
+        ThingRequest defaultReq;
+        Predicate<ThingDef> defaultMatch;
+        if (curSlot.genericDef != null)
+        {
+            defaultReq = ThingRequest.ForGroup(curSlot.genericDef.thingRequestGroup);
+            defaultMatch = curSlot.genericDef.lambda;
+        }
+        else
+        {
+            defaultReq = curSlot.thingDef.Minifiable ? ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing) : ThingRequest.ForDef(curSlot.thingDef);
+            defaultMatch = td => td == curSlot.thingDef;
+        }
+        FindPickupMatching(pawn, curSlot, findCount, defaultReq, defaultMatch, out curPriority, out curThing, out curCarrier);
+    }
+
+    // Flattens an ordered group into (request, matcher) pairs in member order. Nested ordered groups are
+    // expanded in place so their own order is honored; built-in generics and unordered groups match as a
+    // single unit via their union lambda. The visited set guards against malformed cyclic nesting.
+    private static IEnumerable<(ThingRequest, Predicate<ThingDef>)> OrderedMatchers(ListLoadoutGenericDef group, HashSet<ListLoadoutGenericDef> visited)
+    {
+        if (!visited.Add(group))
+        {
+            yield break;
+        }
+        foreach (Def member in group.members)
+        {
+            if (member is ListLoadoutGenericDef { ordered: true } sub)
+            {
+                foreach ((ThingRequest, Predicate<ThingDef>) matcher in OrderedMatchers(sub, visited))
+                {
+                    yield return matcher;
+                }
+            }
+            else if (member is LoadoutGenericDef generic)
+            {
+                yield return (ThingRequest.ForGroup(generic.thingRequestGroup), generic.lambda);
+            }
+            else if (member is ThingDef thingDef)
+            {
+                ThingRequest req = thingDef.Minifiable ? ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing) : ThingRequest.ForDef(thingDef);
+                yield return (req, td => td == thingDef);
+            }
+        }
+    }
+
+    private static void FindPickupMatching(Pawn pawn, LoadoutSlot curSlot, int findCount, ThingRequest req, Predicate<ThingDef> matches, out ItemPriority curPriority, out Thing curThing, out Pawn curCarrier)
+    {
         curPriority = ItemPriority.None;
         curThing = null;
         curCarrier = null;
 
         Predicate<Thing> isFoodInPrison = (Thing t) => (t.GetRoom()?.IsPrisonCell ?? false) && t.def.IsNutritionGivingIngestible && pawn.Faction.IsPlayer;
-        // Hint: The following block defines how to find items... pay special attention to the Predicates below.
-        ThingRequest req;
-        if (curSlot.genericDef != null)
-        {
-            req = ThingRequest.ForGroup(curSlot.genericDef.thingRequestGroup);
-        }
-        else
-        {
-            req = curSlot.thingDef.Minifiable ? ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing) : ThingRequest.ForDef(curSlot.thingDef);
-        }
-        Predicate<Thing> findItem;
-        if (curSlot.genericDef != null)
-        {
-            findItem = t => curSlot.genericDef.lambda(t.GetInnerIfMinified().def);
-        }
-        else
-        {
-            findItem = t => t.GetInnerIfMinified().def == curSlot.thingDef;
-        }
+        Predicate<Thing> findItem = t => matches(t.GetInnerIfMinified().def);
         Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t, 10, 1) && !isFoodInPrison(t) && EquipmentUtility.CanEquip(t, pawn) && AllowedByFoodRestriction(t, pawn);
 
         // look for a thing near the pawn.

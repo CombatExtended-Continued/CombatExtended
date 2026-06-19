@@ -74,6 +74,7 @@ public static class CustomLoadoutGroupManager
             existing.label = cfg.label;
             existing.defaultCount = cfg.defaultCount;
             existing.defaultCountType = cfg.defaultCountType;
+            existing.ordered = cfg.ordered;
             existing.cachedLabelCap = "";
             return existing;
         }
@@ -83,6 +84,7 @@ public static class CustomLoadoutGroupManager
             label = cfg.label,
             defaultCount = cfg.defaultCount,
             defaultCountType = cfg.defaultCountType,
+            ordered = cfg.ordered,
         };
         RegisterDef(def, takenHashes);
         return def;
@@ -115,6 +117,7 @@ public static class CustomLoadoutGroupManager
             label = source.label,
             defaultCount = source.defaultCount,
             defaultCountType = source.defaultCountType,
+            ordered = source.ordered,
         };
         copy.SetMembers(source.members);
         return copy;
@@ -133,6 +136,7 @@ public static class CustomLoadoutGroupManager
             label = NewUniqueLabel(config.label),
             defaultCount = config.defaultCount,
             defaultCountType = config.defaultCountType,
+            ordered = config.ordered,
         };
         RegisterDef(def, SeedTakenHashes());
         DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
@@ -195,6 +199,7 @@ public static class CustomLoadoutGroupManager
         label = group.label,
         defaultCount = group.defaultCount,
         defaultCountType = group.defaultCountType,
+        ordered = group.ordered,
         members = group.members.Select(m => new CustomGroupMember(m.defName, m is LoadoutGenericDef)).ToList(),
     };
 
@@ -208,6 +213,7 @@ public static class CustomLoadoutGroupManager
         group.label = cfg.label;
         group.defaultCount = cfg.defaultCount;
         group.defaultCountType = cfg.defaultCountType;
+        group.ordered = cfg.ordered;
         group.cachedLabelCap = "";
         ResolveMembers(group, cfg, out unresolved);
     }

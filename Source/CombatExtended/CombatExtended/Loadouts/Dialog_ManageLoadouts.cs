@@ -1273,9 +1273,10 @@ public class Dialog_ManageLoadouts : Window
         Rect weightBarRect = new Rect(0f, memberListRect.yMax + _margin, halfWidth, _barHeight);
         Rect bulkBarRect = new Rect(0f, weightBarRect.yMax + _margin, halfWidth, _barHeight);
 
-        // right column: source picker (no extra options/parent)
+        // right column: source picker, ordered toggle pinned to the bottom
         Rect sourceButtonRect = new Rect(memberListRect.xMax + _margin, _topAreaHeight + _margin * 2, halfWidth, _padding);
-        Rect selectionRect = new Rect(memberListRect.xMax + _margin, sourceButtonRect.yMax + _margin, halfWidth, canvas.height - sourceButtonRect.yMax - _margin * 2);
+        Rect selectionRect = new Rect(memberListRect.xMax + _margin, sourceButtonRect.yMax + _margin, halfWidth, canvas.height - _selectionAreaPadding - _topAreaHeight - _margin * 3);
+        Rect optionsRect = new Rect(memberListRect.xMax + _margin, selectionRect.yMax + _margin, halfWidth, _barHeight * 2);
 
         if (Widgets.ButtonText(doneRect, "CE_GroupEditDone".Translate()))
         {
@@ -1291,6 +1292,7 @@ public class Dialog_ManageLoadouts : Window
         DrawSourceSelection(sourceButtonRect);
         DrawSlotSelection(selectionRect);
         DrawGroupMemberList(memberListRect);
+        DrawGroupOptions(optionsRect);
 
         // bars show the group's representative (heaviest matching) item, against median colonist capacity
         Utility_Loadouts.DrawBar(weightBarRect, _editingGroup.mass, Utility_Loadouts.medianWeightCapacity, "CE_Weight".Translate(), _editingGroup.GetWeightAndBulkTip());
@@ -1434,6 +1436,14 @@ public class Dialog_ManageLoadouts : Window
         bool deleteClicked = Widgets.ButtonImage(deleteRect, _iconClear);
         TooltipHandler.TipRegion(deleteRect, "CE_DeleteFilter".Translate());
         return deleteClicked;
+    }
+
+    private void DrawGroupOptions(Rect rect)
+    {
+        float checkboxWidth = (rect.width - 10f) / 3f;
+        Rect leftRect = new Rect(rect.x, rect.y, checkboxWidth, rect.height / 2);
+        Widgets.CheckboxLabeled(leftRect, "CE_GroupOrdered".Translate(), ref _editingGroup.ordered);
+        TooltipHandler.TipRegion(leftRect, "CE_GroupOrdered_Desc".Translate());
     }
 
     public override void Close(bool doCloseSound = true)

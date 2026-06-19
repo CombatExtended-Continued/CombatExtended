@@ -11,8 +11,14 @@ namespace CombatExtended;
 /// </summary>
 public class ListLoadoutGenericDef : LoadoutGenericDef
 {
-    // Ordered members; each entry is a ThingDef or a LoadoutGenericDef.
+    /// <summary>
+	/// Ordered members; each entry is a ThingDef or a LoadoutGenericDef.
+	/// </summary>
     public List<Def> members = new();
+    /// <summary>
+	/// When <see langword="true"/>, rearming acquires members strictly in list order (earlier members satisfied first).
+	/// </summary>
+    public bool ordered;
     // Mirrors the ThingDef members for O(1) membership tests in the match predicate.
     private readonly HashSet<string> _thingSet = new();
 
