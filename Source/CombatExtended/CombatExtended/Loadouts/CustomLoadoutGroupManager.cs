@@ -94,7 +94,7 @@ public static class CustomLoadoutGroupManager
 
     /// <summary>
     /// Creates an unregistered draft group for the editor. It is added to the game only by
-    /// <see cref="Commit"/>, so it stays invisible until the user confirms.
+    /// <see cref="CreateFromConfig"/> on commit, so it stays invisible until the user confirms.
     /// </summary>
     public static ListLoadoutGenericDef CreateDraft() => new()
     {
@@ -103,34 +103,59 @@ public static class CustomLoadoutGroupManager
         defaultCountType = LoadoutCountType.pickupDrop,
     };
 
-    /// <summary>Registers a draft from <see cref="CreateDraft"/> into the current game.</summary>
-    public static void Commit(ListLoadoutGenericDef draft)
+    /// <summary>
+    /// An unregistered clone of <paramref name="source"/> for the editor to mutate. The live def is left
+    /// untouched until the edit is committed (via <see cref="UpdateFromConfig"/>), which is what makes
+    /// editing multiplayer-safe: only the synced commit changes shared state.
+    /// </summary>
+    public static ListLoadoutGenericDef CreateWorkingCopy(ListLoadoutGenericDef source)
     {
-        draft.defName = NewUniqueDefName();
-        RegisterDef(draft, SeedTakenHashes());
-        DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
-        draft.RebuildLambda();
-        _current.Add(draft);
+        var copy = new ListLoadoutGenericDef
+        {
+            label = source.label,
+            defaultCount = source.defaultCount,
+            defaultCountType = source.defaultCountType,
+        };
+        copy.SetMembers(source.members);
+        return copy;
     }
 
-    public static ListLoadoutGenericDef Copy(ListLoadoutGenericDef source)
+    /// <summary>
+    /// Registers a brand-new group from a config (a committed draft, a copy, or an import) into the current
+    /// game with a fresh defName and a unique label. The defName/short hash are assigned here rather than by
+    /// the caller so that concurrent creations in multiplayer can't collide.
+    /// </summary>
+    public static void CreateFromConfig(CustomGroupConfig config)
     {
         var def = new ListLoadoutGenericDef
         {
             defName = NewUniqueDefName(),
-            label = NewUniqueLabel(source.label),
-            defaultCount = source.defaultCount,
-            defaultCountType = source.defaultCountType,
+            label = NewUniqueLabel(config.label),
+            defaultCount = config.defaultCount,
+            defaultCountType = config.defaultCountType,
         };
-        def.SetMembers(source.members);
         RegisterDef(def, SeedTakenHashes());
         DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
+        ResolveMembers(def, config, out _);
         _current.Add(def);
-        return def;
+    }
+
+    /// <summary>Applies a committed edit to an existing live group.</summary>
+    public static void UpdateFromConfig(ListLoadoutGenericDef target, CustomGroupConfig config)
+    {
+        if (target == null)
+        {
+            return;
+        }
+        ApplyConfig(target, config, out _);
     }
 
     public static void Delete(ListLoadoutGenericDef group)
     {
+        if (group == null)
+        {
+            return;
+        }
         _current.Remove(group);
         foreach (ListLoadoutGenericDef other in _current)
         {
@@ -143,17 +168,6 @@ public static class CustomLoadoutGroupManager
                 loadout.OwnSlots.RemoveAll(s => s.genericDef == group);
             }
         }
-    }
-
-    /// <summary>Adds a member (thing or nested group). Returns false (without modifying) if it would cycle.</summary>
-    public static bool AddMember(ListLoadoutGenericDef group, Def member)
-    {
-        if (member is LoadoutGenericDef nested && WouldCreateCycle(group, nested))
-        {
-            return false;
-        }
-        group.Add(member);
-        return true;
     }
 
     public static void RemoveMember(ListLoadoutGenericDef group, Def member) => group.Remove(member);
@@ -191,12 +205,18 @@ public static class CustomLoadoutGroupManager
     /// </summary>
     public static void ApplyConfig(ListLoadoutGenericDef group, CustomGroupConfig cfg, out List<string> unresolved)
     {
-        unresolved = new List<string>();
         group.label = cfg.label;
         group.defaultCount = cfg.defaultCount;
         group.defaultCountType = cfg.defaultCountType;
         group.cachedLabelCap = "";
+        ResolveMembers(group, cfg, out unresolved);
+    }
 
+    // Resolves a config's members against the current game and sets them on the group, skipping any that are
+    // missing or would create a cycle (their defNames are collected in unresolved).
+    private static void ResolveMembers(ListLoadoutGenericDef group, CustomGroupConfig cfg, out List<string> unresolved)
+    {
+        unresolved = new List<string>();
         var resolved = new List<Def>();
         foreach (CustomGroupMember entry in cfg.members ?? new List<CustomGroupMember>())
         {

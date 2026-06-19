@@ -75,9 +75,9 @@ public class Dialog_ManageLoadouts : Window
     private bool _groupEditMode;
     private bool _editingIsNew;
     private ListLoadoutGenericDef _editingGroup;
+    // The live def being edited (null for a new group); edits apply to a working copy and only reach this on commit.
+    private ListLoadoutGenericDef _editTargetDef;
     private Def _draggedMember;
-    private List<Def> _editBackupMembers;
-    private string _editBackupLabel;
     private readonly List<ThingDef> _allSuitableDefs;
     private readonly List<LoadoutGenericDef> _allDefsGeneric;
     private readonly List<SelectableItem> _selectableItems;
@@ -1022,7 +1022,7 @@ public class Dialog_ManageLoadouts : Window
 
             // while editing a group, disable rows that would create a cyclic reference (only generics can)
             bool blocked = generic && _groupEditMode && _editingGroup != null
-                           && CustomLoadoutGroupManager.WouldCreateCycle(_editingGroup, _sourceGeneric[i]);
+                           && CustomLoadoutGroupManager.WouldCreateCycle(_editTargetDef ?? _editingGroup, _sourceGeneric[i]);
             if (blocked)
             {
                 GUI.color = new Color(0.55f, 0.4f, 0.4f);
@@ -1062,7 +1062,7 @@ public class Dialog_ManageLoadouts : Window
                 TooltipHandler.TipRegion(editRect, "CE_EditGroup".Translate());
                 if (Widgets.ButtonImage(copyRect, TexButton.Copy))
                 {
-                    CustomLoadoutGroupManager.Copy(customGroup);
+                    SyncCreateGroup(CustomLoadoutGroupManager.ToConfig(customGroup));
                     SetSource(SourceSelection.CustomGroup);
                 }
                 TooltipHandler.TipRegion(copyRect, "CE_CopyGroup".Translate());
@@ -1147,6 +1147,7 @@ public class Dialog_ManageLoadouts : Window
             CommitGroupEdit();
         }
         _editingGroup = draft;
+        _editTargetDef = null;
         _editingIsNew = true;
         _groupEditMode = true;
         SetSource(SourceSelection.All);
@@ -1158,48 +1159,39 @@ public class Dialog_ManageLoadouts : Window
         {
             CommitGroupEdit();
         }
-        _editingGroup = group;
+        // edit a working copy so the live def only changes on commit (and that change is what gets synced)
+        _editTargetDef = group;
+        _editingGroup = CustomLoadoutGroupManager.CreateWorkingCopy(group);
         _editingIsNew = false;
-        _editBackupMembers = new List<Def>(group.members);
-        _editBackupLabel = group.label;
         _groupEditMode = true;
         SetSource(SourceSelection.All);
     }
 
-    // Persist the edit: register the draft (new) or save changes (existing).
+    // Persist the edit through a synced method: create a new group, or apply the edit to the live def.
     private void CommitGroupEdit()
     {
+        CustomGroupConfig config = CustomLoadoutGroupManager.ToConfig(_editingGroup);
         if (_editingIsNew)
         {
-            CustomLoadoutGroupManager.Commit(_editingGroup);
+            SyncCreateGroup(config);
         }
         else
         {
-            InvalidateLabelCap(_editingGroup);
+            SyncUpdateGroup(_editTargetDef, config);
         }
         ClearGroupEdit();
     }
 
-    // Discard the edit: drop the draft (new) or roll back to the snapshot (existing).
-    private void CancelGroupEdit()
-    {
-        if (!_editingIsNew && _editingGroup != null)
-        {
-            _editingGroup.SetMembers(_editBackupMembers);
-            _editingGroup.label = _editBackupLabel;
-            InvalidateLabelCap(_editingGroup);
-        }
-        ClearGroupEdit();
-    }
+    // Discard the edit by dropping the working copy; the live def was never touched.
+    private void CancelGroupEdit() => ClearGroupEdit();
 
     private void ClearGroupEdit()
     {
         _groupEditMode = false;
         _editingIsNew = false;
         _editingGroup = null;
+        _editTargetDef = null;
         _draggedMember = null;
-        _editBackupMembers = null;
-        _editBackupLabel = null;
         SetSource(SourceSelection.Ranged);
     }
 
@@ -1242,13 +1234,25 @@ public class Dialog_ManageLoadouts : Window
             {
                 ClearGroupEdit();
             }
-            CustomLoadoutGroupManager.Delete(group);
+            SyncDeleteGroup(group);
             if (_sourceType == SourceSelection.CustomGroup)
             {
                 SetSource(SourceSelection.CustomGroup);
             }
         }, true));
     }
+
+    // Custom group mutations route through these synced methods so they apply identically on every
+    // multiplayer client. A whole group is created from a serialized config (the def doesn't exist on
+    // other clients yet); edits and deletes target the live def, which Multiplayer syncs by short hash.
+    [Compatibility.Multiplayer.SyncMethod(exposeParameters = new[] { 0 })]
+    private static void SyncCreateGroup(CustomGroupConfig config) => CustomLoadoutGroupManager.CreateFromConfig(config);
+
+    [Compatibility.Multiplayer.SyncMethod(exposeParameters = new[] { 1 })]
+    private static void SyncUpdateGroup(ListLoadoutGenericDef target, CustomGroupConfig config) => CustomLoadoutGroupManager.UpdateFromConfig(target, config);
+
+    [Compatibility.Multiplayer.SyncMethod]
+    private static void SyncDeleteGroup(ListLoadoutGenericDef group) => CustomLoadoutGroupManager.Delete(group);
 
     private void DrawGroupEditor(Rect canvas)
     {
