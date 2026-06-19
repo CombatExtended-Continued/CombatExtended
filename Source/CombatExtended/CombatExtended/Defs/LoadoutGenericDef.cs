@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using RimWorld;
 using Verse;
 
@@ -17,12 +16,12 @@ namespace CombatExtended;
 /// LoadoutGenericDef handles Generic LoadoutSlots.
 /// </summary>
 [StaticConstructorOnStartup]
-public class LoadoutGenericDef : Verse.Def
+public class LoadoutGenericDef : Def
 {
     #region Fields
     public LoadoutCountType defaultCountType = LoadoutCountType.dropExcess; // default: drop anything more than (default)Count.
     public int defaultCount = 1;
-    private Predicate<ThingDef> _lambda = td => true;
+    protected Predicate<ThingDef> _lambda = td => true;
     public ThingRequestGroup thingRequestGroup = ThingRequestGroup.HaulableEver;
     public bool isBasic = false;
 
@@ -157,6 +156,10 @@ public class LoadoutGenericDef : Verse.Def
         DefDatabase<LoadoutGenericDef>.Add(defs);
         // fill defsByShortHash for LoadoutGenericDef, used by Multiplayer to quickly lookup defs
         DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
+
+        // Register player-defined custom groups from the global config. Runs after the built-in
+        // generics above so a custom group may nest them.
+        CustomLoadoutGroupManager.LoadAndRegisterAll();
     }
 
     #endregion Constructors
@@ -212,11 +215,27 @@ public class LoadoutGenericDef : Verse.Def
     /// <remarks>Can be a bit expensive but only done once per def the first time such values are requested.</remarks>
     private void updateVars()
     {
-        IEnumerable<ThingDef> matches;
-        matches = DefDatabase<ThingDef>.AllDefs.Where(td => lambda(td) && thingRequestGroup.Includes(td));
+        IReadOnlyCollection<ThingDef> matches = DefDatabase<ThingDef>.AllDefs.Where(td => lambda(td) && thingRequestGroup.Includes(td)).ToArray();
+        // A custom group may currently match nothing (e.g. just created and still empty); avoid Max() on an empty sequence.
+        if (matches.Count == 0)
+        {
+            _bulk = 0f;
+            _mass = 0f;
+            _cachedVars = true;
+            return;
+        }
         _bulk = matches.Max(t => t.GetStatValueAbstract(CE_StatDefOf.Bulk));
         _mass = matches.Max(t => t.GetStatValueAbstract(StatDefOf.Mass));
         _cachedVars = true;
+    }
+
+    /// <summary>
+    /// Forces <see cref="bulk"/>/<see cref="mass"/> to be recalculated on next access. Call when the
+    /// set of matched items changes at runtime (e.g. a custom group's members are edited).
+    /// </summary>
+    protected void InvalidateStatCache()
+    {
+        _cachedVars = false;
     }
 
     #endregion Methods

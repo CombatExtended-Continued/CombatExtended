@@ -16,7 +16,8 @@ public enum SourceSelection
     Ammo,
     Minified,
     Generic,
-    All // All things, won't include generics, can include minified/able now.
+    All, // All things, won't include generics, can include minified/able now.
+    CustomGroup // Player-defined custom groups (ListLoadoutGenericDef).
 }
 
 [StaticConstructorOnStartup]
@@ -32,13 +33,14 @@ public class Dialog_ManageLoadouts : Window
     //_arrowTop = ContentFinder<Texture2D>.Get("UI/Icons/arrowTop"),
     //_arrowUp = ContentFinder<Texture2D>.Get("UI/Icons/arrowUp"),
     _darkBackground = SolidColorMaterials.NewSolidColorTexture(0f, 0f, 0f, .2f),
-    //_iconEdit = ContentFinder<Texture2D>.Get("UI/Icons/edit"),
+    _iconEdit = ContentFinder<Texture2D>.Get("UI/Icons/edit"),
     _iconClear = ContentFinder<Texture2D>.Get("UI/Icons/clear"),
     _iconAmmo = ContentFinder<Texture2D>.Get("UI/Icons/ammo"),
     _iconRanged = ContentFinder<Texture2D>.Get("UI/Icons/ranged"),
     _iconMelee = ContentFinder<Texture2D>.Get("UI/Icons/melee"),
     _iconMinified = ContentFinder<Texture2D>.Get("UI/Icons/minified"),
     _iconGeneric = ContentFinder<Texture2D>.Get("UI/Icons/generic"),
+    _iconCustomGroup = ContentFinder<Texture2D>.Get("UI/Icons/cog"),
     _iconAll = ContentFinder<Texture2D>.Get("UI/Icons/all"),
     _iconAmmoAdd = ContentFinder<Texture2D>.Get("UI/Icons/ammoAdd"),
     _iconEditAttachments = ContentFinder<Texture2D>.Get("UI/Icons/gear"),
@@ -69,6 +71,13 @@ public class Dialog_ManageLoadouts : Window
     private List<SelectableItem> _source;
     private List<LoadoutGenericDef> _sourceGeneric;
     private SourceSelection _sourceType = SourceSelection.Ranged;
+    private bool _groupEditMode;
+    private bool _editingIsNew;
+    private ListLoadoutGenericDef _editingGroup;
+    private Def _draggedMember;
+    private List<ThingDef> _editBackupThings;
+    private List<LoadoutGenericDef> _editBackupGroups;
+    private string _editBackupLabel;
     private readonly List<ThingDef> _allSuitableDefs;
     private readonly List<LoadoutGenericDef> _allDefsGeneric;
     private readonly List<SelectableItem> _selectableItems;
@@ -154,6 +163,9 @@ public class Dialog_ManageLoadouts : Window
         }
     }
 
+    // True when the selection panel is drawing from _sourceGeneric (built-in generics or custom groups).
+    private bool IsGenericSource => _sourceType is SourceSelection.Generic or SourceSelection.CustomGroup;
+
     #endregion Properties
 
     #region Methods
@@ -175,9 +187,14 @@ public class Dialog_ManageLoadouts : Window
         // fix weird zooming bug
         Text.Font = GameFont.Small;
 
-        const int BUTTON_COUNT = 6;
-        const float BUTTON_STRETCH_FACTOR = 0.8f / BUTTON_COUNT;
-        float buttonWidth = canvas.width * BUTTON_STRETCH_FACTOR;
+        if (_groupEditMode && _editingGroup != null)
+        {
+            DrawGroupEditor(canvas);
+            return;
+        }
+
+        const int BUTTON_COUNT = 8;
+        float buttonWidth = (canvas.width - _margin * (BUTTON_COUNT - 1)) / BUTTON_COUNT;
 
         // SET UP RECTS
         // top buttons
@@ -188,6 +205,7 @@ public class Dialog_ManageLoadouts : Window
         Rect loadRect = new Rect(deleteRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
         Rect saveRect = new Rect(loadRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
         Rect parentRect = new Rect(saveRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
+        Rect newGroupRect = new Rect(parentRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
 
         // main areas
         Rect nameRect = new Rect(
@@ -357,6 +375,13 @@ public class Dialog_ManageLoadouts : Window
         }
 
 
+        // new custom group
+        if (Widgets.ButtonText(newGroupRect, "CE_NewGroup".Translate()))
+        {
+            EnterNewGroup();
+            return;
+        }
+
         // draw notification if no loadout selected
         if (CurrentLoadout == null)
         {
@@ -487,6 +512,15 @@ public class Dialog_ManageLoadouts : Window
             SetSource(SourceSelection.All);
         }
         TooltipHandler.TipRegion(button, "CE_SourceAllTip".Translate());
+        button.x += 24f + _margin;
+
+        // Custom groups
+        GUI.color = _sourceType == SourceSelection.CustomGroup ? GenUI.MouseoverColor : Color.white;
+        if (Widgets.ButtonImage(button, _iconCustomGroup))
+        {
+            SetSource(SourceSelection.CustomGroup);
+        }
+        TooltipHandler.TipRegion(button, "CE_SourceCustomGroupTip".Translate());
 
         // filter input field
         Rect filter = new Rect(canvas.xMax - 75f, canvas.yMin + (canvas.height - 24f) / 2f, 75f, 24f);
@@ -542,7 +576,14 @@ public class Dialog_ManageLoadouts : Window
                 break;
 
             case SourceSelection.Generic:
+                _sourceGeneric = _allDefsGeneric.Where(g => g is not ListLoadoutGenericDef).ToList();
                 _sourceType = SourceSelection.Generic;
+                initGenericVisibilityDictionary();
+                break;
+
+            case SourceSelection.CustomGroup:
+                _sourceGeneric = CustomLoadoutGroupManager.AllGroups.OrderBy(g => g.label).Cast<LoadoutGenericDef>().ToList();
+                _sourceType = SourceSelection.CustomGroup;
                 initGenericVisibilityDictionary();
                 break;
 
@@ -936,10 +977,11 @@ public class Dialog_ManageLoadouts : Window
 
     private void DrawSlotSelection(Rect canvas)
     {
-        int count = _sourceType == SourceSelection.Generic ? _sourceGeneric.Count : _source.Count;
+        bool generic = IsGenericSource;
+        int count = generic ? _sourceGeneric.Count : _source.Count;
         GUI.DrawTexture(canvas, _darkBackground);
 
-        if ((_sourceType != SourceSelection.Generic && _source.NullOrEmpty()) || (_sourceType == SourceSelection.Generic && _sourceGeneric.NullOrEmpty()))
+        if ((generic && _sourceGeneric.NullOrEmpty()) || (!generic && _source.NullOrEmpty()))
         {
             return;
         }
@@ -955,63 +997,85 @@ public class Dialog_ManageLoadouts : Window
         endRow = (endRow > count) ? count : endRow;
         for (int i = startRow; i < endRow; i++)
         {
-            // gray out weapons not in stock
+            // gray out items not in stock
             Color baseColor = GUI.color;
-            if (_sourceType == SourceSelection.Generic)
+            if (generic)
             {
                 if (GetVisibleGeneric(_sourceGeneric[i]))
                 {
                     GUI.color = Color.gray;
                 }
             }
-            else
+            else if (_source[i].isGreyedOut)
             {
-                if (_source[i].isGreyedOut)
-                {
-                    GUI.color = Color.gray;
-                }
+                GUI.color = Color.gray;
+            }
+
+            // while editing a group, disable rows that would create a cyclic reference (only generics can)
+            bool blocked = generic && _groupEditMode && _editingGroup != null
+                           && CustomLoadoutGroupManager.WouldCreateCycle(_editingGroup, _sourceGeneric[i]);
+            if (blocked)
+            {
+                GUI.color = new Color(0.55f, 0.4f, 0.4f);
             }
 
             Rect row = new Rect(0f, i * _rowHeight, canvas.width, _rowHeight);
             Rect labelRect = new Rect(row);
-            if (_sourceType == SourceSelection.Generic)
-            {
-                TooltipHandler.TipRegion(row, _sourceGeneric[i].GetWeightAndBulkTip());
-            }
-            else
-            {
-                TooltipHandler.TipRegion(row, _source[i].thingDef.GetWeightAndBulkTip());
-            }
-
             labelRect.xMin += _margin;
+            Rect clickRect = row;
+
+            string rowTip = blocked
+                            ? (string)"CE_GroupCycleRejected".Translate()
+                            : generic ? _sourceGeneric[i].GetWeightAndBulkTip() : _source[i].thingDef.GetWeightAndBulkTip();
+            TooltipHandler.TipRegion(row, rowTip);
+
             if (i % 2 == 0)
             {
                 GUI.DrawTexture(row, _darkBackground);
             }
 
+            // custom group rows carry inline edit/copy/delete buttons and never act on a loadout's stock
+            if (_sourceType == SourceSelection.CustomGroup && _sourceGeneric[i] is ListLoadoutGenericDef customGroup)
+            {
+                Rect deleteRect = new Rect(row.xMax - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
+                Rect copyRect = new Rect(deleteRect.xMin - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
+                Rect editRect = new Rect(copyRect.xMin - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
+                labelRect.xMax = editRect.xMin - _margin;
+                clickRect.xMax = editRect.xMin - _margin;
+
+                Color rowColor = GUI.color;
+                GUI.color = Color.white;
+                if (Widgets.ButtonImage(editRect, _iconEdit))
+                {
+                    EnterEditGroup(customGroup);
+                }
+                TooltipHandler.TipRegion(editRect, "CE_EditGroup".Translate());
+                if (Widgets.ButtonImage(copyRect, TexButton.Copy))
+                {
+                    CustomLoadoutGroupManager.Copy(customGroup);
+                    SetSource(SourceSelection.CustomGroup);
+                }
+                TooltipHandler.TipRegion(copyRect, "CE_CopyGroup".Translate());
+                if (Widgets.ButtonImage(deleteRect, _iconClear))
+                {
+                    ConfirmDeleteGroup(customGroup);
+                }
+                TooltipHandler.TipRegion(deleteRect, "CE_DeleteGroup".Translate());
+                GUI.color = rowColor;
+            }
+
             Text.Anchor = TextAnchor.MiddleLeft;
             Text.WordWrap = false;
-            if (_sourceType == SourceSelection.Generic)
-            {
-                Widgets.Label(labelRect, _sourceGeneric[i].LabelCap);
-            }
-            else
-            {
-                Widgets.Label(labelRect, _source[i].thingDef.LabelCap);
-            }
+            Widgets.Label(labelRect, generic ? _sourceGeneric[i].LabelCap : _source[i].thingDef.LabelCap);
             Text.WordWrap = true;
             Text.Anchor = TextAnchor.UpperLeft;
 
-            Widgets.DrawHighlightIfMouseover(row);
-            if (Widgets.ButtonInvisible(row))
+            if (!blocked)
             {
-                if (_sourceType == SourceSelection.Generic)
+                Widgets.DrawHighlightIfMouseover(clickRect);
+                if (Widgets.ButtonInvisible(clickRect))
                 {
-                    AddLoadoutSlotGeneric(CurrentLoadout, _sourceGeneric[i]);
-                }
-                else
-                {
-                    AddLoadoutSlotSpecific(CurrentLoadout, _source[i].thingDef);
+                    OnSourceItemPicked(generic ? (Def)_sourceGeneric[i] : _source[i].thingDef);
                 }
             }
             // revert to original color
@@ -1020,8 +1084,315 @@ public class Dialog_ManageLoadouts : Window
         Widgets.EndScrollView();
     }
 
+    // Routes a clicked source item to the editing group (group mode) or the current loadout.
+    private void OnSourceItemPicked(Def def)
+    {
+        if (_groupEditMode)
+        {
+            if (_editingGroup != null && !CustomLoadoutGroupManager.AddMember(_editingGroup, def))
+            {
+                Messages.Message("CE_GroupCycleRejected".Translate(), MessageTypeDefOf.RejectInput, false);
+            }
+            return;
+        }
+        if (CurrentLoadout == null)
+        {
+            return;
+        }
+        if (def is LoadoutGenericDef generic)
+        {
+            AddLoadoutSlotGeneric(CurrentLoadout, generic);
+        }
+        else if (def is ThingDef thing)
+        {
+            AddLoadoutSlotSpecific(CurrentLoadout, thing);
+        }
+    }
+
+    private void EnterNewGroup()
+    {
+        if (_groupEditMode)
+        {
+            CommitGroupEdit();
+        }
+        _editingGroup = CustomLoadoutGroupManager.CreateDraft();
+        _editingIsNew = true;
+        _groupEditMode = true;
+        SetSource(SourceSelection.All);
+    }
+
+    private void EnterEditGroup(ListLoadoutGenericDef group)
+    {
+        if (_groupEditMode)
+        {
+            CommitGroupEdit();
+        }
+        _editingGroup = group;
+        _editingIsNew = false;
+        _editBackupThings = new List<ThingDef>(group.things);
+        _editBackupGroups = new List<LoadoutGenericDef>(group.groups);
+        _editBackupLabel = group.label;
+        _groupEditMode = true;
+        SetSource(SourceSelection.All);
+    }
+
+    // Persist the edit: register the draft (new) or save changes (existing).
+    private void CommitGroupEdit()
+    {
+        if (_editingIsNew)
+        {
+            CustomLoadoutGroupManager.Commit(_editingGroup);
+        }
+        else
+        {
+            InvalidateLabelCap(_editingGroup);
+            CustomLoadoutGroupManager.Save();
+        }
+        ClearGroupEdit();
+    }
+
+    // Discard the edit: drop the draft (new) or roll back to the snapshot (existing).
+    private void CancelGroupEdit()
+    {
+        if (!_editingIsNew && _editingGroup != null)
+        {
+            _editingGroup.SetMembers(_editBackupThings, _editBackupGroups);
+            _editingGroup.label = _editBackupLabel;
+            InvalidateLabelCap(_editingGroup);
+            CustomLoadoutGroupManager.Save();
+        }
+        ClearGroupEdit();
+    }
+
+    private void ClearGroupEdit()
+    {
+        _groupEditMode = false;
+        _editingIsNew = false;
+        _editingGroup = null;
+        _draggedMember = null;
+        _editBackupThings = null;
+        _editBackupGroups = null;
+        _editBackupLabel = null;
+        SetSource(SourceSelection.Ranged);
+    }
+
+    private static void InvalidateLabelCap(Def def) => def.cachedLabelCap = "";
+
+    private void ConfirmDeleteGroup(ListLoadoutGenericDef group)
+    {
+        Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CE_DeleteGroupConfirm".Translate(group.LabelCap), delegate
+        {
+            if (_editingGroup == group)
+            {
+                ClearGroupEdit();
+            }
+            CustomLoadoutGroupManager.Delete(group);
+            if (_sourceType == SourceSelection.CustomGroup)
+            {
+                SetSource(SourceSelection.CustomGroup);
+            }
+        }, true));
+    }
+
+    private void DrawGroupEditor(Rect canvas)
+    {
+        float halfWidth = (canvas.width - _margin) / 2f;
+        const float buttonWidth = 70f;
+
+        // title (top-left)
+        Rect titleRect = new Rect(0f, 0f, halfWidth, _topAreaHeight);
+        Text.Anchor = TextAnchor.MiddleLeft;
+        Widgets.Label(titleRect, "CE_EditingGroup".Translate());
+        Text.Anchor = TextAnchor.UpperLeft;
+
+        // left column: name field + Done/Cancel (same row), member list, weight/bulk bars
+        Rect nameRect = new Rect(0f, _topAreaHeight + _margin * 2, halfWidth - (buttonWidth + _margin) * 2, _padding);
+        Rect doneRect = new Rect(nameRect.xMax + _margin, nameRect.y, buttonWidth, _padding);
+        Rect cancelRect = new Rect(doneRect.xMax + _margin, nameRect.y, buttonWidth, _padding);
+        Rect memberListRect = new Rect(0f, nameRect.yMax + _margin, halfWidth, canvas.height - _topAreaHeight - nameRect.height - _barHeight * 2 - _margin * 5);
+        Rect weightBarRect = new Rect(0f, memberListRect.yMax + _margin, halfWidth, _barHeight);
+        Rect bulkBarRect = new Rect(0f, weightBarRect.yMax + _margin, halfWidth, _barHeight);
+
+        // right column: source picker (no extra options/parent)
+        Rect sourceButtonRect = new Rect(memberListRect.xMax + _margin, _topAreaHeight + _margin * 2, halfWidth, _padding);
+        Rect selectionRect = new Rect(memberListRect.xMax + _margin, sourceButtonRect.yMax + _margin, halfWidth, canvas.height - sourceButtonRect.yMax - _margin * 2);
+
+        if (Widgets.ButtonText(doneRect, "CE_GroupEditDone".Translate()))
+        {
+            CommitGroupEdit();
+            return;
+        }
+        if (Widgets.ButtonText(cancelRect, "CE_GroupEditCancel".Translate()))
+        {
+            CancelGroupEdit();
+            return;
+        }
+        DrawGroupNameField(nameRect);
+        DrawSourceSelection(sourceButtonRect);
+        DrawSlotSelection(selectionRect);
+        DrawGroupMemberList(memberListRect);
+
+        // bars show the group's representative (heaviest matching) item, against median colonist capacity
+        Utility_Loadouts.DrawBar(weightBarRect, _editingGroup.mass, Utility_Loadouts.medianWeightCapacity, "CE_Weight".Translate(), _editingGroup.GetWeightAndBulkTip());
+        Utility_Loadouts.DrawBar(bulkBarRect, _editingGroup.bulk, Utility_Loadouts.medianBulkCapacity, "CE_Bulk".Translate(), _editingGroup.GetWeightAndBulkTip());
+        Text.Anchor = TextAnchor.MiddleCenter;
+        string currentBulk = CE_StatDefOf.CarryBulk.ValueToString(_editingGroup.bulk, CE_StatDefOf.CarryBulk.toStringNumberSense);
+        string capacityBulk = CE_StatDefOf.CarryBulk.ValueToString(Utility_Loadouts.medianBulkCapacity, CE_StatDefOf.CarryBulk.toStringNumberSense);
+        Widgets.Label(bulkBarRect, currentBulk + "/" + capacityBulk);
+        Widgets.Label(weightBarRect, _editingGroup.mass.ToString("0.#") + "/" + Utility_Loadouts.medianWeightCapacity.ToStringMass());
+        Text.Anchor = TextAnchor.UpperLeft;
+    }
+
+    private void DrawGroupNameField(Rect canvas)
+    {
+        string label = GUI.TextField(canvas, _editingGroup.label);
+        if (validNameRegex.IsMatch(label) && label != _editingGroup.label)
+        {
+            _editingGroup.label = label;
+            InvalidateLabelCap(_editingGroup);
+        }
+    }
+
+    private void DrawGroupMemberList(Rect canvas)
+    {
+        GUI.DrawTexture(canvas, _darkBackground);
+        // combined display: concrete things first, then nested groups
+        var display = new List<Def>(_editingGroup.things.Count + _editingGroup.groups.Count);
+        display.AddRange(_editingGroup.things);
+        display.AddRange(_editingGroup.groups);
+
+        int totalRows = display.Count + (_draggedMember != null ? 1 : 0);
+        Rect viewRect = new Rect(0f, 0f, canvas.width, _rowHeight * totalRows);
+        if (viewRect.height > canvas.height)
+        {
+            viewRect.width -= 16f;
+        }
+
+        Widgets.BeginScrollView(canvas, ref _slotScrollPosition, viewRect);
+        float curY = 0f;
+        for (int i = 0; i < display.Count; i++)
+        {
+            Def member = display[i];
+            bool canDrag = member is ThingDef ? _editingGroup.things.Count > 1 : _editingGroup.groups.Count > 1;
+            Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
+            curY += _rowHeight;
+
+            // dragging another member over this row: preview a ghost and accept a drop here
+            if (_draggedMember != null && Mouse.IsOver(row) && _draggedMember != member)
+            {
+                GUI.color = new Color(.7f, .7f, .7f, .5f);
+                DrawGroupMemberRow(row, _draggedMember, false, false);
+                GUI.color = Color.white;
+                if (Input.GetMouseButtonUp(0))
+                {
+                    CustomLoadoutGroupManager.MoveMember(_editingGroup, _draggedMember, i);
+                    _draggedMember = null;
+                }
+                row.y += _rowHeight;
+                curY += _rowHeight;
+            }
+
+            if (i % 2 == 0)
+            {
+                GUI.DrawTexture(row, _darkBackground);
+            }
+            if (_draggedMember == member && !Mouse.IsOver(row))
+            {
+                GUI.color = new Color(.6f, .6f, .6f, .4f);
+            }
+            if (DrawGroupMemberRow(row, member, canDrag, true))
+            {
+                CustomLoadoutGroupManager.RemoveMember(_editingGroup, member);
+                GUI.color = Color.white;
+                break;
+            }
+            GUI.color = Color.white;
+        }
+
+        // drop at the bottom moves the member to the end of its section
+        if (_draggedMember != null)
+        {
+            Rect row = new Rect(0f, curY, viewRect.width, _rowHeight);
+            if (Mouse.IsOver(row))
+            {
+                GUI.color = new Color(.7f, .7f, .7f, .5f);
+                DrawGroupMemberRow(row, _draggedMember, false, false);
+                GUI.color = Color.white;
+                if (Input.GetMouseButtonUp(0))
+                {
+                    CustomLoadoutGroupManager.MoveMember(_editingGroup, _draggedMember, display.Count - 1);
+                    _draggedMember = null;
+                }
+            }
+        }
+
+        if (!Mouse.IsOver(viewRect) || Input.GetMouseButtonUp(0))
+        {
+            _draggedMember = null;
+        }
+        Widgets.EndScrollView();
+    }
+
+    // Draws one group member row. Returns true if its delete button was clicked. Non-interactive rows
+    // (drag ghosts) skip the delete button and drag-start handling.
+    private bool DrawGroupMemberRow(Rect row, Def member, bool draggable, bool interactive)
+    {
+        Rect handle = new Rect(row) { width = row.height };
+        Rect deleteRect = new Rect(row.xMax - _iconSize - _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
+        Rect labelRect = new Rect(row);
+        labelRect.xMin = handle.xMax;
+        labelRect.xMax = deleteRect.xMin - _margin;
+
+        if (draggable)
+        {
+            GUI.DrawTexture(handle, _iconMove);
+            if (interactive)
+            {
+                TooltipHandler.TipRegion(handle, "CE_DragToReorder".Translate());
+                if (Mouse.IsOver(handle) && Input.GetMouseButtonDown(0))
+                {
+                    _draggedMember = member;
+                }
+            }
+        }
+
+        Color baseColor = GUI.color;
+        // tint nested groups; multiply so a ghost row keeps its translucency
+        if (member is LoadoutGenericDef)
+        {
+            GUI.color = baseColor * new Color(0.8f, 0.9f, 1f);
+        }
+        Text.Anchor = TextAnchor.MiddleLeft;
+        Text.WordWrap = false;
+        Widgets.Label(labelRect, member.LabelCap);
+        Text.WordWrap = true;
+        Text.Anchor = TextAnchor.UpperLeft;
+        GUI.color = baseColor;
+
+        if (!interactive)
+        {
+            return false;
+        }
+        TooltipHandler.TipRegion(row, member is LoadoutGenericDef g ? g.GetWeightAndBulkTip() : ((ThingDef)member).GetWeightAndBulkTip());
+        bool deleteClicked = Widgets.ButtonImage(deleteRect, _iconClear);
+        TooltipHandler.TipRegion(deleteRect, "CE_DeleteFilter".Translate());
+        return deleteClicked;
+    }
+
     public override void Close(bool doCloseSound = true)
     {
+        if (_groupEditMode)
+        {
+            // closing the window discards an uncommitted new draft, but keeps edits to an existing group
+            if (_editingIsNew)
+            {
+                ClearGroupEdit();
+            }
+            else
+            {
+                CommitGroupEdit();
+            }
+        }
         base.Close(doCloseSound);
     }
 
@@ -1157,13 +1528,19 @@ public class Dialog_ManageLoadouts : Window
     /// <returns></returns>
     private bool GetVisibleGeneric(LoadoutGenericDef def)
     {
-        if (GenTicks.TicksAbs >= genericVisibility[def].ticksToRecheck)
+        // Get-or-add: the source list can change (e.g. a hot-added custom group, or switching tabs
+        // mid-frame) before initGenericVisibilityDictionary runs for it, so never index a missing key.
+        if (!genericVisibility.TryGetValue(def, out VisibilityCache cache))
         {
-            genericVisibility[def].ticksToRecheck = GenTicks.TicksAbs + (advanceTicks * genericVisibility[def].position);
-            genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+            cache = new VisibilityCache { ticksToRecheck = GenTicks.TicksAbs, position = 1 };
+            genericVisibility[def] = cache;
         }
-
-        return genericVisibility[def].check;
+        if (GenTicks.TicksAbs >= cache.ticksToRecheck)
+        {
+            cache.ticksToRecheck = GenTicks.TicksAbs + (advanceTicks * cache.position);
+            cache.check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+        }
+        return cache.check;
     }
 
     private void initGenericVisibilityDictionary()
