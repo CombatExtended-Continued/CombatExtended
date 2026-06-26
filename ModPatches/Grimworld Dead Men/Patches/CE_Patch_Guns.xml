@@ -105,20 +105,20 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_Lasgun_HellGun</defaultProjectile>
+			<defaultProjectile>Grimworld_Bullet_Lasgun_IG</defaultProjectile>
 			<warmupTime>1.6</warmupTime>
 			<range>65</range>
-			<burstShotCount>1</burstShotCount>
 			<soundCast>GW_AM_Gun_Kantrael</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
-			<recoilAmount>2.0</recoilAmount>
+			<recoilAmount>0</recoilAmount>
 			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>16</magazineSize>
+			<magazineSize>60</magazineSize>
 			<reloadTime>4.5</reloadTime>
-			<ammoSet>AmmoSet_Lasgun_HellGun</ammoSet>
+			<ammoSet>AmmoSet_Grimworld_Lasgun_IG</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -129,7 +129,7 @@
 		</weaponTags>
 	</Operation>
 	
-	<!-- ============ Lucius MkIIIa ============ -->
+	<!-- ============ Lucius MkXIV ============ -->
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_HOI_DM_Gun_LuciusXIV"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -154,20 +154,19 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_Lasgun_Rifle</defaultProjectile>
-			<warmupTime>0.9</warmupTime>
+			<defaultProjectile>Grimworld_Bullet_Lasgun_IG</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
 			<range>65</range>
-			<burstShotCount>1</burstShotCount>
 			<soundCast>GW_AM_Gun_Kantrael</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
-			<recoilAmount>2.0</recoilAmount>
+			<recoilAmount>0</recoilAmount>
 			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>16</magazineSize>
+			<magazineSize>60</magazineSize>
 			<reloadTime>4.5</reloadTime>
-			<ammoSet>AmmoSet_Lasgun_Rifle</ammoSet>
+			<ammoSet>AmmoSet_Grimworld_Lasgun_IG</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -203,20 +202,21 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_Lasgun_HellGun</defaultProjectile>
+			<defaultProjectile>Grimworld_Bullet_Hellgun_IG</defaultProjectile>
 			<warmupTime>1.3</warmupTime>
 			<range>62</range>
 			<burstShotCount>12</burstShotCount>
 			<soundCast>GW_AM_Gun_Hellgun</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
-			<recoilAmount>1.45</recoilAmount>
+			<recoilAmount>0</recoilAmount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>120</magazineSize>
+			<magazineSize>400</magazineSize>
 			<reloadTime>6.5</reloadTime>
-			<ammoSet>AmmoSet_Lasgun_HellGun</ammoSet>
+			<ammoSet>AmmoSet_Grimworld_Hellgun_IG</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>6</aimedBurstShotCount>
@@ -230,7 +230,42 @@
 		</weaponTags>
 	</Operation>
 	
-	<!-- ============ Militarum Shotgun ============ -->
+	<!-- ============ Underbarrels ============ -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_HOI_DM_Gun_Lucius" or defName="GW_HOI_DM_Gun_LuciusXIV"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to overcharged shots</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>60</magazineSize>
+					<reloadTime>6.5</reloadTime>
+					<ammoSet>AmmoSet_Grimworld_Lasgun_IG</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Grimworld_Bullet_Hellgun_IG</defaultProjectile>
+					<warmupTime>2.1</warmupTime>
+					<range>65</range>
+					<soundCast>GW_AM_Gun_Hellgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>15</muzzleFlashScale>
+					<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- ============ Lucius Shotgun ============ -->
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GW_HOI_DM_Gun_LuciusShotgun"]/weaponTags</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -258,7 +293,6 @@
 			<defaultProjectile>Bullet_10Gauge_Buck</defaultProjectile>
 			<warmupTime>0.7</warmupTime>
 			<range>20</range>
-			<burstShotCount>1</burstShotCount>
 			<soundCast>Shot_Shotgun</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
