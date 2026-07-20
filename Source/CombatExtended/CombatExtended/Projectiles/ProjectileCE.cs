@@ -473,6 +473,48 @@ public abstract class ProjectileCE : ThingWithComps
     #endregion
 
     #region Raycast
+
+    private void RayCastImpact(
+        Vector3 muzzle,
+        Vector3 destination,
+        Thing thing,
+        bool useSameHeight,
+        bool noImpact = false
+    )
+    {
+        var lbce = this as LaserBeamCE;
+
+        // update the projectile position to the impact point, and mark it as landed
+        ExactPosition = destination;
+        Position = ExactPosition.ToIntVec3();
+        landed = true;
+
+        // if the user wants to use the same height for the beam, we set the destination height to the muzzle height
+        if (useSameHeight)
+        {
+            muzzle.y = destination.y;
+        }
+
+        // draw the beam
+        lbce.SpawnBeam(muzzle, destination);
+
+        // apply suppression to pawns in the path of the beam
+        RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
+
+        // we impact something
+        if (!noImpact)
+        {
+            // Update LastPos when impacting
+            LastPos = destination;
+            lbce.Impact(thing, muzzle); // thing can be null ...
+        }
+        else
+        {
+            // else we just vanish the projectile
+            Destroy(DestroyMode.Vanish);
+        }
+    }
+
     public virtual void RayCast(
         Thing launcher,
         VerbProperties verbProps,
@@ -487,84 +529,93 @@ public abstract class ProjectileCE : ThingWithComps
         bool useSameHeight = false
     )
     {
-
-        float magicSpreadFactor = Mathf.Sin(0.06f / 2 * Mathf.Deg2Rad) + aperatureSize;
-        float magicLaserDamageConstant = 1 / (magicSpreadFactor * magicSpreadFactor * 3.14159f);
-
+        // Useful variables
+        Map map = launcher.Map;
         ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
+        var lbce = this as LaserBeamCE;
+
+        // compute values for the damage falloff if needed
+        float magicLaserDamageConstant = float.NaN;
+        float spreadRadius = float.NaN;
+        if (pprops.damageFalloff)
+        {
+            float magicSpreadFactor = Mathf.Sin(0.06f / 2 * Mathf.Deg2Rad) + aperatureSize;
+            magicLaserDamageConstant = 1 / (magicSpreadFactor * magicSpreadFactor * 3.14159f);
+            spreadRadius = Mathf.Sin(spreadDegrees / 2.0f * Mathf.Deg2Rad);
+        }
+
+        // compute the direction and destination
         shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159 / 2.0f);
         Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
         Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
-        Map map = launcher.Map;
         Vector3 destination = direction * verbProps.range + origin3;
+
+        // create the ray
+        Ray ray = new Ray(origin3, direction);
+
+        // compute the muzzle position
+        LaserGunDef defWeapon = equipment?.def as LaserGunDef;
+        Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
+
+        // update field values of the projectile
         this.shotAngle = shotAngle;
         this.shotHeight = shotHeight;
         this.shotRotation = shotRotation;
         this.launcher = launcher;
         this.origin = origin;
         this.equipment = equipment;
-        equipmentDef = equipment?.def ?? null;
-        Ray ray = new Ray(origin3, direction);
-        var lbce = this as LaserBeamCE;
-        float spreadRadius = Mathf.Sin(spreadDegrees / 2.0f * Mathf.Deg2Rad);
+        this.equipmentDef = equipment?.def ?? null;
 
-        LaserGunDef defWeapon = equipmentDef as LaserGunDef;
-        Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
-        var it_bounds = CE_Utility.GetBoundsFor(intendedTargetThing);
+        // browse tiles
         for (int i = 1; i < verbProps.range; i++)
         {
-            float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
             if (pprops.damageFalloff)
             {
+                float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
                 lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
             }
 
+            // current point
             Vector3 tp = ray.GetPoint(i);
+
+            // if the current point is below the map, we stop exit the loop, and we stop the raycast
             if (tp.y < 0)
             {
                 destination = tp;
-                landed = true;
-                ExactPosition = tp;
-                Position = ExactPosition.ToIntVec3();
                 break;
             }
             var iv3 = tp.ToIntVec3();
+
+            // if the current point is outside the map, we stop the raycast and impact the last point inside the map
             if (!iv3.InBounds(map))
             {
                 tp = ray.GetPoint(i - 1);
-                ExactPosition = tp;
                 destination = tp;
-                landed = true;
-                LastPos = destination;
-                Position = ExactPosition.ToIntVec3();
-
-                if (useSameHeight)
-                {
-                    muzzle.y = destination.y;
-                }
-
-                lbce.SpawnBeam(muzzle, destination);
-                RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
-                lbce.Impact(null, muzzle);
+                RayCastImpact(muzzle, destination, null, useSameHeight);
                 return;
-
             }
+
+            // browse all potential things that can be hit at the current point
             foreach (Thing thing in Map.thingGrid.ThingsListAtFast(iv3))
             {
+                // if the thing is the projectile itself, we skip it
                 if (this == thing)
                 {
                     continue;
                 }
+                // if the thing cannot be collided with, we skip it
                 var bounds = CE_Utility.GetBoundsFor(thing);
                 if (!bounds.IntersectRay(ray, out var dist))
                 {
                     continue;
                 }
+                // if the thing is not the intended target and is in close range (1 tile), we skip it
                 if (i < 2 && thing != intendedTargetThing)
                 {
                     continue;
                 }
 
+                // Compute chance to hit a plant
                 if (thing is Plant plant)
                 {
                     if (!Rand.Chance(thing.def.fillPercent * plant.Growth))
@@ -572,6 +623,7 @@ public abstract class ProjectileCE : ThingWithComps
                         continue;
                     }
                 }
+                // Compute chance to hit a building
                 else if (thing is Building)
                 {
                     if (!Rand.Chance(thing.def.fillPercent))
@@ -579,36 +631,19 @@ public abstract class ProjectileCE : ThingWithComps
                         continue;
                     }
                 }
-                ExactPosition = tp;
+
+                // if we're here, it means we hit something, we stop the raycast and impact the current point
+
                 destination = tp;
-                landed = true;
-                LastPos = destination;
-                Position = ExactPosition.ToIntVec3();
-
-                if (useSameHeight)
-                {
-                    muzzle.y = destination.y;
-                }
-
-                lbce.SpawnBeam(muzzle, destination);
-                RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
-                lbce.Impact(thing, muzzle);
-
+                RayCastImpact(muzzle, destination, thing, useSameHeight);
                 return;
-
             }
 
         }
+        // if we reach here, it means we didn't hit anything, we stop the raycast
         if (lbce != null)
         {
-            if (useSameHeight)
-            {
-                muzzle.y = destination.y;
-            }
-
-            lbce.SpawnBeam(muzzle, destination);
-            RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
-            Destroy(DestroyMode.Vanish);
+            RayCastImpact(muzzle, destination, null, useSameHeight, true);
             return;
         }
     }
