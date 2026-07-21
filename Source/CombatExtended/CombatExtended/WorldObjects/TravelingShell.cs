@@ -138,8 +138,9 @@ public class TravelingShell : TravelingThing
             }
             else
             {
-                sourceCell = ray.GetPoint(distanceToEdge * 0.75f).ToIntVec3();
+                sourceCell = ray.GetPoint(distanceToEdge * 0.75f).ToIntVec3(); 
             }
+             
             LaunchProjectile(sourceCell, targetCell, map);
         }
         WorldObjects.HostilityComp hostility = worldObject.GetComponent<WorldObjects.HostilityComp>();
