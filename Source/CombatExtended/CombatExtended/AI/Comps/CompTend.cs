@@ -73,8 +73,8 @@ public class CompTend : ICompTactics
             lastTendJobCheckedAt = GenTicks.TicksGame - COOLDOWN_TEND_JOB_CHECK / 2;
             return SuppressionUtility.GetRunForCoverJob(SelPawn);
         }
-        // 如果 SelPawn 已被其他 pawn 预约（如正在被 TendPatient），不要分配 TendSelf
-        // 否则会导致 TryMakePreToilReservations 中的预约冲突红字
+        // Do not assign TendSelf if SelPawn is already reserved by another pawn (e.g currently being treated via TendPatient)
+        // Otherwise, this will trigger reservation conflict errors in TryMakePreToilReservations.
         var reservations = SelPawn.Map?.reservationManager?.ReservationsReadOnly;
         if (reservations != null)
         {
