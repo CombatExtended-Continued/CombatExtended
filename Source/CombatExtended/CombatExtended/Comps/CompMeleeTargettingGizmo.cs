@@ -145,6 +145,7 @@ public class CompMeleeTargettingGizmo : ThingComp
                         return BodyPartHeight.Bottom;
                     }
                     targetBodyPart = bp.def;
+                    return BodyPartHeight.Top;
                 }
             }
             return BodyPartHeight.Top;
