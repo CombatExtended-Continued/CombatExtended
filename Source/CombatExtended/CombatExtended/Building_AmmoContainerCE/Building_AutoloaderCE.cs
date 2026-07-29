@@ -311,6 +311,7 @@ public class Building_AutoloaderCE : Building
                 TargetTurret?.SetReloading(false);
                 TargetTurret = null;
                 ticksToCompleteInitial = 0;
+                return;
             }
 
             ticksToComplete--;
