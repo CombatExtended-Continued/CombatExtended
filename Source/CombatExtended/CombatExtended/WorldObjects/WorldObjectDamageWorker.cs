@@ -28,7 +28,7 @@ public class WorldObjectDamageWorker
             {
                 empModifier = Mathf.Pow(3.3f, (int)faction.def.techLevel) / 1800f / ((int)faction.def.techLevel - 2f);
             }
-            if (faction.def.pawnGroupMakers.SelectMany(x => x.options).All(k => k.kind.RaceProps.IsMechanoid))
+            if (faction.def.pawnGroupMakers != null && faction.def.pawnGroupMakers.SelectMany(x => x.options).All(k => k.kind.RaceProps.IsMechanoid))
             {
                 empModifier = 1f;
             }
