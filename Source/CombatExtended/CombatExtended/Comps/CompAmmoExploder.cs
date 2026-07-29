@@ -40,7 +40,7 @@ public class CompAmmoExploder : ThingComp
         {
             foreach (AmmoThing ammo in ((Pawn)this.parent).inventory.innerContainer.Where(x => x is AmmoThing))
             {
-                var projdef = ((AmmoDef)ammo.def)?.AmmoSetDefs[0]?.ammoTypes[0]?.projectile ?? null;
+                var projdef = ((AmmoDef)ammo.def)?.AmmoSetDefs.FirstOrDefault()?.ammoTypes.FirstOrDefault()?.projectile ?? null;
                 var proj = (projdef?.projectile ?? null) as ProjectilePropertiesCE;
                 if (proj != null)
                 {
