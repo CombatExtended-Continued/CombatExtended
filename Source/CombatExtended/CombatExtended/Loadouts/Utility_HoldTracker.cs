@@ -135,7 +135,7 @@ static class Utility_HoldTracker
             return;
         }
 
-        for (int i = recs.Count - 1; i > 0; i--)
+        for (int i = recs.Count - 1; i >= 0; i--)
         {
             if (recs[i].pickedUp && inventory.container.TotalStackCountOfDef(recs[i].thingDef) <= 0)
             {
