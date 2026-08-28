@@ -182,7 +182,7 @@ public class ShiftVecReport
     {
         get
         {
-            return shotDist * (shotDist / Math.Max(maxRange, 20)) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
+            return shotDist * (shotDist / Math.Max(maxRange, 20)) * Mathf.Min(accuracyFactor * 0.5f, 0.8f) * concealmentFactor;
         }
     }
 
@@ -288,10 +288,6 @@ public class ShiftVecReport
         {
             stringBuilder.AppendLine("      " + "CE_SmokeDensity".Translate() + "\t" + AsPercent(smokeDensity));
         }
-        if (visibilityShift > 0 && !Mathf.Approximately(concealmentFactor, 1f))
-        {
-            stringBuilder.AppendLine("      " + "CE_Concealment".Translate() + "\t" + AsPercent(concealmentFactor));
-        }
         if (leadShift > 0)
         {
             stringBuilder.AppendLine("   " + "CE_LeadError".Translate() + "\t" + GenText.ToStringByStyle(leadShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
@@ -299,6 +295,10 @@ public class ShiftVecReport
         if (distShift > 0)
         {
             stringBuilder.AppendLine("   " + "CE_RangeError".Translate() + "\t" + GenText.ToStringByStyle(distShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
+        }
+        if ((visibilityShift > 0 || distShift > 0) && !Mathf.Approximately(concealmentFactor, 1f))
+        {
+            stringBuilder.AppendLine("      " + "CE_Concealment".Translate() + "\t" + AsPercent(concealmentFactor));
         }
         if (swayDegrees > 0)
         {
