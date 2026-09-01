@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
@@ -364,7 +364,13 @@ public static class ArmorUtilityCE
                     {
                         if (penAmount == 0 || armorAmount == 0)
                         {
-                            if (armor.GetStatValue(StatDefOf.ArmorRating_Sharp) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Blunt) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Heat) == 0)
+                            // Skip error logging for utility stuff
+                            var layers = armor.def.apparel?.layers;
+                            bool isUtilityApparel = layers?.Count == 1 &&
+                                                    (layers[0] == CE_ApparelLayerDefOf.StrappedHead ||
+                                                     layers[0] == CE_ApparelLayerDefOf.Webbing ||
+                                                     layers[0] == CE_ApparelLayerDefOf.Backpack);
+                            if (!isUtilityApparel && armor.GetStatValue(StatDefOf.ArmorRating_Sharp) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Blunt) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Heat) == 0)
                             {
                                 Log.ErrorOnce($"penAmount or armorAmount are zero for {def.armorCategory} on {armor}", armor.def.GetHashCode() + 846532021);
                             }
