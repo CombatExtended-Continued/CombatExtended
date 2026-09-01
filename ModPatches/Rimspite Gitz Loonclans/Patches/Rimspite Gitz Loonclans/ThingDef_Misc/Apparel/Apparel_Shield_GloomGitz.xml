@@ -1,391 +1,391 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-    <!-- ========== Moonclan_Shield ========== -->
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_AOSGitz_MoonclanShield"]</xpath>
-        <value>
-            <ThingDef ParentName="ShieldBase">
-                <defName>Apparel_AOSGitz_MoonclanShield</defName>
-                <label>Moonclan Shield</label>
-                <description>Simple wooden shields with heraldry representing Da Bad Moon on its front, they arent very effective but its better then not having a shield.\n\nWeapons above 3 mass will be forcibly dropped if equipped.</description>
-                <techLevel>Medieval</techLevel>
-                <graphicData>
-                    <texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Basic/Shield</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
-                    <drawSize>1</drawSize>
-                </graphicData>
-                <thingClass>CombatExtended.Apparel_Shield</thingClass>
-                <recipeMaker>
-                    <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-                    <researchPrerequisite>GloomGitz_Moonclan_Basic</researchPrerequisite>
-                    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-                    <workSkill>Crafting</workSkill>
-                    <effectWorking>Smelt</effectWorking>
-                    <soundWorking>Recipe_MakeBow</soundWorking>
-                    <recipeUsers Inherit="False">
-                        <li>AOSgitz_Smithy</li>
-                    </recipeUsers>
-                    <useIngredientsForColor>false</useIngredientsForColor>
-                    <skillRequirements>
-                        <Crafting>3</Crafting>
-                    </skillRequirements>
-                    <displayPriority>501</displayPriority>
-                </recipeMaker>
-                <costList>
-                    <WoodLog>20</WoodLog>
-                    <Steel>5</Steel>
-                    <Dye>1</Dye>
-                </costList>
-                <tradeTags Inherit="False">
-                    <li>MoonClan_Shield</li>
-                </tradeTags>
-                <statBases>
-                    <MaxHitPoints>100</MaxHitPoints>
-                    <Flammability>1</Flammability>
-                    <ArmorRating_Sharp>0.18</ArmorRating_Sharp>
-                    <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-                    <WorkToMake>5000</WorkToMake>
-                    <Mass>3</Mass>
-                    <Bulk>3.5</Bulk>
-                    <WornBulk>2.0</WornBulk>
-                    <EquipDelay>0.75</EquipDelay>
-                </statBases>
-                <equippedStatOffsets>
-                    <ReloadSpeed>-0.2</ReloadSpeed>
-                    <MeleeHitChance>-1</MeleeHitChance>
-                    <ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
-                    <AimingAccuracy>-0.08</AimingAccuracy>
-                    <Suppressability>-0.25</Suppressability>
-                    <MeleeCritChance>-0.05</MeleeCritChance>
-                    <MeleeParryChance>1.0</MeleeParryChance>
-                </equippedStatOffsets>
-                <apparel>
-                    <tags Inherit="False">
-                        <li>MoonClan_Shield</li>
-                    </tags>
-                    <renderNodeProperties>
-                        <li>
-                            <nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
-                            <workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-                            <texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Basic/Shield</texPath>
-                            <shaderTypeDef>CutoutComplex</shaderTypeDef>
-                            <parentTagDef>ApparelBody</parentTagDef>
-                            <drawData>
-                                <dataSouth>
-                                    <layer>75</layer>
-                                    <offset>(0.26, 0., -0.2)</offset>
-                                </dataSouth>
-                                <dataWest>
-                                    <layer>75</layer>
-                                    <offset>(-0.29, 0.0, -0.2)</offset>
-                                </dataWest>
-                                <dataEast>
-                                    <layer>75</layer>
-                                    <offset>(0.29, 0.0, -0.2)</offset>
-                                </dataEast>
-                                <dataNorth>
-                                    <layer>10</layer>
-                                    <offset>(-0.24, 0.0, -0.1)</offset>
-                                </dataNorth>
-                            </drawData>
-                        </li>
-                    </renderNodeProperties>
-                    <developmentalStageFilter>Child, Adult</developmentalStageFilter>
-                </apparel>
-                <comps>
-                    <li Class="CVN_HandShield.CompProperties_HandheldShield">
-                        <useItemHPasShieldHP>false</useItemHPasShieldHP>
-                        <shieldMaxHP>32</shieldMaxHP>
-                        <shieldRechargeAmount>10</shieldRechargeAmount>
-                        <damageToShieldMultiplier>1</damageToShieldMultiplier>
-                        <minimumWorkingHp>10</minimumWorkingHp>
-                        <repairOvertime>true</repairOvertime>
-                        <repairInterval>25</repairInterval>
-                        <repairDelayTicks>5250</repairDelayTicks>
-                        <repairAmount>5</repairAmount>
-                        <repairPercent>0.01</repairPercent>
-                        <weaponWeightLimit>3</weaponWeightLimit>
-                        <isDropWeaponIfOverweight>true</isDropWeaponIfOverweight>
-                        <isShieldStopFunctionIfOverweight>true</isShieldStopFunctionIfOverweight>
-                    </li>
-                </comps>
-                <modExtensions>
-                    <li Class="CombatExtended.ShieldDefExtension">
-                        <shieldCoverage>
-                            <li>Hands</li>
-                            <li>Arms</li>
-                            <li>Shoulders</li>
-                            <li>Torso</li>
-                            <li>Neck</li>
-                        </shieldCoverage>
-                        <crouchCoverage>
-                            <li>Legs</li>
-                        </crouchCoverage>
-                    </li>
-                </modExtensions>
-            </ThingDef>
-        </value>
-    </Operation>
+	<!-- ========== Moonclan_Shield ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_AOSGitz_MoonclanShield"]</xpath>
+		<value>
+			<ThingDef ParentName="ShieldBase">
+				<defName>Apparel_AOSGitz_MoonclanShield</defName>
+				<label>Moonclan Shield</label>
+				<description>Simple wooden shields with heraldry representing Da Bad Moon on its front, they arent very effective but its better then not having a shield.\n\nWeapons above 3 mass will be forcibly dropped if equipped.</description>
+				<techLevel>Medieval</techLevel>
+				<graphicData>
+					<texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Basic/Shield</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1</drawSize>
+				</graphicData>
+				<thingClass>CombatExtended.Apparel_Shield</thingClass>
+				<recipeMaker>
+					<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+					<researchPrerequisite>GloomGitz_Moonclan_Basic</researchPrerequisite>
+					<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+					<workSkill>Crafting</workSkill>
+					<effectWorking>Smelt</effectWorking>
+					<soundWorking>Recipe_MakeBow</soundWorking>
+					<recipeUsers Inherit="False">
+						<li>AOSgitz_Smithy</li>
+					</recipeUsers>
+					<useIngredientsForColor>false</useIngredientsForColor>
+					<skillRequirements>
+						<Crafting>3</Crafting>
+					</skillRequirements>
+					<displayPriority>501</displayPriority>
+				</recipeMaker>
+				<costList>
+					<WoodLog>20</WoodLog>
+					<Steel>5</Steel>
+					<Dye>1</Dye>
+				</costList>
+				<tradeTags Inherit="False">
+					<li>MoonClan_Shield</li>
+				</tradeTags>
+				<statBases>
+					<MaxHitPoints>100</MaxHitPoints>
+					<Flammability>1</Flammability>
+					<ArmorRating_Sharp>0.18</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+					<WorkToMake>5000</WorkToMake>
+					<Mass>3</Mass>
+					<Bulk>3.5</Bulk>
+					<WornBulk>2.0</WornBulk>
+					<EquipDelay>0.75</EquipDelay>
+				</statBases>
+				<equippedStatOffsets>
+					<ReloadSpeed>-0.2</ReloadSpeed>
+					<MeleeHitChance>-1</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.08</AimingAccuracy>
+					<Suppressability>-0.25</Suppressability>
+					<MeleeCritChance>-0.05</MeleeCritChance>
+					<MeleeParryChance>1.0</MeleeParryChance>
+				</equippedStatOffsets>
+				<apparel>
+					<tags Inherit="False">
+						<li>MoonClan_Shield</li>
+					</tags>
+					<renderNodeProperties>
+						<li>
+							<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+							<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+							<texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Basic/Shield</texPath>
+							<shaderTypeDef>CutoutComplex</shaderTypeDef>
+							<parentTagDef>ApparelBody</parentTagDef>
+							<drawData>
+								<dataSouth>
+									<layer>75</layer>
+									<offset>(0.26, 0., -0.2)</offset>
+								</dataSouth>
+								<dataWest>
+									<layer>75</layer>
+									<offset>(-0.29, 0.0, -0.2)</offset>
+								</dataWest>
+								<dataEast>
+									<layer>75</layer>
+									<offset>(0.29, 0.0, -0.2)</offset>
+								</dataEast>
+								<dataNorth>
+									<layer>10</layer>
+									<offset>(-0.24, 0.0, -0.1)</offset>
+								</dataNorth>
+							</drawData>
+						</li>
+					</renderNodeProperties>
+					<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+				</apparel>
+				<comps>
+					<li Class="CVN_HandShield.CompProperties_HandheldShield">
+						<useItemHPasShieldHP>false</useItemHPasShieldHP>
+						<shieldMaxHP>32</shieldMaxHP>
+						<shieldRechargeAmount>10</shieldRechargeAmount>
+						<damageToShieldMultiplier>1</damageToShieldMultiplier>
+						<minimumWorkingHp>10</minimumWorkingHp>
+						<repairOvertime>true</repairOvertime>
+						<repairInterval>25</repairInterval>
+						<repairDelayTicks>5250</repairDelayTicks>
+						<repairAmount>5</repairAmount>
+						<repairPercent>0.01</repairPercent>
+						<weaponWeightLimit>3</weaponWeightLimit>
+						<isDropWeaponIfOverweight>true</isDropWeaponIfOverweight>
+						<isShieldStopFunctionIfOverweight>true</isShieldStopFunctionIfOverweight>
+					</li>
+				</comps>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+							<li>Arms</li>
+							<li>Shoulders</li>
+							<li>Torso</li>
+							<li>Neck</li>
+						</shieldCoverage>
+						<crouchCoverage>
+							<li>Legs</li>
+						</crouchCoverage>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</Operation>
 
-    <!-- ========== Loonsquire_Shield ========== -->
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_AOSGitz_MoonclanLoonShield"]</xpath>
-        <value>
-            <ThingDef ParentName="ShieldBase">
-                <defName>Apparel_AOSGitz_MoonclanLoonShield</defName>
-                <label>Loonsquire Shield</label>
-                <description>Simple metal shields forged in the shape of the moon, often used by Loonsquires until they are brave enough to fight without protection.\n\nWeapons above 3 mass will be forcibly dropped if equipped.</description>
-                <techLevel>Medieval</techLevel>
-                <graphicData>
-                    <texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Loon/LoonShield</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
-                    <drawSize>1</drawSize>
-                </graphicData>
-                <thingClass>CombatExtended.Apparel_Shield</thingClass>
-                <recipeMaker>
-                    <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-                    <researchPrerequisite>GloomGitz_Moonclan_Loonboon</researchPrerequisite>
-                    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-                    <workSkill>Crafting</workSkill>
-                    <effectWorking>Smelt</effectWorking>
-                    <soundWorking>Recipe_Smith</soundWorking>
-                    <recipeUsers Inherit="False">
-                        <li>AOSgitz_Smithy</li>
-                    </recipeUsers>
-                    <useIngredientsForColor>false</useIngredientsForColor>
-                    <skillRequirements>
-                        <Crafting>4</Crafting>
-                    </skillRequirements>
-                    <displayPriority>502</displayPriority>
-                </recipeMaker>
-                <costList>
-                    <Steel>45</Steel>
-                    <Dye>3</Dye>
-                </costList>
-                <tradeTags Inherit="False">
-                    <li>MoonClan_Shield</li>
-                </tradeTags>
-                <statBases>
-                    <MaxHitPoints>125</MaxHitPoints>
-                    <Flammability>0</Flammability>
-                    <ArmorRating_Sharp>1.50</ArmorRating_Sharp>
-                    <ArmorRating_Blunt>2.25</ArmorRating_Blunt>
-                    <WorkToMake>9500</WorkToMake>
-                    <Mass>3.2</Mass>
-                    <Bulk>5.0</Bulk>
-                    <WornBulk>3.0</WornBulk>
-                    <EquipDelay>1.15</EquipDelay>
-                </statBases>
-                <equippedStatOffsets>
-                    <ReloadSpeed>-0.2</ReloadSpeed>
-                    <MeleeHitChance>-1</MeleeHitChance>
-                    <ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
-                    <AimingAccuracy>-0.08</AimingAccuracy>
-                    <Suppressability>-0.25</Suppressability>
-                    <MeleeCritChance>-0.05</MeleeCritChance>
-                    <MeleeParryChance>1.0</MeleeParryChance>
-                </equippedStatOffsets>
-                <apparel>
-                    <tags Inherit="False">
-                        <li>MoonClan_Loon_Shield</li>
-                    </tags>
-                    <renderNodeProperties>
-                        <li>
-                            <nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
-                            <workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-                            <texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Loon/LoonShield</texPath>
-                            <shaderTypeDef>CutoutComplex</shaderTypeDef>
-                            <parentTagDef>ApparelBody</parentTagDef>
-                            <drawData>
-                                <dataSouth>
-                                    <layer>75</layer>
-                                    <offset>(0.26, 0., -0.2)</offset>
-                                </dataSouth>
-                                <dataWest>
-                                    <layer>75</layer>
-                                    <offset>(-0.29, 0.0, -0.2)</offset>
-                                </dataWest>
-                                <dataEast>
-                                    <layer>75</layer>
-                                    <offset>(0.29, 0.0, -0.2)</offset>
-                                </dataEast>
-                                <dataNorth>
-                                    <layer>10</layer>
-                                    <offset>(-0.24, 0.0, -0.1)</offset>
-                                </dataNorth>
-                            </drawData>
-                        </li>
-                    </renderNodeProperties>
-                    <developmentalStageFilter>Child, Adult</developmentalStageFilter>
-                </apparel>
-                <comps>
-                    <li Class="CVN_HandShield.CompProperties_HandheldShield">
-                        <useItemHPasShieldHP>false</useItemHPasShieldHP>
-                        <shieldMaxHP>55</shieldMaxHP>
-                        <shieldRechargeAmount>10</shieldRechargeAmount>
-                        <damageToShieldMultiplier>0.9</damageToShieldMultiplier>
-                        <minimumWorkingHp>10</minimumWorkingHp>
-                        <repairOvertime>true</repairOvertime>
-                        <repairInterval>25</repairInterval>
-                        <repairDelayTicks>4000</repairDelayTicks>
-                        <repairAmount>5</repairAmount>
-                        <repairPercent>0.01</repairPercent>
-                        <weaponWeightLimit>3</weaponWeightLimit>
-                        <isDropWeaponIfOverweight>true</isDropWeaponIfOverweight>
-                        <isShieldStopFunctionIfOverweight>true</isShieldStopFunctionIfOverweight>
-                        <immuneDamageDef>
-                            <li>Flame</li>
-                            <li>Frostbite</li>
-                        </immuneDamageDef>
-                    </li>
-                </comps>
-                <modExtensions>
-                    <li Class="CombatExtended.ShieldDefExtension">
-                        <shieldCoverage>
-                            <li>Hands</li>
-                            <li>Arms</li>
-                            <li>Shoulders</li>
-                            <li>Torso</li>
-                            <li>Neck</li>
-                        </shieldCoverage>
-                        <crouchCoverage>
-                            <li>Legs</li>
-                        </crouchCoverage>
-                    </li>
-                </modExtensions>
-            </ThingDef>
-        </value>
-    </Operation>
+	<!-- ========== Loonsquire_Shield ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_AOSGitz_MoonclanLoonShield"]</xpath>
+		<value>
+			<ThingDef ParentName="ShieldBase">
+				<defName>Apparel_AOSGitz_MoonclanLoonShield</defName>
+				<label>Loonsquire Shield</label>
+				<description>Simple metal shields forged in the shape of the moon, often used by Loonsquires until they are brave enough to fight without protection.\n\nWeapons above 3 mass will be forcibly dropped if equipped.</description>
+				<techLevel>Medieval</techLevel>
+				<graphicData>
+					<texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Loon/LoonShield</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1</drawSize>
+				</graphicData>
+				<thingClass>CombatExtended.Apparel_Shield</thingClass>
+				<recipeMaker>
+					<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+					<researchPrerequisite>GloomGitz_Moonclan_Loonboon</researchPrerequisite>
+					<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+					<workSkill>Crafting</workSkill>
+					<effectWorking>Smelt</effectWorking>
+					<soundWorking>Recipe_Smith</soundWorking>
+					<recipeUsers Inherit="False">
+						<li>AOSgitz_Smithy</li>
+					</recipeUsers>
+					<useIngredientsForColor>false</useIngredientsForColor>
+					<skillRequirements>
+						<Crafting>4</Crafting>
+					</skillRequirements>
+					<displayPriority>502</displayPriority>
+				</recipeMaker>
+				<costList>
+					<Steel>45</Steel>
+					<Dye>3</Dye>
+				</costList>
+				<tradeTags Inherit="False">
+					<li>MoonClan_Shield</li>
+				</tradeTags>
+				<statBases>
+					<MaxHitPoints>125</MaxHitPoints>
+					<Flammability>0</Flammability>
+					<ArmorRating_Sharp>1.50</ArmorRating_Sharp>
+					<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+					<WorkToMake>9500</WorkToMake>
+					<Mass>3.2</Mass>
+					<Bulk>5.0</Bulk>
+					<WornBulk>3.0</WornBulk>
+					<EquipDelay>1.15</EquipDelay>
+				</statBases>
+				<equippedStatOffsets>
+					<ReloadSpeed>-0.2</ReloadSpeed>
+					<MeleeHitChance>-1</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.08</AimingAccuracy>
+					<Suppressability>-0.25</Suppressability>
+					<MeleeCritChance>-0.05</MeleeCritChance>
+					<MeleeParryChance>1.0</MeleeParryChance>
+				</equippedStatOffsets>
+				<apparel>
+					<tags Inherit="False">
+						<li>MoonClan_Loon_Shield</li>
+					</tags>
+					<renderNodeProperties>
+						<li>
+							<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+							<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+							<texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Loon/LoonShield</texPath>
+							<shaderTypeDef>CutoutComplex</shaderTypeDef>
+							<parentTagDef>ApparelBody</parentTagDef>
+							<drawData>
+								<dataSouth>
+									<layer>75</layer>
+									<offset>(0.26, 0., -0.2)</offset>
+								</dataSouth>
+								<dataWest>
+									<layer>75</layer>
+									<offset>(-0.29, 0.0, -0.2)</offset>
+								</dataWest>
+								<dataEast>
+									<layer>75</layer>
+									<offset>(0.29, 0.0, -0.2)</offset>
+								</dataEast>
+								<dataNorth>
+									<layer>10</layer>
+									<offset>(-0.24, 0.0, -0.1)</offset>
+								</dataNorth>
+							</drawData>
+						</li>
+					</renderNodeProperties>
+					<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+				</apparel>
+				<comps>
+					<li Class="CVN_HandShield.CompProperties_HandheldShield">
+						<useItemHPasShieldHP>false</useItemHPasShieldHP>
+						<shieldMaxHP>55</shieldMaxHP>
+						<shieldRechargeAmount>10</shieldRechargeAmount>
+						<damageToShieldMultiplier>0.9</damageToShieldMultiplier>
+						<minimumWorkingHp>10</minimumWorkingHp>
+						<repairOvertime>true</repairOvertime>
+						<repairInterval>25</repairInterval>
+						<repairDelayTicks>4000</repairDelayTicks>
+						<repairAmount>5</repairAmount>
+						<repairPercent>0.01</repairPercent>
+						<weaponWeightLimit>3</weaponWeightLimit>
+						<isDropWeaponIfOverweight>true</isDropWeaponIfOverweight>
+						<isShieldStopFunctionIfOverweight>true</isShieldStopFunctionIfOverweight>
+						<immuneDamageDef>
+							<li>Flame</li>
+							<li>Frostbite</li>
+						</immuneDamageDef>
+					</li>
+				</comps>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+							<li>Arms</li>
+							<li>Shoulders</li>
+							<li>Torso</li>
+							<li>Neck</li>
+						</shieldCoverage>
+						<crouchCoverage>
+							<li>Legs</li>
+						</crouchCoverage>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</Operation>
 
-    <!-- ========== Moonclan_Boss_Shield ========== -->
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="Apparel_AOSGitz_MoonclanBossShield"]</xpath>
-        <value>
-            <ThingDef ParentName="ShieldBase">
-                <defName>Apparel_AOSGitz_MoonclanBossShield</defName>
-                <label>Moonclan Boss Shield</label>
-                <description>Ornate metal shields made in the spitting image of Da Bad Moon, the best shield a Moonclan Grot could get his hands on.\n\nWeapons above 3 mass will be forcibly dropped if equipped.</description>
-                <techLevel>Medieval</techLevel>
-                <graphicData>
-                    <texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Boss/ChiefShield</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
-                    <drawSize>1</drawSize>
-                </graphicData>
-                <thingClass>CombatExtended.Apparel_Shield</thingClass>
-                <recipeMaker>
-                    <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-                    <researchPrerequisite>GloomGitz_Moonclan_Advanced</researchPrerequisite>
-                    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-                    <workSkill>Crafting</workSkill>
-                    <effectWorking>Smelt</effectWorking>
-                    <soundWorking>Recipe_Smith</soundWorking>
-                    <recipeUsers Inherit="False">
-                        <li>AOSgitz_Smithy</li>
-                    </recipeUsers>
-                    <useIngredientsForColor>false</useIngredientsForColor>
-                    <skillRequirements>
-                        <Crafting>5</Crafting>
-                    </skillRequirements>
-                    <displayPriority>503</displayPriority>
-                </recipeMaker>
-                <costList>
-                    <Steel>55</Steel>
-                    <Dye>5</Dye>
-                </costList>
-                <tradeTags Inherit="False">
-                    <li>MoonClan_MageUtility</li>
-                </tradeTags>
-                <statBases>
-                    <MaxHitPoints>180</MaxHitPoints>
-                    <Flammability>0</Flammability>
-                    <ArmorRating_Sharp>2.00</ArmorRating_Sharp>
-                    <ArmorRating_Blunt>3.00</ArmorRating_Blunt>
-                    <WorkToMake>9500</WorkToMake>
-                    <Mass>3</Mass>
-                    <Bulk>5.5</Bulk>
-                    <WornBulk>3.5</WornBulk>
-                    <EquipDelay>1.15</EquipDelay>
-                </statBases>
-                <equippedStatOffsets>
-                    <ReloadSpeed>-0.2</ReloadSpeed>
-                    <MeleeHitChance>-1</MeleeHitChance>
-                    <ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
-                    <AimingAccuracy>-0.08</AimingAccuracy>
-                    <Suppressability>-0.25</Suppressability>
-                    <MeleeCritChance>-0.05</MeleeCritChance>
-                    <MeleeParryChance>1.0</MeleeParryChance>
-                </equippedStatOffsets>
-                <apparel>
-                    <tags Inherit="False">
-                        <li>MoonClan_Boss_Shield</li>
-                    </tags>
-                    <renderNodeProperties>
-                        <li>
-                            <nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
-                            <workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-                            <texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Boss/ChiefShield</texPath>
-                            <shaderTypeDef>CutoutComplex</shaderTypeDef>
-                            <parentTagDef>ApparelBody</parentTagDef>
-                            <drawData>
-                                <dataSouth>
-                                    <layer>75</layer>
-                                    <offset>(0.26, 0., -0.2)</offset>
-                                </dataSouth>
-                                <dataWest>
-                                    <layer>75</layer>
-                                    <offset>(-0.29, 0.0, -0.2)</offset>
-                                </dataWest>
-                                <dataEast>
-                                    <layer>75</layer>
-                                    <offset>(0.29, 0.0, -0.2)</offset>
-                                </dataEast>
-                                <dataNorth>
-                                    <layer>10</layer>
-                                    <offset>(-0.23, 0.0, -0.1)</offset>
-                                </dataNorth>
-                            </drawData>
-                        </li>
-                    </renderNodeProperties>
-                    <developmentalStageFilter>Child, Adult</developmentalStageFilter>
-                </apparel>
-                <comps>
-                    <li Class="CVN_HandShield.CompProperties_HandheldShield">
-                        <useItemHPasShieldHP>false</useItemHPasShieldHP>
-                        <shieldMaxHP>85</shieldMaxHP>
-                        <shieldRechargeAmount>10</shieldRechargeAmount>
-                        <damageToShieldMultiplier>0.9</damageToShieldMultiplier>
-                        <minimumWorkingHp>10</minimumWorkingHp>
-                        <repairOvertime>true</repairOvertime>
-                        <repairInterval>25</repairInterval>
-                        <repairDelayTicks>5000</repairDelayTicks>
-                        <repairAmount>5</repairAmount>
-                        <repairPercent>0.01</repairPercent>
-                        <weaponWeightLimit>3</weaponWeightLimit>
-                        <isDropWeaponIfOverweight>true</isDropWeaponIfOverweight>
-                        <isShieldStopFunctionIfOverweight>true</isShieldStopFunctionIfOverweight>
-                        <immuneDamageDef>
-                            <li>Flame</li>
-                            <li>Frostbite</li>
-                        </immuneDamageDef>
-                    </li>
-                </comps>
-                <modExtensions>
-                    <li Class="CombatExtended.ShieldDefExtension">
-                        <shieldCoverage>
-                            <li>Hands</li>
-                            <li>Arms</li>
-                            <li>Shoulders</li>
-                            <li>Torso</li>
-                            <li>Neck</li>
-                        </shieldCoverage>
-                        <crouchCoverage>
-                            <li>Legs</li>
-                        </crouchCoverage>
-                    </li>
-                </modExtensions>
-            </ThingDef>
-        </value>
-    </Operation>
+	<!-- ========== Moonclan_Boss_Shield ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_AOSGitz_MoonclanBossShield"]</xpath>
+		<value>
+			<ThingDef ParentName="ShieldBase">
+				<defName>Apparel_AOSGitz_MoonclanBossShield</defName>
+				<label>Moonclan Boss Shield</label>
+				<description>Ornate metal shields made in the spitting image of Da Bad Moon, the best shield a Moonclan Grot could get his hands on.\n\nWeapons above 3 mass will be forcibly dropped if equipped.</description>
+				<techLevel>Medieval</techLevel>
+				<graphicData>
+					<texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Boss/ChiefShield</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1</drawSize>
+				</graphicData>
+				<thingClass>CombatExtended.Apparel_Shield</thingClass>
+				<recipeMaker>
+					<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+					<researchPrerequisite>GloomGitz_Moonclan_Advanced</researchPrerequisite>
+					<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+					<workSkill>Crafting</workSkill>
+					<effectWorking>Smelt</effectWorking>
+					<soundWorking>Recipe_Smith</soundWorking>
+					<recipeUsers Inherit="False">
+						<li>AOSgitz_Smithy</li>
+					</recipeUsers>
+					<useIngredientsForColor>false</useIngredientsForColor>
+					<skillRequirements>
+						<Crafting>5</Crafting>
+					</skillRequirements>
+					<displayPriority>503</displayPriority>
+				</recipeMaker>
+				<costList>
+					<Steel>55</Steel>
+					<Dye>5</Dye>
+				</costList>
+				<tradeTags Inherit="False">
+					<li>MoonClan_MageUtility</li>
+				</tradeTags>
+				<statBases>
+					<MaxHitPoints>180</MaxHitPoints>
+					<Flammability>0</Flammability>
+					<ArmorRating_Sharp>2.00</ArmorRating_Sharp>
+					<ArmorRating_Blunt>3.00</ArmorRating_Blunt>
+					<WorkToMake>9500</WorkToMake>
+					<Mass>3</Mass>
+					<Bulk>5.5</Bulk>
+					<WornBulk>3.5</WornBulk>
+					<EquipDelay>1.15</EquipDelay>
+				</statBases>
+				<equippedStatOffsets>
+					<ReloadSpeed>-0.2</ReloadSpeed>
+					<MeleeHitChance>-1</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.08</AimingAccuracy>
+					<Suppressability>-0.25</Suppressability>
+					<MeleeCritChance>-0.05</MeleeCritChance>
+					<MeleeParryChance>1.0</MeleeParryChance>
+				</equippedStatOffsets>
+				<apparel>
+					<tags Inherit="False">
+						<li>MoonClan_Boss_Shield</li>
+					</tags>
+					<renderNodeProperties>
+						<li>
+							<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+							<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+							<texPath>Things/Item/Equipment/Gitz/WeaponMelee/Shields/Boss/ChiefShield</texPath>
+							<shaderTypeDef>CutoutComplex</shaderTypeDef>
+							<parentTagDef>ApparelBody</parentTagDef>
+							<drawData>
+								<dataSouth>
+									<layer>75</layer>
+									<offset>(0.26, 0., -0.2)</offset>
+								</dataSouth>
+								<dataWest>
+									<layer>75</layer>
+									<offset>(-0.29, 0.0, -0.2)</offset>
+								</dataWest>
+								<dataEast>
+									<layer>75</layer>
+									<offset>(0.29, 0.0, -0.2)</offset>
+								</dataEast>
+								<dataNorth>
+									<layer>10</layer>
+									<offset>(-0.23, 0.0, -0.1)</offset>
+								</dataNorth>
+							</drawData>
+						</li>
+					</renderNodeProperties>
+					<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+				</apparel>
+				<comps>
+					<li Class="CVN_HandShield.CompProperties_HandheldShield">
+						<useItemHPasShieldHP>false</useItemHPasShieldHP>
+						<shieldMaxHP>85</shieldMaxHP>
+						<shieldRechargeAmount>10</shieldRechargeAmount>
+						<damageToShieldMultiplier>0.9</damageToShieldMultiplier>
+						<minimumWorkingHp>10</minimumWorkingHp>
+						<repairOvertime>true</repairOvertime>
+						<repairInterval>25</repairInterval>
+						<repairDelayTicks>5000</repairDelayTicks>
+						<repairAmount>5</repairAmount>
+						<repairPercent>0.01</repairPercent>
+						<weaponWeightLimit>3</weaponWeightLimit>
+						<isDropWeaponIfOverweight>true</isDropWeaponIfOverweight>
+						<isShieldStopFunctionIfOverweight>true</isShieldStopFunctionIfOverweight>
+						<immuneDamageDef>
+							<li>Flame</li>
+							<li>Frostbite</li>
+						</immuneDamageDef>
+					</li>
+				</comps>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+							<li>Arms</li>
+							<li>Shoulders</li>
+							<li>Torso</li>
+							<li>Neck</li>
+						</shieldCoverage>
+						<crouchCoverage>
+							<li>Legs</li>
+						</crouchCoverage>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</Operation>
 
 </Patch>
