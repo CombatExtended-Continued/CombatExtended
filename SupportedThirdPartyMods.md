@@ -516,6 +516,7 @@ Rim Of Evil: Northern Frontier |
 Rim of Madness - Bones	|
 Rim of Madness - Vampires	|
 Rim of Madness - Werewolves	|
+RimDark 40K: Mankind's Finest Armory
 Rim-Effect: Asari and Reapers   |
 Rim-Effect: Core	|
 Rim-Effect: Drell	|

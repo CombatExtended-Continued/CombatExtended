@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+    <!--Astartes Combat Knife.-->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesKnife"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>4.5</Bulk>
+                <MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>0.25</MeleeCritChance>
+                <MeleeParryChance>0.45</MeleeParryChance>
+                <MeleeDodgeChance>0.35</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/ThingDef[defName="BEWH_AstartesKnife"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>edge</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>45</power>
+                    <cooldownTime>1.2</cooldownTime>
+                    <armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+                    <armorPenetrationSharp>25</armorPenetrationSharp>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>4</power>
+                    <cooldownTime>1.4</cooldownTime>
+                    <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>50</power>
+					<cooldownTime>3</cooldownTime>
+					<armorPenetrationSharp>30</armorPenetrationSharp>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+				</li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!-- Judiciar Power Sword.  -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesPowerSword_Judiciar"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>16</Bulk>
+                <MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>0.9</MeleeCritChance>
+                <MeleeParryChance>0.5</MeleeParryChance>
+                <MeleeDodgeChance>0.35</MeleeDodgeChance>
+            </equippedStatOffsets>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesPowerSword_Judiciar"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>edge</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>126</power>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>EMP</def>
+                            <amount>15</amount>
+                        </li>
+                    </extraMeleeDamages>
+                    <cooldownTime>2.2</cooldownTime>
+                    <armorPenetrationBlunt>10</armorPenetrationBlunt>
+                    <armorPenetrationSharp>45</armorPenetrationSharp>
+                    <soundMeleeHit>BEWH_SFX_PowerswordHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>5</power>
+                    <cooldownTime>1.8</cooldownTime>
+                    <armorPenetrationBlunt>2</armorPenetrationBlunt>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>point</label>
+                    <capacities>
+                        <li>Stab</li>
+                    </capacities>
+                    <power>80</power>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>EMP</def>
+                            <amount>15</amount>
+                        </li>
+                    </extraMeleeDamages>
+                    <cooldownTime>4.2</cooldownTime>
+                    <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                    <armorPenetrationSharp>55</armorPenetrationSharp>
+                    <soundMeleeHit>BEWH_SFX_PowerswordHit</soundMeleeHit>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!-- Chain Axe. Sacrifices speed for power. Longer wind-ups, but should be able to do devastating damage when it connects. -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesChainAxe"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>12</Bulk>
+                <MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>0.95</MeleeCritChance>
+                <MeleeParryChance>0.15</MeleeParryChance>
+                <MeleeDodgeChance>0.15</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesChainAxe"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>chain</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>50</power>
+                    <cooldownTime>2.8</cooldownTime>
+                    <armorPenetrationBlunt>10</armorPenetrationBlunt>
+                    <armorPenetrationSharp>34</armorPenetrationSharp>
+                    <extraMeleeDamages>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+						<li>
+							<def>Cut</def>
+							<amount>4</amount>
+							<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>
+                    <soundMeleeHit>BEWH_SFX_ChainswordHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>5</power>
+                    <cooldownTime>1.8</cooldownTime>
+                    <armorPenetrationBlunt>2</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+    <!-- Power Axe. -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesPowerAxe"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>12</Bulk>
+                <MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.1</MeleeCritChance>
+                <MeleeParryChance>0.25</MeleeParryChance>
+                <MeleeDodgeChance>0.25</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesPowerAxe"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>edge</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>60</power>
+                    <cooldownTime>3</cooldownTime>
+                    <armorPenetrationBlunt>8</armorPenetrationBlunt>
+                    <armorPenetrationSharp>40</armorPenetrationSharp>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>EMP</def>
+                            <amount>8</amount>
+                        </li>
+                    </extraMeleeDamages>
+                    <soundMeleeHit>BEWH_SFX_PowerswordHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>5</power>
+                    <cooldownTime>1.8</cooldownTime>
+                    <armorPenetrationBlunt>2</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!-- Power Maul. Won't be as powerful as the graviton maul, but makes up for it with faster strikes. One-handed. -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesPowerMaul"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>14</Bulk>
+                <MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.5</MeleeCritChance>
+                <MeleeParryChance>0.05</MeleeParryChance>
+                <MeleeDodgeChance>0.05</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/ThingDef[defName="BEWH_AstartesPowerMaul"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>head</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>50</power>
+                    <cooldownTime>2.15</cooldownTime>
+                    <armorPenetrationBlunt>160</armorPenetrationBlunt>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>EMP</def>
+                            <amount>8</amount>
+                        </li>
+                    </extraMeleeDamages>
+                    <soundMeleeHit>BEWH_SFX_GravitonMaulHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Poke</li>
+                    </capacities>
+                    <power>15</power>
+                    <cooldownTime>2</cooldownTime>
+                    <armorPenetrationBlunt>5</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!-- Thunderhammer. Two-handed monstrosity. Very heavy strikes. -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesThunderhammer"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>20</Bulk>
+                <MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>2</MeleeCritChance>
+                <MeleeParryChance>0.05</MeleeParryChance>
+                <MeleeDodgeChance>0.05</MeleeDodgeChance>
+            </equippedStatOffsets>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/ThingDef[defName="BEWH_AstartesThunderhammer"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>head</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>120</power>
+                    <cooldownTime>2.85</cooldownTime>
+                    <armorPenetrationBlunt>215</armorPenetrationBlunt>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>EMP</def>
+                            <amount>20</amount>
+                        </li>
+                    </extraMeleeDamages>
+                    <soundMeleeHit>BEWH_SFX_ThunderhammerHit</soundMeleeHit>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Poke</li>
+                    </capacities>
+                    <power>25</power>
+                    <cooldownTime>2.2</cooldownTime>
+                    <armorPenetrationBlunt>10</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!-- Power Fist. Not as bulky as other weapons, shouldn't impede operating/carrying other stuff. One-handed. -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesPowerFist"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>7.5</Bulk>
+                <MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.5</MeleeCritChance>
+                <MeleeParryChance>0.05</MeleeParryChance>
+                <MeleeDodgeChance>0.05</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/ThingDef[defName="BEWH_AstartesPowerFist"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>Fist</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>36</power>
+                    <cooldownTime>1.8</cooldownTime>
+                    <armorPenetrationBlunt>170</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </Operation>
+
+
+    <!--Lightning Claw. Swiss Army Knife of Space Marine melee weapons imo. One-handed to allow for shield/sidearm use, mini power-sword in terms of armor penetration. Much, much quicker to use. -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_AstartesLightningClaws"]</xpath>
+        <value>
+            <statBases>
+                <Bulk>9.25</Bulk>
+                <MeleeCounterParryBonus>0.85</MeleeCounterParryBonus>
+            </statBases>
+            <equippedStatOffsets>
+                <MeleeCritChance>1.15</MeleeCritChance>
+                <MeleeParryChance>0.55</MeleeParryChance>
+                <MeleeDodgeChance>0.45</MeleeDodgeChance>
+            </equippedStatOffsets>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>
+            Defs/ThingDef[defName="BEWH_AstartesLightningClaws"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>edge</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>75</power>
+                    <cooldownTime>1.6</cooldownTime>
+                    <armorPenetrationBlunt>8</armorPenetrationBlunt>
+                    <armorPenetrationSharp>36</armorPenetrationSharp>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>80</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+                    <armorPenetrationSharp>40</armorPenetrationSharp>
+				</li>
+            </tools>
+        </value>
+    </Operation>
+</Patch>
