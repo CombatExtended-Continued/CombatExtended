@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Shoulder SMG Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ALE_Shoulder_SMG"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>Shoulder Mounted SMG</label>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>25</range>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
+					<soundCast>Shot_HeavySMG</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- Shoulder Twin SMG Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ALE_Shoulder_TSMG"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>Shoulder Mounted Twin SMG</label>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>25</range>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<burstShotCount>12</burstShotCount>
+					<soundCast>Shot_HeavySMG</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- Shoulder Gatling Carbine Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ALE_Shoulder_GCarbine"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>Shoulder Mounted Gatling Carbine</label>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>45</range>
+					<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+					<burstShotCount>16</burstShotCount>
+					<soundCast>Shot_Minigun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- Shoulder Mounted Micro Missile Pod -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ALE_Shoulder_MicroMissile"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>Shoulder Mounted Micro Missile Pod</label>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_20mmFliegerfaust_HE</defaultProjectile>
+					<range>45</range>
+					<minRange>5</minRange>
+					<warmupTime>2.0</warmupTime>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<burstShotCount>4</burstShotCount>
+					<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- Type 3 Eye Beam -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ALE_eye_laser_T1A"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>Type 3 Eye Beam</label>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Laser_BeamRepeater_Mech</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>25</range>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>Shot_BeamRepeater</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+</Patch>

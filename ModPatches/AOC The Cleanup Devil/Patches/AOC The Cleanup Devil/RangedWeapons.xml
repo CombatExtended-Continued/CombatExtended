@@ -400,12 +400,12 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>AOC_KJW</defName>
 		<statBases>
-			<Mass>7.60</Mass>
-			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.06</ShotSpread>
-			<SwayFactor>3.22</SwayFactor>
-			<Bulk>10</Bulk>
+			<Mass>8.40</Mass>
+			<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.05</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.30</SwayFactor>
+			<Bulk>12</Bulk>
 			<WorkToMake>15000</WorkToMake>
 		</statBases>
 		<costList>
@@ -413,31 +413,34 @@
 			<ComponentIndustrial>11</ComponentIndustrial>
 		</costList>
 		<Properties>
-			<recoilAmount>0.8</recoilAmount>
+			<recoilAmount>1.25</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-			<warmupTime>2.1</warmupTime>
+			<warmupTime>1.25</warmupTime>
 			<range>62</range>
-			<burstShotCount>50</burstShotCount>
-			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-			<soundCast>Shot_Minigun</soundCast>
+			<burstShotCount>12</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Shot_CE_BattleRifle</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>150</magazineSize>
-			<reloadTime>4.0</reloadTime>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4.8</reloadTime>
 			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
 		</AmmoUser>
 		<FireModes>
-			<aimedBurstShotCount>25</aimedBurstShotCount>
-			<aiAimMode>Snapshot</aiAimMode>
+			<aimedBurstShotCount>6</aimedBurstShotCount>
+			<aiUseBurstMode>false</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
 		</FireModes>
 		<weaponTags>
-			<li>CE_AI_Suppressive</li>
-			<li>NoSwitch</li>
+			<li>CE_MachineGun</li>
+			<li>CE_AI_LMG</li>
+			<li>Bipod_LMG</li>
 		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -466,12 +469,12 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>AOC_KJW_H</defName>
 		<statBases>
-			<Mass>8.50</Mass>
-			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+			<Mass>28</Mass>
+			<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
 			<SightsEfficiency>1.25</SightsEfficiency>
-			<ShotSpread>0.08</ShotSpread>
-			<SwayFactor>3.22</SwayFactor>
-			<Bulk>12</Bulk>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>2.30</SwayFactor>
+			<Bulk>22</Bulk>
 			<WorkToMake>15000</WorkToMake>
 		</statBases>
 		<costList>
@@ -479,31 +482,36 @@
 			<ComponentIndustrial>11</ComponentIndustrial>
 		</costList>
 		<Properties>
-			<recoilAmount>1.1</recoilAmount>
+			<recoilAmount>1.55</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
-			<warmupTime>2.3</warmupTime>
+			<warmupTime>1.8</warmupTime>
 			<range>75</range>
-			<burstShotCount>50</burstShotCount>
-			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 			<soundCast>Shot_Minigun</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>11</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>250</magazineSize>
-			<reloadTime>4.0</reloadTime>
+			<magazineSize>100</magazineSize>
+			<reloadTime>9.0</reloadTime>
 			<ammoSet>AmmoSet_50BMG</ammoSet>
 		</AmmoUser>
 		<FireModes>
-			<aimedBurstShotCount>25</aimedBurstShotCount>
-			<aiAimMode>Snapshot</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<noSingleShot>true</noSingleShot>
 		</FireModes>
 		<weaponTags>
+			<li>CE_MachineGun</li>
 			<li>CE_AI_Suppressive</li>
-			<li>NoSwitch</li>
+			<li>Bipod_LMG</li>
 		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">

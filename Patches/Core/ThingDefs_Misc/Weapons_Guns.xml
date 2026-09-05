@@ -1035,6 +1035,17 @@
 	<!-- Patch projectile -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>Things/Projectile/Rocket/Doomsday</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<drawSize>(1.45,1.45)</drawSize>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -1068,6 +1079,35 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
 		<value>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<scale>2</scale>
+						<cutoffTickRange>20~35</cutoffTickRange>
+						<originOffset>0.4</originOffset>
+						<startDelayTick>2</startDelayTick>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>1.5</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+						<startDelayTick>2</startDelayTick>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>2</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragSpeedFactor>1</fragSpeedFactor>
 				<fragments>
@@ -1141,6 +1181,16 @@
 	<!-- Patch projectile -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_Rocket"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>Things/Projectile/Rocket/M74</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bullet_Rocket"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -1174,6 +1224,35 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Bullet_Rocket"]/comps</xpath>
 		<value>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<scale>1.25</scale>
+						<cutoffTickRange>20~25</cutoffTickRange>
+						<originOffset>0.4</originOffset>
+						<startDelayTick>2</startDelayTick>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>0.75</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+						<startDelayTick>2</startDelayTick>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>1.25</scale>
+						<flecksPerEmission>2</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragSpeedFactor>1</fragSpeedFactor>
 				<fragments>

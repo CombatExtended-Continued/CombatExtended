@@ -27,6 +27,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool partialstats = true;
     private bool enableExtraEffects = true;
     private bool realWeaponNames = true;
+    private bool requireArtilleryMarkerForOffMapArtillery = true;
 
     private bool enableArcOfFire = false;
 
@@ -77,6 +78,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool PartialStat => partialstats;
     public bool EnableExtraEffects => enableExtraEffects;
     public bool RealWeaponNames => realWeaponNames;
+    public bool RequireArtilleryMarkerForOffMapArtillery => requireArtilleryMarkerForOffMapArtillery;
     public bool ShowExtraTooltips => showExtraTooltips;
     public bool DetailedMeleeTooltip => detailedMeleeTooltip;
     public bool NonPlayerMeleeTooltip => nonPlayerMeleeTooltip;
@@ -221,6 +223,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref variedHumanHeight, "variedHumanHeight", false);
         Scribe_Values.Look(ref logUnpatchedDefs, "logUnpatchedDefs", false);
         Scribe_Values.Look(ref realWeaponNames, "realWeaponNames", true);
+        Scribe_Values.Look(ref requireArtilleryMarkerForOffMapArtillery, "requireArtilleryMarkerForOffMapArtillery", true);
 
 #if DEBUG
         // Debug settings
@@ -336,6 +339,7 @@ public class Settings : ModSettings, ISettingsCE
         left.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_SuppressionCausesRunning_Title".Translate(), ref suppressionCausesRunning, "CE_Settings_SuppressionCausesRunning_Desc".Translate());
+        left.CheckboxLabeled("CE_Settings_RequireArtilleryMarkerForOffMapArtillery_Title".Translate(), ref requireArtilleryMarkerForOffMapArtillery, "CE_Settings_RequireArtilleryMarkerForOffMapArtillery_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_FragmentsFromWallsReflected_Title".Translate(), ref fragmentsFromWallsReflected, "CE_Settings_FragmentsFromWallsReflected_Desc".Translate());
         left.Gap();
@@ -559,6 +563,7 @@ public class Settings : ModSettings, ISettingsCE
         autosetup = true;
         medicineSearchRadius = 5f;
         suppressionCausesRunning = true;
+        requireArtilleryMarkerForOffMapArtillery = true;
         opportunisticReloadMode = OpportunisticReloadMode.Any;
         opportunisticReloadSafeDistance = 12.9f;
         secondsAfterFightToOpportunisticReload = 5;

@@ -1,25 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
+	<!-- EN: sights efficiency -->
 	<SightsEfficiency.label>eficiencia de puntería</SightsEfficiency.label>
-	<SightsEfficiency.description>Qué buena es la puntería de esta arma. La calidad de la puntería reduce los errores de alcance y mejora la orientación al objetivo. Esto se multiplica en función de la precisión de puntería del tirador para calcular la cantidad de rango y el error de plomo.\n\nEl modificador final se calcula mediante esta fórmula:\n(1.5 - precisión de puntería) / eficiencia de puntería\n\nEl error de liderazgo se calcula por medio de: Multiplicando este factor frente a la distancia total de plomo en las células. El error de alcance se calcula multiplicándolo por la distancia total al objetivo dividido por 4.</SightsEfficiency.description>
+	<!-- EN: How good the sights on this weapon are. Quality sights reduce range errors and improve target leading. This is multiplied against the aiming accuracy of the shooter to calculate the amount of range and lead error.\n\nThe final modifier is calculated via this formula:\n(1.5 - aiming accuracy) / aiming efficiency\n\nLead error is calculated by multiplying this factor against total lead distance in cells. Range error is calculated by multiplying it against the total distance to the target divided by 4. -->
+	<SightsEfficiency.description>Lo buena que es la óptica de esta arma. Una óptica de calidad reduce los errores de distancia y mejora la anticipación al objetivo. Se multiplica por la precisión al apuntar del tirador para calcular el error de distancia y el de anticipación.\n\nEl modificador final se calcula con esta fórmula:\n(1,5 - precisión al apuntar) / eficiencia de puntería\n\nEl error de anticipación se obtiene multiplicando este factor por la distancia total de anticipación en celdas. El error de distancia se obtiene multiplicándolo por la distancia total al objetivo dividida entre 4.</SightsEfficiency.description>
 
-	<ShotSpread.label>Propagación</ShotSpread.label>
-	<ShotSpread.description>Inherente a la propagación del proyectil. Esto representa la inexactitud inherente de la pistola y provoca una desviación cónica aleatoria que no está influenciada por la habilidad.</ShotSpread.description>
+	<!-- EN: spread -->
+	<ShotSpread.label>dispersión</ShotSpread.label>
+	<!-- EN: Inherent projectile spread. This represents the inherent inaccuracy of the gun and causes random conical deviation that is not influenced by skill. -->
+	<ShotSpread.description>Dispersión inherente del proyectil. Representa la imprecisión propia del arma y provoca una desviación cónica aleatoria que no depende de la habilidad.</ShotSpread.description>
 	<ShotSpread.formatString>{0}°</ShotSpread.formatString>
 
-	<SwayFactor.label>Balance de arma</SwayFactor.label>
-	<SwayFactor.description>Lo difícil que es el arma se mantenga firme.\n\nLa oscilación total se calcula como:\n (4,5 - precisión de disparo) * factor de balanceo del arma\n\nLa exactitud de la acción influye en la reducción del balanceo durante los disparos dirigidos. Por ejemplo, al 75% la precisión de puntería se reducirá al 25%.</SwayFactor.description>
+	<!-- EN: weapon sway -->
+	<SwayFactor.label>oscilación del arma</SwayFactor.label>
+	<!-- EN: How difficult the gun is to keep steady. \n\nThe total sway is calculated as:\n(4.5 - shooting accuracy) * weapon sway factor\n\nAiming accuracy influences the sway reduction during aimed shots. For example, at 75% aiming accuracy sway will be reduced to 25%. -->
+	<SwayFactor.description>Lo difícil que resulta mantener el arma firme.\n\nLa oscilación total se calcula así:\n(4,5 - precisión de disparo) * factor de oscilación del arma\n\nLa precisión al apuntar influye en la reducción de la oscilación durante los disparos apuntados. Por ejemplo, con un 75 % de precisión al apuntar la oscilación se reduce al 25 %.</SwayFactor.description>
+
+	<!-- EN: recoil amount -->
+	<Recoil.label>retroceso</Recoil.label>
+	<!-- EN: How much will this weapon recoil upon firing. -->
+	<Recoil.description>Cuánto retrocede esta arma al disparar.</Recoil.description>
+
+	<!-- EN: reload time -->
+	<ReloadTime.label>tiempo de recarga</ReloadTime.label>
+	<!-- EN: How long should this weapon take to reload. -->
+	<ReloadTime.description>Cuánto tarda esta arma en recargarse.</ReloadTime.description>
+
+	<!-- EN: fire rate -->
+	<TicksBetweenBurstShots.label>cadencia de fuego</TicksBetweenBurstShots.label>
+	<!-- EN: The speed at this weapon launch projectiles. -->
+	<TicksBetweenBurstShots.description>La velocidad a la que esta arma dispara proyectiles.</TicksBetweenBurstShots.description>
+
+	<!-- EN: burst shot count -->
+	<BurstShotCount.label>tiros por ráfaga</BurstShotCount.label>
+	<!-- EN: How many projectiles this weapon launch in one burst. -->
+	<BurstShotCount.description>Cuántos proyectiles dispara esta arma en una ráfaga.</BurstShotCount.description>
+
+	<!-- EN: ammo consumed per shot -->
+	<ammoConsumedPerShotCount.label>munición consumida por disparo</ammoConsumedPerShotCount.label>
+	<!-- EN: How many units of ammunition this gun consumes for each individual shot.\n\nThis applies to guns with multiple barrels that fire simultaneously with each pull of the trigger, or exotic energy weapons that use up different amounts of energy from a power cell. -->
+	<ammoConsumedPerShotCount.description>Cuántas unidades de munición gasta esta arma en cada disparo.\n\nSe aplica a las armas de varios cañones que disparan a la vez con cada apretón del gatillo, o a las armas de energía exóticas que consumen cantidades distintas de energía de una célula.</ammoConsumedPerShotCount.description>
+
+	<!-- EN: muzzle flash -->
+	<MuzzleFlash.label>fogonazo</MuzzleFlash.label>
+	<!-- EN: How bright the muzzle flash is.\n\nMuzzle flashes will illuminate a shooter's position in darkness, exposing them to more accurate return fire. Brighter muzzle flashes are easier to target.\n\nPawns will remember the position of the muzzle flash for 5-10 seconds. -->
+	<MuzzleFlash.description>Cuán brillante es el fogonazo.\n\nLos fogonazos iluminan la posición del tirador en la oscuridad y lo exponen a un fuego de respuesta más certero. Cuanto más brillante es el fogonazo, más fácil resulta apuntarle.\n\nLos colonos recuerdan la posición del fogonazo entre 5 y 10 segundos.</MuzzleFlash.description>
+
+	<!-- EN: One-handed weapon -->
+	<OneHandedness.label>arma de una mano</OneHandedness.label>
+	<!-- EN: Whether or not the weapon can be used with shields -->
+	<OneHandedness.description>Si el arma se puede usar junto con un escudo.</OneHandedness.description>
+
+	<!-- EN: Bipod stats -->
+	<BipodStats.label>estadísticas del bípode</BipodStats.label>
+	<!-- EN: Stats with bipod deployed and undeployed. -->
+	<BipodStats.description>Estadísticas con el bípode desplegado y replegado.</BipodStats.description>
+
+	<!-- EN: Additional weapon info -->
+	<UBGLInfo.label>información adicional del arma</UBGLInfo.label>
+	<!-- EN: Information about under/over barrel or otherwise mounted weapons -->
+	<UBGLInfo.description>Información sobre armas montadas bajo el cañón, sobre el cañón o de cualquier otra forma.</UBGLInfo.description>
+
+	<!-- EN: ammo generation per magazine override -->
+	<AmmoGenPerMagOverride.label>anulación de munición generada por cargador</AmmoGenPerMagOverride.label>
+	<!-- EN: How many units of ammunition per magazine specified in pawnKindDef should a pawn bring.\n\nPurely used in pawn generation. You should not be able to read this in game. -->
+	<AmmoGenPerMagOverride.description>Cuántas unidades de munición por cargador, según lo indicado en el pawnKindDef, debe llevar un colono.\n\nSolo se usa al generar colonos. No deberías poder ver esto dentro del juego.</AmmoGenPerMagOverride.description>
 
 	<!-- Don't do anything, only display information to the player -->
 
+	<!-- EN: caliber -->
 	<Caliber.label>calibre</Caliber.label>
-	<Caliber.description>Los tipos de munición que esta pistola acepta.</Caliber.description>
+	<!-- EN: The types of ammo this gun accepts. -->
+	<Caliber.description>Los tipos de munición que admite esta arma.</Caliber.description>
 
+	<!-- EN: magazine capacity -->
 	<MagazineCapacity.label>capacidad del cargador</MagazineCapacity.label>
+	<!-- EN: How many projectiles this weapon's magazine holds and how long it takes to reload it. -->
 	<MagazineCapacity.description>Cuántos proyectiles tiene el cargador de esta arma y cuánto tiempo tarda en volver a cargarla.</MagazineCapacity.description>
 
 	<!--<AimEfficiency.label>Eficiencia apuntando</AimEfficiency.label>-->
-	<!--<AimEfficiency.description>Cuán eficiente es el arma en la dirección y alcance. Esto se multiplica en función de la precisión de puntería del tirador para calcular la cantidad de rango y el error de plomo.\n\nEl modificador final se calcula mediante esta fórmula:\n(1.5 - precisión de puntería) / eficiencia de puntería\n\nEl error de liderazgo se calcula por medio de: Multiplicando este factor frente a la distancia total de plomo en las células. El error de alcance se calcula multiplicándolo por la distancia total al objetivo dividido por 4.</AimEfficiency.description>-->
 
 </LanguageData>

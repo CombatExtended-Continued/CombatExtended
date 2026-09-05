@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>AENitrogen</defName>
+		<label>nitrogen</label>
+		<description>A charge filled with destabilized ice crystal. Spills freezing nitrogen on detonation, slowing targets and cryogenically bonding mechanical components.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_AENitrogen_CE</defName>
+		<label>81mm mortar shell (Nitrogen)</label>
+		<description>A shell filled with destabilized ice crystal, for spilling nitrogen around that freezing and slowing down surrounding targets when detonated. It causes cryogenic bonding of mechanical components, effectively disrupting the functionality of different machinery and temporarily disabling electrical devices. Explodes when damaged.</description>
+		<possessionCount>1</possessionCount>
+		<graphicData>
+			<texPath>Things/Item/Resource/Shell/Shell_AENitrogen</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>5.27</Mass>
+			<Bulk>8.17</Bulk>
+		</statBases>
+		<ammoClass>AENitrogen</ammoClass>
+		<detonateProjectile>Bullet_Shell_AENitrogen_CE</detonateProjectile>
+		<destroyOnDrop>False</destroyOnDrop>
+		<genericMarketSellable>false</genericMarketSellable>
+		<tradeability>Sellable</tradeability>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>AENitrogen</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<wickTicks>30~60</wickTicks>
+			</li>		
+		</comps>
+		<modExtensions>
+			<li Class="CombatExtended.GenericLabelExtension">
+				<genericLabel>mortar shell (Nitrogen)</genericLabel>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_Shell_AENitrogen_CE</defName>
+		<label>81mm mortar shell (Nitrogen)</label>
+		<graphicData>
+			<texPath>Things/Projectile/AEShellNitrogen</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>AENitrogen</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			<explosionRadius>5.9</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<dangerFactor>1.5</dangerFactor>
+		</projectile>
+		<modExtensions>
+			<li Class="CombatExtended.GenericLabelExtension">
+				<genericLabel>mortar shell (Nitrogen)</genericLabel>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
+		<defName>MakeAENitrogen_CE</defName>
+		<label>make a 81mm (Nitrogen) mortar shell</label>
+		<description>Craft a 81mm (Nitrogen) mortar shell.</description>
+		<jobString>Making a 81mm (Nitrogen) mortar shell.</jobString>
+		<workAmount>6600</workAmount>
+		<researchPrerequisites>
+			<li>AEIceCrystalDestabilized</li>
+			<li>Mortars</li>
+		</researchPrerequisites>
+		<recipeUsers>
+			<li>BioferriteShaper</li>
+		</recipeUsers>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>		
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Bioferrite</li>
+					</thingDefs>
+				</filter>
+				<count>25</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AE_IceCrystalDestabilized</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AE_IceCrystalDestabilized</li>
+				<li>Bioferrite</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_AENitrogen_CE>1</Shell_AENitrogen_CE>
+		</products>
+		<modExtensions>
+			<li Class="CombatExtended.GenericLabelExtension">
+				<genericLabel>make a mortar shells (Nitrogen).</genericLabel>
+				<genericDescription>Craft 1 mortar shells (Nitrogen).</genericDescription>
+				<genericJobString>Making mortar shells (Nitrogen).</genericJobString>
+			</li>
+		</modExtensions>
+	</RecipeDef>
+
+</Defs>

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Player ranged tools ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="Gun_AESnowBallGun" or
+			defName="Gun_AEIcicleRifle" or
+			defName="Gun_AEPetrificationGun"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Snowball Gun ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_AESnowBallGun</defName>
+		<statBases>
+			<Mass>3.4</Mass>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.85</SightsEfficiency>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>1.30</SwayFactor>
+			<Bulk>5.5</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.20</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_AESnowBall</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>18.9</range>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>0</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Icicle Rifle ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_AEIcicleRifle</defName>
+		<statBases>
+			<Mass>4.0</Mass>
+			<RangedWeapon_Cooldown>3.1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.8</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.55</SwayFactor>
+			<Bulk>9.0</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.80</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_AEIcicle</defaultProjectile>
+			<warmupTime>2.5</warmupTime>
+			<range>55</range>
+			<soundCast>Shot_SniperRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>0</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Petrification Repeater ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_AEPetrificationGun</defName>
+		<statBases>
+			<Mass>9</Mass>
+			<RangedWeapon_Cooldown>4.0</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.5</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.40</SwayFactor>
+			<Bulk>10</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>3</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_AEPetrificationBeam_CE</defaultProjectile>
+			<warmupTime>3.0</warmupTime>
+			<range>35</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Shot_BeamRepeater</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<aimingChargeMote>Mote_AEPetrificationBeam_Charge</aimingChargeMote>
+			<aimingChargeMoteOffset>1.07</aimingChargeMoteOffset>
+		</Properties>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AOE</li>
+			<li>GunHeavy</li>
+			<li>WeaponBeamRepeater</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Nitrogen Grenade ========== -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Weapon_AEGrenadeNitrogen"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Weapon_AEGrenadeNitrogen"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>50</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Weapon_AEGrenadeNitrogen"]/comps</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<explosiveDamageType>AENitrogen</explosiveDamageType>
+					<damageAmountBase>22</damageAmountBase>
+					<explosiveRadius>4.5</explosiveRadius>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Weapon_AEGrenadeNitrogen"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Weapon_AEGrenadeNitrogen</defName>
+		<statBases>
+			<Mass>1.0</Mass>
+			<Bulk>1.0</Bulk>
+			<RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw nitrogen grenade</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Proj_AEGrenadeNitrogen</defaultProjectile>
+			<range>12.9</range>
+			<minRange>3</minRange>
+			<minRangeInCover>4</minRangeInCover>
+			<warmupTime>1.5</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<onlyManualCast>true</onlyManualCast>
+			<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_AI_AOE</li>
+			<li>CE_OneHandedWeapon</li>
+			<li>GrenadeDestructive</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Gun_AESnowBall ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBall"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Gun_AESnowBall_Thrown</defaultProjectile>
+					<warmupTime>0.4</warmupTime>
+					<range>18.9</range>
+					<soundCast>Interact_BeatFire</soundCast>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBall"]/statBases</xpath>
+		<value>
+			<SightsEfficiency>0.9</SightsEfficiency>
+			<ShotSpread>0.20</ShotSpread>
+			<SwayFactor>1.3</SwayFactor>
+			<Bulk>1.0</Bulk>
+		</value>
+	</Operation>
+
+	<!-- ========== Gun_AESnowBlock ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBlock"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Gun_AESnowBlock_Thrown</defaultProjectile>
+					<requireLineOfSight>false</requireLineOfSight>
+					<isMortar>true</isMortar>
+					<warmupTime>4.0</warmupTime>
+					<minRange>7</minRange>
+					<range>50</range>
+					<indirectFirePenalty>0.25</indirectFirePenalty>
+					<soundCast>Interact_BeatFire</soundCast>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBlock"]/statBases</xpath>
+		<value>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.30</ShotSpread>
+			<SwayFactor>1.8</SwayFactor>
+			<Bulk>10.0</Bulk>
+		</value>
+	</Operation>
+
+	<!-- ========== Gun_AEIcicle ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_AEIcicle"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_AEIcicle</defaultProjectile>
+					<warmupTime>2.3</warmupTime>
+					<range>28</range>
+					<soundCast>Interact_BeatFire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+					<muzzleFlashScale>0</muzzleFlashScale>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_AEIcicle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.4</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_AEIcicle"]/statBases</xpath>
+		<value>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.4</SwayFactor>
+			<Bulk>1.5</Bulk>
+		</value>
+	</Operation>
+
+</Patch>

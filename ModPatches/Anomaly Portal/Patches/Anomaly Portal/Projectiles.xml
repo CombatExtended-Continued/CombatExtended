@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== AP_Projectile_TeleportSpike ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AP_Projectile_TeleportSpike"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- AP_Damage_Teleport's worker teleports the victim before armor is consulted,
+	     so the extra damage carries no armor interaction on purpose. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AP_Projectile_TeleportSpike"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>12</damageAmountBase>
+				<speed>55</speed>
+				<armorPenetrationSharp>4</armorPenetrationSharp>
+				<armorPenetrationBlunt>2</armorPenetrationBlunt>
+				<suppressionFactor>0.5</suppressionFactor>
+				<dangerFactor>1.0</dangerFactor>
+				<extraDamages>
+					<li>
+						<def>AP_Damage_Teleport</def>
+						<amount>1</amount>
+						<chance>0.66</chance>
+					</li>
+				</extraDamages>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

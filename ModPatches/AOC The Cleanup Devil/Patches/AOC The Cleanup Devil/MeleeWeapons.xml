@@ -255,4 +255,97 @@
 		</value>
 	</Operation>
 
+	<!-- Upcycling Doll - Dog -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AOC_Doll_Dog"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bash</label>
+					<labelUsedInLogging>false</labelUsedInLogging>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AOC_Doll_Dog"]/statBases</xpath>
+		<value>
+			<Bulk>0.2</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Royalty-only Swatter -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AOC_Swatter"]</xpath>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AOC_Swatter"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.4</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>swatter</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.2</cooldownTime>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>3</amount>
+										<chance>0.25</chance>
+									</li>
+									<li>
+										<def>EMP</def>
+										<amount>5</amount>
+									</li>
+								</extraMeleeDamages>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_Swatter"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_Swatter"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.08</MeleeCritChance>
+							<MeleeParryChance>0.12</MeleeParryChance>
+							<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
 </Patch>

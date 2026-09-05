@@ -33,7 +33,7 @@ public static class CE_DebugUtility
         array[4] = new TableDataGetter<WorldObjectDef>("HealthPatched", (WorldObjectDef d) => d.comps.Any(comp => comp is WorldObjectCompProperties_Health));
         DebugTables.MakeTablesDialog<WorldObjectDef>(notPatched, array);
     }
-    [DebugAction("CE", actionType = DebugActionType.ToolWorld)]
+    [DebugAction("CE", "Heal World Object", actionType = DebugActionType.ToolWorld)]
     public static void Heal()
     {
         int tileID = GenWorld.MouseTile(false);
@@ -46,5 +46,24 @@ public static class CE_DebugUtility
                 comp.recentShells.Clear();
             }
         }
+    }
+    [DebugAction("CE", "Set Suppression: 0", false, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+    private static void SetSuppressionZero(Pawn p)
+    {
+        CompSuppressable comp = p.TryGetComp<CompSuppressable>();
+        comp?.DebugSetSuppression(0);
+    }
+    [DebugAction("CE", "Set Suppression: 50%", false, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+    private static void SetSuppressionHalf(Pawn p)
+    {
+        CompSuppressable comp = p.TryGetComp<CompSuppressable>();
+        comp?.DebugSetSuppression(comp.SuppressionThreshold);
+    }
+
+    [DebugAction("CE", "Set Suppression: 100%", false, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+    private static void SetSuppressionMax(Pawn p)
+    {
+        CompSuppressable comp = p.TryGetComp<CompSuppressable>();
+        comp?.DebugSetSuppression(1050f);
     }
 }

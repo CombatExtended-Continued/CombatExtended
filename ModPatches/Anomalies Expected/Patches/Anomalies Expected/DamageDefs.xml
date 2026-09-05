@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Freezing damage is resisted by thermal insulation. AENitrogenPlayer inherits
+	     from AENitrogen (Name="AENitrogenBase") and needs no separate patch.
+	     Armor penetration is carried by ToolCE and ProjectilePropertiesCE on every
+	     delivery path, so defaultArmorPenetration is not patched. -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AEFreezing"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
+
+	<!-- Same treatment CE core gives vanilla AcidBurn. The def inherits Flame's
+	     ambient-damage handling, where a Sharp category pits vanilla-scale pen
+	     against mm RHA armor and the fleshmass spitters deal zero damage to any
+	     armored pawn. Heat armor keeps the vanilla scale. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AcidBurnFleshmass"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
+
+</Patch>

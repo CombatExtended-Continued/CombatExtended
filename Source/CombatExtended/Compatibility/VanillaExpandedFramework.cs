@@ -15,17 +15,22 @@ public class VanillaExpandedFramework : IPatch
 
     void IPatch.Install()
     {
-        BlockerRegistry.RegisterCheckForCollisionCallback(CheckIntercept);
+        BlockerRegistry.RegisterCheckForCollisionBetweenCallback(CheckInterceptBetween);
         BlockerRegistry.RegisterShieldZonesCallback(ShieldZonesCallback);
+    }
+
+    // Copy of how CE handles vanilla shields
+    private static bool CheckInterceptBetween(ProjectileCE projectile, Vector3 from, Vector3 to)
+    {
+        return CheckIntercept(projectile);
     }
 
     private IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
     {
         IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(pawnToSuppress.Map).ToList();
-        List<IEnumerable<IntVec3>> result = new List<IEnumerable<IntVec3>>();
         if (!interceptors.Any())
         {
-            return result;
+            yield break;
         }
         foreach (var interceptor in interceptors)
         {
@@ -33,36 +38,30 @@ public class VanillaExpandedFramework : IPatch
             {
                 continue;
             }
-            result.Add(GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true));
+            yield return GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true);
         }
-        return result;
     }
 
-    private static bool CheckIntercept(ProjectileCE projectile, IntVec3 cell, Thing launcher)
+    private static bool CheckIntercept(ProjectileCE projectile)
     {
-        if (projectile.def.projectile.flyOverhead)
-        {
-            return false;
-        }
         IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(projectile.Map).ToList();
         if (!interceptors.Any())
         {
             return false;
         }
-        Vector3 lastExactPos = projectile.LastPos.Yto0();
-        var newExactPos = projectile.ExactPosition.Yto0();
+        Vector3 lastExactPos = projectile.LastPos;
+        var newExactPos = projectile.ExactPosition;
         foreach (var interceptor in interceptors)
         {
-
             if (!interceptor.CanFunction)
             {
                 continue;
             }
-            Vector3 shieldPosition = interceptor.HostThing.Position.ToVector3Shifted().Yto0();
-            float radius = interceptor.ShieldRadius;
 
-            Vector3[] intersectionPoints;
-            if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out intersectionPoints, false))
+            Vector3 shieldPosition = interceptor.HostThing.Position.ToVector3ShiftedWithAltitude(0.5f);
+            float radius = interceptor.ShieldRadius;
+            bool spherical = projectile.def.projectile.flyOverhead;
+            if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] intersectionPoints, spherical: spherical))
             {
                 continue;
             }
@@ -71,7 +70,7 @@ public class VanillaExpandedFramework : IPatch
             projectile.landed = true;
             projectile.InterceptProjectile(interceptor.HostThing, projectile.ExactPosition, true);
             float damageAmount = CE_Utility.CalculateAbsorbedDamage(projectile);
-            interceptor.AbsorbDamage(damageAmount, projectile.def.projectile.damageDef, launcher);
+            interceptor.AbsorbDamage(damageAmount, projectile.def.projectile.damageDef, projectile.launcher);
             return true;
         }
         return false;

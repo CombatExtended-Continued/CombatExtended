@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- The mod names its thrown projectile defs "Gun_*_Thrown". Despite the prefix these
+	     are projectiles (category Projectile via BaseProjectileSnowArmy); the launchers
+	     are Gun_AESnowBall/Gun_AESnowBlock. -->
+
+	<!-- ========== Snowball (entity thrown by AE_SnowMan) ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBall_Thrown"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBall_Thrown"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>AEFreezing</damageDef>
+				<damageAmountBase>5</damageAmountBase>
+				<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				<speed>30</speed>
+				<suppressionFactor>0.3</suppressionFactor>
+				<dangerFactor>0.8</dangerFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ========== Snowball (player snowball gun) ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bullet_AESnowBall"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_AESnowBall"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>AEFreezing</damageDef>
+				<damageAmountBase>16</damageAmountBase>
+				<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+				<speed>35</speed>
+				<suppressionFactor>0.5</suppressionFactor>
+				<dangerFactor>0.9</dangerFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ========== Snow Block (entity siege, AE_SnowGolem) ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>AENitrogen</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<armorPenetrationBlunt>4</armorPenetrationBlunt>
+				<speed>20</speed>
+				<explosionRadius>2.5</explosionRadius>
+				<flyOverhead>true</flyOverhead>
+				<soundExplode>SpitterSpitLands</soundExplode>
+				<filth>Filth_AESpentNitrogen</filth>
+				<filthCount>1</filthCount>
+				<explosionEffect>Shell_AESnowBlockImpact</explosionEffect>
+				<explosionEffectLifetimeTicks>15</explosionEffectLifetimeTicks>
+				<doExplosionVFX>false</doExplosionVFX>
+				<dangerFactor>1.2</dangerFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ========== Icicle (player icicle rifle + entity IceMan) ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bullet_AEIcicle"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_AEIcicle"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>EMP</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<armorPenetrationSharp>0.20</armorPenetrationSharp>
+				<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+				<speed>55</speed>
+				<extraDamages>
+					<li>
+						<def>AEFreezing</def>
+						<amount>20</amount>
+						<armorPenetration>0.05</armorPenetration>
+					</li>
+					<li>
+						<def>RangedStab</def>
+						<amount>10</amount>
+						<armorPenetration>0.10</armorPenetration>
+						<chance>0.35</chance>
+					</li>
+					<li>
+						<def>Blunt</def>
+						<amount>10</amount>
+						<armorPenetration>0.10</armorPenetration>
+						<chance>0.35</chance>
+					</li>
+				</extraDamages>
+				<suppressionFactor>0.6</suppressionFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- The petrification gun's CE projectile is set in Weapons_Ranged.xml; its
+	     PatchOperationMakeGunCECompatible replaces the vanilla verb entirely, so a
+	     defaultProjectile patch here would be discarded. -->
+
+	<!-- ========== Nitrogen Grenade Projectile ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_AEGrenadeNitrogen"]</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_AEGrenadeNitrogen"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>AENitrogen</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<armorPenetrationBlunt>4</armorPenetrationBlunt>
+				<speed>22</speed>
+				<explosionRadius>3.5</explosionRadius>
+				<flyOverhead>true</flyOverhead>
+				<suppressionFactor>2.5</suppressionFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Child of Gun_AESnowBlock_Thrown; inheritance does not propagate the Class attribute. -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="AE_Bullet_Shell_SnowBlockAbility"]/projectile</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.ProjectilePropertiesCE</value>
+	</Operation>
+
+	<!-- The siege ability shell is launched by the mod's CompAbilityEffect_SpitLiquid and
+	     HediffComp_SnowBlockCompressor, which hard-cast the spawned thing to Verse.Projectile.
+	     Pin the vanilla thingClass so it does not inherit ProjectileCE_Explosive from its
+	     parent (same treatment CE gives the vanilla Bullet_Shell_AcidSpit). Its own effecter
+	     comps stay valid on the vanilla class. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_Bullet_Shell_SnowBlockAbility"]</xpath>
+		<value>
+			<thingClass>Projectile_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<!-- Vanilla CompProperties_ProjectileEffecter only validates against Verse.Projectile; -->
+	<!-- CE's ProjectileCE_Explosive isn't a subclass so it triggers a config error. Drop the comps. -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/comps</xpath>
+	</Operation>
+
+</Patch>

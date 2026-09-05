@@ -8,6 +8,41 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
+				<!-- ========== Light Rocket Pod ========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Miho_MechWeapon_LightRocketTurret</defName>
+					<statBases>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.12</ShotSpread>
+						<SwayFactor>0</SwayFactor>
+						<Bulk>20</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>10</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.5</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<defaultProjectile>Bullet_57mmRocket_HE</defaultProjectile>
+						<range>100</range>
+						<minRange>28.9</minRange>
+						<burstShotCount>8</burstShotCount>
+						<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+						<soundCast>Miho_Rocket</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<consumeFuelPerShot>15</consumeFuelPerShot>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+					</FireModes>
+					<weaponTags>
+						<li>NoSwitch</li>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
 				<!-- ========== Common to all Defensive Turrets ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="Miho_ShipCannon"]/thingClass </xpath>

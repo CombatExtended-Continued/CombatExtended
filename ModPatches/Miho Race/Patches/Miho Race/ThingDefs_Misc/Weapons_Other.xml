@@ -2,17 +2,21 @@
 <Patch>
 	<!-- ========== Common to all Defensive Turrets ========== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="Miho_DeployableHMG" or @Name="Miho_DeployableMissile"]/thingClass </xpath>
+		<xpath>Defs/ThingDef[@Name="Miho_DeployableHMG" or @Name="Miho_DeployableMissile" or @Name="Miho_DeployableAutocannon"]/thingClass </xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Miho_Turret_Machinegun" or defName="Miho_Turret_Missile"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Turret_Machinegun" or defName="Miho_Turret_Missile" or defName="Miho_Turret_InfantryGun"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.5</AimingAccuracy>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Miho_Turret_InfantryGun"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<!-- ========== MG ========== -->
@@ -96,6 +100,47 @@
 			<ammoSet>AmmoSet_MihoMissile</ammoSet>
 		</AmmoUser>
 		<FireModes>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== 57mm Infantry Gun ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_BuildingWeapon_InfantryGun</defName>
+		<statBases>
+			<SightsEfficiency>1.56</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.86</SwayFactor>
+			<Bulk>24</Bulk>
+			<Mass>15</Mass>
+			<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>4.67</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_57x280mmR_HE</defaultProjectile>
+			<warmupTime>2.25</warmupTime>
+			<range>75</range>
+			<minRange>9.9</minRange>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>Miho_Mortar</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>12</reloadTime>
+			<ammoSet>AmmoSet_57x280mmR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 		<weaponTags>
 			<li>TurretGun</li>

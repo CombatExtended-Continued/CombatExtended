@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Add CoveredByNaturalArmor to the outside parts of every new body so the entity
+	     ArmorRating stats apply. Inside parts (AE_SnowCoreHeart) are left uncovered,
+	     as is the ice mantis' destabilized ice crystal, which is designed as a weak point. -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_SnowMan" or defName="AE_SnowGolem" or defName="AE_SnowSpider" or defName="AE_IceMantis" or defName="AE_IceMan" or defName="AE_BrokenStatue"]/corePart/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<!-- ==================== Snowman ==================== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_SnowMan"]/corePart/parts/li[def="AE_SnowBallB" or def="AE_SnowBallC" or def="AE_SnowArm"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_SnowMan"]/corePart/parts/li[def="AE_SnowBallB"]/parts/li[def="AE_SnowEyeA" or def="AE_SnowNose"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_SnowMan"]/corePart/parts/li[def="AE_SnowBallC"]/parts/li[def="AE_SnowLegA"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<!-- ==================== Snow Golem ==================== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_SnowGolem"]/corePart/parts/li[def="AE_SnowFacePlate" or def="AE_SnowBlockLeg" or def="AE_SnowBlockArm" or def="AE_SnowBlockCompressor"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_SnowGolem"]/corePart/parts/li[def="AE_SnowFacePlate"]/parts/li[def="AE_SnowEyeB"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<!-- ==================== Snow Spider ==================== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_SnowSpider"]/corePart/parts/li[def="AE_SnowBallE" or def="AE_SnowBallF" or def="AE_SnowLegB"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_SnowSpider"]/corePart/parts/li[def="AE_SnowBallE"]/parts/li[def="AE_SnowEyeC"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<!-- ==================== Ice Mantis / Ice Man ==================== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_IceMantis" or defName="AE_IceMan"]/corePart/parts/li[def="AE_IceShardB" or def="AE_IceShardE"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_IceMantis"]/corePart/parts/li[def="AE_IceShardC"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_IceMantis"]/corePart/parts/li[def="AE_IceShardC"]/parts/li[def="AE_IceShardD"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_IceMan"]/corePart/parts/li[def="AE_IceShardF"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<!-- ==================== Broken Statue ==================== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_BrokenStatue"]/corePart/parts/li[def="AE_MarbleAshlarB" or def="AE_MarbleAshlarD" or def="AE_MarbleAshlarE"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<!-- The tail has no groups entry in the source def -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AE_BrokenStatue"]/corePart/parts/li[def="AE_MarbleAshlarC"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AE_BrokenStatue"]/corePart/parts/li[def="AE_MarbleAshlarC"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AE_BrokenStatue"]/corePart/parts/li[def="AE_MarbleAshlarC"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>
