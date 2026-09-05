@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using CombatExtended.Loader;
-using HarmonyLib;
-using UnityEngine;
-using VEF;
-using VEF.Apparels;
 using Verse;
+using CombatExtended.Loader;
+using System.Collections.Generic;
+using HarmonyLib;
+using VEF;
 
 
 namespace CombatExtended.Compatibility.VEFCompat;
@@ -28,10 +25,6 @@ public class VEFCompat : IModPart
 
     public void PostLoad(ModContentPack content, ISettingsCE _)
     {
-        // Register the shield field callbacks, this assembly is only loaded when VEF is active
-        BlockerRegistry.RegisterCheckForCollisionBetweenCallback(VEFCompat.CheckInterceptBetween);
-        BlockerRegistry.RegisterShieldZonesCallback(VEFCompat.ShieldZonesCallback);
-
         harmony = new Harmony("CombatExtended.Compatibility.VEFCompat");
         LongEventHandler.ExecuteWhenFinished(() =>
         {
@@ -39,63 +32,4 @@ public class VEFCompat : IModPart
         });
 
     }
-
-    #region Shield Logic
-    // Copy of how CE handles vanilla shields
-    private static bool CheckInterceptBetween(ProjectileCE projectile, Vector3 from, Vector3 to)
-    {
-        return CheckIntercept(projectile);
-    }
-
-    private static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
-    {
-        IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(pawnToSuppress.Map).ToList();
-        if (!interceptors.Any())
-        {
-            yield break;
-        }
-        foreach (var interceptor in interceptors)
-        {
-            if (!interceptor.CanFunction)
-            {
-                continue;
-            }
-            yield return GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true);
-        }
-    }
-
-    private static bool CheckIntercept(ProjectileCE projectile)
-    {
-        IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(projectile.Map).ToList();
-        if (!interceptors.Any())
-        {
-            return false;
-        }
-        Vector3 lastExactPos = projectile.LastPos;
-        var newExactPos = projectile.ExactPosition;
-        foreach (var interceptor in interceptors)
-        {
-            if (!interceptor.CanFunction)
-            {
-                continue;
-            }
-
-            Vector3 shieldPosition = interceptor.HostThing.Position.ToVector3ShiftedWithAltitude(0.5f);
-            float radius = interceptor.ShieldRadius;
-            bool spherical = projectile.def.projectile.flyOverhead;
-            if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] intersectionPoints, spherical: spherical))
-            {
-                continue;
-            }
-
-            projectile.ExactPosition = intersectionPoints.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
-            projectile.landed = true;
-            projectile.InterceptProjectile(interceptor.HostThing, projectile.ExactPosition, true);
-            float damageAmount = CE_Utility.CalculateAbsorbedDamage(projectile);
-            interceptor.AbsorbDamage(damageAmount, projectile.def.projectile.damageDef, projectile.launcher);
-            return true;
-        }
-        return false;
-    }
-    #endregion
 }
