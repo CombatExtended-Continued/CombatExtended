@@ -5,7 +5,7 @@ using Verse;
 using VEF.Apparels;
 namespace CombatExtended.Compatibility;
 
- class VanillaExpandedFramework : IPatch
+public class VanillaExpandedFramework : IPatch
 {
     const string ModName = "Vanilla Expanded Framework";
     bool IPatch.CanInstall()
@@ -13,10 +13,10 @@ namespace CombatExtended.Compatibility;
         return ModLister.HasActiveModWithName(ModName);
     }
 
-    public void Install()
+    void IPatch.Install()
     {
-        BlockerRegistry.RegisterCheckForCollisionBetweenCallback(VanillaExpandedFramework.CheckInterceptBetween);
-        BlockerRegistry.RegisterShieldZonesCallback(VanillaExpandedFramework.ShieldZonesCallback);
+        BlockerRegistry.RegisterCheckForCollisionBetweenCallback(CheckInterceptBetween);
+        BlockerRegistry.RegisterShieldZonesCallback(ShieldZonesCallback);
     }
 
     // Copy of how CE handles vanilla shields
@@ -25,12 +25,13 @@ namespace CombatExtended.Compatibility;
         return CheckIntercept(projectile);
     }
 
-    private static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
+    private IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
     {
         IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(pawnToSuppress.Map).ToList();
+        List<IEnumerable<IntVec3>> result = new List<IEnumerable<IntVec3>>();
         if (!interceptors.Any())
         {
-            yield break;
+            return result;
         }
         foreach (var interceptor in interceptors)
         {
@@ -38,8 +39,9 @@ namespace CombatExtended.Compatibility;
             {
                 continue;
             }
-            yield return GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true);
+            result.Add(GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true));
         }
+        return result;
     }
 
     private static bool CheckIntercept(ProjectileCE projectile)
