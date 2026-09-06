@@ -125,7 +125,19 @@ public class TravelingShell : TravelingThing
             Ray ray = new Ray(targetCell.ToVector3(), -1 * direction);
             Bounds mapBounds = new Bounds((mapSize / 2f).Yto0(), mapSize);
             mapBounds.IntersectRay(ray, out float distanceToEdge);
-            IntVec3 sourceCell = ray.GetPoint(distanceToEdge * (IsInstant ? 1f : 0.75f)).ToIntVec3(); // Instant shells should start at the edge of the map
+            IntVec3 sourceCell;
+            if (IsInstant)
+            {
+                // Instant shells should start at the edge of the map
+                sourceCell = ray.GetPoint(distanceToEdge).ToIntVec3();
+                sourceCell.x = Mathf.Clamp(sourceCell.x, 0, map.Size.x - 1);
+                sourceCell.z = Mathf.Clamp(sourceCell.z, 0, map.Size.z - 1);
+            }
+            else
+            {
+                sourceCell = ray.GetPoint(distanceToEdge * 0.75f).ToIntVec3();
+            }
+
             LaunchProjectile(sourceCell, targetCell, map);
         }
         WorldObjects.HostilityComp hostility = worldObject.GetComponent<WorldObjects.HostilityComp>();
