@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using Verse;
-using VFESecurity;
 #nullable enable
 namespace CombatExtended.Compatibility.VFES
 {
     public class Building_ConcealedTurretCE : Building_TurretGunCE
     {
-        private CompConcealed? concealedComp;
-        private bool lastSubmerged;
+        private CompConcealedCE? concealedComp;
 
         public bool Submerged => concealedComp?.Submerged ?? false;
 
@@ -25,17 +23,17 @@ namespace CombatExtended.Compatibility.VFES
         {
             get
             {
-                if (concealedComp != null && concealedComp.Submerged && concealedComp.Props.submergedGraphic != null)
+                Graphic? sub = concealedComp?.SubmergedGraphic;
+                if (Submerged && sub != null)
                 {
-                    return concealedComp.Props.submergedGraphic.Graphic;
+                    return sub;
                 }
                 return base.Graphic;
             }
         }
 
-        // When submerged the turret is hidden in the floor: draw only the floor
-        // graphic (linked to VFE's concealedComp.Props.submergedGraphic) and skip
-        // the turret top/gun so it looks like a plain floor tile.
+        // submerged = hidden in the floor. just draw the floor tile and skip the
+        // gun so it doesn't poke out of the ground like an idiot.
         public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             if (Submerged)
@@ -49,36 +47,7 @@ namespace CombatExtended.Compatibility.VFES
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            concealedComp = GetComp<CompConcealed>();
-            lastSubmerged = Submerged;
-            UpdateFillAndPassability();
-        }
-
-        public override void Tick()
-        {
-            base.Tick();
-            if (Submerged != lastSubmerged)
-            {
-                lastSubmerged = Submerged;
-                UpdateFillAndPassability();
-            }
-        }
-
-        // When submerged the turret acts like a floor (walkable, no cover).
-        // When active it becomes a turret: passable-through and provides cover.
-        private void UpdateFillAndPassability()
-        {
-            if (Submerged)
-            {
-                def.passability = Traversability.Standable;
-                def.fillPercent = 0f;
-            }
-            else
-            {
-                def.passability = Traversability.PassThroughOnly;
-                def.fillPercent = 0.85f;
-            }
-            Map?.pathing.RecalculatePerceivedPathCostAt(Position);
+            concealedComp = GetComp<CompConcealedCE>();
         }
     }
 }
