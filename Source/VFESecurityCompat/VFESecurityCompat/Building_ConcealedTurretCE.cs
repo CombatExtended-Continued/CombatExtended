@@ -19,6 +19,11 @@ namespace CombatExtended.Compatibility.VFES
             }
         }
 
+        // OF COURSE the def is MapMeshAndRealTime, so the body lives in the map mesh
+        // via Graphic (VFE helpfully dirties the whole mesh the instant state flips,
+        // because why be efficient). This override is the ONLY thing that actually
+        // shows the floor instead of the turret -- the dynamic DrawAt pass just
+        // refuses to draw the body for this drawerType. Don't ask me why it's like this.
         public override Graphic Graphic
         {
             get
@@ -32,13 +37,12 @@ namespace CombatExtended.Compatibility.VFES
             }
         }
 
-        // submerged = hidden in the floor. just draw the floor tile and skip the
-        // gun so it doesn't poke out of the ground like an idiot.
+        // When it's in the floor, just... don't draw the gun. That's it. That's the whole
+        // fix. The marker already comes from the mesh above. I am so tired.
         public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             if (Submerged)
             {
-                Graphic.Draw(drawLoc, Rotation, this);
                 return;
             }
             base.DrawAt(drawLoc, flip);

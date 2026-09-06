@@ -16,6 +16,7 @@ namespace CombatExtended.Compatibility.VFES
     public class CompConcealedCE : ThingComp
     {
         private CompConcealed? concealed;
+        private CompProperties_ConcealedCE? ceProps;
         private Thing? dummy;
         private bool loaded;
 
@@ -23,17 +24,20 @@ namespace CombatExtended.Compatibility.VFES
 
         public Graphic? SubmergedGraphic => concealed?.Props.submergedGraphic?.Graphic;
 
-        private ThingDef? DummyDef => (props as CompProperties_ConcealedCE)?.dummyDef;
+        private ThingDef? DummyDef => ceProps?.dummyDef;
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
             concealed = parent.GetComp<CompConcealed>();
+            ceProps = props as CompProperties_ConcealedCE;
             // On load, defer the reconcile to the first tick so any saved dummy
             // has already been instantiated (avoids spawning a duplicate).
             loaded = !respawningAfterLoad;
-            if (!respawningAfterLoad)
+            if (loaded)
+            {
                 SyncDummy();
+            }
         }
 
         public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
@@ -48,9 +52,7 @@ namespace CombatExtended.Compatibility.VFES
             {
                 loaded = true;
                 SyncDummy();
-                return;
             }
-            SyncDummy();
         }
 
         public override void CompTickRare()
@@ -64,21 +66,22 @@ namespace CombatExtended.Compatibility.VFES
             // if it was already destroyed out from under us, the field is stale
             // and there is nothing left to do.
             if (dummy != null && !dummy.Destroyed)
+            {
                 dummy.Destroy();
-            dummy = null;
+                dummy = null;
+            }
         }
 
         private Thing? FindDummy()
         {
             if (dummy != null && !dummy.Destroyed)
-                return dummy;
-            if (DummyDef != null && parent.Spawned)
             {
-                foreach (Thing t in parent.Map.thingGrid.ThingsListAt(parent.Position))
-                {
-                    if (t.def == DummyDef)
-                        return t;
-                }
+                return dummy;
+            }
+            ThingDef? dummyDef = DummyDef;
+            if (dummyDef != null && parent.Spawned)
+            {
+                return parent.Map.thingGrid.ThingAt(parent.Position, dummyDef);
             }
             return null;
         }
@@ -86,22 +89,26 @@ namespace CombatExtended.Compatibility.VFES
         private void SyncDummy()
         {
             if (concealed == null)
+            {
                 return;
-
+            }
             bool wantDummy = !concealed.Submerged;
             Thing? existing = FindDummy();
 
             // already in the desired state -> nothing to do
             if (wantDummy == (existing != null))
+            {
                 return;
-
+            }
+            Map map = parent.Map;
             if (wantDummy)
             {
-                if (parent.Spawned && DummyDef != null)
+                ThingDef? dummyDef = DummyDef;
+                if (parent.Spawned && dummyDef != null)
                 {
-                    Thing made = ThingMaker.MakeThing(DummyDef);
-                    dummy = GenSpawn.Spawn(made, parent.Position, parent.Map, parent.Rotation, WipeMode.Vanish);
-                    parent.Map.pathing.RecalculatePerceivedPathCostAt(parent.Position);
+                    Thing made = ThingMaker.MakeThing(dummyDef);
+                    dummy = GenSpawn.Spawn(made, parent.Position, map, parent.Rotation);
+                    map.pathing.RecalculatePerceivedPathCostAt(parent.Position);
                 }
             }
             else
@@ -109,7 +116,7 @@ namespace CombatExtended.Compatibility.VFES
                 if (existing != null)
                 {
                     existing.Destroy();
-                    parent.Map.pathing.RecalculatePerceivedPathCostAt(parent.Position);
+                    map.pathing.RecalculatePerceivedPathCostAt(parent.Position);
                 }
                 dummy = null;
             }
