@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="PE_Gun_AssaultRifleTraining" or defName="PE_Gun_SpacerTraining"]/tools</xpath>
+		<value>
+			<tools Inherit="False">
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="PE_PracticeShortBow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Training m16 rifle ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PE_Gun_AssaultRifleTraining</defName>
+		<statBases>
+			<Bulk>10</Bulk>
+			<Mass>3.26</Mass>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<WorkToMake>10000</WorkToMake>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>50</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial> <!-- lowered from 5 -->
+			<Chemfuel>10</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>1.50</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ_Training</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO_Training</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>CE_AI_Nonlethal</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="PE_Gun_AssaultRifleTraining"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.2,1.2)</drawSize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="PE_Gun_AssaultRifleTraining"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>0.08,0.0</DrawOffset>
+				<CasingOffset>-0.05,0</CasingOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Training Charge rifle ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PE_Gun_SpacerTraining</defName>
+		<statBases>
+			<Mass>3.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>7.00</Bulk>
+			<WorkToMake>19000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>45</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial> <!-- lowered from 4 -->
+			<!--<ComponentSpacer>1</ComponentSpacer>-->
+			<Chemfuel>10</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>1.46</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x24mmCharged_Training</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6x24mmCharged_Training</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>CE_AI_Nonlethal</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="PE_Gun_SpacerTraining"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.03,1.03)</drawSize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="PE_Gun_SpacerTraining"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>0.06,0.01</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Training bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PE_PracticeShortBow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>3.00</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>15</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_Arrow_Stone_Training</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>14</range>
+			<soundCast>Bow_Small</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_Arrow_Training</ammoSet>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
+		</AmmoUser>
+		<FireModes />
+		<weaponTags>
+			<li>CE_Bow</li>
+			<li>CE_AI_Nonlethal</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+</Patch>
