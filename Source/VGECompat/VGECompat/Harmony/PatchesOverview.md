@@ -12,10 +12,10 @@
   Not required — we use different turret rotation code.
 
 - HarmonyPatches/CastSourceReplacer:
-  Unknown purpose; not adapted.
+  Graphical purpose : add an offset to casting position - Not adapted.
 
 - HarmonyPatches/GenDraw_DrawAimPie_Patch:
-  Unknown purpose; not adapted.
+  Graphical purpose : add an offset to aiming pie (warm up). Not adapted.
 
 - HarmonyPatches/ShotReport_HitFactorFromShooter_Patch:
   Not applicable — we don't use ShotReport the same way.
@@ -28,11 +28,10 @@
 - HarmonyPatches/Verb_LaunchProjectile_GetForcedMissTarget_Patch:
   Not applicable — forced miss is not used in CE.
 
-- HarmonyPatches/Verb_LaunchProjectile_TryCastShot_Patch:
-  Unknown purpose; not adapted.
-
 - HarmonyPatches/VerbUtility_ProjectileFliesOverhead_Patch:
   Unknown purpose; not adapted.
+  It works with Building_TurretGun_TryStartShootSomething_Patch, making VerbUtility.ProjectileFliesOverhead to return false when VGETurret with !CanAutoAttack calls TryFindNewTarget.
+  It's probably a mechanic for VGE - Chapter 2. We'll see then.
 
 ## Patched
 
@@ -53,3 +52,6 @@
 
 - HarmonyPatches/Building_TurretGun_TryFindNewTarget_Patch:
   LocalTargetInfo TryFindNewTarget() is overridden in Building_GravshipTurretCE, so no patch required.
+
+- HarmonyPatches/Verb_LaunchProjectile_TryCastShot_Patch:
+  Adapted in Verb_ShootWithVGETargeting

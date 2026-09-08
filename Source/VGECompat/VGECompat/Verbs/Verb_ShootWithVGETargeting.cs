@@ -5,6 +5,9 @@ namespace CombatExtended.Compatibility.VGECompat;
 
 public class Verb_ShootWithVGETargeting : Verb_ShootMortarCE
 {
+    // Give the ManningPawn of the VGE turret as Shooter, so its stats are used for the shot
+    // Equivalent to VGE Verb_LaunchProjectile_TryCastShot_Patch
+    public override Pawn CasterPawn => Caster is Building_GravshipTurretCE turret ? turret.ManningPawn : null;
     public override bool TryCastShot()
     {
         if (caster is Building_GravshipTurretCE turret)
