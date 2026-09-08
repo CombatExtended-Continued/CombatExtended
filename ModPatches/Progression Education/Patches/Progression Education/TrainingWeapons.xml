@@ -37,8 +37,18 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="PE_Gun_AssaultRifleTraining" or 
+			defName="PE_Gun_SpacerTraining" or 
+			defName="PE_PracticeShortBow"]</xpath>
+		<value>
+			<generateAllowChance>0</generateAllowChance>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="PE_PracticeShortBow"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="PE_PracticeShortBow"]</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
