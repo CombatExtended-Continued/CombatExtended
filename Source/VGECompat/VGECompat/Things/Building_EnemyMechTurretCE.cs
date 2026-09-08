@@ -171,6 +171,7 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
         var searcher = this;
         var verb = AttackVerb;
         var searcherThing = searcher;
+        var playerEngine = map == Map ? GravshipUtility.GetPlayerGravEngine_NewTemp(map) : null;
         TargetScanFlags flags = TargetScanFlags.NeedThreat | TargetScanFlags.NeedAutoTargetable;
         if (!AttackVerb.ProjectileFliesOverhead())
         {
@@ -195,6 +196,10 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
             }
             if (thing.Map == Map)
             {
+                if (playerEngine == null || !playerEngine.OnValidSubstructure(thing))
+                {
+                    return false;
+                }
                 float num3 = verb.verbProps.EffectiveMinRange(thing, searcherThing);
                 if (num3 > 0f && (float)(searcherThing.Position - thing.Position).LengthHorizontalSquared < num3 * num3)
                 {
@@ -239,6 +244,10 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
         foreach (var building in map.listerBuildings.allBuildingsColonist)
         {
             if (building == searcherThing || !searcherThing.HostileTo(building))
+            {
+                continue;
+            }
+            if (map == Map && (playerEngine == null || !playerEngine.OnValidSubstructure(building)))
             {
                 continue;
             }
