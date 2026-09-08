@@ -27,8 +27,13 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
     public override bool CanAutoAttack => true;
     public override float GravshipTargeting => 1f;
     protected override bool CanSetForcedTarget => true;
+    // Not used in CE
+    // public override bool HideForceTargetGizmo => true;
 
     protected override bool ShowNoLinkedTerminalOverlay => false;
+    
+    // Not used in CE
+    // private CompWorldArtillery compWorldArtillery;
 
     public override float BurstCooldownTime()
     {
@@ -110,6 +115,7 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
             return GetTargetForMap(Map);
         }
         // replace vge artillery comp with our logic
+        // if (compWorldArtillery != null)
         if (IsMortar && Active && Faction.IsPlayerSafe() && ProjectileProps?.shellingProps != null)
         {
             if (cachedMapsInRange == null || this.IsHashIntervalTick(250))
@@ -142,6 +148,10 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
 
             foreach (var map in cachedMapsInRange)
             {
+                if (map == null || map.Disposed)
+                {
+                    continue;
+                }
                 var target = GetTargetForMap(map);
                 if (target.IsValid)
                 {
@@ -253,8 +263,12 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
             }
             else
             {
+                // Replace with our own logic
+                // compWorldArtillery.worldTarget = new GlobalTargetInfo(target);
+                // compWorldArtillery.target = new LocalTargetInfo(target);
+                // this.forcedTarget = compWorldArtillery.FindEdgeCell(Map, compWorldArtillery.worldTarget);
                 TryAttackWorldTarget(new GlobalTargetInfo(target), new LocalTargetInfo(target));
-                return this.forcedTarget;
+                return this.forcedTarget; // this.forcedTarget is set in Building_TurretGunCE.TryOrderAttackWorldTile
             }
         }
         return LocalTargetInfo.Invalid;

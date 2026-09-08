@@ -35,7 +35,7 @@ public class Verb_ShootWithVGETargeting : Verb_ShootMortarCE
         {
             if (!targetHasMarker)
             {
-                // if there is no marker, ignore it and do like if there was.
+                // if there is no marker, ignore it and do like if there was one (VGE terminal should provide high tech precision after all...)
                 targetHasMarker = true; // add more precision for VGE's targeting system
                 report.circularMissRadius *= 0.5f;
                 report.smokeDensity *= 0.5f;
@@ -44,16 +44,16 @@ public class Verb_ShootWithVGETargeting : Verb_ShootMortarCE
             }
 
             // ------------------- //
-            // Hope this will be balanced enough, else maybe take only 0.75 of it
-            // To give example : basic autonomous targeting system gives 0.9 aiming accuracy, and quest reward building gives 4.0
+            // I hope this will be balanced enough, else maybe we should take only 0.75 of it
+            // To give an example : basic autonomous targeting system gives 0.9 aiming accuracy, and quest reward building gives 4.0
             report.aimingAccuracy = Turret.GravshipTargeting;
             // ------------------- //
 
-            report.sightsEfficiency *= 2f; // I multiply by 2, because users use high tech terminal
+            report.sightsEfficiency *= 2f; // Then I multiply by 2, because users use high tech terminal and it feels better
         }
         else
         {
-            // should not happen anyway (I guess)
+            // should never happen anyway (I think)
             Log.Warning("Only Building_GravshipTurretCE should use Verb_ShootWithVGETargeting");
         }
         return report;

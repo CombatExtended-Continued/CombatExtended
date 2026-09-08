@@ -20,7 +20,7 @@ public class Building_AnticraftEmitterCE : Building_GravshipTurretCE
     private bool isFiringBurst = false;
     private Mote aimChargeMote;
 
-    // we don't have ammo set, so we get the defaultProjectile directly
+    // we don't have an ammo set, so we get the defaultProjectile directly
     protected override ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile;
 
     public override void PostSwapMap()
@@ -55,7 +55,7 @@ public class Building_AnticraftEmitterCE : Building_GravshipTurretCE
             isFiringBurst = false;
             UpdatePowerOutput();
         }
-        // use SignedAngle instead of their angleDiff
+        // use DeltaAngle instead of their angleDiff
         if (DeltaAngle <= 10 && CanFire && CurrentTarget.IsValid && Active && burstWarmupTicksLeft > 0)
         {
             if (aimChargeMote == null || aimChargeMote.Destroyed)
@@ -95,6 +95,7 @@ public class Building_AnticraftEmitterCE : Building_GravshipTurretCE
             powerTrader.PowerOutput = 0f - currentPowerConsumption;
         }
     }
+    public bool IsFiringBurst => isFiringBurst;
 
     public override void ExposeData()
     {

@@ -2,6 +2,9 @@
 
 namespace CombatExtended.Compatibility.VGECompat;
 
+/// <summary>
+/// We need a shell projectile, but it should follow a direct trajectory (like a cannonball, or a big laser for instantProjectile) instead of a parabolic one.
+/// </summary>
 public class DirectOverheadTrajectoryWorker : LerpedTrajectoryWorker
 {
     public override float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null)
@@ -20,6 +23,7 @@ public class DirectOverheadTrajectoryWorker : LerpedTrajectoryWorker
         return base.ShotAngle(projectilePropsCE, source, targetPos, speed);
     }
 
+    // Same logic as BaseTrajectoryWorker.TryFindShotAngle but we removed the (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck part
     private static float? TryFindShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed)
     {
         float targetHeight = targetPos.y;

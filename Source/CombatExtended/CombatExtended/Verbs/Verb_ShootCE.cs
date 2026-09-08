@@ -1,5 +1,4 @@
-﻿using CombatExtended.Lasers;
-using RimWorld;
+﻿using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

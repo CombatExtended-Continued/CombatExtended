@@ -8,12 +8,6 @@
 - HarmonyPatches/Building_TurretGun_IsMortarOrProjectileFliesOverhead_Patch:
   No override required; our implementation works.
 
-- HarmonyPatches/Building_TurretGun_OrderAttack_Patch:
-  Not required — we don't use VGE CompWorldArtillery.
-
-- HarmonyPatches/Building_TurretGun_ResetForcedTarget_Patch:
-  Not required — we don't use VGE CompWorldArtillery.
-
 - HarmonyPatches/Building_TurretGun_TryStartShootSomething_Patch:
   Not required — we use different turret rotation code.
 
@@ -50,8 +44,12 @@
 
 ## Fixed directly in CE classes
 
+- HarmonyPatches/Building_TurretGun_OrderAttack_Patch:
+- HarmonyPatches/Building_TurretGun_ResetForcedTarget_Patch:
+  We don't use VGE CompWorldArtillery, and the reset part of the patches are included in Building_GravshipTurretCE's code
+
 - HarmonyPatches/Building_TurretGun_Active_Patch:
   bool Active() is overridden in CE's Building_TurretGun, so no patch required.
 
 - HarmonyPatches/Building_TurretGun_TryFindNewTarget_Patch:
-  LocalTargetInfo TryFindNewTarget() is overridden in CE's Building_TurretGun, so no patch required.
+  LocalTargetInfo TryFindNewTarget() is overridden in Building_GravshipTurretCE, so no patch required.

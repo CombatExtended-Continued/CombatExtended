@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using VanillaGravshipExpanded;
 using Verse;
-using Verse.Sound;
 
 #region License
 // This file includes modified portions of code from:
@@ -15,18 +14,28 @@ using Verse.Sound;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
+// For this Class, we inherit from VGE's Building_TargetingTerminal to avoid code duplication,
+// then we override any methods that originally used `Building_GravshipTurret linkedTurret` or `List<Building_GravshipTurret> linkedTurrets`
 [StaticConstructorOnStartup]
 public class Building_TargetingTerminalCE : Building_TargetingTerminal, ITurretLinkerCE
 {
     public Building_GravshipTurretCE linkedTurretCE;
     public List<Building_GravshipTurretCE> linkedTurretsCE = new List<Building_GravshipTurretCE>();
     public virtual IEnumerable<Building_GravshipTurretCE> LinkedTurretsCE => linkedTurretsCE;
+    
+    // This field will be used to override the MaxLinkedTurrets property, which is normally hardcoded to 1 in VGE's Building_TargetingTerminal
+    public virtual int MaxLinkedTurretsCE => 1;
+    // This field will allow us to bypass the GetLinkerGizmos logic
+    private int? maxLinkedTurretsOverrider = null;
+    // This override should not be overridden by any other class, as it is used to bypass the GetLinkerGizmos logic
+    public override int MaxLinkedTurrets => maxLinkedTurretsOverrider.HasValue ? maxLinkedTurretsOverrider.Value : MaxLinkedTurretsCE;
     public override void ExposeData()
     {
         // skip the linkedTurret save/load, we don't need its
         linkedTurret = null;
         base.ExposeData();
 
+        // initiate our own fields
         Scribe_References.Look(ref linkedTurretCE, "linkedTurretCE");
         Scribe_Collections.Look(ref linkedTurretsCE, "linkedTurretsCE", LookMode.Reference);
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -76,8 +85,6 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal, ITurretL
         linkedTurrets = new List<Building_GravshipTurret>();
 
         base.DrawExtraSelectionOverlays();
-
-        // VGE logic
         foreach (var turret in linkedTurretsCE)
         {
             GenDraw.DrawLineBetween(this.TrueCenter(), turret.TrueCenter(), SimpleColor.White);
@@ -86,12 +93,16 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal, ITurretL
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        if (linkedTurretCE != null)
+        // dummy to skip TurretLinkerUtility.GetLinkerGizmos
+        linkedTurrets = new List<Building_GravshipTurret>();
+        maxLinkedTurretsOverrider = 0;
+        foreach (var gizmo in base.GetGizmos())
         {
-            linkedTurrets = new List<Building_GravshipTurret>(); // dummy to skip base unlink logic
+            yield return gizmo;
         }
+        maxLinkedTurretsOverrider = null; // reset the override to allow GetLinkerGizmos to work properly
 
-        foreach (var gizmo in this.GetLinkerGizmos(LinkRange))
+        foreach (var gizmo in this.GetLinkerGizmos(LinkRange)) // now using TurretLinkerUtilityCE.GetLinkerGizmos
         {
             yield return gizmo;
         }

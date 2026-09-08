@@ -11,6 +11,7 @@
 
 namespace CombatExtended.Compatibility.VGECompat;
 
+// We just need the smoke effect
 public class Verb_ShootWithSmokeCE : Verb_ShootWithVGETargeting
 {
     public override bool TryCastShot()

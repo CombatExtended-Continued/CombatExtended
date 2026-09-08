@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
 using VanillaGravshipExpanded;
@@ -17,9 +18,12 @@ using Verse.Sound;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
-/*
- * I duplicated the code from Building_GravshipTurret here, adapting it to work with CE.
- */
+
+// I duplicated only part of the code from Building_GravshipTurret here, adapting it to work with CE. Major differences with the original code are:
+// - We use our own turret rotation code
+// - We use our own world map artillery code
+// - We use our own ammunition box system
+// - Calculation of Forced Miss Radius is removed to be replaced by CE targeting system (ShiftVecReportFor)
 [StaticConstructorOnStartup]
 public class Building_GravshipTurretCE : Building_TurretGunCE
 {
@@ -42,7 +46,7 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
 
     public virtual void AbortFiringState()
     {
-        // We don't have burstActivated in Building_TurretGunCE, but it should not change anything
+        // burstActivated is not present in Building_TurretGunCE, we ignore it
         // burstActivated = false;
         if (AttackVerb != null)
         {
@@ -58,7 +62,7 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
     public virtual bool CanAutoAttack => false;
     public Pawn ManningPawn => linkedTerminal?.ManningPawn;
 
-    // TODO: This field should be used to modify accuracy
+    // Used in Verb_ShootWithVGETargeting.ShiftVecReportFor to balance ShiftVecReport
     public virtual float GravshipTargeting => linkedTerminal?.GravshipTargeting ?? 0f;
 
     protected virtual bool ShowNoLinkedTerminalOverlay => true;
@@ -124,18 +128,18 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
         return text;
     }
 
-    public float GetLocalForcedMissRadius(float baseMissRadius)
-    {
-        return GravshipHelper.CalculateAdjustedForcedMissRadius(baseMissRadius, this.Map, this.def, this.Position, this.Faction, this.GravshipTargeting, useMapMultiplier: true);
-    }
-
     public void LinkTo(ITurretLinkerCE terminal)
     {
         if (linkedTerminal == terminal)
         {
             return;
         }
+        if (linkedTerminal != null && linkedTerminal != terminal)
+        {
+            linkedTerminal.Unlink(this);
+        }
         linkedTerminal = terminal;
+
         if (terminal != null && !terminal.LinkedTurretsCE.Contains(this))
         {
             terminal.LinkTo(this);
@@ -149,7 +153,7 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
     public void Unlink()
     {
         // Add these two lines to stop targeting
-        // Equivalent to Building_TurretGun_OrderAttack_Patch and Building_TurretGun_ResetForcedTarget_Patch (but better)
+        // Equivalent to Building_TurretGun_OrderAttack_Patch and Building_TurretGun_ResetForcedTarget_Patch
         ResetForcedTarget();
         ResetCurrentTarget();
 
@@ -200,11 +204,12 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
 
     public override LocalTargetInfo TryFindNewTarget()
     {
-        // HarmonyPatches/Building_TurretGun_TryFindNewTarget_Patch
+        // Equivalent to Building_TurretGun_TryFindNewTarget_Patch
         if (!CanAutoAttack)
         {
             return LocalTargetInfo.Invalid;
         }
+
         if (permanentlyDisabled)
         {
             return LocalTargetInfo.Invalid;
@@ -251,9 +256,8 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
                 command2.icon = Building_GravshipTurret.HoldFireIcon;
             }
 
-            // Gravship Turret should always have a world Artillery command.
-            // To avoid changing to much code in CE core, I skip it here, and add it again later
-            // (my conflict was with the AnitcraftEmitter, which does not use AmmoComp, which denies the ArtilleryCommand button).
+            // In VGE, this gizmo is added by CompWorldArtillery.
+            // CE should automatically add it, but we need a custom Gizmo for Gravship Turret we so skip it here, and add it again later
             if (gizmo is Command_ArtilleryTarget command4 && command4.defaultLabel == "CE_ArtilleryTargetLabel".Translate())
             {
                 // skip this gizmo as we will add our own later
@@ -268,7 +272,7 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
             yield break;
         }
 
-        // Add artillery command ourself
+        // --- Manually add artillery command as said previously ---
         if (CanFire)
         {
             Command_VGEArtilleryTarget wt = new Command_VGEArtilleryTarget()
@@ -276,12 +280,13 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
                 defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
                 defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
                 turret = this,
-                icon = CompWorldArtillery.WorldTargetIcon, // new icon
+                icon = CompWorldArtillery.WorldTargetIcon, // icon from VGE
                 hotKey = KeyBindingDefOf.Misc5,
                 compWorldArtillery = this.TryGetComp<CompWorldArtilleryCE>(),
             };
             yield return wt;
         }
+        // ----------------------------------------------------------
 
         if (linkedTerminal == null)
         {

@@ -14,8 +14,13 @@ using Verse;
 
 namespace CombatExtended.Compatibility.VGECompat;
 
+// We just need the special VGE mote
 public class Projectile_ArtilleryBeamCE : LaserBeamCE
 {
+    /// <summary>
+    /// Spawn VGE's beam mote visual.
+    /// Code by @DarkByteZero
+    /// </summary>
     public override void SpawnBeam(Vector3 muzzle, Vector3 destination)
     {
         var beamMoteDef = def.projectile?.beamMoteDef;

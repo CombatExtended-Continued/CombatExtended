@@ -6,10 +6,24 @@ using System.Linq;
 using VanillaGravshipExpanded;
 using Verse;
 
+#region License
+// This file includes modified portions of code from:
+// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/HarmonyPatches/WorldComponent_GravshipController_LandingEnded_Patch.cs
+//
+// Original code © Oskar Potocki and the Vanilla Gravship Expanded Team.
+// Incorporated with permission for Combat Extended–Vanilla Gravship Expended compatibility purposes only.
+// All rights to the original code remain with the original authors.
+#endregion
+
+
 namespace CombatExtended.Compatibility.VGECompat;
 
+// -- Patchception --
+// We need to patch the WorldComponent_GravshipController_LandingEnded_Patch.AbortEnemyTurretFiringStates method to ensure that hostile gravship
+// CE turrets abort their firing state when the gravship lands, like it does in original mod's logic.
+
 [HarmonyPatch(typeof(WorldComponent_GravshipController_LandingEnded_Patch), nameof(WorldComponent_GravshipController_LandingEnded_Patch.AbortEnemyTurretFiringStates))]
-[HarmonyBefore("vanillaexpanded.gravship")]
+[HarmonyBefore("vanillaexpanded.gravship")] // Use priority to avoid crash
 public class WorldComponent_GravshipController_LandingEnded_Patch_AbortEnemyTurretFiringStates_Patch
 {
     public static void Postfix(Gravship gravship)

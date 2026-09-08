@@ -1,5 +1,4 @@
 ﻿using RimWorld.Planet;
-using UnityEngine;
 using VanillaGravshipExpanded;
 using Verse;
 
@@ -22,7 +21,8 @@ public class CompProperties_WorldArtilleryCE : CompProperties_WorldArtillery
     }
 }
 
-// This logic could be reimplemented directly into CE ...
+// We just need the IsValidTargetForFiringMode method so we can access it in our own Global Map Artillery logic in Command_VGEArtilleryTarget.
+// (I used a comp to be consistent with the original VGE code, but it could also be a static helper class.)
 public class CompWorldArtilleryCE : ThingComp
 {
     public CompProperties_WorldArtilleryCE Props => props as CompProperties_WorldArtilleryCE;

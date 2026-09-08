@@ -17,11 +17,12 @@ namespace CombatExtended.Compatibility.VGECompat;
 public class Building_JavelinLauncherCE : Building_GravshipTurretCE
 {
     public CompRefuelable RefuelableComp => this.TryGetComp<CompRefuelable>();
+    // Added override to prevent false artillery command
+
     public override bool CanFire
     {
         get
         {
-            // make a check here to prevent false artillery command
             if (AttackVerb.verbProps.consumeFuelPerShot > 0)
             {
                 if (RefuelableComp == null)
