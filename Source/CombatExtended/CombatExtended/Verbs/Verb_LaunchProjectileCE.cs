@@ -265,6 +265,7 @@ public class Verb_LaunchProjectileCE : Verb
         lastShootLine = null;
         repeating = false;
         storedShotReduction = null;
+        lastRecoilDeg = 0;
         didRetarget = false;
     }
 
@@ -633,7 +634,7 @@ public class Verb_LaunchProjectileCE : Verb
         rotation += recoilMagnitude * Rand.Range(minX, maxX);
         var trd = Rand.Range(minY, maxY);
         angle += recoilMagnitude * Mathf.Deg2Rad * trd;
-        lastRecoilDeg += nextRecoilMagnitude * trd;
+        lastRecoilDeg += nextRecoilMagnitude * recoil; //always store non-randomized max recoil for subsequent shot purposes
     }
 
     /// <summary>
