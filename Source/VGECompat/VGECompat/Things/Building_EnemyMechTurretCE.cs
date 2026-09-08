@@ -31,7 +31,7 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
     // public override bool HideForceTargetGizmo => true;
 
     protected override bool ShowNoLinkedTerminalOverlay => false;
-    
+
     // Not used in CE
     // private CompWorldArtillery compWorldArtillery;
 

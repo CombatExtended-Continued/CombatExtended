@@ -22,7 +22,7 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal, ITurretL
     public Building_GravshipTurretCE linkedTurretCE;
     public List<Building_GravshipTurretCE> linkedTurretsCE = new List<Building_GravshipTurretCE>();
     public virtual IEnumerable<Building_GravshipTurretCE> LinkedTurretsCE => linkedTurretsCE;
-    
+
     // This field will be used to override the MaxLinkedTurrets property, which is normally hardcoded to 1 in VGE's Building_TargetingTerminal
     public virtual int MaxLinkedTurretsCE => 1;
     // This field will allow us to bypass the GetLinkerGizmos logic
