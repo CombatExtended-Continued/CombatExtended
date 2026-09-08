@@ -3,7 +3,6 @@ using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
-using Verse.Sound;
 
 namespace CombatExtended;
 public class Verb_ShootMortarCE : Verb_ShootCE
@@ -29,12 +28,12 @@ public class Verb_ShootMortarCE : Verb_ShootCE
     /// <summary>
     /// Wether the target is marked
     /// </summary>
-    private bool targetHasMarker = false;
+    protected bool targetHasMarker = false;
 
     // for global target only
     //        
-    private int startingTile;
-    private int destinationTile;
+    private PlanetTile startingTile;
+    private PlanetTile destinationTile;
     private int globalDistance;
     private Vector3 direction;
     private new int numShotsFired;
@@ -112,7 +111,20 @@ public class Verb_ShootMortarCE : Verb_ShootCE
             return null;
         }
         ShiftVecReport report = base.ShiftVecReportFor(target);
-        report.circularMissRadius = GetGlobalMissRadiusForDist(report.shotDist);
+
+        float shotDist = report.shotDist;
+
+        // Shelling across layers
+        if (globalSourceInfo.Tile.Layer != globalTargetInfo.Tile.Layer)
+        {
+            OrbitalTurretExtension orbitalTurretExtension = caster.def.GetModExtension<OrbitalTurretExtension>();
+            if (orbitalTurretExtension != null && orbitalTurretExtension.interLayerPrecisionBonusFactor != 0)
+            {
+                shotDist = shotDist / orbitalTurretExtension.interLayerPrecisionBonusFactor;
+            }
+        }
+
+        report.circularMissRadius = GetGlobalMissRadiusForDist(shotDist);
         report.weatherShift = (1f - globalTargetInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - globalSourceInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
 
         ArtilleryMarker marker = null;
