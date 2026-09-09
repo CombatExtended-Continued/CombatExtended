@@ -116,7 +116,7 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
         }
         // replace vge artillery comp with our logic
         // if (compWorldArtillery != null)
-        if (IsMortar && Active && Faction.IsPlayerSafe() && ProjectileProps?.shellingProps != null)
+        if (ProjectileProps?.shellingProps != null)
         {
             if (cachedMapsInRange == null || this.IsHashIntervalTick(250))
             {
@@ -130,7 +130,9 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
                     if (map.IsPocketMap is false)
                     {
                         float dist = GravshipHelper.GetDistance(Map.Tile, map.Tile);
-                        if (dist <= MaxWorldRange) // Here, we use our MaxWorldRange
+                        // Here, we use our MaxWorldRange
+                        // if (dist <= compWorldArtillery.Props.worldMapAttackRange)
+                        if (dist <= MaxWorldRange)
                         {
                             mapsWithDist.Add((map, dist));
                         }
@@ -281,5 +283,24 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
             }
         }
         return LocalTargetInfo.Invalid;
+    }
+
+    public override void ResetForcedTarget()
+    {
+        this.targetingWorldMap = false;
+        this.forcedTarget = LocalTargetInfo.Invalid;
+        this.globalTargetInfo = GlobalTargetInfo.Invalid;
+        this.burstWarmupTicksLeft = 0;
+        // Skip TryStartShootSomething because it will call TryFindNewTarget when we are already in TryFindNewTarget provoking a StackOverflow
+    }
+
+    public override void Tick()
+    {
+        base.Tick();
+        // add reset for global target as we don't target a simple cell
+        if (this.globalTargetInfo.ThingDestroyed)
+        {
+            this.ResetForcedTarget();
+        }
     }
 }
