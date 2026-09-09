@@ -19,8 +19,8 @@ using Verse;
 namespace CombatExtended.Compatibility.VGECompat;
 
 // -- Patchception --
-// We need to patch the WorldComponent_GravshipController_LandingEnded_Patch.AbortEnemyTurretFiringStates method to ensure that hostile gravship
-// CE turrets abort their firing state when the gravship lands, like it does in original mod's logic.
+// We need to patch the WorldComponent_GravshipController_LandingEnded_Patch.AbortEnemyTurretFiringStates method to ensure that CE hostile gravship
+// turrets abort their firing state when the gravship lands, like it does in original mod's logic.
 
 [HarmonyPatch(typeof(WorldComponent_GravshipController_LandingEnded_Patch), nameof(WorldComponent_GravshipController_LandingEnded_Patch.AbortEnemyTurretFiringStates))]
 [HarmonyBefore("vanillaexpanded.gravship")] // Use priority to avoid crash
@@ -34,6 +34,7 @@ public class WorldComponent_GravshipController_LandingEnded_Patch_AbortEnemyTurr
             {
                 if (thing is Building_GravshipTurretCE gravshipTurret && gravshipTurret.Faction != null && gravshipTurret.Faction.HostileTo(Faction.OfPlayer))
                 {
+                    // our equivalent to TryGetComp<CompWorldArtillery>().worldTarget is gravshipTurret.globalTargetInfo
                     if (!gravshipTurret.globalTargetInfo.IsValid || !gravship.Things.Contains(gravshipTurret.globalTargetInfo.Thing))
                     {
                         continue;
