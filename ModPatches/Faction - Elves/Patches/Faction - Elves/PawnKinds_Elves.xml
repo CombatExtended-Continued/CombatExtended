@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Celestria Elves (Spacers) -->
+
+	<!-- === Trader & Leader === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="CelestiaElvish_Trader" or defName="CelestiaElvish_Council"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="CelestiaElvish_Ranger" or defName="CelestiaElvish_Mechanitor"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+							<min>10</min>
+							<max>100</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+					<li>
+						<generateChance>0.1</generateChance>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_GrenadeFlashbang</li>
+							<li>GrenadeSmoke</li>
+							<li>GrenadeDestructive</li>
+						</weaponTags>
+						<magazineCount>
+							<min>0</min>
+							<max>0</max>
+						</magazineCount>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Dark, High, and Wild Elves (Medieval) -->
+
+	<!-- === Civilians === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="WildElvish_Trader" or defName="WildElvish_Hunter"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>3</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Archers === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="HighElvish_Archer" or
+			defName="HighElvish_HeavyArcher" or
+			defName="WildElvish_Archer" or
+			defName="WildElvish_HeavyArcher" or
+			defName="DarkElvish_Archer"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>MedievalMeleeDecent</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Add Backpacks === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="HighElvish_Archer" or
+			defName="HighElvish_HeavyArcher" or
+			defName="WildElvish_Archer" or
+			defName="WildElvish_HeavyArcher" or
+			defName="DarkElvish_Archer" or
+			defName="HighElvish_Ranger" or
+			defName="DarkElvish_Ranger" or
+			defName="CelestiaElvish_Ranger" or
+			defName="HighElvish_Spearmen" or
+			defName="DarkElvish_Spearmen" or
+			defName="DarkElvish_Swordmaster"
+			]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_Backpack</li>
+		</value>
+	</Operation>
+
+</Patch>

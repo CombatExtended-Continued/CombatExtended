@@ -256,6 +256,7 @@ Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 EPOE-Forked: Royalty DLC expansion	|
 Expanded Woodworking (Forked)   |
 Extended Storage	|
+Faction - Elves |
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
 Fallout: Vault 111 Starter Pack |
