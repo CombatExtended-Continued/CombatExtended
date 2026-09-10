@@ -258,6 +258,10 @@ public class Building_TurretGunCE : Building_Turret
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)    // Added GenClosestAmmo unsubscription
     {
+        if (mode == DestroyMode.Deconstruct)
+        {
+            compAmmo?.TryUnload();
+        }
         Map.GetComponent<TurretTracker>().Unregister(this);
         base.DeSpawn(mode);
         ResetCurrentTarget();
