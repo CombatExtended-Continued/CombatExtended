@@ -147,10 +147,53 @@ public static class AmmoUtility
             foreach (var fragmentDef in fragmentComp.fragments)
             {
                 var fragmentProps = fragmentDef?.thingDef?.projectile as ProjectilePropertiesCE;
+
                 stringBuilder.AppendLine("   " + "   " + fragmentDef.LabelCap);
-                stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescDamage".Translate() + ": " + fragmentProps?.damageAmountBase.ToString() + " (" + fragmentProps?.damageDef.LabelCap.ToString() + ")");
-                stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescSharpPenetration".Translate() + ": " + fragmentProps?.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
-                stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescBluntPenetration".Translate() + ": " + fragmentProps?.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+
+                // Primary Damage
+                stringBuilder.AppendLine(
+                    "   " + "   " + "   " +
+                    "CE_DescDamage".Translate() + ":"
+                );
+
+                stringBuilder.AppendLine(
+                    "   " + "   " + "   " + "   " +
+                    fragmentProps?.damageAmountBase.ToString() +
+                    " (" + fragmentProps?.damageDef.LabelCap.ToString() + ")"
+                );
+
+                // Check if fragment has secondary Damage
+                if (fragmentProps != null && !fragmentProps.secondaryDamage.NullOrEmpty())
+                {
+                    foreach (var sec in fragmentProps.secondaryDamage)
+                    {
+                        var secondaryChance = sec.chance >= 1.0f
+                            ? ""
+                            : $"({GenText.ToStringByStyle(sec.chance, ToStringStyle.PercentZero)} {"CE_Chance".Translate()})";
+
+                        stringBuilder.AppendLine(
+                            "   " + "   " + "   " + "   " +
+                            GenText.ToStringByStyle(sec.amount, ToStringStyle.Integer) +
+                            " (" + sec.def.LabelCap + ") " +
+                            secondaryChance
+                        );
+                    }
+                }
+                // Sharp penetration
+                stringBuilder.AppendLine(
+                    "   " + "   " + "   " +
+                    "CE_DescSharpPenetration".Translate() + ": " +
+                    fragmentProps?.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) +
+                    " " + "CE_mmRHA".Translate()
+                );
+
+                // Blunt penetration
+                stringBuilder.AppendLine(
+                    "   " + "   " + "   " +
+                    "CE_DescBluntPenetration".Translate() + ": " +
+                    fragmentProps?.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) +
+                    " " + "CE_MPa".Translate()
+                );
             }
         }
 
