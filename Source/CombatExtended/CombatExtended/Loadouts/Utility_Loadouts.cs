@@ -137,7 +137,8 @@ public static class Utility_Loadouts
                 CE_StatDefOf.CarryBulk.ValueToString(comp.currentBulk, CE_StatDefOf.CarryBulk.toStringNumberSense),
                 comp.workSpeedFactor.ToStringPercent(),
                 comp.meleeHitChanceFactorBulk.ToStringPercent(),
-                comp.dodgeChanceFactorBulk.ToStringPercent());
+                comp.dodgeChanceFactorBulk.ToStringPercent(),
+                CE_StatDefOf.WornBulk.ValueToString(comp.currentWornBulk));
         }
         else
         {
