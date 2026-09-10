@@ -30,10 +30,10 @@ public class AmmoThing : ThingWithComps
             {
                 numToCookOff += Mathf.RoundToInt(def.stackLimit * ((float)dinfo.Amount / HitPoints) * (def.smallVolume ? Rand.Range(1f, 2f) : Rand.Range(0.0f, 1f)));
             }
-            //Assume CompExplosive destroys on kill
-            else if (this.TryGetComp<CompExplosive>() == null || !this.TryGetComp<CompExplosive>().Props.explodeOnKilled)
+            //Explosives detonate when destroyed by external damage.
+            else
             {
-                TryDetonate(stackCount);
+                TryDetonate(stackCount, true);
             }
         }
     }
@@ -109,7 +109,7 @@ public class AmmoThing : ThingWithComps
         return stringBuilder.ToString().TrimEndNewlines();
     }
 
-    private bool TryDetonate(float stackCountScale = 1)
+    private bool TryDetonate(float stackCountScale = 1, bool force = false)
     {
         if (Find.Maps.IndexOf(Map) < 0)
         {
@@ -121,7 +121,7 @@ public class AmmoThing : ThingWithComps
 
         if (comp != null || detProps != null)
         {
-            if (Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2))))
+            if (force || Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2))))
             {
                 if (comp != null)
                 {
