@@ -167,6 +167,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_ConcealedBarrier"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.75</fillPercent>
+		</value>
+	</Operation>
+
 	<!-- Searchlight -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFES_Gun_Searchlight"]/verbs/li/range</xpath>
@@ -567,5 +574,44 @@
 			<noSnapshot>true</noSnapshot>
 			<noSingleShot>true</noSingleShot>
 		</FireModes>
+	</Operation>
+	<!-- Concealed structures: make the *base* def a free, standable floor while
+	     submerged. The deployed blocker comes from an invisible dummy spawned by
+	     CompConcealedCE (turret = passable-with-cost, barrier = impassable). -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_Concealed" or defName="VFES_ConcealedBarrier"]</xpath>
+		<value>
+			<passability>Standable</passability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_Concealed" or defName="VFES_ConcealedBarrier"]/pathCost</xpath>
+		<value>
+			<pathCost>0</pathCost>
+		</value>
+	</Operation>
+
+	<!-- CRITICAL: attach the CE concealed comp to the turret def. Without this,
+	     Building_ConcealedTurretCE.concealedComp is null, Submerged is always false,
+	     the gun is never hidden when submerged, and the blocker dummy never spawns. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_Concealed"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.Compatibility.VFES.CompProperties_ConcealedCE">
+				<dummyDef>ConcealedDummy_Turret</dummyDef>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Barrier uses the same comp (with the impassable dummy) so the deployed
+	     blocker spawns. Its thingClass is untouched; the comp is just a ThingComp. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_ConcealedBarrier"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.Compatibility.VFES.CompProperties_ConcealedCE">
+				<dummyDef>ConcealedDummy_Barrier</dummyDef>
+			</li>
+		</value>
 	</Operation>
 </Patch>
