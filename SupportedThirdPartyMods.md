@@ -478,6 +478,7 @@ pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Prestige Vacsuit Set    |
+Progression Education    |
 Primitive Core |
 Primitive Workbenches |
 Project RimFactory - Materials |
