@@ -28,9 +28,10 @@ public class VanillaExpandedFramework : IPatch
     private IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
     {
         IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(pawnToSuppress.Map).ToList();
+        List<IEnumerable<IntVec3>> result = new List<IEnumerable<IntVec3>>();
         if (!interceptors.Any())
         {
-            yield break;
+            return result;
         }
         foreach (var interceptor in interceptors)
         {
@@ -38,8 +39,9 @@ public class VanillaExpandedFramework : IPatch
             {
                 continue;
             }
-            yield return GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true);
+            result.Add(GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true));
         }
+        return result;
     }
 
     private static bool CheckIntercept(ProjectileCE projectile)
