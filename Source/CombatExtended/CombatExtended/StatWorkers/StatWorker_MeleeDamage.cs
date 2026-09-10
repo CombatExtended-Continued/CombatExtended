@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended;
+
 public class StatWorker_MeleeDamage : StatWorker_MeleeDamageBase
 {
     public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
@@ -17,25 +18,16 @@ public class StatWorker_MeleeDamage : StatWorker_MeleeDamageBase
 
     public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
     {
-        var skilledDamageVariationMin = damageVariationMin;
-        var skilledDamageVariationMax = damageVariationMax;
-        var meleeSkillLevel = -1;
 
-        if (req.Thing?.ParentHolder is Pawn_EquipmentTracker tracker && tracker.pawn != null)
-        {
-            var pawnHolder = tracker.pawn;
-            skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
-            skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
+        var pawn = GetCurrentWielder(req);
 
-            if (pawnHolder.skills != null)
-            {
-                meleeSkillLevel = pawnHolder.skills.GetSkill(SkillDefOf.Melee).Level;
-            }
-        }
+        var skilledDamageVariationMin = GetDamageVariationMin(pawn);
+        var skilledDamageVariationMax = GetDamageVariationMax(pawn);
+        var meleeSkillLevel = pawn?.skills?.GetSkill(SkillDefOf.Melee).Level ?? -1;
 
-        var tools = (req.Def as ThingDef)?.tools;
+        bool hasSkilledDamageVariation = !(Mathf.Approximately(skilledDamageVariationMin, 1.0f) && Mathf.Approximately(skilledDamageVariationMax, 1.0f));
 
-        if (tools.NullOrEmpty())
+        if (req.Def is not ThingDef thingDef)
         {
             return base.GetExplanationUnfinalized(req, numberSense);
         }
@@ -46,28 +38,39 @@ public class StatWorker_MeleeDamage : StatWorker_MeleeDamageBase
         {
             stringBuilder.AppendLine("CE_WielderSkillLevel".Translate() + ": " + meleeSkillLevel);
         }
-        stringBuilder.AppendLine(string.Format("CE_DamageVariation".Translate() + ": {0}% - {1}%",
-                                               (100 * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                                               (100 * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-        stringBuilder.AppendLine("");
-        foreach (Tool tool in tools)
+
+        if (hasSkilledDamageVariation)
         {
-            if (tool is ToolCE toolCE)
+            stringBuilder.AppendLine(string.Format("CE_DamageVariation".Translate() + ": {0}% - {1}%",
+                                                   (100 * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                   (100 * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+        }
+
+        stringBuilder.AppendLine("");
+
+        foreach (var vps in AllMeleeVerbPropsWithSource(thingDef))
+        {
+            if (vps.tool is ToolCE toolCE)
             {
-                var adjustedToolDamage = GetAdjustedDamage(toolCE, req.Thing);
-                var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => toolCE.capacities.Contains(d.requiredCapacity));
-                var maneuverString = "(";
-                foreach (var maneuver in maneuvers)
-                {
-                    maneuverString += maneuver.ToString() + "/";
-                }
-                maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
+                var adjustedToolDamage = AdjustedMeleeDamageAmount(vps, pawn, req);
+                var maneuverString = "(" + vps.maneuver + ")";
                 stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + toolCE.ToString() + " " + maneuverString);
                 stringBuilder.AppendLine("    " + "CE_DescBaseDamage".Translate() + ": " + toolCE.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine("    " + "CE_AdjustedForWeapon".Translate() + ": " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine(string.Format("    " + "StatsReport_FinalValue".Translate() + ": {0} - {1}",
-                                                       (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                                                       (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                if (!Mathf.Approximately(vps.tool.power, adjustedToolDamage))
+                {
+                    stringBuilder.AppendLine("    " + "CE_AdjustedForWeapon".Translate() + ": " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                }
+
+                if (hasSkilledDamageVariation)
+                {
+                    stringBuilder.AppendLine(string.Format("    " + "StatsReport_FinalValue".Translate() + ": {0} - {1}",
+                                                           (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                           (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                }
+                else
+                {
+                    stringBuilder.AppendLine(string.Format("    " + "StatsReport_FinalValue".Translate() + ": {0}", adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                }
                 stringBuilder.AppendLine();
             }
             else
@@ -87,36 +90,23 @@ public class StatWorker_MeleeDamage : StatWorker_MeleeDamageBase
         return "StatsReport_FinalValue".Translate() + ": " + GetFinalDisplayValue(req);
     }
 
-    private string GetFinalDisplayValue(StatRequest optionalReq)
+    private string GetFinalDisplayValue(StatRequest req)
     {
-        var skilledDamageVariationMin = damageVariationMin;
-        var skilledDamageVariationMax = damageVariationMax;
+        var pawn = GetCurrentWielder(req);
 
-        if (optionalReq.Thing?.ParentHolder is Pawn_EquipmentTracker tracker)
-        {
-            skilledDamageVariationMin = GetDamageVariationMin(tracker.pawn);
-            skilledDamageVariationMax = GetDamageVariationMax(tracker.pawn);
-        }
+        var skilledDamageVariationMin = GetDamageVariationMin(pawn);
+        var skilledDamageVariationMax = GetDamageVariationMax(pawn);
 
-        var tools = (optionalReq.Def as ThingDef)?.tools;
-        if (tools.NullOrEmpty())
+        if (req.Def is not ThingDef thingDef)
         {
             return "";
-        }
-        if (tools.Any(x => !(x is ToolCE)))
-        {
-            if (DebugSettings.godMode)
-            {
-                Log.Error($"Trying to get stat MeleeDamage from {optionalReq.Def.defName} which has no support for Combat Extended.");
-            }
-            return "CE_UnpatchedWeaponShort".Translate();
         }
 
         float lowestDamage = Int32.MaxValue;
         float highestDamage = 0f;
-        foreach (ToolCE tool in tools)
+        foreach (var vps in AllMeleeVerbPropsWithSource(thingDef))
         {
-            var toolDamage = GetAdjustedDamage(tool, optionalReq.Thing);
+            var toolDamage = AdjustedMeleeDamageAmount(vps, pawn, req);
             if (toolDamage > highestDamage)
             {
                 highestDamage = toolDamage;
