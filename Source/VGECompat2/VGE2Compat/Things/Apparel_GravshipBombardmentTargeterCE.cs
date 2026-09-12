@@ -1,0 +1,77 @@
+﻿using RimWorld;
+using System.Collections.Generic;
+using VanillaGravshipExpanded;
+using VanillaGravshipExpanded2;
+using Verse;
+
+namespace CombatExtended.Compatibility.VGECompat;
+
+internal class Apparel_GravshipBombardmentTargeterCE : Apparel_GravshipBombardmentTargeter, ITurretLinkerCE
+{
+    public Building_GravshipTurretCE linkedTurretCE;
+
+    public IEnumerable<Building_GravshipTurretCE> LinkedTurretsCE
+    {
+        get
+        {
+            if (linkedTurretCE != null)
+            {
+                yield return linkedTurretCE;
+            }
+        }
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_References.Look(ref linkedTurretCE, "linkedTurretCE");
+    }
+
+    public override IEnumerable<Gizmo> GetWornGizmos()
+    {
+        foreach (var gizmo in base.GetWornGizmos())
+        {
+            if (gizmo is Command_VerbTarget command && linkedTurretCE != null)
+            {
+                command.defaultLabel = "VGE_FireBombardmentTargeter".Translate(linkedTurretCE.LabelNoParenthesis);
+                command.defaultDesc = "VGE_FireBombardmentTargeterDesc".Translate(linkedTurretCE.LabelNoParenthesis);
+                command.icon = linkedTurretCE.def.uiIcon;
+            }
+            yield return gizmo;
+        }
+        foreach (var gizmo in TurretLinkerCEUtility.GetLinkerGizmos(this, LinkRange))
+        {
+            yield return gizmo;
+        }
+    }
+
+    public void LinkTo(Building_GravshipTurretCE turret)
+    {
+        linkedTurretCE = turret;
+        if (turret.linkedTerminal != this)
+        {
+            turret.LinkTo(this);
+        }
+    }
+
+    public void Unlink(Building_GravshipTurretCE turret)
+    {
+        if (linkedTurretCE == turret)
+        {
+            linkedTurretCE = null;
+            turret.unlinking = true;
+            turret.Unlink();
+            turret.unlinking = false;
+        }
+    }
+
+    public override void Notify_Unequipped(Pawn pawn)
+    {
+        base.Notify_Unequipped(pawn);
+        if (linkedTurretCE != null)
+        {
+            Unlink(linkedTurretCE);
+        }
+    }
+}
+
