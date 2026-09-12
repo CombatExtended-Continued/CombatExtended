@@ -1,0 +1,87 @@
+<Patch>
+    <!-- === Compact Turrets === -->
+
+    <!-- VGE_GravshipCompactTurretBase -->
+    <!-- Replace thing class -->
+    <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]/comps/li[@Class="CompProperties_Stunnable"]/affectedDamageDefs/li[.="Stun"]</xpath>
+	</Operation>
+
+    <!-- VGE_GravshipMinigunTurret -->
+
+    <!-- VGE_GravshipAutocannonTurret -->
+
+    <!-- VGE_GravshipUraniumSlugTurret -->
+
+    <!-- === Heavy Artillery === -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_GravshipHeavyArtilleryBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.12</speed>
+			</li>
+		</value>
+	</Operation>
+
+
+    <!-- VGE_GaussHowitzer -->
+    
+    <Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_GaussHowitzer"
+			]/thingClass 
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_GravshipTurretCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_GaussHowitzer</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread> <!-- base on 40k baneblade -->
+			<SwayFactor>1.0</SwayFactor>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
+			<defaultProjectile>VGE_Bullet_GaussGun_CE_HE</defaultProjectile>
+			<range>99999</range>
+			<minRange>14.9</minRange>
+			<burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<soundCast>VGE_GravshipHowitzer</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<requireLineOfSight>false</requireLineOfSight>
+			<!-- <consumeFuelPerShot>5</consumeFuelPerShot> -->
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<isMortar>false</isMortar>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+
+			<hasStandardCommand>true</hasStandardCommand>
+			<warmupTime>1.8</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_155mmHowitzerShell_GaussGun</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+    <!-- Etc -->
+
+</Patch>
