@@ -69,7 +69,7 @@ public class Building_EnemyMechTurretCE : Building_GravshipTurretCE
 
     private int GetTargetPriority(Thing t)
     {
-        if (t is Building_GravshipTurret)
+        if (t is Building_GravshipTurretCE)
         {
             return 1;
         }
