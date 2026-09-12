@@ -1,3 +1,23 @@
 <Patch>
 
+	<!-- Patch Targeting terminal -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_TargetingConsole"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat2.Building_TargetingConsoleCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_GunnerSubpersonaCore" or
+				defName = "VGE_OperatorSubpersonaCore"
+			]/thingClass
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_AutonomousTargetingCE</thingClass>
+		</value>
+	</Operation>
 </Patch>
