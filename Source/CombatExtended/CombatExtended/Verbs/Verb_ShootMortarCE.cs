@@ -204,7 +204,7 @@ public class Verb_ShootMortarCE : Verb_ShootCE
             projectile.globalTargetInfo.tileInt = globalTargetInfo.Tile;
             //New aiming algorithm
             projectile.canTargetSelf = false;
-            projectile.intendedTarget = globalTargetInfo.Thing ?? currentTarget;
+            projectile.intendedTarget = intendedTarget;
             projectile.globalSourceInfo = globalSourceInfo;
             projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
             projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);

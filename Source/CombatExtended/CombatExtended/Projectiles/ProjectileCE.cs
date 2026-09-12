@@ -613,6 +613,49 @@ public abstract class ProjectileCE : ThingWithComps
         }
     }
 
+    private void DrawOverheadRayCast(
+        Thing launcher,
+        Vector2 origin,
+        float shotRotation,
+        float shotHeight = 0f,
+        Thing equipment = null
+    )
+    {
+        // Useful variables
+        Map map = launcher.Map;
+        ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
+        var lbce = this as LaserBeamCE;
+
+        // compute the direction and destination
+        float range = Math.Max(map.Size.x, map.Size.y); // use map size as range to draw the raycast over the whole map
+        shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159 / 2.0f);
+        Vector3 direction = new Vector3(Mathf.Cos(shotRotation), 0, Mathf.Sin(shotRotation));
+        Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
+
+        // create the ray
+        Ray ray = new Ray(origin3, direction);
+
+        // compute the muzzle position
+        LaserGunDef defWeapon = equipment?.def as LaserGunDef;
+        Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
+
+        // browse tiles
+        for (int i = 1; i < (range + 1); i++)
+        {
+            // current point
+            Vector3 tp = ray.GetPoint(i);
+            var iv3 = tp.ToIntVec3();
+
+            // when the current point is outside the map, we draw the raycast
+            if (!iv3.InBounds(map))
+            {
+                tp = ray.GetPoint(i - 1);
+                lbce.SpawnBeam(muzzle, tp);
+                return;
+            }
+        }
+    }
+
     public void RayCastWorldTarget(
        Thing launcher,
        Verb_ShootCE verbToUse,
@@ -640,16 +683,11 @@ public abstract class ProjectileCE : ThingWithComps
         var precisedShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
 
         // create the local raycast
-        this.RayCast(
+        this.DrawOverheadRayCast(
             launcher,
-            verbToUse.verbProps,
             originLocal,
-            0, // set angle to 0 so the raycast goes straight (it won't touch anything so it doesn't matter)
             precisedShotRotation,
-            shotHeight,
             shotSpeed,
-            0, // no need
-            0, // no need
             equipment
         );
 
@@ -685,6 +723,9 @@ public abstract class ProjectileCE : ThingWithComps
             Log.Error($"CE: Travling raycast {this.def} failed to launch!");
             travelingRaycast.Destroy();
         }
+
+        // destroy the local projectile, as it is now replaced by the world object
+        Destroy(DestroyMode.Vanish);
     }
 
     protected void RayCastSuppression(IntVec3 muzzle, IntVec3 destination, Map map = null)
