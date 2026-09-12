@@ -26,6 +26,8 @@ public class Command_ArtilleryTarget : Command
     ///// </summary>
     bool MandatoryMarkToFireOutBounds => turret.OrbitalTurretExtension?.isMarkMandatory ?? true;
 
+    bool CannotLaunchThroughRoof => turret.OrbitalTurretExtension?.cannotLaunchThroughRoof ?? true;
+
     public IEnumerable<Building_TurretGunCE> SelectedTurrets => others?.Select(o => o.turret) ?? new List<Building_TurretGunCE>() { turret };
 
     public override bool GroupsWith(Gizmo other) => other is Command_ArtilleryTarget;
@@ -226,7 +228,7 @@ public class Command_ArtilleryTarget : Command
 
             // Cannot fire through mountain roof
             RoofDef roof = map.roofGrid.RoofAt(target.Cell);
-            if (roof != null && roof != RoofDefOf.RoofConstructed)
+            if (CannotLaunchThroughRoof && roof != null && roof != RoofDefOf.RoofConstructed)
             {
                 Messages.Message("CE_ArtilleryTarget_NoThickRoof".Translate(), MessageTypeDefOf.RejectInput);
                 return false;
