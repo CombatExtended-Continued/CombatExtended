@@ -81,6 +81,11 @@ public struct CollisionVertical
             collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
 
             shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
+            
+            if (pawn.Flying)
+            {
+                heightAdjust += 1;
+            }
 
             // Humanlikes in combat crouch to reduce their profile
             if (pawn.IsCrouching())
