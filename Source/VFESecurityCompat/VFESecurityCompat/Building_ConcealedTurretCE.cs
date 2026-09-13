@@ -1,6 +1,7 @@
-﻿﻿using Verse;
-using UnityEngine;
+﻿using UnityEngine;
+using Verse;
 #nullable enable
+
 namespace CombatExtended.Compatibility.VFES
 {
     public class Building_ConcealedTurretCE : Building_TurretGunCE
