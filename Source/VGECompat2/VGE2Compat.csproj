@@ -10,6 +10,9 @@
 		<Authors />
 		<Copyright>CC BY-NC-SA 4.0 2025</Copyright>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<!-- Force Krafs.Publicizer to use AllowUnsafeBlocks instead of IgnoresAccessChecksToAttribute.
+				 This prevents CS0433 conflict when both VGE and VGE2 (which both define the attribute) are referenced. -->
+		<PublicizerRuntimeStrategies>Unsafe</PublicizerRuntimeStrategies>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<OutputPath>..\..\ModPatches\Vanilla Gravship Expanded - Chapter 2\Assemblies</OutputPath>
@@ -34,13 +37,16 @@
 	  <ProjectReference Include="..\CombatExtended\CombatExtended.csproj">
 	    <Private>False</Private>
 	  </ProjectReference>
-	  <ProjectReference Include="..\VGECompat\VGECompat.csproj" />
+	  <ProjectReference Include="..\VGECompat\VGECompat.csproj">
+	    <Private>False</Private>
+	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-    <Reference Include="VanillaGravshipExpanded">
-      <HintPath>..\packages\VanillaGravshipExpanded-reference.dll</HintPath>
-    </Reference>
     <Reference Include="VGE">
+      <HintPath>..\packages\VanillaGravshipExpanded-reference.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VGE2">
 	    <HintPath>..\packages\VanillaGravshipExpanded2-reference.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
