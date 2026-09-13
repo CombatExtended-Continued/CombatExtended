@@ -1,5 +1,5 @@
-﻿﻿using UnityEngine;
-using Verse;
+﻿﻿using Verse;
+using UnityEngine;
 #nullable enable
 namespace CombatExtended.Compatibility.VFES
 {
