@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using Verse;
 #nullable enable
 namespace CombatExtended.Compatibility.VFES
@@ -15,7 +15,7 @@ namespace CombatExtended.Compatibility.VFES
         {
             get
             {
-                return concealedComp != null ? Submerged : base.IsEverThreat;
+                return !Submerged && base.IsEverThreat;
             }
         }
 

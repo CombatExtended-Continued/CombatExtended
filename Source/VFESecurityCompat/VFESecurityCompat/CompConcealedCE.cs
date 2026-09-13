@@ -51,8 +51,8 @@ namespace CombatExtended.Compatibility.VFES
             if (!loaded)
             {
                 loaded = true;
-                SyncDummy();
             }
+            SyncDummy();
         }
 
         public override void CompTickRare()
@@ -81,7 +81,8 @@ namespace CombatExtended.Compatibility.VFES
             ThingDef? dummyDef = DummyDef;
             if (dummyDef != null && parent.Spawned)
             {
-                return parent.Map.thingGrid.ThingAt(parent.Position, dummyDef);
+                dummy = parent.Map.thingGrid.ThingAt(parent.Position, dummyDef);
+                return dummy;
             }
             return null;
         }
