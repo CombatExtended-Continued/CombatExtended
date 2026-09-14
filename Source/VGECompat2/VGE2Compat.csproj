@@ -34,6 +34,9 @@
 		<Exec Command="if $(ConfigurationName) == Debugger call &quot;C:\Program Files (x86)\Mono\bin\pdb2mdb.bat&quot; $(TargetDir)$(TargetName)$(TargetExt)" />
 	</Target>
 	<ItemGroup>
+	  <None Remove="VGE2Compat\Harmony\PatchesOverview.md" />
+	</ItemGroup>
+	<ItemGroup>
 	  <ProjectReference Include="..\CombatExtended\CombatExtended.csproj">
 	    <Private>False</Private>
 	  </ProjectReference>

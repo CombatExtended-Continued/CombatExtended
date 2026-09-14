@@ -1,13 +1,12 @@
 using CombatExtended.Compatibility.VGECompat;
 using HarmonyLib;
 using System.Linq;
-using System.Reflection;
 using VanillaGravshipExpanded2;
 using Verse;
 
 #region License
 // This file includes modified portions of code from:
-// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/HarmonyPatches/WorldComponent_GravshipController_LandingEnded_Patch.cs
+// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded2/blob/main/1.6/Source/GravshipThreatWorkers/GravshipThreatWorker_EnemyGravjumper.cs
 //
 // Original code © Oskar Potocki and the Vanilla Gravship Expanded Team.
 // Incorporated with permission for Combat Extended–Vanilla Gravship Expended compatibility purposes only.

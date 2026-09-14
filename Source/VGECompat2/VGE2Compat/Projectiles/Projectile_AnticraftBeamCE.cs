@@ -1,6 +1,6 @@
 ﻿#region License
 // This file includes modified portions of code from:
-// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded2
+// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded2/blob/main/1.6/Source/Projectiles/Projectile_AnticraftBeam.cs
 //
 // Original code © Oskar Potocki and the Vanilla Gravship Expanded Team.
 // Incorporated with permission for Combat Extended–Vanilla Gravship Expended compatibility purposes only.
@@ -8,8 +8,6 @@
 #endregion
 
 using CombatExtended.Compatibility.VGECompat;
-using RimWorld;
-using VanillaGravshipExpanded;
 using VanillaGravshipExpanded2;
 using Verse;
 
