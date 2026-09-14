@@ -68,7 +68,7 @@
 	<!-- ========== Laborers ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Gha_Corpse_Laborer" or defName="Gha_Combat_Laborer" or defName="Gha_Assassin_Laborer" or defName="Gha_Assassin_Laborer"]</xpath>
+		<xpath>Defs/ThingDef[defName="Gha_Corpse_Laborer" or defName="Gha_Combat_Laborer" or defName="Gha_Assassin_Laborer" or defName="Gha_Skull_Laborer" or defName="Gha_Breacher_Laborer"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -220,6 +220,80 @@
 		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>4.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gha_Breacher_Laborer"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<canParry>true</canParry>
+				<maxParry>4</maxParry>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gha_Breacher_Laborer"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<CarryWeight>100</CarryWeight>
+			<ArmorRating_Blunt>70</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gha_Breacher_Laborer"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>30</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace"> <!-- Replaced due to degradable natural armor comp inheritance issues -->
+		<xpath>Defs/ThingDef[defName="Gha_Breacher_Laborer"]/comps</xpath>
+		<value>
+			<comps Inherit="False">
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>1750</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>1250</RegenInterval>
+					<RegenValue>5</RegenValue>
+					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<MinArmorPct>0.5</MinArmorPct>
+				</li>
+				<li Class="RoboticServitude.CompProperties_GlitchVolatility">
+					<mentalBreakRatePerDay>1</mentalBreakRatePerDay>
+					<mentalBreaks>
+						<li>Wander_Psychotic</li>
+						<li>Wander_Sad</li>
+						<li>Berserk</li>
+						<li>MurderousRage</li>
+					</mentalBreaks>
+				</li>
+				<li Class="RoboticServitude.CompProperties_CanEquipWeapons">
+					<canEquipHeavyWeapons>true</canEquipHeavyWeapons>
+				</li>
+				<li Class="CompProperties_CanBeDormant">
+					<compClass>CompMechanoid</compClass>
+				</li>
+				<li Class="CompProperties_WakeUpDormant">
+					<wakeUpOnDamage>true</wakeUpOnDamage>
+					<wakeUpCheckRadius>30</wakeUpCheckRadius>
+					<wakeUpSound>MechanoidsWakeUp</wakeUpSound>
+				</li>
+				<li MayRequire="Ludeon.RimWorld.Biotech" Class="CompProperties_OverseerSubject">
+					<needsOverseerEffect>MechUncontrolled</needsOverseerEffect>
+					<delayUntilFeralCheck>60000</delayUntilFeralCheck>
+					<feralMtbDays>10</feralMtbDays>
+					<feralCascadeRadialDistance>25</feralCascadeRadialDistance>
+				</li>
+				<li MayRequire="Ludeon.RimWorld.Biotech" Class="CompProperties_MechRepairable" />
+			</comps>
 		</value>
 	</Operation>
 
