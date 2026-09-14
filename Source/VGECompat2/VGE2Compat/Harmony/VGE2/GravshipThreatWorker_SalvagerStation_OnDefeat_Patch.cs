@@ -7,13 +7,12 @@ using Verse;
 
 #region License
 // This file includes modified portions of code from:
-// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/HarmonyPatches/WorldComponent_GravshipController_LandingEnded_Patch.cs
+// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded2/blob/main/1.6/Source/GravshipThreatWorkers/GravshipThreatWorker_SalvagerStation.cs
 //
 // Original code © Oskar Potocki and the Vanilla Gravship Expanded Team.
 // Incorporated with permission for Combat Extended–Vanilla Gravship Expended compatibility purposes only.
 // All rights to the original code remain with the original authors.
 #endregion
-
 
 namespace CombatExtended.Compatibility.VGECompat2;
 
