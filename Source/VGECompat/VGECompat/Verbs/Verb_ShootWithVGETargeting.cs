@@ -1,3 +1,4 @@
+using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
@@ -8,6 +9,7 @@ public class Verb_ShootWithVGETargeting : Verb_ShootMortarCE
     // Give the ManningPawn of the VGE turret as Shooter, so its stats are used for the shot
     // Equivalent to VGE Verb_LaunchProjectile_TryCastShot_Patch
     public override Pawn CasterPawn => Caster is Building_GravshipTurretCE turret ? turret.ManningPawn : null;
+
     public override bool TryCastShot()
     {
         if (caster is Building_GravshipTurretCE turret)
@@ -34,7 +36,7 @@ public class Verb_ShootWithVGETargeting : Verb_ShootMortarCE
             return null;
         }
 
-        if (caster is Building_GravshipTurretCE Turret)
+        if (caster is Building_GravshipTurretCE turret)
         {
             if (!targetHasMarker)
             {
@@ -49,10 +51,17 @@ public class Verb_ShootWithVGETargeting : Verb_ShootMortarCE
             // ------------------- //
             // I hope this will be balanced enough, else maybe we should take only 0.75 of it
             // To give an example : basic autonomous targeting system gives 0.9 aiming accuracy, and quest reward building gives 4.0
-            report.aimingAccuracy = Turret.GravshipTargeting;
+            float gravshipTurretTargetingFactor = turret.GravshipTargeting;
+
+            // implementation of ShotReport_HitFactorFromShooter_Patch
+            report.aimingAccuracy = turret.GetStatValue(StatDefOf.ShootingAccuracyTurret) * gravshipTurretTargetingFactor;
+            // implementation of Verb_LaunchProjectile_ForcedMissRadius_Patch
+            report.circularMissRadius = turret.GetLocalForcedMissRadius(report.circularMissRadius);
+            // implementation of Verb_LaunchProjectile_GetForcedMissTarget_Patch
+            report.circularMissRadius /= gravshipTurretTargetingFactor;
+
             // ------------------- //
 
-            report.sightsEfficiency *= 2f; // Then I multiply by 2, because users use high tech terminal and it feels better
         }
         else
         {

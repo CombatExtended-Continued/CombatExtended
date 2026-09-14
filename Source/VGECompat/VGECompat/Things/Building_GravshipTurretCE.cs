@@ -127,6 +127,11 @@ public class Building_GravshipTurretCE : Building_TurretGunCE
         return text;
     }
 
+    public float GetLocalForcedMissRadius(float baseMissRadius)
+    {
+        return GravshipHelper.CalculateAdjustedForcedMissRadius(baseMissRadius, this.Map, this.def, this.Position, this.Faction, this.GravshipTargeting, useMapMultiplier: true);
+    }
+
     public void LinkTo(ITurretLinkerCE terminal)
     {
         if (linkedTerminal == terminal)

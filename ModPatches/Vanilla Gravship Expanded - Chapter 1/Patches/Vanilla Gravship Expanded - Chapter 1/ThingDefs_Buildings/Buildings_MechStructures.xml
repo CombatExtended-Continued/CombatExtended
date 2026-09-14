@@ -38,13 +38,6 @@
 		</value>
 	</Operation>
 
-    <!-- Remove useless mod extensions from VGE -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>
-			Defs/ThingDef[defName = "VGE_MassDriver"]/modExtensions 
-		</xpath>
-	</Operation>
-
     <!-- Add our own mod extensions -->
     <Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="VGE_MassDriver"]</xpath>
@@ -85,6 +78,10 @@
 		<value>CombatExtended.Compatibility.VGECompat.CompProperties_WorldArtilleryCE</value>
 	</Operation>
 
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_MassDriver</turretDefName>
+		<turretGunDefName>VGE_Gun_MassDriver</turretGunDefName>
+	</Operation>
 
     <!-- Patch operation -->
 
