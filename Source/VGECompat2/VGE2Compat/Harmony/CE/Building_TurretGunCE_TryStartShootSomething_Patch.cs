@@ -5,7 +5,7 @@ using Verse.Sound;
 
 #region License
 // This file includes modified portions of code from:
-// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded/blob/main/Source/HarmonyPatches/WorldComponent_GravshipController_LandingEnded_Patch.cs
+// https://github.com/Vanilla-Expanded/VanillaGravshipExpanded2/blob/main/1.6/Source/Harmony/Building_TurretGun_TryStartShootSomething.cs
 //
 // Original code © Oskar Potocki and the Vanilla Gravship Expanded Team.
 // Incorporated with permission for Combat Extended–Vanilla Gravship Expended compatibility purposes only.
@@ -15,7 +15,7 @@ using Verse.Sound;
 namespace CombatExtended.Compatibility.VGECompat2;
 
 [HarmonyPatch(typeof(Building_TurretGunCE), nameof(Building_TurretGunCE.TryStartShootSomething))]
-public static class VanillaGravshipExpanded2_Building_TurretGun_TryStartShootSomething_Patch
+public static class Building_TurretGunCE_TryStartShootSomething_Patch
 {
     public static void Postfix(Building_TurretGunCE __instance, LocalTargetInfo ___currentTargetInt)
     {
