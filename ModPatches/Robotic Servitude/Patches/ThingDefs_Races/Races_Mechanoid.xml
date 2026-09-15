@@ -4,7 +4,7 @@
 	<!-- ========== PawnKind Patches ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Gha_Combat_Laborer"]</xpath>
+		<xpath>Defs/PawnKindDef[defName="Gha_Combat_Laborer" or defName="Gha_Breacher_Laborer"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -298,6 +298,18 @@
 					<feralCascadeRadialDistance>25</feralCascadeRadialDistance>
 				</li>
 				<li MayRequire="Ludeon.RimWorld.Biotech" Class="CompProperties_MechRepairable" />
+				<!--- Comps from BaseMechanoid + CE -->
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li>
+					<compClass>CombatExtended.CompAmmoGiver</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Inventory"/>				
+				<li Class="CombatExtended.CompProperties_MechAmmo">
+					<gizmoIconSetMagCount>UI/Buttons/SetMagCount</gizmoIconSetMagCount>
+					<gizmoIconTakeAmmoNow>UI/Buttons/TakeAmmoNow</gizmoIconTakeAmmoNow>
+				</li>				
 			</comps>
 		</value>
 	</Operation>
