@@ -1,27 +1,7 @@
 <Patch>
-    <!-- === Compact Turrets === -->
-
-    <!-- VGE_GravshipCompactTurretBase -->
-    <!-- Replace thing class -->
-    <Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="VGE_EnemyGravshipCompactTurretBase"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[@Name="VGE_EnemyGravshipCompactTurretBase"]/comps/li[@Class="CompProperties_Stunnable"]/affectedDamageDefs/li[.="Stun"]</xpath>
-	</Operation>
-
-    <!-- VGE_GravshipMinigunTurret -->
-
-    <!-- VGE_GravshipAutocannonTurret -->
-
-    <!-- VGE_GravshipUraniumSlugTurret -->
-
     <!-- === Heavy Artillery === -->
 
+	<!-- Add rotation extension -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[@Name="VGE_EnemyArtilleryBase"]</xpath>
 		<value>
@@ -31,6 +11,7 @@
 		</value>
 	</Operation>
 
+	<!-- Replace thingClass -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name = "VGE_EnemyArtilleryBase"]/thingClass</xpath>
 		<value>
@@ -38,7 +19,69 @@
 		</value>
 	</Operation>
 
+	<!-- Replace world artillery -->
+    <Operation Class="PatchOperationAttributeSet">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_EnemyGaussBombard" or
+				defName = "VGE_EnemyGaussGun" or
+				defName = "VGE_EnemyJavelinPod" or
+				defName = "VGE_EnemyAnticraftCaster" or
+				defName = "VGE_EnemyAnticraftBeam" or
+				defName = "VGE_EnemyGaussCannon" or
+				defName = "VGE_EnemyGaussHowitzer" or
+				defName = "VGE_EnemyJavelinLauncher"
+			]/comps/li[
+				@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery"
+			]
+		</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.Compatibility.VGECompat.CompProperties_WorldArtilleryCE</value>
+	</Operation>
+
+	<!-- Add OrbitalTurretExtension to guns -->
+    <Operation Class="PatchOperationAddModExtension">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_Gun_EnemyGaussBombard" or
+				defName = "VGE_Gun_EnemyGaussGun" or
+				defName = "VGE_Gun_EnemyJavelinPod" or
+				defName = "VGE_Gun_EnemyAnticraftCaster" or
+				defName = "VGE_Gun_EnemyAnticraftBeam" or
+				defName = "VGE_Gun_EnemyGaussCannon" or
+				defName = "VGE_Gun_EnemyGaussHowitzer" or
+				defName = "VGE_Gun_EnemyJavelinLauncher"
+			]
+		</xpath>
+		<value>
+			<li Class="CombatExtended.OrbitalTurretExtension">
+                <interLayerPrecisionBonusFactor>20</interLayerPrecisionBonusFactor>
+                <isMarkMandatory>false</isMarkMandatory>
+				<cannotLaunchThroughRoof>false</cannotLaunchThroughRoof>
+            </li>
+		</value>
+	</Operation>
+	
+	<!-- Remove all verbs -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName = "VGE_Gun_EnemyGaussBombard" or
+			defName = "VGE_Gun_EnemyGaussGun" or
+			defName = "VGE_Gun_EnemyJavelinPod" or
+			defName = "VGE_Gun_EnemyAnticraftCaster" or
+			defName = "VGE_Gun_EnemyAnticraftBeam" or
+			defName = "VGE_Gun_EnemyGaussCannon" or
+			defName = "VGE_Gun_EnemyGaussHowitzer" or
+			defName = "VGE_Gun_EnemyJavelinLauncher"
+			]/verbs</xpath>
+	</Operation>
+
 	<!-- VGE_EnemyGaussBombard -->
+
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_EnemyGaussBombard</turretDefName>
+		<turretGunDefName>VGE_Gun_EnemyGaussBombard</turretGunDefName>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_EnemyGaussBombard</defName>
@@ -47,6 +90,7 @@
 			<SightsEfficiency>1.00</SightsEfficiency>
 			<ShotSpread>0.03</ShotSpread>
 			<SwayFactor>1.0</SwayFactor>
+			<AimingAccuracy>0.5</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
@@ -58,15 +102,16 @@
 			<soundCast>VGE_GravshipHowitzer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
-			<forcedMissRadius>20.9</forcedMissRadius>
 			<requireLineOfSight>false</requireLineOfSight>
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 			<isMortar>true</isMortar>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
+
+            <circularError>7</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
-			<warmupTime>12</warmupTime>
+			<warmupTime>1.8</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
@@ -78,6 +123,20 @@
 
 	<!-- VGE_EnemyGaussGun -->
 
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_EnemyGaussGun</turretDefName>
+		<turretGunDefName>VGE_Gun_EnemyGaussGun</turretGunDefName>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_EnemyGaussGun"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.22</speed>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_EnemyGaussGun</defName>
 		<statBases>
@@ -85,6 +144,7 @@
 			<SightsEfficiency>1.00</SightsEfficiency>
 			<ShotSpread>0.03</ShotSpread>
 			<SwayFactor>1.0</SwayFactor>
+			<AimingAccuracy>0.5</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
@@ -96,13 +156,14 @@
 			<soundCast>VGE_GravshipHowitzer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
-			<forcedMissRadius>13.5</forcedMissRadius>
 			<requireLineOfSight>false</requireLineOfSight>
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-			<isMortar>false</isMortar>
+			<isMortar>true</isMortar>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
+
+            <circularError>4.5</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>1.8</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -115,6 +176,20 @@
 	</Operation>
 
 	<!-- VGE_EnemyJavelinPod -->
+
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_EnemyJavelinPod</turretDefName>
+		<turretGunDefName>VGE_Gun_EnemyJavelinPod</turretGunDefName>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_EnemyJavelinPod"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.125</speed>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>
@@ -130,8 +205,7 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_EnemyJavelinPod</defName>
 		<statBases>
-			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
-			<AimingAccuracy>1.0</AimingAccuracy>
+			<AimingAccuracy>0.5</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -140,15 +214,17 @@
 			<minRange>14</minRange>
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-			<soundCast>RocketswarmLauncher_Fire</soundCast>
+			<soundCast>VGE_JavelinLauncher_Cast</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
 			<requireLineOfSight>false</requireLineOfSight>
-			<consumeFuelPerShot>10</consumeFuelPerShot>
+			<consumeFuelPerShot>0</consumeFuelPerShot>
+			<isMortar>true</isMortar>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
+            <circularError>6</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -188,14 +264,20 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_EnemyAnticraftCaster"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.6</speed>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_EnemyAnticraftCaster</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-			<AccuracyTouch>1</AccuracyTouch>
-			<AccuracyShort>1</AccuracyShort>
-			<AccuracyMedium>1</AccuracyMedium>
-			<AccuracyLong>1</AccuracyLong>
+			<AimingAccuracy>0.5</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -216,6 +298,7 @@
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
+			
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -231,38 +314,63 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_EnemyAnticraftBeam"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.03</speed>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_EnemyAnticraftBeam</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
-			<AccuracyTouch>1</AccuracyTouch>
-			<AccuracyShort>1</AccuracyShort>
-			<AccuracyMedium>1</AccuracyMedium>
-			<AccuracyLong>1</AccuracyLong>
+			<AimingAccuracy>0.5</AimingAccuracy>
 		</statBases>
 		<Properties>
-			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
+			<verbClass>CombatExtended.Compatibility.VGECompat2.Verb_AnticraftBeamCE</verbClass>
 			<defaultProjectile>VGE_Bullet_AnticraftBeam_CE</defaultProjectile>
 			<range>99999</range>
 			<minRange>20</minRange>
 			<burstShotCount>1</burstShotCount>
-			<soundCast>Shot_BeamRepeater</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>40</muzzleFlashScale>
-			<aimingChargeMote>Mote_BeamRepeater_Charge</aimingChargeMote>
-			<aimingChargeMoteOffset>5</aimingChargeMoteOffset>
 			<requireLineOfSight>false</requireLineOfSight>
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<aimingChargeMote>Mote_BeamRepeater_Charge</aimingChargeMote>
+			<aimingChargeMoteOffset>5</aimingChargeMoteOffset>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
+
 			<hasStandardCommand>true</hasStandardCommand>
-			<warmupTime>60</warmupTime>
+			<warmupTime>4.0</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 	</Operation>
 
+	<!-- <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_EnemyAnticraftBeamStrike"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat2.AnticraftBeamStrikeCE</thingClass>
+		</value>
+	</Operation> -->
+
 	<!-- VGE_EnemyGaussCannon -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_EnemyGaussCannon"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.015</speed>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_EnemyGaussCannon</turretDefName>
+		<turretGunDefName>VGE_Gun_EnemyGaussCannon</turretGunDefName>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_EnemyGaussCannon</defName>
@@ -271,6 +379,7 @@
 			<SightsEfficiency>1.00</SightsEfficiency>
 			<ShotSpread>0.03</ShotSpread>
 			<SwayFactor>1.0</SwayFactor>
+			<AimingAccuracy>0.5</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
@@ -281,15 +390,17 @@
 			<soundCast>VGE_GaussCannon_Fire</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>40</muzzleFlashScale>
-			<forcedMissRadius>22</forcedMissRadius>
 			<requireLineOfSight>false</requireLineOfSight>
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 			<isMortar>true</isMortar>
+			<forcedMissRadius>22.0</forcedMissRadius>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
+
+            <circularError>7.2</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
-			<warmupTime>20</warmupTime>
+			<warmupTime>4.0</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
@@ -300,15 +411,18 @@
 	</Operation>
 
 	<!-- VGE_EnemyGaussHowitzer -->
-    
-    <Operation Class="PatchOperationReplace">
-		<xpath>
-			Defs/ThingDef[
-				defName = "VGE_EnemyGaussHowitzer"
-			]/thingClass 
-		</xpath>
+
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_EnemyGaussHowitzer</turretDefName>
+		<turretGunDefName>VGE_Gun_EnemyGaussHowitzer</turretGunDefName>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_EnemyGaussHowitzer"]</xpath>
 		<value>
-			<thingClass>CombatExtended.Compatibility.VGECompat.Building_GravshipTurretCE</thingClass>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.125</speed>
+			</li>
 		</value>
 	</Operation>
 
@@ -319,25 +433,27 @@
 			<SightsEfficiency>1.00</SightsEfficiency>
 			<ShotSpread>0.03</ShotSpread> <!-- base on 40k baneblade -->
 			<SwayFactor>1.0</SwayFactor>
+			<AimingAccuracy>0.5</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
 			<defaultProjectile>VGE_Bullet_GaussHowitzer_CE_HE</defaultProjectile>
 			<range>99999</range>
-			<minRange>14.9</minRange>
-			<burstShotCount>1</burstShotCount>
+			<minRange>26</minRange>
+			<burstShotCount>3</burstShotCount>
 			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
 			<soundCast>VGE_GravshipHowitzer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
 			<requireLineOfSight>false</requireLineOfSight>
-			<!-- <consumeFuelPerShot>5</consumeFuelPerShot> -->
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-			<isMortar>false</isMortar>
+			<isMortar>true</isMortar>
+			<forcedMissRadius>18</forcedMissRadius>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
+            <circularError>6</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>1.8</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -357,12 +473,26 @@
 			<thingClass>CombatExtended.Compatibility.VGECompat2.Building_EnemyJavelinPodCE</thingClass>
 		</value>
 	</Operation>
+	
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_EnemyJavelinLauncher</turretDefName>
+		<turretGunDefName>VGE_Gun_EnemyJavelinLauncher</turretGunDefName>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_EnemyJavelinLauncher"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.125</speed>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_EnemyJavelinLauncher</defName>
 		<statBases>
 			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
-			<AimingAccuracy>1.0</AimingAccuracy>
+			<AimingAccuracy>0.5</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -375,10 +505,12 @@
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
 			<requireLineOfSight>false</requireLineOfSight>
-			<consumeFuelPerShot>10</consumeFuelPerShot>
+			<isMortar>true</isMortar>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
+
+            <circularError>8</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -390,6 +522,7 @@
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
 	</Operation>
 
