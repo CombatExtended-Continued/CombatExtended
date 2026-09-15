@@ -92,9 +92,6 @@ public class PatchOperationMakeVGEBarrelsCompatible : PatchOperation
         // Remove the old extension from the turret
         turretNode.SelectSingleNode("modExtensions").RemoveChild(oldExtensionNode);
 
-        Log.Message("turretNode" + turretNode.OuterXml);
-        Log.Message("turretGunNode" + turretGunNode.OuterXml);
-
         return true;
     }
 }
