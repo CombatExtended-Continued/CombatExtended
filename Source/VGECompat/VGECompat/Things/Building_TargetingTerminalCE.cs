@@ -112,7 +112,7 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal, ITurretL
     {
         if (linkedTurretsCE.Count >= MaxLinkedTurrets)
         {
-            Unlink(linkedTurrets[0]);
+            Unlink(linkedTurretsCE[0]);
         }
         linkedTurretsCE.Add(turret);
         turret.LinkTo(this);
