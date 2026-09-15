@@ -1,12 +1,13 @@
 <Patch>
 	<!-- === Patch Buildings === -->
-	<!-- Remove box refuel fuel comps -->
+	<!-- Remove box refuel comps and fuel comp -->
     <Operation Class="PatchOperationRemove">
 		<xpath>
 			Defs/ThingDef[
 				defName = "VGE_GaussGun"
 			]/comps/li[
-				@Class = "VanillaGravshipExpanded.CompProperties_BoxRefuel"
+				@Class = "VanillaGravshipExpanded.CompProperties_BoxRefuel" or
+				@Class = "CompProperties_Refuelable"
 			]
 		</xpath>
 	</Operation>
@@ -42,18 +43,6 @@
 				<cannotLaunchThroughRoof>false</cannotLaunchThroughRoof>
             </li>
 		</value>
-	</Operation>
-
-	<!-- Remove fuel comps -->
-    <Operation Class="PatchOperationRemove">
-		<xpath>
-			Defs/ThingDef[
-				defName = "VGE_GaussGun" or
-				defName = "VGE_AnticraftCaster"
-			]/comps/li[
-				@Class = "CompProperties_Refuelable"
-			]
-		</xpath>
 	</Operation>
 
 	<!-- Remove all verbs -->
@@ -118,6 +107,7 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
+            <circularError>2</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>1.8</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -160,7 +150,6 @@
 		<defName>VGE_Gun_JavelinPod</defName>
 		<statBases>
 			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
-			<AimingAccuracy>1.0</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -169,7 +158,7 @@
 			<minRange>14</minRange>
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-			<soundCast>RocketswarmLauncher_Fire</soundCast>
+			<soundCast>VGE_JavelinLauncher_Cast</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
 			<requireLineOfSight>false</requireLineOfSight>
@@ -178,6 +167,7 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
+            <circularError>3</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -232,10 +222,6 @@
 		<statBases>
 			<!-- Based on VEFS Graser Cannon Complex patch -->
 			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-			<AccuracyTouch>1</AccuracyTouch>
-			<AccuracyShort>1</AccuracyShort>
-			<AccuracyMedium>1</AccuracyMedium>	
-			<AccuracyLong>1</AccuracyLong>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -257,6 +243,7 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
+            <circularError>0</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -302,12 +289,6 @@
 		<xpath>Defs/ThingDef[defName="VGE_PointDefenseTurret"]/statBases </xpath>
 		<value>
 			<AimingAccuracy>2.5</AimingAccuracy>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VGE_PointDefenseTurret"]/statBases </xpath>
-		<value>
 			<NightVisionEfficiency>1</NightVisionEfficiency>
 		</value>
 	</Operation>
