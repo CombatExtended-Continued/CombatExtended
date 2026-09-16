@@ -48,6 +48,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public FloatRange mass = new FloatRange(1f, 1f);
     public FloatRange diameter = new FloatRange(1f, 1f);
 
+    public bool detonateInSpace = true;
     public ThingDef detonateMoteDef;
     public FleckDef detonateFleckDef;
     public float detonateEffectsScaleOverride = -1;

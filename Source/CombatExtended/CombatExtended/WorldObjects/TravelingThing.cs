@@ -8,8 +8,8 @@ using Verse;
 namespace CombatExtended;
 public abstract class TravelingThing : WorldObject
 {
-    private int startingTile;
-    private int destinationTile;
+    private PlanetTile startingTile;
+    private PlanetTile destinationTile;
     private int distanceInTiles;
 
     private float tilesPerTick;
@@ -31,13 +31,13 @@ public abstract class TravelingThing : WorldObject
     {
         get => 0.03f;
     }
-    public int StartTile
+    public PlanetTile StartTile
     {
         get => startingTile;
     }
-    public int DestinationTile
+    public PlanetTile DestinationTile
     {
-        get => startingTile;
+        get => destinationTile;
     }
 
     public float TraveledPtc => this.distanceTraveled / this.distanceInTiles;
@@ -47,22 +47,24 @@ public abstract class TravelingThing : WorldObject
     {
     }
 
-    public virtual bool TryTravel(int startingTile, int destinationTile)
+    public virtual bool TryTravel(PlanetTile startingTile, PlanetTile destinationTile)
     {
         if (startingTile <= -1 || destinationTile <= -1 || startingTile == destinationTile)
         {
             Log.Warning($"CE: TryTravel in thing {this} got {startingTile} {destinationTile}");
             return false;
         }
+
         this.startingTile = this.Tile = startingTile;
         this.destinationTile = destinationTile;
         this.tilesPerTick = TilesPerTick;
 
-        Vector3 start = Find.WorldGrid.GetTileCenter(startingTile);
-        Vector3 end = Find.WorldGrid.GetTileCenter(destinationTile);
-
-        this.distance = GenMath.SphericalDistance(start.normalized, end.normalized);
-        this.distanceInTiles = (int)Find.World.grid.ApproxDistanceInTiles(this.distance);
+        PlanetLayer layerToUse = Find.WorldGrid.PlanetLayers.TryGetValue(0); // gound layer
+        if (startingTile.Layer == destinationTile.Layer)
+        {
+            layerToUse = startingTile.Layer;
+        }
+        this.distanceInTiles = (int)layerToUse.ApproxDistanceInTiles(startingTile, destinationTile);
         return true;
     }
 

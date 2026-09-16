@@ -47,6 +47,7 @@ public class Building_TurretGunCE : Building_Turret
     private CompAmmoUser compAmmo = null;
     private CompFireModes compFireModes = null;
     private CompChangeableProjectile compChangeable = null;
+    private OrbitalTurretExtension orbitalTurretExtension = null;
     public bool isReloading = false;
     private int ticksUntilAutoReload = 0;
     private bool everSpawned = false;
@@ -156,6 +157,19 @@ public class Building_TurretGunCE : Building_Turret
             return compFireModes;
         }
     }
+
+    public OrbitalTurretExtension OrbitalTurretExtension
+    {
+        get
+        {
+            if (orbitalTurretExtension == null && Gun != null)
+            {
+                orbitalTurretExtension = Gun.def.GetModExtension<OrbitalTurretExtension>();
+            }
+            return orbitalTurretExtension;
+        }
+    }
+
     private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)Projectile?.projectile;
     public float MaxWorldRange => ProjectileProps?.shellingProps.range ?? -1f;
     public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
@@ -244,6 +258,10 @@ public class Building_TurretGunCE : Building_Turret
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)    // Added GenClosestAmmo unsubscription
     {
+        if (mode == DestroyMode.Deconstruct)
+        {
+            compAmmo?.TryUnload();
+        }
         Map.GetComponent<TurretTracker>().Unregister(this);
         base.DeSpawn(mode);
         ResetCurrentTarget();
@@ -676,7 +694,7 @@ public class Building_TurretGunCE : Building_Turret
     {
         ResetCurrentTarget();
         ResetForcedTarget();
-        int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(Map.Tile, targetInfo.Tile, true, maxDist: (int)(this.MaxWorldRange * 1.5f));
+        int distanceToTarget = ShellingUtility.GetDistancePlanetTiles(Map.Tile, targetInfo.Tile, (int)(MaxWorldRange * 1.5f));
         if (distanceToTarget > MaxWorldRange)
         {
             return false;
@@ -698,8 +716,8 @@ public class Building_TurretGunCE : Building_Turret
 
     public virtual void TryOrderAttackWorldTile(GlobalTargetInfo targetInf, IntVec3? cell = null)
     {
-        int startingTile = Map.Tile;
-        int destinationTile = targetInf.Tile;
+        PlanetTile startingTile = Map.Tile;
+        PlanetTile destinationTile = targetInf.Tile;
 
         Vector3 direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
         Vector3 shotPos = DrawPos.Yto0();

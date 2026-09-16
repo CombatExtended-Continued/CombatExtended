@@ -12,15 +12,15 @@ public class TravelingRaycast : TravelingShell
     public float aperatureSize;
     public Thing equipement;
 
-    protected override void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 200)
+    protected override void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map)
     {
-        Vector3 source = new Vector3(sourceCell.x, shotHeight, sourceCell.z);
+        Vector3 source = new Vector3(sourceCell.x, arrivedShotHeight, sourceCell.z);
         Vector3 targetPos = target.Cell.ToVector3Shifted();
 
         ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(shellDef);
         ProjectilePropertiesCE pprops = projectile.def.projectile as ProjectilePropertiesCE;
         float shotRotation = pprops.TrajectoryWorker.ShotRotation(pprops, source, targetPos);
-        float shotAngle = pprops.TrajectoryWorker.ShotAngle(pprops, source, targetPos, shotSpeed);
+        float shotAngle = pprops.TrajectoryWorker.ShotAngle(pprops, source, targetPos, arrivedShotSpeed);
 
         projectile.canTargetSelf = false;
         projectile.Position = sourceCell;
@@ -34,14 +34,14 @@ public class TravelingRaycast : TravelingShell
                 return;
             }
 
-            float tsa = verbToUse.AdjustShotHeight(launcher, target, ref shotHeight);
+            float tsa = verbToUse.AdjustShotHeight(launcher, target, ref arrivedShotHeight);
             projectile.RayCast(launcher,
                 verbToUse.verbProps,
                 new Vector2(source.x, source.z),
                 shotAngle,
                 shotRotation,
-                shotHeight + tsa,
-                shotSpeed,
+                arrivedShotHeight + tsa,
+                arrivedShotSpeed,
                 spreadDegrees,
                 aperatureSize,
                 null,

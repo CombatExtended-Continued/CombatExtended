@@ -704,7 +704,7 @@ public class Verb_LaunchProjectileCE : Verb
             return null;
         }
         // multiplie by 250 to emulate cells
-        int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(target.Tile, caster.Map.Tile, true);
+        int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(target.Tile, caster.Map.Tile, true, int.MaxValue, true);
 
         LocalTargetInfo localTarget = new LocalTargetInfo();
         localTarget.cellInt = target.Cell;
