@@ -5,6 +5,8 @@ using Verse;
 using VEF.Apparels;
 namespace CombatExtended.Compatibility;
 
+// Loaded only through VEF's conditional LoadFolders entry. Patches discovers
+// IPatch implementations across loaded assemblies and installs the callbacks.
 public class VanillaExpandedFramework : IPatch
 {
     const string ModName = "Vanilla Expanded Framework";
@@ -77,4 +79,3 @@ public class VanillaExpandedFramework : IPatch
     }
 
 }
-
