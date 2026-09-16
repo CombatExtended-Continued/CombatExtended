@@ -655,6 +655,7 @@ Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Furniture Expanded -  Factory |
 Vanilla Genetics Expanded   |
+Vanilla Gravship Expanded - Chapter 1  |
 Vanilla Ideology Expanded - Dryads  |
 Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
