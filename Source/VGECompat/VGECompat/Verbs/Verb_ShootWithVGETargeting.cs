@@ -1,6 +1,5 @@
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
 using Verse;
 
 namespace CombatExtended.Compatibility.VGECompat;
