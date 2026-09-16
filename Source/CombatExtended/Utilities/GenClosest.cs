@@ -30,8 +30,18 @@ public static class GenClosest
 
     public static IEnumerable<Pawn> PawnsInRange(this IntVec3 cell, Map map, float range)
     {
-        ThingsTracker tracker = map.GetThingTracker();
-        return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Pawns, cell, range).Select(t => t as Pawn);
+        ThingsTracker tracker = map?.GetThingTracker();
+        if (tracker == null)
+        {
+            yield break;
+        }
+        foreach (Thing t in tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Pawns, cell, range))
+        {
+            if (t is Pawn pawn)
+            {
+                yield return pawn;
+            }
+        }
     }
 
     public static IEnumerable<Pawn> HostilesInRange(this IntVec3 cell, Map map, Faction faction, float range)
