@@ -133,15 +133,6 @@ public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     public abstract IEnumerable<TargetType> Targets { get; }
     protected abstract IEnumerable<Vector3> PredictPositions(TargetType target, int maxTicks);
 
-    protected float Range
-    {
-        get
-        {
-            return Props.range;
-        }
-    }
-
-
     public override bool TryFindNewTarget(out LocalTargetInfo target)
     {
         if (!Active)
@@ -149,6 +140,7 @@ public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
             target = LocalTargetInfo.Invalid;
             return false;
         }
+        float range = this.verbProps.range;
         var _target = Targets.Where(x => Props.Interceptable(x.def) && !Props.Ignored.Contains(x.def) && !Turret.IgnoredDefsSettings.Contains(x.def)).Where(x => !IsFriendlyTo(x)).FirstOrDefault(t =>
         {
             var verb = this;
@@ -163,7 +155,7 @@ public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
             }
             var intersectionPoint = shootLine.Dest;
             float distToSqr = intersectionPoint.DistanceToSquared(Caster.Position);
-            return distToSqr > minRange * minRange && distToSqr < Range * Range;
+            return distToSqr > minRange * minRange && distToSqr < range * range;
         });
         if (_target != null)
         {
@@ -186,7 +178,7 @@ public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
             resultingLine = default;
             return false;
         }
-        var maxDistSqr = Range * Range;
+        var maxDistSqr = Props.range * Props.range;
         var originV3 = Caster.Position.ToVector3Shifted();
         int maxTicks = GenTicks.TicksPerRealSecond;
         if (TrajectoryWorker.GuidedProjectile)

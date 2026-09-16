@@ -23,7 +23,7 @@ public static class Building_GravshipTurretCE_Tick_Patch
     {
         if (__instance.IsHashIntervalTick(250) && __instance.Faction == Faction.OfPlayer)
         {
-            __instance.ApplyForcedMissRadiusBuffs();
+            __instance.ApplyForcedWarcomputerBuffs();
         }
     }
 }
