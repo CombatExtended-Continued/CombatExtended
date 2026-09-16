@@ -25,7 +25,7 @@ public static class Building_GravshipTurretCE_SpawnSetup_Patch
         {
             if (__instance.Faction == Faction.OfPlayer)
             {
-                __instance.ApplyForcedMissRadiusBuffs();
+                __instance.ApplyForcedWarcomputerBuffs();
             }
         });
     }
