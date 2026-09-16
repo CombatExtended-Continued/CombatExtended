@@ -20,9 +20,8 @@ namespace CombatExtended.Compatibility.VGECompat;
 [HarmonyBefore("vanillaexpanded.gravship")] // Use priority to avoid crash
 public class Verb_LaunchProjectile_ForcedMissRadius_Patch_GetAdjustedForcedMissRadius_Patch
 {
-    public static bool Prefix(VerbProperties props, Verb verb, ref float __result)
+    public static bool Prefix(float baseMiss, Verb verb, ref float __result)
     {
-        float baseMiss = props.ForcedMissRadius;
         if (verb != null && verb.caster is Building_GravshipTurretCE turret)
         {
             __result = turret.GetLocalForcedMissRadius(baseMiss);
