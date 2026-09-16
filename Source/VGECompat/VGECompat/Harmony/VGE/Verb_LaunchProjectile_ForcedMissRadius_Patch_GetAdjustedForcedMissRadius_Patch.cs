@@ -16,7 +16,7 @@ namespace CombatExtended.Compatibility.VGECompat;
 // -- Patchception --
 // We need to patch the Verb_LaunchProjectile_ForcedMissRadius_Patch.GetAdjustedForcedMissRadius method to correclty draw HighlightFieldRadiusAroundTarget
 
-[HarmonyPatch(nameof(Verb_LaunchProjectile_ForcedMissRadius_Patch.GetAdjustedForcedMissRadius))]
+[HarmonyPatch(typeof(Verb_LaunchProjectile_ForcedMissRadius_Patch), nameof(Verb_LaunchProjectile_ForcedMissRadius_Patch.GetAdjustedForcedMissRadius))]
 [HarmonyBefore("vanillaexpanded.gravship")] // Use priority to avoid crash
 public class Verb_LaunchProjectile_ForcedMissRadius_Patch_GetAdjustedForcedMissRadius_Patch
 {
