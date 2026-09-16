@@ -10,18 +10,17 @@ using VanillaGravshipExpanded2;
 // All rights to the original code remain with the original authors.
 #endregion
 
-
 namespace CombatExtended.Compatibility.VGECompat;
 
-//// reproduce the patch from VGE2
-//[HarmonyPatch(typeof(Verb_LaunchProjectileCE), "TryCastShot")]
-//public static class Verb_LaunchProjectileCE_TryCastShot_Patch
-//{
-//    public static void Postfix(Verb_LaunchProjectileCE __instance, bool __result)
-//    {
-//        if (__result && __instance.EquipmentSource is Building_GravshipTurretCE turret)
-//        {
-//            turret.TryAddVisibility();
-//        }
-//    }
-//}
+// reproduce the patch from VGE2
+[HarmonyPatch(typeof(Verb_LaunchProjectileCE), "TryCastShot")]
+public static class Verb_LaunchProjectileCE_TryCastShot_Patch
+{
+    public static void Postfix(Verb_LaunchProjectileCE __instance, bool __result)
+    {
+        if (__result && __instance.EquipmentSource is Building_GravshipTurretCE turret)
+        {
+            turret.TryAddVisibility();
+        }
+    }
+}
