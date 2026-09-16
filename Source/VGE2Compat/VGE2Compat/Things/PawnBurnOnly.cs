@@ -1,32 +1,17 @@
-﻿using RimWorld;
+﻿using System;
+using VanillaGravshipExpanded2;
 using Verse;
 
 namespace CombatExtended.Compatibility.VGE2Compat;
 public class PawnBurnOnly : Pawn
 {
-    public override void SpawnSetup(Map map, bool respawningAfterLoad)
-    {
-        Log.Message("SpawnSetup");
-
-        base.SpawnSetup(map, respawningAfterLoad);
-    }
-    
     public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
     {
-        Log.Message("PreApplyDamage");
-
-        Log.Message("Dinfos" + dinfo);
-        if (dinfo.Def != DamageDefOf.Burn)
+        if (dinfo.Def.hediff != InternalDefOf.Burn && dinfo.Def.hediff.defName != "BurnSecondary") // also handles incendiary weapon
         {
-            dinfo.SetAmount(0);
+            // Maximum dammage for non fire damage is 5
+            dinfo.SetAmount(Math.Min(dinfo.Amount, 5f));
         }
         base.PreApplyDamage(ref dinfo, out absorbed);
-    }
-
-    public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
-    {
-        Log.Message("PostApplyDamage");
-
-        base.PostApplyDamage(dinfo, totalDamageDealt);
     }
 }
