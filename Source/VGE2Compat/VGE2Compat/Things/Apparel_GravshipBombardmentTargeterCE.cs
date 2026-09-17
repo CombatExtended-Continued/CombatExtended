@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using CombatExtended.Compatibility.VGECompat;
+using RimWorld;
 using System.Collections.Generic;
 using VanillaGravshipExpanded2;
 using Verse;
@@ -12,7 +13,7 @@ using Verse;
 // All rights to the original code remain with the original authors.
 #endregion
 
-namespace CombatExtended.Compatibility.VGECompat;
+namespace CombatExtended.Compatibility.VGE2Compat;
 
 internal class Apparel_GravshipBombardmentTargeterCE : Apparel_GravshipBombardmentTargeter, ITurretLinkerCE
 {
