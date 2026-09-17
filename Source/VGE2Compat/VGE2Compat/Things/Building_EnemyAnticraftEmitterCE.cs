@@ -10,7 +10,6 @@
 using CombatExtended.Compatibility.VGECompat;
 using RimWorld;
 using UnityEngine;
-using VanillaGravshipExpanded2;
 using Verse;
 
 namespace CombatExtended.Compatibility.VGE2Compat;
@@ -19,7 +18,7 @@ public class Building_EnemyAnticraftEmitterCE : Building_EnemyMechTurretCE
 {
     private bool isFiringBurst = false;
     private Mote aimChargeMote;
-    public AnticraftBeamStrike currentStrike;
+    public AnticraftBeamStrikeCE currentStrike;
 
     public override void PostSwapMap()
     {

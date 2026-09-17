@@ -29,7 +29,6 @@
 			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<thingClass>VanillaGravshipExpanded.Projectile_Gauss</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>683</damageAmountBase>
@@ -188,7 +187,6 @@
 			<shaderType>TransparentPostLight</shaderType>
 			<drawSize>(1,2)</drawSize>
 		</graphicData>
-		<thingClass>VanillaGravshipExpanded.Projectile_Gauss</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>1706</damageAmountBase>
@@ -214,7 +212,7 @@
 	<!-- ====== Enemy Anticraft Beam ====== -->
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
 		<defName>VGE_Bullet_AnticraftBeam_CE</defName>
-		<thingClass>CombatExtended.Compatibility.VGECompat.Projectile_ArtilleryBeamCE</thingClass>
+		<thingClass>CombatExtended.Compatibility.VGE2Compat.Projectile_AnticraftBeamCE</thingClass>
 		<label>anticraft beam (CE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>BeamBypassShields</damageDef>
@@ -230,14 +228,6 @@
 				<damage>0.05</damage>
 			</shellingProps>
 		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>64</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>1.5</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
 	</ThingDef>
 
 	<!-- ====== AnticraftEmitter ====== -->
