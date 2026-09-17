@@ -40,6 +40,12 @@ internal class Apparel_GravshipBombardmentTargeterCE : Apparel_GravshipBombardme
     {
         foreach (var gizmo in base.GetWornGizmos())
         {
+            // clean unwanted gizmo
+            if (!TurretLinkerCEUtility.IsUnwantedGizmo(this, gizmo))
+            {
+                yield return gizmo;
+            }
+
             if (gizmo is Command_VerbTarget command && linkedTurretCE != null)
             {
                 command.defaultLabel = "VGE_FireBombardmentTargeter".Translate(linkedTurretCE.LabelNoParenthesis);

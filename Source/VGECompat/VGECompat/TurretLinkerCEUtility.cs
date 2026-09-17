@@ -89,5 +89,11 @@ public static class TurretLinkerCEUtility
             };
         }
     }
+
+    public static bool IsUnwantedGizmo(this ITurretLinkerCE linker, Gizmo gizmo)
+    {
+        return gizmo is Command_Action ca 
+            && (ca.defaultDesc == linker.UnlinkGizmoDesc || ca.defaultDesc == linker.SelectGizmoDesc || ca.defaultDesc == linker.LinkGizmoDesc); ;
+    }
 }
 
