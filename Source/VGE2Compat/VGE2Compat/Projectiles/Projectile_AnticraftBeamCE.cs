@@ -15,19 +15,19 @@ namespace CombatExtended.Compatibility.VGE2Compat;
 
 public class Projectile_AnticraftBeamCE : Projectile_ArtilleryBeamCE
 {
-    public AnticraftBeamStrike strike;
+    public AnticraftBeamStrikeCE strike;
 
     // same code but we don't need blockedByShield
     public override void Impact(Thing hitThing)
     {
         //if (!blockedByShield)
         //{
-            strike = (AnticraftBeamStrike)GenSpawn.Spawn(InternalDefOf.VGE_EnemyAnticraftBeamStrike, intendedTarget.Cell, Map);
+            strike = (AnticraftBeamStrikeCE)GenSpawn.Spawn(InternalDefOf.VGE_EnemyAnticraftBeamStrike, intendedTarget.Cell, Map);
             strike.duration = 600;
             strike.instigator = launcher;
             strike.weaponDef = equipmentDef;
             strike.StartStrike();
-            var emitter = launcher as Building_EnemyAnticraftEmitter;
+            var emitter = launcher as Building_EnemyAnticraftEmitterCE;
             emitter.currentStrike = strike;
         //}
         base.Impact(hitThing);
