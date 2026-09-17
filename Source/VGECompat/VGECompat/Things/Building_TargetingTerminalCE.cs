@@ -99,8 +99,7 @@ public class Building_TargetingTerminalCE : Building_TargetingTerminal, ITurretL
         foreach (var gizmo in base.GetGizmos())
         {
             // clean unwanted gizmo
-            bool isUnwanted = gizmo is Command_Action ca && (ca.defaultDesc == UnlinkGizmoDesc || ca.defaultDesc == SelectGizmoDesc || ca.defaultDesc == LinkGizmoDesc);
-            if (!isUnwanted)
+            if (!TurretLinkerCEUtility.IsUnwantedGizmo(this, gizmo))
             {
                 yield return gizmo;
             }
