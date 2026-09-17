@@ -9,6 +9,7 @@
 
 using CombatExtended.Compatibility.VGECompat;
 using RimWorld;
+using System;
 using UnityEngine;
 using Verse;
 
@@ -57,7 +58,8 @@ public class Building_EnemyAnticraftEmitterCE : Building_EnemyMechTurretCE
             UpdatePowerOutput();
         }
 
-        if (DeltaAngle <= 10 && CanFire && CurrentTarget.IsValid && Active && burstWarmupTicksLeft > 0)
+        // use Math.Abs(DeltaAngle) instead of their angleDiff
+        if (Math.Abs(DeltaAngle) <= 10 && CanFire && CurrentTarget.IsValid && Active && burstWarmupTicksLeft > 0)
         {
             if (aimChargeMote == null || aimChargeMote.Destroyed)
             {
