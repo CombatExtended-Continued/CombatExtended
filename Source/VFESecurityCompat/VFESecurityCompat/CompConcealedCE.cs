@@ -4,21 +4,15 @@ using VFESecurity;
 
 namespace CombatExtended.Compatibility.VFES
 {
-    // Facade over VFE's CompConcealed that also manages an invisible "dummy"
-    // thing parked on the same cell as the parent building. The dummy's
-    // passability (chosen per-building via CompProperties_ConcealedCE.dummyDef)
-    // is what makes the deployed structure block pathing:
-    //   - turret dummy  : PassThroughOnly + pathCost  -> soft, avoidable obstacle
-    //   - barrier dummy : Impassable                   -> hard wall
-    // When submerged the dummy is removed, leaving the (Standable) parent def,
-    // so the cell reverts to a free, standable floor. No Harmony on GenGrid /
-    // pathfinding -- we only touch the local cell via the dummy's presence.
+    // VFE's CompConcealed + an invisible dummy parked on the same cell. dummy's
+    // passability is what blocks pathing when deployed (turret: soft, barrier:
+    // wall). submerged = dummy gone = free floor. no harmony, just the one cell.
     public class CompConcealedCE : ThingComp
     {
         private CompConcealed? concealed;
         private CompProperties_ConcealedCE? ceProps;
         private Thing? dummy;
-        private bool loaded;
+        private bool lastSubmerged;
 
         public bool Submerged => concealed?.Submerged ?? false;
 
@@ -31,13 +25,18 @@ namespace CombatExtended.Compatibility.VFES
             base.PostSpawnSetup(respawningAfterLoad);
             concealed = parent.GetComp<CompConcealed>();
             ceProps = props as CompProperties_ConcealedCE;
-            // On load, defer the reconcile to the first tick so any saved dummy
-            // has already been instantiated (avoids spawning a duplicate).
-            loaded = !respawningAfterLoad;
-            if (loaded)
+            if (concealed == null)
             {
-                SyncDummy();
+                return;
             }
+            // load: a saved dummy might already sit here, adopt it once. don't
+            // spawn a dup, don't defer to tick 1. only thingGrid scan we do.
+            if (respawningAfterLoad)
+            {
+                FindDummy();
+            }
+            lastSubmerged = concealed.Submerged;
+            SyncDummy();
         }
 
         public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
@@ -48,23 +47,23 @@ namespace CombatExtended.Compatibility.VFES
 
         public override void CompTick()
         {
-            if (!loaded)
+            if (concealed == null)
             {
-                loaded = true;
+                return;
             }
-            SyncDummy();
-        }
-
-        public override void CompTickRare()
-        {
-            SyncDummy();
+            // only act when Submerged actually flips. holding the ref, so no scan.
+            bool sub = concealed.Submerged;
+            if (sub != lastSubmerged)
+            {
+                lastSubmerged = sub;
+                SyncDummy();
+            }
         }
 
         private void DestroyDummy()
         {
-            // normal path: we always hold the live ref, so just destroy it.
-            // if it was already destroyed out from under us, the field is stale
-            // and there is nothing left to do.
+            // we hold the ref, so just nuke it. if something else killed it
+            // first, field's stale, nothing to do.
             if (dummy != null && !dummy.Destroyed)
             {
                 dummy.Destroy();
@@ -72,32 +71,31 @@ namespace CombatExtended.Compatibility.VFES
             }
         }
 
-        private Thing? FindDummy()
+        // load-only: re-adopt a saved dummy. nowhere else calls this.
+        private void FindDummy()
         {
             if (dummy != null && !dummy.Destroyed)
             {
-                return dummy;
+                return;
             }
             ThingDef? dummyDef = DummyDef;
             if (dummyDef != null && parent.Spawned)
             {
                 dummy = parent.Map.thingGrid.ThingAt(parent.Position, dummyDef);
-                return dummy;
             }
-            return null;
         }
 
         private void SyncDummy()
         {
-            if (concealed == null)
+            if (concealed == null || !parent.Spawned)
             {
                 return;
             }
             bool wantDummy = !concealed.Submerged;
-            Thing? existing = FindDummy();
+            bool haveDummy = dummy != null && !dummy.Destroyed;
 
-            // already in the desired state -> nothing to do
-            if (wantDummy == (existing != null))
+            // already matched, move on
+            if (wantDummy == haveDummy)
             {
                 return;
             }
@@ -105,7 +103,7 @@ namespace CombatExtended.Compatibility.VFES
             if (wantDummy)
             {
                 ThingDef? dummyDef = DummyDef;
-                if (parent.Spawned && dummyDef != null)
+                if (dummyDef != null)
                 {
                     Thing made = ThingMaker.MakeThing(dummyDef);
                     dummy = GenSpawn.Spawn(made, parent.Position, map, parent.Rotation);
@@ -114,12 +112,8 @@ namespace CombatExtended.Compatibility.VFES
             }
             else
             {
-                if (existing != null)
-                {
-                    existing.Destroy();
-                    map.pathing.RecalculatePerceivedPathCostAt(parent.Position);
-                }
-                dummy = null;
+                DestroyDummy();
+                map.pathing.RecalculatePerceivedPathCostAt(parent.Position);
             }
         }
     }
