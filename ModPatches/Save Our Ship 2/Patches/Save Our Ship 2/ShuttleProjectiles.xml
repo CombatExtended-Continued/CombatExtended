@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Shuttle_Plasma has no thingClass and inherits BaseGrenadeProjectile, which CE rewrites to
+	     ProjectileCE_Explosive. ShipMapComp hard-casts ship projectiles to Projectile_ExplosiveShipLaser,
+	     so pin the real SOS2 class directly. Order-independent: explicit thingClass beats parent inheritance. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Shuttle_Plasma"]</xpath>
+		<value>
+			<thingClass>SaveOurShip2.Projectile_ExplosiveShipLaser</thingClass>
+		</value>
+	</Operation>
+</Patch>
