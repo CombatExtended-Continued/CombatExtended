@@ -43,16 +43,15 @@ internal class Apparel_GravshipBombardmentTargeterCE : Apparel_GravshipBombardme
             // clean unwanted gizmo
             if (!TurretLinkerCEUtility.IsUnwantedGizmo(this, gizmo))
             {
+                if (gizmo is Command_VerbTarget command && linkedTurretCE != null)
+                {
+                    command.defaultLabel = "VGE_FireBombardmentTargeter".Translate(linkedTurretCE.LabelNoParenthesis);
+                    command.defaultDesc = "VGE_FireBombardmentTargeterDesc".Translate(linkedTurretCE.LabelNoParenthesis);
+                    command.icon = linkedTurretCE.def.uiIcon;
+                }
                 yield return gizmo;
             }
-
-            if (gizmo is Command_VerbTarget command && linkedTurretCE != null)
-            {
-                command.defaultLabel = "VGE_FireBombardmentTargeter".Translate(linkedTurretCE.LabelNoParenthesis);
-                command.defaultDesc = "VGE_FireBombardmentTargeterDesc".Translate(linkedTurretCE.LabelNoParenthesis);
-                command.icon = linkedTurretCE.def.uiIcon;
-            }
-            yield return gizmo;
+            // else skip
         }
         foreach (var gizmo in TurretLinkerCEUtility.GetLinkerGizmos(this, LinkRange))
         {
