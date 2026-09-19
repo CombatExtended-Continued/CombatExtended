@@ -213,14 +213,14 @@
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
 		<defName>VGE_Bullet_AnticraftBeam_CE</defName>
 		<thingClass>CombatExtended.Compatibility.VGE2Compat.Projectile_AnticraftBeamCE</thingClass>
-		<label>anticraft beam (CE)</label>
+		<label>anticraft beam</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>BeamBypassShields</damageDef>
 			<damageAmountBase>384</damageAmountBase>
 			<flyOverhead>true</flyOverhead>
 			<beamMoteDef>VGE_Mote_AnticraftBeam</beamMoteDef>
 			<beamStartOffset>3</beamStartOffset>
-			<armorPenetrationSharp>34</armorPenetrationSharp>
+			<armorPenetrationSharp>34.00</armorPenetrationSharp>
 			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
 			<shellingProps>
 				<tilesPerTick>99999</tilesPerTick>
@@ -237,16 +237,16 @@
 		<label>anticraft emitter beam</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>VGE_AnticraftBeamBypassShields</damageDef>
-			<damageAmountBase>120</damageAmountBase>
+			<damageAmountBase>360</damageAmountBase>
 			<flyOverhead>true</flyOverhead>
 			<beamMoteDef>VGE_Mote_BeamRepeaterLaser</beamMoteDef>
-			<beamStartOffset>1.25</beamStartOffset>
+			<beamStartOffset>2.5</beamStartOffset>
 			<armorPenetrationSharp>20.00</armorPenetrationSharp>
 			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
 			<shellingProps>
 				<tilesPerTick>99999</tilesPerTick>
 				<range>72</range>
-				<damage>0.05</damage>
+				<damage>0.1</damage>
 			</shellingProps>
 		</projectile>
 		<modExtensions>
@@ -256,14 +256,14 @@
 				<explosionFleckDef>Fleck_HeatGlow_API</explosionFleckDef>
 				<explosionFleckSize>1</explosionFleckSize>
 				<ImpactGlowFleckDef>ExplosionFlash</ImpactGlowFleckDef>
-				<ImpactGlowFleckSize>2.5</ImpactGlowFleckSize>
+				<ImpactGlowFleckSize>4</ImpactGlowFleckSize>
 			</li>
 		</modExtensions>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<damageAmountBase>20</damageAmountBase>
 				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>1.5</explosiveRadius>
+				<explosiveRadius>3</explosiveRadius>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
 		</comps>
