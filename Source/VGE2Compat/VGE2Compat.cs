@@ -3,7 +3,9 @@ using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using UnityEngine;
 using VanillaGravshipExpanded2;
 using Verse;
 
@@ -27,7 +29,9 @@ public class VGE2Compat : IModPart
     public void PostLoad(ModContentPack content, ISettingsCE _)
     {
         // Equivalent to Projectile_Launch_Patch
-        BlockerRegistry.RegisterCheckForCollisionCallback(CheckCollision); // For gravship armor buildings
+        // I wanted to use BlockerRegistry.RegisterCheckForCollisionCallback, but because VGE projectiles are flyOverhead,
+        // the CheckCellForCollisionCallback is not called when the projectile flies over VGE_GravshipArmor.
+        BlockerRegistry.RegisterCheckForCollisionBetweenCallback(CheckForCollisionBetween); // For gravship armor buildings
         harmony = new Harmony("CombatExtended.Compatibility.VGE2Compat");
         LongEventHandler.ExecuteWhenFinished(() =>
         {
@@ -35,17 +39,31 @@ public class VGE2Compat : IModPart
         });
     }
 
-    private static bool CheckCollision(ProjectileCE projectile, IntVec3 cell, Thing launcher) {
-        // Try to find a wall on the cell
-        if (launcher?.Faction != null)
+    private static bool CheckForCollisionBetween(ProjectileCE projectile, Vector3 from, Vector3 to) {
+        // Try to find a wall on the trajectory
+        // only handles flyOverhead projectiles for optimization
+        if (projectile.launcher?.Faction != null && projectile.def.projectile.flyOverhead)
         {
-            // Find a gravship armor building on the cell
-            var building = cell.GetFirstThing(projectile.Map, InternalDefOf.VGE_GravshipArmor);
-            // Opposite faction
-            if (building != null && building.Faction != null && building.Faction.HostileTo(launcher.Faction))
+            // Stolen from ProjectilCE.CheckForCollisionBetween() :)
+            IntVec3 lastPosIV3 = from.ToIntVec3();
+            IntVec3 newPosIV3 = to.ToIntVec3();
+            var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3)
+                .Union(new[] { lastPosIV3, newPosIV3 })
+                .Distinct()
+                .OrderBy(x => (x.ToVector3Shifted() - from)
+                .MagnitudeHorizontalSquared());
+
+            foreach (var cell in cells)
             {
-                // impact
-                return true;
+                var building = cell.GetFirstThing(projectile.Map, InternalDefOf.VGE_GravshipArmor);
+
+                // Opposite faction
+                if (building != null && building.Faction != null && building.Faction.HostileTo(projectile.launcher.Faction))
+                {
+                    // impact
+                    projectile.Impact(building);
+                    return true;
+                }
             }
         }
         return false;
