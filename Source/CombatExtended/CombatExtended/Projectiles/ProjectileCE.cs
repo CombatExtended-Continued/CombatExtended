@@ -1026,7 +1026,7 @@ public abstract class ProjectileCE : ThingWithComps
         }
         var roofChecked = false;
 
-        if (Map.GetLightingTracker().HighestCoverAt(cell) < ExactPosition.y)
+        if (Map.GetLightingTracker().HighestCoverAt(cell) < Mathf.Min(LastPos.y, ExactPosition.y))
         {
             return false;
         }
@@ -1555,7 +1555,7 @@ public abstract class ProjectileCE : ThingWithComps
             }
         }
 
-        if (Map.GetLightingTracker().HighestCoverAt(pos) > ExactPosition.y)
+        if (Map.GetLightingTracker().HighestCoverAt(pos) > Mathf.Min(LastPos.y, ExactPosition.y))
         {
             // FIXME : Early opt-out
             Thing thing = pos.GetFirstPawn(Map);
