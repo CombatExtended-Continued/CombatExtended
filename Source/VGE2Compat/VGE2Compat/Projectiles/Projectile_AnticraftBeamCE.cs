@@ -8,6 +8,7 @@
 #endregion
 
 using CombatExtended.Compatibility.VGECompat;
+using UnityEngine;
 using VanillaGravshipExpanded2;
 using Verse;
 
@@ -17,8 +18,8 @@ public class Projectile_AnticraftBeamCE : Projectile_ArtilleryBeamCE
 {
     public AnticraftBeamStrikeCE strike;
 
-    // same code but we don't need blockedByShield
-    public override void Impact(Thing hitThing)
+    // same code but we use LaserBeamCE.Impact(Thing hitThing, Vector3 muzzle) instead of Projectile.Impact(Thing hitThing, bool blockedByShield = false)
+    public override void Impact(Thing hitThing, Vector3 muzzle)
     {
         //if (!blockedByShield)
         //{
@@ -30,7 +31,7 @@ public class Projectile_AnticraftBeamCE : Projectile_ArtilleryBeamCE
             var emitter = launcher as Building_EnemyAnticraftEmitterCE;
             emitter.currentStrike = strike;
         //}
-        base.Impact(hitThing);
+        base.Impact(hitThing, muzzle);
     }
 
     public override void ExposeData()
