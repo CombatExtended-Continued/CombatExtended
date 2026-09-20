@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- pikeman's lens -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechEye"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.4</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+	
+	<!-- cyclops' sensor -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechEar"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.2</MeleeDodgeChance>
+		</value>
+	</Operation>
+	
+	<!-- lifter's leg -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="MR_MechLegLifter"]/stages/li/statFactors</xpath>
+		<value>
+			<CarryWeight>1.05</CarryWeight>
+		</value>
+	</Operation>
+		
+	<!-- centipede's shell -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechSkin"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechSkin"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!-- centurion's tissue -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="MR_MechMuscle"]/stages/li/statOffsets</xpath>
+		<value>
+			<CarryWeight>10</CarryWeight>
+		</value>
+	</Operation>
+	
+	<!-- tunneler's claw -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechArmTunneler"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.2</armorPenetrationSharp>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!-- constructoid's power arm -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechArmConstructoid"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Power arm</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationBlunt>2.1</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+</Patch>
