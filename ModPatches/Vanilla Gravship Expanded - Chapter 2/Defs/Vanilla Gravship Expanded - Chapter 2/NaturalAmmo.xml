@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<ThingDef ParentName="BaseGrenadeProjectile">
+        <defName>VGE_GiantWormspitter_Projectile_CE</defName>
+        <label>giant wormspitter projectile</label>
+		<graphicData>
+			<texPath>Things/Projectile/ExowormProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass> CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <trajectoryWorker>CombatExtended.Compatibility.VGECompat.DirectOverheadTrajectoryWorker</trajectoryWorker>
+            <speed>49</speed>
+			<flyOverhead>true</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Hive_Spawn</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<spawnsThingDef>VGE_GiantWormspitter_Releaser</spawnsThingDef>
+			<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
+			<shellingProps>
+				<tilesPerTick>0.05</tilesPerTick>
+				<range>36</range>
+				<arrivedAtSameProps>true</arrivedAtSameProps>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+</Defs>
