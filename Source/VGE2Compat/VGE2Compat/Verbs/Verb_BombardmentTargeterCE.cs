@@ -18,7 +18,7 @@ public class Verb_BombardmentTargeterCE : Verb_CastBase
     {
         var targeter = (Apparel_GravshipBombardmentTargeterCE)EquipmentSource;
         if (targeter.linkedTurretCE == null || targeter.linkedTurretCE.Destroyed)
-        { 
+        {
             return false;
         }
         // We use our own logic there
@@ -45,7 +45,7 @@ public class Verb_BombardmentTargeterCE : Verb_CastBase
 
     public override void DrawHighlight(LocalTargetInfo target)
     {
-        if (caster == null || !caster.Spawned){ return; }
+        if (caster == null || !caster.Spawned) { return; }
 
         base.DrawHighlight(target);
     }

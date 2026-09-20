@@ -21,7 +21,8 @@ public class GravshipThreatWorker_EnemyGravship_ShouldDefeat_Patch
 {
     public static bool Prefix(Map map, GravshipThreatWorker_EnemyGravship __instance, ref bool __result)
     {
-        if (map.listerThings.ThingsOfDef(InternalDefOf.VGE_LandingStructure_EnemyGravship).Any()){
+        if (map.listerThings.ThingsOfDef(InternalDefOf.VGE_LandingStructure_EnemyGravship).Any())
+        {
             __result = false;
             return false;
         }

@@ -28,7 +28,8 @@ public class VGE2LaunchInfo_ApplySignalJammerEffect_Patch
                   .Where(c => c.parent.def == InternalDefOf.SignalJammer)
                   .Select(c => c.parent.GetComp<CompSignalJammer>())
                   .FirstOrDefault(x => x != null && !x.OnCooldown);
-        if (jammer is null) { 
+        if (jammer is null)
+        {
             return false;
         }
 
