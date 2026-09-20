@@ -49,6 +49,13 @@ public struct CollisionVertical
 
         if (thing is Building)
         {
+            // Submerged things (e.g. concealed/floor turrets) report no height
+            // Check in supplied by compat modules via Patches.IsSubmerged.
+            if (Patches.IsSubmerged(thing))
+            {
+                return;     // leaves heightRange = (0,0) & shotHeight = 0
+            }
+
             if (thing is Building_Door door && door.Open)
             {
                 return;     //returns heightRange = (0,0) & shotHeight = 0. If not open, doors have FillCategory.Full so returns (0, WallCollisionHeight)

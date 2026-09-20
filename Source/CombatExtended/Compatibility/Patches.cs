@@ -12,6 +12,7 @@ public class Patches
 
     public static List<Func<IEnumerable<ThingDef>>> UsedAmmoCallbacks = new List<Func<IEnumerable<ThingDef>>>();
     public static List<Func<Pawn, Tuple<bool, Vector2>>> CollisionBodyFactorCallbacks = new List<Func<Pawn, Tuple<bool, Vector2>>>();
+    public static List<Func<Thing, bool>> SubmergedCallbacks = new List<Func<Thing, bool>>();
 
     public Patches()
     {
@@ -102,6 +103,31 @@ public class Patches
                     ret = r.Item2;
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    private static bool _submergedActive = false;
+
+    public static void RegisterSubmergedCallback(Func<Thing, bool> f)
+    {
+        SubmergedCallbacks.Add(f);
+        _submergedActive = true;
+    }
+
+    // Returns true when a thing reports itself as "submerged"
+    public static bool IsSubmerged(Thing thing)
+    {
+        if (!_submergedActive)
+        {
+            return false;
+        }
+        foreach (Func<Thing, bool> f in SubmergedCallbacks)
+        {
+            if (f(thing))
+            {
+                return true;
             }
         }
         return false;
