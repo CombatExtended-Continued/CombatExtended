@@ -48,10 +48,8 @@ public class VGE2Compat : IModPart
             IntVec3 lastPosIV3 = from.ToIntVec3();
             IntVec3 newPosIV3 = to.ToIntVec3();
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3)
-                .Union(new[] { lastPosIV3, newPosIV3 })
-                .Distinct()
-                .OrderBy(x => (x.ToVector3Shifted() - from)
-                .MagnitudeHorizontalSquared());
+                .Union([newPosIV3])
+                .Distinct();
 
             foreach (var cell in cells)
             {
