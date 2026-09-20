@@ -23,7 +23,7 @@ public class Projectile_AnticraftBeamCE : Projectile_ArtilleryBeamCE
     {
         //if (!blockedByShield)
         //{
-            strike = (AnticraftBeamStrikeCE)GenSpawn.Spawn(InternalDefOf.VGE_EnemyAnticraftBeamStrike, intendedTarget.Cell, Map);
+            strike = (AnticraftBeamStrikeCE)GenSpawn.Spawn(InternalDefOf.VGE_EnemyAnticraftBeamStrike, ExactPosition.ToIntVec3(), Map);
             strike.duration = 600;
             strike.instigator = launcher;
             strike.weaponDef = equipmentDef;
