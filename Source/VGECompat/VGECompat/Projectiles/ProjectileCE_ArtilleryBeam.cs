@@ -15,7 +15,7 @@ using Verse;
 namespace CombatExtended.Compatibility.VGECompat;
 
 // We just need the special VGE mote
-public class Projectile_ArtilleryBeamCE : LaserBeamCE
+public class ProjectileCE_ArtilleryBeam : LaserBeamCE
 {
     /// <summary>
     /// Spawn VGE's beam mote visual.
