@@ -15,6 +15,7 @@ using Verse;
 namespace CombatExtended.Compatibility.VGE2Compat;
 
 // I adapted their code from different patches to centralize it there.
+// I used this infographic as reference https://raw.githubusercontent.com/Vanilla-Expanded/VanillaGravshipExpanded2/refs/heads/main/About/InfographicsBattle_16.png
 public static class WarcomputerHelperCE
 {
     public static void ApplyForcedWarcomputerBuffs(this Building_GravshipTurretCE turret)
@@ -22,7 +23,12 @@ public static class WarcomputerHelperCE
         var hasBuff = WarcomputerHelper.IsWarcomputerPresent(turret.Map);
         var verb = turret.AttackVerb;
 
-        var originalProps = turret.def.building.turretGunDef.Verbs[0];
+        if (turret.def.building.turretGunDef.Verbs[0] is not VerbPropertiesCE)
+        {
+            return;
+        }
+
+        var originalProps = (VerbPropertiesCE)turret.def.building.turretGunDef.Verbs[0];
         if (verb.verbProps == originalProps)
         {
             verb.verbProps = (VerbProperties)WarcomputerHelper.MemberwiseCloneMethod.Invoke(originalProps, null);
@@ -30,29 +36,25 @@ public static class WarcomputerHelperCE
 
         if (turret.def == InternalDefOf.VGE_GaussGun)
         {
-            verb.verbProps.forcedMissRadius = hasBuff ? System.Math.Max(0f, originalProps.forcedMissRadius - 1f) : originalProps.forcedMissRadius;
+            ((VerbPropertiesCE)verb.verbProps).circularError = hasBuff ? originalProps.circularError * 0.85f : originalProps.circularError;
         }
 
         if (turret.def == InternalDefOf.VGE_GaussHowitzer)
         {
-            verb.verbProps.forcedMissRadius = hasBuff ? System.Math.Max(0f, originalProps.forcedMissRadius - 2f) : originalProps.forcedMissRadius;
+            ((VerbPropertiesCE)verb.verbProps).circularError = hasBuff ? originalProps.circularError * 0.75f : originalProps.circularError;
         }
 
         // Equivalent Verb_TicksBetweenBurstShots_Patch
         if (turret.def == InternalDefOf.VGE_JavelinPod || turret.def == InternalDefOf.VGE_JavelinLauncher)
         {
             // equivalent to hardcoded -5 ...
-            verb.verbProps.ticksBetweenBurstShots = hasBuff ? (int)Math.Floor(originalProps.ticksBetweenBurstShots * 0.5) : originalProps.ticksBetweenBurstShots;
+            verb.verbProps.ticksBetweenBurstShots = hasBuff ? (int)Math.Floor(originalProps.ticksBetweenBurstShots * 0.5f) : originalProps.ticksBetweenBurstShots;
         }
 
         // Equivalent Verb_BurstShotCount_Patch
-        if (turret.def == InternalDefOf.VGE_AnticraftCaster)
+        if (turret.def == InternalDefOf.VGE_AnticraftCaster || turret.def == InternalDefOf.VGE_AnticraftEmitter)
         {
-            verb.verbProps.burstShotCount = hasBuff ? originalProps.burstShotCount + 10 : originalProps.burstShotCount;
-        }
-        if (turret.def == InternalDefOf.VGE_AnticraftEmitter)
-        {
-            verb.verbProps.burstShotCount = hasBuff ? originalProps.burstShotCount + 15 : originalProps.burstShotCount;
+            verb.verbProps.burstShotCount = hasBuff ? (int)Math.Floor(originalProps.burstShotCount * 1.5f) : originalProps.burstShotCount;
         }
     }
 
@@ -70,11 +72,8 @@ public static class WarcomputerHelperCE
                 verb.verbProps = (VerbProperties)WarcomputerHelper.MemberwiseCloneMethod.Invoke(originalProps, null);
             }
 
-            if (turret.def == InternalDefOf.VGE_AnticraftEmitter)
-            {
-                // I increase by 1/3 because that's what the VGE2 does. Even if they hardcoded 19.9f ...
-                verb.verbProps.range = hasBuff ? originalProps.range * 1.33f : originalProps.range;
-            }
+            // I increase by 1/3 because that's what the VGE2 does. Even if they hardcoded 19.9f ...
+            verb.verbProps.range = hasBuff ? originalProps.range * 1.33f : originalProps.range;
         }
     }
 }
