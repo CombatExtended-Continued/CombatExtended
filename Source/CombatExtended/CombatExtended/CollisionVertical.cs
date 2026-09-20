@@ -84,9 +84,8 @@ public struct CollisionVertical
 
             if (pawn.Flying)
             {
-                heightAdjust += 0.5f * pawn.flight.PositionOffsetFactor;
+                heightAdjust += 1;
             }
-
 
             // Humanlikes in combat crouch to reduce their profile
             if (pawn.IsCrouching())

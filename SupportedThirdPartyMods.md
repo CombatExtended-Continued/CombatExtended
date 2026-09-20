@@ -377,6 +377,7 @@ Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
+Mechanoid Repurposing   |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Bowyer   |
