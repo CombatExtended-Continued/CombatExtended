@@ -59,6 +59,7 @@ public class VGE2Compat : IModPart
                 if (building != null && building.Faction != null && building.Faction.HostileTo(projectile.launcher.Faction))
                 {
                     // impact
+                    projectile.ExactPosition = projectile.ExactPosition.Yto0();
                     projectile.Impact(building);
                     return true;
                 }
