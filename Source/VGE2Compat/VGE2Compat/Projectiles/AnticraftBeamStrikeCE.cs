@@ -26,8 +26,9 @@ public class AnticraftBeamStrikeCE : OrbitalStrike
             if (c.InBounds(Map))
             {
                 FireUtility.TryStartFireIn(c, Map, Rand.Range(0.1f, 0.925f), instigator);
-                // Use or Util Class
-                GenExplosionCE.DoExplosion(c, Map, 0.9f, DamageDefOf.Flame, instigator, Rand.Range(65, 100), -1f, null, weaponDef, def);
+                // Use or util Class
+                GenExplosionCE.DoExplosion(c, Map, 1.5f, DamageDefOf.Flame, instigator, Rand.Range(195, 300), -1f, null, weaponDef, def);
+                // GenExplosion.DoExplosion(c, Map, 0.9f, DamageDefOf.Flame, instigator, Rand.Range(65, 100), -1f, null, weaponDef, def);
                 DamageWorker_ExplosionDamageTerrain_Patch.DamageTerrain(c, Map);
             }
         }
