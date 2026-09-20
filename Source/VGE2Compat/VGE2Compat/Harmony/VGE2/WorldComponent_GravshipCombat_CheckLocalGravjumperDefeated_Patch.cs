@@ -22,8 +22,8 @@ public class WorldComponent_GravshipCombat_CheckLocalGravjumperDefeated_Patch
     public static bool Prefix(Map map, WorldComponent_GravshipCombat __instance)
     {
         if (!__instance.gravjumperLandedLocal)
-        { 
-            return false; 
+        {
+            return false;
         }
 
         if (map.listerThings.ThingsOfDef(InternalDefOf.VGE_LandingStructure_EnemyGravjumper).Any())

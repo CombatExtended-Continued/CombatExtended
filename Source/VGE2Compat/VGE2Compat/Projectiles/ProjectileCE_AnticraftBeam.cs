@@ -23,13 +23,13 @@ public class ProjectileCE_AnticraftBeam : ProjectileCE_ArtilleryBeam
     {
         //if (!blockedByShield)
         //{
-            strike = (AnticraftBeamStrikeCE)GenSpawn.Spawn(InternalDefOf.VGE_EnemyAnticraftBeamStrike, ExactPosition.ToIntVec3(), Map);
-            strike.duration = 600;
-            strike.instigator = launcher;
-            strike.weaponDef = equipmentDef;
-            strike.StartStrike();
-            var emitter = launcher as Building_EnemyAnticraftEmitterCE;
-            emitter.currentStrike = strike;
+        strike = (AnticraftBeamStrikeCE)GenSpawn.Spawn(InternalDefOf.VGE_EnemyAnticraftBeamStrike, ExactPosition.ToIntVec3(), Map);
+        strike.duration = 600;
+        strike.instigator = launcher;
+        strike.weaponDef = equipmentDef;
+        strike.StartStrike();
+        var emitter = launcher as Building_EnemyAnticraftEmitterCE;
+        emitter.currentStrike = strike;
         //}
         base.Impact(hitThing, muzzle);
     }
