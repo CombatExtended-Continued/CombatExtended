@@ -14,7 +14,7 @@ using Verse;
 
 namespace CombatExtended.Compatibility.VGE2Compat;
 
-public class Projectile_AnticraftBeamCE : Projectile_ArtilleryBeamCE
+public class ProjectileCE_AnticraftBeam : ProjectileCE_ArtilleryBeam
 {
     public AnticraftBeamStrikeCE strike;
 
