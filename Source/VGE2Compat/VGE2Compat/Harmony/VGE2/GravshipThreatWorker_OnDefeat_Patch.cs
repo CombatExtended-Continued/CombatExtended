@@ -1,7 +1,8 @@
 ﻿using CombatExtended.Compatibility.VGECompat;
 using HarmonyLib;
+using System;
 using System.Linq;
-using System.Reflection;
+using System.Runtime.CompilerServices;
 using VanillaGravshipExpanded2;
 using Verse;
 
@@ -20,11 +21,16 @@ namespace CombatExtended.Compatibility.VGE2Compat;
 [HarmonyPatch(typeof(GravshipThreatWorker), nameof(GravshipThreatWorker.OnDefeat))]
 public class GravshipThreatWorker_OnDefeat_Patch
 {
-    private static MethodInfo GravshipThreatWorker_ShouldDefeat = AccessTools.Method(typeof(GravshipThreatWorker), nameof(GravshipThreatWorker.ShouldDefeat));
+    // Create a base call on base.GravshipThreatWorker()
+    [HarmonyReversePatch]
+    [HarmonyPatch(typeof(GravshipThreatWorker), nameof(GravshipThreatWorker.ShouldDefeat))]
+    [MethodImpl(MethodImplOptions.NoInlining)]
     public static bool baseShouldDefeat(GravshipThreatWorker __instance, Map map)
     {
-        return (bool)GravshipThreatWorker_ShouldDefeat.Invoke(__instance, [map]);
+        // This is just a stub, because Harmony will copy the original code of ShouldDefeat.
+        throw new NotImplementedException();
     }
+
     public static bool Prefix(Map map)
     {
         foreach (var thing in map.listerBuildings.allBuildingsNonColonist.OfType<Building_GravshipTurretCE>()) 
