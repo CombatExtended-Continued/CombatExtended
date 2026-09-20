@@ -33,7 +33,7 @@ public class GravshipThreatWorker_OnDefeat_Patch
 
     public static bool Prefix(Map map)
     {
-        foreach (var thing in map.listerBuildings.allBuildingsNonColonist.OfType<Building_GravshipTurretCE>()) 
+        foreach (var thing in map.listerBuildings.allBuildingsNonColonist.OfType<Building_GravshipTurretCE>())
         {
             thing.DisablePermanently();
         }
