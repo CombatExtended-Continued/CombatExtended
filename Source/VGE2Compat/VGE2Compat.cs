@@ -39,7 +39,8 @@ public class VGE2Compat : IModPart
         });
     }
 
-    private static bool CheckForCollisionBetween(ProjectileCE projectile, Vector3 from, Vector3 to) {
+    private static bool CheckForCollisionBetween(ProjectileCE projectile, Vector3 from, Vector3 to)
+    {
         // Try to find a wall on the trajectory
         // only handles flyOverhead projectiles for optimization
         if (projectile.launcher?.Faction != null && projectile.def.projectile.flyOverhead)
