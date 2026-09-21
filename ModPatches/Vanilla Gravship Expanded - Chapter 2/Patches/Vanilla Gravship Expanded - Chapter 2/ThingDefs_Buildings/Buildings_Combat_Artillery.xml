@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<!-- === Heavy Artillery === -->
+	<!-- Minimum ranges of the artillery is deliberately kept low. In VGE - Chapter 2, you can approach gravships on the same map and do the equivalents of a broadside exchange. The low minimum ranges are to help facilitate that, so that an approaching enemy doesn't get out of your artillery's minimum range -->
 	<!-- Add rotation extension -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[@Name="VGE_GravshipHeavyArtilleryBase"]</xpath>
@@ -14,12 +15,7 @@
 	<!-- Remove box refuel comps and fuel comp -->
     <Operation Class="PatchOperationRemove">
 		<xpath>
-			Defs/ThingDef[
-				defName = "VGE_GaussHowitzer"
-			]/comps/li[
-				@Class = "VanillaGravshipExpanded.CompProperties_BoxRefuel" or
-				@Class = "CompProperties_Refuelable"
-			]
+			Defs/ThingDef[defName = "VGE_GaussHowitzer"]/comps/li[@Class = "VanillaGravshipExpanded.CompProperties_BoxRefuel" or @Class = "CompProperties_Refuelable"]
 		</xpath>
 	</Operation>
 
@@ -30,9 +26,7 @@
 				defName = "VGE_GaussHowitzer" or
 				defName = "VGE_JavelinLauncher" or
 				defName = "VGE_AnticraftEmitter"
-			]/comps/li[
-				@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery"
-			]
+			]/comps/li[@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery"]
 		</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.Compatibility.VGECompat.CompProperties_WorldArtilleryCE</value>
@@ -70,9 +64,7 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>
-			Defs/ThingDef[
-				defName = "VGE_GaussHowitzer"
-			]/thingClass 
+			Defs/ThingDef[defName = "VGE_GaussHowitzer"]/thingClass 
 		</xpath>
 		<value>
 			<thingClass>CombatExtended.Compatibility.VGECompat.Building_GravshipTurretCE</thingClass>
@@ -96,7 +88,7 @@
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
 			<defaultProjectile>VGE_Bullet_GaussHowitzer_CE_HE</defaultProjectile>
 			<range>99999</range>
-			<minRange>26</minRange>
+			<minRange>12</minRange>
 			<burstShotCount>3</burstShotCount>
 			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
 			<soundCast>VGE_GravshipHowitzer</soundCast>
@@ -124,9 +116,7 @@
 	<!-- VGE_JavelinLauncher -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>
-			Defs/ThingDef[
-				defName = "VGE_JavelinLauncher"
-			]/thingClass 
+			Defs/ThingDef[defName = "VGE_JavelinLauncher"]/thingClass 
 		</xpath>
 		<value>
 			<thingClass>CombatExtended.Compatibility.VGECompat.Building_JavelinLauncherCE</thingClass>
@@ -148,7 +138,7 @@
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
 			<defaultProjectile>VGE_Bullet_JavelinPod_CE</defaultProjectile>
 			<range>99999</range>
-			<minRange>14</minRange>
+			<minRange>8</minRange>
 			<burstShotCount>12</burstShotCount>
 			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 			<soundCast>RocketswarmLauncher_Fire</soundCast>
@@ -209,7 +199,7 @@
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
 			<defaultProjectile>VGE_Bullet_AnticraftEmitter_CE</defaultProjectile>
 			<range>9999</range>
-			<minRange>20</minRange>
+			<minRange>12</minRange>
 			<forcedMissRadius>0</forcedMissRadius>
 			<canGoWild>true</canGoWild>
 			<burstShotCount>40</burstShotCount>
