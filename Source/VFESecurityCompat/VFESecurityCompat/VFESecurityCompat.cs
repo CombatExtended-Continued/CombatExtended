@@ -21,6 +21,9 @@ namespace CombatExtended.Compatibility.VFES
 
         public void PostLoad(ModContentPack content, ISettingsCE _)
         {
+            // submerged check so CollisionVertical can zero it
+            global::CombatExtended.Compatibility.Patches.RegisterSubmergedCallback(ConcealedTurretCE_Patches.IsSubmerged);
+
             LongEventHandler.ExecuteWhenFinished(() =>
             {
                 var harmony = new Harmony("CombatExtended.Compatibility.VFES");

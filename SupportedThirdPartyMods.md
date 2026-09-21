@@ -207,6 +207,7 @@ Dinosauria |
 Diverse Mechanoid War Procedure |
 Divine Order |
 DOOM - Faction (Continued) |
+Dlc collaboration - Void universe |
 DMWands |
 Dragons Descent    |
 Dragons!	|
@@ -571,6 +572,7 @@ SCP - Clothing Only	|
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
 Seventh Seraph  |
+Shambler Variants  |
 Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
