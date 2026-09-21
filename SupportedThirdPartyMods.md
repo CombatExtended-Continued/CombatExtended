@@ -572,6 +572,7 @@ SCP - Clothing Only	|
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
 Seventh Seraph  |
+Shambler Variants  |
 Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
