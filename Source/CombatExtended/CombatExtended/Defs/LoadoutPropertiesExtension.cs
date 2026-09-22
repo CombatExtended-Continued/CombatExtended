@@ -114,6 +114,22 @@ public class LoadoutPropertiesExtension : DefModExtension
         }
     }
 
+    /// <summary>
+    /// Loads the gun and puts the requested number of magazines into the inventory. Use this for weapons a pawn gets
+    /// handed after <see cref="GenerateLoadoutFor"/> already ran, since those would otherwise stay bone dry.
+    /// </summary>
+    public void GenerateAmmoFor(ThingWithComps gun, CompInventory inventory, int magazineCount)
+    {
+        if (magazineCount <= 0 || gun == null || inventory == null || gun.TryGetComp<CompAmmoUser>() == null)
+        {
+            return;
+        }
+        LoadWeaponWithRandAmmo(gun);
+        inventory.UpdateInventory();
+        TryGenerateAmmoFor(gun, inventory, magazineCount);
+        inventory.UpdateInventory();
+    }
+
     public void TryGenerateAttachments(CompInventory inventory, WeaponPlatform weapon, AttachmentOption option)
     {
         selectedAttachments.Clear();

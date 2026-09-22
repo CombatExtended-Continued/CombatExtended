@@ -12,6 +12,14 @@ namespace CombatExtended.HarmonyCE
         {
             internal static void Postfix(CompUniqueWeapon __instance, bool fromSave)
             {
+                // Unique Weapon Spawns before pawn is spawned, 
+                // Not doing it on save load, we are not in the business of topping off the player's mags.
+                CompAmmoUser compAmmo = __instance.parent.TryGetComp<CompAmmoUser>();
+                if (!fromSave && compAmmo != null && compAmmo.UseAmmo)
+                {
+                    compAmmo.ResetAmmoCount();
+                }
+
                 CompUnderBarrel compUnderBarrel = __instance.parent.TryGetComp<CompUnderBarrel>();
                 bool underBarrelApplied = false;
                 bool verbOverrideApplied = false;
