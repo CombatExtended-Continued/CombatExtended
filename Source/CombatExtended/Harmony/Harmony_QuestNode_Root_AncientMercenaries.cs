@@ -20,18 +20,20 @@ internal static class QuestNode_Root_AncientMercenaries_RunInt
         try
         {
             Pawn pawn = QuestGen.slate.Get<Pawn>("LEADER");
-            if (pawn == null) return;
             ThingWithComps weapon = QuestGen.slate.Get<ThingWithComps>("WEAPON") ?? (pawn.equipment?.Primary as ThingWithComps);
-            if (weapon == null) return;
-
-            CompAmmoUser compAmmo = weapon.TryGetComp<CompAmmoUser>();
-            if (compAmmo == null || !compAmmo.UseAmmo) return;
-
-            CompInventory inventory = pawn.TryGetComp<CompInventory>();
-            if (inventory == null || pawn.inventory == null) return;
+            CompAmmoUser compAmmo = weapon?.TryGetComp<CompAmmoUser>();
+            CompInventory inventory = pawn?.TryGetComp<CompInventory>();
+            if (pawn == null || weapon == null || compAmmo == null || !compAmmo.UseAmmo || inventory == null || pawn.inventory == null)
+            {
+                return;
+            }
 
             AmmoDef ammo = PickAmmo(compAmmo);
-            if (ammo == null) return;
+            if (ammo == null)
+            {
+                return;
+            }
+
             compAmmo.ResetAmmoCount(ammo);
 
             int unit = Mathf.Max(1, compAmmo.MagSizeOverride > 0 ? compAmmo.MagSizeOverride : compAmmo.MagSize);
