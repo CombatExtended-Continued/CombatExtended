@@ -27,7 +27,7 @@ public class CompFragments : ThingComp
 
     public CompProperties_Fragments PropsCE => (CompProperties_Fragments)props;
 
-    public static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange, FloatRange fragXZAngleRange, float minCollisionDistance = 0f, bool canTargetSelf = true)
+    public static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange, FloatRange fragXZAngleRange, float minCollisionDistance = 0f, bool canTargetSelf = true, Thing fragmentSource = null)
     {
         if (height < 0.001f)
         {
@@ -63,6 +63,7 @@ public class CompFragments : ThingComp
                 fragSpeedFactor * projectile.def.projectile.speed,
                 projectile
             );
+            projectile.fragmentSource = fragmentSource;
 
             projectile.castShadow = (Rand.Value < fragShadowChance); // moved after Launch due to it assigning shadow
 

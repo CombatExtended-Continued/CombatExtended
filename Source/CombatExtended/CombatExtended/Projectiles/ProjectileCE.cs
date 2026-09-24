@@ -146,6 +146,7 @@ public abstract class ProjectileCE : ThingWithComps
 
     public ThingDef equipmentDef;
     public Thing launcher;
+    public Thing fragmentSource;
     public LocalTargetInfo intendedTarget;
     public float minCollisionDistance;
     public bool canTargetSelf;
@@ -382,6 +383,7 @@ public abstract class ProjectileCE : ThingWithComps
 
         Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
         Scribe_References.Look<Thing>(ref launcher, "launcher");
+        Scribe_References.Look<Thing>(ref fragmentSource, "fragmentSource");
         Scribe_References.Look<Thing>(ref equipment, "equipment");
         Scribe_Values.Look<int>(ref intTicksToImpact, "ticksToImpact", 0, true);
         Scribe_Values.Look<float>(ref startingTicksToImpact, "startingTicksToImpact", 0, true);
@@ -1178,6 +1180,10 @@ public abstract class ProjectileCE : ThingWithComps
     {
         dist = -1f;
         if (globalTargetInfo.IsValid)
+        {
+            return false;
+        }
+        if (thing == fragmentSource)
         {
             return false;
         }
