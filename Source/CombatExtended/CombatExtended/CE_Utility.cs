@@ -12,6 +12,7 @@ using Verse;
 using Verse.AI;
 using Random = UnityEngine.Random;
 namespace CombatExtended;
+
 public static class CE_Utility
 {
     #region Camera
@@ -1742,21 +1743,6 @@ public static class CE_Utility
             current = source.Current;
         }
         return current;
-    }
-
-    internal static List<Tool> GetThingDefTools(ThingDef thingDef)
-    {
-        List<Tool> tools = new List<Tool>();
-        if (thingDef.isTechHediff)
-        {
-            tools = GetTechHediffTools(thingDef);
-        }
-        else if (thingDef.IsWeapon || thingDef.category == ThingCategory.Pawn)
-        {
-            tools = thingDef.tools?.ToList();
-        }
-
-        return tools;
     }
 
     public static float CalculateAbsorbedDamage(ProjectileCE projectile)
