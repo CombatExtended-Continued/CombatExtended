@@ -30,6 +30,9 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
 
     public Vector3 drawPos;
 
+    internal static SimpleCurve SubsequentShotRecoilCurve = new SimpleCurve(); // Populated on game start from a SetupStepDef
+    internal static SimpleCurve SubsequentShotMassCurve = new SimpleCurve();
+
     #endregion
 
     #region Properties
@@ -358,13 +361,32 @@ public class Verb_ShootCE : Verb_LaunchProjectileCE
 
         var d = v - u;
         var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
-        var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
-        lastRecoilDeg = 0;
-        var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ?
-                                                   0.1f :
-                                                   (_isAiming ? 0.5f : 0.25f));
-        var reduction = Mathf.Max(maxReduction, delta / 45f);
-        storedShotReduction = reduction;
+        var delta = Mathf.Abs(newShotRotation - lastShotRotation);
+
+        float maxReduction = CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : _isAiming ? 0.5f : 0.25f;
+
+        //how easy it is to turn the weapon around depending on heaviness, angle and weapon handling
+        float relativeWeaponMass = EquipmentSource.GetStatValue(StatDefOf.Mass) / (ShooterPawn?.BodySize ?? 1f);
+        float angleFactor = Mathf.Max(0, ((delta % 180) / SubsequentShotMassCurve.Evaluate(relativeWeaponMass) / (1 + ShootingAccuracy / 9f)) - 1f);
+
+        //how easy it is to control vertical recoil
+        float recoilFactor = SubsequentShotRecoilCurve.Evaluate(lastRecoilDeg) * Controller.settings.FasterRepeatShotsRecoilMult;
+
+        //current reduction after pawn stats
+        float reduction = angleFactor + recoilFactor;
+
+        if (storedShotReduction != null)
+        {
+            reduction *= (float)storedShotReduction;
+        }
+
+        reduction = Mathf.Max(maxReduction, reduction);
+        if (Controller.settings.DebugSubsequentShotLogging)
+        {
+            Log.Message($"{caster?.LabelShort} ({EquipmentSource?.LabelShort}) SS:\nreduction {reduction}; storedShotReduction {storedShotReduction}; maxReduction {maxReduction}; lastRecoilDeg {lastRecoilDeg}; angle factor {angleFactor}; recoil factor {recoilFactor}");
+        }
+
+        storedShotReduction = Mathf.Clamp01(reduction);
 
         if (reduction < 1.0f)
         {
