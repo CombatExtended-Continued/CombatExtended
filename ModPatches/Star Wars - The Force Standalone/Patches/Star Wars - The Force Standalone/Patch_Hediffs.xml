@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Limb-adding hediffs (melee tools) ===== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Force_MechuDeruArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.05</cooldownTime>
+					<armorPenetrationBlunt>2.00</armorPenetrationBlunt>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Force_ConstructedArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===== Hediff armor offsets ===== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Force_MechuDeruMembrane"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Force_MechuDeruMembrane"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>21</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Force_MechuDeruMembrane"]/stages/li/statOffsets/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.65</ArmorRating_Heat>
+		</value>
+	</Operation>
+
+</Patch>
