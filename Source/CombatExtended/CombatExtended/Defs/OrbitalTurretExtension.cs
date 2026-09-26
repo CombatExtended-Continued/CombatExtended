@@ -6,4 +6,5 @@ public class OrbitalTurretExtension : DefModExtension
 {
     public float interLayerPrecisionBonusFactor = 1;
     public bool isMarkMandatory = false;
+    public bool cannotLaunchThroughRoof = false;
 }

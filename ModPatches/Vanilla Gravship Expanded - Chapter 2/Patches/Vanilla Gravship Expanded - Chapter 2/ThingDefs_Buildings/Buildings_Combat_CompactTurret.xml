@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- === Compact gravship turrets === -->
+
+	<!-- Replace vanilla thingClass -->
+    <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- Remove stun vulnerability -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]/comps/li[@Class="CompProperties_Stunnable"]/affectedDamageDefs/li[.="Stun"]</xpath>
+	</Operation>
+	
+	<!-- Remove Explosive comp -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="VGE_GravshipMinigunTurret" or
+			defName="VGE_GravshipAutocannonTurret" or
+			defName="VGE_GravshipUraniumSlugTurret"
+			]/comps/li[@Class="CompProperties_Explosive"] </xpath>
+	</Operation>
+	
+	<!-- Remove refuelable property -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="VGE_GravshipMinigunTurret" or
+			defName="VGE_GravshipAutocannonTurret" or
+			defName="VGE_GravshipUraniumSlugTurret"
+			]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
+	</Operation>
+	
+	<!-- Adjust max hitpoints -->
+	<!-- Do note that, despite what the names of the turrets imply, these are relatively small 1x1 turrets. Accordingly, they have less health than their large 2x2 counterparts -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>260</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<!-- Make turrets taller -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+	
+	<!-- Adding the stats seperately for each turret to accomodate possible future changes -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VGE_GravshipMinigunTurret"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VGE_GravshipMinigunTurret"]</xpath>
+			<value>
+				<statBases />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VGE_GravshipAutocannonTurret"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VGE_GravshipAutocannonTurret"]</xpath>
+			<value>
+				<statBases />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VGE_GravshipUraniumSlugTurret"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VGE_GravshipUraniumSlugTurret"]</xpath>
+			<value>
+				<statBases />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="VGE_GravshipMinigunTurret" or
+			defName="VGE_GravshipAutocannonTurret" or
+			defName="VGE_GravshipUraniumSlugTurret"
+			]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.5</AimingAccuracy>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="VGE_GravshipMinigunTurret" or
+			defName="VGE_GravshipAutocannonTurret" or
+			defName="VGE_GravshipUraniumSlugTurret"
+			]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency>0.5</NightVisionEfficiency>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="VGE_GravshipMinigunTurret" or
+			defName="VGE_GravshipAutocannonTurret" or
+			defName="VGE_GravshipUraniumSlugTurret"
+			]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]</xpath>
+			<value>
+				<statBases />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipCompactTurretBase"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.5</AimingAccuracy>
+			<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_GravshipUraniumSlugTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+    <!-- === Gravship minigun turret === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_GravshipMinigunTurret"]/comps/li[@Class="CompProperties_Power"]/basePowerConsumption</xpath>
+		<value>
+			<basePowerConsumption>300</basePowerConsumption>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_GravshipMinigun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.32</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.3</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>54</range>
+			<burstShotCount>25</burstShotCount>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>9.2</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags Inherit="False">
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+    <!-- === Gravship autocannon turret === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_GravshipAutocannonTurret"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<value>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>350</basePowerConsumption>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- There's an interesting problem here -->
+	<!-- As I've explained, these are 1x1 turrets. With vanilla combat, the Vanilla Expanded team can just play with its damage and fire rate, which are lower in Vanilla Gravships Expanded - Chapter 2 -->
+	<!-- But we obviously don't have '20mm NATO that does less damage' -->
+	<!-- To try and preserve at least some of that balance, I've decided to play with this turret burts counts to make up for it -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_GravshipAutocannon</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>1.61</SwayFactor>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<Mass>10</Mass>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.50</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+			<warmupTime>2.3</warmupTime>
+			<range>78</range>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>HeavyMG</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+
+    <!-- Gravship uranium slug turret -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_GravshipUraniumSlugTurret"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<value>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>400</basePowerConsumption>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_GravshipUraniumSlug</defName>
+		<statBases>
+			<SightsEfficiency>2.36</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>1.89</SwayFactor>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			<Mass>10</Mass>
+		</statBases>
+		<Properties>
+			<recoilAmount>4.15</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x311mmR_AP</defaultProjectile>
+			<warmupTime>4.6</warmupTime>
+			<minRange>5</minRange>
+			<range>86</range>
+			<soundCast>Shot_TurretSniper</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>20</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>6.8</reloadTime>
+			<ammoSet>AmmoSet_40x311mmR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+		</FireModes>
+	</Operation>
+
+</Patch>

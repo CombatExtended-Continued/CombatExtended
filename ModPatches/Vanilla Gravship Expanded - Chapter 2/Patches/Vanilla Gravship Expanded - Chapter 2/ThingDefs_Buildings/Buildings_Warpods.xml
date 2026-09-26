@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_Warpod_HighExplosive"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+            <li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+                <explosiveRadius>5.9</explosiveRadius>
+        		<damageAmountBase>100</damageAmountBase>
+                <armorPenetrationBase>0.1</armorPenetrationBase>
+                <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+                <wickTicks>120~360</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>20</Fragment_Large>
+					<Fragment_Small>40</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+    <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_Warpod_EMP"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+            <li Class="CompProperties_Explosive">
+				<explosiveDamageType>EMP</explosiveDamageType>
+                <explosiveRadius>14.9</explosiveRadius>
+        		<damageAmountBase>160</damageAmountBase>
+                <armorPenetrationBase>0</armorPenetrationBase>
+                <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+                <wickTicks>120~360</wickTicks>
+			</li>
+		</value>
+	</Operation>
+
+    <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_Warpod_Incendiary"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+            <li Class="CompProperties_Explosive">
+                <explosiveRadius>5.9</explosiveRadius>
+                <explosiveDamageType>VGE_AstrofireDamage</explosiveDamageType>
+                <damageAmountBase>100</damageAmountBase>
+                <armorPenetrationBase>0</armorPenetrationBase>
+                <preExplosionSpawnThingDef>VGE_Filth_Astrofuel</preExplosionSpawnThingDef>
+                <preExplosionSpawnChance>1</preExplosionSpawnChance>
+                <preExplosionSpawnThingCount>4</preExplosionSpawnThingCount>
+                <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+                <wickTicks>120~360</wickTicks>
+			</li>
+		</value>
+	</Operation>
+
+    <!-- No need for antigrain patch-->
+    <!-- <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_Warpod_Antigrain"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+            <li Class="CompProperties_Explosive">
+                <explosiveRadius>19.9</explosiveRadius>
+                <explosiveDamageType>BombSuper</explosiveDamageType>
+                <damageAmountBase>550</damageAmountBase>
+                <armorPenetrationBase>1.3</armorPenetrationBase>
+                <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+                <wickTicks>360~600</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>32</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation> -->
+
+    <Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_Warpod_Hellpod"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+            <li Class="CompProperties_Explosive">
+				 <explosiveRadius>2.9</explosiveRadius>
+                <explosiveDamageType>Bomb</explosiveDamageType>
+                <damageAmountBase>100</damageAmountBase>
+                <armorPenetrationBase>0.1</armorPenetrationBase>
+                <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+                <wickTicks>120~360</wickTicks>
+			</li>
+		</value>
+	</Operation>
+</Patch>

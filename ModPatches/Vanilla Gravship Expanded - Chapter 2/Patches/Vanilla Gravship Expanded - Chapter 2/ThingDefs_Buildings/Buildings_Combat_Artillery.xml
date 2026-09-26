@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- === Heavy Artillery === -->
+	<!-- Minimum ranges of the artillery is deliberately kept low. In VGE - Chapter 2, you can approach gravships on the same map and do the equivalents of a broadside exchange. The low minimum ranges are to help facilitate that, so that an approaching enemy doesn't get out of your artillery's minimum range -->
+	<!-- Add rotation extension -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="VGE_GravshipHeavyArtilleryBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.12</speed>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Remove box refuel comps and fuel comp -->
+    <Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName = "VGE_GaussHowitzer"]/comps/li[@Class = "VanillaGravshipExpanded.CompProperties_BoxRefuel" or @Class = "CompProperties_Refuelable"]
+		</xpath>
+	</Operation>
+
+	<!-- Replace world artillery -->
+    <Operation Class="PatchOperationAttributeSet">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_GaussHowitzer" or
+				defName = "VGE_JavelinLauncher" or
+				defName = "VGE_AnticraftEmitter"
+			]/comps/li[@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery"]
+		</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.Compatibility.VGECompat.CompProperties_WorldArtilleryCE</value>
+	</Operation>
+
+	<!-- Add OrbitalTurretExtension to guns -->
+    <Operation Class="PatchOperationAddModExtension">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_Gun_GaussHowitzer" or
+				defName = "VGE_Gun_JavelinLauncher" or
+				defName = "VGE_Gun_AnticraftEmitter"
+			]
+		</xpath>
+		<value>
+			<li Class="CombatExtended.OrbitalTurretExtension">
+                <interLayerPrecisionBonusFactor>20</interLayerPrecisionBonusFactor>
+                <isMarkMandatory>false</isMarkMandatory>
+				<cannotLaunchThroughRoof>false</cannotLaunchThroughRoof>
+            </li>
+		</value>
+	</Operation>
+	
+	<!-- Remove all verbs -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName = "VGE_Gun_GaussHowitzer" or
+			defName = "VGE_Gun_JavelinLauncher" or
+			defName = "VGE_Gun_AnticraftEmitter"
+			]/verbs</xpath>
+	</Operation>
+
+
+	<!-- VGE_GaussHowitzer -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName = "VGE_GaussHowitzer"]/thingClass 
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_GravshipTurretCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_GaussHowitzer</turretDefName>
+		<turretGunDefName>VGE_Gun_GaussHowitzer</turretGunDefName>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_GaussHowitzer</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.3</ShotSpread>
+			<SwayFactor>1.0</SwayFactor>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
+			<defaultProjectile>VGE_Bullet_GaussHowitzer_CE_HE</defaultProjectile>
+			<range>99999</range>
+			<minRange>12</minRange>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<soundCast>VGE_GravshipHowitzer</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<requireLineOfSight>false</requireLineOfSight>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<isMortar>true</isMortar>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+
+			<circularError>3</circularError>
+			<hasStandardCommand>true</hasStandardCommand>
+			<warmupTime>1.8</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_155mmHowitzerShell_GaussHowitzer</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<!-- VGE_JavelinLauncher -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName = "VGE_JavelinLauncher"]/thingClass 
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_JavelinLauncherCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_JavelinLauncher</turretDefName>
+		<turretGunDefName>VGE_Gun_JavelinLauncher</turretGunDefName>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_JavelinLauncher</defName>
+		<statBases>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
+			<defaultProjectile>VGE_Bullet_JavelinPod_CE</defaultProjectile>
+			<range>99999</range>
+			<minRange>8</minRange>
+			<burstShotCount>12</burstShotCount>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<soundCast>RocketswarmLauncher_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<requireLineOfSight>false</requireLineOfSight>
+			<consumeFuelPerShot>10</consumeFuelPerShot>
+			<isMortar>false</isMortar>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+
+			<circularError>4</circularError>
+			<hasStandardCommand>true</hasStandardCommand>
+			<warmupTime>3.6</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>120</magazineSize>
+			<reloadTime>6.5</reloadTime>
+			<ammoSet>AmmoSet_VGE_Bullet_JavelinPod</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_Gun_JavelinLauncher"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- VGE_AnticraftEmitter -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_AnticraftEmitter"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_AnticraftEmitterCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_AnticraftEmitter</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
+			<defaultProjectile>VGE_Bullet_AnticraftEmitter_CE</defaultProjectile>
+			<range>9999</range>
+			<minRange>12</minRange>
+			<forcedMissRadius>0</forcedMissRadius>
+			<canGoWild>true</canGoWild>
+			<burstShotCount>40</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Shot_BeamRepeater</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>26</muzzleFlashScale>
+			<aimingChargeMote>Mote_BeamRepeater_Charge</aimingChargeMote>
+			<aimingChargeMoteOffset>2.5</aimingChargeMoteOffset>
+			<requireLineOfSight>false</requireLineOfSight>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<beamChanceToStartFire>1</beamChanceToStartFire>
+			<beamChanceToAttachFire>1</beamChanceToAttachFire>
+			<beamFireSizeRange>0.15~0.3</beamFireSizeRange>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+
+            <circularError>0</circularError>
+			<hasStandardCommand>true</hasStandardCommand>
+			<warmupTime>3.6</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+	</Operation>
+</Patch>
