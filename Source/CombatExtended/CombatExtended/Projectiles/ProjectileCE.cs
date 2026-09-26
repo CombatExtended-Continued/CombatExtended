@@ -1069,6 +1069,34 @@ public abstract class ProjectileCE : ThingWithComps
     }
 
     /// <summary>
+    /// True if a pawn next to <paramref name="cell"/> is mid-step (drawn off its registered cell).
+    /// </summary>
+    private bool HasMidStepPawnAdjacent(IntVec3 cell)
+    {
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int z = -1; z <= 1; z++)
+            {
+                IntVec3 c = cell + new IntVec3(x, 0, z);
+                if (!c.InBounds(Map))
+                {
+                    continue;
+                }
+                // Only a walking pawn can be off its cell, and DrawPos isn't cheap - so check that
+                // first and spare ourselves the lookup for everyone standing still, i.e. everyone.
+                if (c.GetFirstPawn(Map) is Pawn pawn
+                    && pawn.pather != null
+                    && pawn.pather.Moving
+                    && pawn.DrawPos.ToIntVec3() != pawn.Position)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
     /// Checks whether a collision occurs along flight path within this cell.
     /// </summary>
     /// <param name="cell">Where to check for collisions in</param>
@@ -1081,7 +1109,10 @@ public abstract class ProjectileCE : ThingWithComps
         }
         var roofChecked = false;
 
-        if (Map.GetLightingTracker().HighestCoverAt(cell) < Mathf.Min(LastPos.y, ExactPosition.y))
+        // Cover is looked up on the pawn's registered cell, so a pawn mid-step makes the cell it's
+        // walking into look empty. Don't early-out when one of those is next door.
+        if (Map.GetLightingTracker().HighestCoverAt(cell) < Mathf.Min(LastPos.y, ExactPosition.y)
+            && !HasMidStepPawnAdjacent(cell))
         {
             return false;
         }
@@ -1114,7 +1145,7 @@ public abstract class ProjectileCE : ThingWithComps
         // the side cell) was never scanned and the bullet passed through it. Same footprint.
         int halfAcross = collisionCheckSize / 2 + 1; // 3 -> 7 cells wide, across the shot line
         int halfAlong = 1;                           // +-1 cell up/down the shot line
-        bool shotIsHorizontal = rot4 == Rot4.East || rot4 == Rot4.West;
+        bool shotIsHorizontal = rot4 == Rot4.East;   // rot4 was already folded to North/East above
         int extentX = shotIsHorizontal ? halfAlong : halfAcross;
         int extentZ = shotIsHorizontal ? halfAcross : halfAlong;
         for (int x = cell.x - extentX; x <= cell.x + extentX; x++)
@@ -1174,6 +1205,12 @@ public abstract class ProjectileCE : ThingWithComps
             {
                 if (!CanCollideWith(thing, out _))
                 {
+                    if (Controller.settings.DebugDrawInterceptChecks && thing is Pawn dbgPawn)
+                    {
+                        Bounds dbgBounds = CE_Utility.GetBoundsFor(dbgPawn);
+                        bool dbgRay = dbgBounds.IntersectRay(ShotLine, out float dbgDist);
+                        Log.Message($"[CE-Debug] pawn {dbgPawn.LabelShort} miss: pos={dbgPawn.Position} draw={dbgPawn.DrawPos.ToString("F2")} posture={dbgPawn.GetPosture()} downed={dbgPawn.Downed} crouch={dbgPawn.IsCrouching()} bC={dbgBounds.center.ToString("F2")} bS={dbgBounds.size.ToString("F2")} rayHit={dbgRay} d={dbgDist:F3} last={LastPos.ToString("F2")} exact={ExactPosition.ToString("F2")} origin={origin.ToString("F2")}");
+                    }
                     continue;
                 }
                 if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thing.TrueCenter()))
