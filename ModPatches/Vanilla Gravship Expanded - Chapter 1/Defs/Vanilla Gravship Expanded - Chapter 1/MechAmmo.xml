@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- =============== Mech Pawns Weapons =============== -->
+	<!-- === Ammo Sets === -->
+	<!-- A part of this weapon's description reads ''It fires dense slugs at incredible velocities, capable of destroying even heavily armored gravships.'' so I've made it a relatively strong railgun weapon and tweaked its warmup and cooldown stats accordingly -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VGE_MassLance</defName>
+		<label>12mm Railgun</label>
+		<ammoTypes>
+			<Ammo_12mmRailgun_Sabot>Bullet_VGE_MassLance</Ammo_12mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Projectiles === -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
+		<defName>Bullet_VGE_MassLance</defName>
+		<label>mass lance shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>86.4</armorPenetrationSharp>
+			<armorPenetrationBlunt>381</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- =============== Mech Turrets Weapons =============== -->
+	<!-- === Ammo Sets === -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VGE_Bullet_MassDriver</defName>
+		<label>mass driver shells</label>
+		<ammoTypes>
+			<Ammo_155mmHowitzerShell_HE>VGE_Bullet_MassDriver_CE</Ammo_155mmHowitzerShell_HE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Ammo === -->
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_MassDriver_CE</defName>
+		<label>mass driver shot</label>
+    	<graphicData>
+            <texPath>Things/Projectiles/GaussShot_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bomb</damageDef>
+			<damageAmountBase>682</damageAmountBase> <!-- Gauss gun + 25% -->
+			<speed>135</speed>
+			<explosionRadius>6.9</explosionRadius>
+			<soundImpact>BulletImpact_Metal</soundImpact>
+            <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+            <soundExplode>MortarBomb_Explode</soundExplode>
+            <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+            <soundAmbient>MortarRound_Ambient</soundAmbient>
+		</projectile>
+		<modExtensions>
+            <li Class="VanillaGravshipExpanded.SubstructureDamageExtension">
+                <substructureDamageRadius>1.9</substructureDamageRadius>
+            </li>
+        </modExtensions>
+	</ThingDef>
+</Defs>
