@@ -113,9 +113,22 @@ public class ShiftVecReport
                 {
                     se = 0.02f;
                 }
-                visibilityShiftInt = environmentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
+                visibilityShiftInt = environmentShift * (shotDist / 50 / se) * (2 - aimingAccuracy) * concealmentFactor;
             }
             return visibilityShiftInt;
+        }
+    }
+
+    public float concealmentFactor
+    {
+        get
+        {
+            if (targetPawn != null)
+            {
+                return targetPawn.GetStatValue(CE_StatDefOf.ConcealmentEfficiency);
+            }
+
+            return 1f;
         }
     }
 
@@ -169,7 +182,7 @@ public class ShiftVecReport
     {
         get
         {
-            return shotDist * (shotDist / Math.Max(maxRange, 20)) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
+            return shotDist * (shotDist / Math.Max(maxRange, 20)) * Mathf.Min(accuracyFactor * 0.5f, 0.8f) * concealmentFactor;
         }
     }
 
@@ -282,6 +295,10 @@ public class ShiftVecReport
         if (distShift > 0)
         {
             stringBuilder.AppendLine("   " + "CE_RangeError".Translate() + "\t" + GenText.ToStringByStyle(distShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
+        }
+        if ((visibilityShift > 0 || distShift > 0) && !Mathf.Approximately(concealmentFactor, 1f))
+        {
+            stringBuilder.AppendLine("      " + "CE_Concealment".Translate() + "\t" + AsPercent(concealmentFactor));
         }
         if (swayDegrees > 0)
         {
