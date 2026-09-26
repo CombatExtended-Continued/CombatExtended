@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AntyTransitionRefleum"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Big jaw</label>
+					<capacities>
+						<li>Bite_Refleum</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AT_ReinforcedJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Big jaw</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<extraMeleeDamages>
+						<li>
+							<def>Anty_Cut</def>
+							<amount>10</amount>
+							<chance>0.85</chance>
+						</li>
+						<li>
+							<def>EMP</def>
+							<amount>60</amount>
+						</li>
+						<li>
+							<def>Stun</def>
+							<amount>10</amount>
+							<chance>0.1</chance>
+						</li>
+					</extraMeleeDamages>					
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>
