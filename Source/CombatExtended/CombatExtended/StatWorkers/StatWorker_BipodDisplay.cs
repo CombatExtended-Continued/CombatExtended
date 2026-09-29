@@ -163,7 +163,7 @@ public class StatWorker_BipodDisplay : StatWorker
                 return base.GetExplanationFinalizePart(req, numberSense, finalVal);
             }
 
-            string result = "CE_BipodSetupTime".Translate() + bipodCompProps.ticksToSetUp + " ticks (" + (bipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "Stats when set up: ".Colorize(ColorLibrary.Green) + "\n";
+            string result = "CE_BipodSetupTime".Translate() + bipodCompProps.ticksToSetUp + " ticks (" + (bipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "CE_BipodStatWhenSetUp".Translate().Colorize(ColorLibrary.Green) + "\n";
 
             result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMulton), 2);
 

@@ -163,7 +163,7 @@ public class BipodComp : CompRangedGizmoGiver
     public void SetUpEnd(Thing source, Pawn pawn)
     {
         ResetVerbProps(source: source);
-        
+
         var changed = CopyVerbPropsFromThing(source);
 
         changed.range += Props.additionalrange;

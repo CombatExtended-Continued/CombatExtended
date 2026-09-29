@@ -52,18 +52,18 @@ public class Bipod_Recoil_StatPart : StatPart
                 {
                     if (varA.IsSetUpRn)
                     {
-                        return "Bipod IS set up -" + " x".Colorize(ColorLibrary.Green) + varA.Props.recoilMulton.ToString().Colorize(ColorLibrary.Green);
+                        return "CE_Bipod_Set_Up".Translate().ToString() + " - " + "x".Colorize(ColorLibrary.Green) + varA.Props.recoilMulton.ToString().Colorize(ColorLibrary.Green);
                     }
                     else
                     {
-                        return "Bipod is NOT set up -" + " x".Colorize(ColorLibrary.LogError) + varA.Props.recoilMultoff.ToString().Colorize(ColorLibrary.LogError);
+                        return "CE_Bipod_Not_Set_Up".Translate().ToString() + " - " + "x".Colorize(ColorLibrary.LogError) + varA.Props.recoilMultoff.ToString().Colorize(ColorLibrary.LogError);
                     }
                 }
             }
             else if (req.Def is ThingDef reqDef)
             {
                 var bipodProps = reqDef.GetCompProperties<CompProperties_BipodComp>();
-                if (bipodProps != null) { return "Bipod IS set up -" + " x".Colorize(ColorLibrary.Green) + bipodProps.recoilMulton.ToString().Colorize(ColorLibrary.Green); }
+                if (bipodProps != null) { return "CE_Bipod_Set_Up".Translate().ToString() + " - " + "x".Colorize(ColorLibrary.Green) + bipodProps.recoilMulton.ToString().Colorize(ColorLibrary.Green); }
             }
         }
         return null;
@@ -112,18 +112,19 @@ public class Bipod_Sway_StatPart : StatPart
                 {
                     if (varA.IsSetUpRn)
                     {
-                        return "Bipod IS set up -" + " x".Colorize(ColorLibrary.Green) + varA.Props.swayMult.ToString().Colorize(ColorLibrary.Green);
+                        
+                        return "CE_Bipod_Set_Up".Translate().ToString() + " - " + "x".Colorize(ColorLibrary.Green) + varA.Props.swayMult.ToString().Colorize(ColorLibrary.Green);
                     }
                     else
                     {
-                        return "Bipod is NOT set up -" + " x".Colorize(ColorLibrary.LogError) + varA.Props.swayPenalty.ToString().Colorize(ColorLibrary.LogError);
+                        return "CE_Bipod_Not_Set_Up".Translate().ToString() + " - " + "x".Colorize(ColorLibrary.LogError) + varA.Props.swayPenalty.ToString().Colorize(ColorLibrary.LogError);
                     }
                 }
             }
             else if (req.Def is ThingDef reqDef)
             {
                 var bipodProps = reqDef.GetCompProperties<CompProperties_BipodComp>();
-                if (bipodProps != null) { return "Bipod IS set up -" + " x".Colorize(ColorLibrary.Green) + bipodProps.swayPenalty.ToString().Colorize(ColorLibrary.Green); }
+                if (bipodProps != null) { return "CE_Bipod_Set_Up".Translate().ToString() + " - " + "x".Colorize(ColorLibrary.Green) + bipodProps.swayMult.ToString().Colorize(ColorLibrary.Green); }
             }
         }
         return null;
