@@ -122,7 +122,7 @@ public class StatWorker_BipodDisplay : StatWorker
             else
             {
 
-                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMulton), 2);
+                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMulton / bipodCompProps.recoilMultoff), 2);
                 result += "\n";
 
                 result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * bipodCompProps.swayMult), 2);
@@ -131,12 +131,12 @@ public class StatWorker_BipodDisplay : StatWorker
                 result += "CE_BipodStatRange".Translate() + ": " + (bipodCompProps.additionalrange + verbPropsCe.range);
                 result += "\n";
 
-                result += "CE_BipodStatWarmUp".Translate() + ": " + (bipodCompProps.warmupMult * verbPropsCe.warmupTime);
+                result += "CE_BipodStatWarmUp".Translate() + ": " + (bipodCompProps.warmupMult * verbPropsCe.warmupTime / bipodCompProps.warmupPenalty);
                 result += "\n" + "\n";
 
                 result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(ColorLibrary.LogError) + "\n";
 
-                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount * bipodCompProps.recoilMultoff), 2);
+                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((verbPropsCe.recoilAmount), 2);
 
                 result += "\n";
 
@@ -148,7 +148,7 @@ public class StatWorker_BipodDisplay : StatWorker
 
                 result += "\n";
 
-                result += "CE_BipodStatWarmUp".Translate() + ": " + (bipodCompProps.warmupPenalty * verbPropsCe.warmupTime);
+                result += "CE_BipodStatWarmUp".Translate() + ": " + (verbPropsCe.warmupTime);
             }
             return result;
         }
