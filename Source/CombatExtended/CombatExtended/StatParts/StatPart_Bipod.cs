@@ -112,7 +112,6 @@ public class Bipod_Sway_StatPart : StatPart
                 {
                     if (varA.IsSetUpRn)
                     {
-                        
                         return "CE_Bipod_Set_Up".Translate().ToString() + " - " + "x".Colorize(ColorLibrary.Green) + varA.Props.swayMult.ToString().Colorize(ColorLibrary.Green);
                     }
                     else
