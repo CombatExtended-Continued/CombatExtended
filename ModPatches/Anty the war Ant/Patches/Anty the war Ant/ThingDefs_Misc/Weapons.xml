@@ -171,7 +171,6 @@
 			<Bulk>10.03</Bulk>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
-
 		<Properties>
 			<recoilAmount>1.14</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -208,7 +207,6 @@
 			<Bulk>10.03</Bulk>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
-
 		<Properties>
 			<recoilAmount>0.96</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -325,7 +323,6 @@
 			<Mass>5.3</Mass>
 			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
 		</statBases>
-
 		<Properties>
 			<recoilAmount>2.93</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -361,7 +358,6 @@
 			<Mass>7.40</Mass>
 			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 		</statBases>
-
 		<Properties>
 			<recoilAmount>1.22</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -420,16 +416,126 @@
 		</FireModes>
 	</Operation>
 
+	<!-- ========== Gift Box ========== -->
+
+	<!-- Kill recipe maker -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="AT_PP_S"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<!-- Melee tools -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AT_PP_S"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Box corner</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.75</cooldownTime>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Projectile -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_PP_A"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_PP_A"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Anty_Bomb_SS</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<explosionRadius>1.1</explosionRadius>
+				<speed>15</speed>
+				<screenShakeFactor>0</screenShakeFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Bullet_PP_A"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Bullet_PP_A"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Grenade -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AT_PP_S"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>25</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="AT_PP_S"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AT_PP_S</defName>
+		<statBases>
+			<Mass>0.5</Mass>
+			<Bulk>1</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10</range>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Bullet_PP_A</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_AOE</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
 	<!-- ========== Melee Attacks =========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AT_AcidRifle" or
+		<xpath>Defs/ThingDef[
+			defName="AT_AcidRifle" or
 			defName="AT_AcidAssaultRifle" or
 			defName="AT_AcidLauncher" or
 			defName="AT_LMG" or
 			defName="AT_Combatglue" or
 			defName="AT_AcidCross"
-			]/tools </xpath>
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -468,8 +574,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AT_AcidLineRifle"
-			]/tools </xpath>
+		<xpath>Defs/ThingDef[defName="AT_AcidLineRifle"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -509,4 +614,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>

@@ -18,25 +18,71 @@
 			</tools>
 		</value>
 	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="MOW_Gun_ShockaveCannon"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
-			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="MOW_Gun_ShockaveCannon"]/verbs/li/warmupTime</xpath>
-		<value>
-			<warmupTime>0.8</warmupTime>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="MOW_Gun_ShockaveCannon"]/verbs/li/range</xpath>
-		<value>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MOW_Gun_ShockaveCannon</defName>
+		<statBases>
+			<Bulk>11.0</Bulk>
+			<SwayFactor>1.25</SwayFactor>
+			<ShotSpread>0.34</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>MOW_Bullet_ShockaveCannon</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
 			<range>35</range>
+			<soundCast>MOW_Shot_ShockwaveCannon</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>0</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	
+	<!-- Shockwave Cannon Projectile -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MOW_Bullet_ShockaveCannon"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MOW_Bullet_ShockaveCannon"]/projectile</xpath>
+		<value>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MOW_Shockwave</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Stun</def>
+					<amount>2</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationBlunt>133.1</armorPenetrationBlunt>
+			<speed>80</speed>
+		</projectile>
+		</value>
+	</Operation>
+
+	
+	<!-- Shockwave DammageDef -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="MOW_Shockwave"]</xpath>
+		<value>
+			<buildingDamageFactor>0.25</buildingDamageFactor>
 		</value>
 	</Operation>
 

@@ -61,6 +61,14 @@
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_AntyRedAcidGas</defName>
+		<label>Refleum gas thrower</label>
+		<ammoTypes>
+			<Ammo_AntyAcidRed>Bullet_AntyRedAcidGas</Ammo_AntyAcidRed>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_AntyAcidGlue</defName>
 		<label>Acid Shot</label>
 		<ammoTypes>
@@ -91,6 +99,26 @@
 		<label>Acid</label>
 		<description>Red Acid.</description>
 	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Damage ========================== -->
+
+	<DamageDef ParentName="Flame">
+		<defName>AT_CEDamage_Gas</defName>
+		<label>refleum gas</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<armorCategory>Heat</armorCategory>
+		<defaultArmorPenetration>0.5</defaultArmorPenetration>
+		<hediff>AcidBurn</hediff>
+		<buildingDamageFactor>0.25</buildingDamageFactor>
+		<scaleDamageToBuildingsBasedOnFlammability>false</scaleDamageToBuildingsBasedOnFlammability>
+		<additionalHediffs>
+			<li>
+				<hediff>AT_Damage_Gas</hediff>
+				<severityPerDamageDealt>0.1</severityPerDamageDealt>
+				<victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+			</li>
+		</additionalHediffs>
+	</DamageDef>
 
 	<!-- ==================== Ammo ========================== -->
 
@@ -235,6 +263,26 @@
 		</comps>
 	</ThingDef>
 
+	<ThingDef ParentName="BaseFlamethrowerBullet">
+		<defName>Bullet_AntyRedAcidGas</defName>
+		<label>Acid Refleum gas</label>
+		<graphicData>
+			<texPath>Things/Weapons/AcidSmoke</texPath>
+			<color>(60,0,0)</color>
+			<shaderType>TransparentPostLight</shaderType>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>AT_CEDamage_Gas</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.67</preExplosionSpawnChance>
+			<soundExplode>CE_FlamethrowerExplosion</soundExplode>
+			<explosionRadius>2</explosionRadius>
+			<screenShakeFactor>0</screenShakeFactor>
+		</projectile>
+	</ThingDef>
+
 	<ThingDef ParentName="Base25x40mmGrenadeBullet">
 		<defName>Bullet_AntyRedAcidLauncher</defName>
 		<label>Red Burst Bullet</label>
@@ -324,6 +372,79 @@
 			<damageDef>AT_glueBomb</damageDef>
 		</projectile>
 	</ThingDef>
+
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_CEProtyspawner</defName>
+		<label>Proty Induced Pheromone</label>
+		<graphicData>
+			<texPath>Things/Weapons/Fan</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<spawnsThingDef>AT_Proty_spawner_Tunnel_Open</spawnsThingDef>
+			<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>AT_CEChunk_Spawner</defName>
+		<label>Chunk Shell</label>
+		<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		<graphicData>
+			<texPath>Things/Weapons/Pan</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<color>(0.2, 0.2, 0.6)</color>
+			<drawSize>0.5</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>50</speed>
+			<damageAmountBase>0</damageAmountBase>
+			<spawnsThingDef>AT_Bulletchunk</spawnsThingDef>
+			<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>AT_CEBarricade_Spawner</defName>
+		<label>barricade Shell</label>
+		<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		<graphicData>
+			<texPath>Things/Weapons/Pan</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<color>(0.2, 0.2, 0.6)</color>
+			<drawSize>0.5</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>50</speed>
+			<damageAmountBase>0</damageAmountBase>
+			<spawnsThingDef>AT_Bulletbarricade</spawnsThingDef>
+			<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>AT_CEBunker_Spawner</defName>
+		<label>bunker Shell</label>
+		<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		<graphicData>
+			<texPath>Things/Weapons/Pan</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<color>(0.2, 0.2, 0.6)</color>
+			<drawSize>0.5</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>50</speed>
+			<damageAmountBase>0</damageAmountBase>
+			<spawnsThingDef>AT_Bunker_Ready</spawnsThingDef>
+			<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
+		</projectile>
+	</ThingDef>
+
 
 	<ThingDef ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_AntyAcid</defName>
