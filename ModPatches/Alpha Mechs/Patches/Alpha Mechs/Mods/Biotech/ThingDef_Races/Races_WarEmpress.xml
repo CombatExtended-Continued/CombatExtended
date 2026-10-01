@@ -121,11 +121,14 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="AM_WarEmpress"]/combatPower</xpath>
-					<value>
-						<combatPower>1100</combatPower>
-					</value>
+				<li Class="CombatExtended.PatchOperationSettingsConditional">
+					<settingName>vanillaCombatPower</settingName>
+					<nomatch Class="PatchOperationReplace">
+						<xpath>Defs/PawnKindDef[defName="AM_WarEmpress"]/combatPower</xpath>
+						<value>
+							<combatPower>1100</combatPower>
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">

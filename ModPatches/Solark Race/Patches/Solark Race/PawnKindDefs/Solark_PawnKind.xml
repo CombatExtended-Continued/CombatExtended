@@ -27,10 +27,13 @@
 
 	<!--combatPower-->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="HAR_Solark_KindBase"]/combatPower</xpath>
-		<value>
-			<combatPower>200</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[@Name="HAR_Solark_KindBase"]/combatPower</xpath>
+			<value>
+				<combatPower>200</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 </Patch>

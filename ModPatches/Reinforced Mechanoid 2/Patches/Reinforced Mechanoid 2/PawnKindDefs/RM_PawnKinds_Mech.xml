@@ -42,7 +42,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[@Name="RM_BaseDroidKind"]</xpath>
 		<value>
@@ -54,33 +54,45 @@
 			</li>
 		</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RM_Mech_Marshal"]/combatPower</xpath>
-		<value>
-			<combatPower>240</combatPower>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RM_Mech_Sentinel"]/combatPower</xpath>
-		<value>
-			<combatPower>500</combatPower>
-		</value>
+
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RM_Mech_Marshal"]/combatPower</xpath>
+			<value>
+				<combatPower>240</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RM_Mech_Behemoth"]/combatPower</xpath>
-		<value>
-			<combatPower>580</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RM_Mech_Sentinel"]/combatPower</xpath>
+			<value>
+				<combatPower>500</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RM_Mech_WraithSiege" or defName="RM_Mech_Locust"]/combatPower</xpath>
-		<value>
-			<combatPower>650</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RM_Mech_Behemoth"]/combatPower</xpath>
+			<value>
+				<combatPower>580</combatPower>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RM_Mech_WraithSiege" or defName="RM_Mech_Locust"]/combatPower</xpath>
+			<value>
+				<combatPower>650</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">

@@ -15,29 +15,38 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="pphhyy_ScytherExpandedTank" or
-			defName="pphhyy_ScytherExpandedArch" or
-			defName="pphhyy_ScytherExpandedSearing"
-			]/combatPower</xpath>
-		<value>
-			<combatPower>190</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="pphhyy_ScytherExpandedTank" or
+				defName="pphhyy_ScytherExpandedArch" or
+				defName="pphhyy_ScytherExpandedSearing"
+				]/combatPower</xpath>
+			<value>
+				<combatPower>190</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="pphhyy_ScytherExpandedMono"]/combatPower</xpath>
-		<value>
-			<combatPower>240</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="pphhyy_ScytherExpandedMono"]/combatPower</xpath>
+			<value>
+				<combatPower>240</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="pphhyy_ScytherExpandedPrestige"]/combatPower</xpath>
-		<value>
-			<combatPower>320</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="pphhyy_ScytherExpandedPrestige"]/combatPower</xpath>
+			<value>
+				<combatPower>320</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!--Arch Scyther (EMP one)-->
