@@ -211,6 +211,7 @@ Dlc collaboration - Void universe |
 DMWands |
 Dragons Descent    |
 Dragons!	|
+Dresses in the Rim    |
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
 Dusk Armory   |
@@ -483,12 +484,14 @@ Prestige Vacsuit Set    |
 Progression Education    |
 Primitive Core |
 Primitive Workbenches |
+Prim's Hair |
 Project RimFactory - Materials |
 Prostheses+ |
 Protoswords |
 PsiTech	|
 PsyBlasters |
 Pulsefire Turret (Continued)    |
+Pumpkinlass Veils and Scarves    |
 Pulse Weaponry  |
 RPG Adventure Flavour Pack  |
 Rabbie The Moonrabbit race	|
@@ -556,6 +559,7 @@ Rimworld - Witcher Monster Hunt |
 Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
+River's Tribal Shoes |
 Robotic Servitude   |
 Rockmen race    |
 Roo Faun    |
@@ -627,6 +631,8 @@ Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
 T's Wild Child Rags |
+UNAGI Another Duster Coat   |
+UNAGI Apparel MOD Winter clothing   |
 UNAGI Another Duster Coat   |
 Useless Clothes |
 Ushankas Glittertech Expansion  |
