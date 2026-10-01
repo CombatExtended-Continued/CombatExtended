@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HBX_Rapier"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.0</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.25</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>1.05</cooldownTime>
+					<armorPenetrationBlunt>2.42</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.54</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HBX_Rapier"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>1.6</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HBX_Rapier"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeCritChance>2.0</MeleeCritChance>
+			<MeleeParryChance>1.2</MeleeParryChance>
+			<MeleeDodgeChance>0.4</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+</Patch>
