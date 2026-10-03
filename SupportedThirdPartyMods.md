@@ -197,7 +197,9 @@ Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
 Deployable Turret   |
 Det's Energy Weapons    |
+Det's Xenotypes - Avaloi   |
 Det's Xenotypes - Boglegs   |
+Det's Xenotypes - Brawnum   |
 Det's Xenotypes - Half-foot   |
 Det's Xenotypes - Keshig   |
 Det's Xenotypes - Venators   |
@@ -280,6 +282,7 @@ Frontline Collection  |
 FROG Suit Set   |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
+Geist Xenotype	|
 Genetics! Mushkin    |
 Gestalt Engine  |
 Giddy-Up 2    |
@@ -298,6 +301,8 @@ Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 Glitter Weaponry	|
 Gloomy Dragonian Race	|
+Goji's Fantasy Race: Merren	|
+Goliann Xenotype	|
 GouRIMet	|
 Gravship Captain Set    |
 GREG	|
@@ -323,6 +328,7 @@ Heavy Melee Weapons |
 Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
+Highborn Xenotype	|
 Hive Armory |
 Hunter Mechanoid |
 Huscarl - Power Armor   |
@@ -343,6 +349,7 @@ Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
 Jernalk's Skeletal Legion (Continued)	|
 Jin-Roh Kerberos Panzer Cop Armor   |
+Kabouter Xenotype  |
 Kaiser Armory	|
 Kemomimihouse |
 Kemomimihouse Kz |
@@ -357,6 +364,7 @@ Kit's Industrial Weapons |
 Kit's Roman Weapons |
 Kit's VFE Weapons |
 Kobolds of the Rim  |
+Korg Xenotype  |
 Kurin HAR Edition	|
 Leeani Playable Race	|
 Lemolim Race    |
@@ -410,6 +418,7 @@ Misc. Robots	|
 Misc. Turrets   |
 Misstall's Armor and Uniforms   |
 Moa |
+Molong Xenotype |
 Moonjelly Race  |
 More Archotech Garbage Continued  |
 More Armory! Midworld Arms Pack  |
@@ -469,6 +478,8 @@ Pandora: Frontier Remake |
 Paniel the Automata |
 Pawnbold Race   |
 Persona Warcasket Weapons   |
+Pesky's Bulwark Xenotype   |
+Pesky's Petrikin Xenotype   |
 Plasma Weapons Pack   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
@@ -512,6 +523,7 @@ ReGrowth: Wastelands |
 Reinforced Mechanoid 2 (Continued) |
 Remote Detonator	|
 Remove Industrial Stuff |
+ReSplice Charmweavers |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
@@ -561,6 +573,8 @@ Rockmen race    |
 Roo Faun    |
 Roo Satyr    |
 Roo Satyr and Faun Xenotype Expanded    |
+Roo's Minotaur Xenotype    |
+Roo's Minotaur Xenotype Expanded   |
 Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |
@@ -569,6 +583,7 @@ Saclean Race    |
 Sanguinary Animals   |
 Save Our Ship 2	|
 SCP - Clothing Only	|
+Seraphim Xenotype Reborn<    |
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
 Seventh Seraph  |
