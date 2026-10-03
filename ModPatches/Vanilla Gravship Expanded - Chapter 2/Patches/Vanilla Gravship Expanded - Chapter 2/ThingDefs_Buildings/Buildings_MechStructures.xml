@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- === Heavy Artillery === -->
+
+	<!-- Replace thingClass -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "VGE_MechanoidChargeBattery" or
+			defName = "VGE_MechanoidInfernoArtillery"
+		]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_EnemyMechTurretCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- Replace world artillery -->
+    <Operation Class="PatchOperationAttributeSet">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_MechanoidChargeBattery" or
+				defName = "VGE_MechanoidInfernoArtillery"
+			]/comps/li[
+				@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery"
+			]
+		</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.Compatibility.VGECompat.CompProperties_WorldArtilleryCE</value>
+	</Operation>
+
+	<!-- Add OrbitalTurretExtension to guns -->
+    <Operation Class="PatchOperationAddModExtension">
+		<xpath>
+			Defs/ThingDef[
+				defName = "VGE_MechanoidChargeBattery" or
+				defName = "VGE_MechanoidInfernoArtillery"
+			]
+		</xpath>
+		<value>
+			<li Class="CombatExtended.OrbitalTurretExtension">
+                <interLayerPrecisionBonusFactor>20</interLayerPrecisionBonusFactor>
+                <isMarkMandatory>false</isMarkMandatory>
+				<cannotLaunchThroughRoof>false</cannotLaunchThroughRoof>
+            </li>
+		</value>
+	</Operation>
+	
+	<!-- Remove all verbs -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+				defName = "VGE_Gun_MechanoidChargeBattery" or
+				defName = "VGE_Gun_MechanoidInfernoArtillery"
+			]/verbs</xpath>
+	</Operation>
+
+	<!-- ====== VGE_Gun_MechanoidChargeBattery ====== -->
+	
+	<!-- Add rotation extension -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_MechanoidChargeBattery"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.15</speed>
+			</li>
+		</value>
+	</Operation>
+
+    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_MechanoidChargeBattery</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.3</ShotSpread>
+			<SwayFactor>1.0</SwayFactor>
+			<AimingAccuracy>0.5</AimingAccuracy>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
+            <defaultProjectile>VGE_Bullet_ChargeBattery_CE</defaultProjectile>
+            <range>500</range>
+            <minRange>19</minRange>
+            <burstShotCount>12</burstShotCount>
+            <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>14</muzzleFlashScale>
+            <!-- <forcedMissRadius>14</forcedMissRadius> -->
+            <requireLineOfSight>false</requireLineOfSight>
+            <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+            <isMortar>true</isMortar>
+            <soundCast>VGE_GravshipChargeBlaster</soundCast>
+            <targetParams>
+                <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+
+            <circularError>4</circularError>
+			<warmupTime>1.8</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>360</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_VGE_ChargeBattery</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<!-- ====== VGE_Gun_MechanoidInfernoArtillery ====== -->
+	<!-- Add rotation extension -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VGE_MechanoidInfernoArtillery"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.08</speed>
+			</li>
+		</value>
+	</Operation>
+
+    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_MechanoidInfernoArtillery</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.3</ShotSpread>
+			<SwayFactor>1.0</SwayFactor>
+			<AimingAccuracy>0.5</AimingAccuracy>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithSmokeCE</verbClass>
+            <defaultProjectile>VGE_Bullet_InfernoArtillery_CE</defaultProjectile>
+            <range>500</range>
+            <minRange>26</minRange>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>14</muzzleFlashScale>
+            <!-- <forcedMissRadius>9</forcedMissRadius> -->
+            <requireLineOfSight>false</requireLineOfSight>
+            <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+            <isMortar>true</isMortar>
+            <soundCast>VGE_HugeInfernoCannon_Fire</soundCast>
+            <targetParams>
+                <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+
+            <circularError>3</circularError>
+			<warmupTime>1.8</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_VGE_MechanoidInfernoArtillery</ammoSet>
+		</AmmoUser>
+	</Operation>
+</Patch>

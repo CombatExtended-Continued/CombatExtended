@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ====== VGE_GiantWormspitter_Gun ====== -->
+
+	<!-- Replace thingClass -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_GiantWormspitter"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- Remove all verbs -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VGE_GiantWormspitter_Gun"]/verbs</xpath>
+	</Operation>
+
+    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_GiantWormspitter_Gun</defName>
+		<statBases>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>1.0</SwayFactor>
+			<AimingAccuracy>0.5</AimingAccuracy>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+           	<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+            <warmupTime>12.5</warmupTime>
+            <defaultCooldownTime>12.5</defaultCooldownTime>
+            <defaultProjectile>VGE_GiantWormspitter_Projectile_CE</defaultProjectile>
+            <requireLineOfSight>false</requireLineOfSight>
+            <minRange>3.9</minRange>
+            <range>500</range>
+            <burstShotCount>1</burstShotCount>
+            <!--<soundCast>VFEI2_AcidSpray_Resolve</soundCast>-->
+            <muzzleFlashScale>16</muzzleFlashScale>
+            <consumeFuelPerShot>0</consumeFuelPerShot>
+            <targetParams>
+                <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+	</Operation>
+</Patch>
