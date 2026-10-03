@@ -66,7 +66,8 @@ public static class AmmoInjector
             if (def.IsWeapon
                     && (def.generateAllowChance > 0
                         || def.tradeability.TraderCanSell()
-                        || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
+                        || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))
+                        || def.HasComp(typeof(CompUniqueWeapon))))
             {
                 CE_Utility.allWeaponDefs.Add(def);
             }
