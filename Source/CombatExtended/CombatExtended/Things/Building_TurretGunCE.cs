@@ -79,6 +79,7 @@ public class Building_TurretGunCE : Building_Turret
     protected bool CanToggleHoldFire => PlayerControlled;
     public bool IsMortar => def.building.IsMortar;
     public bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
+    public bool CannotLaunchThroughRoof => OrbitalTurretExtension?.cannotLaunchThroughRoof ?? true;
     //Not included: CanExtractShell
     private bool MannedByColonist => mannableComp != null && mannableComp.ManningPawn != null
     && mannableComp.ManningPawn.Faction == Faction.OfPlayer;
@@ -170,7 +171,7 @@ public class Building_TurretGunCE : Building_Turret
         }
     }
 
-    private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)Projectile?.projectile;
+    protected virtual ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)Projectile?.projectile;
     public float MaxWorldRange => ProjectileProps?.shellingProps.range ?? -1f;
     public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
     public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
@@ -421,7 +422,7 @@ public class Building_TurretGunCE : Building_Turret
         // Check for ammo first
         if (!Spawned
                 || (holdFire && CanToggleHoldFire)
-                || (Projectile.projectile.flyOverhead && Map.roofGrid.Roofed(Position))
+                || (Projectile.projectile.flyOverhead && Map.roofGrid.Roofed(Position) && CannotLaunchThroughRoof)
                 //|| !AttackVerb.Available()  -- Check replaced by the following:
                 || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.CurMagCount <= 0))))
         {
@@ -584,7 +585,7 @@ public class Building_TurretGunCE : Building_Turret
         }
     }
 
-    public float BurstCooldownTime()             // Core method
+    public virtual float BurstCooldownTime()             // Core method
     {
         if (def.building.turretBurstCooldownTime >= 0f)
         {
@@ -614,7 +615,7 @@ public class Building_TurretGunCE : Building_Turret
             stringBuilder.AppendLine("CE_TurretReloading".Translate());
         }
 
-        else if (Spawned && IsMortarOrProjectileFliesOverhead && Position.Roofed(Map))
+        else if (Spawned && IsMortarOrProjectileFliesOverhead && Position.Roofed(Map) && CannotLaunchThroughRoof)
         {
             stringBuilder.AppendLine("CannotFire".Translate() + ": " + "Roofed".Translate().CapitalizeFirst());
         }
@@ -796,7 +797,7 @@ public class Building_TurretGunCE : Building_Turret
                     verb = GunCompEq.PrimaryVerb,
                     hotKey = KeyBindingDefOf.Misc4
                 };
-                if (Spawned && IsMortarOrProjectileFliesOverhead && Position.Roofed(Map))
+                if (Spawned && IsMortarOrProjectileFliesOverhead && Position.Roofed(Map) && CannotLaunchThroughRoof)
                 {
                     vt.Disable("CannotFire".Translate() + ": " + "Roofed".Translate().CapitalizeFirst());
                 }
