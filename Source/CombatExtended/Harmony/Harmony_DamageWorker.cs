@@ -94,7 +94,8 @@ internal static class Harmony_DamageWorker_Apply
                                                            new FloatRange(-10f, 10f),
                                                            frontArc,
                                                            1f,
-                                                           false);
+                                                           false,
+                                                           victim);
                         while (fr.MoveNext()) { }
                     }
                     {
@@ -108,7 +109,8 @@ internal static class Harmony_DamageWorker_Apply
                                                            new FloatRange(-10f, 10f),
                                                            backArc,
                                                            1f,
-                                                           false);
+                                                           false,
+                                                           victim);
                         while (fr.MoveNext()) { }
                     }
 
@@ -125,7 +127,8 @@ internal static class Harmony_DamageWorker_Apply
                                                        new FloatRange(-10f, 10f),
                                                        backArc,
                                                        1f,
-                                                       false);
+                                                       false,
+                                                       victim);
 
                     while (fr.MoveNext()) { }
 
