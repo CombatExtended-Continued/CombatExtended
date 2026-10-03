@@ -25,7 +25,7 @@ public class RaceAutoPatcher
         int racePropsCount = 0;
         int durabilityCount = 0;
         StringBuilder patchedAnimals = new StringBuilder();
-        StringBuilder patchedRaceProps =  new StringBuilder();
+        StringBuilder patchedRaceProps = new StringBuilder();
         StringBuilder patchedArmorDurability = new StringBuilder();
 
         foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs)
