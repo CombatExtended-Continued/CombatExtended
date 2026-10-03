@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<!-- Tribal -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Poleepkwa_Warrior" or defName="Poleepkwa_Worker" ]/combatPower</xpath>
-		<value>
-			<combatPower>30</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Poleepkwa_Warrior" or defName="Poleepkwa_Worker" ]/combatPower</xpath>
+			<value>
+				<combatPower>30</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Poleepkwa_Archer"]/combatPower</xpath>
-		<value>
-			<combatPower>30</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Poleepkwa_Archer"]/combatPower</xpath>
+			<value>
+				<combatPower>30</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Poleepkwa_CaravanSoldier"]/combatPower</xpath>
-		<value>
-			<combatPower>40</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Poleepkwa_CaravanSoldier"]/combatPower</xpath>
+			<value>
+				<combatPower>40</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Poleepkwa_Leader"]/combatPower</xpath>
-		<value>
-			<combatPower>75</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Poleepkwa_Leader"]/combatPower</xpath>
+			<value>
+				<combatPower>75</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- Hive_Archer -->

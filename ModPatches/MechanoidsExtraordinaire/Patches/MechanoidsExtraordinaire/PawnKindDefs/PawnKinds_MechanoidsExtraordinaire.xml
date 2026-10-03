@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mechanoid_Hound"]/combatPower</xpath>
-		<value>
-			<combatPower>550</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mechanoid_Hound"]/combatPower</xpath>
+			<value>
+				<combatPower>550</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mechanoid_Chimera"]/combatPower</xpath>
-		<value>
-			<combatPower>550</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mechanoid_Chimera"]/combatPower</xpath>
+			<value>
+				<combatPower>550</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mechanoid_Kraken"]/combatPower</xpath>
-		<value>
-			<combatPower>650</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mechanoid_Kraken"]/combatPower</xpath>
+			<value>
+				<combatPower>650</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
