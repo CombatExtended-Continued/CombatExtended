@@ -8,7 +8,7 @@
 		<label>great arrows</label>
 		<ammoTypes>
 			<Ammo_GreatArrow_Stone>Projectile_VFEM2WarArrow_Stone</Ammo_GreatArrow_Stone>
-<!-- 		<Ammo_GreatArrow_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2WarArrow_Iron</Ammo_GreatArrow_Iron> -->
+			<Ammo_GreatArrow_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2WarArrow_Iron</Ammo_GreatArrow_Iron>
 			<Ammo_GreatArrow_Steel>Projectile_VFEM2WarArrow_Steel</Ammo_GreatArrow_Steel>
 			<Ammo_GreatArrow_Plasteel>Projectile_VFEM2WarArrow_Plasteel</Ammo_GreatArrow_Plasteel>
 			<Ammo_GreatArrow_Venom>Projectile_VFEM2WarArrow_Venom</Ammo_GreatArrow_Venom>
@@ -41,11 +41,11 @@
 		</modExtensions>
 	</ThingDef>
 
-<!-- 	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseGreatArrowProjectile">
+	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_VFEM2WarArrow_Iron</defName>
 		<label>great war arrow (iron)</label>
 		<graphicData>
-			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<texPath>Things/Projectile/Arrows/Arrow_Iron</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -56,7 +56,15 @@
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
 			<preExplosionSpawnThingDef>Ammo_GreatArrow_Iron</preExplosionSpawnThingDef>
 		</projectile>
-	</ThingDef> -->
+		<modExtensions>
+			<li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Iron</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.75</StuckProjectileFleckSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
 
 	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_VFEM2WarArrow_Steel</defName>
@@ -181,7 +189,7 @@
 		<label>great arrows</label>
 		<ammoTypes>
 			<Ammo_GreatArrow_Stone>Projectile_VFEM2WarArrow_Stone_Indirect</Ammo_GreatArrow_Stone>
-<!-- 			<Ammo_GreatArrow_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2WarArrow_Iron_Indirect</Ammo_GreatArrow_Iron> -->
+			<Ammo_GreatArrow_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2WarArrow_Iron_Indirect</Ammo_GreatArrow_Iron>
 			<Ammo_GreatArrow_Steel>Projectile_VFEM2WarArrow_Steel_Indirect</Ammo_GreatArrow_Steel>
 			<Ammo_GreatArrow_Plasteel>Projectile_VFEM2WarArrow_Plasteel_Indirect</Ammo_GreatArrow_Plasteel>
 			<Ammo_GreatArrow_Venom>Projectile_VFEM2WarArrow_Venom_Indirect</Ammo_GreatArrow_Venom>
@@ -226,11 +234,11 @@
 		</comps>
 	</ThingDef>
 
-<!-- 	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
+	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
 		<defName>Projectile_VFEM2WarArrow_Iron_Indirect</defName>
 		<label>great war arrow (iron)</label>
 		<graphicData>
-			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<texPath>Things/Projectile/Arrows/Arrow_Iron</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<comps>
@@ -240,7 +248,7 @@
 				</fragments>
 			</li>
 		</comps>
-	</ThingDef> -->
+	</ThingDef>
 
 	<ThingDef ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
 		<defName>Projectile_VFEM2WarArrow_Steel_Indirect</defName>
@@ -334,7 +342,7 @@
 		</modExtensions>
 	</ThingDef>
 
-<!-- 	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseGreatArrowProjectile">
+	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_VFEM2WarArrow_Iron_Impact</defName>
 		<label>great war arrow (iron)</label>
 		<graphicData>
@@ -350,7 +358,15 @@
 			<speed>5</speed>
 			<gravityFactor>50</gravityFactor>
 		</projectile>
-	</ThingDef> -->
+		<modExtensions>
+			<li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Iron</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.75</StuckProjectileFleckSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
 
 	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_VFEM2WarArrow_Steel_Impact</defName>
@@ -474,7 +490,7 @@
 		<label>crossbow bolts</label>
 		<ammoTypes>
 			<Ammo_CrossbowBolt_Stone>Projectile_VFEM2ArbalestBolt_Stone</Ammo_CrossbowBolt_Stone>
-<!-- 			<Ammo_CrossbowBolt_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2ArbalestBolt_Iron</Ammo_CrossbowBolt_Iron> -->
+			<Ammo_CrossbowBolt_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2ArbalestBolt_Iron</Ammo_CrossbowBolt_Iron>
 			<Ammo_CrossbowBolt_Steel>Projectile_VFEM2ArbalestBolt_Steel</Ammo_CrossbowBolt_Steel>
 			<Ammo_CrossbowBolt_Plasteel>Projectile_VFEM2ArbalestBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
 			<Ammo_CrossbowBolt_Venom>Projectile_VFEM2ArbalestBolt_Venom</Ammo_CrossbowBolt_Venom>
@@ -506,22 +522,30 @@
 		</modExtensions>
 	</ThingDef>
 
-<!-- 	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_VFEM2ArbalestBolt_Iron</defName>
 		<label>crossbow bolt (iron)</label>
 		<graphicData>
-			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<texPath>Things/Projectile/Arrows/Arrow_Iron</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationBlunt>8</armorPenetrationBlunt>
-			<armorPenetrationSharp>2.7</armorPenetrationSharp>
-			<speed>35</speed>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.56</armorPenetrationSharp>
+			<speed>30</speed>
 			<preExplosionSpawnChance>0.333</preExplosionSpawnChance>
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Iron</preExplosionSpawnThingDef>
 		</projectile>
-	</ThingDef> -->
+		<modExtensions>
+			<li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Iron</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.55</StuckProjectileFleckSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
 
 	<ThingDef ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_VFEM2ArbalestBolt_Steel</defName>
