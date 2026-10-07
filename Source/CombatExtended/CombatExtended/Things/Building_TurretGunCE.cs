@@ -314,7 +314,7 @@ public class Building_TurretGunCE : Building_Turret
             this.ResetForcedTarget();
             return;
         }
-        if ((targ.Cell - base.Position).LengthHorizontal < this.GunCompEq.PrimaryVerb.verbProps.minRange)
+        if ((targ.Cell - base.Position).LengthHorizontal < Verb_LaunchProjectileCE.MinRangeOf(this.GunCompEq.PrimaryVerb))
         {
             Messages.Message("MessageTargetBelowMinimumRange".Translate(), this, MessageTypeDefOf.RejectInput);
             return;
@@ -604,9 +604,9 @@ public class Building_TurretGunCE : Building_Turret
 
         stringBuilder.AppendLine("GunInstalled".Translate() + ": " + this.Gun.LabelCap);    // New code
 
-        if (this.GunCompEq.PrimaryVerb.verbProps.minRange > 0f)
+        if (Verb_LaunchProjectileCE.MinRangeOf(this.GunCompEq.PrimaryVerb) > 0f)
         {
-            stringBuilder.AppendLine("MinimumRange".Translate() + ": " + this.GunCompEq.PrimaryVerb.verbProps.minRange.ToString("F0"));
+            stringBuilder.AppendLine("MinimumRange".Translate() + ": " + Verb_LaunchProjectileCE.MinRangeOf(this.GunCompEq.PrimaryVerb).ToString("F0"));
         }
 
         if (isReloading)        // New code
@@ -658,7 +658,7 @@ public class Building_TurretGunCE : Building_Turret
         {
             GenDraw.DrawRadiusRing(base.Position, range);
         }
-        float minRange = AttackVerb.verbProps.minRange;     // Changed to minRange instead of EffectiveMinRange
+        float minRange = Verb_LaunchProjectileCE.MinRangeOf(AttackVerb);     // Changed to minRange instead of EffectiveMinRange
         if (minRange < 90f && minRange > 0.1f)
         {
             GenDraw.DrawRadiusRing(base.Position, minRange);
