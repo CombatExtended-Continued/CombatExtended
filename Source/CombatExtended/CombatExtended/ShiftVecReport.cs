@@ -120,6 +120,7 @@ public class ShiftVecReport
     }
 
     // Leading variables
+    public Vector2 shotSource = new Vector2(0, 0); // muzzle/eye position (xz) at fire time, used for time-of-flight
     public float shotSpeed = 0f;
     private bool targetIsMoving
     {
@@ -190,6 +191,7 @@ public class ShiftVecReport
         circularMissRadius = report.circularMissRadius;
         indirectFireShift = report.indirectFireShift;
         lightingShift = report.lightingShift;
+        shotSource = report.shotSource;
         shotSpeed = report.shotSpeed;
         shotDist = report.shotDist;
         maxRange = report.maxRange;
@@ -220,16 +222,78 @@ public class ShiftVecReport
 
     public Vector2 GetRandLeadVec()
     {
-        if (blindFiring)
+        if (blindFiring || !targetIsMoving || targetPawn.pather == null)
         {
             return new Vector2(0, 0);
         }
-        Vector3 moveVec = new Vector3();
-        if (targetIsMoving)
+
+        // Iterate the flight time - the target moves while the round flies, so refine the impact
+        // point a couple of times. DrawPos already encodes how far into the current step the pawn
+        // is, so the public nextCell is all we need (no private pather internals).
+        float t = shotSpeed > 0f ? shotDist / shotSpeed : 0f;
+        Vector3 predicted = PredictPawnPos(t);
+        for (int i = 0; i < 2 && shotSpeed > 0f; i++)
         {
-            moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + Rand.Range(-leadShift, leadShift));
+            predicted = PredictPawnPos(t);
+            t = (new Vector2(predicted.x, predicted.z) - shotSource).magnitude / shotSpeed;
         }
+
+        Vector3 cur = targetPawn.DrawPos;
+        Vector3 delta = predicted - cur;
+        delta.y = 0f;
+
+        Vector3 dir = delta;
+        if (dir.sqrMagnitude < 1e-6f)
+        {
+            dir = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3();
+            dir.y = 0f;
+        }
+        if (dir.sqrMagnitude < 1e-6f)
+        {
+            return new Vector2(0, 0);
+        }
+
+        // Keep the random accuracy-driven lead error on top of the systematic prediction.
+        float mag = delta.magnitude + Rand.Range(-leadShift, leadShift);
+        Vector3 moveVec = dir.normalized * mag;
+
+        if (Controller.settings.DebugDrawInterceptChecks)
+        {
+            float remainingInStep = (targetPawn.pather.nextCell.ToVector3Shifted() - targetPawn.DrawPos).magnitude;
+            Log.Message($"[CE-Debug] lead: t={t:F3}s predicted=({predicted.x:F2},{predicted.z:F2}) cur=({cur.x:F2},{cur.z:F2}) mag={mag:F2} remainingInStep={remainingInStep:F2} leadShift={leadShift:F2}");
+        }
+
         return new Vector2(moveVec.x, moveVec.z);
+    }
+
+    /// <summary>
+    /// The pawn's future xz position <paramref name="t"/> seconds from now, extrapolated from its
+    /// real DrawPos along the heading to nextCell.
+    /// </summary>
+    private Vector3 PredictPawnPos(float t)
+    {
+        Vector3 pos = targetPawn.DrawPos;
+        pos.y = 0f;
+        if (targetPawn.pather == null || !targetPawn.pather.Moving || t <= 0f)
+        {
+            return pos;
+        }
+
+        Vector3 next = targetPawn.pather.nextCell.ToVector3Shifted();
+        next.y = 0f;
+        Vector3 heading = next - pos;
+        if (heading.sqrMagnitude < 1e-6f)
+        {
+            heading = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3();
+            heading.y = 0f;
+        }
+        if (heading.sqrMagnitude < 1e-6f)
+        {
+            return pos;
+        }
+
+        float travel = CE_Utility.GetMoveSpeed(targetPawn) * t;
+        return pos + heading.normalized * travel;
     }
 
     /// <returns>Angle Vector2 in degrees</returns>
