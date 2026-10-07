@@ -522,12 +522,15 @@ public class Verb_LaunchProjectileCE : Verb
             }
 
 
-            if (report.targetPawn != null)
-            {
-                v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
-            }
-
+            // v is already the pawn's DrawPos, lean included. adding the lean again here is how we
+            // spent a whole afternoon cheerfully aiming at nothing.
             newTargetLoc.Set(v.x, v.z);
+
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                var rt = report.target;
+                Log.Message($"[CE-Debug] aim: base=({v.x:F2},{v.z:F2}) targetThing={rt.Thing?.LabelShort ?? "<none>"} targetPawn={report.targetPawn?.LabelShort ?? "<none>"} cell={rt.Cell} thingPos={(rt.Thing != null ? rt.Thing.Position.ToString() : "-")} thingDraw={(rt.Thing != null ? rt.Thing.DrawPos.ToString("F2") : "-")}");
+            }
 
             // ----------------------------------- STEP 1: Actual location + Shift for visibility
 
@@ -541,7 +544,6 @@ public class Verb_LaunchProjectileCE : Verb
             // Lead a moving target
             if (!isInstant)
             {
-
                 newTargetLoc += report.GetRandLeadVec();
             }
 
@@ -668,6 +670,8 @@ public class Verb_LaunchProjectileCE : Verb
             report.sightsEfficiency = 0;
         }
         report.shotDist = (targetCell - caster.Position).LengthHorizontal;
+        Vector3 shotOrigin = caster.TrueCenter();
+        report.shotSource.Set(shotOrigin.x, shotOrigin.z);
         report.maxRange = EffectiveRange;
         report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
@@ -1391,7 +1395,8 @@ public class Verb_LaunchProjectileCE : Verb
 
         if (CanHitFromCellIgnoringRange(shotSource, targ, out dest))
         {
-            targetPos = dest.ToVector3Shifted();
+            // targetPos stays the pawn's real position; dest is just the cell for the shoot line.
+            // (it used to be overwritten with the cell center here. that's the bug I just buried.)
             resultingLine = new ShootLine(root, dest);
             return true;
         }
@@ -1406,7 +1411,6 @@ public class Verb_LaunchProjectileCE : Verb
                 var leanPosOffset = (leanLoc - root).ToVector3() * leanOffset;
                 if (CanHitFromCellIgnoringRange(shotSource + leanPosOffset, targ, out dest))
                 {
-                    targetPos = dest.ToVector3Shifted();
                     resultingLine = new ShootLine(leanLoc, dest);
                     return true;
                 }
