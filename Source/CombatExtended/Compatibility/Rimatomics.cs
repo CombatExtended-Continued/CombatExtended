@@ -380,31 +380,41 @@ class Rimatomics : IPatch
         {
             return;
         }
-        Map map = Current.Game.FindMap(___destinationTile);
-        if (map != null)
+        // Runs inside WorldObject_Sabot.Tick. RimWorld doesn't catch per world object, so an exception here would abort the
+        // whole world tick, and again every tick after, since the sabot would never be removed. On any failure, log once and
+        // let Arrived() discard the round the way Rimatomics does without CE.
+        try
         {
-            // The target gained a map midflight: pick random impact cell, as CE shells do.
-            ___destinationCell = ShellingUtility.FindRandomImpactCell(map, worldStrikeShellDef);
-            return;
+            Map map = Current.Game.FindMap(___destinationTile);
+            if (map != null)
+            {
+                // The target gained a map midflight: pick random impact cell, as CE shells do.
+                ___destinationCell = ShellingUtility.FindRandomImpactCell(map, worldStrikeShellDef);
+                return;
+            }
+            Faction attacker = ___railgun?.Faction ?? Faction.OfPlayer;
+            GlobalTargetInfo source = ___railgun != null && ___railgun.Spawned
+                                      ? new GlobalTargetInfo(___railgun.Position, ___railgun.Map)
+                                      : new GlobalTargetInfo((PlanetTile)___initialTile);
+            foreach (WorldObject worldObject in Find.WorldObjects.ObjectsAt(___destinationTile).ToList())
+            {
+                HostilityComp hostility = worldObject.GetComponent<HostilityComp>();
+                HealthComp healthComp = worldObject.GetComponent<HealthComp>();
+                if (worldObject.Faction == Faction.OfPlayer || hostility == null || healthComp == null)
+                {
+                    continue;
+                }
+                if (worldObject.Faction != null)
+                {
+                    hostility.TryHostilityResponse(attacker, source);
+                }
+                healthComp.ApplyDamage(worldStrikeShellDef, attacker, source);
+                break;
+            }
         }
-        Faction attacker = ___railgun?.Faction ?? Faction.OfPlayer;
-        GlobalTargetInfo source = ___railgun != null && ___railgun.Spawned
-                                  ? new GlobalTargetInfo(___railgun.Position, ___railgun.Map)
-                                  : new GlobalTargetInfo((PlanetTile)___initialTile);
-        foreach (WorldObject worldObject in Find.WorldObjects.ObjectsAt(___destinationTile).ToList())
+        catch (Exception e)
         {
-            HostilityComp hostility = worldObject.GetComponent<HostilityComp>();
-            HealthComp healthComp = worldObject.GetComponent<HealthComp>();
-            if (worldObject.Faction == Faction.OfPlayer || hostility == null || healthComp == null)
-            {
-                continue;
-            }
-            if (worldObject.Faction != null)
-            {
-                hostility.TryHostilityResponse(attacker, source);
-            }
-            healthComp.ApplyDamage(worldStrikeShellDef, attacker, source);
-            break;
+            Log.ErrorOnce($"Combat Extended :: Rimatomics railgun world strike impact failed: {e}", 0x52574931);
         }
     }
     #endregion
