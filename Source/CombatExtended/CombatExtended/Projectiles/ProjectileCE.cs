@@ -1712,6 +1712,10 @@ public abstract class ProjectileCE : ThingWithComps
         //{
         //    Find.CameraDriver.shaker.DoShake(cameraShakingInit);
         //}
+        if (Map == null)
+        {
+            return;
+        }
         GenClamor.DoClamor(this, 12f, ClamorDefOf.Impact);
         if (Controller.settings.EnableExtraEffects)
         {
