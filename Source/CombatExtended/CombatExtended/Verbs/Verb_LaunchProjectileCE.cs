@@ -1197,7 +1197,7 @@ public class Verb_LaunchProjectileCE : Verb
                     spreadDegrees,
                     aperatureSize,
                     EquipmentSource,
-                    effectiveRange:EffectiveRange);
+                    effectiveRange: EffectiveRange);
             }
             else
             {
