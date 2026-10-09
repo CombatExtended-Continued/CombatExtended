@@ -516,7 +516,7 @@ public abstract class ProjectileCE : ThingWithComps
         LaserGunDef defWeapon = equipmentDef as LaserGunDef;
         Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
         var it_bounds = CE_Utility.GetBoundsFor(intendedTargetThing);
-        for (int i = 1; i < effRange; i++)
+        for (int i = 1; i <= effRange; i++)
         {
             float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
             if (pprops.damageFalloff)
