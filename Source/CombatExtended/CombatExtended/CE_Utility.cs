@@ -1620,7 +1620,8 @@ public static class CE_Utility
                                             float shotAngle,
                                             float shotRotation,
                                             float shotHeight,
-                                            float shotSpeed)
+                                            float shotSpeed,
+                                            float effectiveRange)
     {
         if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
         {
@@ -1658,12 +1659,6 @@ public static class CE_Utility
         bool instant = false;
         float spreadDegrees = 0;
         float aperatureSize = 0.03f;
-        // Hard coded as a super high max range - TODO: change in 1.6 to pass the range from the turret to this function.
-        // Should also update ProjectileCE.RayCast to not need a VerbPropertiesCE input just a float for range (Since thats all its used for).
-        VerbPropertiesCE verbPropsRange = new VerbPropertiesCE
-        {
-            range = 1000
-        };
         if (pprop != null)
         {
             instant = pprop.isInstant;
@@ -1672,7 +1667,7 @@ public static class CE_Utility
         {
             projectile.RayCast(
                 launcher,
-                verbPropsRange,
+                null,
                 origin,
                 shotAngle,
                 shotRotation,
@@ -1680,7 +1675,8 @@ public static class CE_Utility
                 shotSpeed,
                 spreadDegrees,
                 aperatureSize,
-                launcher);
+                launcher,
+                effectiveRange: effectiveRange);
         }
         else
         {
