@@ -1608,8 +1608,9 @@ public static class CE_Utility
     }
 
     /// <summary>
-    /// Entry point for projectile launches from vehicle turrets in Vehicle Framework.
+    /// Old LaunchProjectileCE overload for backwards compatibility
     /// </summary>
+    [Obsolete("Use LaunchProjectileCE_New with an explicit effectiveRange; this overload is retained for backwards compatibility.", false)]
     public static object LaunchProjectileCE(ThingDef projectileDef,
                                             ThingDef _ammoDef,
                                             Def _ammosetDef,
@@ -1620,6 +1621,27 @@ public static class CE_Utility
                                             float shotRotation,
                                             float shotHeight,
                                             float shotSpeed)
+    {
+        // forward to LaunchProjectileCE_New
+        return LaunchProjectileCE_New(projectileDef, _ammoDef, _ammosetDef, origin, target, launcher,
+            shotAngle, shotRotation, shotHeight, shotSpeed, 1000f);
+    }
+
+    /// <summary>
+    /// Range-aware variant of LaunchProjectileCE. effectiveRange is the weapon/turret's effective
+    /// range, forwarded to ProjectileCE.RayCast.
+    /// </summary>
+    public static object LaunchProjectileCE_New(ThingDef projectileDef,
+                                            ThingDef _ammoDef,
+                                            Def _ammosetDef,
+                                            Vector2 origin,
+                                            LocalTargetInfo target,
+                                            Pawn launcher,
+                                            float shotAngle,
+                                            float shotRotation,
+                                            float shotHeight,
+                                            float shotSpeed,
+                                            float effectiveRange)
     {
         if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
         {
@@ -1674,7 +1696,7 @@ public static class CE_Utility
                 spreadDegrees,
                 aperatureSize,
                 launcher,
-                effectiveRange: 1000f);   //backwards commpat
+                effectiveRange: effectiveRange);
         }
         else
         {

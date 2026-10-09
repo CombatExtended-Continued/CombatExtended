@@ -26,7 +26,9 @@ public class VehiclesCompat : IModPart
     {
         VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
         VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
+#pragma warning disable CS0618
         VehicleTurret.LaunchProjectileCE = CE_Utility.LaunchProjectileCE;
+#pragma warning restore CS0618
         VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
         VehicleTurret.NotifyShotFiredCE = NotifyShotFiredCE;
         global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
