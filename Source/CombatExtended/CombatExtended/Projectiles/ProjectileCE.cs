@@ -484,7 +484,8 @@ public abstract class ProjectileCE : ThingWithComps
         float spreadDegrees = 0f,
         float aperatureSize = 0.03f,
         Thing equipment = null,
-        bool useSameHeight = false
+        bool useSameHeight = false,
+        float effectiveRange = 0f
     )
     {
 
@@ -496,7 +497,11 @@ public abstract class ProjectileCE : ThingWithComps
         Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
         Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
         Map map = launcher.Map;
-        Vector3 destination = direction * verbProps.range + origin3;
+
+        // import the effRange if weapon have any offset (e.g. the firing verb's EffectiveRange)
+        float effRange = effectiveRange > 0f ? effectiveRange : verbProps.range;
+
+        Vector3 destination = direction * effRange + origin3;
         this.shotAngle = shotAngle;
         this.shotHeight = shotHeight;
         this.shotRotation = shotRotation;
@@ -511,7 +516,7 @@ public abstract class ProjectileCE : ThingWithComps
         LaserGunDef defWeapon = equipmentDef as LaserGunDef;
         Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
         var it_bounds = CE_Utility.GetBoundsFor(intendedTargetThing);
-        for (int i = 1; i < verbProps.range; i++)
+        for (int i = 1; i < effRange; i++)
         {
             float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
             if (pprops.damageFalloff)
