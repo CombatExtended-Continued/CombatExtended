@@ -1619,8 +1619,7 @@ public static class CE_Utility
                                             float shotAngle,
                                             float shotRotation,
                                             float shotHeight,
-                                            float shotSpeed,
-                                            float effectiveRange)
+                                            float shotSpeed)
     {
         if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
         {
@@ -1675,7 +1674,7 @@ public static class CE_Utility
                 spreadDegrees,
                 aperatureSize,
                 launcher,
-                effectiveRange: effectiveRange);
+                effectiveRange: 1000f);   //backwards commpat
         }
         else
         {
