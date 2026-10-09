@@ -406,7 +406,9 @@ class Rimatomics : IPatch
                 }
                 if (worldObject.Faction != null)
                 {
-                    hostility.TryHostilityResponse(attacker, source);
+                    // Only the firing tile, as TravelingShell.TryShell passes: counter-shelling then lands on a random
+                    // cell of the firing map, as it does for CE artillery, instead of aiming at the railgun's own cell.
+                    hostility.TryHostilityResponse(attacker, new GlobalTargetInfo((PlanetTile)___initialTile));
                 }
                 healthComp.ApplyDamage(worldStrikeShellDef, attacker, source);
                 break;
