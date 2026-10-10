@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- =============== Chapter 2 Gravship Combat Weapons =============== -->
+
+	<!-- ====== GaussHowitzer ====== -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_155mmHowitzerShell_GaussHowitzer</defName>
+		<label>Gauss howitzer shells</label>
+		<ammoTypes>
+			<Ammo_155mmHowitzerShell_HE>VGE_Bullet_GaussHowitzer_CE_HE</Ammo_155mmHowitzerShell_HE>
+			<Ammo_155mmHowitzerShell_HE_HFuzed>VGE_Bullet_GaussHowitzer_CE_HE_HFuzed</Ammo_155mmHowitzerShell_HE_HFuzed>
+			<Ammo_155mmHowitzerShell_Incendiary>VGE_Bullet_GaussHowitzer_CE_Incendiary</Ammo_155mmHowitzerShell_Incendiary>
+			<Ammo_155mmHowitzerShell_EMP>VGE_Bullet_GaussHowitzer_CE_EMP</Ammo_155mmHowitzerShell_EMP>
+			<Ammo_155mmHowitzerShell_Smoke>VGE_Bullet_GaussHowitzer_CE_Smoke</Ammo_155mmHowitzerShell_Smoke>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Name="Base155mmHowitzerShell_GaussHowitzer" ParentName="Base155mmHowitzerShell_GaussGun" Abstract="true">
+		<soundImpact>BulletImpact_Metal</soundImpact>
+		<shellingProps>
+			<range>72</range> <!-- based on VanillaGravshipExpanded.CompProperties_WorldArtillery.worldMapAttackRange x2 -->
+		</shellingProps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussHowitzer_CE_HE</defName>
+		<label>Gauss howitzer shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>683</damageAmountBase>
+			<explosionRadius>6.5</explosionRadius>
+			<speed>135</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<shellingProps>
+				<damage>0.33</damage>				
+			</shellingProps>
+			<preExplosionSpawnSingleThingDef>CraterMedium</preExplosionSpawnSingleThingDef>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>80</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussHowitzer_CE_HE_HFuzed</defName>
+		<label>Gauss howitzer shell (Airburst)</label>
+		<thingClass>CombatExtended.ProjectileCE_HeightFuse</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/AB</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<explosionRadius>6.5</explosionRadius>
+			<aimHeightOffset>12</aimHeightOffset>
+			<shellingProps>
+				<damage>0</damage>
+			</shellingProps>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>50</Fragment_Large>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-90~-40</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussHowitzer_CE_Incendiary</defName>
+		<label>Gauss howitzer shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>39</damageAmountBase>
+			<explosionRadius>14.4</explosionRadius>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.20</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+			<shellingProps>
+				<damage>0.33</damage>
+			</shellingProps>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>316</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>4</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussHowitzer_CE_EMP</defName>
+		<label>Gauss howitzer shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>565</damageAmountBase>
+			<explosionRadius>11.9</explosionRadius>
+			<shellingProps>
+				<damage>0.23</damage>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+		<defName>VGE_Bullet_GaussHowitzer_CE_Smoke</defName>
+		<label>Gauss howitzer shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<explosionRadius>12.9</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<!-- ====== Enemy Gauss Cannon ====== -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_155mmHowitzerShell_GaussCannon</defName>
+		<label>Gauss cannon shells</label>
+		<ammoTypes>
+			<Ammo_155mmHowitzerShell_HE>VGE_Bullet_GaussCannon_CE_HE</Ammo_155mmHowitzerShell_HE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Name="Base155mmHowitzerShell_GaussCannon" ParentName="BaseExplosiveBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<trajectoryWorker>CombatExtended.Compatibility.VGECompat.DirectOverheadTrajectoryWorker</trajectoryWorker>
+			<speed>150</speed>
+			<soundExplode>Explosion_GiantBomb</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<gravityFactor>10</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.05</tilesPerTick>
+				<range>48</range>
+				<arrivedAtSameProps>true</arrivedAtSameProps>
+			</shellingProps>
+		</projectile>
+		<modExtensions>
+			<li Class="VanillaGravshipExpanded.SubstructureDamageExtension">
+				<substructureDamageRadius>5.9</substructureDamageRadius>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussCannon">
+		<defName>VGE_Bullet_GaussCannon_CE_HE</defName>
+		<label>Gauss cannon shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Projectiles/GaussShot_Large</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>(1,2)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>1706</damageAmountBase>
+			<armorPenetrationSharp>114</armorPenetrationSharp>
+			<explosionRadius>13.9</explosionRadius>
+			<soundExplode>Explosion_GiantBomb</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<shellingProps>
+				<damage>1.0</damage>
+			</shellingProps>
+			<preExplosionSpawnSingleThingDef>CraterMedium</preExplosionSpawnSingleThingDef>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>125</Fragment_Large>
+					<Fragment_Small>250</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ====== Enemy Anticraft Beam ====== -->
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>VGE_Bullet_AnticraftBeam_CE</defName>
+		<thingClass>CombatExtended.Compatibility.VGE2Compat.ProjectileCE_AnticraftBeam</thingClass>
+		<label>anticraft beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>BeamBypassShields</damageDef>
+			<damageAmountBase>384</damageAmountBase>
+			<flyOverhead>true</flyOverhead>
+			<beamMoteDef>VGE_Mote_AnticraftBeam</beamMoteDef>
+			<beamStartOffset>3</beamStartOffset>
+			<armorPenetrationSharp>34.00</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<shellingProps>
+				<tilesPerTick>99999</tilesPerTick>
+				<range>72</range>
+				<damage>0.05</damage>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+
+	<!-- ====== AnticraftEmitter ====== -->
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>VGE_Bullet_AnticraftEmitter_CE</defName>
+		<thingClass>CombatExtended.Compatibility.VGECompat.ProjectileCE_ArtilleryBeam</thingClass>
+		<label>anticraft emitter beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>VGE_AnticraftBeamBypassShields</damageDef>
+			<damageAmountBase>360</damageAmountBase>
+			<flyOverhead>true</flyOverhead>
+			<beamMoteDef>VGE_Mote_BeamRepeaterLaser</beamMoteDef>
+			<beamStartOffset>2.5</beamStartOffset>
+			<armorPenetrationSharp>20.00</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<shellingProps>
+				<tilesPerTick>99999</tilesPerTick>
+				<range>72</range>
+				<damage>0.1</damage>
+			</shellingProps>
+		</projectile>
+		<modExtensions>
+			<li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>true</AutoAssign>
+				<CreateTerrainEffects>false</CreateTerrainEffects>
+				<explosionFleckDef>Fleck_HeatGlow_API</explosionFleckDef>
+				<explosionFleckSize>1</explosionFleckSize>
+				<ImpactGlowFleckDef>ExplosionFlash</ImpactGlowFleckDef>
+				<ImpactGlowFleckSize>4</ImpactGlowFleckSize>
+			</li>
+		</modExtensions>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>20</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>3</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>
