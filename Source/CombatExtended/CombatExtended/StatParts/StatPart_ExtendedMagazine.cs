@@ -20,11 +20,11 @@ public class StatPart_ExtendedMagazine : StatPart
             {
                 if (custom.magazineCapacityFactor != 1f)
                 {
-                    sb.AppendLine($"{custom.LabelCap}: x{custom.magazineCapacityFactor}");
+                    sb.AppendLine($"{custom.LabelCap} multiplier: x{100*custom.magazineCapacityFactor}%");
                 }
                 if (custom.magazineCapacityIncrease != 0)
                 {
-                    sb.AppendLine($"{custom.LabelCap}: +{custom.magazineCapacityIncrease}");
+                    sb.AppendLine($"{custom.LabelCap} offset: +{custom.magazineCapacityIncrease}");
                 }
             }
         }
