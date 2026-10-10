@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- goliath's toughplate -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MR_MechStomachGoliath"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MR_MechStomachGoliath"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- siegemelter's fangs -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MR_MechJawSiegemelter"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>molten jaw</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>18</power>
+								<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>2</amount>
+									<chance>0.3</chance>
+								</li>
+								</extraMeleeDamages>
+								<cooldownTime>1.77</cooldownTime>
+								<armorPenetrationSharp>2.88</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.88</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- daggersnout's blade -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MR_MechArmDaggersnout"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>0.83</cooldownTime>
+								<armorPenetrationSharp>0.41</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.62</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>0.83</cooldownTime>
+								<armorPenetrationSharp>2.03</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.62</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- munifex's trajectory analyzer -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/HediffDef[defName="MR_MechEarMunifex"]/modExtensions/li[@Class="MechanoidRepurposing.DefModExtension_IncomingRangedHitChance"]</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="MR_MechEarMunifex"]/stages/li[2]</xpath>
+					<value>
+						<statOffsets>
+							<Suppressability>-0.25</Suppressability>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- optio's gaze -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/HediffDef[defName="MR_MechEyeOptio"]/modExtensions/li[@Class="MechanoidRepurposing.DefModExtension_RangedArmorPenetration"]</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="MR_MechEyeOptio"]/stages/li[2]</xpath>
+					<value>
+						<statOffsets>
+							<NightVisionEfficiency_Implant>0.35</NightVisionEfficiency_Implant>
+						</statOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MR_MechEyeOptio"]/statBases</xpath>
+					<value>
+						<NightVisionEfficiency_Implant>0.35</NightVisionEfficiency_Implant>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
