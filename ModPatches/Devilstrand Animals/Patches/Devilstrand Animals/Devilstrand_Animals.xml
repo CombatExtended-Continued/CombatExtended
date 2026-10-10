@@ -112,11 +112,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="ATK_Devilbex"]/combatPower</xpath>
-		<value>
-			<combatPower>55</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="ATK_Devilbex"]/combatPower</xpath>
+			<value>
+				<combatPower>55</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ========== DevilATK_Devilyak ========== -->
@@ -187,11 +190,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="ATK_Devilyak"]/combatPower</xpath>
-		<value>
-			<combatPower>75</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="ATK_Devilyak"]/combatPower</xpath>
+			<value>
+				<combatPower>75</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 </Patch>

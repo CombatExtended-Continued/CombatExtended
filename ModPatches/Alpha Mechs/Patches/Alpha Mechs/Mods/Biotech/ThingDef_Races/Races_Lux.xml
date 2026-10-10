@@ -15,7 +15,7 @@
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
 							<canParry>true</canParry>
-							<maxParry>2</maxParry>							
+							<maxParry>2</maxParry>
 						</li>
 					</value>
 				</li>
@@ -91,11 +91,14 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="AM_Mech_Lux"]/combatPower</xpath>
-					<value>
-						<combatPower>300</combatPower>
-					</value>
+				<li Class="CombatExtended.PatchOperationSettingsConditional">
+					<settingName>vanillaCombatPower</settingName>
+					<nomatch Class="PatchOperationReplace">
+						<xpath>Defs/PawnKindDef[defName="AM_Mech_Lux"]/combatPower</xpath>
+						<value>
+							<combatPower>300</combatPower>
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationAddModExtension">

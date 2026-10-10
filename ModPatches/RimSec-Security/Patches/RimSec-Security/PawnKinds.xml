@@ -50,41 +50,50 @@
 	<!-- ======= Combat Power ======= -->
 
 	<!-- Defender Series -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="RSPeacekeeperDefenderPawnKind" or
-			defName="RSPeacekeeperDefenderForestPawnKind" or
-			defName="RSPeacekeeperDefenderDesertPawnKind" or
-			defName="RSPeacekeeperDefenderWinterPawnKind"
-			]/combatPower </xpath>
-		<value>
-			<combatPower>180</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="RSPeacekeeperDefenderPawnKind" or
+				defName="RSPeacekeeperDefenderForestPawnKind" or
+				defName="RSPeacekeeperDefenderDesertPawnKind" or
+				defName="RSPeacekeeperDefenderWinterPawnKind"
+				]/combatPower </xpath>
+			<value>
+				<combatPower>180</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- Enforcer Series -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="RSPeacekeeperEnforcerPawnKind" or
-			defName="RSPeacekeeperEnforcerForestPawnKind" or
-			defName="RSPeacekeeperEnforcerDesertPawnKind" or
-			defName="RSPeacekeeperEnforcerWinterPawnKind"
-			]/combatPower </xpath>
-		<value>
-			<combatPower>225</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="RSPeacekeeperEnforcerPawnKind" or
+				defName="RSPeacekeeperEnforcerForestPawnKind" or
+				defName="RSPeacekeeperEnforcerDesertPawnKind" or
+				defName="RSPeacekeeperEnforcerWinterPawnKind"
+				]/combatPower </xpath>
+			<value>
+				<combatPower>225</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- Defender Series -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="RSPeacekeeperSentinelPawnKind" or
-			defName="RSPeacekeeperSentinelForestPawnKind" or
-			defName="RSPeacekeeperSentinelDesertPawnKind" or
-			defName="RSPeacekeeperSentinelWinterPawnKind"
-			]/combatPower </xpath>
-		<value>
-			<combatPower>400</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="RSPeacekeeperSentinelPawnKind" or
+				defName="RSPeacekeeperSentinelForestPawnKind" or
+				defName="RSPeacekeeperSentinelDesertPawnKind" or
+				defName="RSPeacekeeperSentinelWinterPawnKind"
+				]/combatPower </xpath>
+			<value>
+				<combatPower>400</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 </Patch>
