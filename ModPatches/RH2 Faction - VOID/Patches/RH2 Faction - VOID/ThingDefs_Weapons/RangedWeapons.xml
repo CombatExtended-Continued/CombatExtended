@@ -4,25 +4,11 @@
 	<!-- ========== Remove MoveSpeed Penalties ========== -->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="RNGun_WraithCannon_HMG" or defName="RNGun_GAU19_HMG" or defName="RNGun_DuskMAG_HMG"]/equippedStatOffsets</xpath>
-	</Operation>
-
-	<!-- ========== Adjust the Recipes ========== -->
-
-	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
+			defName="RNGun_WraithCannon_HMG" or
 			defName="RNGun_GAU19_HMG" or
-			defName="RNGun_DuskMAG_HMG" or
-			defName="RNGun_CorpseBlaster_Shotgun" or
-			defName="RNGun_DuskStriker_Shotgun" or
-			defName="RNGun_DuskEnforcer_Revolver" or
-			defName="RNGun_CorpseDestroyer_GPMG" or
-			defName="RNGun_DuskCarbine_DMR" or
-			defName="RNGun_DFGAUSSRifle_AMR"
-			]/costList</xpath>
-		<value>
-			<ComponentSpacer>1</ComponentSpacer>
-		</value>
+			defName="RNGun_DuskMAG_HMG"
+			]/equippedStatOffsets</xpath>
 	</Operation>
 
 	<!-- ========== Shared Melee Tools ========== -->
@@ -123,7 +109,7 @@
 			defName="RNGun_CorpseDestroyer_GPMG" or
 			defName="RNGun_DuskCarbine_DMR" or
 			defName="RNGun_DFGAUSSRifle_AMR"
-			]/tools </xpath>
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
