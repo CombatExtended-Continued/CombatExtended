@@ -1608,8 +1608,9 @@ public static class CE_Utility
     }
 
     /// <summary>
-    /// Entry point for projectile launches from vehicle turrets in Vehicle Framework.
+    /// Old LaunchProjectileCE overload for backwards compatibility
     /// </summary>
+    [Obsolete("Use LaunchProjectileCE_New with an explicit effectiveRange; this overload is retained for backwards compatibility.", false)]
     public static object LaunchProjectileCE(ThingDef projectileDef,
                                             ThingDef _ammoDef,
                                             Def _ammosetDef,
@@ -1620,6 +1621,27 @@ public static class CE_Utility
                                             float shotRotation,
                                             float shotHeight,
                                             float shotSpeed)
+    {
+        // forward to LaunchProjectileCE_New
+        return LaunchProjectileCE_New(projectileDef, _ammoDef, _ammosetDef, origin, target, launcher,
+            shotAngle, shotRotation, shotHeight, shotSpeed, 1000f);
+    }
+
+    /// <summary>
+    /// Range-aware variant of LaunchProjectileCE. effectiveRange is the weapon/turret's effective
+    /// range, forwarded to ProjectileCE.RayCast.
+    /// </summary>
+    public static object LaunchProjectileCE_New(ThingDef projectileDef,
+                                            ThingDef _ammoDef,
+                                            Def _ammosetDef,
+                                            Vector2 origin,
+                                            LocalTargetInfo target,
+                                            Pawn launcher,
+                                            float shotAngle,
+                                            float shotRotation,
+                                            float shotHeight,
+                                            float shotSpeed,
+                                            float effectiveRange)
     {
         if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
         {
@@ -1657,12 +1679,6 @@ public static class CE_Utility
         bool instant = false;
         float spreadDegrees = 0;
         float aperatureSize = 0.03f;
-        // Hard coded as a super high max range - TODO: change in 1.6 to pass the range from the turret to this function.
-        // Should also update ProjectileCE.RayCast to not need a VerbPropertiesCE input just a float for range (Since thats all its used for).
-        VerbPropertiesCE verbPropsRange = new VerbPropertiesCE
-        {
-            range = 1000
-        };
         if (pprop != null)
         {
             instant = pprop.isInstant;
@@ -1671,7 +1687,7 @@ public static class CE_Utility
         {
             projectile.RayCast(
                 launcher,
-                verbPropsRange,
+                null,
                 origin,
                 shotAngle,
                 shotRotation,
@@ -1679,7 +1695,8 @@ public static class CE_Utility
                 shotSpeed,
                 spreadDegrees,
                 aperatureSize,
-                launcher);
+                launcher,
+                effectiveRange: effectiveRange);
         }
         else
         {
