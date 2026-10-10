@@ -147,6 +147,51 @@ public class Verb_LaunchProjectileCE : Verb
 
     public override float EffectiveRange => Mathf.Max(0, base.EffectiveRange * (1f + (base.EquipmentSource?.GetStatValue(StatDefOf.RangedWeapon_RangeMultiplier) - 1f ?? 0f) + (projectilePropsCE?.effectiveRangeMultiplier - 1f ?? 0f)) + (projectilePropsCE?.effectiveRangeOffset ?? 0f));
 
+    /// <summary>
+    /// Reads minRangeOverride from the currently loaded projectile. False if it doesn't set one.
+    /// </summary>
+    public bool TryGetMinRangeOverride(out float value)
+    {
+        if (Projectile?.projectile is ProjectilePropertiesCE { minRangeOverride: >= 0f } props)
+        {
+            value = props.minRangeOverride;
+            return true;
+        }
+        value = 0f;
+        return false;
+    }
+
+    /// <summary>
+    /// Raw minRange, replaced by the loaded projectile's minRangeOverride if it sets one.
+    /// </summary>
+    public float MinRangeCE => TryGetMinRangeOverride(out float value) ? value : verbProps.minRange;
+
+    /// <summary>
+    /// For callers that only have a Verb: MinRangeCE for CE verbs, the vanilla field otherwise.
+    /// </summary>
+    public static float MinRangeOf(Verb verb) => verb is Verb_LaunchProjectileCE ce ? ce.MinRangeCE : verb.verbProps.minRange;
+
+    private static bool? anyMinRangeOverride;
+
+    /// <summary>
+    /// Whether any projectile def sets minRangeOverride. Patches use this to skip all override lookups when nothing uses the feature.
+    /// </summary>
+    public static bool AnyMinRangeOverride
+    {
+        get
+        {
+            if (anyMinRangeOverride == null)
+            {
+                if (Current.ProgramState != ProgramState.Playing)
+                {
+                    return true; // defs may not be fully loaded yet, assume yes and don't cache
+                }
+                anyMinRangeOverride = DefDatabase<ThingDef>.AllDefsListForReading.Any(def => def.projectile is ProjectilePropertiesCE { minRangeOverride: >= 0f });
+            }
+            return anyMinRangeOverride.Value;
+        }
+    }
+
     public virtual ThingDef Projectile
     {
         get
@@ -944,7 +989,7 @@ public class Verb_LaunchProjectileCE : Verb
             {
                 report = "CE_BlockedMaxRange".Translate();
             }
-            else if (lengthHorizontalSquared < verbProps.minRange * verbProps.minRange)
+            else if (lengthHorizontalSquared < MinRangeCE * MinRangeCE)
             {
                 if (verbProps is VerbPropertiesCE vpce)
                 {

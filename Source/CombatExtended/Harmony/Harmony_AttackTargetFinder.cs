@@ -240,4 +240,33 @@ internal static class Harmony_AttackTargetFinder
             }
         }
     }
+
+    [HarmonyPatch(typeof(AttackTargetFinder), nameof(AttackTargetFinder.BestShootTargetFromCurrentPosition))]
+    internal static class Harmony_AttackTargetFinder_BestShootTargetFromCurrentPosition
+    {
+        // Vanilla passes the raw verbProps.minRange into the target search as a minimum distance,
+        // so swap the field for the duration of the call. Target scans run on the main thread,
+        // so temporarily mutating the shared def is safe.
+        internal static void Prefix(IAttackTargetSearcher searcher, out (VerbProperties props, float minRange) __state)
+        {
+            __state = default;
+            if (!Verb_LaunchProjectileCE.AnyMinRangeOverride)
+            {
+                return;
+            }
+            if (searcher?.CurrentEffectiveVerb is Verb_LaunchProjectileCE verb && verb.TryGetMinRangeOverride(out float value))
+            {
+                __state = (verb.verbProps, verb.verbProps.minRange);
+                verb.verbProps.minRange = value;
+            }
+        }
+
+        internal static void Finalizer((VerbProperties props, float minRange) __state)
+        {
+            if (__state.props != null)
+            {
+                __state.props.minRange = __state.minRange;
+            }
+        }
+    }
 }

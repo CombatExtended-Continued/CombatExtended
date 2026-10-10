@@ -36,6 +36,10 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float warmupOffset = 0f;
     public float effectiveRangeMultiplier = 1;
     public float effectiveRangeOffset = 0f;
+    /// <summary>
+    /// Overrides the firing verb's minRange while this projectile is loaded. -1 = no override, 0 = no minimum range.
+    /// </summary>
+    public float minRangeOverride = -1f;
     public float muzzleFlashMultiplier = 1;
     public float muzzleFlashOffset = 0f;
     public float reloadTimeMultiplier = 1f;

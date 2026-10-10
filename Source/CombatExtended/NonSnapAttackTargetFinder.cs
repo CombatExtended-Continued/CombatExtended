@@ -33,7 +33,7 @@ public static class NonSnapAttackTargetFinder
             Log.Error("BestShootTargetFromCurrentPosition with " + searcher.ToStringSafe() + " who has no attack verb.");
             return null;
         }
-        return BestAttackTarget(searcher, flags, angle, validator, Mathf.Max(minDistance, verb.verbProps.minRange), Mathf.Min(maxDistance, verb.verbProps.range));
+        return BestAttackTarget(searcher, flags, angle, validator, Mathf.Max(minDistance, Verb_LaunchProjectileCE.MinRangeOf(verb)), Mathf.Min(maxDistance, verb.verbProps.range));
     }
 
     public static IAttackTarget BestAttackTarget(IAttackTargetSearcher searcher, TargetScanFlags flags, Vector3 angle, Predicate<Thing> validator = null, float minDist = 0f, float maxDist = 9999f)
