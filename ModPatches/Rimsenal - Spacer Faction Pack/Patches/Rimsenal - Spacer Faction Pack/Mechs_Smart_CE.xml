@@ -104,7 +104,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Skutaton"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>18</ArmorRating_Sharp>
+			<ArmorRating_Sharp>30</ArmorRating_Sharp>
 			<MeleeDodgeChance>0.15</MeleeDodgeChance>
 			<MeleeCritChance>0.40</MeleeCritChance>
 			<MeleeParryChance>0.70</MeleeParryChance>
@@ -115,7 +115,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Skutaton"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+			<ArmorRating_Blunt>67.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Skutaton"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>2.25</EnergyShieldEnergyMax>
 		</value>
 	</Operation>
 
@@ -237,6 +244,91 @@
 		</value>
 	</Operation>
 
+	<!-- ========== Krambon =========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Krambon"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Krambon"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+			<CarryBulk>40</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_KrambonLightMortar</defName>
+		<statBases>
+			<Mass>3.0</Mass>
+			<Bulk>6.0</Bulk>
+			<SwayFactor>1.0</SwayFactor>
+			<ShotSpread>0.16</ShotSpread>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>3.0</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
+			<warmupTime>4</warmupTime>
+			<minRange>10</minRange>
+			<range>62</range>
+			<soundCast>Shot_IncendiaryLauncher</soundCast>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<circularError>3</circularError>
+			<indirectFirePenalty>0.3</indirectFirePenalty>
+			<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
+			<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
+			<targetParams>
+				<canTargetLocations>True</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>2</AmmoGenPerMagOverride>
+			<reloadTime>1.6</reloadTime>
+			<ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_KrambonLightMortar"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Mech_Krambon"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- ========== Borer =========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -271,6 +363,22 @@
 		<xpath>Defs/ThingDef[defName="Mech_Psiloid"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>7</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Psiloid"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>0.75</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<!-- ========== Bombito =========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Bombito"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>0.5</EnergyShieldEnergyMax>
 		</value>
 	</Operation>
 
