@@ -129,7 +129,7 @@ public class BulletCE : ProjectileCE
                 // Log errors from the impact process with additional diagnostic context before rethrowing
                 // for easier identification of the problematic projectiles in larger firefights
                 Log.Error($"CombatExtended :: BulletCE impacting thing {hitThing.LabelCap} of def {hitThing.def.LabelCap} added by mod {hitThing.def.modContentPack.Name}.\n{e}");
-                throw e;
+                throw;
             }
             finally
             {

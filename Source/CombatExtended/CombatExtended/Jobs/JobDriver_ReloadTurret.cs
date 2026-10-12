@@ -160,7 +160,7 @@ public class JobDriver_ReloadTurret : JobDriver
         }
 
         // If ammo system is turned off we just need to go to the turret.
-        if (turret.InteractionCell != null)
+        if (turret.InteractionCell.IsValid)
         {
             yield return Toils_Goto.GotoCell(turret.InteractionCell, PathEndMode.OnCell);
         }
