@@ -45,6 +45,38 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Shoulder Beam Turret -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="LTS_ShoulderBeamTurretActive"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>shoulder turret gun</label>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_Laser_BeamRepeater</defaultProjectile>
+								<warmupTime>1.0</warmupTime>
+								<range>37.9</range>
+								<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+								<burstShotCount>3</burstShotCount>
+								<soundCast>Shot_BeamRepeater</soundCast>
+								<soundCastTail>GunTail_Light</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<aimingChargeMote>Mote_BeamRepeater_Charge</aimingChargeMote>
+							</li>
+						</verbs>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
 	<!-- Shoulder Rocket -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/AbilityDef[defName="LTS_ShoulderRocketPod"]/verbProperties/range</xpath>
@@ -64,25 +96,25 @@
 	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
 		<settingName>genericAmmo</settingName>
 		<nomatch Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="LTS_ShoulderMortar"]/comps/li[@Class="LTS_Implants.LTS_CompProperties_AbilityReloadable"]</xpath>
+			<xpath>Defs/AbilityDef[defName="LTS_ShoulderMortar"]/comps/li[@Class="LTS_Implants.LTS_CompProperties_AbilityReloadable"]</xpath>
 			<value>
-			<li Class="LTS_Implants.LTS_CompProperties_AbilityReloadable">
-				<compClass>LTS_Implants.LTS_CompAbilityEffect_Reloadable</compClass>
-				<ammoDef>Ammo_40x46mmGrenade_HE</ammoDef>
-				<ammoCountPerCharge>1</ammoCountPerCharge>
-				<soundReload>Standard_Reload</soundReload>
-			</li>
+				<li Class="LTS_Implants.LTS_CompProperties_AbilityReloadable">
+					<compClass>LTS_Implants.LTS_CompAbilityEffect_Reloadable</compClass>
+					<ammoDef>Ammo_40x46mmGrenade_HE</ammoDef>
+					<ammoCountPerCharge>1</ammoCountPerCharge>
+					<soundReload>Standard_Reload</soundReload>
+				</li>
 			</value>
 		</nomatch>
 		<match Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="LTS_ShoulderMortar"]/comps/li[@Class="LTS_Implants.LTS_CompProperties_AbilityReloadable"]</xpath>
+			<xpath>Defs/AbilityDef[defName="LTS_ShoulderMortar"]/comps/li[@Class="LTS_Implants.LTS_CompProperties_AbilityReloadable"]</xpath>
 			<value>
-			<li Class="LTS_Implants.LTS_CompProperties_AbilityReloadable">
-				<compClass>LTS_Implants.LTS_CompAbilityEffect_Reloadable</compClass>
-				<ammoDef>Ammo_LauncherGrenade_HE</ammoDef>
-				<ammoCountPerCharge>1</ammoCountPerCharge>
-				<soundReload>Standard_Reload</soundReload>
-			</li>
+				<li Class="LTS_Implants.LTS_CompProperties_AbilityReloadable">
+					<compClass>LTS_Implants.LTS_CompAbilityEffect_Reloadable</compClass>
+					<ammoDef>Ammo_LauncherGrenade_HE</ammoDef>
+					<ammoCountPerCharge>1</ammoCountPerCharge>
+					<soundReload>Standard_Reload</soundReload>
+				</li>
 			</value>
 		</match>
 	</Operation>
