@@ -14,15 +14,7 @@
 			</li>
 
 			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[
-					defName="CAT_ToxRapierBladelink" or
-					defName="CAT_ToxCurvedBladeBladelink" or
-					defName="CAT_ToxScytheBladelink" or
-					defName="CAT_ToxGauntletBladelink" or
-					defName="CAT_ToxTribladeBladelink" or
-					defName="CAT_ToxStellicPolearmBladelink" or
-					defName="CAT_ToxStellicThuribleBladelink"
-					]/equippedStatOffsets</xpath>
+				<xpath>Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]/equippedStatOffsets/MoveSpeed</xpath>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -44,8 +36,9 @@
 				</value>
 			</li>
 
+			<!-- Tox Rapier Bladelink -->
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="CAT_ToxRapierBladelink"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="CAT_ToxRapierBladelink"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -86,16 +79,6 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxRapierBladelink"]/statBases</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxRapierBladelink"]</xpath>
-					<value>
-						<statBases />
-					</value>
-				</nomatch>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="CAT_ToxRapierBladelink"]/statBases</xpath>
 				<value>
@@ -104,14 +87,11 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxRapierBladelink"]/equippedStatOffsets</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxRapierBladelink"]</xpath>
-					<value>
-						<equippedStatOffsets />
-					</value>
-				</nomatch>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="CAT_ToxRapierBladelink"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.29</MeleeDodgeChance>
+				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -119,12 +99,12 @@
 				<value>
 					<MeleeCritChance>1.07</MeleeCritChance>
 					<MeleeParryChance>0.66</MeleeParryChance>
-					<MeleeDodgeChance>0.29</MeleeDodgeChance>
 				</value>
 			</li>
 
+			<!-- Tox Curved Blade Bladelink -->
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="CAT_ToxCurvedBladeBladelink"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBladeBladelink"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -165,32 +145,12 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBladeBladelink"]/statBases</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBladeBladelink"]</xpath>
-					<value>
-						<statBases />
-					</value>
-				</nomatch>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBladeBladelink"]/statBases</xpath>
 				<value>
 					<Bulk>10</Bulk>
 					<MeleeCounterParryBonus>1.53</MeleeCounterParryBonus>
 				</value>
-			</li>
-
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBladeBladelink"]/equippedStatOffsets</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBladeBladelink"]</xpath>
-					<value>
-						<equippedStatOffsets />
-					</value>
-				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -202,8 +162,9 @@
 				</value>
 			</li>
 
+			<!-- Tox Scythe Bladelink -->
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="CAT_ToxScytheBladelink"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="CAT_ToxScytheBladelink"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -233,32 +194,12 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxScytheBladelink"]/statBases</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxScytheBladelink"]</xpath>
-					<value>
-						<statBases />
-					</value>
-				</nomatch>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="CAT_ToxScytheBladelink"]/statBases</xpath>
 				<value>
 					<Bulk>6</Bulk>
 					<MeleeCounterParryBonus>0.53</MeleeCounterParryBonus>
 				</value>
-			</li>
-
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxScytheBladelink"]/equippedStatOffsets</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxScytheBladelink"]</xpath>
-					<value>
-						<equippedStatOffsets />
-					</value>
-				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -270,8 +211,9 @@
 				</value>
 			</li>
 
+			<!-- Tox Gauntlet Bladelink -->
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="CAT_ToxGauntletBladelink"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="CAT_ToxGauntletBladelink"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">					
@@ -301,32 +243,12 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxGauntletBladelink"]/statBases</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxGauntletBladelink"]</xpath>
-					<value>
-						<statBases />
-					</value>
-				</nomatch>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="CAT_ToxGauntletBladelink"]/statBases</xpath>
 				<value>
 					<Bulk>4</Bulk>
 					<MeleeCounterParryBonus>0.43</MeleeCounterParryBonus>
 				</value>
-			</li>
-
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxGauntletBladelink"]/equippedStatOffsets</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxGauntletBladelink"]</xpath>
-					<value>
-						<equippedStatOffsets />
-					</value>
-				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -369,6 +291,7 @@
 				</FireModes>
 			</li>
 
+			<!-- Tox Triblade Bladelink -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="CAT_ToxTribladeBladelink"]/tools</xpath>
 				<value>
@@ -389,32 +312,12 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxTribladeBladelink"]/statBases</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxTribladeBladelink"]</xpath>
-					<value>
-						<statBases />
-					</value>
-				</nomatch>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="CAT_ToxTribladeBladelink"]/statBases</xpath>
 				<value>
 					<Bulk>4</Bulk>
 					<MeleeCounterParryBonus>0.43</MeleeCounterParryBonus>
 				</value>
-			</li>
-
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxTribladeBladelink"]/equippedStatOffsets</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxTribladeBladelink"]</xpath>
-					<value>
-						<equippedStatOffsets />
-					</value>
-				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -426,8 +329,9 @@
 				</value>
 			</li>
 
+			<!-- Tox Stellic Polearm Bladelink -->
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -469,16 +373,6 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]/statBases</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]</xpath>
-					<value>
-						<statBases />
-					</value>
-				</nomatch>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]/statBases</xpath>
 				<value>
@@ -487,14 +381,11 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]/equippedStatOffsets</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]</xpath>
-					<value>
-						<equippedStatOffsets />
-					</value>
-				</nomatch>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="CAT_ToxStellicPolearmBladelink"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.83</MeleeDodgeChance>
+				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -502,14 +393,12 @@
 				<value>
 					<MeleeCritChance>0.19</MeleeCritChance>
 					<MeleeParryChance>1.5</MeleeParryChance>
-					<MeleeDodgeChance>0.83</MeleeDodgeChance>
-					<PsychicEntropyRecoveryRate>0.05</PsychicEntropyRecoveryRate>
-					<VPE_PsyfocusCostFactor MayRequire="VanillaExpanded.VPsycastsE">-.05</VPE_PsyfocusCostFactor>
 				</value>
 			</li>
 
+			<!-- Tox Stellic Thurible Bladelink -->
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="CAT_ToxStellicThuribleBladelink"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="CAT_ToxStellicThuribleBladelink"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -545,16 +434,6 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxStellicThuribleBladelink"]/statBases</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxStellicThuribleBladelink"]</xpath>
-					<value>
-						<statBases />
-					</value>
-				</nomatch>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="CAT_ToxStellicThuribleBladelink"]/statBases</xpath>
 				<value>
@@ -563,24 +442,12 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="CAT_ToxStellicThuribleBladelink"]/equippedStatOffsets</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CAT_ToxStellicThuribleBladelink"]</xpath>
-					<value>
-						<equippedStatOffsets />
-					</value>
-				</nomatch>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="CAT_ToxStellicThuribleBladelink"]/equippedStatOffsets</xpath>
 				<value>
 					<MeleeCritChance>2.5</MeleeCritChance>
 					<MeleeParryChance>0.25</MeleeParryChance>
 					<MeleeDodgeChance>0.63</MeleeDodgeChance>
-					<PsychicEntropyRecoveryRate>0.05</PsychicEntropyRecoveryRate>
-					<VPE_PsyfocusCostFactor MayRequire="VanillaExpanded.VPsycastsE">-.05</VPE_PsyfocusCostFactor>
 				</value>
 			</li>
 
