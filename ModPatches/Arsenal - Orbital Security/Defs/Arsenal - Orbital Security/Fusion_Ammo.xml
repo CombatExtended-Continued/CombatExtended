@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>CE_Bullet_FusionPistolBullet</defName>
+		<label>fusion charge</label>
+		<graphicData>
+			<texPath>Things/Projectile/FusionProj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>FusionBolt</damageDef>
+			<speed>120</speed>
+			<damageAmountBase>12</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>22.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>12.8</armorPenetrationBlunt>
+			<empShieldBreakChance>0.2</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>CE_Bullet_FusionRifleBullet</defName>
+		<label>fusion bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/FusionBoltProj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>FusionBolt</damageDef>
+			<speed>120</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>5</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>7.2</armorPenetrationBlunt>
+			<empShieldBreakChance>0.2</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+</Defs>

@@ -124,6 +124,9 @@ Archotech+ (Continued)  |
 Arasaka Corporation	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
+Arsenal - Orbital Security    |
+Arsenal - The Juggernaut    |
+Arsenal - The New Republic    |
 Asimov  |
 Aspero Race |
 Astoriel Legacy |
@@ -248,6 +251,7 @@ Erin's Viera    |
 Erin's Wildlife |
 ESCP - Spriggan   |
 ESCP - Trolls   |
+Eventide Warcasket |
 EvolvedOrgansRedux |
 Exotic Arsenal |
 Expanded Materials - Metals |
@@ -257,6 +261,7 @@ Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 EPOE-Forked: Royalty DLC expansion	|
 Expanded Woodworking (Forked)   |
 Extended Storage	|
+Faction - Elves |
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
 Fallout: Vault 111 Starter Pack |
@@ -601,6 +606,7 @@ Textiles+ (continued)   |
 Tiered Mechs    |
 The Corporation - Mort's Factions   |
 The Cosmic Odyssey - Blessings of the Machine God   |
+The Thrumbo Horn Weapons   |
 The Mantodean insectoid race	|
 The Profaned	|
 The REAL flamberg	|

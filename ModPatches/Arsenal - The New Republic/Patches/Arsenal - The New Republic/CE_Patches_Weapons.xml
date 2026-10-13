@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_SeviceRifle" or defName="Gun_AntiMaterialRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_HeavyRevolver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_SeviceRifle</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>10.03</Bulk>
+		</statBases>
+		<costList>
+			<Steel>50</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<WoodLog>10</WoodLog>
+		</costList>
+		<Properties>
+			<recoilAmount>1.47</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_AntiMaterialRifle</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.6</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.4</SwayFactor>
+			<Bulk>12.0</Bulk>
+			<WorkToMake>45000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>70</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<Chemfuel>10</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>3.50</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<warmupTime>3.6</warmupTime>
+			<range>86</range>
+			<soundCast>Shot_SniperRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_50BMG</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+			<li>Bipod_AMR</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Heavy Revolver -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_HeavyRevolver</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>1.5</SwayFactor>
+			<Bulk>3.2</Bulk>
+		</statBases>
+		<costList>
+			<Steel>30</Steel>
+			<WoodLog>5</WoodLog>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.44</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_4570Gov_FMJ_SB</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Revolver</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4.6</reloadTime>
+			<ammoSet>AmmoSet_4570Gov_SB</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gun_HeavyRevolver"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>1.00,1.00</DrawSize><!-- Keeping for documentation purposes -->
+				<DrawOffset>0.0,-0.04</DrawOffset>
+				<DropCasingWhenReload>true</DropCasingWhenReload>
+				<AdvancedCasingVariables>true</AdvancedCasingVariables>
+				<CasingRotationRandomRange>20</CasingRotationRandomRange>
+				<!--You'll want a lower casing speed and longer casing life time for this case-->
+				<CasingOffset>-0.1,0.05</CasingOffset>
+				<CasingSpeedOverrideRange>1.5~2</CasingSpeedOverrideRange>
+				<!--Reload drop casings doesn't follow aiming angle. negative 135 degrees make it eject up left.-->
+				<CasingAngleOffset>-135</CasingAngleOffset>
+				<CasingLifeTimeMultiplier>2</CasingLifeTimeMultiplier>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
