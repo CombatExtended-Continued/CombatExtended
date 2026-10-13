@@ -164,17 +164,20 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Bast_Vorpal_Bunny"
-			or defName="Bast_Vorpal_Bunny_Befouled"
-			or defName="Bast_Vorpal_Bunny_Enduring"
-			or defName="Bast_Vorpal_Bunny_Enraged"
-			or defName="Bast_Vorpal_Bunny_Gilded"
-			or defName="Bast_Vorpal_Bunny_Iridescent"
-			or defName="Bast_Vorpal_Bunny_Pragmatic"]/combatPower </xpath>
-		<value>
-			<combatPower>20</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Bast_Vorpal_Bunny"
+				or defName="Bast_Vorpal_Bunny_Befouled"
+				or defName="Bast_Vorpal_Bunny_Enduring"
+				or defName="Bast_Vorpal_Bunny_Enraged"
+				or defName="Bast_Vorpal_Bunny_Gilded"
+				or defName="Bast_Vorpal_Bunny_Iridescent"
+				or defName="Bast_Vorpal_Bunny_Pragmatic"]/combatPower </xpath>
+			<value>
+				<combatPower>20</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- === Svarog === -->

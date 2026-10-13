@@ -10,11 +10,14 @@
 
 	<!-- Scyther Type -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_a"]/combatPower</xpath>
-		<value>
-			<combatPower>100</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_a"]/combatPower</xpath>
+			<value>
+				<combatPower>100</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -121,11 +124,14 @@
 
 	<!-- Centipede Type -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_b"]/combatPower</xpath>
-		<value>
-			<combatPower>130</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_b"]/combatPower</xpath>
+			<value>
+				<combatPower>130</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -261,11 +267,14 @@
 
 	<!-- Trooper Type -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_e"]/combatPower</xpath>
-		<value>
-			<combatPower>140</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_e"]/combatPower</xpath>
+			<value>
+				<combatPower>140</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">

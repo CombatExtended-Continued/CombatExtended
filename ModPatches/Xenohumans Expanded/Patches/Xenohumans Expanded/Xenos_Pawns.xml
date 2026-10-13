@@ -315,47 +315,65 @@
 	<!-- ======= Combat Power ======= -->
 
 	<!-- Trooper -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			@Name="Tribal_PenitentKindAlienBase"
-			]/combatPower </xpath>
-		<value>
-			<combatPower>16</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				@Name="Tribal_PenitentKindAlienBase"
+				]/combatPower </xpath>
+			<value>
+				<combatPower>16</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="Tribal_ArcherKindAlienBase"]/combatPower</xpath>
-		<value>
-			<combatPower>20</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[@Name="Tribal_ArcherKindAlienBase"]/combatPower</xpath>
+			<value>
+				<combatPower>20</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="Tribal_WarriorKindAlienBase"]/combatPower</xpath>
-		<value>
-			<combatPower>24</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[@Name="Tribal_WarriorKindAlienBase"]/combatPower</xpath>
+			<value>
+				<combatPower>24</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="Tribal_HunterKindAlienBase"]/combatPower</xpath>
-		<value>
-			<combatPower>30</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[@Name="Tribal_HunterKindAlienBase"]/combatPower</xpath>
+			<value>
+				<combatPower>30</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="Tribal_BerserkerKindAlienBase"]/combatPower</xpath>
-		<value>
-			<combatPower>50</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[@Name="Tribal_BerserkerKindAlienBase"]/combatPower</xpath>
+			<value>
+				<combatPower>50</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="Tribal_HeavyArcherKindAlienBase"]/combatPower</xpath>
-		<value>
-			<combatPower>45</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[@Name="Tribal_HeavyArcherKindAlienBase"]/combatPower</xpath>
+			<value>
+				<combatPower>45</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 </Patch>

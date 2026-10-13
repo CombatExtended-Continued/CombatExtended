@@ -151,11 +151,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RW_IrradiatedMegaspider"]/combatPower</xpath>
-		<value>
-			<combatPower>130</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RW_IrradiatedMegaspider"]/combatPower</xpath>
+			<value>
+				<combatPower>130</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ========== Irradiated Rat ========== -->
@@ -300,11 +303,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RW_Mole"]/combatPower</xpath>
-		<value>
-			<combatPower>12</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RW_Mole"]/combatPower</xpath>
+			<value>
+				<combatPower>12</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 </Patch>

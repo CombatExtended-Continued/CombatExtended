@@ -63,64 +63,73 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="JE_AnimeMascotJoris"
-			or defName="JE_BeefeaterJoris"
-			or defName="JE_BiblicallyAccurateJoris"
-			or defName="JECom_BlockJoris"
-			or defName="JECom_ColonistJoris"
-			or defName="JE_DracoJoris"
-			or defName="JE_EmoJoris"
-			or defName="JECom_FamousDevilJoris"
-			or defName="JE_FatJorry"
-			or defName="JECom_IsaacJoris"
-			or defName="JECom_JJorisJameson"
-			or defName="JE_JonerysBonbearean"
-			or defName="JE_JonicTheHedgehog"
-			or defName="JE_JordonFreeman"
-			or defName="JECom_JorisAstley"
-			or defName="JECom_JorisSiroj"
-			or defName="JECom_JorisThePooh"
-			or defName="JE_JorisWhatLivesInASociety"
-			or defName="JE_Joromir"
-			or defName="JE_Joruto"
-			or defName="JE_JovidBowie"
-			or defName="JE_PerfectlyNormalJoris"
-			or defName="JECom_PickleJoris"
-			or defName="JE_QueenJorisTheSecond"
-			or defName="JE_SpongejorisSquarebonson"
-			or defName="JECom_SuperJoris"
-			or defName="JE_YugiJohris"
-			or defName="JE_JoskarBontocki"
-			or defName="JE_NoitaJoris"]/combatPower </xpath>
-		<value>
-			<combatPower>150</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="JE_AnimeMascotJoris"
+				or defName="JE_BeefeaterJoris"
+				or defName="JE_BiblicallyAccurateJoris"
+				or defName="JECom_BlockJoris"
+				or defName="JECom_ColonistJoris"
+				or defName="JE_DracoJoris"
+				or defName="JE_EmoJoris"
+				or defName="JECom_FamousDevilJoris"
+				or defName="JE_FatJorry"
+				or defName="JECom_IsaacJoris"
+				or defName="JECom_JJorisJameson"
+				or defName="JE_JonerysBonbearean"
+				or defName="JE_JonicTheHedgehog"
+				or defName="JE_JordonFreeman"
+				or defName="JECom_JorisAstley"
+				or defName="JECom_JorisSiroj"
+				or defName="JECom_JorisThePooh"
+				or defName="JE_JorisWhatLivesInASociety"
+				or defName="JE_Joromir"
+				or defName="JE_Joruto"
+				or defName="JE_JovidBowie"
+				or defName="JE_PerfectlyNormalJoris"
+				or defName="JECom_PickleJoris"
+				or defName="JE_QueenJorisTheSecond"
+				or defName="JE_SpongejorisSquarebonson"
+				or defName="JECom_SuperJoris"
+				or defName="JE_YugiJohris"
+				or defName="JE_JoskarBontocki"
+				or defName="JE_NoitaJoris"]/combatPower </xpath>
+			<value>
+				<combatPower>150</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="JECom_Cerberjoris"
-			or defName="JE_ChainsawJoris"
-			or defName="JE_ChiefOBonson"
-			or defName="JE_JagothGrr"
-			or defName="JE_JockExcellente"
-			or defName="JE_Joku"
-			or defName="JE_JoneralGrievous"
-			or defName="JE_JoraltOfRivia"
-			or defName="JE_JorrickLorge"
-			or defName="JECom_RoundJoris"
-			or defName="JE_FourLeggedUniJoris"
-			or defName="JE_ZombieJoris"]/combatPower </xpath>
-		<value>
-			<combatPower>225</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="JECom_Cerberjoris"
+				or defName="JE_ChainsawJoris"
+				or defName="JE_ChiefOBonson"
+				or defName="JE_JagothGrr"
+				or defName="JE_JockExcellente"
+				or defName="JE_Joku"
+				or defName="JE_JoneralGrievous"
+				or defName="JE_JoraltOfRivia"
+				or defName="JE_JorrickLorge"
+				or defName="JECom_RoundJoris"
+				or defName="JE_FourLeggedUniJoris"
+				or defName="JE_ZombieJoris"]/combatPower </xpath>
+			<value>
+				<combatPower>225</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="JE_XorismorphQueen"]/combatPower</xpath>
-		<value>
-			<combatPower>650</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="JE_XorismorphQueen"]/combatPower</xpath>
+			<value>
+				<combatPower>650</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">

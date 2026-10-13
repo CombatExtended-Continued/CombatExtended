@@ -66,11 +66,14 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="AM_Blitzkrieg"]/combatPower</xpath>
-					<value>
-						<combatPower>120</combatPower>
-					</value>
+				<li Class="CombatExtended.PatchOperationSettingsConditional">
+					<settingName>vanillaCombatPower</settingName>
+					<nomatch Class="PatchOperationReplace">
+						<xpath>Defs/PawnKindDef[defName="AM_Blitzkrieg"]/combatPower</xpath>
+						<value>
+							<combatPower>120</combatPower>
+						</value>
+					</nomatch>
 				</li>
 
 			</operations>

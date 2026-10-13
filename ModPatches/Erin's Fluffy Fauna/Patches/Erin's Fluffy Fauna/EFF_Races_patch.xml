@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	
+
 	<!-- === bodyShapes === -->
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -108,7 +108,7 @@
 				</li>
 			</tools>
 		</value>
-	</Operation>	
+	</Operation>
 
 	<!-- === Red Panda === -->
 
@@ -231,11 +231,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="ERN_Greyfox"]/combatPower</xpath>
-		<value>
-			<combatPower>25</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="ERN_Greyfox"]/combatPower</xpath>
+			<value>
+				<combatPower>25</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -373,7 +376,7 @@
 					<armorPenetrationSharp>0</armorPenetrationSharp>
 				</li>
 			</tools>
-		</value>	
+		</value>
 	</Operation>
 
 	<!-- === Hedgehog === -->
@@ -387,11 +390,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="ERN_Hedgehog"]/combatPower</xpath>
-		<value>
-			<combatPower>5</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="ERN_Hedgehog"]/combatPower</xpath>
+			<value>
+				<combatPower>5</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -457,11 +463,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="ERN_Gartersnake"]/combatPower</xpath>
-		<value>
-			<combatPower>5</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="ERN_Gartersnake"]/combatPower</xpath>
+			<value>
+				<combatPower>5</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -523,11 +532,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="ERN_Armadillo"]/combatPower</xpath>
-		<value>
-			<combatPower>25</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="ERN_Armadillo"]/combatPower</xpath>
+			<value>
+				<combatPower>25</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">

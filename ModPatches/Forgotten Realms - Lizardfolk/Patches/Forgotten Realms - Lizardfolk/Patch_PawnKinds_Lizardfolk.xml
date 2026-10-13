@@ -1,39 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<!-- Tribal -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Peasant" or defName="FR_CrocoTribes_Peasant"]/combatPower</xpath>
-		<value>
-			<combatPower>25</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Peasant" or defName="FR_CrocoTribes_Peasant"]/combatPower</xpath>
+			<value>
+				<combatPower>25</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="FR_CrocoTribes_Fighter" or defName="FR_SquamataTribes_Fighter"]/combatPower</xpath>
-		<value>
-			<combatPower>30</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="FR_CrocoTribes_Fighter" or defName="FR_SquamataTribes_Fighter"]/combatPower</xpath>
+			<value>
+				<combatPower>30</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Warrior" or defName="FR_CrocoTribes_Warrior"]/combatPower</xpath>
-		<value>
-			<combatPower>40</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Warrior" or defName="FR_CrocoTribes_Warrior"]/combatPower</xpath>
+			<value>
+				<combatPower>40</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="FR_CrocoTribes_Bowman" or defName="FR_SquamataTribes_Bowman"]/combatPower</xpath>
-		<value>
-			<combatPower>40</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="FR_CrocoTribes_Bowman" or defName="FR_SquamataTribes_Bowman"]/combatPower</xpath>
+			<value>
+				<combatPower>40</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Champion" or defName="FR_SquamataTribes_Chief" or defName="FR_CrocoTribes_Champion" or defName="FR_CrocoTribes_Chief"]/combatPower</xpath>
-		<value>
-			<combatPower>70</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Champion" or defName="FR_SquamataTribes_Chief" or defName="FR_CrocoTribes_Champion" or defName="FR_CrocoTribes_Chief"]/combatPower</xpath>
+			<value>
+				<combatPower>70</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- Hive_Archer -->

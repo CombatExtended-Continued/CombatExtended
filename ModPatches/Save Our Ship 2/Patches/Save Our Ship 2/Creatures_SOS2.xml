@@ -77,11 +77,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Astromite"]/combatPower</xpath>
-		<value>
-			<combatPower>20</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Astromite"]/combatPower</xpath>
+			<value>
+				<combatPower>20</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ========== Stellapede ========== -->
@@ -157,11 +160,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Stellapede"]/combatPower</xpath>
-		<value>
-			<combatPower>80</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Stellapede"]/combatPower</xpath>
+			<value>
+				<combatPower>80</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ========== Cosmopillar ========== -->
@@ -236,11 +242,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Cosmopillar"]/combatPower</xpath>
-		<value>
-			<combatPower>130</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Cosmopillar"]/combatPower</xpath>
+			<value>
+				<combatPower>130</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ========== Shuttles Armor & Melee ========== -->

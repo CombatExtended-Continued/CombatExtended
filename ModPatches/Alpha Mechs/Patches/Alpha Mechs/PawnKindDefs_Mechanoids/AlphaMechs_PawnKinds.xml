@@ -45,18 +45,24 @@
 
 	<!-- === combatPower Patches === -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="AM_Goliath"]/combatPower</xpath>
-		<value>
-			<combatPower>550</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="AM_Goliath"]/combatPower</xpath>
+			<value>
+				<combatPower>550</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="AM_Siegebreaker"]/combatPower</xpath>
-		<value>
-			<combatPower>500</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="AM_Siegebreaker"]/combatPower</xpath>
+			<value>
+				<combatPower>500</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 </Patch>
