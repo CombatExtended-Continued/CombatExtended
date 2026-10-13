@@ -53,6 +53,63 @@ public static class RaceUtil
 
         return newTool;
     }
+
+    public static void TryPatchSharpArmor(ThingDef def, out float bodyPartSharpArmor)
+    {
+        StatModifier ratingSharp = def.statBases.Find(x => x.stat == StatDefOf.ArmorRating_Sharp);
+
+        if (ratingSharp != null)
+        {
+            ratingSharp.value = SharpCurve.Evaluate(ratingSharp.value);
+            bodyPartSharpArmor = ratingSharp.value;
+        }
+        else
+        {
+            ratingSharp = new StatModifier
+            {
+                stat = StatDefOf.ArmorRating_Sharp,
+                value = 0.125f
+            };
+
+            def.statBases.Add(ratingSharp);
+            bodyPartSharpArmor = 1f;
+        }
+
+        def.statBases.Add(new StatModifier
+        {
+            stat = CE_StatDefOf.BodyPartSharpArmor,
+            value = bodyPartSharpArmor
+        });
+    }
+
+    public static void TryPatchBluntArmor(ThingDef def, out float bodyPartBluntArmor)
+    {
+        StatModifier ratingBlunt = def.statBases.Find(x => x.stat == StatDefOf.ArmorRating_Blunt);
+
+        if (ratingBlunt != null)
+        {
+            ratingBlunt.value = BluntCurve.Evaluate(ratingBlunt.value);
+            bodyPartBluntArmor = ratingBlunt.value;
+        }
+        else
+        {
+            ratingBlunt = new StatModifier
+            {
+                stat = StatDefOf.ArmorRating_Blunt,
+                value = 1f
+            };
+
+            def.statBases.Add(ratingBlunt);
+            bodyPartBluntArmor = 1f;
+        }
+
+        def.statBases.Add(new StatModifier
+        {
+            stat = CE_StatDefOf.BodyPartBluntArmor,
+            value = bodyPartBluntArmor
+        });
+    }
+
     public static void PatchHARs()
     {
 
