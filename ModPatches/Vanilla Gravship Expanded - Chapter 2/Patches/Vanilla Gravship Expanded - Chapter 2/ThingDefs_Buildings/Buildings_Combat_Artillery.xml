@@ -25,7 +25,8 @@
 			Defs/ThingDef[
 				defName = "VGE_GaussHowitzer" or
 				defName = "VGE_JavelinLauncher" or
-				defName = "VGE_AnticraftEmitter"
+				defName = "VGE_AnticraftEmitter" or
+				defName = "VGE_AstrofireLauncher"
 			]/comps/li[@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery"]
 		</xpath>
 		<attribute>Class</attribute>
@@ -38,7 +39,8 @@
 			Defs/ThingDef[
 				defName = "VGE_Gun_GaussHowitzer" or
 				defName = "VGE_Gun_JavelinLauncher" or
-				defName = "VGE_Gun_AnticraftEmitter"
+				defName = "VGE_Gun_AnticraftEmitter" or
+				defName = "VGE_Gun_AstrofireLauncher"
 			]
 		</xpath>
 		<value>
@@ -55,7 +57,8 @@
 		<xpath>Defs/ThingDef[
 			defName = "VGE_Gun_GaussHowitzer" or
 			defName = "VGE_Gun_JavelinLauncher" or
-			defName = "VGE_Gun_AnticraftEmitter"
+			defName = "VGE_Gun_AnticraftEmitter" or
+			defName = "VGE_Gun_AstrofireLauncher"
 			]/verbs</xpath>
 	</Operation>
 
@@ -224,4 +227,80 @@
 		</Properties>
 	</Operation>
 	
+	<!-- VGE_AstrofireLauncher -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName = "VGE_AstrofireLauncher"]/thingClass 
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_JavelinPodCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName = "VGE_AstrofireLauncher"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.28</speed>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_AstrofireLauncher</turretDefName>
+		<turretGunDefName>VGE_Gun_AstrofireLauncher</turretGunDefName>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_AstrofireLauncher</defName>
+		<statBases>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
+			<defaultProjectile>VGE_Bullet_AstrofireLauncher_CE</defaultProjectile>
+			<range>99999</range>
+			<minRange>14</minRange>
+			<burstShotCount>4</burstShotCount>
+			<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+			<soundCast>VGE_JavelinLauncher_Cast</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<requireLineOfSight>false</requireLineOfSight>
+			<consumeFuelPerShot>30</consumeFuelPerShot>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+
+			<circularError>4</circularError>
+			<hasStandardCommand>true</hasStandardCommand>
+			<warmupTime>3.6</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>120</magazineSize>
+			<reloadTime>6.5</reloadTime>
+			<ammoSet>AmmoSet_VGE_Bullet_AstrofireLauncher</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_Gun_AstrofireLauncher"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
 </Patch>
