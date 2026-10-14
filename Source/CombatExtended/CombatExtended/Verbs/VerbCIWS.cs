@@ -132,9 +132,6 @@ public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     public abstract IEnumerable<TargetType> Targets { get; }
     protected abstract IEnumerable<Vector3> PredictPositions(TargetType target, int maxTicks);
 
-
-
-
     public override bool TryFindNewTarget(out LocalTargetInfo target)
     {
         if (!Active)

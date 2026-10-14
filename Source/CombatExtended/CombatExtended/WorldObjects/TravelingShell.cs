@@ -99,7 +99,6 @@ public class TravelingShell : TravelingThing
 
     protected override void Arrived()
     {
-        int tile = Tile;
         foreach (WorldObject worldObject in Find.World.worldObjects.ObjectsAt(Tile))
         {
             if (TryShell(worldObject))
