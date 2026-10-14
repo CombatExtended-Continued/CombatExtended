@@ -264,6 +264,27 @@
 				<damage>0.1</damage>
 			</shellingProps>
 		</projectile>
+		<modExtensions>
+			<li Class="VanillaGravshipExpanded.SubstructureDamageExtension">
+				<substructureDamageRadius>1.9</substructureDamageRadius>
+			</li>        
+		</modExtensions>
+	</ThingDef>
+
+  	<ThingDef ParentName="BaseVGERocket">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+        <defName>VGE_Bullet_JavelinPod_CE</defName>
+        <label>Gravship javelin rocket</label>
+        <graphicData>
+            <texPath>Things/Projectiles/Rocket_Javelin</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>147</damageAmountBase>
+            <explosionRadius>3.9</explosionRadius>
+        </projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ProjectileFleck">
 				<FleckDatas>
@@ -290,29 +311,6 @@
 					</li>
 				</FleckDatas>
 			</li>
-		</comps>
-		<modExtensions>
-			<li Class="VanillaGravshipExpanded.SubstructureDamageExtension">
-				<substructureDamageRadius>1.9</substructureDamageRadius>
-			</li>        
-		</modExtensions>
-	</ThingDef>
-
-  	<ThingDef ParentName="BaseVGERocket">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-        <defName>VGE_Bullet_JavelinPod_CE</defName>
-        <label>Gravship javelin rocket</label>
-        <graphicData>
-            <texPath>Things/Projectiles/Rocket_Javelin</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(2,2)</drawSize>
-        </graphicData>
-        <projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>147</damageAmountBase>
-            <explosionRadius>3.9</explosionRadius>
-        </projectile>
-		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Small>23</Fragment_Small>
