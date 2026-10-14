@@ -8,9 +8,19 @@
 		</value>
 	</Operation>
 
-	<!-- Give Auxilaries some javelins. -->
+	<!-- Set mobile scorpion weaponTags to ClassicalRangedJavelin. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="VFEC_ScorpionOperator"]/weaponTags</xpath>
+		<value>
+			<weaponTags>
+				<li>ClassicalRangedJavelin</li>
+			</weaponTags>
+		</value>
+	</Operation>
+  
+	<!-- Give Auxilaries and Scorpion Operators some javelins. -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="VFEC_RepublicAuxilia"]</xpath>
+		<xpath>Defs/PawnKindDef[defName="VFEC_RepublicAuxilia" or defName="VFEC_ScorpionOperator"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
