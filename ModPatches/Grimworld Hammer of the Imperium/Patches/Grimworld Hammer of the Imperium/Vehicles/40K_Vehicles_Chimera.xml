@@ -74,6 +74,93 @@
 					</value>
 				</li>
 
+				<!--===== Multilaser Turret =====-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/projectile</xpath>
+					<value>
+						<projectile>Grimworld_Bullet_Multilaser_IG</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>0.5</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/chargePerAmmoCount</xpath>
+					<value>
+						<chargePerAmmoCount>3</chargePerAmmoCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>300</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/maxRange</xpath>
+					<value>
+						<maxRange>62</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_GrimworldHeavyLasPowerPack</li>
+						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Grimworld_Multilaser_IG</ammoSet>
+							<shotHeight>1.25</shotHeight>
+							<speed>229</speed>
+							<sway>1.0</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Chimera_MainLaser"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<ticksBetweenShots>20</ticksBetweenShots>
+								<ticksBetweenBursts>20</ticksBetweenBursts>
+								<label>Automatic</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+						</fireModes>
+					</value>
+				</li>
+
 				<!--===== Chimera =====-->
 
 				<li Class="PatchOperationReplace">

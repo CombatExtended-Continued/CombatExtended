@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Generic Laser Ammos -->
+	<!-- this file contains generic laser weapon ammunitions which are then 'tuned' per-faction defs -->
+	<!-- no ammosets are contained here as Core has no laser weapons -->
+	<!-- the two thingcategorydefs are for personal-scale and 'heavy' weapons respectively-->
+
+	<ThingCategoryDef>
+		<defName>AmmoGrimworldLasPack</defName>
+		<label>las power packs</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRailgunPistol</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoGrimworldHeavyLasPack</defName>
+		<label>heavy las power packs</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRailgunPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ================== Ammo ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="GrimworldLasPowerPackBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+			<li>CE_AutoEnableCrafting_GWAmmoBench</li>
+			<li>CE_40K_Ammo</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoGrimworldLasPack</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="GrimworldLasPowerPackBase">
+		<defName>Ammo_GrimworldLasPowerPack</defName>
+		<description>A universal power pack for small-scale las weapons such as laspistols and lasguns.</description>
+		<label>las power pack</label>
+		<statBases>
+			<Mass>0.008</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<graphicData>
+			<texPath>ThirdParty/Warhammer/Ammo/Lasgun</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>Laser</ammoClass>
+		<stackLimit>1000</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="GrimworldLasPowerPackBase">
+		<defName>Ammo_GrimworldHeavyLasPowerPack</defName>
+		<description>A universal power pack for large-scale las weapons such as multilasers and lascannons.</description>
+		<label>heavy las power pack</label>
+		<statBases>
+			<Mass>0.08</Mass>
+			<Bulk>0.1</Bulk>
+		</statBases>
+		<graphicData>
+			<texPath>ThirdParty/Warhammer/Ammo/Lascannon</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>Laser</ammoClass>
+		<stackLimit>200</stackLimit>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="Grimworld_Bullet_Laspistol_Base" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<label>laspistol beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+		</projectile>
+		<lifetime>30</lifetime>
+		<beamWidth>1</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="Grimworld_Bullet_Lascarbine_Base" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<label>lascarbine beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+		</projectile>
+		<lifetime>35</lifetime>
+		<beamWidth>1.15</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="Grimworld_Bullet_Lasgun_Base" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<label>lasgun beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+		</projectile>
+		<lifetime>40</lifetime>
+		<beamWidth>1.2</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="Grimworld_Bullet_Longlas_Base" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<label>longlas beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>32</damageAmountBase>
+			<armorPenetrationSharp>22</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+		</projectile>
+		<lifetime>65</lifetime>
+		<beamWidth>1.35</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="Grimworld_Bullet_Hellpistol_Base" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<label>hellgun beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+		</projectile>
+		<lifetime>45</lifetime>
+		<beamWidth>1.25</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="Grimworld_Bullet_Hellgun_Base" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<label>hellgun beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>26</damageAmountBase>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+		</projectile>
+		<lifetime>45</lifetime>
+		<beamWidth>1.25</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="Grimworld_Bullet_Multilaser_Base" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<label>multilaser beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>34</damageAmountBase>
+			<armorPenetrationSharp>24</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+		</projectile>
+		<lifetime>54</lifetime>
+		<beamWidth>1.4</beamWidth>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" Name="Grimworld_Bullet_Lascannon_Base" ParentName="BaseLaserBulletTextured" Abstract="True">
+		<label>lascannon beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>240</damageAmountBase>
+			<armorPenetrationSharp>320</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>153</damageAmountBase>
+				<explosiveDamageType>CE_Laser</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+		<lifetime>75</lifetime>
+		<beamWidth>1.8</beamWidth>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_GrimworldLasPowerPack</defName>
+		<label>make las power pack x500</label>
+		<description>Craft 500 las batteries.</description>
+		<jobString>Making las power packs.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_GrimworldLasPowerPack>500</Ammo_GrimworldLasPowerPack>
+		</products>
+		<workAmount>8400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_GrimworldHeavyLasPowerPack</defName>
+		<label>make heavy las power pack x500</label>
+		<description>Craft 100 heavy las batteries.</description>
+		<jobString>Making heavy las power packs.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>16</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_GrimworldHeavyLasPowerPack>100</Ammo_GrimworldHeavyLasPowerPack>
+		</products>
+		<workAmount>8400</workAmount>
+	</RecipeDef>
+
+</Defs>
