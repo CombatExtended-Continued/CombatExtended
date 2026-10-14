@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Sith Warblade ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Force_SithBladelink"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.1</chanceFactor>
+					<cooldownTime>1.36</cooldownTime>
+					<armorPenetrationBlunt>0.605</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>0.74</cooldownTime>
+					<armorPenetrationBlunt>3.485</armorPenetrationBlunt>
+					<armorPenetrationSharp>21.78</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>0.85</cooldownTime>
+					<armorPenetrationBlunt>1.173</armorPenetrationBlunt>
+					<armorPenetrationSharp>30.24</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Force_SithBladelink"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.50</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Force_SithBladelink"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.10</MeleeCritChance>
+				<MeleeParryChance>0.50</MeleeParryChance>
+				<MeleeDodgeChance>0.37</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Force_SithBladelink"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Force_SithBladelink"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Force_SithBladelink"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+</Patch>
