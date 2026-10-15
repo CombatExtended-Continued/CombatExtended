@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- === Only Bullets due to no ammoset === -->
+	<ThingDef ParentName="Base6x18mmChargedBullet">
+		<defName>Bullet_SWGrip</defName>
+		<label>grip form projectile</label>
+		<thingClass>CombatExtended.Compatibility.PsyBlastersCompat.PsychicBlasterBulletCE</thingClass>
+		<graphicData>
+			<texPath>ArtemiishThings/Projectiles/GripProj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.05</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>5</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+		</projectile>
+		<modExtensions>
+			<li Class="CombatExtended.Compatibility.PsyBlastersCompat.PsychicProjectileExtension">
+				<psyDamageMultiplier>0.5</psyDamageMultiplier>
+				<psyPenMultiplier>0.5</psyPenMultiplier>
+				<psyfocusCost>0</psyfocusCost>
+				<entropyCost>0</entropyCost>
+				<scaleFromSensitivity>true</scaleFromSensitivity>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12GaugeChargedBullet">
+		<defName>Bullet_SWShatter</defName>
+		<label>shatter form pellet</label>
+		<thingClass>CombatExtended.Compatibility.PsyBlastersCompat.PsychicBlasterBulletCE</thingClass>
+		<graphicData>
+			<texPath>ArtemiishThings/Projectiles/GripProj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>0.25</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>5</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+			<pelletCount>6</pelletCount>
+			<spreadMult>8.9</spreadMult>
+			<shieldDamageMultiplier>0.25</shieldDamageMultiplier>
+		</projectile>
+		<modExtensions>
+			<li Class="CombatExtended.Compatibility.PsyBlastersCompat.PsychicProjectileExtension">
+				<psyDamageMultiplier>0.5</psyDamageMultiplier>
+				<psyPenMultiplier>0.5</psyPenMultiplier>
+				<psyfocusCost>0</psyfocusCost>
+				<entropyCost>0</entropyCost>
+				<scaleFromSensitivity>true</scaleFromSensitivity>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12x72mmChargedBullet">
+		<defName>Bullet_SWPierce</defName>
+		<label>pierce form projectile</label>
+		<thingClass>CombatExtended.Compatibility.PsyBlastersCompat.PsychicBlasterBulletCE</thingClass>
+		<graphicData>
+			<texPath>ArtemiishThings/Projectiles/PierceProj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>31</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>18</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>45</armorPenetrationSharp>
+			<armorPenetrationBlunt>324</armorPenetrationBlunt>
+		</projectile>
+		<modExtensions>
+			<li Class="CombatExtended.Compatibility.PsyBlastersCompat.PsychicProjectileExtension">
+				<psyDamageMultiplier>0.5</psyDamageMultiplier>
+				<psyPenMultiplier>0.5</psyPenMultiplier>
+				<psyfocusCost>0</psyfocusCost>
+				<entropyCost>0</entropyCost>
+				<scaleFromSensitivity>true</scaleFromSensitivity>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x64mmFuelBullet">
+		<defName>Bullet_SWCharge</defName>
+		<label>charge form bolt</label>
+		<graphicData>
+			<texPath>ArtemiishThings/Projectiles/ChargeProj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>CombatExtended.Compatibility.PsyBlastersCompat.PsychicBlasterRocketCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Thump</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<explosionRadius>4.5</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<modExtensions>
+			<li Class="CombatExtended.Compatibility.PsyBlastersCompat.PsychicProjectileExtension">
+				<psyDamageMultiplier>0.5</psyDamageMultiplier>
+				<psyPenMultiplier>0.5</psyPenMultiplier>
+				<psyfocusCost>0</psyfocusCost>
+				<entropyCost>0</entropyCost>
+				<scaleFromSensitivity>true</scaleFromSensitivity>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x64mmFuelBullet">
+		<defName>Bullet_SWSurge</defName>
+		<label>surge form bolt</label>
+		<graphicData>
+			<texPath>ArtemiishThings/Projectiles/SurgeProj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>CombatExtended.Compatibility.PsyBlastersCompat.PsychicBlasterRocketCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>2.5</explosionRadius>
+			<damageDef>Thermobaric</damageDef>
+			<damageAmountBase>78</damageAmountBase>
+			<explosionDelay>60</explosionDelay>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<modExtensions>
+			<li Class="CombatExtended.Compatibility.PsyBlastersCompat.PsychicProjectileExtension">
+				<psyDamageMultiplier>0.5</psyDamageMultiplier>
+				<psyPenMultiplier>0.5</psyPenMultiplier>
+				<psyfocusCost>0</psyfocusCost>
+				<entropyCost>0</entropyCost>
+				<scaleFromSensitivity>true</scaleFromSensitivity>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+</Defs>
