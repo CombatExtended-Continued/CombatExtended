@@ -138,7 +138,7 @@ public class Controller : Mod
         LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
 
         // Catalog all non-patched items
-        LongEventHandler.QueueLongEvent(LogUnpatchedTools.DetectAndLogUnpatchedTools, "CE_LongEvent_LogUnpatchedTools", false, null);
+        LongEventHandler.QueueLongEvent(UnpatchedDefChecker.DetectAndLogUnpatchedDefs, "CE_LongEvent_LogUnpatchedDefs", false, null);
 
         genericState = settings.GenericAmmo;
     }
