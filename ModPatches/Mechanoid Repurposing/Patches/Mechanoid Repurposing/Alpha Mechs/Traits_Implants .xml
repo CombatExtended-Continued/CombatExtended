@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>Alpha Mechs</li>
-		</mods>
+	<!-- legate's tactics -->
 
-		<match Class="PatchOperationSequence">
-			<operations>
-
-				<!-- legate's tactics -->
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/TraitDef[defName="MR_LegateTactics"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
-					<value>
-						<ShootingAccuracyPawn>0.6</ShootingAccuracyPawn>
-					</value>
-				</li>
-
-			</operations>
-		</match>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName="MR_LegateTactics"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.6</ShootingAccuracyPawn>
+		</value>
 	</Operation>
 
 </Patch>
