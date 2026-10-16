@@ -141,11 +141,6 @@ public class StatWorker_ArmorPartial : StatWorker
 
     public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
     {
-        if (optionalReq == null)
-        {
-            return base.GetStatDrawEntryLabel(stat, value, numberSense, optionalReq, finalized);
-        }
-
         if (!Controller.settings.PartialStat
                 || !(this.stat == global::RimWorld.StatDefOf.ArmorRating_Blunt
                     || this.stat == global::RimWorld.StatDefOf.ArmorRating_Sharp))

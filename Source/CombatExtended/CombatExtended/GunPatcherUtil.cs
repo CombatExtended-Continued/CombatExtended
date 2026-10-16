@@ -29,14 +29,6 @@ public static class GunPatcherUtil
     public static bool MatchesVerbProps(this ThingDef gun, GunPatcherPresetDef preset)
     {
         return
-            preset.WarmupRange != null
-            &&
-            preset.DamageRange != null
-            &&
-            preset.RangeRange != null
-            &&
-            preset.ProjSpeedRange != null
-            &&
             preset.WarmupRange.Includes(gun.Verbs.FirstOrFallback()?.warmupTime ?? 0f)
             &&
             preset.RangeRange.Includes(gun.Verbs.FirstOrFallback()?.range ?? 0f)
