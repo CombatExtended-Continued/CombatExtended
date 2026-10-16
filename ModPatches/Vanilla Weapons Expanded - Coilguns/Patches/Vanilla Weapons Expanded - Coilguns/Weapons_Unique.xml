@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationRemove">
+					<xpath>
+						Defs/ThingDef[defName="VWE_Gun_GaussMagnum_Unique"]/comps/li[@Class="VEF.Weapons.CompProperties_MultiVerbWeapon"] |
+						Defs/ThingDef[defName="VWE_Gun_GaussRifle_Unique"]/comps/li[@Class="VEF.Weapons.CompProperties_MultiVerbWeapon"] |
+						Defs/ThingDef[defName="VWE_Gun_GaussLance_Unique"]/comps/li[@Class="VEF.Weapons.CompProperties_MultiVerbWeapon"]
+					</xpath>
+				</li>
+
+				<!-- Unique Gauss Revolver -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussMagnum_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>8</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_6mmRailgun_GaussMagnum</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+						<li Class="CombatExtended.CompProperties_UnderBarrel">
+							<standardLabel>switch to standard mode</standardLabel>
+							<underBarrelLabel>switch to high-power mode</underBarrelLabel>
+							<oneAmmoHolder>True</oneAmmoHolder>
+							<propsUnderBarrel>
+								<magazineSize>8</magazineSize>
+								<reloadTime>4</reloadTime>
+								<ammoSet>AmmoSet_6mmRailgun_GaussMagnum_HP</ammoSet>
+							</propsUnderBarrel>
+							<verbPropsUnderBarrel>
+								<recoilAmount>3.0</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_CoilGun_Magnum_HP</defaultProjectile>
+								<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
+								<warmupTime>0.8</warmupTime>
+								<range>15</range>
+								<soundCast>VWE_Shot_GaussMagnum</soundCast>
+								<soundCastTail>GunTail_Light</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</verbPropsUnderBarrel>
+							<propsFireModesUnderBarrel>
+								<aiAimMode>AimedShot</aiAimMode>
+							</propsFireModesUnderBarrel>
+						</li>
+					</value>
+				</li>
+
+				<!-- Unique Gauss rifle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussRifle_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>40</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_6mmRailgun_GaussRifle</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>AimedShot</aiAimMode>
+							<aiUseBurstMode>True</aiUseBurstMode>
+							<aimedBurstShotCount>4</aimedBurstShotCount>
+						</li>
+						<li Class="CombatExtended.CompProperties_UnderBarrel">
+							<standardLabel>switch to standard mode</standardLabel>
+							<underBarrelLabel>switch to high-power mode</underBarrelLabel>
+							<oneAmmoHolder>True</oneAmmoHolder>
+							<propsUnderBarrel>
+								<magazineSize>40</magazineSize>
+								<reloadTime>4</reloadTime>
+								<ammoSet>AmmoSet_6mmRailgun_GaussRifle_HP</ammoSet>
+							</propsUnderBarrel>
+							<verbPropsUnderBarrel>
+								<recoilAmount>2.09</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_CoilGun_Rifle_HP</defaultProjectile>
+								<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
+								<warmupTime>1.1</warmupTime>
+								<range>55</range>
+								<burstShotCount>5</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>VWE_Shot_GaussRifle</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</verbPropsUnderBarrel>
+							<propsFireModesUnderBarrel>
+								<aiAimMode>AimedShot</aiAimMode>
+								<aiUseBurstMode>True</aiUseBurstMode>
+								<aimedBurstShotCount>4</aimedBurstShotCount>
+							</propsFireModesUnderBarrel>
+						</li>
+					</value>
+				</li>
+
+				<!-- Unique Gauss rifle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussLance_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>10</magazineSize>
+							<reloadTime>5.2</reloadTime>
+							<ammoSet>AmmoSet_8mmRailgun_GaussLance</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+						<li Class="CombatExtended.CompProperties_UnderBarrel">
+							<standardLabel>switch to standard mode</standardLabel>
+							<underBarrelLabel>switch to high-power mode</underBarrelLabel>
+							<oneAmmoHolder>True</oneAmmoHolder>
+							<propsUnderBarrel>
+								<magazineSize>10</magazineSize>
+								<reloadTime>5.2</reloadTime>
+								<ammoSet>AmmoSet_8mmRailgun_GaussLance_HP</ammoSet>
+							</propsUnderBarrel>
+							<verbPropsUnderBarrel>
+								<recoilAmount>2.0</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_CoilGun_Lance_HP</defaultProjectile>
+								<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>								
+								<warmupTime>2.4</warmupTime>
+								<range>62</range>
+								<soundCast>VWE_Shot_GaussLance</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<recoilPattern>Regular</recoilPattern>
+							</verbPropsUnderBarrel>
+							<propsFireModesUnderBarrel>
+								<aiAimMode>AimedShot</aiAimMode>
+							</propsFireModesUnderBarrel>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

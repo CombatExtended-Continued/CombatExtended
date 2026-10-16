@@ -11,6 +11,7 @@
 			defName="MB_Hunting_Crossbow" or
 			defName="MB_Watchmen_Crossbow" or
 			defName="MB_War_Crossbow" or
+			defName="MB_Triple_Crossbow" or
 			defName="MB_Garrison_Crossbow"]/tools
 		</xpath>
 		<value>
@@ -312,6 +313,46 @@
 			<magazineSize>1</magazineSize>
 			<reloadTime>8</reloadTime>
 			<ammoSet>AmmoSet_GarrisonCrossbowBolt</ammoSet>
+			<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_XBow</li>
+			<li>MedievalRangedDecent</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- === Triple Crossbow === -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_Triple_Crossbow</defName>
+		<statBases>
+			<Bulk>7</Bulk>
+			<SwayFactor>1.4</SwayFactor>
+			<ShotSpread>0.6</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>70</WoodLog>
+			<Steel>40</Steel>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>26</range>
+      <burstShotCount>3</burstShotCount>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+			<reloadOneAtATime>True</reloadOneAtATime>
 			<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
 		</AmmoUser>
 		<FireModes>

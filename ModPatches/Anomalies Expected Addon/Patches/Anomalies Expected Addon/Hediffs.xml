@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Rescale hediff armor offsets: sharp in mm RHA, blunt in MPa; heat keeps the vanilla scale. -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Hediff_AE_ArchoConnector"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Hediff_AE_ArchoConnector"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Boss transformation hediff; described as unkillable by conventional means -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Hediff_AE_SubcoreSecond"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>100</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Hediff_AE_SubcoreSecond"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>300</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>

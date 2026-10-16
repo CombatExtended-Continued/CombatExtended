@@ -282,7 +282,7 @@ def main(argv=sys.argv):
 
     if options.all_libs:
         for ref in os.listdir(options.reference):
-            if ref.endswith(".dll"):
+            if ref.endswith(".dll") and not ref.endswith("_publicized.dll"):
                 libraries.append(os.path.join(options.reference, ref))
 
     for p in publicized_libraries:

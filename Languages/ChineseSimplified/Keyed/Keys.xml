@@ -3,11 +3,11 @@
 
 	<!-- Tabs -->
 	<!-- EN: Attachm. -->
-	<TabAttachments>附件。</TabAttachments>
+	<TabAttachments>配件</TabAttachments>
 
 	<!-- Billing -->
 	<!-- EN: Requires gunsmithing bench -->
-	<CE_MissinGunsmithingBench>需要工作台</CE_MissinGunsmithingBench>
+	<CE_MissinGunsmithingBench>需要枪械锻造台</CE_MissinGunsmithingBench>
 
 	<!-- Suppression -->
 	<!-- EN: Suppressed! -->
@@ -15,7 +15,9 @@
 	<!-- EN: Hunkering! -->
 	<CE_HunkeringMote>被完全压制！</CE_HunkeringMote>
 	<!-- EN: Suppressed (crouch-walking) -->
-	<CE_CrouchWalking>被压制(蹲下行走)</CE_CrouchWalking>
+	<CE_CrouchWalking>受压制（蹲伏移动）</CE_CrouchWalking>
+	<!-- EN: (Crouched) -->
+	<CE_Crouched>（蹲伏）</CE_Crouched>
 
 	<!-- Aim/Fire modes -->
 	<!-- EN: Auto -->
@@ -49,7 +51,7 @@
 
 	<!-- Aiming system -->
 	<!-- EN: Marked for artillery, expires in -->
-	<CE_MarkedForArtillery>炮击目标标记，消逝时间：{0}</CE_MarkedForArtillery>
+	<CE_MarkedForArtillery>炮击目标标记剩余时间：</CE_MarkedForArtillery>
 
 	<!-- EN: Visibility error -->
 	<CE_VisibilityError>能见度误差</CE_VisibilityError>
@@ -66,7 +68,7 @@
 	<!-- EN: Miss radius -->
 	<CE_MissRadius>射偏范围</CE_MissRadius>
 	<!-- EN: Indirect fire -->
-	<CE_IndirectFire>间瞄射击</CE_IndirectFire>
+	<CE_IndirectFire>间接射击</CE_IndirectFire>
 	<!-- EN: Cover height -->
 	<CE_CoverHeight>掩体高度</CE_CoverHeight>
 	<!-- EN: Target height -->
@@ -76,6 +78,30 @@
 
 	<!-- EN: Estimated hit chance -->
 	<CE_EstimatedHitChance>预计命中率</CE_EstimatedHitChance>
+
+	<!-- Melee attack tooltip -->
+	<!-- EN: Attacked by {1_labelShort} -->
+	<CE_AttackedBy>受到{1_labelShort}攻击</CE_AttackedBy>
+	<!-- EN: Miss chance -->
+	<CE_MissChance>未命中率</CE_MissChance>
+	<!-- EN: Target dodge chance -->
+	<CE_TargetDodgeChance>目标闪避率</CE_TargetDodgeChance>
+	<!-- EN: Deflected chance -->
+	<CE_DeflectedChance>偏转率</CE_DeflectedChance>
+	<!-- EN: Deflection type -->
+	<CE_DeflectionType>偏转类型</CE_DeflectionType>
+	<!-- EN: Riposte chance -->
+	<CE_RiposteChance>反击率</CE_RiposteChance>
+	<!-- EN: Parry chance -->
+	<CE_ParryChance>招架率</CE_ParryChance>
+	<!-- EN: Block chance -->
+	<CE_BlockChance>格挡率</CE_BlockChance>
+	<!-- EN: Counter parry bonus -->
+	<CE_CounterParryBonus>反招架加成</CE_CounterParryBonus>
+	<!-- EN: Hit chance -->
+	<CE_FinalToHitChance>命中率</CE_FinalToHitChance>
+	<!-- EN: Crit chance -->
+	<CE_CritChance>暴击率</CE_CritChance>
 
 	<!-- Ranged Attack -->
 	<!-- EN: Out of bounds -->
@@ -87,7 +113,7 @@
 	<!-- EN: Blocked by roof -->
 	<CE_BlockedRoof>被屋顶阻挡</CE_BlockedRoof>
 	<!-- EN: Shooting disallowed by	-->
-	<CE_BlockedShield>射击被禁止</CE_BlockedShield>
+	<CE_BlockedShield>无法射击：</CE_BlockedShield>
 	<!-- EN: Outside of range -->
 	<CE_BlockedMaxRange>超出射程</CE_BlockedMaxRange>
 	<!-- EN: Within minimum range -->
@@ -107,15 +133,17 @@
 	<!-- EN: Invalid target -->
 	<CE_ArtilleryTarget_InvalidTarget>无效目标</CE_ArtilleryTarget_InvalidTarget>
 	<!-- EN: Are you sure you want to attack {0} ({1})?\n\nThis will make {1} hostile to you, and they may retaliate with raids and artillery fire against your colony! -->
-	<CE_ArtilleryTarget_AttackingAllies>你确定要攻击 {0} ({1}) 吗？\n\n这将使 {1} 对你产生敌意，他们可能会用突袭和炮火报复你的殖民地！</CE_ArtilleryTarget_AttackingAllies>
+	<CE_ArtilleryTarget_AttackingAllies>确定要攻击 {0}（{1}）吗？\n\n这将使 {1} 与你敌对，并可能以袭击和炮击报复你的殖民地！</CE_ArtilleryTarget_AttackingAllies>
 	<!-- EN: Attack world tile -->
 	<CE_ArtilleryTargetLabel>攻击世界地图上的格子</CE_ArtilleryTargetLabel>
 	<!-- EN: Attack a world tile. If the selected tile contains a map, you can select the attack target within that map. -->
-	<CE_ArtilleryTargetDesc>攻击世界地图上的格子。如果是有殖民者进入的地块，你可以在该地块内选择攻击目标。</CE_ArtilleryTargetDesc>
+	<CE_ArtilleryTargetDesc>攻击世界地图上的地格。若所选地格包含地图，可进一步在该地图内选择攻击目标。</CE_ArtilleryTargetDesc>
 	<!-- EN: Selected target already destroyed -->
 	<CE_ArtilleryTarget_AlreadyDestroyed>选定的目标已经被摧毁</CE_ArtilleryTarget_AlreadyDestroyed>
 	<!-- EN: Can only target artillery mark -->
-	<CE_ArtilleryTarget_MustTargetMark>仅能针对火炮标记进行瞄准</CE_ArtilleryTarget_MustTargetMark>
+	<CE_ArtilleryTarget_MustTargetMark>只能瞄准炮击标记</CE_ArtilleryTarget_MustTargetMark>
+	<!-- EN: Aiming artillery at this position will improve accuracy by: -->
+	<CE_ArtilleryTarget_MarkerHoverHeader>将火炮瞄准此位置可使精度提高：</CE_ArtilleryTarget_MarkerHoverHeader>
 
 	<!-- Marking -->
 	<!-- EN: Pawn cannot mark targets for artillery because they are on a map with no local artillery and they need a radio pack to communicate with the artillery crew.\n\nMarking targets is disabled when no artillery is available in local map and the pawn doesn't have access to long range radios. -->
@@ -123,33 +151,53 @@
 
 	<!-- Reloading -->
 	<!-- EN: equipped -->
-	<CE_ReloadingEquipment>武器</CE_ReloadingEquipment>
+	<CE_ReloadingEquipment>已装备的</CE_ReloadingEquipment>
 	<!-- EN: stored -->
-	<CE_ReloadingInventory>背包</CE_ReloadingInventory>
+	<CE_ReloadingInventory>物品栏中的</CE_ReloadingInventory>
 	<!-- EN: ammo -->
 	<CE_ReloadingGenericAmmo>弹药</CE_ReloadingGenericAmmo>
 	<!-- EN: Reloading {0}! -->
-	<CE_ReloadingMote>重新装填{0}中！</CE_ReloadingMote>
+	<CE_ReloadingMote>正在装填 {0}！</CE_ReloadingMote>
 	<!-- EN: Reloading turret {0}. -->
-	<CE_ReloadingTurretMote>装填炮塔{0}</CE_ReloadingTurretMote>
+	<CE_ReloadingTurretMote>正在装填炮塔 {0}。</CE_ReloadingTurretMote>
 	<!-- EN: manned turret -->
-	<CE_MannedTurret>非自动炮台</CE_MannedTurret>
+	<CE_MannedTurret>需操作炮塔</CE_MannedTurret>
 	<!-- EN: auto-turret -->
-	<CE_AutoTurret>自动炮台</CE_AutoTurret>
+	<CE_AutoTurret>自动炮塔</CE_AutoTurret>
 	<!-- EN: Unload -->
-	<CE_UnloadLabel>卸载</CE_UnloadLabel>
+	<CE_UnloadLabel>卸弹</CE_UnloadLabel>
 	<!-- EN: Reload -->
-	<CE_ReloadLabel>重新装填</CE_ReloadLabel>
+	<CE_ReloadLabel>装填</CE_ReloadLabel>
 	<!-- EN: Reloads this gun. -->
-	<CE_ReloadDesc>重新装填这把枪。</CE_ReloadDesc>
+	<CE_ReloadDesc>装填这件武器。</CE_ReloadDesc>
 	<!-- EN: Reloading -->
 	<CE_TurretReloading>重新装填中</CE_TurretReloading>
+	<!-- EN: Pawn will opportunistically reload at {0} rounds remaining. -->
+	<CE_TryReloadAmmoTooltip>弹匣剩余 {0} 发时，角色将伺机重新装填。</CE_TryReloadAmmoTooltip>
+	<!-- EN: Opportunistic reload -->
+	<CE_Settings_OpportunisticReload_Title>伺机装填</CE_Settings_OpportunisticReload_Title>
+	<!-- EN: Pawns will opportunistically reload if their magazine is below the set threshold and it is safe to do so. -->
+	<CE_Settings_OpportunisticReload_Desc>当弹匣弹量低于设定阈值且环境安全时，角色会伺机重新装填。</CE_Settings_OpportunisticReload_Desc>
+	<!-- EN: Off -->
+	<CE_Settings_OpportunisticReload_Off>关闭</CE_Settings_OpportunisticReload_Off>
+	<!-- EN: Drafted only -->
+	<CE_Settings_OpportunisticReload_DraftedOnly>仅征召时</CE_Settings_OpportunisticReload_DraftedOnly>
+	<!-- EN: Any -->
+	<CE_Settings_OpportunisticReload_Any>任何状态</CE_Settings_OpportunisticReload_Any>
+	<!-- EN: Safe distance for reload: {0} -->
+	<CE_Settings_OpportunisticReload_SafeDistance_Title>安全装填距离：{0}</CE_Settings_OpportunisticReload_SafeDistance_Title>
+	<!-- EN: Minimum cells to closest hostile pawn (no LoS required) before a pawn will opportunistically reload. -->
+	<CE_Settings_OpportunisticReload_SafeDistance_Desc>角色只会在最近敌人至少相距此格数时伺机装填（不要求存在视线）。</CE_Settings_OpportunisticReload_SafeDistance_Desc>
+	<!-- EN: Cooldown after fight: {0} sec. -->
+	<CE_Settings_OpportunisticReload_SecondsAfterFight_Title>战斗后冷却：{0} 秒</CE_Settings_OpportunisticReload_SecondsAfterFight_Title>
+	<!-- EN: Delay between a pawn being in combat and opportunistically reloading. -->
+	<CE_Settings_OpportunisticReload_SecondsAfterFight_Desc>角色结束战斗后到伺机重新装填之间的延迟。</CE_Settings_OpportunisticReload_SecondsAfterFight_Desc>
 
 	<!-- Inventory -->
 	<!-- EN: Equipping -->
-	<CE_TakeFromOther_Equipping>装备中</CE_TakeFromOther_Equipping>
+	<CE_TakeFromOther_Equipping>装备</CE_TakeFromOther_Equipping>
 	<!-- EN: Taking -->
-	<CE_TakeFromOther_Taking>拿取中</CE_TakeFromOther_Taking>
+	<CE_TakeFromOther_Taking>拿取</CE_TakeFromOther_Taking>
 
 	<!-- EN: Carried weight -->
 	<CE_CarriedWeight>携带重量</CE_CarriedWeight>
@@ -167,12 +215,14 @@
 	<CE_PickUpHalf>拾取一半</CE_PickUpHalf>
 	<!-- EN: Cannot pick up -->
 	<CE_CannotPickUp>无法拾取</CE_CannotPickUp>
+	<!-- EN: Cooking off -->
+	<CE_CookingOff>弹药殉爆中</CE_CookingOff>
 	<!-- EN: Out of ammo -->
 	<CE_OutOfAmmo>弹药耗尽</CE_OutOfAmmo>
 	<!-- EN: Put away {0} -->
 	<CE_PutAway>收起 {0}</CE_PutAway>
 	<!-- EN: Reload {0} with {1} -->
-	<CE_ReloadApparel>用{1}重新加载{0}</CE_ReloadApparel>
+	<CE_ReloadApparel>用 {1} 装填 {0}</CE_ReloadApparel>
 	<!-- EN: can't do taming job because of a full inventory. -->
 	<CE_TamerInventoryFull>背包已满，无法进行驯服工作。</CE_TamerInventoryFull>
 	<!-- EN: Drop and haul -->
@@ -180,7 +230,7 @@
 	<!-- EN: Cannot drop -->
 	<CE_CannotDropThing>无法丢弃</CE_CannotDropThing>
 	<!-- EN: Cannot drop and haul -->
-	<CE_CannotDropThingHaul>无法装载</CE_CannotDropThingHaul>
+	<CE_CannotDropThingHaul>无法丢弃并搬运</CE_CannotDropThingHaul>
 	<!-- EN: Cannot put away {0} -->
 	<CE_CannotPutAway>无法收起{0}</CE_CannotPutAway>
 	<!-- EN: This person refuses to change equipment. -->
@@ -188,19 +238,19 @@
 	<!-- EN: Consume -->
 	<CE_Eat>食用</CE_Eat>
 	<!-- EN: Stop Holding -->
-	<CE_HoldTrackerForget>放下</CE_HoldTrackerForget>
+	<CE_HoldTrackerForget>停止强制携带</CE_HoldTrackerForget>
 	<!-- EN: Forced Holding -->
-	<CE_ForcedHold>取消强制</CE_ForcedHold>
+	<CE_ForcedHold>强制携带</CE_ForcedHold>
 
 	<!-- Medical -->
 	<!-- EN: Stabilize {0} -->
-	<CE_Stabilize>为{0}止血</CE_Stabilize>
+	<CE_Stabilize>稳定 {0} 的伤势</CE_Stabilize>
 	<!-- EN: Cannot stabilize -->
-	<CE_CannotStabilize>无法止血</CE_CannotStabilize>
+	<CE_CannotStabilize>无法稳定伤势</CE_CannotStabilize>
 	<!-- EN: {0} is not carrying any medicine in inventory -->
 	<CE_NoMedicine>{0}没有携带任何医疗药品</CE_NoMedicine>
 	<!-- EN: Wound stabilized - bleeding rate multiplied by {0}. Stabilization effect will fully expire in {1} hours. -->
-	<CE_StabilizeHediffDescription>创口止血 - 出血速率乘以 {0}。止血效果将在 {1} 小时后完全消失。</CE_StabilizeHediffDescription>
+	<CE_StabilizeHediffDescription>伤口已稳定——出血速率乘以 {0}。稳定效果将在 {1} 小时后完全消失。</CE_StabilizeHediffDescription>
 
 	<!-- Info Box -->
 	<!-- EN: Magazine size -->
@@ -212,9 +262,9 @@
 	<!-- EN: Fire modes -->
 	<CE_FireModes>射击模式</CE_FireModes>
 	<!-- EN: Burst shot count -->
-	<CE_AimedBurstCount>短点射射击次数</CE_AimedBurstCount>
+	<CE_AimedBurstCount>连发弹数</CE_AimedBurstCount>
 	<!-- EN: Used by -->
-	<CE_UsedBy>使用者</CE_UsedBy>
+	<CE_UsedBy>适用武器</CE_UsedBy>
 	<!-- EN: Multiplier for precipitation -->
 	<CE_StatsReport_FlammabilityPrecipitation>降水乘数</CE_StatsReport_FlammabilityPrecipitation>
 	<!-- EN: Apparel flammability -->
@@ -236,31 +286,37 @@
 	<!-- EN: Weapon penetration factor -->
 	<CE_WeaponPenetrationFactor>武器穿甲系数</CE_WeaponPenetrationFactor>
 	<!-- EN: Skill factor -->
-	<CE_WeaponPenetrationSkillFactor>技能因素</CE_WeaponPenetrationSkillFactor>
+	<CE_WeaponPenetrationSkillFactor>技能系数</CE_WeaponPenetrationSkillFactor>
 	<!-- EN: Other factors -->
-	<CE_WeaponPenetrationOtherFactors>其他因素</CE_WeaponPenetrationOtherFactors>
+	<CE_WeaponPenetrationOtherFactors>其他系数</CE_WeaponPenetrationOtherFactors>
 	<!-- EN: Adjusted for weapon -->
-	<CE_AdjustedForWeapon>调整的武器</CE_AdjustedForWeapon>
-	<!-- EN: Penetration quality factor -->
-	<CE_RangedQualityMultiplier>穿透效能系数</CE_RangedQualityMultiplier>
+	<CE_AdjustedForWeapon>经武器调整后</CE_AdjustedForWeapon>
+	<!-- EN: Projectile damage multiplier -->
+	<CE_RangedDamageMultiplier>投射物伤害倍率</CE_RangedDamageMultiplier>
+	<!-- EN: Projectile penetration multiplier -->
+	<CE_RangedPenMultiplier>投射物穿透力倍率</CE_RangedPenMultiplier>
 	<!-- EN: Damage per second -->
-	<CE_DPS>每秒输出伤害</CE_DPS>
+	<CE_DPS>每秒伤害</CE_DPS>
 	<!-- EN: Damage variation -->
-	<CE_DamageVariation>伤害变化</CE_DamageVariation>
+	<CE_DamageVariation>伤害浮动</CE_DamageVariation>
 	<!-- EN: Final average damage -->
-	<CE_FinalAverageDamage>平均伤害</CE_FinalAverageDamage>
+	<CE_FinalAverageDamage>最终平均伤害</CE_FinalAverageDamage>
 	<!-- EN: Wielder skill level -->
 	<CE_WielderSkillLevel>使用者技能等级</CE_WielderSkillLevel>
 	<!-- EN: chance -->
-	<CE_Chance>几率</CE_Chance>
+	<CE_Chance>概率</CE_Chance>
 	<!-- EN: Chance factor -->
-	<CE_ChanceFactor>几率</CE_ChanceFactor>
+	<CE_ChanceFactor>概率系数</CE_ChanceFactor>
+	<!-- EN: Non-human parry bonus: + {0}% -->
+	<CE_LimbParryBonusChance>非人类招架加成：+{0}%</CE_LimbParryBonusChance>
+	<!-- EN: Attacking Limb(s): +{0}% ({1} intact limb(s)) -->
+	<CE_LimbParryBonus>攻击用肢体：+{0}%（{1} 个完好肢体）</CE_LimbParryBonus>
 
 	<!-- Alerts -->
 	<!-- EN: Colonist has shield and two-handed weapon -->
 	<CE_ColonistHasShieldAndTwoHandedWeapon>殖民者同时持有盾牌和双手武器</CE_ColonistHasShieldAndTwoHandedWeapon>
 	<!-- EN: One of your colonists is carrying a shield and has a two-handed weapon equipped. They won't be able to attack unless they remove the shield or switch to another weapon. -->
-	<CE_ColonistHasShieldAndTwoHandedWeaponDesc>你的一个殖民者即带着盾牌又装备了双手武器。他们将无法攻击，除非他们移除盾牌或切换到另一种武器。</CE_ColonistHasShieldAndTwoHandedWeaponDesc>
+	<CE_ColonistHasShieldAndTwoHandedWeaponDesc>一名殖民者既携带盾牌，又装备了双手武器。该殖民者必须卸下盾牌或切换其他武器后才能攻击。</CE_ColonistHasShieldAndTwoHandedWeaponDesc>
 
 	<!-- Letters -->
 	<!-- EN: Counter shelling -->
@@ -268,17 +324,17 @@
 	<!-- EN: Strange signals -->
 	<CE_MechWarningLabel>奇怪的信号</CE_MechWarningLabel>
 	<!-- EN: You have intercepted several strange electronic signals nearby. While harmless on their own, such signals are often an indicator of Mechanoid activity in the area.\n\nSome of the larger Mechanoids have heavy armor that will easily deflect all rifle fire. {0} says you will need something that can defeat at least {1}mm RHA, molotov cocktails which can sink into openings and overheat internal components or EMP weapons which can destroy their circuitry. -->
-	<CE_MechWarningText>你在附近截获了几个奇怪的电子信号。虽然这些信号本身无害，但它们往往是该地区机械活动的一个指标。\n\n一些机械体装备的重型装甲可以轻易地抵挡所有步枪火力。{0}说你需要至少{1}mm RHA 穿深的武器才能穿透它们的装甲，也可以使用燃烧瓶渗入机械体内部以摧毁他们，或用电磁脉冲武器使它们的电路过载。</CE_MechWarningText>
+	<CE_MechWarningText>你在附近截获了几个奇怪的电子信号。尽管信号本身无害，但通常意味着该地区有机械族活动。\n\n部分大型机械族的重型护甲可以轻易偏转所有步枪火力。{0}认为你需要能够击穿至少 {1} mm RHA 的武器；也可以使用燃烧瓶，让燃料渗入缝隙并使内部组件过热，或用 EMP 武器破坏它们的电路。</CE_MechWarningText>
 	<!-- EN: One of your colonists -->
 	<CE_MechWarningText_UnnamedColonist>你的一个殖民者</CE_MechWarningText_UnnamedColonist>
 
 	<!-- Special display stats -->
 	<!-- EN: Collision height of this object. Will stop gunfire up to this height and humanlikes will generally crouch down this low to shoot over it.\n\nIf higher than a shooter's shot height it can't be fired over. If higher than body height it will obscure entirely. For baseline, grown humans this means 1.5m shot/1.75m body height respectively. -->
-	<CE_CoverHeightExplanation>此物体的掩体高度。它将阻挡高度低于这个高度的子弹，殖民者通常会蹲下架在掩体上射击。\n\n如果高于殖民者的射击高度，殖民者就无法开火，如果高于殖民者的身高，它将完全遮挡子弹。成年人类通常有1.5米的射击高度和1.75米的身高。</CE_CoverHeightExplanation>
+	<CE_CoverHeightExplanation>该物体的碰撞高度。它会阻挡不高于此高度的射击，类人生物通常会蹲伏至这一高度，以越过掩体射击。\n\n若物体高于射手的射击高度，就无法越过其开火；若高于身体高度，则会完全遮挡目标。以成年基准人类为例，射击高度和身体高度分别为 1.5 m 与 1.75 m。</CE_CoverHeightExplanation>
 
 	<!-- Tutorial popup -->
 	<!-- EN: CE adds several tutorial entries on subjects such as how the armor mechanics work and how not to die from Centipedes. It is recommended first time players enable the learning helper. -->
-	<CE_EnableTutorText>CE增加了几个教程条目，涉及护甲机制的运作以及如何不被机械族乱杀之类的内容。建议玩家第一次启用学习助手。</CE_EnableTutorText>
+	<CE_EnableTutorText>CE 添加了多个教程条目，介绍护甲机制以及如何应对机械蜈蚣等内容。建议初次游玩的玩家启用教学助手。</CE_EnableTutorText>
 	<!-- EN: Enable learning helper -->
 	<CE_EnableTutorEnable>启用教程助手</CE_EnableTutorEnable>
 	<!-- EN: I know the risk -->
@@ -291,21 +347,43 @@
 
 	<!-- Uncompiled dev build popup -->
 	<!-- EN: Uncompiled CE dev build\n\nYou're running a development build of Combat Extended that is not intended for gameplay purposes, this will create a large amount of errors if you attempt to play a colony.\n\nEither download an official CE release from GitHub's Releases section, or if you need the latest development snapshot for testing purposes, get it from the link below. -->
-	<CE_UncompiledDevBuild>未编译的CE开发版本\n\n您正在运行的Combat Extended开发版本，如果您尝试玩殖民地，这将产生大量错误。\n\n请从GitHub的“发布”部分下载官方CE版本，或者如果您需要最新的开发快照进行测试，从下面的链接获取它。</CE_UncompiledDevBuild>
+	<CE_UncompiledDevBuild>未编译的 CE 开发版本\n\n你正在运行不用于正常游玩的 Combat Extended 开发版本。若尝试游玩殖民地，将产生大量错误。\n\n请从 GitHub 的 Releases 页面下载 CE 正式版本；若需用于测试的最新开发快照，请通过下方链接获取。</CE_UncompiledDevBuild>
 	<!-- EN: Get development snapshot -->
 	<CE_GetCompiledDevBuild>获取开发快照</CE_GetCompiledDevBuild>
 	<!-- EN: Continue anyway -->
 	<CE_ContinueAnyway>继续</CE_ContinueAnyway>
 
 	<!-- EN: This weapon is yet patched for CE, while it will behave in vanilla way as fallback, please contact a patcher for compatibility patches. -->
-	<CE_UnpatchedWeapon>此武器没有CE补丁，虽然它可以使用原版的模式射击，但请联系补丁制作者制作兼容性补丁。</CE_UnpatchedWeapon>
+	<CE_UnpatchedWeapon>此武器尚未适配 CE。它仍会作为后备按原版方式运行；请联系补丁作者制作兼容性补丁。</CE_UnpatchedWeapon>
 	<!-- EN: Not patched for CE -->
-	<CE_UnpatchedWeaponShort>没有CE兼容性补丁</CE_UnpatchedWeaponShort>
+	<CE_UnpatchedWeaponShort>尚未适配 CE</CE_UnpatchedWeaponShort>
 	
 	<!-- Shield Information -->
 	<!-- EN: Shield coverage -->
 	<CE_Shield_Coverage>护盾覆盖范围</CE_Shield_Coverage>
 	<!-- EN: Body parts protected from ranged and melee attacks by the shield. -->
 	<CE_Shield_Coverage_Desc>由护盾保护免受远程和近战攻击的身体部位。</CE_Shield_Coverage_Desc>
+
+	<!-- CIWS -->
+	<!-- EN: Copy -->
+	<CIWSSettings_Copy>复制</CIWSSettings_Copy>
+	<!-- EN: Paste -->
+	<CIWSSettings_Paste>粘贴</CIWSSettings_Paste>
+	<!-- EN: Available targets -->
+	<CIWSSettings_AvailableTargets>可拦截目标</CIWSSettings_AvailableTargets>
+	<!-- EN: Ignored targets -->
+	<CIWSSettings_IgnoredTargets>忽略目标</CIWSSettings_IgnoredTargets>
+	<!-- EN: Hold fire - projectiles -->
+	<HoldCloseInProjectilesFire>停止拦截：投射物</HoldCloseInProjectilesFire>
+	<!-- EN: Ignore incoming projectiles -->
+	<HoldCloseInProjectilesFireDesc>忽略来袭投射物</HoldCloseInProjectilesFireDesc>
+	<!-- EN: Hold fire - skyfallers -->
+	<HoldCloseInSkyfallersFire>停止拦截——空降物</HoldCloseInSkyfallersFire>
+	<!-- EN: Ignore landing skyfallers and drop pods -->
+	<HoldCloseInSkyfallersFireDesc>忽略正在降落的空降物和空投舱</HoldCloseInSkyfallersFireDesc>
+	<!-- EN: Configure CIWS -->
+	<Dialog_ManageCIWS>配置近防系统（CIWS）</Dialog_ManageCIWS>
+	<!-- EN: Change available and ignored targets for selected CIWS -->
+	<Dialog_ManageCIWSDesc>更改所选近防系统可拦截和忽略的目标</Dialog_ManageCIWSDesc>
 
 </LanguageData>

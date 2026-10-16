@@ -33,6 +33,32 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<!-- === Highpower Ammostes === -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_6mmRailgun_GaussRifle_HP</defName>
+		<label>6mm Railgun</label>
+		<ammoTypes>
+			<Ammo_6mmRailgun_Sabot>Bullet_CoilGun_Rifle_HP</Ammo_6mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_6mmRailgun_GaussMagnum_HP</defName>
+		<label>6mm Railgun</label>
+		<ammoTypes>
+			<Ammo_6mmRailgun_Sabot>Bullet_CoilGun_Magnum_HP</Ammo_6mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8mmRailgun_GaussLance_HP</defName>
+		<label>8mm Railgun</label>
+		<ammoTypes>
+			<Ammo_8mmRailgun_Sabot>Bullet_CoilGun_Lance_HP</Ammo_8mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- === Projectiles === -->
 
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
@@ -70,6 +96,46 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>21</damageAmountBase>
 			<armorPenetrationSharp>46.4</armorPenetrationSharp>
+			<armorPenetrationBlunt>312</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- === Highpower ratio the x 0.65 damage and 1.5 sharp pen === -->
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
+		<defName>Bullet_CoilGun_Magnum_HP</defName>
+		<label>high-power gauss magnum shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>34.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>142.5</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
+		<defName>Bullet_CoilGun_Rifle_HP</defName>
+		<label>high-power gauss rifle shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>54.7</armorPenetrationSharp>
+			<armorPenetrationBlunt>235.5</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
+		<defName>Bullet_CoilGun_Lance_HP</defName>
+		<label>high-power gauss lance shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>69.6</armorPenetrationSharp>
 			<armorPenetrationBlunt>312</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>

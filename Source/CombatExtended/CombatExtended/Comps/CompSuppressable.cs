@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
 using UnityEngine;
-using CombatExtended.AI;
 using CombatExtended.Compatibility;
 
 namespace CombatExtended;
@@ -59,7 +55,7 @@ public class CompSuppressable : ThingComp
     public IntVec3 SuppressorLoc => suppressorLoc;
 
     public float CurrentSuppression => currentSuppression;
-    private float SuppressionThreshold
+    public float SuppressionThreshold
     {
         get
         {
@@ -131,7 +127,7 @@ public class CompSuppressable : ThingComp
                 Pawn pawn = parent as Pawn;
                 currentSuppression = 0f;
                 ticksHunkered = 0;
-                if (pawn != null && pawn.CurJob.def == CE_JobDefOf.HunkerDown)
+                if (pawn != null && pawn.CurJob?.def == CE_JobDefOf.HunkerDown)
                 {
                     pawn.CurJob.Clear();
                 }
@@ -167,6 +163,12 @@ public class CompSuppressable : ThingComp
         Scribe_Values.Look(ref ticksUntilDecay, "ticksUntilDecay", 0);
         Scribe_Values.Look(ref lastHelpRequestAt, "lastHelpRequestAt", -1);
         Scribe_Values.Look(ref ticksHunkered, "ticksHunkered", 0);
+    }
+
+    public void DebugSetSuppression(float amount)
+    {
+        currentSuppression = 0f;
+        AddSuppression(amount, parent.positionInt);
     }
 
     public void AddSuppression(float amount, IntVec3 origin)

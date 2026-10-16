@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+		<value>
+			<Shell_AENitrogen_CE>Bullet_Shell_AENitrogen_CE</Shell_AENitrogen_CE>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Shell_AENitrogen"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TrapIED_AENitrogen"]/costList/Shell_AENitrogen</xpath>
+		<value>
+			<Shell_AENitrogen_CE>2</Shell_AENitrogen_CE>
+		</value>
+	</Operation>
+
+</Patch>

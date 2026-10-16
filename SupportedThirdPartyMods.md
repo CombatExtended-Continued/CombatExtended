@@ -105,6 +105,9 @@ Anima Gear  |
 Animal Collab Project Vanilla-Style |
 Animal Armor: Vanilla	|
 Animal Equipment	|
+Anomalies Expected |
+Anomalies Expected Addon |
+Anomaly Portal |
 Anthro Race |
 Antinium    |
 Anty the War Ant Race |
@@ -121,6 +124,9 @@ Archotech+ (Continued)  |
 Arasaka Corporation	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
+Arsenal - Orbital Security    |
+Arsenal - The Juggernaut    |
+Arsenal - The New Republic    |
 Asimov  |
 Aspero Race |
 Astoriel Legacy |
@@ -204,6 +210,7 @@ Dinosauria |
 Diverse Mechanoid War Procedure |
 Divine Order |
 DOOM - Faction (Continued) |
+Dlc collaboration - Void universe |
 DMWands |
 Dragons Descent    |
 Dragons!	|
@@ -244,6 +251,7 @@ Erin's Viera    |
 Erin's Wildlife |
 ESCP - Spriggan   |
 ESCP - Trolls   |
+Eventide Warcasket |
 EvolvedOrgansRedux |
 Exotic Arsenal |
 Expanded Materials - Metals |
@@ -253,6 +261,7 @@ Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 EPOE-Forked: Royalty DLC expansion	|
 Expanded Woodworking (Forked)   |
 Extended Storage	|
+Faction - Elves |
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
 Fallout: Vault 111 Starter Pack |
@@ -276,6 +285,7 @@ Frontline Collection  |
 FROG Suit Set   |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
+Genetics! Mushkin    |
 Gestalt Engine  |
 Giddy-Up 2    |
 Girls' Frontline 2 Nagan Apparel    |
@@ -373,6 +383,7 @@ Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
+Mechanoid Repurposing   |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Bowyer   |
@@ -406,6 +417,7 @@ Misstall's Armor and Uniforms   |
 Moa |
 Moonjelly Race  |
 More Archotech Garbage Continued  |
+More Archotech Implants |
 More Armory! Midworld Arms Pack  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
@@ -474,6 +486,7 @@ pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Prestige Vacsuit Set    |
+Progression Education    |
 Primitive Core |
 Primitive Workbenches |
 Project RimFactory - Materials |
@@ -565,6 +578,7 @@ SCP - Clothing Only	|
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
 Seventh Seraph  |
+Shambler Variants  |
 Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
@@ -591,6 +605,8 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 Tiered Mechs    |
 The Corporation - Mort's Factions   |
+The Cosmic Odyssey - Blessings of the Machine God   |
+The Thrumbo Horn Weapons   |
 The Mantodean insectoid race	|
 The Profaned	|
 The REAL flamberg	|
@@ -662,6 +678,7 @@ Vanilla Quests Expanded - Ancients  |
 Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Quests Expanded - Deadlife  |
 Vanilla Quests Expanded - Drone Factory  |
+Vanilla Quests Expanded - The Generator |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |

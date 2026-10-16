@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== AP_TeleportSpike ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AbilityDef[defName="AP_TeleportSpike"]</xpath>
+		<value>
+			<label>teleport spike</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="AP_TeleportSpike"]/verbProperties</xpath>
+		<value>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+				<range>36</range>
+				<warmupTime>0.5</warmupTime>
+				<defaultProjectile>AP_Projectile_TeleportSpike</defaultProjectile>
+				<burstShotCount>30</burstShotCount>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<recoilAmount>3</recoilAmount>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			</verbProperties>
+		</value>
+	</Operation>
+
+</Patch>

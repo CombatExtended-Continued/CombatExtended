@@ -259,16 +259,12 @@ public class LightingTracker : MapComponent
         float coverHeight = coverGridCache[CellToIndex(position)];
         if (coverHeight == -1)
         {
-            Thing cover = position.GetFirstPawn(map) ?? position.GetCover(map);
-            if (cover == null)
-            {
-                coverHeight = 0;
-            }
-            else
-            {
-                Bounds bounds = CE_Utility.GetBoundsFor(cover);
-                coverHeight = bounds.size.y;
-            }
+            // separate pawnHeight and coverHeight and keep the higher instead of pawn height XOR cover height.
+            Thing pawn = position.GetFirstPawn(map);
+            Thing coverThing = position.GetCover(map);
+            float pawnHeight = pawn == null ? 0f : CE_Utility.GetBoundsFor(pawn).max.y;
+            float coverHeightFromThing = coverThing == null ? 0f : CE_Utility.GetBoundsFor(coverThing).max.y;
+            coverHeight = Mathf.Max(pawnHeight, coverHeightFromThing);
             coverGridCache[CellToIndex(position)] = coverHeight;
         }
         return coverHeight;

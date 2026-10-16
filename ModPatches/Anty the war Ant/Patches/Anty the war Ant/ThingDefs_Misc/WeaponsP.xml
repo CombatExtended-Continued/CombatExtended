@@ -11,7 +11,6 @@
 			<Bulk>10.03</Bulk>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
-
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
@@ -26,118 +25,84 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 		</Properties>
-
 		<AmmoUser>
 			<magazineSize>120</magazineSize>
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_AntyRedAcidLauncher</ammoSet>
 		</AmmoUser>
-		<FireModes>
-		</FireModes>
+		<FireModes />
 	</Operation>
 
-	<Operation Class="PatchOperationRemove"> <!-- AT_Proty_spawner can't be CE patched via xml the comp break -->
-		<xpath>Defs/ThingDef[defName="AT_Proty_spawner"]/equippedStatOffsets/MoveSpeed </xpath>
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AT_Proty_spawner</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.79</SwayFactor>
+			<Bulk>10.03</Bulk>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_CEProtyspawner</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>51</range>
+			<soundCast>ShotAnty_D</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>4.8</reloadTime>
+		</AmmoUser>
+		<FireModes />
 	</Operation>
 
 	<!-- ========== Line Rifle =========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AT_hydroheliumion_B"]</xpath>
-		<value>
-			<ThingDef ParentName="BaseMakeableGun_Anty">
-				<defName>AT_hydroheliumion_B</defName>
-				<label>Red Burst Line Rifle</label>
-				<description>It is a weapon developed by Anties to deal with targets with thick armor or strong body itself, such as mechanoids.\n\n Unlike conventional acid weapons, it fires Red Burst, a compound of Anty-acid and Refleum, rather than Anty-acid. Exhibits powerful power.</description>
-				<graphicData>
-					<texPath>Things/Weapons/AT_hydroheliumion_B</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-					<shaderType>TransparentPostLight</shaderType>
-				</graphicData>
-				<soundInteract>hydroheliumion_A</soundInteract>
-				<statBases>
-					<WorkToMake>90000</WorkToMake>
-					<SightsEfficiency>1</SightsEfficiency>
-					<ShotSpread>0.14</ShotSpread>
-					<SwayFactor>1.51</SwayFactor>
-					<Bulk>9.60</Bulk>
-					<Mass>5.45</Mass>
-					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-				</statBases>
-				<equippedAngleOffset>45</equippedAngleOffset>
-				<weaponTags>
-					<li>hydroheliumion_B</li>
-				</weaponTags>
-				<costList>
-					<AntyExoskeleton>80</AntyExoskeleton>
-					<Refleum>15</Refleum>
-					<Uranium>20</Uranium>
-					<ComponentSpacer>4</ComponentSpacer>
-					<Anty_Recyclecore>1</Anty_Recyclecore>
-				</costList>
-				<verbs>
-					<li Class="CombatExtended.VerbPropertiesCE">
-						<recoilAmount>2.36</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_AntyRedAcidLine</defaultProjectile>
-						<burstShotCount>3</burstShotCount>
-						<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
-						<warmupTime>0.6</warmupTime>
-						<range>16</range>
-						<soundCast>ShotAnty_G</soundCast>
-						<soundCastTail>GunTail_Light</soundCastTail>
-						<muzzleFlashScale>9</muzzleFlashScale>
-					</li>
-				</verbs>
-				<comps>
-					<li Class="CombatExtended.CompProperties_AmmoUser">
-						<magazineSize>10</magazineSize>
-						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_AntyRedAcidLine</ammoSet>
-					</li>
-					<li Class="CombatExtended.CompProperties_FireModes">
-						<aimedBurstShotCount>2</aimedBurstShotCount>
-					</li>
-				</comps>
-				<recipeMaker>
-					<skillRequirements>
-						<Crafting>10</Crafting>
-						<Intellectual>10</Intellectual>
-					</skillRequirements>
-					<researchPrerequisite>hydroheliumion_B</researchPrerequisite>
-				</recipeMaker>
-				<tools>
-					<li Class="CombatExtended.ToolCE">
-						<label>muzzle</label>
-						<capacities>
-							<li>Poke</li>
-						</capacities>
-						<power>8</power>
-						<cooldownTime>1.55</cooldownTime>
-						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						<extraMeleeDamages>
-							<li>
-								<def>Anty_Poke</def>
-								<amount>10</amount>
-								<chance>0.35</chance>
-							</li>
-							<li>
-								<def>EMP</def>
-								<amount>12</amount>
-								<chance>0.25</chance>
-							</li>
-							<li>
-								<def>Stun</def>
-								<amount>3</amount>
-								<chance>0.15</chance>
-							</li>
-						</extraMeleeDamages>
-					</li>
-				</tools>
-			</ThingDef>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AT_hydroheliumion_B</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.51</SwayFactor>
+			<Bulk>9.60</Bulk>
+			<Mass>5.45</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<AntyExoskeleton>80</AntyExoskeleton>
+			<Refleum>15</Refleum>
+			<Uranium>20</Uranium>
+			<ComponentSpacer>4</ComponentSpacer>
+			<Anty_Recyclecore>1</Anty_Recyclecore>
+		</costList>
+		<Properties>
+			<recoilAmount>2.36</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_AntyRedAcidLine</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+			<warmupTime>0.6</warmupTime>
+			<range>16</range>
+			<soundCast>ShotAnty_G</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_AntyRedAcidLine</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+		</FireModes>
 	</Operation>
 
 	<!-- ========== Cluster =========== -->
@@ -151,7 +116,6 @@
 			<Bulk>11.03</Bulk>
 			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
 		</statBases>
-
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
@@ -166,22 +130,64 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 		</Properties>
-
 		<AmmoUser>
 			<magazineSize>200</magazineSize>
 			<reloadTime>5.1</reloadTime>
 			<ammoSet>AmmoSet_AntyRedAcidCluster</ammoSet>
 		</AmmoUser>
+		<FireModes />
+	</Operation>
+
+	<!-- ========== Gas =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AT_hydroheliumion_D</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>5.0</ShotSpread>
+			<SwayFactor>1.38</SwayFactor>
+			<Bulk>10</Bulk>
+			<Mass>7</Mass>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+			<AT_Acid_damage>0.3</AT_Acid_damage>
+			<AT_Acid_damage_duration>40</AT_Acid_damage_duration>
+			<AT_Acid_damage_destruction>35</AT_Acid_damage_destruction>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_AntyRedAcidGas</defaultProjectile>
+			<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+			<warmupTime>0.6</warmupTime>
+			<range>18</range>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<burstShotCount>20</burstShotCount>
+			<soundCast>ShotAnty_Gas</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_AntyRedAcidGas</ammoSet>
+		</AmmoUser>
 		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>10</aimedBurstShotCount>
+			<aiAimMode>SuppressFire</aiAimMode>
 		</FireModes>
 	</Operation>
 
 	<!-- ========== Melee Attacks =========== -->
 
-	<Operation Class="PatchOperationReplace"> 
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="AT_hydroheliumion_A" or
 			defName="AT_hydroheliumion_C" or
+			defName="AT_hydroheliumion_D" or
 			defName="AT_Proty_spawner"
 			]/tools</xpath>
 		<value>
@@ -216,6 +222,52 @@
 					<cooldownTime>1.55</cooldownTime>
 					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AT_hydroheliumion_B"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Anty_Poke</def>
+							<amount>10</amount>
+							<chance>0.35</chance>
+						</li>
+						<li>
+							<def>EMP</def>
+							<amount>12</amount>
+							<chance>0.25</chance>
+						</li>
+						<li>
+							<def>Stun</def>
+							<amount>3</amount>
+							<chance>0.15</chance>
+						</li>
+					</extraMeleeDamages>
 				</li>
 			</tools>
 		</value>

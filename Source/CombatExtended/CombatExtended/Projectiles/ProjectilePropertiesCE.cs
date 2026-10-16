@@ -48,6 +48,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public FloatRange mass = new FloatRange(1f, 1f);
     public FloatRange diameter = new FloatRange(1f, 1f);
 
+    public bool detonateInSpace = true;
     public ThingDef detonateMoteDef;
     public FleckDef detonateFleckDef;
     public float detonateEffectsScaleOverride = -1;
@@ -78,7 +79,8 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public float collideDistance = 1f;
     public float impactChance = 1f;
     #region Spawnpawn fields
-    public bool alwaysHostile = false;
+    public bool forceMentalState = false;
+    public MentalStateDef mentalStateDef = null;
     public FactionDef factionDef = null;
 
     public float? fixedBiologicalAge = null;

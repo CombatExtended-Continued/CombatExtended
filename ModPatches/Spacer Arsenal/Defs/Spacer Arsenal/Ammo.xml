@@ -77,7 +77,8 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BasePlasmaBlastBullet" ParentName="BaseBulletCE" Abstract="true">
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_Bolt_PlasmaBlaster</defName>
 		<label>plasma bolt</label>
 		<graphicData>
 			<texPath>Things/Projectiles/Bullet_Plasma</texPath>
@@ -85,26 +86,22 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Burn</damageDef>
-			<speed>151</speed>
-			<dropsCasings>false</dropsCasings>
+			<speed>178</speed>
+			<damageDef>Flame_Secondary_Incendiary</damageDef>
+			<damageAmountBase>2</damageAmountBase>
+			<explosionRadius>0.5</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<screenShakeFactor>0</screenShakeFactor>
 		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BasePlasmaBlastBullet">
-		<defName>Bullet_Bolt_PlasmaBlaster</defName>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
-			<armorPenetrationBlunt>8</armorPenetrationBlunt>
-			<empShieldBreakChance>0.2</empShieldBreakChance>
-			<secondaryDamage>
-				<li>
-					<def>EMP</def>
-					<amount>3</amount>
-				</li>
-			</secondaryDamage>
-		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>12</damageAmountBase>
+				<explosiveDamageType>EMP</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -232,7 +229,8 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BasePhotonBoltBullet" ParentName="BaseBulletCE" Abstract="true">
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_Bolt_PhotonBlaster</defName>
 		<label>photon bolt</label>
 		<graphicData>
 			<texPath>Things/Projectiles/Bullet_Photon</texPath>
@@ -240,18 +238,15 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>DV_PhotonDamage</damageDef>
-			<speed>156</speed>
-			<dropsCasings>false</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BasePhotonBoltBullet">
-		<defName>Bullet_Bolt_PhotonBlaster</defName>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>6</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+			<damageAmountBase>13</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary_Incendiary</def>
+					<amount>4</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -277,22 +272,22 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>6</count>
 			</li>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>ComponentSpacer</li>
+						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>6</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Plasteel</li>
 				<li>Steel</li>
-				<li>ComponentSpacer</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
@@ -300,9 +295,9 @@
 		</products>
 		<workAmount>8400</workAmount>
 	</RecipeDef>
-	
+
 	<!-- Neutron Cell Ammo -->
-	
+
 	<ThingCategoryDef>
 		<defName>AmmoNeutronCell</defName>
 		<label>neutron cell</label>
@@ -374,8 +369,8 @@
 		<defName>Bullet_NeutronStreamer</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>4</damageAmountBase>
-			<armorPenetrationSharp>0.001</armorPenetrationSharp>
-			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -432,7 +427,7 @@
 		</products>
 		<workAmount>8400</workAmount>
 	</RecipeDef>
-	
+
 	<!-- ==================== Laserpulse Longrifle ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -451,6 +446,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef MayRequire="ludeon.rimworld.odyssey">BeamBypassShields</damageDef>
 			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>20.25</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 

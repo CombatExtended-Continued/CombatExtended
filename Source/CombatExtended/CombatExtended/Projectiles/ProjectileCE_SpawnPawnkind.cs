@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
 using Verse;
-using Verse.Sound;
 
 namespace CombatExtended;
 public class ProjectileCE_SpawnPawnkind : ProjectileCE
@@ -23,7 +17,6 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
             return;
         }
 
-        bool alwaysHostile = props.alwaysHostile;
         PawnKindDef spawnsPawnKind = props.spawnsPawnKind;
 
         if (spawnsPawnKind == null)
@@ -44,8 +37,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
                 }
             }
         }
-
-        // Use configured faction if specified, otherwise use launcher's faction
+        // Fallback to launcher's faction if no configured faction or faction not found
         Faction faction = null;
 
         if (props.factionDef != null)
@@ -54,38 +46,6 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
             if (faction == null)
             {
                 Log.Warning($"Could not find faction {props.factionDef.defName} for projectile {this.def.defName}");
-            }
-        }
-        // Fallback to launcher's faction if no configured faction or faction not found
-
-
-        if (alwaysHostile)
-        {
-            Faction bestCandidate = null;
-            float bestScore = float.MinValue;
-            foreach (Faction candidate in Find.FactionManager.AllFactionsListForReading)
-            {
-                if (candidate == Faction.OfPlayer || candidate.defeated || !candidate.HostileTo(Faction.OfPlayer))
-                {
-                    continue;
-                }
-                // Ensure faction compatibility with pawn kind
-                if (spawnsPawnKind?.RaceProps?.Humanlike != candidate.def.humanlikeFaction)
-                {
-                    continue;
-                }
-                // Inverse scoring since lower goodwill is better
-                float score = -candidate.PlayerGoodwill;
-
-                if (score > bestScore)
-                {
-                    bestScore = score;
-                    bestCandidate = candidate;
-                }
-            }
-            if (bestCandidate != null)
-            {
-                faction = bestCandidate;
             }
         }
 
@@ -116,10 +76,12 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
             return;
         }
 
+        MentalStateDef mentalStateDef = props.mentalStateDef;
         GenSpawn.Spawn(pawn, loc, map);
-        if (pawn.Faction != faction && pawn.def.CanHaveFaction)
+        if (props.forceMentalState && mentalStateDef != null && pawn.mindState != null)
         {
-            pawn.SetFaction(faction);
+            pawn.mindState.mentalStateHandler.TryStartMentalState(mentalStateDef);
         }
+
     }
 }

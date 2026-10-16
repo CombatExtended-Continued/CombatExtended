@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_6x24mmCharged_Training</defName>
+		<label>6x24mm Charged Training</label>
+		<ammoTypes>
+			<Ammo_6x24mmCharged>Bullet_6x24mmCharged_Training</Ammo_6x24mmCharged>
+		</ammoTypes>
+		<similarTo>AmmoSet_ChargedRifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_556x45mmNATO_Training</defName>
+		<label>5.56x45mm NATO Training</label>
+		<ammoTypes>
+			<Ammo_556x45mmNATO_FMJ>Bullet_556x45mmNATO_FMJ_Training</Ammo_556x45mmNATO_FMJ>
+		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Arrow_Training</defName>
+		<label>Training arrows</label>
+		<ammoTypes>
+			<Ammo_Arrow_Stone>Projectile_Arrow_Stone_Training</Ammo_Arrow_Stone>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATO_FMJ_Training</defName>
+		<label>5.56mm NATO training bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>34.18</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_6x24mmCharged_Training</defName>
+		<label>6x24mm  Charged training bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseArrowProjectile">
+		<defName>Projectile_Arrow_Stone_Training</defName>
+		<label>training arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>31</speed>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationSharp>0.2</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.42</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.333</preExplosionSpawnChance><!-- 14.99 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+		<modExtensions>
+			<li Class="ProjectileImpactFX.EffectProjectileExtension">
+				<AutoAssign>false</AutoAssign>
+				<CreateTerrainEffects>true</CreateTerrainEffects>
+				<StuckProjectileFleckDef>Fleck_CELandedArrow_Stone</StuckProjectileFleckDef>
+				<StuckProjectileFleckSize>0.65</StuckProjectileFleckSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+</Defs>

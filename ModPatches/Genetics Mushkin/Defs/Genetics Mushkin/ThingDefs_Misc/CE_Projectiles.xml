@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- CE-only projectile used by the fungal staff. The original BGM_Proj_ToxSpores
+	     remains untouched because it is also used by the Tox Spores gene ability. -->
+	<ThingDef>
+		<defName>BGM_Proj_ToxSpores_CE</defName>
+		<label>toxic spores</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<category>Projectile</category>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<useHitPoints>false</useHitPoints>
+		<neverMultiSelect>true</neverMultiSelect>
+		<graphicData>
+			<texPath>Things/Projectile/FoamLong/Foam</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.85</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ToxGas</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>27</speed>
+			<arcHeightFactor>0.4</arcHeightFactor>
+			<shadowSize>0</shadowSize>
+			<landedEffecter>ExtinguisherPuffSmall</landedEffecter>
+			<soundImpact>Foam_Impact</soundImpact>
+			<suppressionFactor>0</suppressionFactor>
+			<airborneSuppressionFactor>0</airborneSuppressionFactor>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>1</damageAmountBase>
+				<explosiveRadius>1</explosiveRadius>
+				<explosiveDamageType>ToxGas</explosiveDamageType>
+				<postExplosionGasType>ToxGas</postExplosionGasType>
+				<postExplosionGasAmount>30</postExplosionGasAmount>
+				<damageFalloff>false</damageFalloff>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

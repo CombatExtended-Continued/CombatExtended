@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Line Rifle =========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AT_hydroheliumion_B_Unique</defName>
+					<statBases>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.51</SwayFactor>
+						<Bulk>9.60</Bulk>
+						<Mass>5.45</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<AntyExoskeleton>80</AntyExoskeleton>
+						<Refleum>15</Refleum>
+						<Uranium>20</Uranium>
+						<ComponentSpacer>4</ComponentSpacer>
+						<Anty_Recyclecore>1</Anty_Recyclecore>
+					</costList>
+					<Properties>
+						<recoilAmount>2.36</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_AntyRedAcidLine</defaultProjectile>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+						<warmupTime>0.6</warmupTime>
+						<range>16</range>
+						<soundCast>ShotAnty_G</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_AntyRedAcidLine</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>true</aiUseBurstMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AT_hydroheliumion_B_Unique"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								<extraMeleeDamages>
+									<li>
+										<def>Anty_Poke</def>
+										<amount>10</amount>
+										<chance>0.35</chance>
+									</li>
+									<li>
+										<def>EMP</def>
+										<amount>12</amount>
+										<chance>0.25</chance>
+									</li>
+									<li>
+										<def>Stun</def>
+										<amount>3</amount>
+										<chance>0.15</chance>
+									</li>
+								</extraMeleeDamages>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Overgrowth Red-Burst Rifle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AT_hydroheliumion_A_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>120</magazineSize>
+							<reloadTime>7.8</reloadTime>
+							<ammoSet>AmmoSet_AntyRedAcidLauncher</ammoSet>
+							<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
+						</li>
+						<li Class="CombatExtended.CompProperties_UnderBarrel" />
+					</value>
+				</li>
+
+				<!-- Overgrowth Red-Burst Line Rifle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AT_hydroheliumion_B_Unique"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>10</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_AntyRedAcidLine</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiUseBurstMode>true</aiUseBurstMode>
+							<aimedBurstShotCount>2</aimedBurstShotCount>
+						</li>
+						<li Class="CombatExtended.CompProperties_UnderBarrel" />
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

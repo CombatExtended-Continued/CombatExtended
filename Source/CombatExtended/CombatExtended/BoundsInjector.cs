@@ -213,6 +213,7 @@ public static class BoundsInjector
             CollectGraphic(def.graphicData?.Graphic, textures);
             CollectGraphic(def.plant?.leaflessGraphic, textures);
             CollectGraphic(def.plant?.immatureGraphic, textures);
+            CollectGraphic(def.plant?.leaflessImmatureGraphic, textures);
         }
 
         CollectGraphic(Plant.GraphicSowing, textures);
@@ -312,6 +313,17 @@ public static class BoundsInjector
         catch (Exception e)
         {
             throw new Exception(plantDef + ".plant.immatureGraphic", e);
+        }
+        try
+        {
+            if (plantDef.plant.leaflessImmatureGraphic != null)
+            {
+                BoundMap(plantDef.plant.leaflessImmatureGraphic, GraphicType.Plant);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new Exception(plantDef + ".plant.leaflessImmatureGraphic", e);
         }
         Graphic graphicSowing = Plant.GraphicSowing;
 

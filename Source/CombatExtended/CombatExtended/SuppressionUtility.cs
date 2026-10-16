@@ -289,18 +289,31 @@ public static class SuppressionUtility
     /// <returns>An enumerator of areas covered by shields on the map that may protect the pawn.</returns>
     public static IEnumerable<IEnumerable<IntVec3>> InterceptorZonesFor(Pawn pawn)
     {
-        foreach (var interceptor in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor))
+        Map map = pawn.Map;
+
+        foreach (var interceptor in map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor))
         {
             var comp = interceptor.TryGetComp<CompProjectileInterceptor>();
             if (comp.Active && (comp.Props.interceptNonHostileProjectiles || !interceptor.HostileTo(pawn)))
             {
-                yield return GenRadial.RadialCellsAround(interceptor.Position, comp.Props.radius, true);
+                yield return InBoundsOnly(GenRadial.RadialCellsAround(interceptor.Position, comp.Props.radius, true), map);
             }
         }
 
         foreach (var zone in BlockerRegistry.ShieldZonesCallback(pawn))
         {
-            yield return zone;
+            yield return InBoundsOnly(zone, map);
+        }
+    }
+
+    private static IEnumerable<IntVec3> InBoundsOnly(IEnumerable<IntVec3> cells, Map map)
+    {
+        foreach (var cell in cells)
+        {
+            if (cell.InBounds(map))
+            {
+                yield return cell;
+            }
         }
     }
 

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === 
+	  Compared to conventional weapons, coilguns have longer
+	  warmups, but higher rates of fire and large magazines.
+	  === -->
+
+	<!-- === Tools === -->
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Aqued_Gun_GaussSlugger" or
+			defName="Aqued_Gun_GaussDMR" or
+			defName="Aqued_Gun_GaussSAW"
+		]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Aqued_Gun_GaussCarbine"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="Aqued_Gun_GaussCarbine"]/comps/li[@Class="VEF.Weapons.CompProperties_MultiVerbWeapon"] |
+			Defs/ThingDef[defName="Aqued_Gun_GaussSlugger"]/comps/li[@Class="VEF.Weapons.CompProperties_MultiVerbWeapon"] |
+			Defs/ThingDef[defName="Aqued_Gun_GaussDMR"]/comps/li[@Class="VEF.Weapons.CompProperties_MultiVerbWeapon"] |
+			Defs/ThingDef[defName="Aqued_Gun_GaussSAW"]/comps/li[@Class="VEF.Weapons.CompProperties_MultiVerbWeapon"]
+		</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="Aqued_Gun_GaussCarbine"]/verbs/li[label="low power shot"] |
+			Defs/ThingDef[defName="Aqued_Gun_GaussSlugger"]/verbs/li[label="low power shot"] |
+			Defs/ThingDef[defName="Aqued_Gun_GaussDMR"]/verbs/li[label="low power shot"] |
+			Defs/ThingDef[defName="Aqued_Gun_GaussSAW"]/verbs/li[label="low power shot"]
+		</xpath>
+	</Operation>
+
+	<!-- === Gauss Carbine === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Aqued_Gun_GaussCarbine</defName>
+		<statBases>
+			<Mass>3.9</Mass>
+			<Bulk>4.0</Bulk>
+			<SwayFactor>1.15</SwayFactor>
+			<ShotSpread>0.10</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.09</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_CoilGun_Rifle</defaultProjectile>
+			<warmupTime>1.75</warmupTime>
+			<range>45</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>VWE_Shot_GaussRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6mmRailgun_GaussRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Aqued_Gun_GaussCarbine"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to high-power mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6mmRailgun_GaussRifle_HP</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.09</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_CoilGun_Rifle_HP</defaultProjectile>
+					<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
+					<warmupTime>2.75</warmupTime>
+					<range>45</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>VWE_Shot_GaussRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>True</aiUseBurstMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- === Gauss SAW === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Aqued_Gun_GaussSAW</defName>
+		<statBases>
+			<Mass>8.0</Mass>
+			<Bulk>12.0</Bulk>
+			<SwayFactor>1.50</SwayFactor>
+			<ShotSpread>0.09</ShotSpread>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.09</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_CoilGun_Rifle</defaultProjectile>
+			<warmupTime>4</warmupTime>
+			<range>65</range>
+			<burstShotCount>15</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>VWE_Shot_GaussRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>90</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_6mmRailgun_GaussRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_LMG</li>
+			<li>Bipod_LMG</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Aqued_Gun_GaussSAW"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to high-power mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>100</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_6mmRailgun_GaussRifle_HP</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.09</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_CoilGun_Rifle_HP</defaultProjectile>
+					<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
+					<warmupTime>1.1</warmupTime>
+					<range>65</range>
+					<burstShotCount>15</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>VWE_Shot_GaussRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>True</aiUseBurstMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Aqued_Gun_GaussSAW"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<!-- === Gauss DMR === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Aqued_Gun_GaussDMR</defName>
+		<statBases>
+			<Mass>9.0</Mass>
+			<Bulk>9.0</Bulk>
+			<SwayFactor>2.40</SwayFactor>
+			<ShotSpread>0.1</ShotSpread>
+			<SightsEfficiency>2</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.86</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.0</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_CoilGun_Rifle</defaultProjectile>
+			<warmupTime>1.8</warmupTime>
+			<range>75</range>
+			<soundCast>VWE_Shot_GaussRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Regular</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6mmRailgun_GaussRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Aqued_Gun_GaussDMR"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to high-power mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6mmRailgun_GaussRifle_HP</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_CoilGun_Rifle_HP</defaultProjectile>
+					<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
+					<warmupTime>1.8</warmupTime>
+					<range>75</range>
+					<soundCast>VWE_Shot_GaussRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Regular</recoilPattern>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- === Gauss Slugger === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Aqued_Gun_GaussSlugger</defName>
+		<statBases>
+			<Mass>9.8</Mass>
+			<Bulk>7.0</Bulk>
+			<SwayFactor>1.15</SwayFactor>
+			<ShotSpread>0.10</ShotSpread>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.09</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_CoilGun_12gauge_Slug</defaultProjectile>
+			<warmupTime>1.8</warmupTime>
+			<range>18.9</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>VWE_Shot_GaussLance</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>4.6</reloadTime>
+			<ammoSet>AmmoSet_Railgun_12gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>1</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Aqued_Gun_GaussSlugger"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to high-power mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>8</magazineSize>
+					<reloadTime>4.6</reloadTime>
+					<ammoSet>AmmoSet_Railgun_12gauge_HP</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.09</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_CoilGun_12gauge_Slug_HP</defaultProjectile>
+					<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
+					<warmupTime>1.1</warmupTime>
+					<range>18.9</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>VWE_Shot_GaussLance</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>True</aiUseBurstMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
