@@ -409,6 +409,7 @@ Miho, the Celestial Fox  |
 Mincho, The Mint Choco Slime ~ HAR ver. |
 MiningCo. MiningHelmet	|
 MiningCo. Spaceship	|
+Minipack: Vanilla Miscs Items	|
 Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
