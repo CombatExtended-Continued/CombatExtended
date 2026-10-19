@@ -16,13 +16,15 @@
 	</CombatExtended.AmmoSetDef>
 
 	<ThingDef Name="Base155mmHowitzerShell_GaussHowitzer" ParentName="Base155mmHowitzerShell_GaussGun" Abstract="true">
-		<soundImpact>BulletImpact_Metal</soundImpact>
-		<shellingProps>
-			<range>72</range> <!-- based on VanillaGravshipExpanded.CompProperties_WorldArtillery.worldMapAttackRange x2 -->
-		</shellingProps>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<soundImpact>BulletImpact_Metal</soundImpact>
+			<shellingProps>
+				<range>72</range> <!-- based on VanillaGravshipExpanded.CompProperties_WorldArtillery.worldMapAttackRange x2 -->
+			</shellingProps>
+		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussHowitzer">
 		<defName>VGE_Bullet_GaussHowitzer_CE_HE</defName>
 		<label>Gauss howitzer shell (HE)</label>
 		<graphicData>
@@ -51,7 +53,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussHowitzer">
 		<defName>VGE_Bullet_GaussHowitzer_CE_HE_HFuzed</defName>
 		<label>Gauss howitzer shell (Airburst)</label>
 		<thingClass>CombatExtended.ProjectileCE_HeightFuse</thingClass>
@@ -79,7 +81,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussHowitzer">
 		<defName>VGE_Bullet_GaussHowitzer_CE_Incendiary</defName>
 		<label>Gauss howitzer shell (Incendiary)</label>
 		<graphicData>
@@ -107,7 +109,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussHowitzer">
 		<defName>VGE_Bullet_GaussHowitzer_CE_EMP</defName>
 		<label>Gauss howitzer shell (EMP)</label>
 		<graphicData>
@@ -124,7 +126,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base155mmHowitzerShell_GaussGun">
+	<ThingDef ParentName="Base155mmHowitzerShell_GaussHowitzer">
 		<defName>VGE_Bullet_GaussHowitzer_CE_Smoke</defName>
 		<label>Gauss howitzer shell (Smoke)</label>
 		<graphicData>
@@ -229,18 +231,14 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<ThingDef Name="Base155mmHowitzerShell_GaussCannon" ParentName="BaseExplosiveBullet" Abstract="true">
+	<ThingDef Name="Base155mmHowitzerShell_GaussCannon" ParentName="Base155mmHowitzerShell_GaussGun" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<trajectoryWorker>CombatExtended.Compatibility.VGECompat.DirectOverheadTrajectoryWorker</trajectoryWorker>
 			<speed>150</speed>
 			<soundExplode>Explosion_GiantBomb</soundExplode>
 			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
-			<flyOverhead>true</flyOverhead>
-			<dropsCasings>false</dropsCasings>
-			<gravityFactor>10</gravityFactor>
 			<shellingProps>
 				<tilesPerTick>0.05</tilesPerTick>
 				<range>48</range>
@@ -271,7 +269,7 @@
 			<soundExplode>Explosion_GiantBomb</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			<shellingProps>
-				<damage>1.0</damage>
+				<damage>5.0</damage>
 			</shellingProps>
 			<preExplosionSpawnSingleThingDef>CraterMedium</preExplosionSpawnSingleThingDef>
 		</projectile>
