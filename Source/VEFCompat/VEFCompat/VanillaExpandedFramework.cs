@@ -64,7 +64,10 @@ public class VanillaExpandedFramework : IPatch
             float radius = interceptor.ShieldRadius;
             bool spherical = projectile.def.projectile.flyOverhead;
             //skip outbond shots
-            if ((shieldPosition - lastExactPos).sqrMagnitude <= radius * radius) continue;
+            if ((shieldPosition - lastExactPos).sqrMagnitude <= radius * radius)
+            {
+                continue;
+            }
             if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] intersectionPoints, spherical: spherical))
             {
                 continue;
