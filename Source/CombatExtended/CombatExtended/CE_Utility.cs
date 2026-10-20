@@ -559,23 +559,14 @@ public static class CE_Utility
         }
 
         // The weapon may be the source: select again from base value and offsets with weapons ignored.
-        // The cached stat value is never read while the flag is set.
         StatRequest req = StatRequest.For(pawn);
         float result = stat.Worker.GetValueUnfinalized(req, true);
-        StatPart_StatSelect.IgnoreWeapons = true;
-        try
+        foreach (StatPart part in stat.parts)
         {
-            foreach (StatPart part in stat.parts)
+            if (part is StatPart_StatSelect select)
             {
-                if (part is StatPart_StatSelect)
-                {
-                    part.TransformValue(req, ref result);
-                }
+                select.TransformValue(req, ref result, false);
             }
-        }
-        finally
-        {
-            StatPart_StatSelect.IgnoreWeapons = false;
         }
         return Mathf.Clamp(result, stat.minValue, stat.maxValue);
     }

@@ -9,13 +9,6 @@ public abstract class StatPart_StatSelect : StatPart
 {
     public bool includeWeapons;
 
-    /// <summary>
-    /// When set, the weapon term is skipped while evaluating a stat that uses this part.
-    /// Used by <see cref="CE_Utility.NightVisionWithoutWeapon"/>. Always reset in a finally block.
-    /// </summary>
-    [ThreadStatic]
-    public static bool IgnoreWeapons;
-
     public StatDef weaponStat = null;
 
     public StatDef apparelStat;
@@ -47,6 +40,11 @@ public abstract class StatPart_StatSelect : StatPart
 
     public override void TransformValue(StatRequest req, ref float result)
     {
+        TransformValue(req, ref result, true);
+    }
+
+    public void TransformValue(StatRequest req, ref float result, bool includeWeapon)
+    {
         if (req.HasThing && req.Thing is Pawn pawn)
         {
             if (apparelStat != null && pawn.apparel != null)
@@ -73,7 +71,7 @@ public abstract class StatPart_StatSelect : StatPart
                     }
                 }
             }
-            if (weaponStat != null && !IgnoreWeapons && pawn.equipment != null && pawn.equipment.Primary != null)
+            if (includeWeapon && weaponStat != null && pawn.equipment != null && pawn.equipment.Primary != null)
             {
                 result = Select(result, GetEquipmentStat(pawn.equipment.Primary, weaponStat));
             }
