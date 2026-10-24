@@ -49,7 +49,7 @@ def parseArgs(argv):
     argParser.add_argument("--publicizer", type=str, metavar="PATH", help="Location of AssemblyPublicizer source code or parent directory of AssemblyPublicizer.exe")
     argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
     argParser.add_argument("--refout", metavar="PATH", default=None, help="Specify where to save a reference library")
-    argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify directory containing updated csc.exe")
+    argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify updated csc binary")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
@@ -64,9 +64,7 @@ def parseArgs(argv):
 
     if options.csc is not None:
         global CSC
-        args[0] = options.csc + "/csc.exe"
-        args.insert(0, "mono")
-        CSC = args[0:2]
+        CSC[0] = args[0] = options.csc
         
     return options
 
@@ -89,7 +87,7 @@ def unpackLib(path, dest, verbose):
 def resolveLibrary(library, reference, csproj, verbose):
     if library.hintPath:
         if verbose > 1:
-            print("Adding library via hintPath: {hintPath}")
+            print(f"Adding library via hintPath: {library.hintPath}")
         base_dir = os.path.split(csproj)[0]
         t_path = os.path.join(base_dir, library.hintPath)
         if os.path.isabs(library.hintPath):
@@ -97,7 +95,7 @@ def resolveLibrary(library, reference, csproj, verbose):
         else:
             return os.path.relpath(t_path)
     if verbose > 1:
-        print("Searching for library named {library.name}.dll")
+        print(f"Searching for library named {library.name}.dll")
     return os.path.join(reference, library.name+'.dll')
     
 
@@ -128,8 +126,8 @@ def makePublicizer(p, verbose):
         system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.cecil.zip", "-d", ".")
         system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.options.zip", "-d", ".")
         os.system("cp lib/net40/*dll .")
-        system(*CSC, "-out:AssemblyPublicizer.exe", "./AssemblyPublicizer/AssemblyPublicizer.cs", "./AssemblyPublicizer/Properties/AssemblyInfo.cs", "-r:Mono.Options.dll", "-r:Mono.Cecil.dll")
-        system("mono", "--aot", "AssemblyPublicizer.exe")
+
+        system("mono-csc", "-out:AssemblyPublicizer.exe", "./AssemblyPublicizer/AssemblyPublicizer.cs", "./AssemblyPublicizer/Properties/AssemblyInfo.cs", "-r:Mono.Options.dll", "-r:Mono.Cecil.dll")
         os.chdir(cwd)
     return ap_path
 
@@ -232,10 +230,11 @@ def parse_publicize(csproj):
 
 def parse_csproj(csproj_path, verbose):
     
-    base_dir = os.path.split(csproj_path)[0]
+    base_dir = os.path.dirname(csproj_path)
+    sources_dir = os.path.dirname(base_dir)
     
     if verbose:
-        print("Parsing .csproj: {csproj_path}")
+        print(f"Parsing .csproj: {csproj_path}")
     
     with XMLOpen(csproj_path) as csproj:
         packages = parse_packages(csproj)
@@ -246,6 +245,13 @@ def parse_csproj(csproj_path, verbose):
 
         publicized_libraries, removed_libraries_2 = parse_publicize(csproj)
         removed_libraries.extend(removed_libraries_2)
+
+    directory_build_props_path = os.path.join(sources_dir, "Directory.Build.props")
+    if verbose:
+        print(f"Parsing Directory.Build.Props: {directory_build_props_path}")
+    with XMLOpen(directory_build_props_path) as props:
+        shared_packages = parse_packages(props)
+        packages.extend(shared_packages)
     
     return packages, libraries, removed_libraries, publicized_libraries, sources
 
@@ -275,8 +281,8 @@ def main(argv=sys.argv):
             unpackLib(package.destination, f"{tdir}/downloads/unpack", verbose=verbose)
             time.sleep(1)
         system(f"chmod", "-R", "+r", f"{tdir}/downloads/unpack")
-        os.system(f"cp -r {tdir}/downloads/unpack/ref/net472/* {options.reference}")
-        os.system(f"cp -r {tdir}/downloads/unpack/lib/net472/* {options.reference}")
+        os.system(f"cp -r {tdir}/downloads/unpack/ref/net10.0/* {options.reference}")
+        os.system(f"cp -r {tdir}/downloads/unpack/lib/net10.0/* {tdir}/downloads/unpack/lib/net472/* {options.reference}")
 
     libraries = [resolveLibrary(l, options.reference, options.csproj, verbose) for l in libraries if '$' not in l.name]
 
@@ -290,9 +296,13 @@ def main(argv=sys.argv):
             if os.path.basename(l) == p.inputName:
                 libraries.append(publicize(l, publicizer, verbose))
                 break
+
+    sdk_path = os.getenv("SDK_LIBS_PATH")
+    core_lib_deps = ["mscorlib.dll", "System.Core.dll", "System.IO.dll", "System.Diagnostics.Tools.dll", "System.Text.RegularExpressions.dll", "System.Drawing.dll", "System.Linq.dll", "System.Linq.Expressions.dll", "System.Private.CoreLib.dll", "System.Collections.dll", "System.Collections.Concurrent.dll", "System.Reflection.Primitives.dll", "System.Threading.Tasks.Parallel.dll", "System.Reflection.Emit.ILGeneration.dll", "System.Runtime.dll", "System.Xml.dll", "System.Private.Xml.dll", "System.Xml.ReaderWriter.dll"]
+    libraries.extend([os.path.join(sdk_path, l) for l in core_lib_deps])
                 
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
-    args.extend([f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
+    args.extend(["-nullable:disable",f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
     args.extend(rest)
     if options.refout:
         args.extend([f"-refout:{options.refout}"])
