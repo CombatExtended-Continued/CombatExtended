@@ -6,14 +6,14 @@ on:
         description: PR Number
         required: true
   pull_request_target:
-    branches: [ master, Development, Rimworld-Version-1.4 ]
+    branches: [ master, Development, Rimworld-Version-1.4, 1.7-Test ]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 0
     - name: Prebuild
@@ -29,8 +29,15 @@ jobs:
         mkdir -p ${{ runner.temp }}/downloads
         rm -rf AssemblyPublicizer csc.zip csc
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
-        wget https://github.com/CombatExtended-Continued/roslyn/releases/download/CSC-13/csc.zip
-        unzip csc.zip
+
+        # grab Mono for AssemblyPublicizer
+        sudo apt update
+        sudo apt install mono-devel
+    - uses: actions/setup-dotnet@v6
+      with:
+        # Note: Runners may have different, newer .NET SDKs preinstalled.
+        # Use global.json to control the maximum acceptable version.
+        dotnet-version: '10.x'
         
     - name: remove loader
       run: |
@@ -38,12 +45,16 @@ jobs:
         
     - name: build core
       run: |
+        export CSC="/usr/share/dotnet/sdk/$(dotnet --version)/Roslyn/bincore/csc"
+        export SDK_LIBS_PATH="/usr/share/dotnet/shared/Microsoft.NETCore.App/$(ls /usr/share/dotnet/shared/Microsoft.NETCore.App | sort -n | tail -n1)"
         sed -i "s_UNKNOWN_$(git rev-parse HEAD | head -c 10)-pr${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}_" Source/CombatExtended/Version.cs
-        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer --csc $PWD/csc --debug
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer --csc "$CSC" --debug
 
     - name: build compat
       run: |
-        TEMP=${{ runner.temp }}/ python BuildCompat.py --csc $PWD/csc --debug
+        export CSC="/usr/share/dotnet/sdk/$(dotnet --version)/Roslyn/bincore/csc"
+        export SDK_LIBS_PATH="/usr/share/dotnet/shared/Microsoft.NETCore.App/$(ls /usr/share/dotnet/shared/Microsoft.NETCore.App | sort -n | tail -n1)"
+        TEMP=${{ runner.temp }}/ python BuildCompat.py --csc "$CSC" --debug
         
     - name: package
       run: |
