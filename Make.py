@@ -9,15 +9,28 @@ from dataclasses import dataclass
 import subprocess
 
 tdir = tempfile.gettempdir()
-CSC = ["csc"]
-args = [*CSC, "-unsafe", "-warnaserror", "-nostdlib", "-target:library"]
+
+csc_candidates = sorted(os.listdir('/usr/share/dotnet/sdk'),
+                        reverse=True,
+                        key=lambda v: tuple(map(int, v.split('.'))))
+
+
+if csc_candidates:
+    CSC = os.path.join(csc_candidates[0], "Roslyn/bincore/csc")
+else:
+    import shutil
+    CSC = shutil.which("csc")
+    if not csc:
+        CSC = shutil.which("mono-csc")
+
+args = [CSC, "-unsafe", "-warnaserror", "-nowarn:CS1701", "-target:library", "-nostdlib"]
 
 
 def system(*cmd):
     sp = subprocess.Popen(cmd)
     sp.wait()
     return sp.poll()
-    
+
 
 @dataclass
 class PackageReference(object):
@@ -50,6 +63,7 @@ def parseArgs(argv):
     argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
     argParser.add_argument("--refout", metavar="PATH", default=None, help="Specify where to save a reference library")
     argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify updated csc binary")
+    argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify alternative csc executable")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
@@ -64,7 +78,8 @@ def parseArgs(argv):
 
     if options.csc is not None:
         global CSC
-        CSC[0] = args[0] = options.csc
+        args[0] = options.csc
+        CSC = args[0]
         
     return options
 
