@@ -30,14 +30,8 @@ jobs:
         rm -rf AssemblyPublicizer csc.zip csc
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
 
-        # grab Mono for AssemblyPublicizer
-        sudo apt update
-        sudo apt install mono-devel
-    - uses: actions/setup-dotnet@v6
-      with:
-        # Note: Runners may have different, newer .NET SDKs preinstalled.
-        # Use global.json to control the maximum acceptable version.
-        dotnet-version: '10.x'
+        wget https://github.com/CombatExtended-Continued/roslyn/releases/download/CSC-15/csc.tar.zst
+        tar -xaf csc.tar.zst
         
     - name: remove loader
       run: |
