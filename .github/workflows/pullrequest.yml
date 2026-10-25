@@ -29,8 +29,8 @@ jobs:
         mkdir -p ${{ runner.temp }}/downloads
         rm -rf AssemblyPublicizer csc.zip csc
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
-        wget https://github.com/CombatExtended-Continued/roslyn/releases/download/CSC-13/csc.zip
-        unzip csc.zip
+        wget https://github.com/CombatExtended-Continued/roslyn/releases/download/CSC-15/csc.tar.zst
+        tar -xaf csc.tar.zst
         
     - name: remove loader
       run: |
