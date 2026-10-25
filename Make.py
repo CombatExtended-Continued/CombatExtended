@@ -53,7 +53,7 @@ class PublicizeTarget(object):
 
 def parseArgs(argv):
     argParser = argparse.ArgumentParser(description="Automate compiling C# projects on Linux, using Mono")
-    argParser.add_argument("--reference", type=str, metavar="PATH", help="Location of Rimworld Reference libraries")
+    argParser.add_argument("--reference", type=str, action="append", metavar="PATH", help="Location of Rimworld Reference libraries")
     argParser.add_argument("--output", "-o", type=str, default="Assemblies/CombatExtended.dll", help="Output filename")
     argParser.add_argument("--csproj", type=str, default="Source/CombatExtended/CombatExtended.csproj", help="C# project to build.")
     argParser.add_argument("--all-libs", action="store_true", default=False, help="Reference all dlls in $reference, even those not specified by the .csproj file")
@@ -74,7 +74,7 @@ def parseArgs(argv):
         exit(1)
 
     if options.reference is None:
-        options.reference = f"{tdir}/rwreference"
+        options.reference = [f"{tdir}/rwreference"]
 
     if options.csc is not None:
         global CSC
@@ -111,7 +111,11 @@ def resolveLibrary(library, reference, csproj, verbose):
             return os.path.relpath(t_path)
     if verbose > 1:
         print(f"Searching for library named {library.name}.dll")
-    return os.path.join(reference, library.name+'.dll')
+    for r in reference:
+        p = os.path.join(reference, library.name + '.dll')
+        if os.path.exists(p):
+            return p
+    raise RuntimeError(f"Required library {librar.name}.dll not found")
     
 
 def publicize(p, publicizer, verbose):
@@ -280,7 +284,7 @@ def main(argv=sys.argv):
     verbose = options.verbose
 
     system(f"mkdir", "-p", f"{tdir}/downloads/unpack")
-    system(f"mkdir", "-p", options.reference)
+    system(f"mkdir", "-p", options.reference[0])
         
     packages, libraries, removed_libraries, publicized_libraries, sources = parse_csproj(options.csproj, options.verbose)
     if publicized_libraries:
@@ -296,15 +300,16 @@ def main(argv=sys.argv):
             unpackLib(package.destination, f"{tdir}/downloads/unpack", verbose=verbose)
             time.sleep(1)
         system(f"chmod", "-R", "+r", f"{tdir}/downloads/unpack")
-        os.system(f"cp -r {tdir}/downloads/unpack/ref/net10.0/* {options.reference}")
-        os.system(f"cp -r {tdir}/downloads/unpack/lib/net10.0/* {tdir}/downloads/unpack/lib/net472/* {options.reference}")
+        os.system(f"cp -r {tdir}/downloads/unpack/ref/net10.0/* {options.reference[0]}")
+        os.system(f"cp -r {tdir}/downloads/unpack/lib/net10.0/* {options.reference[0]}")
 
     libraries = [resolveLibrary(l, options.reference, options.csproj, verbose) for l in libraries if '$' not in l.name]
 
     if options.all_libs:
-        for ref in os.listdir(options.reference):
-            if ref.endswith(".dll") and not ref.endswith("_publicized.dll"):
-                libraries.append(os.path.join(options.reference, ref))
+        for search_path in options.reference:
+            for ref in os.listdir(search_path):
+                if ref.endswith(".dll") and not ref.endswith("_publicized.dll"):
+                    libraries.append(os.path.join(search_path, ref))
 
     for p in publicized_libraries:
         for l in libraries:
