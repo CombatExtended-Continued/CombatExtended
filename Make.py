@@ -63,6 +63,7 @@ def parseArgs(argv):
     argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
     argParser.add_argument("--refout", metavar="PATH", default=None, help="Specify where to save a reference library")
     argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify alternative csc executable")
+    argParser.add_argument("--build-props", metavar="PROPS", default=None, help="Specify common build properties file")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
@@ -226,8 +227,7 @@ def parse_publicize(csproj):
 
 def parse_csproj(csproj_path, verbose):
     
-    base_dir = os.path.dirname(csproj_path)
-    sources_dir = os.path.dirname(base_dir)
+    base_dir = os.path.split(csproj_path)[0]
     
     if verbose:
         print(f"Parsing .csproj: {csproj_path}")
@@ -241,13 +241,6 @@ def parse_csproj(csproj_path, verbose):
 
         publicized_libraries, removed_libraries_2 = parse_publicize(csproj)
         removed_libraries.extend(removed_libraries_2)
-
-    directory_build_props_path = os.path.join(sources_dir, "Directory.Build.props")
-    if verbose:
-        print(f"Parsing Directory.Build.Props: {directory_build_props_path}")
-    with XMLOpen(directory_build_props_path) as props:
-        shared_packages = parse_packages(props)
-        packages.extend(shared_packages)
     
     return packages, libraries, removed_libraries, publicized_libraries, sources
 
@@ -264,6 +257,17 @@ def main(argv=sys.argv):
     system(f"mkdir", "-p", options.reference[0])
         
     packages, libraries, removed_libraries, publicized_libraries, sources = parse_csproj(options.csproj, options.verbose)
+
+    if options.build_props:
+        if verbose:
+            print(f"Parsing common build properties: {options.build_props}")
+        with XMLOpen(options.build_props) as bprops:
+            shared_packages = parse_packages(props)
+            packages.extend(shared_packages)
+    
+    return packages, libraries, removed_libraries, publicized_libraries, sources
+    
+    
     if publicized_libraries:
         if not options.publicizer:
             print("This .csproj requires publicizing assemblies, but you have not provided a path to AssemblyPublicizer")
@@ -293,13 +297,9 @@ def main(argv=sys.argv):
             if os.path.basename(l) == p.inputName:
                 libraries.append(publicize(l, publicizer, verbose))
                 break
-
-    sdk_path = os.getenv("SDK_LIBS_PATH")
-    core_lib_deps = ["mscorlib.dll", "System.Core.dll", "System.IO.dll", "System.Diagnostics.Tools.dll", "System.Text.RegularExpressions.dll", "System.Drawing.dll", "System.Linq.dll", "System.Linq.Expressions.dll", "System.Private.CoreLib.dll", "System.Collections.dll", "System.Collections.Concurrent.dll", "System.Reflection.Primitives.dll", "System.Threading.Tasks.Parallel.dll", "System.Reflection.Emit.ILGeneration.dll", "System.Runtime.dll", "System.Xml.dll", "System.Private.Xml.dll", "System.Xml.ReaderWriter.dll"]
-    libraries.extend([os.path.join(sdk_path, l) for l in core_lib_deps])
                 
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
-    args.extend(["-nullable:disable",f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
+    args.extend([f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
     args.extend(rest)
     if options.refout:
         args.extend([f"-refout:{options.refout}"])
