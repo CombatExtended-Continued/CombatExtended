@@ -59,7 +59,7 @@ def parseArgs(argv):
     argParser.add_argument("--all-libs", action="store_true", default=False, help="Reference all dlls in $reference, even those not specified by the .csproj file")
     argParser.add_argument("--verbose", "-v", action="count", default=0, help="Increase verbosity, specify more times for more verbosity")
     argParser.add_argument("--download-libs", action="store_true", default=False, help=f"Automatically download referenced packages to {tdir}/downloads and unpack them to $reference")
-    argParser.add_argument("--publicizer", type=str, metavar="PATH", help="Location of AssemblyPublicizer source code or parent directory of AssemblyPublicizer.exe")
+    argParser.add_argument("--publicizer", type=str, metavar="PATH", help="AoT compiled AssemblyPublicizer executable")
     argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
     argParser.add_argument("--refout", metavar="PATH", default=None, help="Specify where to save a reference library")
     argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify updated csc binary")
@@ -123,32 +123,10 @@ def publicize(p, publicizer, verbose):
         print(f"Publicizing Assembly: {p}")
     cwd = os.getcwd()
     os.chdir(p.rsplit('/',1)[0])
-    system(f"mono", publicizer, "--exit", "-i", p, "-o", f"{p[:-4]}_publicized.dll")
+    if system(publicizer, "--exit", "-i", p, "-o", f"{p[:-4]}_publicized.dll"):
+        raise RuntimeError("Failed to publicize assembly")
     os.chdir(cwd)
     return p[:-4]+'_publicized.dll'
-
-
-def makePublicizer(p, verbose):
-    ap_path = os.path.join(p, "AssemblyPublicizer.exe")
-    
-    if os.path.exists(ap_path):
-        if verbose:
-            print("Reusing AssemblyPublicizer")
-    else:
-        if verbose:
-            print("Making AssemblyPublicizer")
-        quiet = ["-q"] if verbose < 5 else []
-        cwd = os.getcwd()
-        os.chdir(p)
-        downloadLib("Mono.Options", "6.6.0.161",f"{tdir}/downloads/mono.options.zip", verbose=verbose)
-        downloadLib("Mono.Cecil", "0.11.4",f"{tdir}/downloads/mono.cecil.zip", verbose=verbose)
-        system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.cecil.zip", "-d", ".")
-        system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.options.zip", "-d", ".")
-        os.system("cp lib/net40/*dll .")
-
-        system("mono-csc", "-out:AssemblyPublicizer.exe", "./AssemblyPublicizer/AssemblyPublicizer.cs", "./AssemblyPublicizer/Properties/AssemblyInfo.cs", "-r:Mono.Options.dll", "-r:Mono.Cecil.dll")
-        os.chdir(cwd)
-    return ap_path
 
 
 def parse_packages(csproj):
@@ -292,7 +270,7 @@ def main(argv=sys.argv):
             print("This .csproj requires publicizing assemblies, but you have not provided a path to AssemblyPublicizer")
             exit(1)
 
-        publicizer = makePublicizer(options.publicizer, verbose)
+        publicizer = options.publicizer
               
     if options.download_libs:
         for package in packages:
