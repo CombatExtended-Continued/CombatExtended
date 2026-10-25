@@ -62,7 +62,6 @@ def parseArgs(argv):
     argParser.add_argument("--publicizer", type=str, metavar="PATH", help="AoT compiled AssemblyPublicizer executable")
     argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
     argParser.add_argument("--refout", metavar="PATH", default=None, help="Specify where to save a reference library")
-    argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify updated csc binary")
     argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify alternative csc executable")
 
     options = argParser.parse_args(argv[1:])
