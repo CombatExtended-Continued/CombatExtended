@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace CombatExtended;
+
 public class PawnRenderNodeWorker_Drafted : PawnRenderNodeWorker
 {
     public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)

@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended;
+
 public class LetterTracker : MapComponent
 {
     private static bool _sentMechWarning;

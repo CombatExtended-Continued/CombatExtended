@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class GameComponent_MechLoadoutDialogManger : GameComponent
 {
 

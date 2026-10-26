@@ -8,6 +8,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended.Compatibility;
+
 public static class BlockerRegistry
 {
     private static bool enabledCB = false;

@@ -9,6 +9,7 @@ using CombatExtended;
 using RimWorld;
 
 namespace CombatExtended;
+
 public static class MTAAmmoUtility
 {
     public static Thing FindBestAmmo(this Pawn pawn, ThingDef ammoDef)

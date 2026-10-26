@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public static class GenSightCE
 {
     private static List<IntVec3> points = new List<IntVec3>();

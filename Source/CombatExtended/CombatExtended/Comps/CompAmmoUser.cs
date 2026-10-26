@@ -12,6 +12,7 @@ using CombatExtended.Utilities;
 using CombatExtended.AI;
 
 namespace CombatExtended;
+
 public class CompAmmoUser : CompRangedGizmoGiver
 {
     #region Fields

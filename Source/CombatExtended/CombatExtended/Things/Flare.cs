@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class FlareModExtensionCE : DefModExtension
 {
     public ThingDef SmokeMote;

@@ -11,6 +11,7 @@ using CombatExtended.CombatExtended.Jobs.Utils;
 using Verse.AI;
 
 namespace CombatExtended.Compatibility;
+
 using GetReloadingFunction = Func<Building_Turret, bool>;
 using SetReloadingFunction = Action<Building_Turret, bool>;
 

@@ -9,6 +9,7 @@ using static UnityEngine.UI.Image;
 
 
 namespace CombatExtended;
+
 public class ProjectilePropertiesCE : ProjectileProperties
 {
     public TravelingShellProperties shellingProps;

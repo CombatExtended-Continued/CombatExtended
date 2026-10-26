@@ -7,6 +7,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended.RocketGUI;
+
 public static partial class GUIUtility
 {
     private struct FontState

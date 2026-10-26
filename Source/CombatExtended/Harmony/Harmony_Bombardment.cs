@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Bombardment), nameof(Bombardment.TryDoExplosion))]
 public static class Bombardment_TryDoExplosion_Patch
 {

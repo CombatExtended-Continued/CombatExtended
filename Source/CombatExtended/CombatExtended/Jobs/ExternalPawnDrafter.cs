@@ -3,6 +3,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public static class ExternalPawnDrafter
 {
     public static bool CanTakeOrderedJob(Pawn pawn)

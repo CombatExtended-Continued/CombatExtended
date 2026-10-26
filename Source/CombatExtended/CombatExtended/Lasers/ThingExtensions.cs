@@ -6,6 +6,7 @@ using System.Text;
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 public static class ThingExtensions
 {
     public static bool IsShielded(this Thing thing)

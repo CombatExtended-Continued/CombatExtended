@@ -9,6 +9,7 @@ using Verse;
 using CombatExtended;
 
 namespace CombatExtended.Utilities;
+
 public static class TranspilerCE
 {
     public static IEnumerable<CodeInstruction> SeekStart(IEnumerator<CodeInstruction> iterInstructions, CodeInstruction startTarget)

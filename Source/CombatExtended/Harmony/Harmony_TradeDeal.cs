@@ -8,6 +8,7 @@ using UnityEngine;
 using System.Reflection;
 
 namespace CombatExtended.HarmonyCE;
+
 /* Dev Notes:
  * Goal is to change the RoundToInt into RoundToCeil.
  */

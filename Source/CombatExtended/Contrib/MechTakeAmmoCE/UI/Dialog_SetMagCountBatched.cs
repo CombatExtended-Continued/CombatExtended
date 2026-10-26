@@ -12,6 +12,7 @@ using CombatExtended.Compatibility;
 
 
 namespace CombatExtended;
+
 public class Dialog_SetMagCountBatched : Window
 {
     private readonly List<CompMechAmmo> _mechAmmoList;

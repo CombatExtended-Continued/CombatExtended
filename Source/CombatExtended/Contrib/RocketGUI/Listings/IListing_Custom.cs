@@ -7,6 +7,7 @@ using Verse;
 using GUILambda = System.Action<UnityEngine.Rect>;
 
 namespace CombatExtended.RocketGUI;
+
 public abstract class IListing_Custom
 {
     public const float ScrollViewWidthDelta = 25f;

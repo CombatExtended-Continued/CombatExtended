@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class JobDriver_ModifyWeapon : JobDriver
 {
     public WeaponPlatform EquipedWeapon

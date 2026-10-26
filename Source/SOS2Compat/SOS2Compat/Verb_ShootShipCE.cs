@@ -14,6 +14,7 @@ using SaveOurShip2.Vehicles;
 using Vehicles.World;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 public class Verb_ShootShipCE : Verb_ShootCE
 {
     // This class combines functionality from SaveOurShip2.Verb_LaunchProjectileShip with Verb_ShootCE essentially making a hybrid verb that chooses its logic based on

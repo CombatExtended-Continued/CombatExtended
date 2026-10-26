@@ -12,6 +12,7 @@ using SPExtended;
 using UnityEngine;
 
 namespace CombatExtended.Compatibility.SRTSCompat;
+
 [HarmonyPatch(typeof(BomberSkyfaller),
         "DropBomb",
         new Type[] { })]

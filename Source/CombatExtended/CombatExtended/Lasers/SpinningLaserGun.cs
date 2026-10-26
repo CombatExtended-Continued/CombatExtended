@@ -5,6 +5,7 @@ using System.Text;
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 public class SpinningLaserGun : SpinningLaserGunBase
 {
     bool IsBrusting(Pawn pawn)

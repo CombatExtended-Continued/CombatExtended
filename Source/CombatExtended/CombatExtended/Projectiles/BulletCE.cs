@@ -11,6 +11,7 @@ using HarmonyLib;
 using CombatExtended.AI;
 
 namespace CombatExtended;
+
 public class BulletCE : ProjectileCE
 {
     private static RulePackDef cookOffDamageEvent = null;

@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class CaliberFloatRange
 {
     public FloatRange DamageRange;

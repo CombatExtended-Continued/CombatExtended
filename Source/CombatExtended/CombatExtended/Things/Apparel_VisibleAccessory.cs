@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class Apparel_VisibleAccessory : Apparel
 {
     /* Pawn offset reference based on Verse.PawnRenderer and method RenderPawnInternal:

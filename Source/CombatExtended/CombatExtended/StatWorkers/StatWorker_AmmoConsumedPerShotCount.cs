@@ -8,6 +8,7 @@ using CombatExtended.Compatibility;
 
 
 namespace CombatExtended;
+
 public class StatWorker_AmmoConsumedPerShotCount : StatWorker
 {
     private ThingDef GunDef(StatRequest req)

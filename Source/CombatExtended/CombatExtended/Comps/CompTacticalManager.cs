@@ -9,6 +9,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class CompTacticalManager : ThingComp
 {
     private Job curJob = null;

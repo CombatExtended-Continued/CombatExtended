@@ -12,6 +12,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended;
+
 public abstract class VerbCIWS : Verb_ShootCE, ITargetSearcher, IVerbDisableable
 {
     protected bool debug;

@@ -9,6 +9,7 @@ using CombatExtended.Compatibility;
 
 
 namespace CombatExtended;
+
 public class JobDriver_ReloadTurret : JobDriver
 {
     #region Fields

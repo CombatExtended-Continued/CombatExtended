@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class MassBulkUtility
 {
     public const float WeightCapacityPerBodySize = 35f;

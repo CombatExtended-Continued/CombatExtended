@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE.Compatibility;
+
 public static class Harmony_VOID
 {
     private static Type Utils_Patch_HarmonyPatches

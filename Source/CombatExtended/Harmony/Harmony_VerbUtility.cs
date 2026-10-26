@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(VerbUtility), "GetProjectile")]
 internal static class Harmony_VerbUtility
 {

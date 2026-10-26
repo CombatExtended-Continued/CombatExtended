@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace ProjectileImpactFX;
+
 // ProjectileImpactFX.EffectProjectileExtension
 public class EffectProjectileExtension : DefModExtension
 {

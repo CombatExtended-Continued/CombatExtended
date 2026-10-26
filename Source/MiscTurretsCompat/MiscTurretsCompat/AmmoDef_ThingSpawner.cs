@@ -11,6 +11,7 @@ using RimWorld;
 using CombatExtended;
 
 namespace CombatExtended.Compatibility;
+
 public class AmmoDef_ThingSpawner : AmmoDef
 {
     public ThingDef spawnDef;

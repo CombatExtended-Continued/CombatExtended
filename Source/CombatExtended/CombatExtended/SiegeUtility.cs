@@ -5,6 +5,7 @@ using Verse;
 using Verse.AI.Group;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class SiegeUtility
 {

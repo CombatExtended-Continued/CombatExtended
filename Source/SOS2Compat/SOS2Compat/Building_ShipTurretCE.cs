@@ -8,6 +8,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 public class Building_ShipTurretCE : Building_TurretGunCE
 {
     #region License

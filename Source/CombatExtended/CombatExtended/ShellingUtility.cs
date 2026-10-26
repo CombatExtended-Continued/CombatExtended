@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public static class ShellingUtility
 {
     private static Map map;

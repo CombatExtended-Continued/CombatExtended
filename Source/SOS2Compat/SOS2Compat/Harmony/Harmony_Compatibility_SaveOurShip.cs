@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 [HarmonyPatch]
 class Harmony_Compatibility_SaveOurShip
 {

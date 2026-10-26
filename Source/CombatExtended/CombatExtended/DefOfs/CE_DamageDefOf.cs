@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended;
+
 [DefOf]
 public class CE_DamageDefOf
 {

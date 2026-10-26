@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Verse;
 
 namespace CombatExtended;
+
 public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
 {
     public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)

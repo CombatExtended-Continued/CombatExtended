@@ -6,6 +6,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public abstract class TravelingThing : WorldObject
 {
     private PlanetTile startingTile;

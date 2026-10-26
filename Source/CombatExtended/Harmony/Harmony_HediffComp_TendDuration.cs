@@ -6,6 +6,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 /* Targetting Verse.HediffComp_TendDuration.CompTended
  * Specifically the (decompiled) line this.tendQuality = Mathf.Clamp01(quality + Rand.Range(-0.25f, 0.25f));
  * More specifically the value -0.25f and 0.25f

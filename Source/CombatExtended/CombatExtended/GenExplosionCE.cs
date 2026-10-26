@@ -3,6 +3,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public static class GenExplosionCE
 {
     public const float MinExplosionScale = 0.1f;    //as if 1/1000 of the shell exploded

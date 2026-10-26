@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class DangerTracker : MapComponent
 {
     //private const int DANGER_TICKS = 450;

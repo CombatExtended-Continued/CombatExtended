@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class TravelingShellProperties
 {
     /// <summary>

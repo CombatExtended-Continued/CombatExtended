@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace CombatExtended.Lasers;
+
 public class LaserBeamDecoration
 {
     public ThingDef mote;

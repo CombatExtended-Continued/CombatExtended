@@ -8,6 +8,7 @@ using Verse;
 using System.Xml;
 
 namespace CombatExtended;
+
 public class AdditionalWeapon
 {
     public ThingDef projectile;

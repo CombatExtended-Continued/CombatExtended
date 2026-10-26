@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended;
+
 public class FactionDefExtensionCE : DefModExtension
 {
     /// <summary>

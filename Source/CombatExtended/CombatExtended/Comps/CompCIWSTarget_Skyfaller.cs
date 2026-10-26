@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class CompCIWSTarget_Skyfaller : CompCIWSTarget
 {
     public override IEnumerable<Vector3> PredictedPositions

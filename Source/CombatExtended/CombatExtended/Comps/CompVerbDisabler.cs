@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Verse;
 
 namespace CombatExtended;
+
 public class CompVerbDisabler : ThingComp
 {
     public override IEnumerable<Gizmo> CompGetGizmosExtra()

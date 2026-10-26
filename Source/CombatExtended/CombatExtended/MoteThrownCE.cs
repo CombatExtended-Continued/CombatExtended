@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Used to avoid vanilla limitation regarding rendering with DrawPos.y != 1.
 /// </summary>

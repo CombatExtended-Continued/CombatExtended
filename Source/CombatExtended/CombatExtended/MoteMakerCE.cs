@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public static class MoteMakerCE
 {
     public static void ThrowText(Vector3 loc, Map map, string text, float timeBeforeStartFadeout = -1f)

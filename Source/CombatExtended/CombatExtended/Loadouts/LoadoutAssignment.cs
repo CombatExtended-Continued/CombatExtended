@@ -6,6 +6,7 @@ using System.Text;
 using Verse;
 
 namespace CombatExtended;
+
 public class LoadoutAssignment : IExposable
 {
     #region Fields

@@ -9,6 +9,7 @@ using HarmonyLib;
 using System.Reflection;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch]
 public static class Harmony_ThingDefGenerator_Meat
 {

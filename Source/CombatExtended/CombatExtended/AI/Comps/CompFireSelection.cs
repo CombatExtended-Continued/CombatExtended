@@ -6,6 +6,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.AI;
+
 public class CompFireSelection : ICompTactics
 {
     private FireMode lastFireMode = FireMode.AutoFire;

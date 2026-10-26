@@ -5,6 +5,7 @@ using RimWorld;
 using CombatExtended.AI;
 
 namespace CombatExtended;
+
 public class Verb_ShootCEOneUse : Verb_ShootCE
 {
     public override bool TryCastShot()

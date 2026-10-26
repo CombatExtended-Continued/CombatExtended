@@ -4,6 +4,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class StatPart_StatMaxima : StatPart_StatSelect
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

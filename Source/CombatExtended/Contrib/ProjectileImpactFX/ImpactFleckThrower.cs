@@ -6,6 +6,7 @@ using Verse;
 using Verse.Sound;
 
 namespace ProjectileImpactFX;
+
 public static class ImpactFleckThrower
 {
     public static void ThrowFleck(Vector3 loc, IntVec3 position, Map map, ProjectilePropertiesCE projProps, ThingDef def, Thing hitThing = null, float direction = 0)

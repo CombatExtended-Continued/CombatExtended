@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public static class AmmoUtility
 {
     /// <summary>

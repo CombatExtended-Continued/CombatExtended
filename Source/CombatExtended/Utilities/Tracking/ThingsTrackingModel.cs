@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.Utilities;
+
 public class ThingsTrackingModel
 {
     [StructLayout(LayoutKind.Sequential)]

@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class StatWorker_ArmorPartial : StatWorker
 {
     public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)

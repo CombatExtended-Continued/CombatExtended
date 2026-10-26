@@ -5,6 +5,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(RimWorld.TradeUtility), "GetPricePlayerBuy")]
 internal static class Harmony_TradeUtility
 {

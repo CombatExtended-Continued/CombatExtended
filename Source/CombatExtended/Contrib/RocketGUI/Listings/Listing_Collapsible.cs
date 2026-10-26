@@ -8,6 +8,7 @@ using Verse;
 using GUILambda = System.Action<UnityEngine.Rect>;
 
 namespace CombatExtended.RocketGUI;
+
 public class Listing_Collapsible : IListing_Custom
 {
     private Group_Collapsible group;

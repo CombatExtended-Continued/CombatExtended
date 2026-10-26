@@ -10,6 +10,7 @@ using CombatExtended.Compatibility;
 
 
 namespace CombatExtended;
+
 public static class GunPatcherUtil
 {
     public static bool DiscardDesignationsMatch(this ThingDef thingDef, GunPatcherPresetDef presetDef)
