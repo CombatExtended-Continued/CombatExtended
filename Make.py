@@ -118,12 +118,16 @@ def resolveLibrary(library, reference, csproj, verbose):
     raise RuntimeError(f"Required library {librar.name}.dll not found")
     
 
-def publicize(p, publicizer, verbose):
+def publicize(p, publicizer, verbose, reference):
     if verbose:
         print(f"Publicizing Assembly: {p}")
     cwd = os.getcwd()
     os.chdir(p.rsplit('/',1)[0])
-    if system(publicizer, "--exit", "-i", p, "-o", f"{p[:-4]}_publicized.dll"):
+    args = [publicizer, "--exit", "-i", p, "-o", f"{p[:-4]}_publicized.dll"]
+    for r in reference:
+        args.append('-p')
+        args.append(r)
+    if system(args):
         raise RuntimeError("Failed to publicize assembly")
     os.chdir(cwd)
     return p[:-4]+'_publicized.dll'
@@ -295,7 +299,7 @@ def main(argv=sys.argv):
     for p in publicized_libraries:
         for l in libraries:
             if os.path.basename(l) == p.inputName:
-                libraries.append(publicize(l, publicizer, verbose))
+                libraries.append(publicize(l, publicizer, verbose, options.reference))
                 break
                 
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
