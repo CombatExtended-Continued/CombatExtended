@@ -82,7 +82,7 @@ def parseArgs(argv):
                         reverse=True,
                         key=lambda v: tuple(map(int, v.split('.'))))
         if sdk_candidates:
-            if verbose:
+            if options.verbose:
                 print("using sdk version", sdk_candidates[0])
             options.reference.append(f"/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/{sdk_candidates[0]}/ref/net10.0/")
         else:
