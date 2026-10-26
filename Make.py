@@ -66,7 +66,7 @@ def parseArgs(argv):
     argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
     argParser.add_argument("--refout", metavar="PATH", default=None, help="Specify where to save a reference library")
     argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify alternative csc executable")
-    argParser.add_argument("--build-props", metavar="PROPS", default=None, help="Specify common build properties file")
+    argParser.add_argument("--build-props", metavar="PROPS", default="Source/Directory.Build.props", help="Specify common build properties file")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
