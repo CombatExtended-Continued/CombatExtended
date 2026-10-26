@@ -15,8 +15,6 @@ if '--debug' in sys.argv:
 else:
   debug = []
 
-csc = sys.argv[sys.argv.index("--csc") + 1]
-
 PROJECT_PATTERN = re.compile(r'''Project.".[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{12}.". = '''
                              r'''"([0-9a-zA-Z]+Compat)", '''
                              r'''"([0-9A-zA-Z\/]+.csproj)", '''
@@ -71,7 +69,7 @@ with open("Source/CombatExtended.sln") as f:
 
             print(f"Building {name}")
             extra_refs = [f"-r:{built_outputs[ref]}" for ref in project_refs if ref in built_outputs]
-            system("python3", "Make.py", "--csproj", csproj.path, "--output", output.path, DOWNLOAD_LIBS, "--all-libs", "--publicizer", PUBLICIZER, "--csc", csc, *debug, "--", "-r:Assemblies/CombatExtended.dll", *extra_refs)
+            system("python3", "Make.py", "--csproj", csproj.path, "--output", output.path, DOWNLOAD_LIBS, "--all-libs", "--publicizer", PUBLICIZER, *debug, "--", "-r:Assemblies/CombatExtended.dll", *extra_refs)
             built_outputs[os.path.normpath(csproj.path)] = output.path
 
 for t in tasks:
