@@ -10,13 +10,15 @@ import subprocess
 
 tdir = tempfile.gettempdir()
 
-csc_candidates = sorted(os.listdir('/usr/share/dotnet/sdk'),
+SDK_PATH = '/usr/share/dotnet/sdk'
+
+csc_candidates = sorted(os.listdir(SDK_PATH),
                         reverse=True,
                         key=lambda v: tuple(map(int, v.split('.'))))
 
 
 if csc_candidates:
-    CSC = os.path.join(csc_candidates[0], "Roslyn/bincore/csc")
+    CSC = os.path.join(SDK_PATH, csc_candidates[0], "Roslyn/bincore/csc")
 else:
     import shutil
     CSC = shutil.which("csc")
@@ -77,17 +79,21 @@ def parseArgs(argv):
     if options.reference is None:
         options.reference = [f"{tdir}/rwreference"]
 
-    if options.sdk_reference:
-        sdk_candidates = sorted(os.listdir(options.sdk_reference),
-                        reverse=True,
-                        key=lambda v: tuple(map(int, v.split('.'))))
-        if sdk_candidates:
-            if options.verbose:
-                print("using sdk version", sdk_candidates[0])
-            options.reference.append(f"/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/{sdk_candidates[0]}/ref/net10.0/")
-        else:
-            print(f"automatic sdk selection requested, but {options.sdk_reference} contains no candidates")
-            exit(1)
+
+    auto_sdk = bool(options.sdk_reference)
+    if options.sdk_reference is None:
+        options.sdk_reference = "/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref"
+
+    sdk_candidates = sorted(os.listdir(options.sdk_reference),
+                            reverse=True,
+                            key=lambda v: tuple(map(int, v.split('.'))))
+    if sdk_candidates:
+        if options.verbose:
+            print("using sdk version", sdk_candidates[0])
+        options.reference.append(f"{options.sdk_reference}/{sdk_candidates[0]}/ref/net10.0/")
+    elif auto_sdk:
+        print(f"automatic sdk selection requested, but {options.sdk_reference} contains no candidates")
+        exit(1)
 
     if options.csc is not None:
         global CSC
@@ -140,7 +146,7 @@ def publicize(p, publicizer, verbose, reference):
     for r in reference:
         args.append('-p')
         args.append(r)
-    if system(args):
+    if system(*args):
         raise RuntimeError("Failed to publicize assembly")
     os.chdir(cwd)
     return p[:-4]+'_publicized.dll'
@@ -279,11 +285,8 @@ def main(argv=sys.argv):
         if verbose:
             print(f"Parsing common build properties: {options.build_props}")
         with XMLOpen(options.build_props) as bprops:
-            shared_packages = parse_packages(props)
+            shared_packages = parse_packages(bprops)
             packages.extend(shared_packages)
-    
-    return packages, libraries, removed_libraries, publicized_libraries, sources
-    
     
     if publicized_libraries:
         if not options.publicizer:
