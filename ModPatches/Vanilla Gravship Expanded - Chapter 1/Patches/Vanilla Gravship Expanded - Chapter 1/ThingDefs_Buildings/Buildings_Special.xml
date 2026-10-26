@@ -43,14 +43,13 @@
             <tickerType>Normal</tickerType>
             <comps>
 				<li Class="CombatExtended.CompProperties_AmmoUser">
-                    <magazineSize>24</magazineSize>
+                    <magazineSize>15</magazineSize>
                     <reloadTime>7.8</reloadTime>
                     <ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
 				</li>
 			</comps>
 		</value>
-	</Operation>	
-
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VGE_AmmoBox_GaussShell"]/costList</xpath>
@@ -68,7 +67,11 @@
 			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
 				<allowedTurrets>
 					<li>VGE_GaussGun</li>
-				</allowedTurrets>		
+					<li MayRequire="vanillaexpanded.gravship2">VGE_GaussHowitzer</li>
+				</allowedTurrets>
+				<allowedTurretTags>
+					<li>CE_Autoloader_155mmHowitzerShell</li>
+				</allowedTurretTags>	
 			</li>
 		</value>
 	</Operation>
