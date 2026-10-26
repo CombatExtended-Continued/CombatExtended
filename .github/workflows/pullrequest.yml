@@ -24,7 +24,7 @@ jobs:
         git status
         rm -rf *.py *.so ./*/*.py ./*/*.so
         wget https://raw.githubusercontent.com/perkinslr/CombatExtended/Development/Make.py -O Make.py
-        wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/BuildCompat.py -O BuildCompat.py
+        wget https://raw.githubusercontent.com/perkinslr/CombatExtended/Development/BuildCompat.py -O BuildCompat.py
         mkdir -p Assemblies
         mkdir -p ${{ runner.temp }}/downloads
         rm -rf AssemblyPublicizer
@@ -48,7 +48,7 @@ jobs:
 
     - name: build compat
       run: |
-        TEMP=${{ runner.temp }}/ python BuildCompat.py --debug
+        TEMP=${{ runner.temp }}/ python BuildCompat.py --download-libs --all-libs --sdk-reference /usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/ --publicizer $PWD/AssemblyPublicizer --debug
         
     - name: package
       run: |
