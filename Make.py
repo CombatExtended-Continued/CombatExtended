@@ -54,6 +54,7 @@ class PublicizeTarget(object):
 def parseArgs(argv):
     argParser = argparse.ArgumentParser(description="Automate compiling C# projects on Linux, using Mono")
     argParser.add_argument("--reference", type=str, action="append", metavar="PATH", help="Location of Rimworld Reference libraries")
+    argParser.add_argument("--sdk-reference", type=str, metavar="PATH", help="Location to search for latest SDK reference")
     argParser.add_argument("--output", "-o", type=str, default="Assemblies/CombatExtended.dll", help="Output filename")
     argParser.add_argument("--csproj", type=str, default="Source/CombatExtended/CombatExtended.csproj", help="C# project to build.")
     argParser.add_argument("--all-libs", action="store_true", default=False, help="Reference all dlls in $reference, even those not specified by the .csproj file")
@@ -75,6 +76,18 @@ def parseArgs(argv):
 
     if options.reference is None:
         options.reference = [f"{tdir}/rwreference"]
+
+    if options.sdk_reference:
+        sdk_candidates = sorted(os.listdir(options.sdk_reference),
+                        reverse=True,
+                        key=lambda v: tuple(map(int, v.split('.'))))
+        if sdk_candidates:
+            if verbose:
+                print("using sdk version", sdk_candidates[0])
+            options.reference.append(f"/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/{sdk_candidates[0]}/ref/net10.0/")
+        else:
+            print(f"automatic sdk selection requested, but {options.sdk_reference} contains no candidates")
+            exit(1)
 
     if options.csc is not None:
         global CSC
