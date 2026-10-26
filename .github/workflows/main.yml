@@ -2,7 +2,7 @@ name: Build Branch
 on:
   workflow_dispatch:
   push:
-    branches: [ master, Development, Rimworld-Version-1.4 ]
+    branches: [ master, Development ]
 
 jobs:
   build:
@@ -35,11 +35,11 @@ jobs:
     - name: build core
       run: |
         sed -i "s_UNKNOWN_$(git rev-parse HEAD | head -c 10)-dev_" Source/CombatExtended/Version.cs
-        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --sdk-reference /usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/ --publicizer $PWD/AssemblyPublicizer --debug
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --sdk-reference /usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/ --publicizer $PWD/AssemblyPublicizer
         
     - name: build compat
       run: |
-        TEMP=${{ runner.temp }}/ python BuildCompat.py --download-libs --all-libs --sdk-reference /usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/ --publicizer $PWD/AssemblyPublicizer --debug
+        TEMP=${{ runner.temp }}/ python BuildCompat.py --download-libs --all-libs --sdk-reference /usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/ --publicizer $PWD/AssemblyPublicizer
         
     - name: package
       run: |
