@@ -6,6 +6,7 @@ using VanillaGravshipExpanded;
 using Verse;
 
 namespace CombatExtended.Compatibility.VGECompat;
+
 public class VerbCIWSSpaceProjectile : VerbCIWS<Projectile_Space>
 {
     public new VerbProperties_CIWSSSpaceProjectile Props => verbProps as VerbProperties_CIWSSSpaceProjectile;
