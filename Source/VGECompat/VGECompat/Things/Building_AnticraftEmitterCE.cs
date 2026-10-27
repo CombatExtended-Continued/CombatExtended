@@ -33,7 +33,7 @@ public class Building_AnticraftEmitterCE : Building_GravshipTurretCE
 
     public override void PostMapInit()
     {
-        base.PostSwapMap();
+        base.PostMapInit();
 
         UpdatePowerOutput();
     }
