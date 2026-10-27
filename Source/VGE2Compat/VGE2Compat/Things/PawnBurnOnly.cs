@@ -3,6 +3,7 @@ using VanillaGravshipExpanded2;
 using Verse;
 
 namespace CombatExtended.Compatibility.VGE2Compat;
+
 public class PawnBurnOnly : Pawn
 {
     public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
