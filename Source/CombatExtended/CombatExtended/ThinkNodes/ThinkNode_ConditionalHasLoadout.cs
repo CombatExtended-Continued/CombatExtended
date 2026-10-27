@@ -8,6 +8,7 @@ using Verse.AI;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class ThinkNode_ConditionalHasLoadout : ThinkNode_Conditional
 {
     public override bool Satisfied(Pawn pawn)

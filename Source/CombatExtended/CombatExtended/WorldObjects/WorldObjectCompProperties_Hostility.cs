@@ -2,6 +2,7 @@
 using RimWorld;
 
 namespace CombatExtended.WorldObjects;
+
 public class WorldObjectCompProperties_Hostility : WorldObjectCompProperties
 {
     public bool? AbleToRaidResponse;

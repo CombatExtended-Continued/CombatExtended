@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended;
+
 public class CompPawnGizmo : ThingComp
 {
     bool duplicate = false;

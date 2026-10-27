@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 
 namespace CombatExtended;
+
 public static class CustomWidgets
 {
     private const float ButtonWidth = 30f;

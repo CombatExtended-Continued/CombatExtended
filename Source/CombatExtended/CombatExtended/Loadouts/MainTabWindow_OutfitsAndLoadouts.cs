@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public enum OutfitWindow
 {
     Outfits,

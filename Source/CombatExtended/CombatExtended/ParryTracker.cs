@@ -5,6 +5,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class ParryTracker : MapComponent
 {
     private struct ParryCounter

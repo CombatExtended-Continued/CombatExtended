@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class CompProperties_Charges : CompProperties
 {
     // Charges are paired as velocity / range

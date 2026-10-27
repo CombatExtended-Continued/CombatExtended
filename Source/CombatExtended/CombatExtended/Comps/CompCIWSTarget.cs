@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Base class for third-party mods compatibility (if their skyfallers\projectiles needs custom targeting logic)
 /// </summary>

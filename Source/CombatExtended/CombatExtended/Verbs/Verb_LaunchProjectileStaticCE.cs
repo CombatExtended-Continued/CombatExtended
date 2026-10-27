@@ -10,6 +10,7 @@ using Verse.Grammar;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class Verb_LaunchProjectileStaticCE : Verb_LaunchProjectileCE
 {
     public override bool MultiSelect

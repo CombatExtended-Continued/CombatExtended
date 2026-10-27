@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace CombatExtended;
+
 public class VisibleAccessoryDefExtension : DefModExtension
 {
     public int order = 1;

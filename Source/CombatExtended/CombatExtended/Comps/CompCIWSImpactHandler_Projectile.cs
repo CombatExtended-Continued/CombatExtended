@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 
 namespace CombatExtended;
+
 public class CompCIWSImpactHandler_Projectile : CompCIWSImpactHandler
 {
     public override void OnImpact(ProjectileCE projectile, DamageInfo dinfo)

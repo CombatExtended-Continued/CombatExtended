@@ -7,6 +7,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended;
+
 public class StatPart_Bulk : StatPart
 {
     public bool ValidReq(StatRequest req)

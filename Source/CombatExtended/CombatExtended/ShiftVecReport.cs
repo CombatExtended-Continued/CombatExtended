@@ -8,6 +8,7 @@ using UnityEngine;
 using RimWorld.Planet;
 
 namespace CombatExtended;
+
 public class ShiftVecReport
 {
     public LocalTargetInfo target = null;

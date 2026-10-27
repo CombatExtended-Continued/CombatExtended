@@ -13,6 +13,7 @@ using RimWorld.Planet;
 using CombatExtended.Utilities;
 
 namespace CombatExtended;
+
 public abstract class ProjectileCE : ThingWithComps
 {
     #region ClassVariables

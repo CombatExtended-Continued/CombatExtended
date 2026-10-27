@@ -12,6 +12,7 @@ using Verse;
 using Verse.AI;
 using Random = UnityEngine.Random;
 namespace CombatExtended;
+
 public static class CE_Utility
 {
     #region Camera

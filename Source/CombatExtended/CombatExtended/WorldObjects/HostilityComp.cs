@@ -9,6 +9,7 @@ using Verse;
 
 
 namespace CombatExtended.WorldObjects;
+
 public class HostilityComp : WorldObjectComp, IWorldCompCE
 {
     private int lastRaidTick = -1;

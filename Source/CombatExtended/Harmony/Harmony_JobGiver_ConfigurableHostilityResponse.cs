@@ -5,6 +5,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(JobGiver_ConfigurableHostilityResponse), "TryGetAttackNearbyEnemyJob")]
 internal static class Harmony_JobGiver_ConfigurableHostilityResponse
 {

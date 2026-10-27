@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended.HarmonyCE;
+
 /* This class handles patching of the Core PawnColumnWorkers that are used on the assign tab which are similar to the PawnColumnWorker_Loadout.
  * This patch reads the variables from PawnColumnWorker_Loadout and sets Core to use the same values so all 3 workers use the same size information.
  * This is relatively straight forward in that it's just replacing some constants.

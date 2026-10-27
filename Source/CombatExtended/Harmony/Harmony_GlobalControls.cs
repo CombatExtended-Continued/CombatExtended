@@ -7,6 +7,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate))]
 internal static class Harmony_GlobalControls
 {

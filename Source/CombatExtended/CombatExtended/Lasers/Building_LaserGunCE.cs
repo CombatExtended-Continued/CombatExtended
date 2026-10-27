@@ -6,6 +6,7 @@ using Verse.Sound;
 using System.Reflection;
 
 namespace CombatExtended.Lasers;
+
 public class Building_LaserGunDef : ThingDef
 {
     public int beamPowerConsumption = 20;

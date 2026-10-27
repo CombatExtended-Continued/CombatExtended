@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace CombatExtended;
+
 /// <summary>
 /// TL;DR Cast shadows.
 /// 

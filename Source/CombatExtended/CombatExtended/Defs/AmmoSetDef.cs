@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class AmmoSetDef : Def
 {
     public List<AmmoLink> ammoTypes;

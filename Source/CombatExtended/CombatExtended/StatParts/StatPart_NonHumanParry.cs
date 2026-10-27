@@ -5,6 +5,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public class StatPart_NonHumanParry : StatPart
 {
     public StatPart_NonHumanParry()

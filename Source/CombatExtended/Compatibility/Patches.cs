@@ -6,6 +6,7 @@ using System.Text;
 using UnityEngine;
 
 namespace CombatExtended.Compatibility;
+
 public class Patches
 {
     private List<IPatch> patches;

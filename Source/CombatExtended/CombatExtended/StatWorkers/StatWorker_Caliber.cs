@@ -10,6 +10,7 @@ using CombatExtended.Compatibility;
 
 
 namespace CombatExtended;
+
 public class StatWorker_Caliber : StatWorker
 {
     private ThingDef GunDef(StatRequest req)

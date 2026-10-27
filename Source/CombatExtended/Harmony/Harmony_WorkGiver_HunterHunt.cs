@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(WorkGiver_HunterHunt), "HasHuntingWeapon")]
 public class Harmony_WorkGiver_HunterHunt_HasHuntingWeapon_Patch
 {

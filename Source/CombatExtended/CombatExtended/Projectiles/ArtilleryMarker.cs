@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class ArtilleryMarker : AttachableThing
 {
     public const string MarkerDef = "ArtilleryMarker";

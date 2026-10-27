@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatWorker_LongRange : StatWorker
 {
     public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)

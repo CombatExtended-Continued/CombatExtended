@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.CombatExtended;
+
 [StaticConstructorOnStartup]
 public class Dialog_ManageCIWSTargets : Window
 {

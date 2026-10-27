@@ -12,6 +12,7 @@ using Jaxxa.EnhancedDevelopment.Shields.Shields;
 
 
 namespace CombatExtended.Compatibility;
+
 class EDShields : IPatch
 {
     public static SoundDef HitSoundDef = null;

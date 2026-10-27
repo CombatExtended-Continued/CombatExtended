@@ -8,6 +8,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended.Compatibility;
+
 public static class RaceUtil
 {
     public static SimpleCurve SharpCurve

@@ -7,6 +7,7 @@ using Verse.Sound;
 using CombatExtended;
 
 namespace CombatExtended.Lasers;
+
 public class LaserBeamCE : BulletCE
 {
 

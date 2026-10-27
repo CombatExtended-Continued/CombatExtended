@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class StatPart_StatMinima : StatPart_StatSelect
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

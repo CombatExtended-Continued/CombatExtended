@@ -4,6 +4,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Command), nameof(Command.DrawIcon))]
 public static class Harmony_Command
 {

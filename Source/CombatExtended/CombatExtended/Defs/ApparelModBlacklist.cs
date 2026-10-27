@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 
 namespace CombatExtended;
+
 public class ApparelModBlacklist : Def
 {
     public List<string> modIDs;

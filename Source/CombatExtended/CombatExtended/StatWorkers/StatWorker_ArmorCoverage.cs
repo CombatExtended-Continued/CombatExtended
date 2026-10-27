@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public class StatWorker_ArmorCoverage : StatWorker
 {
     public override bool ShouldShowFor(StatRequest req)

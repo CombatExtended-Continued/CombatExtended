@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(JobGiver_Orders), "TryGiveJob")]
 internal static class Harmony_JobGiver_Orders_TryGiveJob
 {

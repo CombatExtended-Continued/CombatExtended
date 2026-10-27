@@ -9,6 +9,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 [HarmonyPatch(typeof(TurretTop), "DrawTurret"), StaticConstructorOnStartup]
 class Harmony_TuretTop_DrawTurret_LaserTurret_Patch
 {

@@ -9,6 +9,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.WorldObjects;
+
 public class HealthComp : WorldObjectComp, IWorldCompCE
 {
     public const float HEALTH_HEALRATE_DAY = 0.15f;

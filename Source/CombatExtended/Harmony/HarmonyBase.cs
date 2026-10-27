@@ -24,6 +24,7 @@ using CombatExtended.HarmonyCE.Compatibility;
  */
 
 namespace CombatExtended.HarmonyCE;
+
 public static class HarmonyBase
 {
     private static Harmony harmony = null;

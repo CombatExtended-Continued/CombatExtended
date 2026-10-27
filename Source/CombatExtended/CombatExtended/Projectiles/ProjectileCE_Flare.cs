@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class ProjectileCE_Flare : ProjectileCE_Explosive
 {
     private const float FLYOVER_FLARING_CHANCE = 0.2f;

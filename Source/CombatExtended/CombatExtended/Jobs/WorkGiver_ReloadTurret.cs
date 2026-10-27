@@ -8,6 +8,7 @@ using CombatExtended.Compatibility;
 
 
 namespace CombatExtended;
+
 public class WorkGiver_ReloadTurret : WorkGiver_Scanner
 {
     public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.GetComponent<TurretTracker>().Turrets;

@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class Verb_ShootMortarCE : Verb_ShootCE
 {
     /// <summary>

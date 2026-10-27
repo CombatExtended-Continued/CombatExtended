@@ -6,6 +6,7 @@ using Verse.Sound;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class BipodComp : CompRangedGizmoGiver
 {
     #region Fields

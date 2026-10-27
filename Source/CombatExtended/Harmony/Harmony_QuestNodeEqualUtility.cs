@@ -9,6 +9,7 @@ using HarmonyLib;
 using RimWorld.QuestGen;
 
 namespace CombatExtended.HarmonyCE;
+
 /* Fix for the "Failed to find CombatExtended.AmmoDef named Leather_Human. There are 901 defs of this type loaded." error.
  * This occurs when value1 contains a ThingDef with a custom class (such as CombatExtended.AmmoDef), and value2 contains a
  * string identifier for a ThingDef. Due to how Verse.ConvertHelper is set up, it assumes that strings can always be converted

@@ -7,6 +7,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(PawnCapacityUtility), "CalculateNaturalPartsAverageEfficiency")]
 internal static class Harmony_PawnCapacityUtility
 {

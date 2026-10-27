@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public static class CE_MeshMaker
 {
