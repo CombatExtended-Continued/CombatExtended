@@ -1,0 +1,55 @@
+name: Publish-PR-Build
+on:
+  workflow_run:
+    workflows:
+      - Build-PR
+    types:
+      - completed
+
+# This workflow runs in the trusted repository context. It is the only place
+# where the PR build receives the permissions and secrets needed for publishing
+# the artifact and updating the pull request.
+permissions:
+  actions: read
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.pull_requests[0] }}
+    runs-on: ubuntu-26.04
+
+    steps:
+    - name: Download build artifact
+      uses: actions/download-artifact@v8
+      with:
+        name: pr-build
+        path: .
+        run-id: ${{ github.event.workflow_run.id }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload to DO
+      run: |
+        /usr/bin/printf "%s" "$SSH_KEY" > id_ecdsa
+        /bin/echo "$SSH_KEY_PUB" > id_ecdsa.pub
+        /bin/chmod 600 id_ecdsa
+        /bin/echo put build.zip CombatExtended-${{ github.event.workflow_run.id }}.zip | /usr/bin/sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@combatextended.lp-programming.com
+      shell: bash
+      env:
+        SSH_KEY: ${{ secrets.ID_ECDSA }}
+        SSH_KEY_PUB: ${{ secrets.ID_ECDSA_PUB }}
+
+    - name: Create comment
+      run: >-
+        gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body "You can download the rebuilt assembly for this PR here: $BUILD_URL"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+        BUILD_URL: https://combatextended.lp-programming.com/CombatExtended-${{ github.event.workflow_run.id }}.zip
+
+    - name: Add Label
+      run: gh pr edit "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --add-label "Download in Comments"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
