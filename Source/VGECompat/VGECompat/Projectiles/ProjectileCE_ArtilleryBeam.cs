@@ -1,6 +1,7 @@
 ﻿using CombatExtended.Lasers;
 using RimWorld;
 using UnityEngine;
+using VanillaGravshipExpanded;
 using Verse;
 
 #region License
@@ -17,25 +18,26 @@ namespace CombatExtended.Compatibility.VGECompat;
 // We just need the special VGE mote
 public class ProjectileCE_ArtilleryBeam : LaserBeamCE
 {
-    /// <summary>
-    /// Spawn VGE's beam mote visual.
-    /// Code by @DarkByteZero
-    /// </summary>
     public override void SpawnBeam(Vector3 muzzle, Vector3 destination)
     {
-        var beamMoteDef = def.projectile?.beamMoteDef;
-        if (beamMoteDef == null || Map == null)
+        Vector3 direction = (ExactPosition - muzzle).Yto0().normalized;
+        Vector3 offsetA = direction * def.projectile.beamStartOffset;
+        var originMap = equipment?.MapHeld ?? launcher?.MapHeld;
+        if (originMap is null)
         {
             return;
         }
+        //if (originMap != this.Map)
+        //{
+        //    float angle = ArtilleryUtility.GetAngle(originMap.Tile, this.Map.Tile);
+        //    offsetA -= new Vector3(2, 0, 2).RotatedBy(angle);
+        //}
+        if (def.projectile.beamMoteDef != null)
+        {
+            var originTarget = new TargetInfo((muzzle - direction * 0.9f).ToIntVec3(), Map);
+            var destTarget = new TargetInfo(destination.ToIntVec3(), Map);
 
-        float beamStartOffset = def.projectile?.beamStartOffset ?? 0f;
-        Vector3 dir = (destination - muzzle).Yto0().normalized;
-        Vector3 offsetA = dir * beamStartOffset;
-
-        var originTarget = new TargetInfo(muzzle.ToIntVec3(), Map);
-        var destTarget = new TargetInfo(destination.ToIntVec3(), Map);
-
-        MoteMaker.MakeInteractionOverlay(beamMoteDef, originTarget, destTarget, offsetA, Vector3.zero);
+            MoteMaker.MakeInteractionOverlay(def.projectile.beamMoteDef, originTarget, destTarget, offsetA, Vector3.zero);
+        }
     }
 }
