@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class HediffCompProperties_Stabilize : HediffCompProperties
 {
     public HediffCompProperties_Stabilize()

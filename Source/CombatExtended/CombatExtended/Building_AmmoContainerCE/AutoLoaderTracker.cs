@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse;
 
 namespace CombatExtended;
+
 internal class AutoLoaderTracker : MapComponent
 {
     public HashSet<Building_AutoloaderCE> AutoLoaders = new HashSet<Building_AutoloaderCE>();

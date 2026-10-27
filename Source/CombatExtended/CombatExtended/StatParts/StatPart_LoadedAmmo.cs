@@ -4,6 +4,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended;
+
 public class StatPart_LoadedAmmo : StatPart
 {
     public override void TransformValue(StatRequest req, ref float val)

@@ -11,6 +11,7 @@ using RimWorld;
 
 
 namespace CombatExtended.Compatibility;
+
 public class Vehicles : IPatch
 {
     public bool CanInstall()

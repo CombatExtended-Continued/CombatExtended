@@ -7,6 +7,7 @@ using Verse.Noise;
 using System.Linq;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class CompFireArc : ThingComp
 {

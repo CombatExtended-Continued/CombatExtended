@@ -3,6 +3,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.AI;
+
 public abstract class ICompTactics : IExposable
 {
     private Pawn pawnInt;

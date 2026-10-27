@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public static class FleckMakerCE
 {
     public static void Static(IntVec3 cell, Map map, FleckDef fleckDef, float scale = 1f)

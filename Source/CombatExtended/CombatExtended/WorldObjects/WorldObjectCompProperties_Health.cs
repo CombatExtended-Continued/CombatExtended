@@ -3,6 +3,7 @@ using RimWorld;
 using RimWorld.Planet;
 
 namespace CombatExtended.WorldObjects;
+
 public class WorldObjectCompProperties_Health : WorldObjectCompProperties
 {
     public bool destoyedInstantly = false;

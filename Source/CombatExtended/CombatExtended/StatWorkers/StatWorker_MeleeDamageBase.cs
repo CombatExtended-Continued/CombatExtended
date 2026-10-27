@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatWorker_MeleeDamageBase : StatWorker_MeleeStats
 {
     #region Constants

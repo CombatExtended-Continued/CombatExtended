@@ -7,6 +7,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended;
+
 /// <summary>
 /// This is only used to store the bool for one calculation
 /// </summary>

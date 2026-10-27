@@ -9,6 +9,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 internal static class Harmony_GasUtility
 {
 

@@ -8,6 +8,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class AmmoLink
 {
     public AmmoDef ammo;

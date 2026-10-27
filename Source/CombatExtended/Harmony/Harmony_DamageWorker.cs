@@ -10,6 +10,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(DamageWorker), nameof(DamageWorker.Apply))]
 internal static class Harmony_DamageWorker_Apply
 {

@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatWorker_UBGLStats : StatWorker
 {
     public override bool ShouldShowFor(StatRequest req)

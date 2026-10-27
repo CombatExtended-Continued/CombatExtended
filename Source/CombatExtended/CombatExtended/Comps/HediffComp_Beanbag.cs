@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended;
+
 public class HediffComp_Beanbag : HediffComp
 {
     public HediffCompProperties_Beanbag Props => props as HediffCompProperties_Beanbag;

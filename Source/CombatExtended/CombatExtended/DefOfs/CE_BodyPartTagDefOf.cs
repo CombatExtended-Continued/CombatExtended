@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 [DefOf]
 public class CE_BodyPartTagDefOf
 {

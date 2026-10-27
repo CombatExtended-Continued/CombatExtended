@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace CombatExtended.CombatExtended.LoggerUtils;
+
 class CELogger
 {
     /// <summary>

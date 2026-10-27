@@ -10,6 +10,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class WorldObjectDamageWorker
 {
     #region WorldObject

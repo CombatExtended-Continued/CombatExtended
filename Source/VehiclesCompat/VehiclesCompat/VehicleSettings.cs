@@ -9,6 +9,7 @@ using RimWorld.Planet;
 using CombatExtended.Loader;
 
 namespace CombatExtended.Compatibility.VehiclesCompat;
+
 public class VehicleSettings : ISettingsCE
 {
     public VehicleSettings()

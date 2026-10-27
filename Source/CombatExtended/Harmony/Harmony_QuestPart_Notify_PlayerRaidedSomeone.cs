@@ -9,6 +9,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(QuestPart_Notify_PlayerRaidedSomeone), nameof(QuestPart_Notify_PlayerRaidedSomeone.Notify_QuestSignalReceived))]
 internal static class Harmony_QuestPart_Notify_PlayerRaidedSomeone
 {

@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatWorker_MeleeDamageAverage : StatWorker_MeleeDamageBase
 {
     public override bool ShouldShowFor(StatRequest req)

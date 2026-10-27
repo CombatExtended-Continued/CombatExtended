@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended;
+
 /// <summary>
 /// HoldRecord stores key information for an individual element of HoldTracker.
 /// </summary>

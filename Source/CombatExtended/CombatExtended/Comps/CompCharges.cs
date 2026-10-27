@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class CompCharges : ThingComp
 {

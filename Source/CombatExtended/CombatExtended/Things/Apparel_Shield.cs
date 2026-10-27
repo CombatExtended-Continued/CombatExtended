@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class Apparel_Shield : Apparel
 {
     // From PawnRenderer

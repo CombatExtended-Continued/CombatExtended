@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 
 namespace CombatExtended;
+
 public class ApparelPatcherPresetDef : Def
 {
     #region fields for checking if a def is supposed to be patched

@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class HediffCompProperties_Prometheum : HediffCompProperties
 {
     public HediffCompProperties_Prometheum()

@@ -5,6 +5,7 @@ using System.Text;
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 public class SpinningLaserGunTurret : SpinningLaserGunBase
 {
     internal Building_LaserGunCE turret;

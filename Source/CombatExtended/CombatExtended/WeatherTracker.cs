@@ -4,6 +4,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class WeatherTracker : MapComponent
 {
     private static readonly string[] windDirections = new string[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };

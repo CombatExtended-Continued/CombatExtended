@@ -6,6 +6,7 @@ using RimWorld.Planet;
 using Verse;
 
 namespace CombatExtended.WorldObjects;
+
 public static class WorldHealthGUIUtility
 {
     private static List<WorldObject> visibleObjects = new List<WorldObject>(1000);

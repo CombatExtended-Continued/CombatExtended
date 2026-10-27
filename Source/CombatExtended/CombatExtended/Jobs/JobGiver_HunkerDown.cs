@@ -3,6 +3,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class JobGiver_HunkerDown : ThinkNode_JobGiver
 {
     public override Job TryGiveJob(Pawn pawn)

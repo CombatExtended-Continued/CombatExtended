@@ -9,6 +9,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(CompApparelVerbOwner_Charged), nameof(CompApparelVerbOwner_Charged.CompGetWornGizmosExtra))]
 public static class Harmony_CompApparelVerbOwner_Charged_CompygetWornGizmosExtra
 {

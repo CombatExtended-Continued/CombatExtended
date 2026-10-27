@@ -11,6 +11,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
+
 internal static class Harmony_AttackTargetFinder
 {
     private static Map map;

@@ -7,6 +7,7 @@ using Verse.AI;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public static class NonSnapAttackTargetFinder
 {
     private const float FriendlyFireScoreOffsetPerHumanlikeOrMechanoid = 18f;

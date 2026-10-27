@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class BipodCategoryDef : Def
 {
     public string bipod_id = "Bipod_Undefined";

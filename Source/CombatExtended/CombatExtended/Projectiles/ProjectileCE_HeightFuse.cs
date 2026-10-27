@@ -12,6 +12,7 @@ using ProjectileImpactFX;
 using CombatExtended.Utilities;
 
 namespace CombatExtended;
+
 public class ProjectileCE_HeightFuse : ProjectileCE
 {
     float detonationHeight => (def.projectile as ProjectilePropertiesCE).aimHeightOffset;

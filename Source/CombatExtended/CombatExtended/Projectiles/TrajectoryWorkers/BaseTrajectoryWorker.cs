@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public abstract class BaseTrajectoryWorker
 {
     public abstract Vector3 MoveForward(ProjectileCE projectile);

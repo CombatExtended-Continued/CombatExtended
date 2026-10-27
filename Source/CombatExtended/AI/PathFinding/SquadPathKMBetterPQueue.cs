@@ -8,6 +8,7 @@ using UnityEngine;
 using System.Collections;
 
 namespace CombatExtended.AI;
+
 public class BetterPQueue<T>
 {
     //private readonly SortedDictionary<HeapKey, HeapKey> Heap;

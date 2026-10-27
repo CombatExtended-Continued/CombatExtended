@@ -8,6 +8,7 @@ using UnityEngine;
 using CombatExtended.AI;
 
 namespace CombatExtended;
+
 public class CompSquadBrain : ThingComp
 {
     public SquadBrain squad;

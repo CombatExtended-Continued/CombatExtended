@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 // FIXME: Destructive detour
 [HarmonyPatch(typeof(Hediff_MissingPart))]
 [HarmonyPatch("IsFreshNonSolidExtremity", MethodType.Getter)]

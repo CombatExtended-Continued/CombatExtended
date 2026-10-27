@@ -9,6 +9,7 @@ using UnityEngine;
 using CombatExtended.Compatibility;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class GunAutoPatcher
 {

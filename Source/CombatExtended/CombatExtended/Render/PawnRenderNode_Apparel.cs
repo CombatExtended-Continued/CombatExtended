@@ -9,6 +9,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class PawnRenderNode_Apparel : Verse.PawnRenderNode_Apparel
 {
     public PawnRenderNode_Apparel(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree) : base(pawn, props, tree)

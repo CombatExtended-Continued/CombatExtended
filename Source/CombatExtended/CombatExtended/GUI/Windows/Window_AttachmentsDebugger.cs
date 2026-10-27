@@ -7,6 +7,7 @@ using Verse;
 using GUIUtility = CombatExtended.RocketGUI.GUIUtility;
 
 namespace CombatExtended;
+
 public class Window_AttachmentsDebugger : Window
 {
     private const int PANEL_RIGHT_WIDTH = 350;

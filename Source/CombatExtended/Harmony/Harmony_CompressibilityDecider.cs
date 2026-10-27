@@ -6,6 +6,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(CompressibilityDecider), "DetermineReferences")]
 public class CompressibilityDecider_DetermineReferences
 {

@@ -8,6 +8,7 @@ using Verse;
 using System.Xml;
 
 namespace CombatExtended;
+
 public class AdditionalWeapon
 {
     public ThingDef projectile;
@@ -71,15 +72,8 @@ public class Verb_LaunchProjectileChangeAble : Verb_ShootCE
         {
             if (fireswitch)
             {
-                if (burstSwitcherPair != null)
-                {
-                    if (burstSwitcherPair.second > 0)
-                    {
-                        return burstSwitcherPair.first.projectile;
-                    }
-                }
+                return burstSwitcherPair.second > 0 ? burstSwitcherPair.first.projectile : ProjectileInt;
 
-                return ProjectileInt;
             }
             return base.Projectile;
         }
@@ -106,7 +100,7 @@ public class Verb_LaunchProjectileChangeAble : Verb_ShootCE
 
             if (this.Bursting)
             {
-                if (burstSwitcherPair == null || burstSwitcherPair.second < 1)
+                if (burstSwitcherPair.second < 1)
                 {
                     foreach (var weapon in ChangerExt.additionalEquipment)
                     {
@@ -117,11 +111,6 @@ public class Verb_LaunchProjectileChangeAble : Verb_ShootCE
                                 UseManager.SetOrAdd(weapon, (UseManager.TryGetValue(weapon) - 1));
                                 ProjectileInt = weapon.projectile;
                                 fireswitch = true;
-
-                                if (burstSwitcherPair == null)
-                                {
-                                    burstSwitcherPair = new Pair<AdditionalWeapon, int>();
-                                }
 
                                 burstSwitcherPair.first = weapon;
                                 burstSwitcherPair.second = (weapon.burstCount - 1);

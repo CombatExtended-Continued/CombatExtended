@@ -3,6 +3,7 @@ using Verse;
 using UnityEngine;
 
 namespace Combat_Realism;
+
 public class Projectile_FireTrail : ProjectileCR
 {
     private int TicksforAppearence = 5;

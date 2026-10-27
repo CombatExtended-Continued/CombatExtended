@@ -8,6 +8,7 @@ using Verse;
 // Considered having a Generic and Specific slot and pass that through an interface but instead of a bunch of slot.<type>Def != null there'd be a bunch of
 // slot is <type>Def and slot as <type>Def... equally messy IMO and might still have some null checks tossed around.
 namespace CombatExtended;
+
 // this has been reduced to a thingCount at this point, with the exception of the added default count bit
 // -- Fluffy
 

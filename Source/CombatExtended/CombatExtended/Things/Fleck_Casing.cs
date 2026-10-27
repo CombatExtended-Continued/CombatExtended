@@ -9,6 +9,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended;
+
 public struct Fleck_Casing : IFleck
 {
     public FleckStatic baseData;

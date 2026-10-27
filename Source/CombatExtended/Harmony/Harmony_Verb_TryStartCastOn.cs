@@ -16,6 +16,7 @@ using Verse;
  */
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(
      typeof(Verb),
      nameof(Verb.TryStartCastOn),

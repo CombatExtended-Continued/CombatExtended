@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class SmartRocketTrajectoryWorker : BallisticsTrajectoryWorker
 {
     protected override void ReactiveAcceleration(ProjectileCE projectile)

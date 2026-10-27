@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
-using System.IO.Ports;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -9,6 +8,7 @@ using Verse;
 using GUILambda = System.Action<UnityEngine.Rect>;
 
 namespace CombatExtended.RocketGUI;
+
 public class Listing_Collapsible : IListing_Custom
 {
     private Group_Collapsible group;

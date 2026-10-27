@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class LerpedTrajectoryWorker_ExactPosDrawing : LerpedTrajectoryWorker
 {
     public override Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)

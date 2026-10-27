@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class BodyShapeDef : Def
 {
     public float width = 1f;

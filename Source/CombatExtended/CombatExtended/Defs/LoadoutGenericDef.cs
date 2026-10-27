@@ -13,6 +13,7 @@ using Verse;
  * -for Ammo of each Gun that uses CombatExtended Ammo.  Created programattically so should automatically get new guns/ammo.
  */
 namespace CombatExtended;
+
 /// <summary>
 /// LoadoutGenericDef handles Generic LoadoutSlots.
 /// </summary>

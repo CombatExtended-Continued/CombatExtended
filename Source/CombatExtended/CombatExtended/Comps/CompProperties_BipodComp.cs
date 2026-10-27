@@ -11,6 +11,7 @@ using Verse.Sound;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class CompProperties_BipodComp : CompProperties
 {
 

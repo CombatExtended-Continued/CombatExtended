@@ -8,6 +8,7 @@ using Verse.Grammar;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class TauntThrower : MapComponent
 {
     private const int minTicksBetweenTaunts = 180;

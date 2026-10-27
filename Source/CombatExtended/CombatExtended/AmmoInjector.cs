@@ -8,6 +8,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 /* Ammo Injection Handler
  *
  * Automatically enables all ammo types defined and in use by at least one gun somewhere. Also enables appropriate crafting recipes and trading tags.

@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public static class Utility_Loadouts
 {

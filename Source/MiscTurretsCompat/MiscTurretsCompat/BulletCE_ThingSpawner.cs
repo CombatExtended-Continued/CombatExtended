@@ -9,6 +9,7 @@ using RimWorld;
 using CombatExtended;
 
 namespace CombatExtended.Compatibility;
+
 public class BulletCE_ThingSpawner : BulletCE
 {
     public AmmoDef_ThingSpawner Def

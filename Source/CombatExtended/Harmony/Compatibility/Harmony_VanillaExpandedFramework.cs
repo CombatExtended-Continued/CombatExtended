@@ -4,6 +4,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE.Compatibility;
+
 public static class Harmony_VanillaExpandedFramework
 {
     // Disabled since VEF added their own patch at the same time

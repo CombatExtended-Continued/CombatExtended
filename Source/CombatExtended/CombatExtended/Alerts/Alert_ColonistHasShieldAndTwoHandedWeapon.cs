@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class Alert_ColonistHasShieldAndTwoHandedWeapon : Alert
 {
     public Alert_ColonistHasShieldAndTwoHandedWeapon()
