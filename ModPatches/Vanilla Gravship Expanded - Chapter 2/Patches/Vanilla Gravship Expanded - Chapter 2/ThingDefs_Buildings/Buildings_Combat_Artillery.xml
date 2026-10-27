@@ -316,4 +316,27 @@
 			</li>
 		</value>
 	</Operation>
+
+
+	<!-- Gravmine -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_Gravmine"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<!-- Default damage for vanilla ied trap is 50, just like VGE_Gravmine, so I reproduced it -->
+				<damageAmountBase>270</damageAmountBase>
+				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+				<wickTicks>60</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>16</Fragment_Large>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>
