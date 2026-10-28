@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="HT_A"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="HT_A"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>10</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="HT_A"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="HT_A"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>14</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="HT_A"]/components/li[key="LeftArmorPlating" or key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="HT_A"]/components/li[key="LeftArmorPlating" or key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>10</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="HT_A"]/components/li[key="Roof"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="HT_A"]/components/li[key="Roof"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>7</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Vanilla +0.3 on a bare tire is a real upgrade. In millimeters that add has to be plate, not a fraction. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="HT_Upgrade"]/nodes/li[key="HalfTrack"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/armor/li[key="BackLeftWheel" or key="BackRightWheel"]/statModifiers/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="HT_Upgrade"]/nodes/li[key="HalfTrack"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/armor/li[key="BackLeftWheel" or key="BackRightWheel"]/statModifiers/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>
