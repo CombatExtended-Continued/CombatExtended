@@ -31,14 +31,9 @@ jobs:
 
     - name: Upload to DO
       run: |
-        /usr/bin/printf "%s" "$SSH_KEY" > id_ecdsa
-        /bin/echo "$SSH_KEY_PUB" > id_ecdsa.pub
-        /bin/chmod 600 id_ecdsa
-        /bin/echo put build.zip CombatExtended-${{ github.event.workflow_run.id }}.zip | /usr/bin/sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@combatextended.lp-programming.com
+        ls
+
       shell: bash
-      env:
-        SSH_KEY: ${{ secrets.ID_ECDSA }}
-        SSH_KEY_PUB: ${{ secrets.ID_ECDSA_PUB }}
 
     - name: Create comment
       run: >-
