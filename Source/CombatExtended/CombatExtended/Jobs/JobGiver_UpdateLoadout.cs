@@ -291,7 +291,7 @@ public class JobGiver_UpdateLoadout : ThinkNode_JobGiver
     /// <returns>Returns 0 if the target is not a Thing, is not on a Map, or all of its stack is reserved. Otherwise returns the unreserved stack count of a target.</returns>
     private static int GetUnreservedStackCount(Thing thing)
     {
-        var reservations = thing.Map?.reservationManager.ReservationsReadOnly;
+        var reservations = thing.MapHeld?.reservationManager.ReservationsReadOnly;
         if (reservations == null)
         {
             return 0;
