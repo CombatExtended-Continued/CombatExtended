@@ -606,6 +606,7 @@ Textiles+ (continued)   |
 Tiered Mechs    |
 The Corporation - Mort's Factions   |
 The Cosmic Odyssey - Blessings of the Machine God   |
+The Dead Man's Switch-more dozer |
 The Thrumbo Horn Weapons   |
 The Mantodean insectoid race	|
 The Profaned	|
