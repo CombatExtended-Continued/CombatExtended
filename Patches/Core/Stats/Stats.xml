@@ -404,6 +404,14 @@
 		</value>
 	</Operation>
 
+	<!-- Night vision reduces the darkness penalty to movement, work and reading speed (weapon optics excluded) -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/StatDef[defName="MoveSpeed" or defName="WorkSpeedGlobal" or defName="ReadingSpeed"]/parts/li[@Class="StatPart_Glow"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.StatPart_GlowNV</value>
+	</Operation>
+
 	<!-- Ranged weapon cooldown quality factor  -->
 
 	<Operation Class="PatchOperationConditional">
