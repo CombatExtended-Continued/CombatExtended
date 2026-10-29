@@ -50,10 +50,15 @@ jobs:
         cp -r Source/ Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Biotech/ Anomaly/ Odyssey/ Sounds/ Textures/ ModPatches/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
         zip -9 -r build.zip CombatExtended
 
+    - name: Save PR number
+      run: |
+        echo ${{ github.event.number }} > ./pr-number
+
     - name: Upload build artifact
       uses: actions/upload-artifact@v7
       with:
         name: pr-build
-        path: build.zip
+        path: |
+          build.zip
+          pr-number
         if-no-files-found: error
-        archive: false

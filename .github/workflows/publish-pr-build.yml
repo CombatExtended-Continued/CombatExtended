@@ -17,18 +17,17 @@ permissions:
 
 jobs:
   publish:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.pull_requests[0] }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' }}
     runs-on: ubuntu-26.04
 
     steps:
     - name: Download build artifact
       uses: actions/download-artifact@v8
       with:
-        name: build.zip
+        name: pr-build
         path: .
         run-id: ${{ github.event.workflow_run.id }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        skip-decompress: true
 
     - name: Upload to DO
       run: |
@@ -41,16 +40,18 @@ jobs:
         SSH_KEY: ${{ secrets.ID_ECDSA }}
         SSH_KEY_PUB: ${{ secrets.ID_ECDSA_PUB }}
 
+    - name: Retrieve PR number
+      run: >-
+        echo "PR_NUMBER=$(cat pr-number)" >> "$GITHUB_ENV"
+
     - name: Create comment
       run: >-
         gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body "You can download the rebuilt assembly for this PR here: $BUILD_URL"
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
         BUILD_URL: https://combatextended.lp-programming.com/CombatExtended-${{ github.event.workflow_run.id }}.zip
 
     - name: Add Label
       run: gh pr edit "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --add-label "Download in Comments"
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
