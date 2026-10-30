@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Spare magazines only. The equipped gun is loaded separately. Single-shot guns get 3-5 rounds. -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[defName="GOW_Locust_Fighter_Drone"]</xpath>
+		<match Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[defName="GOW_Locust_Trader" or defName="Locust_Fighter_FactionLeader" or defName="GOW_Locust_Fighter_DroneGuard" or defName="GOW_Locust_Fighter_CyclopsGuard" or defName="GOW_Locust_Fighter_BoomerGuard" or defName="GOW_Locust_Fighter_Drone" or defName="GOW_Locust_Fighter_Cyclops" or defName="GOW_Locust_Fighter_Bolter" or defName="GOW_Locust_Fighter_Beastrider" or defName="GOW_Locust_Fighter_Theron" or defName="GOW_Locust_Fighter_Boomer" or defName="GOW_Locust_Fighter_KantusAcolyte" or defName="GOW_Locust_Fighter_Kantus"]</xpath>
+			<value>
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>3</min>
+						<max>5</max>
+					</primaryMagazineCount>
+				</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="GOW_COG_Fighter_GearGuard" or defName="GOW_COG_Onyx_GearGuard" or defName="GOW_COG_Trader" or defName="COG_Fighter_FactionLeader" or defName="GOW_COGC_Fighter_Gear" or defName="GOW_COG_Fighter_Gear" or defName="GOW_COG_Onyx_Gear" or defName="GOW_COG_Sniper_Gear"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
