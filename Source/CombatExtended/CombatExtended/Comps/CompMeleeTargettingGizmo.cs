@@ -131,23 +131,34 @@ public class CompMeleeTargettingGizmo : ThingComp
 
         if (skillLevel >= 16)
         {
+            // Aim at the first available part in priority order that the weapon can get through the armor of.
+            bool anyPartAvailable = false;
             foreach (BodyPartDef bpd in priorityList)
             {
-                targetBodyPart = bpd;
                 BodyPartRecord bp = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == bpd).FirstOrFallback();
-
-                if (bp != null)
+                if (bp == null)
                 {
-                    Apparel bpApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(bp));
-
-                    if (bpApparel != null && maxWeaponPen < bpApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
-                    {
-                        targetBodyPart = null;
-                        return BodyPartHeight.Bottom;
-                    }
-                    targetBodyPart = bp.def;
+                    continue;
                 }
+                anyPartAvailable = true;
+
+                Apparel bpApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(bp));
+                if (bpApparel != null && maxWeaponPen < bpApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                {
+                    // Too well armored, try the next part
+                    continue;
+                }
+                targetBodyPart = bp.def;
+                return BodyPartHeight.Top;
             }
+            if (anyPartAvailable)
+            {
+                // Every available part is armored beyond the weapon's penetration
+                targetBodyPart = null;
+                return BodyPartHeight.Bottom;
+            }
+            // None of the priority parts exist on this body (e.g. mechanoids): aim at the top without a specific part
+            targetBodyPart = null;
             return BodyPartHeight.Top;
         }
 
@@ -254,12 +265,7 @@ public class CompMeleeTargettingGizmo : ThingComp
 
                     foreach (BodyPartDef def in parts)
                     {
-                        options.Add(new FloatMenuOption(def.label,
-                                                        delegate
-                        {
-                            ChangeCurrentPart(def);
-                        }
-                                                       ));
+                        options.Add(new FloatMenuOption(def.label, delegate { ChangeCurrentPart(def); }));
                     }
 
                     options.Add(new FloatMenuOption("CE_NoBP".Translate(), delegate { ChangeCurrentPart(null); }));
