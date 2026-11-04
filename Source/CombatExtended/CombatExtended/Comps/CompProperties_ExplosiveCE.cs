@@ -1,10 +1,6 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
-using UnityEngine;
 
 namespace CombatExtended;
 
@@ -46,6 +42,11 @@ public class CompProperties_ExplosiveCE : CompProperties
 
     public int postExplosionGasAmount = 255;
 
+    /// <summary>
+    /// A gas of the grid system (<see cref="CEGasGrid"/>) to release on detonation.
+    /// </summary>
+    public GasRelease postExplosionCEGas;
+
     public CompProperties_ExplosiveCE()
     {
         compClass = typeof(CompExplosiveCE);
@@ -66,6 +67,11 @@ public class CompProperties_ExplosiveCE : CompProperties
         if (parentDef.tickerType != TickerType.Normal)
         {
             yield return "CompExplosiveCE requires Normal ticker type";
+        }
+
+        if (postExplosionCEGas is { gas: null })
+        {
+            yield return "postExplosionCEGas needs a gas";
         }
 
         if (fragments.Any())

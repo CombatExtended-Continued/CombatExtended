@@ -179,7 +179,8 @@ public class AmmoThing : ThingWithComps
                         detProps.postExplosionSpawnSingleThingDef,
                         detProps.preExplosionSpawnSingleThingDef,
                     height: 0f,
-                    Mathf.Pow(stackCountScale, 0.333f));
+                    Mathf.Pow(stackCountScale, 0.333f),
+                    postExplosionCEGas: (detProps as ProjectilePropertiesCE)?.postExplosionCEGas);
                 }
             }
 

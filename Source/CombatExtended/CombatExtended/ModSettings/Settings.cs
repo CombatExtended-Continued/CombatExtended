@@ -20,6 +20,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool showTaunts = true;
     private bool allowMeleeHunting = false;
     private bool smokeEffects = true;
+    private bool smokeShowPercent = false;
     private bool mergeExplosions = true;
     private bool turretsBreakShields = true;
     private bool showBackpacks = true;
@@ -69,6 +70,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool ShowTaunts => showTaunts;
     public bool AllowMeleeHunting => allowMeleeHunting;
     public bool SmokeEffects => smokeEffects;
+    public bool SmokeShowPercent => smokeShowPercent;
     public bool MergeExplosions => mergeExplosions;
     public bool TurretsBreakShields => turretsBreakShields;
     public bool ShowBackpacks => showBackpacks;
@@ -209,6 +211,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref showTaunts, "showTaunts", true);
         Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
         Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
+        Scribe_Values.Look(ref smokeShowPercent, "smokeShowPercent", false);
         Scribe_Values.Look(ref mergeExplosions, "mergeExplosions", true);
         Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", true);
         Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
@@ -334,6 +337,7 @@ public class Settings : ModSettings, ISettingsCE
         left.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
+        left.CheckboxLabeled("CE_Settings_GasShowPercent_Title".Translate(), ref smokeShowPercent, "CE_Settings_GasShowPercent_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_MidBurstRetarget_Title".Translate(), ref midBurstRetarget, "CE_Settings_MidBurstRetarget_Desc".Translate());
@@ -549,6 +553,7 @@ public class Settings : ModSettings, ISettingsCE
         partialstats = true;
         allowMeleeHunting = false;
         smokeEffects = true;
+        smokeShowPercent = false;
         turretsBreakShields = true;
         fasterRepeatShots = true;
         midBurstRetarget = true;

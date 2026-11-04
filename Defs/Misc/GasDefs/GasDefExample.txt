@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Example gas template. One interval is 60 ticks, about one game second at normal speed. -->
+	<CombatExtended.GasDef>
+	<defName>CE_Gas_Example</defName>
+		<label>example gas</label>
+
+		<maxDensity>12800</maxDensity> <!-- Maximum density per cell. -->
+		<dissipationThreshold>30</dissipationThreshold> <!-- At or below this, gas expires randomly instead of fading. -->
+		<minSpreadDensity>10</minSpreadDensity> <!-- Minimum spreading density; keep below dissipationThreshold. -->
+		<dissipationRate>0.000005</dissipationRate> <!-- Density fraction lost per tick above the threshold. -->
+		<minDissipationPerTick>0.001</minDissipationPerTick> <!-- Minimum loss per tick above the threshold. -->
+		<outdoorLossPerInterval>30</outdoorLossPerInterval> <!-- Density lost per interval without a roof. -->
+		<expireChancePerInterval>0.05</expireChancePerInterval> <!-- Chance thin gas vanishes each interval; averages 20 intervals. -->
+
+		<ppmPerDensity>0.1</ppmPerDensity> <!-- Displayed PPM per density unit; no gameplay effect. -->
+		<lethalDensity>6000</lethalDensity> <!-- Density targeting 100% severity in a healthy pawn; lower is deadlier. -->
+		<inhalationPerSecond>0.06</inhalationPerSecond> <!-- Severity gained per second at full density, before pawn modifiers. -->
+
+		<confusesInsectoids>true</confusesInsectoids> <!-- Enable confused wandering in insectoids. -->
+		<bugConfusePercent>0.1</bugConfusePercent> <!-- Fraction of maxDensity above which insectoids become confused. -->
+		<insectoidsOnlyConfused>false</insectoidsOnlyConfused> <!-- If true, insectoids become confused without gaining the hediff. -->
+
+		<notifyGasMask>true</notifyGasMask> <!-- Prompt AI pawns to equip gas masks. -->
+		<hediff>CE_ExampleGasExposure</hediff> <!-- Inhalation effect; omit for none. -->
+		<sensitivityStat>SmokeSensitivity</sensitivityStat> <!-- Pawn sensitivity multiplier; defaults to 1 if omitted. -->
+
+		<shader>CE_SmokeRotating</shader>
+		<texPath>Things/Gas/Smoke</texPath>
+		<color>(0.78,0.72,0.2,0.8)</color>
+		<drawSize>3</drawSize>
+		<rotationSpeed>30</rotationSpeed>
+		<minDrawDensity>0</minDrawDensity>
+	</CombatExtended.GasDef>
+
+</Defs>

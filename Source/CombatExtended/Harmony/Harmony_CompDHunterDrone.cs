@@ -41,7 +41,8 @@ public class Harmony_CompHunterDrone_Transpiler
                 yield return new CodeInstruction(OpCodes.Ldarg_0);
                 yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingComp), nameof(ThingComp.parent)));
 
-                yield return new CodeInstruction(OpCodes.Ldnull);
+                yield return new CodeInstruction(OpCodes.Ldnull);   // falloffCurve
+                yield return new CodeInstruction(OpCodes.Ldnull);   // postExplosionCEGas
                 yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GenExplosionCE), nameof(GenExplosionCE.DoExplosion)));
 
                 // Fragment part

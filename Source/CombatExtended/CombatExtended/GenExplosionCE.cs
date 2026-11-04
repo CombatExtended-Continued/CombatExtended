@@ -48,7 +48,7 @@ public static class GenExplosionCE
         ThingDef preExplosionSpawnSingleThingDef = null,
 
         // CE parameters
-        float height = 0f, float scaleFactor = 1f, bool destroyAfterwards = false, ThingWithComps explosionParentToDestroy = null, SimpleCurve falloffCurve = null)
+        float height = 0f, float scaleFactor = 1f, bool destroyAfterwards = false, ThingWithComps explosionParentToDestroy = null, SimpleCurve falloffCurve = null, GasRelease postExplosionCEGas = null)
     {
         // Allows destroyed things to be exploded with appropriate scaleFactor
         if (scaleFactor <= 0f)
@@ -133,6 +133,8 @@ public static class GenExplosionCE
             explosion.FalloffCurve = falloffCurve;
         }
         explosion.StartExplosionCE(explosionSound, ignoredThings);
+
+        postExplosionCEGas?.Release(center, map, radius);
 
         // Needed to allow CompExplosive to use stackCount
         if (destroyAfterwards && !explosionParentToDestroy.Destroyed)

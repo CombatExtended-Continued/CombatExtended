@@ -1884,7 +1884,8 @@ public abstract class ProjectileCE : ThingWithComps
                     screenShakeFactor: def.projectile.screenShakeFactor,
                     height: explodePos.y,
                     preExplosionSpawnSingleThingDef: Props.preExplosionSpawnSingleThingDef,
-                    postExplosionSpawnSingleThingDef: Props.postExplosionSpawnSingleThingDef);
+                    postExplosionSpawnSingleThingDef: Props.postExplosionSpawnSingleThingDef,
+                    postExplosionCEGas: Props.postExplosionCEGas);
 
                 dangerAmount = def.projectile.damageAmountBase;
 

@@ -71,7 +71,8 @@ public class CompExplosiveCE : ThingComp
                 height: pos.y,
                 scaleFactor: scaleFactor,
                 preExplosionSpawnSingleThingDef: Props.preExplosionSpawnSingleThingDef,
-                postExplosionSpawnSingleThingDef: Props.postExplosionSpawnSingleThingDef);
+                postExplosionSpawnSingleThingDef: Props.postExplosionSpawnSingleThingDef,
+                postExplosionCEGas: Props.postExplosionCEGas);
         }
     }
 }

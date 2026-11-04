@@ -104,6 +104,7 @@ public class ProjectilePropertiesCE : ProjectileProperties
     public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
 
     public SimpleCurve explosionFalloffCurve;
+    public GasRelease postExplosionCEGas;
     public TargetingParameters targetParams;
 
     public BaseTrajectoryWorker TrajectoryWorker

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -51,7 +51,7 @@ internal static class Harmony_Fire_SpawnSmokeParticles
         foreach (CodeInstruction code in instructions)
         {
             //Log.Message($"OpCode {code.opcode}, operand {code.operand}, type {code.operand.GetType()}");
-            if (code.opcode == OpCodes.Ldc_I4_S && code.operand is sbyte && (sbyte)code.operand == 15)
+            if (code.opcode == OpCodes.Ldc_I4_S && code.operand is sbyte and 15)
             {
                 yield return new CodeInstruction(OpCodes.Ldc_I4, 1500);
                 foundInjection = true;
@@ -67,32 +67,20 @@ internal static class Harmony_Fire_SpawnSmokeParticles
         }
     }
 
-    internal static void Postfix(Fire __instance)
-    {
-    }
 }
 
 [HarmonyPatch(typeof(Fire), "Tick")]
 internal static class Harmony_Fire_Tick
 {
-    private const int SmokeDensityPerInterval = 1800;
-
     internal static void Postfix(Fire __instance)
     {
         if (__instance.Spawned
                 && Controller.settings.SmokeEffects
-                && __instance.IsHashIntervalTick(Smoke.UpdateIntervalTicks)
+                && __instance.IsHashIntervalTick(CEGasGrid.UpdateIntervalTicks)
                 && __instance.Position.Roofed(__instance.Map))
         {
-            if (__instance.Position.GetGas(__instance.Map) is Smoke existingSmoke)
-            {
-                existingSmoke.UpdateDensityBy(SmokeDensityPerInterval);
-            }
-            else
-            {
-                var newSmoke = (Smoke)GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
-                newSmoke.UpdateDensityBy(SmokeDensityPerInterval);
-            }
+            GasDef smoke = CE_GasDefOf.CE_BlackSmoke;
+            __instance.Map.GetComponent<CEGasGrid>().AddDensity(__instance.Position, smoke, smoke.fireDensityPerInterval);
         }
     }
 }

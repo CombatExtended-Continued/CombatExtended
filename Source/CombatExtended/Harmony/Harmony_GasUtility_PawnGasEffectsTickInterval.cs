@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -26,7 +26,7 @@ internal static class Harmony_GasUtility
             List<CodeInstruction> codes = instructions.ToList();
 
             MethodInfo firstInjectionSite = AccessTools.Method(typeof(GasUtility), nameof(GasUtility.ShouldGetGasExposureHediff));
-            MethodInfo additionalMethod = AccessTools.Method(typeof(Harmony_GasUtility), nameof(Harmony_GasUtility.TryNotify_ShouldEquipGasMask));
+            MethodInfo additionalMethod = AccessTools.Method(typeof(Harmony_GasUtility), nameof(TryNotify_ShouldEquipGasMask));
             FieldInfo secondInjectionSite = AccessTools.Field(typeof(HediffDefOf), nameof(HediffDefOf.LungRotExposure));
             bool firstInjectionFound = false;
             bool secondInjectionFound = false;
@@ -56,15 +56,31 @@ internal static class Harmony_GasUtility
         /// <param name="delta">VTR delta.</param>
         public static void Postfix(Pawn pawn, int delta)
         {
-            if (!(Controller.settings.SmokeEffects && pawn.Spawned &&
-                  pawn.IsHashIntervalTick(GasUtility.GasCheckInterval, delta)))
+            if (!(pawn.Spawned && pawn.IsHashIntervalTick(GasUtility.GasCheckInterval, delta)))
             {
                 return;
             }
 
-            if (pawn.Position.GetGas(pawn.Map) is Smoke smoke)
+            CEGasGrid grid = pawn.Map.GetComponent<CEGasGrid>();
+            if (grid is not { AnyGas: true })
             {
-                smoke.ApplyHediffs(pawn);
+                return;
+            }
+
+            IReadOnlyList<GasLayer> layers = grid.Layers;
+            for (int i = 0; i < layers.Count; i++)
+            {
+                bool isBlackSmokeSwitchedOff = layers[i].Def == CE_GasDefOf.CE_BlackSmoke && !Controller.settings.SmokeEffects;
+                if (isBlackSmokeSwitchedOff)
+                {
+                    continue;
+                }
+
+                float smokeDensity = layers[i].DensityAt(pawn.Position);
+                if (smokeDensity > 0f)
+                {
+                    CEGasGrid.ApplyHediff(pawn, layers[i].Def, smokeDensity);
+                }
             }
         }
     }
