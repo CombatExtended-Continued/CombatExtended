@@ -461,7 +461,7 @@ public class Loadout : IExposable, ILoadReferenceable, IComparable
                 /// So figure out what kind of ammo it needs, and check if that ammo is in our slots
                 /// if it isn't, provide a virtual slot for it
                 ammoInLoadout = false;
-                magSize = Math.Max(1, primaryAmmoUser.Props.magazineSize);
+                magSize = primaryAmmoUser.MagSizeOverride > 0 ? primaryAmmoUser.MagSizeOverride : Math.Max(1, primaryAmmoUser.Props.magazineSize);
 
                 foreach (AmmoLink link in primaryAmmoUser.Props.ammoSet.ammoTypes)
                 {
