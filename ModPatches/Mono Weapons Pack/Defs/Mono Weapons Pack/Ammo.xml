@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- ================== Projectiles ================== -->
 	<ThingDef ParentName="BaseBulletCE">
 		<defName>Bullet_WhipClawCharged</defName>
 		<label>WhipClaw Charged bullet</label>
@@ -21,6 +20,25 @@
 			</secondaryDamage>
 			<armorPenetrationSharp>15</armorPenetrationSharp>
 			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>Bullet_MonoScytheProj</defName>
+		<label>prestige stellic scythe</label>
+		<graphicData>
+			<texPath>Things/Projectile/PrestigeStellicScythe_Proj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.53</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Cut</damageDef>
+			<damageAmountBase>65</damageAmountBase>
+			<armorPenetrationSharp>36</armorPenetrationSharp>
+			<armorPenetrationBlunt>12</armorPenetrationBlunt>
+			<speed>45</speed>
+			<spinRate>3</spinRate>
+			<landedEffecter>CAT_MonoScytheProjFX</landedEffecter>
 		</projectile>
 	</ThingDef>
 
