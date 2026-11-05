@@ -6,6 +6,7 @@ using Verse;
 using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility;
+
 public class Multiplayer : IPatch
 {
     private static bool isMultiplayerActive = false;

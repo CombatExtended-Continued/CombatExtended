@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class Dialog_SetValue : Window
 {
     private readonly Func<int, string> textGetter;

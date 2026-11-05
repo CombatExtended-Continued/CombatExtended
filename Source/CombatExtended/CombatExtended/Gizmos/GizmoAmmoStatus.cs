@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class GizmoAmmoStatus : Gizmo_Slider
 {

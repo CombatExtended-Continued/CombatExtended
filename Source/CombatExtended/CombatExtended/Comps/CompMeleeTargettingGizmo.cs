@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class MeleeTargettingAdd
 {

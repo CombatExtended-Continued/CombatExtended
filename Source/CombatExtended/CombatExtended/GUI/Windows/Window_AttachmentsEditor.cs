@@ -9,6 +9,7 @@ using System.Linq;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class Window_AttachmentsEditor : Window
 {
     private readonly WeaponPlatform weapon;

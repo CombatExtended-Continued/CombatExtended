@@ -12,6 +12,7 @@ using SRTS;
 using UnityEngine;
 
 namespace CombatExtended.Compatibility.SRTSCompat;
+
 [HarmonyPatch(typeof(FallingBomb),
         MethodType.Constructor,
         new Type[] { typeof(Thing), typeof(CompExplosive), typeof(Map), typeof(string) })]

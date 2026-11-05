@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class JobGiver_UpdateLoadout : ThinkNode_JobGiver
 {
     #region InnerClasses

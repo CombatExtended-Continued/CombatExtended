@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 
 namespace CombatExtended.Lasers;
+
 public static class MeshMakerLaser
 {
     static int textureSeamPrecision = 256;

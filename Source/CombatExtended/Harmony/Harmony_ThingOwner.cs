@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 // Need to patch all methods that can modify pawn's inventory to refresh CompInventory cache when it happens
 public class Harmony_ThingOwner_NotifyAdded_Patch
 {

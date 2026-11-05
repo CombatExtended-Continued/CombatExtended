@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 
 namespace CombatExtended;
+
 public interface ITargetSearcher
 {
     bool TryFindNewTarget(out LocalTargetInfo target);

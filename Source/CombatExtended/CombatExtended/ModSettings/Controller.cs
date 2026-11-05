@@ -11,6 +11,7 @@ using CombatExtended.Loader;
 using Verse.Sound;
 
 namespace CombatExtended;
+
 /*
   This class handles initializing the different components of CombatExtended.  The LoadFolders
   system is responsible for loading the assemblies, this gives an opportunity to run any

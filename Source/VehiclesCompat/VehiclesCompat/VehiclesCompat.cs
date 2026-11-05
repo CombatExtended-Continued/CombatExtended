@@ -12,6 +12,7 @@ using UnityEngine;
 
 
 namespace CombatExtended.Compatibility.VehiclesCompat;
+
 public class VehiclesCompat : IModPart
 {
     public Type GetSettingsType()

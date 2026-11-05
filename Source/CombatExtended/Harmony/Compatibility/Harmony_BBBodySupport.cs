@@ -8,6 +8,7 @@ using System.Reflection.Emit;
 using System;
 
 namespace CombatExtended.HarmonyCE.Compatibility;
+
 [HarmonyPatch]
 class Harmony_Compat_BBBodySupport
 {

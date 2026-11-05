@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended.AI;
+
 public class SquadHelper
 {
     public static float StudyWeaponSights(Region startRegion, IEnumerable<Pawn> pawns, Map map, Faction fac)

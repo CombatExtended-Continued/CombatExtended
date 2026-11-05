@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatWorker_MeleeStats : StatWorker
 {
     public override bool IsDisabledFor(Thing thing)

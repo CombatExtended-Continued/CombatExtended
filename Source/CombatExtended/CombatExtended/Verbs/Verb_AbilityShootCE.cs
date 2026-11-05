@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public class Verb_AbilityShootCE : Verb_ShootCE, IAbilityVerb
 {
     private Ability ability;

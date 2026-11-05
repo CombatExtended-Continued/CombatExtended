@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended.Compatibility;
+
 [StaticConstructorOnStartup]
 class WeaponToughnessAutoPatcher
 {

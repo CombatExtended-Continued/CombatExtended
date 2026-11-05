@@ -6,6 +6,7 @@ using System.Reflection.Emit;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 //[HarmonyPatch(typeof(PawnGraphicSet), "MatsBodyBaseAt")]
 internal static class Harmony_PawnGraphicSet
 {

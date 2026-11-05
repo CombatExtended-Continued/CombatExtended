@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class MultiBarrelExtension : DefModExtension
 {
     public List<Vector2> offsets = new List<Vector2>();

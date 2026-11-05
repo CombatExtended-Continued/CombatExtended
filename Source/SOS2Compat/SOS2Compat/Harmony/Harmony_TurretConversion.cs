@@ -5,6 +5,7 @@ using SaveOurShip2;
 using Verse;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 /*
  * This Patch is to fix old saves that had SOS2 in them prior to the ground defense mode patch. It will replace any existing turrets of the wrong type with the new one.
  * For new saves this patch wont modify any objects but will still loop through everything on the map once when a map is loaded. (Should be minimal overhead)

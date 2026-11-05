@@ -8,6 +8,7 @@ using Verse.Sound;
 using Verse;
 
 namespace CombatExtended;
+
 public class CompCIWSImpactHandler_Skyfaller : CompCIWSImpactHandler
 {
     public override void OnImpact(ProjectileCE projectile, DamageInfo dinfo)

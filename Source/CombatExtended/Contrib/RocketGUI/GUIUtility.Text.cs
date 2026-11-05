@@ -8,6 +8,7 @@ using Verse.Sound;
 using GUITextState = System.Tuple<string, Verse.GameFont, float, float, float>;
 
 namespace CombatExtended.RocketGUI;
+
 public static partial class GUIUtility
 {
     private readonly static Dictionary<GUITextState, float> textHeightCache = new Dictionary<GUITextState, float>(512);

@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class JobGiver_ReactToSuppression : ThinkNode_JobGiver
 {
     public override Job TryGiveJob(Pawn pawn)

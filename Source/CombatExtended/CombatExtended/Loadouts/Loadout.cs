@@ -6,6 +6,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Contains a series of LoadoutSlot slots which define what a pawn using this loadout should try to keep in their inventory.
 /// </summary>

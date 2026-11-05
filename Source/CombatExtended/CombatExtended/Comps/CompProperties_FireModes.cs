@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace CombatExtended;
+
 public class CompProperties_FireModes : CompProperties
 {
     public int aimedBurstShotCount = -1;    //will default to regular burst setting if not specified in def

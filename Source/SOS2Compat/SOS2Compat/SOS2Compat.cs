@@ -12,6 +12,7 @@ using Verse.Sound;
 using Vehicles;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 public class SOS2Compat : IModPart
 {
     private static Harmony harmony;

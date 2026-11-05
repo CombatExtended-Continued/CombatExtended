@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended;
+
 public class GunDrawExtension : DefModExtension
 {
     public Vector2 DrawSize = Vector2.one;

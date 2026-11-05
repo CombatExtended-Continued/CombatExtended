@@ -5,6 +5,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public class AttachmentDef : ThingDef
 {
     #region Attachments config

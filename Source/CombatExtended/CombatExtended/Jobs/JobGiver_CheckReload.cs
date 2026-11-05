@@ -9,6 +9,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class JobGiver_CheckReload : ThinkNode_JobGiver
 {
     #region Fields

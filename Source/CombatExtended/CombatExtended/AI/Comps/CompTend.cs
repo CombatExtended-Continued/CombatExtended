@@ -6,6 +6,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.AI;
+
 public class CompTend : ICompTactics
 {
     private const int COOLDOWN_TEND_JOB = 600;

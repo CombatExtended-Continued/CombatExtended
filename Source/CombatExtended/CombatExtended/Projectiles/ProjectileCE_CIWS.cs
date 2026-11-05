@@ -9,6 +9,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended;
+
 public class ProjectileCE_CIWS : ProjectileCE
 {
     #region Caching

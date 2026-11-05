@@ -4,6 +4,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class JobCE : Job
 {
     public bool flagA;

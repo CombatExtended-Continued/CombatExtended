@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 [StaticConstructorOnStartup]
 public class LaserBeamGraphicCE : Thing
 {

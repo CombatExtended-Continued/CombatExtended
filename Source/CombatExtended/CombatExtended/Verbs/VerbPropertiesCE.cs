@@ -6,6 +6,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class VerbPropertiesCE : VerbProperties
 {
     public RecoilPattern recoilPattern = RecoilPattern.None;

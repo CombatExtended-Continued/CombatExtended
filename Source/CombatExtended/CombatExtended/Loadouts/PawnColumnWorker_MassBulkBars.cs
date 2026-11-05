@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 // Mostly based on PawnColumnWorker_Loadout and adapted for mass/bulk.
 public class PawnColumnWorker_MassBulkBar : PawnColumnWorker
 {

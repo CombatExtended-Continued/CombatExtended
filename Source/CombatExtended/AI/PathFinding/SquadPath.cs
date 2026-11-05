@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended.AI;
+
 public class SquadPath
 {
     public float fortificationStrength = 0;

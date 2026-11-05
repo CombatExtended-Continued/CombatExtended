@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Pawn_MechanitorTracker), nameof(Pawn_MechanitorTracker.CanCommandTo))]
 public static class Harmony_MechanitorTracker_CanCommandTo
 {

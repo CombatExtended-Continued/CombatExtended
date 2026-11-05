@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(MechClusterGenerator))]
 [HarmonyPatch("GetBuildingDefsForCluster")]
 [HarmonyPatch(new Type[] { typeof(float), typeof(IntVec2), typeof(bool), typeof(float?), typeof(bool) })]

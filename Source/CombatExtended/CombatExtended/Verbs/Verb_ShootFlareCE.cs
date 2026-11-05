@@ -4,6 +4,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class Verb_ShootFlareCE : Verb_ShootMortarCE
 {
     private const float MISSRADIUS_FACTOR = 0.4f;

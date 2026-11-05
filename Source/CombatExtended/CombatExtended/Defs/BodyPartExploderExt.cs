@@ -7,6 +7,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public class BodyPartExploderExt : DefModExtension
 {
     public float triggerChance;

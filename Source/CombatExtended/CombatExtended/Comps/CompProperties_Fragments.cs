@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class CompProperties_Fragments : CompProperties
 {
     public List<ThingDefCountClass> fragments = new List<ThingDefCountClass>();

@@ -4,6 +4,7 @@ using System.Linq;
 using Verse;
 
 namespace CombatExtended;
+
 public static class CE_ThingSetMakerUtility
 {
     public static bool CanGenerate(ThingDef d, bool allowBasic, bool allowAdvanced)

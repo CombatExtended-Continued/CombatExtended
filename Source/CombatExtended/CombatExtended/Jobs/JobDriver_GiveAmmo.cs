@@ -8,6 +8,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class JobDriver_GiveAmmo : JobDriver
 {
     public override bool TryMakePreToilReservations(bool errorOnFailed)

@@ -6,6 +6,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public static class ArmorUtilityCE
 {
     #region Constants

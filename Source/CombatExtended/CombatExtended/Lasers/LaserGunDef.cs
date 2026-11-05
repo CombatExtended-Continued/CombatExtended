@@ -5,6 +5,7 @@ using System.Text;
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 public class LaserGunDef : ThingDef
 {
     public static LaserGunDef defaultObj = new LaserGunDef();

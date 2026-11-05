@@ -4,6 +4,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 public static class Harmony_WorldObject
 {
     [HarmonyPatch(typeof(WorldObject), nameof(WorldObject.SpawnSetup))]

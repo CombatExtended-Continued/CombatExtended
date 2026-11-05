@@ -9,6 +9,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public enum SourceSelection
 {
     Ranged,

@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended.AI;
+
 public partial class SquadPather
 {
     private readonly Map map;

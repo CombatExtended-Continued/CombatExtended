@@ -8,6 +8,7 @@ using Verse.Sound;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class AmmoThing : ThingWithComps
 {
     private int numToCookOff;

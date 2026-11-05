@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatWorker_WeaponToughness : StatWorker
 {
     public const float parryChanceFactor = 5f; // Factor by which the weapon holder's skill affects the final weapon toughness

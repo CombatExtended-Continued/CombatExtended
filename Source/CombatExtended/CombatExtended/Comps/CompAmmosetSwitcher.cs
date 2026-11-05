@@ -6,6 +6,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class CompUnderBarrel : CompRangedGizmoGiver
 {
     public CompProperties_UnderBarrel Props => (CompProperties_UnderBarrel)this.props;

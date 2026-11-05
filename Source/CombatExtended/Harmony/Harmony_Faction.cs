@@ -9,6 +9,7 @@ using CombatExtended;
 using RimWorld;
 
 namespace CombatExtended.HarmonyCE;
+
 public static class Harmony_Faction
 {
     [HarmonyPatch(typeof(Faction), nameof(Faction.Notify_LeaderDied))]

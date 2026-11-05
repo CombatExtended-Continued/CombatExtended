@@ -11,6 +11,7 @@ using SyncMethodAttribute = global::CombatExtended.Compatibility.Multiplayer.Syn
 using SyncFieldAttribute = global::CombatExtended.Compatibility.Multiplayer.SyncFieldAttribute;
 
 namespace CombatExtended.Compatibility.MultiplayerAPI;
+
 public class MultiplayerCompat : IModPart
 {
     private static Dictionary<string, ISyncField> syncFieldAttributes;

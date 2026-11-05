@@ -10,6 +10,7 @@ using System.Reflection;
 using CombatExtended.Compatibility;
 
 namespace CombatExtended;
+
 public class CompAmmoResupplyOnWakeup : ThingComp
 {
     /// <summary>

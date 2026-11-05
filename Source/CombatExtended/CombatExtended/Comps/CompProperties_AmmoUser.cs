@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class CompProperties_AmmoUser : CompProperties
 {
     public int magazineSize = 0;

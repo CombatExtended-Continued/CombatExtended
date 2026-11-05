@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatWorker_BipodDisplay : StatWorker
 {
     public CompProperties_BipodComp bipodComp(StatRequest req)

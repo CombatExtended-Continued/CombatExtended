@@ -4,6 +4,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.AI;
+
 public abstract class IJobDriver_Tactical : JobDriver
 {
     public int numAttacksMade = 0;

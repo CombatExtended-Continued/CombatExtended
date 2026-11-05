@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(VerbProperties))]
 [HarmonyPatch("LaunchesProjectile", MethodType.Getter)]
 internal static class Harmony_VerbProperties

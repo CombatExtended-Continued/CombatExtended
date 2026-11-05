@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.AI;
+
 public class CompReload : ICompTactics
 {
     public override int Priority => 200;

@@ -1,14 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RimWorld;
 using Verse;
 using UnityEngine;
-using System.Runtime.Remoting.Messaging;
 
 namespace CombatExtended;
+
 public static class GenExplosionCE
 {
     public const float MinExplosionScale = 0.1f;    //as if 1/1000 of the shell exploded

@@ -13,6 +13,7 @@ using SRTS;
 using UnityEngine;
 
 namespace CombatExtended.Compatibility.SRTSCompat;
+
 [HarmonyPatch(typeof(Dialog_AllowedBombs),
         nameof(Dialog_AllowedBombs.DoWindowContents),
         new Type[] { typeof(Rect) })]

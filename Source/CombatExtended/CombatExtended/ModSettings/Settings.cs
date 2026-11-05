@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 
 namespace CombatExtended;
+
 public class Settings : ModSettings, ISettingsCE
 {
     #region Settings

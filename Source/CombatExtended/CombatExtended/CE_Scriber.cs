@@ -6,6 +6,7 @@ using RimWorld.Planet;
 using Verse;
 
 namespace CombatExtended;
+
 public static class CE_Scriber
 {
     private static List<ScribingAction> queuedLate = new List<ScribingAction>();

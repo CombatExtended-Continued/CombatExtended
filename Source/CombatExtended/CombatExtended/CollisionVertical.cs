@@ -8,6 +8,7 @@ using UnityEngine;
 using CombatExtended.Compatibility;
 
 namespace CombatExtended;
+
 public struct CollisionVertical
 {
     public const float ThickRoofThicknessMultiplier = 2f;

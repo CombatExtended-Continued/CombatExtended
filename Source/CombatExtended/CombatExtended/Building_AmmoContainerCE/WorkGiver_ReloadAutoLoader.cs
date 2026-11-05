@@ -9,6 +9,7 @@ using CombatExtended.Compatibility;
 
 
 namespace CombatExtended;
+
 public class WorkGiver_ReloadAutoLoader : WorkGiver_Scanner
 {
     public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.GetComponent<AutoLoaderTracker>().AutoLoaders;

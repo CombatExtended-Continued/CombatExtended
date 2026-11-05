@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using CombatExtended.Utilities;
 
 namespace CombatExtended;
+
 //Cloned from vanilla, completely unmodified
 public class ProjectileCE_Explosive : ProjectileCE
 {

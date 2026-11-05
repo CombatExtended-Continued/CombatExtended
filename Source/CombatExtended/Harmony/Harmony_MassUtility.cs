@@ -9,6 +9,7 @@ using System.Reflection;
 using UnityEngine;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(MassUtility), "Capacity")]
 static class Harmony_MassUtility_Capacity
 {

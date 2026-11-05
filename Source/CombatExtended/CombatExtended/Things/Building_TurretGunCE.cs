@@ -13,6 +13,7 @@ using CombatExtended.CombatExtended.Jobs.Utils;
 using RimWorld.Planet;
 
 namespace CombatExtended;
+
 /* Class is cloned from Building_TurretGun with various changes made to support fire modes and ammo
  *
  * Unmodified methods should be kept up-to-date with vanilla class so long as they don't conflict with changes made. Please mark any changes you make from vanilla.

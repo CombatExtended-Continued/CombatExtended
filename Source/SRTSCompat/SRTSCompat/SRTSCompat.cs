@@ -12,6 +12,7 @@ using UnityEngine;
 
 
 namespace CombatExtended.Compatibility.SRTSCompat;
+
 [StaticConstructorOnStartup]
 public class SRTSCompat : IModPart
 {

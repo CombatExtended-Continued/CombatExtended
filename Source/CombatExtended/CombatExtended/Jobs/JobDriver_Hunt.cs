@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Description of JobDriver_Hunt.
 /// </summary>

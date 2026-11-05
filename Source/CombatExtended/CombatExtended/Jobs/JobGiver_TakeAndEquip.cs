@@ -7,6 +7,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 namespace CombatExtended;
+
 public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
 {
     private const float ammoFractionOfNonAmmoInventory = 0.666f;

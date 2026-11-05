@@ -7,6 +7,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 /// <summary>
 /// Transpile <see cref="JobGiver_AIBreaching.UpdateBreachingTarget(Pawn, Verb)"/> to allow mechanoids to use breaching weapons
 /// with a nonzero friendly fire avoidance radius.

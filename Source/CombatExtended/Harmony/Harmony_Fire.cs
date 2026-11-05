@@ -7,6 +7,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Fire), "DoFireDamage")]
 internal static class Harmony_Fire_DoFireDamage
 {

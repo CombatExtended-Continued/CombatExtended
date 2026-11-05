@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 
 namespace CombatExtended;
+
 /*
  * Taken RocketMan by Karim
  *

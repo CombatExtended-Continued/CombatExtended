@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended;
+
 public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
 {
     public override bool ShouldShowFor(StatRequest req)

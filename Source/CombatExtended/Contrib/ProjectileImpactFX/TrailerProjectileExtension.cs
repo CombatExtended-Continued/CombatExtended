@@ -5,6 +5,7 @@ using Verse;
 using Verse.Sound;
 
 namespace ProjectileImpactFX;
+
 // ProjectileImpactFX.TrailerProjectileExtension
 public class TrailerProjectileExtension : DefModExtension
 {

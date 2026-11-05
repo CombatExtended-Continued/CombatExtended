@@ -13,6 +13,7 @@ using CombatExtended.Compatibility;
 using Verse.AI;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class CompMechAmmo : ThingComp
 {

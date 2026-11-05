@@ -7,6 +7,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended;
+
 public static class ApparelAutopatcherUtil
 {
     public static void AddModExtension(this ThingDef def, DefModExtension value)

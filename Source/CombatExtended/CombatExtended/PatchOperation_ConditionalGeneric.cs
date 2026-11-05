@@ -3,6 +3,7 @@ using System.Xml;
 using Verse;
 
 namespace CombatExtended;
+
 [Obsolete("ConditionalGeneric patch op has been deprecated in favor of PatchOperationSettingsConditional", false)]
 public class PatchOperation_ConditionalGeneric : PatchOperation
 {

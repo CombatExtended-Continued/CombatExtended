@@ -9,6 +9,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public static class SuppressionUtility
 {
     private const float maxCoverDist = 10f; // Maximum distance to run for cover to;
