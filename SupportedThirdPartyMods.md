@@ -325,6 +325,7 @@ Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
+Heavy Truck |
 Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
