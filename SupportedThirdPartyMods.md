@@ -553,6 +553,7 @@ Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
 Rimsenal - Spacer Faction Pack  |
 Rimsenal Xenotype Pack - Askbarn    |
+Rimsenal Xenotype Pack - Dioktri  |
 Rimsenal Xenotype Pack - Harana |
 Rimsenal Xenotype Pack - Zohar  |
 RimTraits - General Traits  |
