@@ -577,6 +577,7 @@ Save Our Ship 2	|
 SCP - Clothing Only	|
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
+Service Weapon (Continued) |
 Seventh Seraph  |
 Shambler Variants  |
 Silkiera Race	|
