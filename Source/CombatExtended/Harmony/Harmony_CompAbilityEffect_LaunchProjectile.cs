@@ -10,6 +10,7 @@ using UnityEngine;
 
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(CompAbilityEffect_LaunchProjectile), "LaunchProjectile")]
 internal static class Harmony_CompAbilityEffect_LaunchProjectile
 {

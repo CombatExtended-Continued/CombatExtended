@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public static class DefUtility
 {
     /// <summary>

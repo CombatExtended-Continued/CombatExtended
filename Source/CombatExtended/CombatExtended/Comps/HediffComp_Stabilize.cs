@@ -4,6 +4,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class HediffComp_Stabilize : HediffComp
 {

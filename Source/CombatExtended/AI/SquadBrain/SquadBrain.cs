@@ -8,6 +8,7 @@ using Verse.AI;
 using UnityEngine;
 
 namespace CombatExtended.AI;
+
 public enum Squad_Movment_Mode : byte
 {
     dont_wait_for_others,

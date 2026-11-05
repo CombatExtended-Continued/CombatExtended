@@ -8,6 +8,7 @@ using CombatExtended.Compatibility;
 // ReSharper disable InconsistentNaming
 
 namespace CombatExtended;
+
 public class JobGiver_ManTurretsNearPointCE : JobGiver_ManTurretsNearPoint
 {
     /// <inheritdoc cref="JobGiver_ManTurrets.TryGiveJob" />

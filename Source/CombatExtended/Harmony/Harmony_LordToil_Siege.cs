@@ -5,6 +5,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 /// <summary>
 /// Transpile LordToil_Siege.LordToilTick to support artillery pieces with different ammosets than the 81mm mortar.
 /// </summary>

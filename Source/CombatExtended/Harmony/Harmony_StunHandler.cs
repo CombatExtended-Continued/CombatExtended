@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(StunHandler), nameof(StunHandler.Notify_DamageApplied))]
 public static class Harmony_StunHandler_Notify_DamageApplied
 {

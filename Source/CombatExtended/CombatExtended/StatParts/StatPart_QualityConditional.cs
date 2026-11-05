@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatPart_QualityConditional : StatPart
 {
     private bool applyToNegativeValues = false;

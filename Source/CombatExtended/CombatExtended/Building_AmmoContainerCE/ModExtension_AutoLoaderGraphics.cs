@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse;
 
 namespace CombatExtended;
+
 public class ModExtension_AutoLoaderGraphics : DefModExtension
 {
     public GraphicData fullGraphic;

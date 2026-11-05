@@ -7,6 +7,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended.Compatibility;
+
 [StaticConstructorOnStartup]
 public class RaceAutoPatcher
 {

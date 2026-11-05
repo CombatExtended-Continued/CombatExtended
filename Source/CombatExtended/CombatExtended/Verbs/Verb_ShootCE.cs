@@ -7,6 +7,7 @@ using Verse.AI;
 using Verse.Sound;
 
 namespace CombatExtended;
+
 public class Verb_ShootCE : Verb_LaunchProjectileCE
 {
     #region Constants

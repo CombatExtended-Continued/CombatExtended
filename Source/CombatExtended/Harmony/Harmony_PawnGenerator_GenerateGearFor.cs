@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GenerateGearFor))]
 public static class Harmony_PawnGenerator_GenerateGearFor
 {

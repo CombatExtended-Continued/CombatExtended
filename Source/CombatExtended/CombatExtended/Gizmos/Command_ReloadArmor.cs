@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class Command_ReloadArmor : Command_Action
 {
     public CompApparelReloadable compReloadable;

@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.WorldObjects;
+
 public class HostilitySheller : IExposable
 {
     private const float SHELLING_FACTOR = 3.5f;

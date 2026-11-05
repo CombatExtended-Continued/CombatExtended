@@ -4,6 +4,7 @@ using UnityEngine;
 using RimWorld;
 
 namespace CombatExtended;
+
 public class ProjectileCE_Explosive_RL : ProjectileCE_Explosive
 {
     private int Burnticks = 3;

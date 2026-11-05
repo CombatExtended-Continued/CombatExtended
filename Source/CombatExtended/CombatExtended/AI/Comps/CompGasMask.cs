@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended.AI;
+
 public class CompGasMask : ICompTactics
 {
     private const string GASMASK_TAG = "GasMask";

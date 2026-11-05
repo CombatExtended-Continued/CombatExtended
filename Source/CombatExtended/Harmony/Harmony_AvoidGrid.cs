@@ -6,6 +6,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(AvoidGrid), "PrintAvoidGridAroundTurret")]
 internal static class Harmony_AvoidGrid_PrintAvoidGridAroundTurret
 {

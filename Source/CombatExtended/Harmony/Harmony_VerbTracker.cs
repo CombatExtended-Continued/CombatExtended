@@ -5,6 +5,7 @@ using System.Reflection.Emit;
 using System.Reflection;
 
 namespace CombatExtended.HarmonyCE;
+
 /* Dev Notes:
  * The target code should look like this (high level view)
  *  for (int i = 0; i < this.verbs.Count; i++)

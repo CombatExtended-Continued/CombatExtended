@@ -7,6 +7,7 @@ using Verse;
 using HarmonyLib;
 
 namespace CombatExtended;
+
 public class StatWorker_AmmoCaliber : StatWorker
 {
     public override bool ShouldShowFor(StatRequest req)

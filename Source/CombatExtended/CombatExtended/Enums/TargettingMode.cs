@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public enum TargettingMode
 {
     legs,

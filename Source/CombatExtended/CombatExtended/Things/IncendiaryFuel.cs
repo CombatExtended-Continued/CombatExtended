@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class IncendiaryFuel : Filth
 {
     private const float maxFireSize = 1.75f;

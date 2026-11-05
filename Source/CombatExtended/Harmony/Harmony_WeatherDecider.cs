@@ -5,6 +5,7 @@ using Harmony;
 using RimWorld;
 
 namespace CombatExtended.Harmony;
+
 [HarmonyPatch(typeof(WeatherDecider), "CurrentWeatherCommonality")]
 internal static class Harmony_WeatherDecider
 {

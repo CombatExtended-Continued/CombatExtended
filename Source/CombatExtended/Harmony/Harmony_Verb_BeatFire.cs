@@ -6,6 +6,7 @@ using System.Reflection.Emit;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 class Harmony_Verb_BeatFire
 {
     [HarmonyPatch(typeof(Verb_BeatFire), "TryCastShot")]

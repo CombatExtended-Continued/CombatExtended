@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse.AI;
 
 namespace CombatExtended;
+
 // Mostly based on PawnColumnWorker_Outfit and adapted for loadouts. Should be kept up-to-date with any style changes in vanilla. -NIA
 public class PawnColumnWorker_Loadout : PawnColumnWorker
 {

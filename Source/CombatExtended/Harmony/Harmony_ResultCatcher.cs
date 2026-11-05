@@ -8,6 +8,7 @@ using Verse;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Thing), "TakeDamage")]
 public static class PatchCETakeDamage
 {

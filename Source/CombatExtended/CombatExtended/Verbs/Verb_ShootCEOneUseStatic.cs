@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class Verb_ShootCEOneUseStatic : Verb_ShootCEOneUse
 {
     [Compatibility.Multiplayer.SyncMethod]

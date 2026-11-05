@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public interface IVerbDisableable
 {
     bool HoldFire { get; set; }

@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class Smoke : Gas
 {
     public const int UpdateIntervalTicks = 60;

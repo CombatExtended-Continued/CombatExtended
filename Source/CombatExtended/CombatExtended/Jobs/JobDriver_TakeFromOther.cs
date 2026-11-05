@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 /* Regarding multi reservation...
  * As long as it's all the same job reserving the animal (sourceInd) it works out fine.
  * Need to check if the target still has the desired thing because if a pawn can take the entire stack then the thing object's container is changed rather than destroyed.

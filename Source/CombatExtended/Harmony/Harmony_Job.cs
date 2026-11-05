@@ -3,6 +3,7 @@ using HarmonyLib;
 using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
+
 /*
  * This patch is used to allow us to attach more data to jobs
  *

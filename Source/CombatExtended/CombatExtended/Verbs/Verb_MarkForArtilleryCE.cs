@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class Verb_MarkForArtillery : Verb_LaunchProjectileCE
 {
     private int _lastConditionsCheckedAt = int.MinValue;

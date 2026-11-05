@@ -12,6 +12,7 @@ using UnityEngine;
 
 
 namespace CombatExtended;
+
 public class Bipod_Recoil_StatPart : StatPart
 {
     public override void TransformValue(StatRequest req, ref float val)

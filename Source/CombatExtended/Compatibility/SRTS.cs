@@ -10,6 +10,7 @@ using UnityEngine;
 using RimWorld;
 
 namespace CombatExtended.Compatibility;
+
 public class SRTS : IPatch
 {
     public bool CanInstall()

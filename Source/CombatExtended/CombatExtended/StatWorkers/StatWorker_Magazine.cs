@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 namespace CombatExtended;
+
 public class StatWorker_Magazine : StatWorker
 {
     public CompAmmoUser compAmmo;

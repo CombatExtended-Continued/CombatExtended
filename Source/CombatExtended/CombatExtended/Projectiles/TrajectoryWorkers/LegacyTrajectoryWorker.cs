@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class LegacyTrajectoryWorker : BaseTrajectoryWorker
 {
     private ProjectileCE projectile;

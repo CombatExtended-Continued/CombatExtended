@@ -6,6 +6,7 @@ using RimWorld;
 using CombatExtended.WorldObjects;
 
 namespace CombatExtended.HarmonyCE;
+
 public static class Harmony_WorldInterface
 {
     [HarmonyPatch(typeof(WorldInterface), nameof(WorldInterface.WorldInterfaceOnGUI))]

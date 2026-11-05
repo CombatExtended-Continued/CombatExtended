@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class StatWorker_WorkSpeedGlobal : StatWorker
 {
     public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)

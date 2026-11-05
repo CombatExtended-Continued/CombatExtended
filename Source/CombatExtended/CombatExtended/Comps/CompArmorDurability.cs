@@ -11,6 +11,7 @@ using UnityEngine;
 using Verse.AI;
 
 namespace CombatExtended;
+
 /// The file has a few classes but they are all extremely closely related to splitting them to files would only hinder working on it.
 
 public class ERAComponent : IExposable

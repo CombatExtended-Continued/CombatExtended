@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(PawnWeaponGenerator), "TryGenerateWeaponFor")]
 static class Harmony_PawnWeaponGenerator_TryGenerateWeaponFor
 {

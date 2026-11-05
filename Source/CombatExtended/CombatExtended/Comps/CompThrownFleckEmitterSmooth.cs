@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class CompProjectileFleck : ThingComp
 {
     public Vector3 lastPos;

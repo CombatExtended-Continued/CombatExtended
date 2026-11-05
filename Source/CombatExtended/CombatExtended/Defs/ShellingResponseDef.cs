@@ -5,6 +5,7 @@ using RimWorld.Planet;
 using Verse;
 
 namespace CombatExtended;
+
 public class ShellingResponseDef : Def
 {
     public float defaultShellingPropability = 0.0f;

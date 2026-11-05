@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 [DefOf]
 public static class MTAJobDefOf
 {

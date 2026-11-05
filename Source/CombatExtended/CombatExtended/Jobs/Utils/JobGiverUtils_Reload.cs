@@ -11,6 +11,7 @@ using CombatExtended.Compatibility;
 
 
 namespace CombatExtended.CombatExtended.Jobs.Utils;
+
 public class JobGiverUtils_Reload
 {
     /// <summary>

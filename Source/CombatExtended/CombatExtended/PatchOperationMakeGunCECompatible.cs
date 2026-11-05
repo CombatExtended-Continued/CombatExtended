@@ -5,6 +5,7 @@ using System.Xml;
 using Verse;
 
 namespace CombatExtended;
+
 public class PatchOperationMakeGunCECompatible : PatchOperation
 {
     public string defName;

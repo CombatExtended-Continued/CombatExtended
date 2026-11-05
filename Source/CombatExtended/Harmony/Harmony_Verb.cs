@@ -7,6 +7,7 @@ using System.Reflection.Emit;
 using System.Reflection;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Verb), nameof(Verb.IsStillUsableBy))]
 internal static class Harmony_Verb_IsStillUsableBy
 {

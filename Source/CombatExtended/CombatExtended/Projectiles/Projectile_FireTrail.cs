@@ -3,6 +3,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class Projectile_FireTrail : ProjectileCE_Explosive
 {
     private int TicksforAppearence = 5;

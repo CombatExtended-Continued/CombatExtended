@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class SecondaryDamage
 {
     private const float SecExplosionPenPerDmg = 2f * AmmoUtility.ExplosiveArmorPenetrationMultiplier;

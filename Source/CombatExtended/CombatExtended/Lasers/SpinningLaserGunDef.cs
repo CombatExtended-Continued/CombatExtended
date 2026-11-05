@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 public class SpinningLaserGunDef : LaserGunDef
 {
     public List<GraphicData> frames;

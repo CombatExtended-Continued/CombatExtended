@@ -8,6 +8,7 @@ using Verse.AI;
 using RimWorld.Planet;
 
 namespace CombatExtended.Compatibility;
+
 [StaticConstructorOnStartup]
 public class PawnKindPatcher
 {

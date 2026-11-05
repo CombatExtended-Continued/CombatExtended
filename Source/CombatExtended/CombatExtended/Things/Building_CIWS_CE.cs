@@ -9,6 +9,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class Building_CIWS_CE : Building_Turret_MultiVerbs
 {

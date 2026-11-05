@@ -14,6 +14,7 @@ using CombatExtended.Utilities;
 using RimWorld.Planet;
 
 namespace CombatExtended;
+
 public class Verb_LaunchProjectileCE : Verb
 {
 

@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class ShieldDefExtension : DefModExtension
 {
     public List<BodyPartGroupDef> shieldCoverage = new List<BodyPartGroupDef>();

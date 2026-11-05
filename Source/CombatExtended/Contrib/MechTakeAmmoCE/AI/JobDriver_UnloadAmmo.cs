@@ -12,6 +12,7 @@ using UnityEngine;
 using CombatExtended;
 
 namespace CombatExtended;
+
 public class JobDriver_UnloadAmmo : JobDriver
 {
     public override bool TryMakePreToilReservations(bool errorOnFailed)

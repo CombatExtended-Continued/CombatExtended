@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class CompProperties_AmmoResupplyOnWakeup : CompProperties
 {
     public bool dropInPods;

@@ -7,6 +7,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public class ToolCE : Tool
 {
     public float armorPenetrationSharp;

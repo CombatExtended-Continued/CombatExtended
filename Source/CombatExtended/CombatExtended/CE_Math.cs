@@ -3,6 +3,7 @@ using System;
 using Verse;
 
 namespace CombatExtended;
+
 public static class CE_Math
 {
     static readonly float sqrt2 = Mathf.Sqrt(2f);

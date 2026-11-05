@@ -6,6 +6,7 @@ using UnityEngine;
 using CombatExtended.Compatibility;
 
 namespace CombatExtended;
+
 public class CompSuppressable : ThingComp
 {
     #region Constants

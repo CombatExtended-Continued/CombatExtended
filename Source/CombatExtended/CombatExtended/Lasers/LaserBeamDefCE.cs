@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 public class LaserBeamDefCE : AmmoDef
 {
     public float capSize = 1.0f;

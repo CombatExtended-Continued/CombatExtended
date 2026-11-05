@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class ThinkNode_ConditionalHasSquad : ThinkNode_Conditional
 {
     protected override bool Satisfied(Pawn pawn)

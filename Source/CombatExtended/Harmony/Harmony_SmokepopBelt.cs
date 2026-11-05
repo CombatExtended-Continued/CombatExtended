@@ -3,6 +3,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(SmokepopBelt), "Notify_BulletImpactNearby")]
 internal static class Harmony_SmokepopBelt
 {

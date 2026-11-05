@@ -3,6 +3,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended.Compatibility.PsyBlastersCompat;
+
 public class PsychicBlasterBulletCE : BulletCE //Basically just duplicating the original behavior to the CE class
 {
     private PsychicProjectileExtension psyModExtension => def.GetModExtension<PsychicProjectileExtension>();

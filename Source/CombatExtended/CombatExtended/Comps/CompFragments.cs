@@ -9,6 +9,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class CompFragments : ThingComp
 {

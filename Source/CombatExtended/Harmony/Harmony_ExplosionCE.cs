@@ -8,6 +8,7 @@ using Verse;
 using CombatExtended;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Explosion), "GetDamageAmountAt")]
 public static class Harmony_ExplosionCE_GetDamageAmountAt
 {

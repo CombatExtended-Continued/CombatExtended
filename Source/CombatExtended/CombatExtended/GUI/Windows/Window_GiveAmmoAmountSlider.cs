@@ -9,6 +9,7 @@ using UnityEngine;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class Window_GiveAmmoAmountSlider : Window
 {
     public float ammoToGiveAmount = 1;

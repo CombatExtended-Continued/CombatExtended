@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public abstract class StatWorker_BodyPartDensity : StatWorker
 {
     public abstract string UnitString

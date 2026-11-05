@@ -9,6 +9,7 @@ using System.Reflection;
 using UnityEngine;
 
 namespace CombatExtended.Harmony;
+
 /* Dev Notes:
  * on a high level need to make the following changes.
  * From:

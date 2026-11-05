@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.Utilities;
+
 public static class GenClosest
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -4,6 +4,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public struct EquipmentStatKey : IEquatable<EquipmentStatKey>
 {
     public ThingDef equipmentDef;

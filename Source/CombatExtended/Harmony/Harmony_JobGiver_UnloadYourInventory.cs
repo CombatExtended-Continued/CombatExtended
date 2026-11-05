@@ -22,6 +22,7 @@ using Verse.AI;
  */
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(JobGiver_UnloadYourInventory), "TryGiveJob", new Type[] { typeof(Pawn) })]
 static class Harmony_JobGiver_UnloadYourInventory
 {

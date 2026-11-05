@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Verse;
 
 namespace CombatExtended.WorldObjects;
+
 public static class WorldCompUtility
 {
     public static IEnumerable<IWorldCompCE> GetCompsCE(this WorldObject worldObject)

@@ -5,6 +5,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 /// <summary>
 /// Replace <see cref="TurretGunUtility.TryFindRandomShellDef" /> to support turrets other than the 81mm mortar.
 /// </summary>
