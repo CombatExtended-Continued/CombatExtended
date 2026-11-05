@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Each gun has a second Verb_Shoot for sap. MakeGun would delete both and append one, so these verbs are replaced by hand. -->
+
+	<!-- ========== Thorncaster ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Dryad_Thorncaster_Gun"]/statBases/*[self::AccuracyTouch or self::AccuracyShort or self::AccuracyMedium or self::AccuracyLong]</xpath>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_Thorncaster_Gun"]/statBases</xpath>
+		<value>
+			<SightsEfficiency>0.6</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.4</SwayFactor>
+			<Bulk>6</Bulk>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_Thorncaster_Gun"]/verbs/li[defaultProjectile="Dryad_GauBullet"]</xpath>
+		<value>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Dryad_GauBullet</defaultProjectile>
+				<warmupTime>0</warmupTime>
+				<range>28.9</range>
+				<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>Dryad_ThornShoot</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<recoilAmount>1.2</recoilAmount>
+				<recoilPattern>Mounted</recoilPattern>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_Thorncaster_Gun"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiUseBurstMode>true</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- ========== Impaler ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Dryad_Thornlauncher_Gun"]/statBases/*[self::AccuracyTouch or self::AccuracyShort or self::AccuracyMedium or self::AccuracyLong]</xpath>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_Thornlauncher_Gun"]/statBases</xpath>
+		<value>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SwayFactor>1.5</SwayFactor>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_Thornlauncher_Gun"]/verbs/li[defaultProjectile="Dryad_HeavyGauBullet"]</xpath>
+		<value>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Dryad_HeavyGauBullet</defaultProjectile>
+				<warmupTime>3</warmupTime>
+				<range>22.9</range>
+				<minRange>3.9</minRange>
+				<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<requireLineOfSight>false</requireLineOfSight>
+				<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+				<soundCast>Dryad_ThornShoot</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<recoilAmount>1.8</recoilAmount>
+				<recoilPattern>Mounted</recoilPattern>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_Thornlauncher_Gun"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiAimMode>AimedShot</aiAimMode>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- ========== Crucifer ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Dryad_SuperThornlauncher_Gun"]/statBases/*[self::AccuracyTouch or self::AccuracyShort or self::AccuracyMedium or self::AccuracyLong]</xpath>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_SuperThornlauncher_Gun"]/statBases</xpath>
+		<value>
+			<RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.85</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.4</SwayFactor>
+			<Bulk>10</Bulk>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_SuperThornlauncher_Gun"]/verbs/li[defaultProjectile="Dryad_SuperHeavyGauBullet"]</xpath>
+		<value>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Dryad_SuperHeavyGauBullet</defaultProjectile>
+				<warmupTime>0</warmupTime>
+				<range>34.9</range>
+				<minRange>3.9</minRange>
+				<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<requireLineOfSight>false</requireLineOfSight>
+				<ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
+				<soundCast>Dryad_ThornShoot</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<recoilAmount>2.2</recoilAmount>
+				<recoilPattern>Mounted</recoilPattern>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_SuperThornlauncher_Gun"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiAimMode>AimedShot</aiAimMode>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- ========== Giant thorncaster ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Dryad_GiantThorncaster_Gun"]/statBases/*[self::AccuracyTouch or self::AccuracyShort or self::AccuracyMedium or self::AccuracyLong]</xpath>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_GiantThorncaster_Gun"]/statBases</xpath>
+		<value>
+			<RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.5</SightsEfficiency>
+			<ShotSpread>0.22</ShotSpread>
+			<SwayFactor>1.6</SwayFactor>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_GiantThorncaster_Gun"]/verbs/li[defaultProjectile="Dryad_GauBulletSpam"]</xpath>
+		<value>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Dryad_GauBulletSpam</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>30.9</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>18</burstShotCount>
+				<soundCast>Dryad_ThornShoot</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<recoilAmount>1.4</recoilAmount>
+				<recoilPattern>Mounted</recoilPattern>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_GiantThorncaster_Gun"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiUseBurstMode>true</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>6</aimedBurstShotCount>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- Building accuracy is the turret stat CE reads. 0.5 is a mini-turret. 1.0 is a charge blaster. 1.5 is a sniper turret. -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_Thorncaster"]</xpath>
+		<value>
+			<statBases>
+				<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+			</statBases>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_Thornlauncher"]</xpath>
+		<value>
+			<statBases>
+				<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+			</statBases>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_GiantThorncaster"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_SuperThornlauncher"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_SuperThornlauncher"]/statBases/RangedWeapon_Cooldown</xpath>
+		<value>
+			<RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+		</value>
+	</Operation>
+
+	<!-- ========== Spikes. Direct hits. The old 1.1-cell explosion is dropped. ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_GauBullet"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_GauBullet"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>12</damageAmountBase>
+				<armorPenetrationSharp>4</armorPenetrationSharp>
+				<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				<speed>36</speed>
+				<arcHeightFactor>0.25</arcHeightFactor>
+				<shadowSize>0.4</shadowSize>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_GauBulletSpam"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_GauBulletSpam"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>6</damageAmountBase>
+				<armorPenetrationSharp>2</armorPenetrationSharp>
+				<armorPenetrationBlunt>4</armorPenetrationBlunt>
+				<speed>28</speed>
+				<arcHeightFactor>0.35</arcHeightFactor>
+				<shadowSize>0.42</shadowSize>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_HeavyGauBullet"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_HeavyGauBullet"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>18</damageAmountBase>
+				<armorPenetrationSharp>7</armorPenetrationSharp>
+				<armorPenetrationBlunt>16</armorPenetrationBlunt>
+				<speed>40</speed>
+				<arcHeightFactor>0.5</arcHeightFactor>
+				<flyOverhead>true</flyOverhead>
+				<shadowSize>0.4</shadowSize>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_SuperHeavyGauBullet"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryad_SuperHeavyGauBullet"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>24</damageAmountBase>
+				<armorPenetrationSharp>12</armorPenetrationSharp>
+				<armorPenetrationBlunt>22</armorPenetrationBlunt>
+				<speed>48</speed>
+				<arcHeightFactor>0.5</arcHeightFactor>
+				<flyOverhead>true</flyOverhead>
+				<shadowSize>0.5</shadowSize>
+				<extraDamages>
+					<li>
+						<def>Stun</def>
+						<amount>16</amount>
+						<chance>0.5</chance>
+					</li>
+					<li>
+						<def>EMP</def>
+						<amount>20</amount>
+						<chance>0.75</chance>
+					</li>
+				</extraDamages>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ========== Gauranlen connection bark ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Dryad_ConnectedHediff"]/stages/li[minSeverity="0.9"]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Dryad_ConnectedHediff"]/stages/li[minSeverity="1.24"]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Dryad_ConnectedHediff"]/stages/li[minSeverity="1.49"]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Dryad_ConnectedHediff"]/stages/li[minSeverity="1.74"]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Dryad_ConnectedHediff"]/stages/li[minSeverity="1.74"]/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>
