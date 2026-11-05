@@ -83,11 +83,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="DevDesigner_AncientDeer"]/combatPower</xpath>
-		<value>
-			<combatPower>60</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="DevDesigner_AncientDeer"]/combatPower</xpath>
+			<value>
+				<combatPower>60</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- === Cold One === -->
@@ -170,11 +173,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="DevDesigner_ColdOne"]/combatPower</xpath>
-		<value>
-			<combatPower>145</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="DevDesigner_ColdOne"]/combatPower</xpath>
+			<value>
+				<combatPower>145</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 </Patch>

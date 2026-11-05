@@ -54,11 +54,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Walrus"]/combatPower</xpath>
-		<value>
-			<combatPower>150</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Walrus"]/combatPower</xpath>
+			<value>
+				<combatPower>150</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
@@ -83,7 +86,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<!-- === Seal === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="SeaLion"]
@@ -250,7 +253,7 @@
 					<armorPenetrationBlunt>1</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					 <label>left claw</label>
+					<label>left claw</label>
 					<labelNoLocation>claw</labelNoLocation>
 					<capacities>
 						<li>Scratch</li>
@@ -261,7 +264,7 @@
 					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					 <label>right claw</label>
+					<label>right claw</label>
 					<labelNoLocation>claw</labelNoLocation>
 					<capacities>
 						<li>Scratch</li>
@@ -275,11 +278,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="HermitCrab"]/combatPower</xpath>
-		<value>
-			<combatPower>30</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="HermitCrab"]/combatPower</xpath>
+			<value>
+				<combatPower>30</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
@@ -355,7 +361,7 @@
 					<armorPenetrationBlunt>1</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					 <label>left claw</label>
+					<label>left claw</label>
 					<labelNoLocation>claw</labelNoLocation>
 					<capacities>
 						<li>Scratch</li>
@@ -366,7 +372,7 @@
 					<armorPenetrationBlunt>12</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					 <label>right claw</label>
+					<label>right claw</label>
 					<labelNoLocation>claw</labelNoLocation>
 					<capacities>
 						<li>Scratch</li>
@@ -402,7 +408,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<!-- ========== Sea Turtle ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -488,11 +494,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="SeaTurtle"]/combatPower</xpath>
-		<value>
-			<combatPower>40</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="SeaTurtle"]/combatPower</xpath>
+			<value>
+				<combatPower>40</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
@@ -517,7 +526,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<!-- === Otter === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Otter"]</xpath>

@@ -28,6 +28,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool partialstats = true;
     private bool enableExtraEffects = true;
     private bool realWeaponNames = true;
+    private bool vanillaCombatPower = false;
     private bool requireArtilleryMarkerForOffMapArtillery = true;
 
     private bool enableArcOfFire = false;
@@ -79,6 +80,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool PartialStat => partialstats;
     public bool EnableExtraEffects => enableExtraEffects;
     public bool RealWeaponNames => realWeaponNames;
+    public bool VanillaCombatPower => vanillaCombatPower;
     public bool RequireArtilleryMarkerForOffMapArtillery => requireArtilleryMarkerForOffMapArtillery;
     public bool ShowExtraTooltips => showExtraTooltips;
     public bool DetailedMeleeTooltip => detailedMeleeTooltip;
@@ -224,6 +226,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref variedHumanHeight, "variedHumanHeight", false);
         Scribe_Values.Look(ref logUnpatchedDefs, "logUnpatchedDefs", false);
         Scribe_Values.Look(ref realWeaponNames, "realWeaponNames", true);
+        Scribe_Values.Look(ref vanillaCombatPower, "vanillaCombatPower", false);
         Scribe_Values.Look(ref requireArtilleryMarkerForOffMapArtillery, "requireArtilleryMarkerForOffMapArtillery", true);
 
 #if DEBUG
@@ -448,6 +451,7 @@ public class Settings : ModSettings, ISettingsCE
         list.CheckboxLabeled("CE_Settings_VariedHumanHeight_Title".Translate(), ref variedHumanHeight, "CE_Settings_VariedHumanHeight_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_LogUnpatchedDefs_Title".Translate(), ref logUnpatchedDefs, "CE_Settings_LogUnpatchedDefs_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_RealWeaponNames_Title".Translate(), ref realWeaponNames, "CE_Settings_RealWeaponNames_Desc".Translate());
+        list.CheckboxLabeled("CE_Settings_VanillaCombatPower_Title".Translate(), ref vanillaCombatPower, "CE_Settings_VanillaCombatPower_Desc".Translate());
         list.Gap();
         list.GapLine();
         list.Gap();
@@ -610,6 +614,7 @@ public class Settings : ModSettings, ISettingsCE
         variedHumanHeight = false;
         logUnpatchedDefs = false;
         realWeaponNames = true;
+        vanillaCombatPower = false;
 
 #if DEBUG
         debuggingMode = false;

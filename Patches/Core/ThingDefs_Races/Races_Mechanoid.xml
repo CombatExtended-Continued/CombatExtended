@@ -10,11 +10,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="MechCentipedeBase"]/combatPower</xpath>
-		<value>
-			<combatPower>580</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[@Name="MechCentipedeBase"]/combatPower</xpath>
+			<value>
+				<combatPower>580</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -230,7 +233,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_Lancer"]</xpath>
 		<value>

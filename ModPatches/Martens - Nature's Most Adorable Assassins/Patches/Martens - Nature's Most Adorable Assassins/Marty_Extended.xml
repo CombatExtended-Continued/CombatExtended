@@ -29,26 +29,32 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="ZGF_BeechMart" or
-			defName="ZGF_JapaneseMart" or
-			defName="ZGF_NilgiriMart" or
-			defName="ZGF_PineMart" or
-			defName="ZGF_RimMart" or
-			defName="ZGF_Sable" or
-			defName="ZGF_Boommarten" or
-			defName="ZGF_YellowMart"]/combatPower </xpath>
-		<value>
-			<combatPower>30</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="ZGF_BeechMart" or
+				defName="ZGF_JapaneseMart" or
+				defName="ZGF_NilgiriMart" or
+				defName="ZGF_PineMart" or
+				defName="ZGF_RimMart" or
+				defName="ZGF_Sable" or
+				defName="ZGF_Boommarten" or
+				defName="ZGF_YellowMart"]/combatPower </xpath>
+			<value>
+				<combatPower>30</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="ZGF_MegaMart"]/combatPower</xpath>
-		<value>
-			<combatPower>180</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="ZGF_MegaMart"]/combatPower</xpath>
+			<value>
+				<combatPower>180</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
