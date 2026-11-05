@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- These defs load only with Big and Small - Framework. Skip quietly otherwise. -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/GeneDef[defName="GOW_LocustDrone"]</xpath>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="GOW_LocustDrone"]/statOffsets/ArmorRating_Sharp</xpath>
+					<value><ArmorRating_Sharp>2</ArmorRating_Sharp></value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="GOW_LocustDrone"]/statOffsets/ArmorRating_Blunt</xpath>
+					<value><ArmorRating_Blunt>3</ArmorRating_Blunt></value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="GOW_LocustBoomer"]/statOffsets/ArmorRating_Sharp</xpath>
+					<value><ArmorRating_Sharp>4</ArmorRating_Sharp></value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="GOW_LocustBoomer"]/statOffsets/ArmorRating_Blunt</xpath>
+					<value><ArmorRating_Blunt>6</ArmorRating_Blunt></value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="GOW_LocustKantus"]/statOffsets/ArmorRating_Sharp</xpath>
+					<value><ArmorRating_Sharp>3</ArmorRating_Sharp></value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="GOW_LocustKantus"]/statOffsets/ArmorRating_Blunt</xpath>
+					<value><ArmorRating_Blunt>4</ArmorRating_Blunt></value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="GOW_LocustBerserker"]/statOffsets/ArmorRating_Sharp</xpath>
+					<value><ArmorRating_Sharp>10</ArmorRating_Sharp></value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/GeneDef[defName="GOW_LocustBerserker"]/statOffsets/ArmorRating_Blunt</xpath>
+					<value><ArmorRating_Blunt>16</ArmorRating_Blunt></value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GOW_Berserker"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left giant fist</label>
+								<labelNoLocation>fist</labelNoLocation>
+								<capacities>
+									<li>Blunt</li>
+									<li>Demolish</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right giant fist</label>
+								<labelNoLocation>fist</labelNoLocation>
+								<capacities>
+									<li>Blunt</li>
+									<li>Demolish</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GOW_Berserker"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>1</MeleeDodgeChance>
+						<MeleeCritChance>1</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="GOW_Berserker"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GOW_Berserker"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+						</li>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
