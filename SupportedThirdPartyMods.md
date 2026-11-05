@@ -127,6 +127,8 @@ Arrow Please (Continued)    |
 Arsenal - Orbital Security    |
 Arsenal - The Juggernaut    |
 Arsenal - The New Republic    |
+Arsenal of Reaction |
+Arsenal of Revolution |
 Asimov  |
 Aspero Race |
 Astoriel Legacy |

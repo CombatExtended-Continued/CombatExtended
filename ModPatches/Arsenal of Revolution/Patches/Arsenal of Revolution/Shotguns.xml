@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Proper Shotguns replaces Verb_Shoot. MakeGun only removes Verb_Shoot, so drop that verb first when the mod is active. -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[XND] Proper Shotguns</li>
+			<li>Proper Shotguns (Unofficial Patch)</li>
+			<li>[XND] Proper Shotguns (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="AOR_Rotfront_Gun" or defName="AOR_1887_Gun" or defName="AOR_Thorne_Gun" or defName="AOR_ThorneShort_Gun" or defName="AOR_ThorneChainsaw_Gun" or defName="AOR_10mmSMGdoppel_Gun"]/verbs/li[verbClass="ProperShotguns.Verb_ShootShotgun"]</xpath>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
