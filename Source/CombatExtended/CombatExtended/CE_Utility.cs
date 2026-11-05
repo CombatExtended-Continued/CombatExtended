@@ -1745,21 +1745,6 @@ public static class CE_Utility
         return current;
     }
 
-    internal static List<Tool> GetThingDefTools(ThingDef thingDef)
-    {
-        List<Tool> tools = new List<Tool>();
-        if (thingDef.isTechHediff)
-        {
-            tools = GetTechHediffTools(thingDef);
-        }
-        else if (thingDef.IsWeapon || thingDef.category == ThingCategory.Pawn)
-        {
-            tools = thingDef.tools?.ToList();
-        }
-
-        return tools;
-    }
-
     public static float CalculateAbsorbedDamage(ProjectileCE projectile)
     {
         float damageAmount = projectile.DamageAmount;
