@@ -18,6 +18,7 @@ public class CompSuppressable : ThingComp
     private const float SuppressionDecayRate = 4f;       // How much suppression decays per tick
     private const int TicksPerMote = 150;                // How many ticks between throwing a mote
     private const int hunkeringMinDuration = 240;        // How long in ticks until pawn can try to stop hunkering
+    private const int CoverSearchRetryTicks = 60;       // A pawn that found no cover waits this long before searching again
 
     private const int MinTicksUntilMentalBreak = 600;    // How long until pawn can have a mental break
     private const float ChanceBreakPerTick = 0.001f;     // How likely we are to break each tick above the threshold
@@ -45,6 +46,7 @@ public class CompSuppressable : ThingComp
 
     private int ticksUntilDecay = 0;
     private int ticksHunkered;
+    private int nextCoverSearchTick;
 
     private bool isCrouchWalking;
 
@@ -211,6 +213,7 @@ public class CompSuppressable : ThingComp
         {
             suppressorLoc = origin;
             locSuppressionAmount = currentSuppression;
+            nextCoverSearchTick = 0;
         }
 
         // Assign suppressed status and assign reaction job
@@ -226,7 +229,15 @@ public class CompSuppressable : ThingComp
                 Job reactJob = null;
                 if (Controller.settings.SuppressionCausesRunning || (!pawn.Drafted && (pawn.IsFreeColonist || pawn.CurJob != null)))
                 {
-                    reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                    int tick = Find.TickManager.TicksGame;
+                    if (tick >= nextCoverSearchTick)
+                    {
+                        reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                        if (reactJob == null)
+                        {
+                            nextCoverSearchTick = tick + CoverSearchRetryTicks;
+                        }
+                    }
                 }
 
                 if (reactJob == null && IsHunkering)
