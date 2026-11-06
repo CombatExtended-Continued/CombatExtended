@@ -27,6 +27,9 @@ public class Building_CIWS_CE : Building_Turret_MultiVerbs
     }
     #endregion
 
+    // Interception windows are too short to wait for
+    protected override int TicksBetweenTargetSearches => 1;
+
     private List<ThingDef> ignoredDefs = new List<ThingDef>();
     public IEnumerable<ThingDef> IgnoredDefsSettings
     {

@@ -24,6 +24,7 @@ public class Building_TurretGunCE : Building_Turret
 {
     private const int ticksBetweenAmmoChecks = 300;                 // Test nearby ammo every 5 seconds if there's many ammo changes
     private const int ticksBetweenSlowAmmoChecks = 3600;               // Test nearby ammo every minute if there's no ammo changes
+    protected virtual int TicksBetweenTargetSearches => 15;
     public bool isSlow = false;
 
     private int TicksBetweenAmmoChecks => isSlow ? ticksBetweenSlowAmmoChecks : ticksBetweenAmmoChecks;
@@ -398,7 +399,8 @@ public class Building_TurretGunCE : Building_Turret
                     {
                         this.burstCooldownTicksLeft--;
                     }
-                    if (this.burstCooldownTicksLeft <= 0)
+                    // Like vanilla, a turret with nothing to shoot only looks for a target every so often
+                    if (this.burstCooldownTicksLeft <= 0 && (currentTargetInt.IsValid || this.IsHashIntervalTick(TicksBetweenTargetSearches)))
                     {
                         this.TryStartShootSomething(true);
                     }
