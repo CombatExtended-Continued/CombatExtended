@@ -25,6 +25,10 @@ internal static class Harmony_AttackTargetFinder
         /// </summary>
         private static List<IAttackTarget> validTargets = new List<IAttackTarget>();
 
+        private static List<IAttackTarget> closestTargets = new List<IAttackTarget>();
+
+        private const int MaxScoredTargets = 30;
+
         private static bool EMPOnlyTargetsMechanoids()
         {
             return false;
@@ -143,7 +147,17 @@ internal static class Harmony_AttackTargetFinder
                 return null;
             }
 
-            var targetToHit = AttackTargetFinder.GetRandomShootingTargetByScore(validTargets, searcher, searcher.CurrentEffectiveVerb);
+            // Scoring finds a full shot line to every target, which dominates the cost of big battles, so try the closest
+            // ones first. The rest only get scored if none of those can be hit.
+            IAttackTarget targetToHit = null;
+            if (validTargets.Count > MaxScoredTargets)
+            {
+                validTargets.SortBy(target => (target.Thing.Position - searcherPos).LengthHorizontalSquared);
+                closestTargets.Clear();
+                closestTargets.AddRange(validTargets.GetRange(0, MaxScoredTargets));
+                targetToHit = AttackTargetFinder.GetRandomShootingTargetByScore(closestTargets, searcher, searcher.CurrentEffectiveVerb);
+            }
+            targetToHit ??= AttackTargetFinder.GetRandomShootingTargetByScore(validTargets, searcher, searcher.CurrentEffectiveVerb);
 
             // If a valid target can be fired on from the current position, prioritize engaging that.
             // Otherwise attempt to find the closest valid target (which may trigger the searcher to move in to engage / change position),
