@@ -859,6 +859,12 @@ public class Verb_LaunchProjectileCE : Verb
         return cover != null;
     }
 
+    private const int ShootLineMemoTicks = 6;
+    private int memoShootLineTick = -ShootLineMemoTicks;
+    private IntVec3 memoShootLineRoot;
+    private LocalTargetInfo memoShootLineTarget;
+    private ShootLine memoShootLine;
+
     /// <summary>
     /// Checks if the shooter can hit the target from a certain position with regards to cover height
     /// </summary>
@@ -874,6 +880,27 @@ public class Verb_LaunchProjectileCE : Verb
     public bool CanHitTarget(LocalTargetInfo targ, out string report)
     {
         return CanHitTargetFrom(caster.Position, targ, out report);
+    }
+
+    // Stance_Warmup asks whether the target can still be hit on every tick of the aim, and finding a CE shot line
+    // is expensive. A line found a moment ago is reused; firing still finds its own.
+    private bool HasShootLine(IntVec3 root, LocalTargetInfo targ, out ShootLine shootLine)
+    {
+        int tick = Find.TickManager.TicksGame;
+        if (tick - memoShootLineTick < ShootLineMemoTicks && root == memoShootLineRoot && targ == memoShootLineTarget)
+        {
+            shootLine = memoShootLine;
+            return true;
+        }
+        if (!TryFindCEShootLineFromTo(root, targ, out shootLine, out _))
+        {
+            return false;
+        }
+        memoShootLineTick = tick;
+        memoShootLineRoot = root;
+        memoShootLineTarget = targ;
+        memoShootLine = shootLine;
+        return true;
     }
 
     public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
@@ -938,7 +965,7 @@ public class Verb_LaunchProjectileCE : Verb
         }
         // Check for line of sight
         ShootLine shootLine;
-        if (!TryFindCEShootLineFromTo(root, targ, out shootLine, out _))
+        if (!HasShootLine(root, targ, out shootLine))
         {
             int lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
             if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
