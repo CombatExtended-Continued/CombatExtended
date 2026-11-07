@@ -556,6 +556,7 @@ Rimsenal Xenotype Pack - Askbarn    |
 Rimsenal Xenotype Pack - Dioktri  |
 Rimsenal Xenotype Pack - Harana |
 Rimsenal Xenotype Pack - Zohar  |
+Rimspite Gitz: Loonclans  |
 RimTraits - General Traits  |
 RimTraits - Medieval Talents    |
 Rimworld - The Dark Descent |
