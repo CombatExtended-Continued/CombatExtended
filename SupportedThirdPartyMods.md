@@ -535,6 +535,7 @@ Rimefeller	|
 Rim-Elves   |
 Rim-Gnoblins	|
 Rim-Hivers!	|
+Rim-Hivers! - Biotech |
 Rim Flood	|
 Rim-Robots_	|
 Rim-Shek	|
