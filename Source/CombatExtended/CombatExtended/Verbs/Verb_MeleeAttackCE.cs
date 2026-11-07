@@ -31,8 +31,8 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
     // Called shots: hit chance penalties in melee skill points (the unit of the pre-curve MeleeHitChance value, like the shield offsets).
     // Applied before the skill curve, so skilled pawns lose much less hit chance than unskilled ones.
-    private const float TopTargetingPenalty = 8f;
-    private const float BottomTargetingPenalty = 5f;
+    private const float TopTargetingPenalty = 6f;
+    private const float BottomTargetingPenalty = 4f;
 
     // XP variables
     private const float HitXP = 200;    // Vanilla is 250
@@ -353,10 +353,23 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
         if (CompMeleeTargettingGizmo != null && currentTarget is Pawn pawn)
         {
-            return CompMeleeTargettingGizmo.finalHeight(pawn);
+            // Surprise attacks and attacks on helpless targets always hit, so aiming costs nothing there
+            return CompMeleeTargettingGizmo.finalHeight(pawn, surpriseAttack || IsTargetImmobile(currentTarget));
         }
 
         return result;
+    }
+
+    private static bool HasIntactParentPartAtHeight(Pawn pawn, BodyPartHeight height)
+    {
+        foreach (BodyPartRecord part in pawn.health.hediffSet.GetNotMissingParts(height, BodyPartDepth.Outside))
+        {
+            if (part.coverageAbs > 0f && part.GetDirectChildParts().Any())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
@@ -564,18 +577,6 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         }
     }
 
-    private static bool HasIntactParentPartAtHeight(Pawn pawn, BodyPartHeight height)
-    {
-        foreach (BodyPartRecord part in pawn.health.hediffSet.GetNotMissingParts(height, BodyPartDepth.Outside))
-        {
-            if (part.coverageAbs > 0f && part.GetDirectChildParts().Any())
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // center mass has the standard change to hit, rest is lowered by a penalty in melee skill points applied before the skill curve
     private float GetHitChance(LocalTargetInfo target, bool applyTargetingPenalty = true)
     {
@@ -588,49 +589,59 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             return 1f;
         }
 
-        float chance;
-        float targetingPenalty = 0f;
+        BodyPartHeight height = BodyPartHeight.Undefined;
         if (CasterPawn.skills != null)
         {
             lastUsedBodyPartHeight = GetAttackedPartHeightCE(target.Thing);
             if (applyTargetingPenalty)
             {
-                targetingPenalty = GetTargetingPenalty(lastUsedBodyPartHeight);
+                height = lastUsedBodyPartHeight;
             }
         }
 
+        return GetMeleeHitChance(CasterPawn, target, height);
+    }
+
+    /// <summary>
+    /// The melee hit chance of a pawn when aiming at an area, with the called shot penalty and everything else that affects it.
+    /// Also used by the automatic melee targeting to find out if aiming is worth it.
+    /// </summary>
+    public static float GetMeleeHitChance(Pawn attacker, LocalTargetInfo target, BodyPartHeight height)
+    {
+        float chance;
+        float targetingPenalty = GetTargetingPenalty(height);
         if (targetingPenalty > 0f)
         {
             // Same as GetStatValue, with the penalty applied to the value before the stat parts and the skill curve
             StatDef stat = StatDefOf.MeleeHitChance;
-            StatRequest req = StatRequest.For(CasterPawn);
+            StatRequest req = StatRequest.For(attacker);
             chance = stat.Worker.GetValueUnfinalized(req, true) - targetingPenalty;
             stat.Worker.FinalizeValue(req, ref chance, true);
         }
         else
         {
-            chance = CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
+            chance = attacker.GetStatValue(StatDefOf.MeleeHitChance, true);
         }
 
-        if (CasterPawn.skills != null)
+        if (attacker.skills != null)
         {
             if (ModsConfig.IdeologyActive && target.HasThing)
             {
                 if (DarknessCombatUtility.IsOutdoorsAndLit(target.Thing))
                 {
-                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsLitOffset);
+                    chance += attacker.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsLitOffset);
                 }
                 else if (DarknessCombatUtility.IsOutdoorsAndDark(target.Thing))
                 {
-                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsDarkOffset);
+                    chance += attacker.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsDarkOffset);
                 }
                 else if (DarknessCombatUtility.IsIndoorsAndDark(target.Thing))
                 {
-                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceIndoorsDarkOffset);
+                    chance += attacker.GetStatValue(StatDefOf.MeleeHitChanceIndoorsDarkOffset);
                 }
                 else if (DarknessCombatUtility.IsIndoorsAndLit(target.Thing))
                 {
-                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceIndoorsLitOffset);
+                    chance += attacker.GetStatValue(StatDefOf.MeleeHitChanceIndoorsLitOffset);
                 }
             }
         }
