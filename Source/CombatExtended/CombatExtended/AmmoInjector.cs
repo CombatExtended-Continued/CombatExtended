@@ -114,7 +114,7 @@ public static class AmmoInjector
         List<string> tradingTags = [];
         List<string> craftingTags = [];
         List<string> extraCraftingOptions = [];
-        foreach (AmmoDef ammoDef in ammoDefs)
+        foreach (AmmoDef ammoDef in ammoDefs.OfType<AmmoDef>())
         {
             tradingTags.Clear();
             craftingTags.Clear();
