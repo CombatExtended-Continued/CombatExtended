@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="VGE_BaseInsect"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- Exoworm -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VGE_Exoworm"]/statBases/MoveSpeed</xpath>
