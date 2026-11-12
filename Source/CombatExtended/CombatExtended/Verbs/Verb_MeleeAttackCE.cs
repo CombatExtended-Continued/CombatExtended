@@ -29,6 +29,11 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
     private const float KnockdownMassRequirement = 5f;
 
+    // Called shots: hit chance penalties in melee skill points (the unit of the pre-curve MeleeHitChance value, like the shield offsets).
+    // Applied before the skill curve, so skilled pawns lose much less hit chance than unskilled ones.
+    private const float TopTargetingPenalty = 6f;
+    private const float BottomTargetingPenalty = 4f;
+
     // XP variables
     private const float HitXP = 200;    // Vanilla is 250
     private const float DodgeXP = 50;
@@ -348,10 +353,23 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
         if (CompMeleeTargettingGizmo != null && currentTarget is Pawn pawn)
         {
-            return CompMeleeTargettingGizmo.finalHeight(pawn);
+            // Surprise attacks and attacks on helpless targets always hit, so aiming costs nothing there
+            return CompMeleeTargettingGizmo.finalHeight(pawn, surpriseAttack || IsTargetImmobile(currentTarget));
         }
 
         return result;
+    }
+
+    private static bool HasIntactParentPartAtHeight(Pawn pawn, BodyPartHeight height)
+    {
+        foreach (BodyPartRecord part in pawn.health.hediffSet.GetNotMissingParts(height, BodyPartDepth.Outside))
+        {
+            if (part.coverageAbs > 0f && part.GetDirectChildParts().Any())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
@@ -451,8 +469,10 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                 }
                 damageInfo.SetHitPart(hp);
             }
-            //for some reason, when all parts of height are missing their incode count is 3
-            if (pawn.health.hediffSet.GetNotMissingParts(bodyRegion).Count() <= 3)
+            // When all limbs/segments of a height are gone, only a few leftover parts (3 on humanlikes) remain at that height, so attacks fall back to the middle.
+            // Bodies with few parts per height are at or under that count long before the height is exhausted.
+            // A height that still has an intact part with child parts (like a head that lost its sensors) keeps being targeted.
+            if (pawn.health.hediffSet.GetNotMissingParts(bodyRegion).Count() <= 3 && !HasIntactParentPartAtHeight(pawn, bodyRegion))
             {
                 bodyRegion = BodyPartHeight.Middle;
             }
@@ -498,8 +518,9 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
 
                         if (damageInfo.HitPart != null)
                         {
-                            var children = damageInfo.HitPart.GetDirectChildParts();
-                            if (children.Count() > 0)
+                            // Destroyed children can't be hit, if none are left the part itself is hit
+                            var children = damageInfo.HitPart.GetDirectChildParts().Where(x => x.coverage > 0f && !p.health.hediffSet.PartIsMissing(x)).ToList();
+                            if (children.Count > 0)
                             {
                                 damageInfo.SetHitPart(children.RandomElementByWeight(x => x.coverage));
                             }
@@ -556,8 +577,8 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
         }
     }
 
-    // center mass has the standard change to hit, rest is much lowered
-    private float GetHitChance(LocalTargetInfo target)
+    // center mass has the standard change to hit, rest is lowered by a penalty in melee skill points applied before the skill curve
+    private float GetHitChance(LocalTargetInfo target, bool applyTargetingPenalty = true)
     {
         if (surpriseAttack)
         {
@@ -568,47 +589,77 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             return 1f;
         }
 
-        float chance = CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
-
+        BodyPartHeight height = BodyPartHeight.Undefined;
         if (CasterPawn.skills != null)
+        {
+            lastUsedBodyPartHeight = GetAttackedPartHeightCE(target.Thing);
+            if (applyTargetingPenalty)
+            {
+                height = lastUsedBodyPartHeight;
+            }
+        }
+
+        return GetMeleeHitChance(CasterPawn, target, height);
+    }
+
+    /// <summary>
+    /// The melee hit chance of a pawn when aiming at an area, with the called shot penalty and everything else that affects it.
+    /// Also used by the automatic melee targeting to find out if aiming is worth it.
+    /// </summary>
+    public static float GetMeleeHitChance(Pawn attacker, LocalTargetInfo target, BodyPartHeight height)
+    {
+        float chance;
+        float targetingPenalty = GetTargetingPenalty(height);
+        if (targetingPenalty > 0f)
+        {
+            // Same as GetStatValue, with the penalty applied to the value before the stat parts and the skill curve
+            StatDef stat = StatDefOf.MeleeHitChance;
+            StatRequest req = StatRequest.For(attacker);
+            chance = stat.Worker.GetValueUnfinalized(req, true) - targetingPenalty;
+            stat.Worker.FinalizeValue(req, ref chance, true);
+        }
+        else
+        {
+            chance = attacker.GetStatValue(StatDefOf.MeleeHitChance, true);
+        }
+
+        if (attacker.skills != null)
         {
             if (ModsConfig.IdeologyActive && target.HasThing)
             {
                 if (DarknessCombatUtility.IsOutdoorsAndLit(target.Thing))
                 {
-                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsLitOffset);
+                    chance += attacker.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsLitOffset);
                 }
                 else if (DarknessCombatUtility.IsOutdoorsAndDark(target.Thing))
                 {
-                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsDarkOffset);
+                    chance += attacker.GetStatValue(StatDefOf.MeleeHitChanceOutdoorsDarkOffset);
                 }
                 else if (DarknessCombatUtility.IsIndoorsAndDark(target.Thing))
                 {
-                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceIndoorsDarkOffset);
+                    chance += attacker.GetStatValue(StatDefOf.MeleeHitChanceIndoorsDarkOffset);
                 }
                 else if (DarknessCombatUtility.IsIndoorsAndLit(target.Thing))
                 {
-                    chance += caster.GetStatValue(StatDefOf.MeleeHitChanceIndoorsLitOffset);
+                    chance += attacker.GetStatValue(StatDefOf.MeleeHitChanceIndoorsLitOffset);
                 }
-            }
-
-            lastUsedBodyPartHeight = GetAttackedPartHeightCE(target.Thing);
-            switch (lastUsedBodyPartHeight)
-            {
-                case BodyPartHeight.Bottom:
-                    chance *= 0.8f;
-                    break;
-                case BodyPartHeight.Middle:
-                    break;
-                case BodyPartHeight.Undefined:
-                    break;
-                case BodyPartHeight.Top:
-                    chance *= 0.7f;
-                    break;
             }
         }
 
         return chance;
+    }
+
+    private static float GetTargetingPenalty(BodyPartHeight height)
+    {
+        switch (height)
+        {
+            case BodyPartHeight.Top:
+                return TopTargetingPenalty;
+            case BodyPartHeight.Bottom:
+                return BottomTargetingPenalty;
+            default:
+                return 0f;
+        }
     }
 
     private float GetDodgeChance(Pawn defender)
@@ -870,14 +921,11 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
             }
         }
         stringBuilder.AppendLine("\n   " + "CE_FinalToHitChance".Translate() + ":\t\t" + GenText.ToStringByStyle(Mathf.Clamp01(toDamageChance), ToStringStyle.PercentZero));
-        switch (lastUsedBodyPartHeight)
+        // Hit chance lost to the called shot, compared to the same attack without a targeting penalty
+        float targetingReduction = GetHitChance(target, false) - hitChance;
+        if (targetingReduction >= 0.005f)
         {
-            case BodyPartHeight.Bottom:
-                stringBuilder.AppendLine("      " + "CE_MeleeTargetting".Translate() + ":\t\t" + GenText.ToStringByStyle(0.8f, ToStringStyle.FloatOne) + "x\n");
-                break;
-            case BodyPartHeight.Top:
-                stringBuilder.AppendLine("      " + "CE_MeleeTargetting".Translate() + ":\t\t" + GenText.ToStringByStyle(0.7f, ToStringStyle.FloatOne) + "x\n");
-                break;
+            stringBuilder.AppendLine("      " + "CE_MeleeTargetting".Translate() + ":\t\t-" + GenText.ToStringByStyle(targetingReduction, ToStringStyle.PercentZero) + "\n");
         }
         stringBuilder.AppendLine("   " + "CE_CritChance".Translate() + ":\t\t" + GenText.ToStringByStyle(critChance, ToStringStyle.PercentZero));
 
