@@ -163,6 +163,8 @@ public class BipodComp : CompRangedGizmoGiver
 
     public void SetUpEnd(Thing source, Pawn pawn)
     {
+        ResetVerbProps(source: source);
+
         var changed = CopyVerbPropsFromThing(source);
 
         changed.range += Props.additionalrange;
@@ -207,8 +209,8 @@ public class BipodComp : CompRangedGizmoGiver
     {
         VerbPropertiesCE changed = CopyVerbPropsFromThing(this.parent);
         changed.range += Props.additionalrange;
-        changed.recoilAmount *= Props.recoilMulton * Props.recoilMultoff;
-        changed.warmupTime *= Props.warmupMult * Props.warmupPenalty;
+        changed.recoilAmount *= Props.recoilMulton;
+        changed.warmupTime *= Props.warmupMult;
         AssignVerbProps(this.parent, changed);
     }
     #endregion
