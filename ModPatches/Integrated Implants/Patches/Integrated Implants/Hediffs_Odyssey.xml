@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Shoulder Beam Turret -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="LTS_ShoulderBeamTurretActive"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>shoulder turret gun</label>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_Laser_BeamRepeater</defaultProjectile>
+								<warmupTime>1.0</warmupTime>
+								<range>37.9</range>
+								<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+								<burstShotCount>3</burstShotCount>
+								<soundCast>Shot_BeamRepeater</soundCast>
+								<soundCastTail>GunTail_Light</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<aimingChargeMote>Mote_BeamRepeater_Charge</aimingChargeMote>
+							</li>
+						</verbs>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
