@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="RH_ChitinSkin"]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="RH_ChitinSkin"]/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Soldier Head -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RH_HiverSoldierHead_Hediff"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RH_HiverSoldierHead_Hediff"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1.8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Simple helmet is 4. A metallic plate helm sits above that. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RH_DronePlateHelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5.5</StuffEffectMultiplierArmor>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- Match penalty from plate helmet. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RH_DronePlateHelm"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<AimingAccuracy>-0.4</AimingAccuracy>
+			<MeleeHitChance>-2</MeleeHitChance>
+		</value>
+	</Operation>
+
+</Patch>
