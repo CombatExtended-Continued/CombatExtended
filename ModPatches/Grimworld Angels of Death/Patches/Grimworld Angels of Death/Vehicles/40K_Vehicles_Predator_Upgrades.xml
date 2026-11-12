@@ -87,7 +87,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/projectile</xpath>
 					<value>
-						<projectile>Bullet_Lasgun_CannonDouble</projectile>
+						<projectile>Grimworld_Bullet_Lascannon_SM</projectile>
 					</value>
 				</li>
 
@@ -102,7 +102,7 @@
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/ammunition/thingDefs</xpath>
 					<value>
 						<thingDefs>
-							<li>Ammo_LasgunPowerPack</li>
+							<li>Ammo_GrimworldHeavyLasPowerPack</li>
 						</thingDefs>
 					</value>
 				</li>
@@ -118,11 +118,26 @@
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]</xpath>
 					<value>
 						<li Class="Vehicles.CETurretDataDefModExtension">
-							<ammoSet>AmmoSet_Lasgun_CannonDouble</ammoSet>
+							<ammoSet>AmmoSet_Grimworld_Lascannon_SM</ammoSet>
 							<shotHeight>2</shotHeight>
 							<sway>1.0</sway>
 							<spread>0.01</spread>
 						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<shotsPerBurst>2</shotsPerBurst>
+								<ticksBetweenShots>1</ticksBetweenShots>
+								<ticksBetweenBursts>30</ticksBetweenBursts>
+								<label>Twin-Linked</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+						</fireModes>
 					</value>
 				</li>
 
