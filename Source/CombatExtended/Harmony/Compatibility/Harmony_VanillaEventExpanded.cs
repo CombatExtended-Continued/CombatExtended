@@ -73,42 +73,36 @@ public class Harmony_Compat_VanillaEventExpanded
     [HarmonyPatch]
     public static class Harmony_Crashlanded_Patch
     {
-        private static MethodBase DropThingsNearMethod
-        {
-            get
-            {
-                return AccessTools.Method(typeof(DropPodUtility), nameof(DropPodUtility.DropThingsNear));
-            }
-        }
-
         public static bool Prepare()
         {
-            if (Crashlanded_Patch_HarmonyPatches == null)
-            {
-                return false;
-            }
-            if (DropThingsNearMethod == null)
-            {
-                Log.Error($"Combat Extended :: Failed to find target method while attempting to patch VEE Crashlanded.");
-                return false;
-            }
-            return true;
+            return Crashlanded_Patch_HarmonyPatches != null;
         }
 
         public static MethodBase TargetMethod()
         {
-            return DropThingsNearMethod;
+            return AccessTools.Method("VEE.RegularEvents.Crashlanded:TryExecuteWorker");
         }
 
-        public static void Prefix(IEnumerable<Thing> things)
+        // VEE spins up one fresh temporary beggar faction per incident, so snapshot what already exists.
+        public static void Prefix(out HashSet<int> __state)
         {
-            if (things == null)
+            __state = new HashSet<int>(Find.FactionManager.AllFactionsListForReading.Select(f => f.loadID));
+        }
+
+        // Postfix means the pods have already landed, pawns are spawned, and VEE has moved them to temp faction.
+        public static void Postfix(bool __result, IncidentParms parms, HashSet<int> __state)
+        {
+            if (!__result || parms.target is not Map map)
             {
                 return;
             }
-            foreach (Thing thing in things)
+            foreach (Faction faction in Find.FactionManager.AllFactionsListForReading)
             {
-                if (thing is Pawn pawn && pawn.Faction is { temporary: true } faction && faction.def == FactionDefOf.Beggars)
+                if (faction.def != FactionDefOf.Beggars || !faction.temporary || __state.Contains(faction.loadID))
+                {
+                    continue;
+                }
+                foreach (Pawn pawn in map.mapPawns.SpawnedPawnsInFaction(faction))
                 {
                     GiveSpareAmmo(pawn);
                 }
@@ -135,6 +129,7 @@ public class Harmony_Compat_VanillaEventExpanded
                 return;
             }
 
+            // Magazines, not rounds. Bolt-action mag is 10 -> 100 rounds, autopistol mag is 7 -> 56.
             int mags = gun.def.defName == "Gun_BoltActionRifle" ? 10 : 8;
 
             var things = new List<Thing> { gun };
