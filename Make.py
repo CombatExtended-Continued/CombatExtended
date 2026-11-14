@@ -97,6 +97,9 @@ def parseArgs(argv):
                 break
         else:
             print("No sdk candidate with net10.0 references found")
+            print(os.listdir('/usr/share/dotnet/packs/'))
+            print(os.listdir('/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref'))
+            exit(1)
     elif auto_sdk:
         print(f"automatic sdk selection requested, but {options.sdk_reference} contains no candidates")
         exit(1)
