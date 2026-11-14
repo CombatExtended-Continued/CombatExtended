@@ -66,6 +66,10 @@ public class Apparel_Shield : Apparel
         {
             return;
         }
+
+        // Let comps draw themselves (CompShieldBubble / CompShieldField energy bubbles, etc.)
+        base.DrawWornExtras();
+
         if (!drawShield)
         {
             return;
