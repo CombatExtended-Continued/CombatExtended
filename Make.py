@@ -89,17 +89,15 @@ def parseArgs(argv):
                             key=lambda v: tuple(map(int, v.split('.'))))
     if sdk_candidates:
         for candidate in sdk_candidates:
-            cpath = f"{options.sdk_reference}/{sdk_candidates[0]}/ref/net10.0/"
+            cpath = os.path.join(options.sdk_reference, candidate, "ref/net10.0/")
             if os.path.exists(cpath):
                 if options.verbose:
                     print("using sdk version", sdk_candidates[0])
                 options.reference.append(cpath)
                 break
         else:
-            print("No sdk candidate with net10.0 references found")
-            print(os.listdir('/usr/share/dotnet/packs/'))
-            print(os.listdir('/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref'))
-            exit(1)
+            print("Sdk candidates installed, but none provide net10.0")
+            
     elif auto_sdk:
         print(f"automatic sdk selection requested, but {options.sdk_reference} contains no candidates")
         exit(1)
