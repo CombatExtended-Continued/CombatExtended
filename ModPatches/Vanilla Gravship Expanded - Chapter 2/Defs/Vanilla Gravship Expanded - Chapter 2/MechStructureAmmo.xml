@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- =============== Chapter 2 Gravship Combat Weapons =============== -->
+
+	<!-- ====== VGE_Gun_MechanoidChargeBattery ====== -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VGE_ChargeBattery</defName>
+		<label>Charge battery shells</label>
+		<ammoTypes>
+			<Ammo_30x64mmFuel_Thermobaric>VGE_Bullet_ChargeBattery_CE</Ammo_30x64mmFuel_Thermobaric>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+    
+	<ThingDef ParentName="BaseExplosiveBullet">
+        <defName>VGE_Bullet_ChargeBattery_CE</defName>
+        <label>charge battery shot</label>
+        <graphicData>
+            <texPath>Things/Projectile/ChargeBlasterShot_Large</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+        <graphicData>
+            <texPath>Things/Projectile/InfernoShot_Huge</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<trajectoryWorker>CombatExtended.Compatibility.VGECompat.DirectOverheadTrajectoryWorker</trajectoryWorker>
+            <damageDef>Bomb</damageDef>
+            <damageAmountBase>48</damageAmountBase>
+            <armorPenetrationBase>5</armorPenetrationBase>
+            <speed>150</speed>
+            <explosionRadius>3.9</explosionRadius>
+            <flyOverhead>true</flyOverhead>
+            <stoppingPower>0.5</stoppingPower>
+            <soundImpact>BulletImpact_Metal</soundImpact>
+            <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+            <soundExplode>MortarBomb_Explode</soundExplode>
+            <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+            <soundAmbient>MortarRound_Ambient</soundAmbient>
+			<dropsCasings>false</dropsCasings>
+			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.05</tilesPerTick>
+				<range>36</range>
+				<arrivedAtSameProps>true</arrivedAtSameProps>
+			</shellingProps>
+		</projectile>
+        <comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>20</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ====== VGE_Gun_MechanoidInfernoArtillery ====== -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VGE_MechanoidInfernoArtillery</defName>
+		<label>Mechanoid Inferno Artillery shells</label>
+		<ammoTypes>
+			<Ammo_66mmThermalBolt_Incendiary>VGE_Bullet_InfernoArtillery_CE</Ammo_66mmThermalBolt_Incendiary>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+    <ThingDef ParentName="BaseExplosiveBullet">
+        <defName>VGE_Bullet_InfernoArtillery_CE</defName>
+        <label>inferno artillery shot</label>
+        <graphicData>
+            <texPath>Things/Projectile/InfernoShot_Huge</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<trajectoryWorker>CombatExtended.Compatibility.VGECompat.DirectOverheadTrajectoryWorker</trajectoryWorker>
+            <damageDef>VGE_AstrofireDamage</damageDef>
+            <damageAmountBase>45</damageAmountBase>
+            <armorPenetrationBase>5</armorPenetrationBase>
+            <speed>150</speed>
+            <explosionRadius>6.9</explosionRadius>
+            <preExplosionSpawnThingDef>VGE_Filth_Astrofuel</preExplosionSpawnThingDef>
+            <preExplosionSpawnChance>1</preExplosionSpawnChance>
+            <preExplosionSpawnThingCount>3</preExplosionSpawnThingCount>
+            <flyOverhead>true</flyOverhead>
+            <stoppingPower>1</stoppingPower>
+            <soundImpact>BulletImpact_Metal</soundImpact>
+            <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+            <soundExplode>MortarBomb_Explode</soundExplode>
+            <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+            <soundAmbient>MortarRound_Ambient</soundAmbient>
+
+			<dropsCasings>false</dropsCasings>
+			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.05</tilesPerTick>
+				<range>36</range>
+				<arrivedAtSameProps>true</arrivedAtSameProps>
+			</shellingProps>
+		</projectile>
+        <comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+                <damageAmountBase>316</damageAmountBase>
+                <explosiveDamageType>VGE_AstrofireDamage</explosiveDamageType>
+                <explosiveRadius>4</explosiveRadius>
+                <preExplosionSpawnThingDef>VGE_Filth_Astrofuel</preExplosionSpawnThingDef>
+                <preExplosionSpawnChance>1</preExplosionSpawnChance>
+                <preExplosionSpawnThingCount>3</preExplosionSpawnThingCount>
+                <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </li>
+		</comps>
+        <modExtensions>
+            <li Class="VanillaGravshipExpanded.ThrusterProjectileExtension">
+                <flameSize>3</flameSize>
+                <flameShaderType>MoteGlow</flameShaderType>
+                <flameShaderParameters>
+                    <_MainTex>/Things/Mote/Exhaust/SmallHighPowerThruster_Burn</_MainTex>
+                </flameShaderParameters>
+                <exhaustFleckDef>VGE_AstrorigSmokeGlow</exhaustFleckDef>
+                <emissionsPerSecond>40</emissionsPerSecond>
+                <spawnRadiusRange>0.0~0.5</spawnRadiusRange>
+                <velocity>(0.0,0.0,-20.0)</velocity>
+                <velocityRotationRange>-10.0~10</velocityRotationRange>
+                <velocityMultiplierRange>0.8~1.2</velocityMultiplierRange>
+                <rotationOverTimeRange>-180.0~180</rotationOverTimeRange>
+                <scaleRange>1.5~3</scaleRange>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+</Defs>
