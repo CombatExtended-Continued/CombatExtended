@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== shotgun pistol ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_ShotgunPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_ShotgunPistol</defName>
+		<statBases>
+			<Mass>2.40</Mass>
+			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>1.84</SwayFactor>
+			<Bulk>3.12</Bulk>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<WorkToMake>9000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>25</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<Chemfuel>5</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>2.97</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Shotgun_NoRack</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_20Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>GasOperation</researchPrerequisite>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gun_ShotgunPistol"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>0.06,0.0</DrawOffset>
+				<CasingOffset>0,0.2</CasingOffset>
+				<CasingAngleOffset>-30</CasingAngleOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Cleaver ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Cleaver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.52</cooldownTime>
+					<armorPenetrationBlunt>0.525</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>1.42</cooldownTime>
+					<armorPenetrationBlunt>1.181</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.53</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Cleaver"]/statBases</xpath>
+		<value>
+			<Bulk>3.9</Bulk>
+			<MeleeCounterParryBonus>0.26</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Cleaver"]/stuffCategories/li[text()="Woody"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Cleaver"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.16</MeleeCritChance>
+				<MeleeParryChance>0.26</MeleeParryChance>
+				<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Cleaver"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="MeleeWeapon_Cleaver"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Cleaver"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+
+</Patch>
