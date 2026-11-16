@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Petrikin_SpikedTailHediff"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail spike</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Petrikin_TracerJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Petrikin_TracerJacket"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Petrikin_TracerJacket"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+				<MeleeHitChance>0.5</MeleeHitChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>

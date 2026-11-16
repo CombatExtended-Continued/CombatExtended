@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="Bulwarks_Leap"]/verbProperties/range</xpath>
+		<value>
+			<range>21</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="Bulwarks_Windcall"]/verbProperties/range</xpath>
+		<value>
+			<range>20</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bulwark_WindBarrier"]/comps/li[@Class="CompProperties_ProjectileInterceptor"]</xpath>
+		<value>
+			<interceptNonHostileProjectiles>true</interceptNonHostileProjectiles>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="HealingAuraEffect"]/stages/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ArmorRating_Sharp>3</ArmorRating_Sharp>
+				<ArmorRating_Blunt>3</ArmorRating_Blunt>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[defName="Base_Bulwark_Standard"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>FSX</thingDef>
+				<countRange>
+					<min>25</min>
+					<max>100</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Prometheum</thingDef>
+				<countRange>
+					<min>25</min>
+					<max>100</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Ammo</tradeTag>
+				<countRange>
+					<min>500</min>
+					<max>2000</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>5</min>
+					<max>9</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_MediumAmmo</tradeTag>
+				<countRange>
+					<min>30</min>
+					<max>120</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>5</min>
+					<max>8</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_HeavyAmmo</tradeTag>
+				<countRange>
+					<min>10</min>
+					<max>50</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>4</min>
+					<max>6</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>Ammo</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Turret</tradeTag>
+				<thingDefCountRange>
+					<min>-2</min>
+					<max>4</max>
+				</thingDefCountRange>
+				<countRange>
+					<min>1</min>
+					<max>2</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>WeaponsTurrets</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Animals">
+				<tradeTagsSell>
+					<li>CE_AnimalBoom</li>
+				</tradeTagsSell>
+				<tradeTagsBuy>
+					<li>CE_AnimalBoom</li>
+				</tradeTagsBuy>
+				<kindCountRange>
+					<min>1</min>
+					<max>2</max>
+				</kindCountRange>
+				<countRange>
+					<min>-2</min>
+					<max>4</max>
+				</countRange>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[defName="Caravan_Bulwark_BulkGoods"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>FSX</thingDef>
+				<countRange>
+					<min>35</min>
+					<max>80</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Prometheum</thingDef>
+				<countRange>
+					<min>35</min>
+					<max>80</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Ammo</tradeTag>
+				<countRange>
+					<min>200</min>
+					<max>400</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>2</min>
+					<max>4</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_MediumAmmo</tradeTag>
+				<countRange>
+					<min>20</min>
+					<max>40</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>2</min>
+					<max>6</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_HeavyAmmo</tradeTag>
+				<countRange>
+					<min>5</min>
+					<max>10</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>2</min>
+					<max>4</max>
+				</thingDefCountRange>
+			</li>
+			<!--<li Class="StockGenerator_Category">
+				<categoryDef>Ammo</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>-->
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[defName="Caravan_Bulwark_CombatSupplier"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>FSX</thingDef>
+				<countRange>
+					<min>15</min>
+					<max>40</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Prometheum</thingDef>
+				<countRange>
+					<min>15</min>
+					<max>40</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Ammo</tradeTag>
+				<countRange>
+					<min>400</min>
+					<max>1000</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>3</min>
+					<max>8</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_MediumAmmo</tradeTag>
+				<countRange>
+					<min>30</min>
+					<max>60</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>3</min>
+					<max>6</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_HeavyAmmo</tradeTag>
+				<countRange>
+					<min>10</min>
+					<max>15</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>4</min>
+					<max>6</max>
+				</thingDefCountRange>
+			</li>
+			<!--<li Class="StockGenerator_Category">
+				<categoryDef>Ammo</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>-->
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Turret</tradeTag>
+				<thingDefCountRange>
+					<min>-4</min>
+					<max>2</max>
+				</thingDefCountRange>
+				<countRange>
+					<min>1</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>WeaponsTurrets</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Animals">
+				<tradeTagsSell>
+					<li>CE_AnimalBoom</li>
+				</tradeTagsSell>
+				<tradeTagsBuy>
+					<li>CE_AnimalBoom</li>
+				</tradeTagsBuy>
+				<kindCountRange>
+					<min>1</min>
+					<max>1</max>
+				</kindCountRange>
+				<countRange>
+					<min>-1</min>
+					<max>2</max>
+				</countRange>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Bulwark_Soldier"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>500</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.9</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Bulwark_Noble"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>250</min>
+					<max>1000</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.9</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Bulwark_Archer"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>10</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>100</min>
+					<max>200</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.6</shieldChance>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>100</min>
+							<max>500</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bulwark_Warmask"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>12</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bulwark_Warmask"]/equippedStatOffsets</xpath>
+		<value>
+			<Suppressability>-0.25</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bulwark_Halberd"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<chanceFactor>0.15</chanceFactor>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>34</power>
+					<cooldownTime>1.75</cooldownTime>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.1</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>1.1</cooldownTime>
+					<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+					<armorPenetrationSharp>6.0</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bulwark_Halberd"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<MeleeCounterParryBonus>1.7</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bulwark_Halberd"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.25</MeleeCritChance>
+				<MeleeParryChance>1.5</MeleeParryChance>
+				<MeleeDodgeChance>0.8</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Apparel_Shield</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ArmorSmithableBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/statBases </xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<WornBulk>7</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>7</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/statBases/ArmorRating_Blunt</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/statBases/ArmorRating_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ReloadSpeed>-0.25</ReloadSpeed>
+				<MeleeHitChance>-2</MeleeHitChance>
+				<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+				<AimingAccuracy>-0.15</AimingAccuracy>
+				<Suppressability>-0.35</Suppressability>
+				<MeleeCritChance>-0.15</MeleeCritChance>
+				<MeleeParryChance>1.0</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/apparel</xpath>
+		<value>
+			<apparel>
+				<countsAsClothingForNudity>false</countsAsClothingForNudity>
+				<careIfWornByCorpse>false</careIfWornByCorpse>
+				<bodyPartGroups>
+					<li>LeftShoulder</li>
+				</bodyPartGroups>
+				<layers>
+					<li>Shield</li>
+				</layers>
+				<tags>
+					<li>Bulwark</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>Things/Item/Equipment/Shield/BulwarkShield/BulwarkShield</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>0.6</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.2, 0, -0.2)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.2, 0, -0.2)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+			<tradeTags>
+				<li>Armor</li>
+			</tradeTags>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]/comps/li[@Class="VEF.Apparels.CompProperties_Shield"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Bulwark_Shield"]</xpath>
+		<value>
+			<li Class="CombatExtended.ShieldDefExtension">
+				<shieldCoverage>
+					<li>Hands</li>
+					<li>Arms</li>
+					<li>Shoulders</li>
+					<li>Torso</li>
+					<li>Neck</li>
+				</shieldCoverage>
+				<crouchCoverage>
+					<li>Legs</li>
+				</crouchCoverage>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
