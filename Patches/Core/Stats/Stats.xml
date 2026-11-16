@@ -485,12 +485,27 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/StatDef[defName="MeleeWeapon_AverageDPS"]/category</xpath>
+    <value>
+      <category>Weapon</category>
+    </value>
+  </Operation>
+
+
+  <Operation Class="PatchOperationReplace">
 		<xpath>Defs/StatDef[defName="MeleeWeapon_AverageDPS"]/displayPriorityInCategory</xpath>
 		<value>
-			<displayPriorityInCategory>6</displayPriorityInCategory>
+      <displayPriorityInCategory>7</displayPriorityInCategory>
 		</value>
 	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/StatDef[defName="MeleeDPS"]/workerClass</xpath>
+    <value>
+      <workerClass>CombatExtended.StatWorker_MeleeDamageAverage</workerClass>
+    </value>
+  </Operation>
 
 	<!-- Melee AP -->
 
@@ -507,5 +522,20 @@
 			<toStringStyle>FloatTwo</toStringStyle>
 		</value>
 	</Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/StatDef[defName="MeleeWeapon_AverageArmorPenetration"]/category</xpath>
+    <value>
+      <category>Weapon</category>
+    </value>
+  </Operation>
+
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/StatDef[defName="MeleeWeapon_AverageArmorPenetration"]/displayPriorityInCategory</xpath>
+    <value>
+      <displayPriorityInCategory>8</displayPriorityInCategory>
+    </value>
+  </Operation>
 
 </Patch>
