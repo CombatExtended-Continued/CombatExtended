@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- Thunder Javelins -->
 
+	<!-- Thunder Javelins -->
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]</xpath>
 		<attribute>ParentName</attribute>
@@ -94,5 +94,58 @@
 			</tools>
 		</value>
 	</Operation>
+
+	<!-- Rotary Charge Lance Javelins -->
+
+	<!-- Zeus Rifle -->
+
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RA_ZeusRifle</defName>
+		<statBases>
+			<Mass>3.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>7.00</Bulk>
+			<WorkToMake>49000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>45</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Chemfuel>10</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>1.46</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+	</Operation>
+
+
 
 </Patch>
