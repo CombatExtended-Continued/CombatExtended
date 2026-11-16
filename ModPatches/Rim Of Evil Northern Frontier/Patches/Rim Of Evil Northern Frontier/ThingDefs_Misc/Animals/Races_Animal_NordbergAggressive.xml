@@ -129,11 +129,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="Wolf_ROE_Nordberg"]</xpath>
-		<value>
-			<combatPower>140</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Wolf_ROE_Nordberg"]</xpath>
+			<value>
+				<combatPower>140</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- Alpha Wolf -->
@@ -265,11 +268,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="Wolf_ROE_NordbergAlpha"]</xpath>
-		<value>
-			<combatPower>225</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Wolf_ROE_NordbergAlpha"]</xpath>
+			<value>
+				<combatPower>225</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- Yeti -->
@@ -363,11 +369,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Nordberg_ROE_Yeti"]/combatPower</xpath>
-		<value>
-			<combatPower>480</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Nordberg_ROE_Yeti"]/combatPower</xpath>
+			<value>
+				<combatPower>480</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
