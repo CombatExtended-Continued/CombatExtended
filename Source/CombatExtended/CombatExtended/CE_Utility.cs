@@ -543,6 +543,35 @@ public static class CE_Utility
         return 60 / movePerTick;
     }
 
+    /// <summary>
+    /// Night vision efficiency of a pawn ignoring weapon optics (apparel, implants, genes and race only).
+    /// Used to reduce the darkness penalty to movement, work and reading speed.
+    /// </summary>
+    public static float NightVisionWithoutWeapon(Pawn pawn)
+    {
+        StatDef stat = CE_StatDefOf.NightVisionEfficiency;
+        float normal = pawn.GetStatValue(stat);
+        ThingWithComps weapon = pawn.equipment?.Primary;
+
+        // No weapon, or the weapon is not the source of the value: the regular value is already weapon-free.
+        if (weapon == null || weapon.GetStatValue(CE_StatDefOf.NightVisionEfficiency_Weapon) < normal)
+        {
+            return normal;
+        }
+
+        // The weapon may be the source: select again from base value and offsets with weapons ignored.
+        StatRequest req = StatRequest.For(pawn);
+        float result = stat.Worker.GetValueUnfinalized(req, true);
+        foreach (StatPart part in stat.parts)
+        {
+            if (part is StatPart_StatSelect select)
+            {
+                select.TransformValue(req, ref result, false);
+            }
+        }
+        return Mathf.Clamp(result, stat.minValue, stat.maxValue);
+    }
+
     public static float GetLightingShift(Thing caster, float glowAtTarget)
     {
         return Mathf.Max((1.0f - glowAtTarget) * (1.0f - caster.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
