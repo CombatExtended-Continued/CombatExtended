@@ -19,6 +19,7 @@ public class CompInventory : ThingComp
     private const int CLEANUPTICKINTERVAL = 2100;
     private float currentWeightCached;
     private float currentBulkCached;
+    private float currentWornBulkCached;
     private List<Thing> ammoListCached = new List<Thing>();
     private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
     private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
@@ -48,6 +49,15 @@ public class CompInventory : ThingComp
             return currentBulkCached;
         }
     }
+
+    public float currentWornBulk
+    {
+        get
+        {
+            return currentWornBulkCached;
+        }
+    }
+
     private float availableWeight
     {
         get
@@ -98,28 +108,28 @@ public class CompInventory : ThingComp
     {
         get
         {
-            return MassBulkUtility.DodgeWeightFactor(currentWeight, capacityWeight);
+            return MassBulkUtility.DodgeWeightFactor(currentWeight, capacityWeight) - (1 - MassBulkUtility.DodgeWeightFactor(currentWornBulk, CE_StatDefOf.CarryBulk.defaultBaseValue));
         }
     }
     public float meleeHitChanceFactorBulk
     {
         get
         {
-            return MassBulkUtility.HitChanceBulkFactor(currentBulk, capacityBulk);
+            return MassBulkUtility.HitChanceBulkFactor(currentBulk, capacityBulk) - (1 - MassBulkUtility.HitChanceBulkFactor(currentWornBulk, CE_StatDefOf.CarryBulk.defaultBaseValue));
         }
     }
     public float dodgeChanceFactorBulk
     {
         get
         {
-            return MassBulkUtility.DodgeChanceFactor(currentBulk, capacityBulk);
+            return MassBulkUtility.DodgeChanceFactor(currentBulk + currentWornBulkCached, capacityBulk) - (1 - MassBulkUtility.DodgeChanceFactor(currentWornBulk, CE_StatDefOf.CarryBulk.defaultBaseValue));
         }
     }
     public float workSpeedFactor
     {
         get
         {
-            return MassBulkUtility.WorkSpeedFactor(currentBulk, capacityBulk);
+            return MassBulkUtility.WorkSpeedFactor(currentBulk, capacityBulk) - (1 - MassBulkUtility.WorkSpeedFactor(currentWornBulk, CE_StatDefOf.CarryBulk.defaultBaseValue));
         }
     }
     public float encumberPenalty
@@ -224,6 +234,7 @@ public class CompInventory : ThingComp
             return;
         }
         float newBulk = 0f;
+        float newWornBulk = 0f;
         float newWeight = 0f;
 
         // Add equipped weapon
@@ -239,7 +250,7 @@ public class CompInventory : ThingComp
             {
                 float apparelBulk = apparel.GetStatValue(CE_StatDefOf.WornBulk);
                 float apparelWeight = apparel.GetStatValue(StatDefOf.Mass);
-                newBulk += apparelBulk;
+                newWornBulk += apparelBulk;
                 newWeight += apparelWeight;
                 if (age > CLEANUPTICKINTERVAL && apparelBulk > 0 && (parentPawn?.Spawned ?? false) && (parentPawn.factionInt?.IsPlayer ?? false))
                 {
@@ -300,6 +311,7 @@ public class CompInventory : ThingComp
             }
         }
         currentBulkCached = newBulk;
+        currentWornBulkCached = newWornBulk;
         currentWeightCached = newWeight;
     }
 
@@ -314,20 +326,18 @@ public class CompInventory : ThingComp
     public bool CanFitInInventory(ThingDef thingDef, out int count, bool ignoreEquipment = false, bool useApparelCalculations = false)
     {
         float thingWeight;
-        float thingBulk;
+        float thingBulk = 0f;
 
         if (useApparelCalculations)
         {
             thingWeight = thingDef.GetStatValueAbstract(StatDefOf.Mass);
-            thingBulk = thingDef.GetStatValueAbstract(CE_StatDefOf.WornBulk);
-            if (thingWeight <= 0 && thingBulk <= 0)
+            if (thingWeight <= 0)
             {
                 count = 1;
                 return true;
             }
             // Subtract the stat offsets we get from wearing this
             thingWeight -= thingDef.equippedStatOffsets.GetStatOffsetFromList(CE_StatDefOf.CarryWeight);
-            thingBulk -= thingDef.equippedStatOffsets.GetStatOffsetFromList(CE_StatDefOf.CarryBulk);
         }
         else
         {
@@ -361,12 +371,11 @@ public class CompInventory : ThingComp
     public bool CanFitInInventory(Thing thing, out int count, bool ignoreEquipment = false, bool useApparelCalculations = false)
     {
         float thingWeight;
-        float thingBulk;
+        float thingBulk = 0f;
 
         if (useApparelCalculations)
         {
             thingWeight = thing.GetStatValue(StatDefOf.Mass);
-            thingBulk = thing.GetStatValue(CE_StatDefOf.WornBulk);
             if (thingWeight <= 0 && thingBulk <= 0)
             {
                 count = 1;
@@ -374,7 +383,6 @@ public class CompInventory : ThingComp
             }
             // Subtract the stat offsets we get from wearing this
             thingWeight -= thing.def.equippedStatOffsets.GetStatOffsetFromList(CE_StatDefOf.CarryWeight);
-            thingBulk -= thing.def.equippedStatOffsets.GetStatOffsetFromList(CE_StatDefOf.CarryBulk);
         }
         else
         {
