@@ -49,6 +49,7 @@ public class Settings : ModSettings, ISettingsCE
 
     private bool midBurstRetarget = true;
     private bool fasterRepeatShots = true;
+    private float fasterRepeatShotsRecoilMult = 1.0f;
 
     private float explosionPenMultiplier = 1.0f;
     private float explosionFalloffFactor = 1.0f;
@@ -135,6 +136,7 @@ public class Settings : ModSettings, ISettingsCE
     private bool debugDisplayCellCoverRating = false;
     private bool debugDisplayAttritionInfo = false;
     private bool debugWorldShellingDamageRandomness = false;
+    private bool debugSubsequentShotLogging = false;
 
     public bool DebuggingMode => debuggingMode;
     public bool DebugVerbose => debugVerbose;
@@ -150,6 +152,7 @@ public class Settings : ModSettings, ISettingsCE
     public bool DebugDisplayCellCoverRating => debugDisplayCellCoverRating && debuggingMode;
     public bool DebugDisplayAttritionInfo => debugDisplayAttritionInfo && debuggingMode;
     public bool DebugWorldShellingDamageRandomness => debugWorldShellingDamageRandomness && debuggingMode;
+    public bool DebugSubsequentShotLogging => debugSubsequentShotLogging && debuggingMode;
     #endregion
 
     #region Autopatcher
@@ -174,6 +177,7 @@ public class Settings : ModSettings, ISettingsCE
     public float FragmentsFromWallsIntensity => fragmentsFromWallsIntensity;
 
     public bool FasterRepeatShots => fasterRepeatShots;
+    public float FasterRepeatShotsRecoilMult => fasterRepeatShotsRecoilMult;
     public bool MidBurstRetarget => midBurstRetarget;
 
     public float ExplosionPenMultiplier => explosionPenMultiplier;
@@ -239,6 +243,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
         Scribe_Values.Look(ref debugDisplayAttritionInfo, "debugDisplayAttritionInfo", false);
         Scribe_Values.Look(ref debugWorldShellingDamageRandomness, "debugWorldShellingDamageRandomness", false);
+        Scribe_Values.Look(ref debugSubsequentShotLogging, "debugSubsequentShotLogging", false);
         Scribe_Values.Look(ref debugGenClosetPawn, "debugGenClosetPawn", false);
         Scribe_Values.Look(ref debugVerbose, "debugVerbose", false);
         Scribe_Values.Look(ref debugMuzzleFlash, "debugMuzzleFlash", false);
@@ -275,6 +280,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref fragmentsFromWallsReflected, "fragmentsFromWallsReflected", false);
         Scribe_Values.Look(ref fragmentsFromWallsIntensity, "fragmentsFromWallsIntensity", 1.0f);
         Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
+        Scribe_Values.Look(ref fasterRepeatShotsRecoilMult, "fasterRepeatShotsRecoilMult", 1.0f);
         Scribe_Values.Look(ref midBurstRetarget, "midBurstRetarget", true);
         Scribe_Values.Look(ref explosionPenMultiplier, "explosionPenMultiplier", 1.0f);
         Scribe_Values.Look(ref explosionFalloffFactor, "explosionFalloffFactor", 1.0f);
@@ -335,7 +341,6 @@ public class Settings : ModSettings, ISettingsCE
         left.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
-        left.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_MidBurstRetarget_Title".Translate(), ref midBurstRetarget, "CE_Settings_MidBurstRetarget_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
         left.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
@@ -383,6 +388,9 @@ public class Settings : ModSettings, ISettingsCE
         right.Label("CE_Settings_StabilizationSettings".Translate());
         right.Gap();
         medicineSearchRadius = right.SliderLabeled("CE_Settings_MedicineSearchRadius_Title".Translate() + ": " + medicineSearchRadius.ToString("F0"), medicineSearchRadius, 1f, 100f, tooltip: "CE_Settings_MedicineSearchRadius_Desc".Translate(), labelPct: 0.6f);
+        right.GapLine();
+        left.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
+        fasterRepeatShotsRecoilMult = left.SliderLabeled("CE_Settings_FasterRepeatShotsMultiplier_Title".Translate() + ": " + fasterRepeatShotsRecoilMult.ToString("F1"), fasterRepeatShotsRecoilMult, 0.1f, 3f, tooltip: "CE_Settings_FasterRepeatShotsMultiplier_Desc".Translate(), labelPct: 0.6f);
         right.End();
     }
 
@@ -487,6 +495,7 @@ public class Settings : ModSettings, ISettingsCE
             list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
             list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
             list.CheckboxLabeled("Disable randomness in world shelling", ref debugWorldShellingDamageRandomness);
+            list.CheckboxLabeled("Log subsequent shot calculations", ref debugSubsequentShotLogging);
         }
 #endif
         list.Gap();
@@ -551,6 +560,7 @@ public class Settings : ModSettings, ISettingsCE
         smokeEffects = true;
         turretsBreakShields = true;
         fasterRepeatShots = true;
+        fasterRepeatShotsRecoilMult = 1.0f;
         midBurstRetarget = true;
         enableCIWS = true;
         fragmentsFromWalls = false;
@@ -625,6 +635,7 @@ public class Settings : ModSettings, ISettingsCE
         debugDisplayDangerBuildup = false;
         debugDisplayCellCoverRating = false;
         debugWorldShellingDamageRandomness = false;
+        debugSubsequentShotLogging = false;
 #endif
         // Compatibility Settings
         patchArmorDamage = true;
