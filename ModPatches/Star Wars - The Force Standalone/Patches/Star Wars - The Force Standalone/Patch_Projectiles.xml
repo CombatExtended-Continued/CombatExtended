@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== DamageDef rescaling ===== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="Force_Lightning"]/defaultArmorPenetration</xpath>
+		<value>
+			<defaultArmorPenetration>0.75</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<!-- ===== Ability projectiles ===== -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Force_MagickScream"]/projectile</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.ProjectilePropertiesCE</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Force_MagickScream"]/projectile</xpath>
+		<value>
+			<armorPenetrationSharp>0.10</armorPenetrationSharp>
+			<armorPenetrationBlunt>2</armorPenetrationBlunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Force_ThrowItem"]/projectile</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.ProjectilePropertiesCE</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Force_ThrowItem"]/projectile</xpath>
+		<value>
+			<armorPenetrationSharp>0.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>10</armorPenetrationBlunt>
+		</value>
+	</Operation>
+
+	<!-- ===== Ability explosion comps ===== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="Force_Destruction"]/comps/li[@Class="TheForce_Standalone.Abilities.Darkside.CompProperties_AbilityForceDestruction"]/armorPenetration</xpath>
+		<value>
+			<armorPenetration>10</armorPenetration>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="Force_Lightning"]/comps/li[@Class="TheForce_Standalone.Generic.CompProperties_ExplosionWithDirection"]/armorPenetration</xpath>
+		<value>
+			<armorPenetration>0.75</armorPenetration>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="Force_ElectricJudgment"]/comps/li[@Class="TheForce_Standalone.Generic.CompProperties_ExplosionWithDirection"]/armorPenetration</xpath>
+		<value>
+			<armorPenetration>1.0</armorPenetration>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="Force_FireyEnergy"]/comps/li[@Class="TheForce_Standalone.Generic.CompProperties_ExplosionWithDirection"]/armorPenetration</xpath>
+		<value>
+			<armorPenetration>0.75</armorPenetration>
+		</value>
+	</Operation>
+
+</Patch>
