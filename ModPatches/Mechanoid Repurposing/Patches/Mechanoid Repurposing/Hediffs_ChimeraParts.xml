@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- MR_MechanicalShell -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechanicalShell"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechanicalShell"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- genie shell -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechanicalShellGenie"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechanicalShellGenie"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- EMP switch -->
+	<!-- remove seperate burn damage as it is already part of CE's EMP effect-->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="MR_MechanicalSwitchEMP"]/modExtensions/li/secondary/pawnBurnDamage</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MR_MechanicalSwitchEMP"]/modExtensions/li/secondary/radius</xpath>
+		<value>
+			<radius>6.9</radius>
+		  	<damage>20</damage>
+		</value>
+	</Operation>
+
+	<!-- mechhive core -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="MR_MechhiveCore"]/stages/li</xpath>
+		<value>
+			<statFactors>
+				<Suppressability>0</Suppressability>
+			</statFactors>
+		</value>
+	</Operation>
+
+</Patch>
