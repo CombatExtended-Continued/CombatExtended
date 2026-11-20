@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/VEF.Abilities.AbilityDef[@Name="BEWH_ThrowGrenadeBase"]</xpath>
+        <value>
+            <modExtensions>
+                <li Class="CombatExtended.HarmonyCE.Compatibility.RimDarkGrenadeExtension"/>
+            </modExtensions>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_Proj_KrakGrenade"]</xpath>
+        <value>
+            <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_Proj_KrakGrenade"]/projectile</xpath>
+        <value>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                <damageDef>Bomb</damageDef>
+                <damageAmountBase>80</damageAmountBase>
+                <armorPenetrationSharp>25</armorPenetrationSharp>
+                <armorPenetrationBlunt>100</armorPenetrationBlunt>
+                <explosionRadius>1.2</explosionRadius>
+                <explosionDelay>60</explosionDelay>
+                <explosionDamageFalloff>true</explosionDamageFalloff>
+                <speed>12</speed>
+                <suppressionFactor>3</suppressionFactor>
+                <dangerFactor>2</dangerFactor>
+                <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+                <ballisticCoefficient>2~2</ballisticCoefficient>
+                <mass>600~600</mass>
+                <diameter>64~64</diameter>
+            </projectile>
+        </value>
+    </Operation>
+</Patch>

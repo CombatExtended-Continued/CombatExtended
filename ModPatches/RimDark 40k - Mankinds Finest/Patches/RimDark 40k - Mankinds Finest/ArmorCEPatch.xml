@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Remove Head Armor Statbases-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BEWH_MkVIIPowerArmorHelmet" or
+			defName="BEWH_MkXPowerArmorHelmet" or
+			defName="BEWH_MkXPowerArmorChaplainHelmet" or defName="BEWH_LivingSaintArmorHelmet" or
+			defName="BEWH_MkIPowerArmorHelmet"]/statBases/ArmorRating_Sharp</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BEWH_MkVIIPowerArmorHelmet" or
+			defName="BEWH_MkXPowerArmorHelmet" or
+			defName="BEWH_MkXPowerArmorChaplainHelmet" or defName="BEWH_LivingSaintArmorHelmet" or
+			defName="BEWH_MkIPowerArmorHelmet"]/statBases/ArmorRating_Blunt</xpath>
+	</Operation>
+
+
+	<!-- Remove Body Armor Statbases-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BEWH_MkVIIPowerArmor" or defName="BEWH_MkXPowerArmor" or
+			defName="BEWH_MkXPowerArmorChaplain" or defName="BEWH_LivingSaintArmor" or
+			defName="BEWH_MkIPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BEWH_MkVIIPowerArmor" or defName="BEWH_MkXPowerArmor" or
+			defName="BEWH_MkXPowerArmorChaplain" or defName="BEWH_LivingSaintArmor" or
+			defName="BEWH_MkIPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
+	</Operation>
+
+
+	<!-- ===== Power Armor Helmet Base ====== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BEWH_PowerArmorHelmetBase"]/statBases</xpath>
+		<value>
+			<Bulk>9</Bulk>
+			<WornBulk>2</WornBulk>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
+			<ArmorRating_Blunt>57</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BEWH_PowerArmorHelmetBase"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9</Mass>
+		</value>
+	</Operation>
+
+
+	<!-- ===== Power Armor Base ====== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BEWH_PowerArmorBase"]/statBases/Mass</xpath>
+		<value>
+			<Mass>44</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BEWH_PowerArmorBase"]/statBases</xpath>
+		<value>
+			<Bulk>55</Bulk>
+			<WornBulk>9</WornBulk>
+			<ArmorRating_Sharp>35</ArmorRating_Sharp>
+			<ArmorRating_Blunt>65</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BEWH_PowerArmorBase"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>100</CarryWeight>
+			<CarryBulk>50</CarryBulk>
+		</value>
+	</Operation>
+</Patch>

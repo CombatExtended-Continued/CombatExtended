@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+    <!-- Keep Genes40k.Building_DropDrop: Steel Rain casts to it and it deploys the marines. -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BEWH_SteelRainDropPodBuilding" or defName="BEWH_RaisedTurret"]/comps</xpath>
+        <value>
+            <li Class="CombatExtended.CompProperties_RimDarkSummonedTurret"/>
+        </value>
+    </Operation>
+    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>BEWH_SteelRainDropPodTurret</defName>
+        <statBases>
+            <SwayFactor>1.2</SwayFactor>
+            <ShotSpread>0.08</ShotSpread>
+            <SightsEfficiency>1.2</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+        </statBases>
+        <AmmoUser>
+            <magazineSize>300</magazineSize>
+            <reloadTime>6</reloadTime>
+            <ammoSet>AmmoSet_Bolter75</ammoSet>
+        </AmmoUser>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BEWH_SteelRainDropPodTurret"]/verbs</xpath>
+        <value>
+            <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                    <verbClass>CombatExtended.Verb_ShootCERimDarkTurret</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+                    <warmupTime>0</warmupTime>
+                    <range>69</range>
+                    <recoilAmount>1.25</recoilAmount>
+                    <recoilPattern>Mounted</recoilPattern>
+                    <burstShotCount>6</burstShotCount>
+                    <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+                    <soundCast>BEWH_SFX_BolterShot</soundCast>
+                    <soundCastTail>GunTail_Medium</soundCastTail>
+                    <muzzleFlashScale>12</muzzleFlashScale>
+                </li>
+            </verbs>
+        </value>
+    </Operation>
+</Patch>
