@@ -1,6 +1,6 @@
 using System.Reflection;
 using HarmonyLib;
-using Rimworld;
+using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
