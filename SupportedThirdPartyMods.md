@@ -325,6 +325,7 @@ Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
+Heavy Truck |
 Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
@@ -535,6 +536,7 @@ Rimefeller	|
 Rim-Elves   |
 Rim-Gnoblins	|
 Rim-Hivers!	|
+Rim-Hivers! - Biotech |
 Rim Flood	|
 Rim-Robots_	|
 Rim-Shek	|
@@ -578,6 +580,7 @@ Save Our Ship 2	|
 SCP - Clothing Only	|
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
+Service Weapon (Continued) |
 Seventh Seraph  |
 Shambler Variants  |
 Silkiera Race	|
