@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using RimWorld;
@@ -74,12 +73,16 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
     }
 
 
-    /*
-     * This replace the last DrawMesh in
-     */
     internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        var codes = instructions.ToList();
+        var codes = instructions.Select(code => new CodeInstruction(code)).ToList();
+        var drawMesh = AccessTools.Method(typeof(Graphics), nameof(Graphics.DrawMesh),
+            new[] { typeof(Mesh), typeof(Matrix4x4), typeof(Material), typeof(int) });
+        if (!codes.Any(code => code.Calls(drawMesh)))
+        {
+            Log.Warning("Combat Extended :: Could not find Graphics.DrawMesh when patching DrawEquipmentAiming; keeping the existing rendering.");
+            return codes;
+        }
         var recoil_opcodes = new CodeInstruction[]
         {
                                 new CodeInstruction(OpCodes.Ldarg_0),
@@ -89,8 +92,9 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
                                 new CodeInstruction(OpCodes.Ldloc_2),
                                 new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)))
         };
-        int index = 0;
+        int index = -1;
         bool foundInjection = false;
+        var recoil = AccessTools.Method(typeof(EquipmentUtility), nameof(EquipmentUtility.Recoil));
         for (int i = 0; i < codes.Count; i++)
         {
             CodeInstruction code = codes[i];
@@ -99,24 +103,19 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
                 index = i + 1;
                 break;
             }
-            else if (code.opcode == OpCodes.Call && ReferenceEquals(code.operand, typeof(EquipmentUtility).GetMethod(nameof(EquipmentUtility.Recoil))))
+            else if (code.Calls(recoil))
             {
                 foundInjection = true;
             }
         }
-        if (!foundInjection)
+        if (index < 0)
         {
-            Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            Log.Warning("Combat Extended :: Could not find the recoil injection point when patching DrawEquipmentAiming; keeping the existing rendering.");
+            return codes;
         }
         codes.InsertRange(index, recoil_opcodes);
-        codes[codes.Count - 2].operand =
-            AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
-        codes.InsertRange(codes.Count - 2, new[]
-        {
-                                new CodeInstruction(OpCodes.Ldarg_0),
-                                new CodeInstruction(OpCodes.Ldarg_1),
-                                new CodeInstruction(OpCodes.Ldarg_2)
-                            });
+        EquipmentAimingDrawTranspiler.TryReplaceDrawCall(codes, drawMesh,
+            AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh)));
         return codes;
     }
 }
