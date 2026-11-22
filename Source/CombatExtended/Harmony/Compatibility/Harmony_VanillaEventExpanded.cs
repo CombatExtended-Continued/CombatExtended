@@ -73,36 +73,42 @@ public class Harmony_Compat_VanillaEventExpanded
     [HarmonyPatch]
     public static class Harmony_Crashlanded_Patch
     {
+        private static MethodBase DropThingsNearMethod
+        {
+            get
+            {
+                return AccessTools.Method(typeof(DropPodUtility), nameof(DropPodUtility.DropThingsNear));
+            }
+        }
+
         public static bool Prepare()
         {
-            return Crashlanded_Patch_HarmonyPatches != null;
+            if (Crashlanded_Patch_HarmonyPatches == null)
+            {
+                return false;
+            }
+            if (DropThingsNearMethod == null)
+            {
+                Log.Error($"Combat Extended :: Failed to find target method while attempting to patch VEE Crashlanded.");
+                return false;
+            }
+            return true;
         }
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method("VEE.RegularEvents.Crashlanded:TryExecuteWorker");
+            return DropThingsNearMethod;
         }
 
-        // VEE spins up one fresh temporary beggar faction per incident, so snapshot what already exists.
-        public static void Prefix(out HashSet<int> __state)
+        public static void Prefix(IEnumerable<Thing> things)
         {
-            __state = new HashSet<int>(Find.FactionManager.AllFactionsListForReading.Select(f => f.loadID));
-        }
-
-        // Postfix means the pods have already landed, pawns are spawned, and VEE has moved them to temp faction.
-        public static void Postfix(bool __result, IncidentParms parms, HashSet<int> __state)
-        {
-            if (!__result || parms.target is not Map map)
+            if (things == null)
             {
                 return;
             }
-            foreach (Faction faction in Find.FactionManager.AllFactionsListForReading)
+            foreach (Thing thing in things)
             {
-                if (faction.def != FactionDefOf.Beggars || !faction.temporary || __state.Contains(faction.loadID))
-                {
-                    continue;
-                }
-                foreach (Pawn pawn in map.mapPawns.SpawnedPawnsInFaction(faction))
+                if (thing is Pawn pawn && pawn.Faction is { temporary: true } faction && faction.def == FactionDefOf.Beggars)
                 {
                     GiveSpareAmmo(pawn);
                 }
