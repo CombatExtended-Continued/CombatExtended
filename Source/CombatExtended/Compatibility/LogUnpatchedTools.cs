@@ -94,11 +94,11 @@ public static class UnpatchedDefChecker
 
     private static void CheckUnpatchedBodyShape(ThingDef def)
     {
-        if (def.race == null || def.GetModExtension<RacePropertiesExtensionCE>() != null)
+        if (def.race == null || def.GetModExtension<RacePropertiesExtensionCE>() != null || def.IsCorpse)
         {
             return;
         }
-        Log.Message($"CE: Detected missing bodyshape on {def.race}. Recommend patching or turning on autopatcher.");
+        Log.Message($"CE: Detected missing bodyshape on {def.defName}. Recommend patching or turning on autopatcher.");
     }
 
 }
