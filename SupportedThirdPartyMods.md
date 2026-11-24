@@ -285,6 +285,7 @@ Frontline Collection  |
 FROG Suit Set   |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
+Gears of War: Redemption |
 Genetics! Mushkin    |
 Gestalt Engine  |
 Giddy-Up 2    |
