@@ -189,7 +189,8 @@ public class Verb_ShootShipCE : Verb_ShootCE
                         ShotSpeed,
                         spreadDegrees,
                         aperatureSize,
-                        EquipmentSource);
+                        EquipmentSource,
+                        effectiveRange: EffectiveRange);
                 }
                 else
                 {

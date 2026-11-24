@@ -45,7 +45,8 @@ public class TravelingRaycast : TravelingShell
                 spreadDegrees,
                 aperatureSize,
                 null,
-                true // Allow beam to be drawn correctly
+                true, // Allow beam to be drawn correctly
+                effectiveRange: verbToUse.EffectiveRange
             );
         }
         else
