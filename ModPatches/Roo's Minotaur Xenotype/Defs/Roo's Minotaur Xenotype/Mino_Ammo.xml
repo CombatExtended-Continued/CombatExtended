@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Obsidian Arrows -->
+
+	<ThingCategoryDef>
+		<defName>AmmoObsidianArrows</defName>
+		<label>obsidian arrows</label>
+		<parent>AmmoNeolithic</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberArrow</iconPath>
+	</ThingCategoryDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_ObsidianArrow</defName>
+		<label>obsidian arrows</label>
+		<ammoTypes>
+			<Ammo_ObsidianArrow_Stone>Projectile_ObsidianArrow_Stone</Ammo_ObsidianArrow_Stone>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoObsidianArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
+		<description>Obsidian arrow designed to be fired from a Bullslinger bow.</description>
+		<statBases>
+			<Bulk>0.43</Bulk>
+			<Flammability>0.5</Flammability>
+		</statBases>
+		<thingCategories>
+			<li>AmmoObsidianArrows</li>
+		</thingCategories>
+		<stackLimit>250</stackLimit>
+		<tradeTags>
+			<li>CE_PreIndustrialAmmo</li>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+		</tradeTags>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoObsidianArrowBase">
+		<defName>Ammo_ObsidianArrow_Stone</defName>
+		<label>great arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/GreatArrow/Stone</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.1</Mass>
+		</statBases>
+		<ammoClass>StoneArrow</ammoClass>
+	</ThingDef>
+
+	<ThingDef Name="BaseObsidianArrowProjectile" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Arrow_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Mageia_Cold</damageDef>
+			<speed>30</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseObsidianArrowProjectile">
+		<defName>Projectile_ObsidianArrow_Stone</defName>
+		<label>obsidian arrow</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>23</damageAmountBase>
+			<armorPenetrationBlunt>4</armorPenetrationBlunt>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<preExplosionSpawnThingDef>Filth_Water</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.8</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_ObsidianArrow_Stone</defName>
+		<label>make obsidian arrows x10</label>
+		<description>Craft 10 obsidian arrows.</description>
+		<jobString>Making obsidian arrows.</jobString>
+		<workAmount>500</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_ObsidianArrow_Stone>10</Ammo_ObsidianArrow_Stone>
+		</products>
+	</RecipeDef>
+
+	<!-- Obsidian Bullets -->
+
+	<ThingCategoryDef>
+		<defName>AmmoObsidianRailgun</defName>
+		<label>Obsidian Railgun</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRailgunRifle</iconPath>
+	</ThingCategoryDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_ObsidianRailgun</defName>
+		<label>Obsidian Railgun</label>
+		<ammoTypes>
+			<Ammo_ObsidianRailgun_Sabot>Bullet_ObsidianRailgun_Sabot</Ammo_ObsidianRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ObsidianRailgun_Sabot</defName>
+		<label>Obsidian Railgun (Sabot)</label>
+		<description>Fin-stabilized obsidian penetrator with discarding sabot, designed for Taurail rifles.</description>
+		<statBases>
+			<Mass>0.02</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoObsidianRailgun</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Ammo/Railgun/Rifle</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>RailgunSabot</ammoClass>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>Bullet_ObsidianRailgun_Sabot</defName>
+		<label>Obsidian Railgun bullet (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Mageia_Hot</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>60</armorPenetrationSharp>
+			<armorPenetrationBlunt>300</armorPenetrationBlunt>
+			<speed>300</speed>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_ObsidianRailgun_Sabot</defName>
+		<label>make Obsidian Railgun cartridge (Sabot) x100</label>
+		<description>Craft 100 Obsidian Railgun (Sabot) cartridges.</description>
+		<jobString>Making Obsidian Railgun (Sabot) cartridges.</jobString>
+		<workAmount>1000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_ObsidianRailgun_Sabot>100</Ammo_ObsidianRailgun_Sabot>
+		</products>
+	</RecipeDef>
+
+</Defs>
