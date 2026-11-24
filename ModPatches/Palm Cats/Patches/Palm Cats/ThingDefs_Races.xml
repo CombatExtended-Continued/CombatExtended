@@ -96,11 +96,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Leoplicant"]/combatPower</xpath>
-		<value>
-			<combatPower>120</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Leoplicant"]/combatPower</xpath>
+			<value>
+				<combatPower>120</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- === Malm Tiger === -->
@@ -188,11 +191,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="MalmTiger"]/combatPower</xpath>
-		<value>
-			<combatPower>90</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="MalmTiger"]/combatPower</xpath>
+			<value>
+				<combatPower>90</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- === Palm Cat === -->
@@ -280,11 +286,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="PalmCat"]/combatPower</xpath>
-		<value>
-			<combatPower>90</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="PalmCat"]/combatPower</xpath>
+			<value>
+				<combatPower>90</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 </Patch>

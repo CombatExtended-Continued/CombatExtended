@@ -101,37 +101,49 @@
 	</Operation>
 
 	<!-- Balancing -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="BS_Jotun_Raider" or
-			defName="BS_Jotun_Raider_Ranged" or
-			defName="BS_Medium_Jotun_Raider"]/combatPower</xpath>
-		<value>
-			<combatPower>80</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="BS_Jotun_Raider" or
+				defName="BS_Jotun_Raider_Ranged" or
+				defName="BS_Medium_Jotun_Raider"]/combatPower</xpath>
+			<value>
+				<combatPower>80</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="BS_Heavy_Jotun" or
-			defName="BS_Heavy_Jotun_Spearman"]/combatPower</xpath>
-		<value>
-			<combatPower>120</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="BS_Heavy_Jotun" or
+				defName="BS_Heavy_Jotun_Spearman"]/combatPower</xpath>
+			<value>
+				<combatPower>120</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="BS_Jotun_Knight"]/combatPower</xpath>
-		<value>
-			<combatPower>150</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="BS_Jotun_Knight"]/combatPower</xpath>
+			<value>
+				<combatPower>150</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="BS_Jotun_Lord"]/combatPower</xpath>
-		<value>
-			<combatPower>200</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="BS_Jotun_Lord"]/combatPower</xpath>
+			<value>
+				<combatPower>200</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 </Patch>

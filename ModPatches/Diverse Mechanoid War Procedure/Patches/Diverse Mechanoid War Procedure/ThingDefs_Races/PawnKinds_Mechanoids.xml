@@ -3,32 +3,44 @@
 
 	<!-- ========== Combat power adjustment ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mech_Pikeman_Defender"]/combatPower</xpath>
-		<value>
-			<combatPower>250</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mech_Pikeman_Defender"]/combatPower</xpath>
+			<value>
+				<combatPower>250</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mech_Knight"]/combatPower</xpath>
-		<value>
-			<combatPower>250</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mech_Knight"]/combatPower</xpath>
+			<value>
+				<combatPower>250</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mech_Militor_Scout"]/combatPower</xpath>
-		<value>
-			<combatPower>60</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mech_Militor_Scout"]/combatPower</xpath>
+			<value>
+				<combatPower>60</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mech_Militor_Sniper"]/combatPower</xpath>
-		<value>
-			<combatPower>60</combatPower>
-		</value>
+
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mech_Militor_Sniper"]/combatPower</xpath>
+			<value>
+				<combatPower>60</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ========== Loadouts ========== -->
@@ -56,7 +68,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="Mech_Pikeman_Commander"]</xpath>
 		<value>
@@ -88,7 +100,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="Mech_Termite_Toxer"]</xpath>
 		<value>
@@ -125,7 +137,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="Mech_Militor_Sniper"]</xpath>
 		<value>
@@ -148,5 +160,5 @@
 			</weaponTags>
 		</value>
 	</Operation>
-	
+
 </Patch>

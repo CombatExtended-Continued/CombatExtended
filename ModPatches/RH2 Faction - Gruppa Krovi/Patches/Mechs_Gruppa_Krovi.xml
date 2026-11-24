@@ -166,11 +166,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RH2Mech_KV2Walker"]/combatPower</xpath>
-		<value>
-			<combatPower>1400</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RH2Mech_KV2Walker"]/combatPower</xpath>
+			<value>
+				<combatPower>1400</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!--Soviet Drones are functionally identical to each other except for the weapon-->
@@ -313,11 +316,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RH2Mech_TeslaDrone"]/combatPower</xpath>
-		<value>
-			<combatPower>400</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RH2Mech_TeslaDrone"]/combatPower</xpath>
+			<value>
+				<combatPower>400</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -332,11 +338,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="RH2Mech_PlasmaDrone"]/combatPower</xpath>
-		<value>
-			<combatPower>450</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="RH2Mech_PlasmaDrone"]/combatPower</xpath>
+			<value>
+				<combatPower>450</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 </Patch>

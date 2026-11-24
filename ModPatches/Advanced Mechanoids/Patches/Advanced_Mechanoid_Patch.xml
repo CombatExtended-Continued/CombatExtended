@@ -2,11 +2,14 @@
 <Patch>
 
 	<!-- ======= Small PawnKindDef Patch ======= -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mech_AdvancedMilitor"]/combatPower</xpath>
-		<value>
-			<combatPower>90</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mech_AdvancedMilitor"]/combatPower</xpath>
+			<value>
+				<combatPower>90</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -119,7 +122,7 @@
 			</value>
 		</nomatch>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedCleansweeper"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -129,9 +132,9 @@
 			</value>
 		</nomatch>
 	</Operation>
-	
+
 	<!-- ========== ARMOR DURABILITIES ========== -->
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedMilitor"]/comps</xpath>
 		<value>
@@ -151,7 +154,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedLifter"]/comps</xpath>
 		<value>
@@ -171,7 +174,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedConstructoid"]/comps</xpath>
 		<value>
@@ -191,8 +194,8 @@
 			</li>
 		</value>
 	</Operation>
-	
-		<Operation Class="PatchOperationAdd">
+
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedFabricor"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ArmorDurability">
@@ -211,7 +214,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedAgrihand"]/comps</xpath>
 		<value>
@@ -231,7 +234,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_AdvancedParamedic"]/comps</xpath>
 		<value>
