@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_A2E"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_A2E"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>4</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_A2E"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="AOC_A2E"]/weaponTags</xpath>
+    <value>
+      <li>Patched</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]/verbs</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]/verbs</xpath>
+      <value>
+        <verbs Inherit="False">
+          <li Class="CombatExtended.VerbPropertiesCE">
+            <label>Cleaner</label>
+            <verbClass>AOC17CE.Verb_CleanerBackpackCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <onlyManualCast>true</onlyManualCast>
+            <range>8</range>
+            <warmupTime>1</warmupTime>
+            <soundCast>Shot_IncendiaryLauncher</soundCast>
+            <defaultProjectile>AOC17CE_FilthEraser</defaultProjectile>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </li>
+        </verbs>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]</xpath>
+      <value>
+        <verbs Inherit="False">
+          <li Class="CombatExtended.VerbPropertiesCE">
+            <label>Cleaner</label>
+            <verbClass>AOC17CE.Verb_CleanerBackpackCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <onlyManualCast>true</onlyManualCast>
+            <range>8</range>
+            <warmupTime>1</warmupTime>
+            <soundCast>Shot_IncendiaryLauncher</soundCast>
+            <defaultProjectile>AOC17CE_FilthEraser</defaultProjectile>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </li>
+        </verbs>
+      </value>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/Bulk</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/Bulk</xpath>
+      <value>
+        <Bulk>2.5</Bulk>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/Bulk</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/Bulk</xpath>
+            <value>
+              <Bulk>2.5</Bulk>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases</xpath>
+            <value>
+              <Bulk>2.5</Bulk>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/SightsEfficiency</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/SightsEfficiency</xpath>
+      <value>
+        <SightsEfficiency>1</SightsEfficiency>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/SightsEfficiency</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/SightsEfficiency</xpath>
+            <value>
+              <SightsEfficiency>1</SightsEfficiency>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases</xpath>
+            <value>
+              <SightsEfficiency>1</SightsEfficiency>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/ShotSpread</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/ShotSpread</xpath>
+      <value>
+        <ShotSpread>1.5</ShotSpread>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/ShotSpread</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/ShotSpread</xpath>
+            <value>
+              <ShotSpread>1.5</ShotSpread>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases</xpath>
+            <value>
+              <ShotSpread>1.5</ShotSpread>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/SwayFactor</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/SwayFactor</xpath>
+      <value>
+        <SwayFactor>2.5</SwayFactor>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/SwayFactor</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/SwayFactor</xpath>
+            <value>
+              <SwayFactor>2.5</SwayFactor>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases</xpath>
+            <value>
+              <SwayFactor>2.5</SwayFactor>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/verbs</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/verbs</xpath>
+      <value>
+        <verbs Inherit="False">
+          <li Class="CombatExtended.VerbPropertiesCE">
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>AOC17CE_Javelin</defaultProjectile>
+            <warmupTime>0.8</warmupTime>
+            <range>32</range>
+            <soundCast>Interact_BeatFire</soundCast>
+          </li>
+        </verbs>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]</xpath>
+      <value>
+        <verbs Inherit="False">
+          <li Class="CombatExtended.VerbPropertiesCE">
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>AOC17CE_Javelin</defaultProjectile>
+            <warmupTime>0.8</warmupTime>
+            <range>32</range>
+            <soundCast>Interact_BeatFire</soundCast>
+          </li>
+        </verbs>
+      </value>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/HediffDef[defName="AOC_FastSeq"]/comps/li[@Class="AOCSpearForms.CompProperties_FormSequence"]/penetration</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/HediffDef[defName="AOC_FastSeq"]/comps/li[@Class="AOCSpearForms.CompProperties_FormSequence"]/penetration</xpath>
+      <value>
+        <penetration>18.5</penetration>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/HediffDef[defName="AOC_FastSeq"]/comps/li[@Class="AOCSpearForms.CompProperties_FormSequence"]</xpath>
+      <value>
+        <penetration>18.5</penetration>
+      </value>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/HediffDef[defName="AOC_PierceSeq"]/comps/li[@Class="AOCSpearForms.CompProperties_FormSequence"]/penetration</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/HediffDef[defName="AOC_PierceSeq"]/comps/li[@Class="AOCSpearForms.CompProperties_FormSequence"]/penetration</xpath>
+      <value>
+        <penetration>22.5</penetration>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/HediffDef[defName="AOC_PierceSeq"]/comps/li[@Class="AOCSpearForms.CompProperties_FormSequence"]</xpath>
+      <value>
+        <penetration>22.5</penetration>
+      </value>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/HediffDef[defName="AOC_ScrubSequence"]/comps/li[@Class="AOCSkinBrush.CompProperties_ScrubSequence"]/penetration</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/HediffDef[defName="AOC_ScrubSequence"]/comps/li[@Class="AOCSkinBrush.CompProperties_ScrubSequence"]/penetration</xpath>
+      <value>
+        <penetration>2.25</penetration>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/HediffDef[defName="AOC_ScrubSequence"]/comps/li[@Class="AOCSkinBrush.CompProperties_ScrubSequence"]</xpath>
+      <value>
+        <penetration>2.25</penetration>
+      </value>
+    </nomatch>
+  </Operation>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>TCB_26K_AP</defName>
+    <statBases>
+      <Mass>6</Mass>
+      <RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+      <ShotSpread>0.14</ShotSpread>
+      <SwayFactor>1.26</SwayFactor>
+      <Bulk>6.2</Bulk>
+      <SightsEfficiency>1</SightsEfficiency>
+    </statBases>
+    <Properties>
+      <recoilAmount>2.54</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>AOC17CE_TCBAP</defaultProjectile>
+      <warmupTime>1.7</warmupTime>
+      <range>23</range>
+      <soundCast>Shot_Shotgun_NoRack</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+      <burstShotCount>1</burstShotCount>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>8</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_AOC17TCBAP</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_BROOM</li>
+    </weaponTags>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="TCB_26K_AP"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+</Patch>

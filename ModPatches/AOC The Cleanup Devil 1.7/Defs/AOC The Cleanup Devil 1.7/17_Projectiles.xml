@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef ParentName="BaseBulletCE">
+    <defName>AOC17CE_Javelin</defName>
+    <label>monojavelin</label>
+    <graphicData>
+      <texPath>Things/Projectile/AOC_MonoSpear</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>RangedStab</damageDef>
+      <damageAmountBase>28</damageAmountBase>
+      <speed>52</speed>
+      <armorPenetrationSharp>22</armorPenetrationSharp>
+      <armorPenetrationBlunt>10</armorPenetrationBlunt>
+      <suppressionFactor>0.1</suppressionFactor>
+    </projectile>
+  </ThingDef>
+  <ThingDef ParentName="BaseBulletCE">
+    <defName>AOC17CE_AimedJavelin</defName>
+    <label>aimed javelin</label>
+    <thingClass>AOC17CE.Bullet_AimedJavelinCE</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/AOC_MonoSpear</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>RangedStab</damageDef>
+      <damageAmountBase>38</damageAmountBase>
+      <speed>100</speed>
+      <armorPenetrationSharp>22</armorPenetrationSharp>
+      <armorPenetrationBlunt>10</armorPenetrationBlunt>
+      <suppressionFactor>0.1</suppressionFactor>
+    </projectile>
+  </ThingDef>
+  <ThingDef ParentName="BaseBulletCE">
+    <defName>AOC17CE_TCBAP</defName>
+    <label>TCB delayed slug</label>
+    <description>A slug fired by the TCB 26K Armour Piercer. Two seconds after impact, it detonates at the target's location, dealing 8 explosive damage in a 1-cell radius in addition to direct damage. Allies within the blast radius can also be harmed.</description>
+    <thingClass>AOC17CE.Bullet_DelayedTCBCE</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/Needle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>28</damageAmountBase>
+      <speed>114</speed>
+      <armorPenetrationSharp>15</armorPenetrationSharp>
+      <armorPenetrationBlunt>85.2</armorPenetrationBlunt>
+      <effectiveRangeMultiplier>1.5</effectiveRangeMultiplier>
+    </projectile>
+    <modExtensions>
+      <li Class="AOCTCB.DelayedBlastExtension">
+        <delayTicks>120</delayTicks>
+        <damage>8</damage>
+        <radius>1</radius>
+        <armorPenetration>16</armorPenetration>
+      </li>
+    </modExtensions>
+  </ThingDef>
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_AOC17TCBAP</defName>
+    <label>TCB 12 gauge slug</label>
+    <description>The TCB 26K Armour Piercer accepts only 12 gauge slug ammunition. Rounds fired from this weapon detonate at the target's location 2 seconds after impact, dealing 8 explosive damage in a 1-cell radius in addition to direct damage. Allies within the blast radius can also be harmed.</description>
+    <ammoTypes>
+      <Ammo_12Gauge_Slug>AOC17CE_TCBAP</Ammo_12Gauge_Slug>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  <ThingDef ParentName="BaseGrenadeProjectile">
+    <defName>AOC17CE_FilthEraser</defName>
+    <label>filth eraser</label>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/AOC_A2E</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>20</speed>
+      <explosionRadius>4.5</explosionRadius>
+      <damageDef>FilthEraser</damageDef>
+      <damageAmountBase>1</damageAmountBase>
+      <explosionDelay>50</explosionDelay>
+      <suppressionFactor>0</suppressionFactor>
+      <dangerFactor>0</dangerFactor>
+    </projectile>
+  </ThingDef>
+</Defs>

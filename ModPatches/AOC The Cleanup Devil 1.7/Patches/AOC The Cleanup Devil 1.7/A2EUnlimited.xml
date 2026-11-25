@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/AbilityDef[defName="AOC_A2EIntake"]/description</xpath>
+    <value>
+      <description>Choose a direction to face while a swirling intake field draws in bullets for 5 seconds. It catches all incoming bullets within 3 cells, including friendly fire, without a projectile-count limit. An activation that catches at least one bullet produces one bag of waste in total; catching no bullets produces no waste. The interception sound rises in pitch as more bullets are caught. Uses one chemfuel charge. Cooldown: 10 seconds from activation.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_A2E"]/comps/li[@Class="AOCA2EVacuum.CompProperties_Vacuum"]/shieldCooldownTicks</xpath>
+    <value><shieldCooldownTicks>600</shieldCooldownTicks></value>
+  </Operation>
+</Patch>
