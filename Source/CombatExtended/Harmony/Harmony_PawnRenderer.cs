@@ -11,43 +11,32 @@ namespace CombatExtended.HarmonyCE;
 [HarmonyPatch(typeof(PawnRenderUtility), nameof(PawnRenderUtility.DrawEquipmentAiming))]
 internal static class Harmony_PawnRenderer_DrawEquipmentAiming
 {
-    public static Rot4 south = Rot4.South;
-
-    private static Thing equipment;
-
-    private static Vector3 recoilOffset = new Vector3();
-
-    private static float muzzleJump = 0;
-
     private static Vector3 casingDrawPos;
 
-    private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.006f, 0));
+    public static void Prefix(Vector3 drawLoc) => casingDrawPos = drawLoc;
 
-    private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.004f, 0));
-
-    public static void Prefix(Thing eq, Vector3 drawLoc)
+    private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle, CompEquippable equippable)
     {
-        equipment = eq;
-        casingDrawPos = drawLoc;
-    }
-
-    private static void RecoilCE(Thing eq, float aimAngle, CompEquippable compEquippable)
-    {
-        if (Controller.settings.RecoilAnim && compEquippable.PrimaryVerb.verbProps is VerbPropertiesCE)
+        var verb = equippable?.PrimaryVerb;
+        // Recoil belongs to this draw. A weapon or setting that skips it uses zero offsets.
+        Vector3 recoilOffset = Vector3.zero;
+        float muzzleJump = 0f;
+        if (Controller.settings.RecoilAnim && verb?.verbProps is VerbPropertiesCE)
         {
-            CE_Utility.Recoil(eq.def, compEquippable.PrimaryVerb, out var drawOffset, out var angleOffset, aimAngle, true);
-            recoilOffset = drawOffset;
-            muzzleJump = angleOffset;
+            CE_Utility.Recoil(eq.def, verb, out recoilOffset, out muzzleJump, aimAngle, true);
         }
-    }
 
-    private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
-    {
-        GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension() { DrawSize = eq.def.graphicData.drawSize };
-        if (drawData.DrawSize == Vector2.one) { drawData.DrawSize = eq.def.graphicData.drawSize; }
-        Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
-        Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
-        Vector3 casingOffset = new Vector3(drawData.CasingOffset.x, 0, drawData.CasingOffset.y);
+        var drawData = eq.def.GetModExtension<GunDrawExtension>();
+        var size = drawData?.DrawSize ?? Vector2.one;
+        if (size == Vector2.one)
+        {
+            size = eq.def.graphicData.drawSize;
+        }
+        var offset = drawData?.DrawOffset ?? Vector2.zero;
+        var casing = drawData?.CasingOffset ?? Vector2.zero;
+        Vector3 scale = new(size.x, 1, size.y);
+        Vector3 posVec = new(offset.x, 0, offset.y);
+        Vector3 casingOffset = new(casing.x, 0, casing.y);
         if (aimAngle > 200 && aimAngle < 340)
         {
             posVec.x *= -1;
@@ -57,8 +46,7 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
 
         float yAngle = matrix.rotation.eulerAngles.y;
         matrix.SetTRS(position + posVec.RotatedBy(yAngle) + recoilOffset, Quaternion.AngleAxis(yAngle + muzzleJump, Vector3.up), scale);
-        CompEquippable compEquippable = eq.TryGetComp<CompEquippable>();
-        if (compEquippable != null && compEquippable.PrimaryVerb is Verb_ShootCE verbCE)
+        if (verb is Verb_ShootCE verbCE)
         {
             verbCE.drawPos = casingDrawPos + (casingOffset + posVec).RotatedBy(yAngle);
         }
@@ -80,8 +68,7 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
         var drawMesh = AccessTools.Method(typeof(Graphics), nameof(Graphics.DrawMesh),
             [typeof(Mesh), typeof(Matrix4x4), typeof(Material), typeof(int)]);
 
-        // Capture the equipment-component load used to compute vanilla recoil. CE only needs
-        // the component, equipment and aim angle, so it can run immediately after Recoil.
+        // Reuse the component already retrieved by vanilla instead of looking it up again at draw time.
         var recoilPattern = new CodeMatch[]
         {
             new(code => code.IsLdloc()),
@@ -99,7 +86,6 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
             return codes;
         }
         var componentLoad = matcher.Instruction.Clone();
-        int afterRecoil = matcher.Pos + recoilPattern.Length;
 
         matcher.Advance(recoilPattern.Length).MatchStartForward(CodeMatch.Calls(drawMesh));
         if (matcher.IsInvalid || codes.Count(code => code.Calls(drawMesh)) != 1 || matcher.Instruction.blocks.Count != 0)
@@ -108,8 +94,7 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
             return codes;
         }
 
-        // Edit the later site first. Branches targeting the draw call must also load CE's
-        // three extra arguments. Copy its labels without modifying the incoming instructions.
+        // Branches into the draw call also need CE's arguments. Preserve their labels on the first load.
         int drawIndex = matcher.Pos;
         codes[drawIndex] = CodeInstruction.Call(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
         codes.InsertRange(drawIndex,
@@ -117,13 +102,7 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
             new CodeInstruction(OpCodes.Ldarg_0).WithLabels(matcher.Instruction.labels),
             new CodeInstruction(OpCodes.Ldarg_1),
             new CodeInstruction(OpCodes.Ldarg_2),
-        ]);
-        codes.InsertRange(afterRecoil,
-        [
-            new CodeInstruction(OpCodes.Ldarg_0),
-            new CodeInstruction(OpCodes.Ldarg_2),
             componentLoad,
-            CodeInstruction.Call(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)),
         ]);
         return codes;
     }
