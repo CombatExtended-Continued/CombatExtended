@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using RimWorld;
@@ -32,7 +31,7 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
         casingDrawPos = drawLoc;
     }
 
-    private static void RecoilCE(Thing eq, Vector3 position, float aimAngle, float num, CompEquippable compEquippable)
+    private static void RecoilCE(Thing eq, float aimAngle, CompEquippable compEquippable)
     {
         if (Controller.settings.RecoilAnim && compEquippable.PrimaryVerb.verbProps is VerbPropertiesCE)
         {
@@ -73,50 +72,59 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
         }
     }
 
-
-    /*
-     * This replace the last DrawMesh in
-     */
     internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();
-        var recoil_opcodes = new CodeInstruction[]
+        var recoil = AccessTools.Method(typeof(EquipmentUtility), nameof(EquipmentUtility.Recoil),
+            [typeof(ThingDef), typeof(Verb_LaunchProjectile), typeof(Vector3).MakeByRefType(), typeof(float).MakeByRefType(), typeof(float)]);
+        var drawMesh = AccessTools.Method(typeof(Graphics), nameof(Graphics.DrawMesh),
+            [typeof(Mesh), typeof(Matrix4x4), typeof(Material), typeof(int)]);
+
+        // Capture the equipment-component load used to compute vanilla recoil. CE only needs
+        // the component, equipment and aim angle, so it can run immediately after Recoil.
+        var recoilPattern = new CodeMatch[]
         {
-                                new CodeInstruction(OpCodes.Ldarg_0),
-                                new CodeInstruction(OpCodes.Ldarg_1),
-                                new CodeInstruction(OpCodes.Ldarg_2),
-                                new CodeInstruction(OpCodes.Ldloc_1),
-                                new CodeInstruction(OpCodes.Ldloc_2),
-                                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)))
+            new(code => code.IsLdloc()),
+            CodeMatch.Calls(AccessTools.PropertyGetter(typeof(CompEquippable), nameof(CompEquippable.AllVerbs))),
+            CodeMatch.Calls(AccessTools.Method(typeof(EquipmentUtility), nameof(EquipmentUtility.GetRecoilVerb))),
+            new(code => code.opcode == OpCodes.Ldloca || code.opcode == OpCodes.Ldloca_S),
+            new(code => code.opcode == OpCodes.Ldloca || code.opcode == OpCodes.Ldloca_S),
+            new(code => code.IsLdarg(2)),
+            CodeMatch.Calls(recoil),
         };
-        int index = 0;
-        bool foundInjection = false;
-        for (int i = 0; i < codes.Count; i++)
+        var matcher = new CodeMatcher(codes).MatchStartForward(recoilPattern);
+        if (matcher.IsInvalid || codes.Count(code => code.Calls(recoil)) != 1)
         {
-            CodeInstruction code = codes[i];
-            if (foundInjection && code.opcode == OpCodes.Stloc_1)
-            {
-                index = i + 1;
-                break;
-            }
-            else if (code.opcode == OpCodes.Call && ReferenceEquals(code.operand, typeof(EquipmentUtility).GetMethod(nameof(EquipmentUtility.Recoil))))
-            {
-                foundInjection = true;
-            }
+            Log.Error("Combat Extended :: DrawEquipmentAiming expected one recognizable EquipmentUtility.Recoil sequence. Skipping renderer patch.");
+            return codes;
         }
-        if (!foundInjection)
+        var componentLoad = matcher.Instruction.Clone();
+        int afterRecoil = matcher.Pos + recoilPattern.Length;
+
+        matcher.Advance(recoilPattern.Length).MatchStartForward(CodeMatch.Calls(drawMesh));
+        if (matcher.IsInvalid || codes.Count(code => code.Calls(drawMesh)) != 1 || matcher.Instruction.blocks.Count != 0)
         {
-            Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            Log.Error("Combat Extended :: DrawEquipmentAiming expected one Graphics.DrawMesh(Mesh, Matrix4x4, Material, int) after recoil, outside an exception boundary. Skipping renderer patch.");
+            return codes;
         }
-        codes.InsertRange(index, recoil_opcodes);
-        codes[codes.Count - 2].operand =
-            AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
-        codes.InsertRange(codes.Count - 2, new[]
-        {
-                                new CodeInstruction(OpCodes.Ldarg_0),
-                                new CodeInstruction(OpCodes.Ldarg_1),
-                                new CodeInstruction(OpCodes.Ldarg_2)
-                            });
+
+        // Edit the later site first. Branches targeting the draw call must also load CE's
+        // three extra arguments. Copy its labels without modifying the incoming instructions.
+        int drawIndex = matcher.Pos;
+        codes[drawIndex] = CodeInstruction.Call(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
+        codes.InsertRange(drawIndex,
+        [
+            new CodeInstruction(OpCodes.Ldarg_0).WithLabels(matcher.Instruction.labels),
+            new CodeInstruction(OpCodes.Ldarg_1),
+            new CodeInstruction(OpCodes.Ldarg_2),
+        ]);
+        codes.InsertRange(afterRecoil,
+        [
+            new CodeInstruction(OpCodes.Ldarg_0),
+            new CodeInstruction(OpCodes.Ldarg_2),
+            componentLoad,
+            CodeInstruction.Call(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)),
+        ]);
         return codes;
     }
 }
