@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Explicit non-stuffable ratings: CE's neutral Ultra-tech fallback is
+       sqrt(Bulk) * 4. Avoid a zero rating when the automatic material lookup
+       cannot provide one. These are weapon parry defenses, not attack AP. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases/ToughnessRating</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases/ToughnessRating</xpath>
+      <value><ToughnessRating>11.313708</ToughnessRating></value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases</xpath>
+      <value><ToughnessRating>11.313708</ToughnessRating></value>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases/ToughnessRating</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases/ToughnessRating</xpath>
+      <value><ToughnessRating>11.313708</ToughnessRating></value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases</xpath>
+      <value><ToughnessRating>11.313708</ToughnessRating></value>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/ToughnessRating</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases/ToughnessRating</xpath>
+      <value><ToughnessRating>6.324555</ToughnessRating></value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="AOC_Monojavelin"]/statBases</xpath>
+      <value><ToughnessRating>6.324555</ToughnessRating></value>
+    </nomatch>
+  </Operation>
+</Patch>

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <!--Battle Backpacks-->
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_Battle_Backpacks"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Battle_Backpacks"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_Battle_Backpacks"]/statBases</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_Battle_Backpacks"]/equippedStatOffsets/CarryingCapacity</xpath>
+    <value>
+      <CarryBulk>70</CarryBulk>
+    </value>
+  </Operation>
+  <!--Cleaner Backpacks-->
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]/statBases</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]/equippedStatOffsets/CarryingCapacity</xpath>
+    <value>
+      <CarryBulk>100</CarryBulk>
+    </value>
+  </Operation>
+  <!--Recycle Backpacks-->
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_Recyle_Backpacks"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Recyle_Backpacks"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_Recyle_Backpacks"]/statBases</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_Recyle_Backpacks"]/equippedStatOffsets/CarryingCapacity</xpath>
+    <value>
+      <CarryBulk>100</CarryBulk>
+    </value>
+  </Operation>
+</Patch>

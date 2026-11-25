@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <CombatExtended.AmmoCategoryDef>
+    <defName>AOC17CE_KillaKillFrag</defName>
+    <label>fragmentation plunger</label>
+    <labelShort>Frag</labelShort>
+    <description>A fragmentation charge fitted to a plunger. It explodes about 1.67 seconds after impact, dealing 56 explosive damage in a 1.5-cell radius and scattering 40 small fragments.</description>
+  </CombatExtended.AmmoCategoryDef>
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_AOC17KillaKill</defName>
+    <label>KILLAKILL explosive plunger</label>
+    <description>Dedicated explosive plunger ammunition for the AOC KILLAKILL. Each round has the blast and fragmentation payload of a CE frag grenade.</description>
+    <ammoTypes>
+      <Ammo_AOC17KillaKill>AOC17CE_KillaKillProjectile</Ammo_AOC17KillaKill>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="MediumAmmoBase">
+    <defName>Ammo_AOC17KillaKill</defName>
+    <label>KILLAKILL explosive plunger</label>
+    <description>Dedicated ammunition for the AOC KILLAKILL: an explosive charge fitted to a plunger. About 1.67 seconds after impact, it deals 56 explosive damage in a 1.5-cell radius and scatters 40 small fragments. The blast and fragments can also harm allies.</description>
+    <graphicData>
+      <texPath>ThirdParty/AOC/Ammo/AOC_KILLAKILL/plunger</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.4</Mass>
+      <Bulk>0.87</Bulk>
+    </statBases>
+    <thingCategories>
+      <li>AmmoGrenades</li>
+    </thingCategories>
+    <stackLimit>75</stackLimit>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_AOC_printer</li>
+    </tradeTags>
+    <ammoClass>AOC17CE_KillaKillFrag</ammoClass>
+    <detonateProjectile>AOC17CE_KillaKillProjectile</detonateProjectile>
+    <cookOffSound>Explosion_Bomb</cookOffSound>
+    <cookOffFlashScale>20</cookOffFlashScale>
+  </ThingDef>
+  <ThingDef ParentName="BaseExplosiveBullet">
+    <defName>AOC17CE_KillaKillProjectile</defName>
+    <label>explosive plunger</label>
+    <description>A KILLAKILL plunger carrying the blast and fragmentation payload of a CE frag grenade. It explodes about 1.67 seconds after impact, dealing 56 explosive damage in a 1.5-cell radius and scattering 40 small fragments.</description>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/AOC_KILLAKILL</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>56</damageAmountBase>
+      <explosionRadius>1.5</explosionRadius>
+      <explosionDelay>100</explosionDelay>
+      <explosionDamageFalloff>true</explosionDamageFalloff>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <speed>94</speed>
+      <suppressionFactor>3</suppressionFactor>
+      <dangerFactor>2</dangerFactor>
+      <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+      <ballisticCoefficient>2~2</ballisticCoefficient>
+      <mass>400~400</mass>
+      <diameter>64~64</diameter>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>40</Fragment_Small>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_AOC17KillaKill</defName>
+    <label>make KILLAKILL explosive plungers x20</label>
+    <description>Craft 20 explosive plungers for the AOC KILLAKILL.</description>
+    <jobString>Making explosive plungers.</jobString>
+    <researchPrerequisite>AOC_Toy2_Access</researchPrerequisite>
+    <workAmount>300</workAmount>
+    <recipeUsers>
+      <li>AOC_printer</li>
+    </recipeUsers>
+    <ingredients>
+      <li><filter><thingDefs><li>Steel</li></thingDefs></filter><count>8</count></li>
+      <li><filter><thingDefs><li>FSX</li></thingDefs></filter><count>4</count></li>
+      <li><filter><thingDefs><li>ComponentIndustrial</li></thingDefs></filter><count>2</count></li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs><li>Steel</li><li>FSX</li><li>ComponentIndustrial</li></thingDefs>
+    </fixedIngredientFilter>
+    <products><Ammo_AOC17KillaKill>20</Ammo_AOC17KillaKill></products>
+  </RecipeDef>
+</Defs>

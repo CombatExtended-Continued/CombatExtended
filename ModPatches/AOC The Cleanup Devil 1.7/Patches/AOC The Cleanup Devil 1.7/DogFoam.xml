@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- AOC's ability casts the spawned object to Verse.Projectile. CE changes
+       BaseGrenadeProjectile to ProjectileCE_Explosive before XML inheritance.
+       Keep this harmless, ability-launched foam projectile on its native path. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_DogFoam"]</xpath>
+    <match Class="PatchOperationConditional">
+      <xpath>Defs/ThingDef[defName="AOC_DogFoam"]/thingClass</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="AOC_DogFoam"]/thingClass</xpath>
+        <value><thingClass>Projectile_Explosive</thingClass></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="AOC_DogFoam"]</xpath>
+        <value><thingClass>Projectile_Explosive</thingClass></value>
+      </nomatch>
+    </match>
+  </Operation>
+</Patch>

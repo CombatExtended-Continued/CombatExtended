@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[
+			defName="AOC_B2H"
+			] </xpath>
+    <value>
+      <thingClass>CombatExtended.AmmoThing</thingClass>
+      <stackLimit>25</stackLimit>
+      <resourceReadoutPriority>First</resourceReadoutPriority>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAttributeSet">
+    <xpath>Defs/ThingDef[
+			defName="AOC_B2H"
+			] </xpath>
+    <attribute>Class</attribute>
+    <value>CombatExtended.AmmoDef</value>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_B2H"]/comps</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="AOC_B2H"]</xpath>
+      <value>
+        <comps/>
+      </value>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[
+			defName="Proj_GrenadeDevEraser"
+			]/thingClass </xpath>
+    <value>
+      <thingClass>AOC17CE.Projectile_B2HCE</thingClass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Proj_GrenadeDevEraser"]/comps</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Proj_GrenadeDevEraser"]</xpath>
+      <value>
+        <comps/>
+      </value>
+    </nomatch>
+  </Operation>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>AOC_B2H</defName>
+    <statBases>
+      <Mass>1</Mass>
+      <Bulk>1</Bulk>
+      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+    </statBases>
+    <Properties>
+      <label>throw B2H</label>
+      <verbClass>AOC17CE.Verb_ThrowB2HCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <range>12.0</range>
+      <minRange>2</minRange>
+      <warmupTime>0.8</warmupTime>
+      <noiseRadius>4</noiseRadius>
+      <soundCast>ThrowGrenade</soundCast>
+      <targetParams>
+        <canTargetLocations>true</canTargetLocations>
+      </targetParams>
+      <defaultProjectile>Proj_GrenadeDevEraser</defaultProjectile>
+      <onlyManualCast>true</onlyManualCast>
+      <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+      <isPrimary>true</isPrimary>
+    </Properties>
+    <weaponTags>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Proj_GrenadeDevEraser"]/projectile</xpath>
+    <value>
+      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <explosionRadius>3.5</explosionRadius>
+        <damageDef>DevModeEraser</damageDef>
+        <explosionDelay>100</explosionDelay>
+        <speed>14</speed>
+        <suppressionFactor>0</suppressionFactor>
+        <dangerFactor>0</dangerFactor>
+        <airborneSuppressionFactor>0</airborneSuppressionFactor>
+        <damageAmountBase>1</damageAmountBase>
+      </projectile>
+    </value>
+  </Operation>
+</Patch>

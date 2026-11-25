@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <!-- ========== FLEX Apparel ========== -->
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_FLEX_clothes"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_clothes"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>1.5</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_clothes"]/statBases</xpath>
+          <value>
+            <Bulk>1.5</Bulk>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_FLEX_clothes"]/statBases/WornBulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_clothes"]/statBases/WornBulk</xpath>
+          <value>
+            <WornBulk>1</WornBulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_clothes"]/statBases</xpath>
+          <value>
+            <WornBulk>1</WornBulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_FLEX_clothes"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>20</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- FLEX Suit -->
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_FLEX_Suit"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Suit"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>5</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Suit"]/statBases</xpath>
+          <value>
+            <Bulk>5</Bulk>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_FLEX_Suit"]/statBases/WornBulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Suit"]/statBases/WornBulk</xpath>
+          <value>
+            <WornBulk>3</WornBulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Suit"]/statBases</xpath>
+          <value>
+            <WornBulk>3</WornBulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_FLEX_Suit"]/statBases/ArmorRating_Sharp</xpath>
+    <value>
+      <ArmorRating_Sharp>7</ArmorRating_Sharp>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_FLEX_Suit"]/statBases/ArmorRating_Blunt</xpath>
+    <value>
+      <ArmorRating_Blunt>10</ArmorRating_Blunt>
+    </value>
+  </Operation>
+  <!-- FLEX Dress -->
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_FLEX_Dress"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Dress"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>4</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Dress"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_FLEX_Dress"]/statBases/WornBulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Dress"]/statBases/WornBulk</xpath>
+          <value>
+            <WornBulk>2</WornBulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Dress"]/statBases</xpath>
+          <value>
+            <WornBulk>2</WornBulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="AOC_FLEX_Dress"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- FLEX Coat -->
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_FLEX_Coat"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Coat"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Coat"]/statBases</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_FLEX_Coat"]/statBases/WornBulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Coat"]/statBases/WornBulk</xpath>
+          <value>
+            <WornBulk>1.5</WornBulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_FLEX_Coat"]/statBases</xpath>
+          <value>
+            <WornBulk>1.5</WornBulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="AOC_FLEX_Coat"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+</Patch>

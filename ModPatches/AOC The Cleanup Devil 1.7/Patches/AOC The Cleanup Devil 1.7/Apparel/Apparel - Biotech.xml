@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Biotech</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- ========== Child Apparel ========== -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[
+						defName="AOCC_Kid_Apparel_Bori" or
+						defName="AOCC_Kid_Apparel_Miho" or
+						defName="AOCC_Kid_Apparel_AOC" or
+						defName="AOCC_Kid_Apparel_sheepawn"
+						]/statBases/StuffEffectMultiplierArmor </xpath>
+          <value>
+            <StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+          </value>
+        </li>
+        <li Class="PatchOperationSequence">
+          <operations>
+            <li Class="PatchOperationConditional">
+              <xpath>Defs/ThingDef[
+						defName="AOCC_Kid_Apparel_Bori" or
+						defName="AOCC_Kid_Apparel_Miho" or
+						defName="AOCC_Kid_Apparel_AOC" or
+						defName="AOCC_Kid_Apparel_sheepawn"
+						]/statBases/Bulk</xpath>
+              <match Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[
+						defName="AOCC_Kid_Apparel_Bori" or
+						defName="AOCC_Kid_Apparel_Miho" or
+						defName="AOCC_Kid_Apparel_AOC" or
+						defName="AOCC_Kid_Apparel_sheepawn"
+						]/statBases/Bulk</xpath>
+                <value>
+                  <Bulk>1.5</Bulk>
+                </value>
+              </match>
+              <nomatch Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[
+						defName="AOCC_Kid_Apparel_Bori" or
+						defName="AOCC_Kid_Apparel_Miho" or
+						defName="AOCC_Kid_Apparel_AOC" or
+						defName="AOCC_Kid_Apparel_sheepawn"
+						]/statBases</xpath>
+                <value>
+                  <Bulk>1.5</Bulk>
+                </value>
+              </nomatch>
+            </li>
+            <li Class="PatchOperationConditional">
+              <xpath>Defs/ThingDef[
+						defName="AOCC_Kid_Apparel_Bori" or
+						defName="AOCC_Kid_Apparel_Miho" or
+						defName="AOCC_Kid_Apparel_AOC" or
+						defName="AOCC_Kid_Apparel_sheepawn"
+						]/statBases/WornBulk</xpath>
+              <match Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[
+						defName="AOCC_Kid_Apparel_Bori" or
+						defName="AOCC_Kid_Apparel_Miho" or
+						defName="AOCC_Kid_Apparel_AOC" or
+						defName="AOCC_Kid_Apparel_sheepawn"
+						]/statBases/WornBulk</xpath>
+                <value>
+                  <WornBulk>0.5</WornBulk>
+                </value>
+              </match>
+              <nomatch Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[
+						defName="AOCC_Kid_Apparel_Bori" or
+						defName="AOCC_Kid_Apparel_Miho" or
+						defName="AOCC_Kid_Apparel_AOC" or
+						defName="AOCC_Kid_Apparel_sheepawn"
+						]/statBases</xpath>
+                <value>
+                  <WornBulk>0.5</WornBulk>
+                </value>
+              </nomatch>
+            </li>
+          </operations>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

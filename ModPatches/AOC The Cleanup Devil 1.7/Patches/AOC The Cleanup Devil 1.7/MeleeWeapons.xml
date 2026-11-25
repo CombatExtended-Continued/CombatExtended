@@ -1,0 +1,710 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <!-- Fire Axe -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_F4T"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>handle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>9</power>
+          <cooldownTime>1.3</cooldownTime>
+          <armorPenetrationBlunt>3.263</armorPenetrationBlunt>
+          <chanceFactor>0.15</chanceFactor>
+          <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>head</label>
+          <capacities>
+            <li>Demolish</li>
+          </capacities>
+          <power>17</power>
+          <cooldownTime>2.43</cooldownTime>
+          <armorPenetrationBlunt>10.8</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>edge</label>
+          <capacities>
+            <li>Cut</li>
+          </capacities>
+          <power>41</power>
+          <cooldownTime>2.41</cooldownTime>
+          <armorPenetrationBlunt>13.05</armorPenetrationBlunt>
+          <armorPenetrationSharp>1.16</armorPenetrationSharp>
+          <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>4</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases/MeleeCounterParryBonus</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases/MeleeCounterParryBonus</xpath>
+          <value>
+            <MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases</xpath>
+          <value>
+            <MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases/Mass</xpath>
+    <value>
+      <Mass>2.9</Mass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]</xpath>
+          <value>
+            <equippedStatOffsets/>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets/MeleeCritChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets/MeleeCritChance</xpath>
+          <value>
+            <MeleeCritChance>0.11</MeleeCritChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.11</MeleeCritChance>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets/MeleeParryChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets/MeleeParryChance</xpath>
+          <value>
+            <MeleeParryChance>0.28</MeleeParryChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeParryChance>0.28</MeleeParryChance>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+          <value>
+            <MeleeDodgeChance>0.23</MeleeDodgeChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_F4T"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeDodgeChance>0.23</MeleeDodgeChance>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <!-- Niddle -->
+  <!-- Monospear -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>shaft</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>7</power>
+          <cooldownTime>1.15</cooldownTime>
+          <chanceFactor>0.15</chanceFactor>
+          <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>shaft</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>4</power>
+          <cooldownTime>1.48</cooldownTime>
+          <chanceFactor>0.05</chanceFactor>
+          <armorPenetrationBlunt>1</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>head</label>
+          <capacities>
+            <li>Stab</li>
+          </capacities>
+          <power>24</power>
+          <cooldownTime>1.09</cooldownTime>
+          <armorPenetrationBlunt>5.25</armorPenetrationBlunt>
+          <armorPenetrationSharp>18.5</armorPenetrationSharp>
+          <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]</xpath>
+          <value>
+            <statBases/>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>8</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases</xpath>
+          <value>
+            <Bulk>8</Bulk>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases/MeleeCounterParryBonus</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases/MeleeCounterParryBonus</xpath>
+          <value>
+            <MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/statBases</xpath>
+          <value>
+            <MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]</xpath>
+          <value>
+            <equippedStatOffsets/>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets/MeleeCritChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets/MeleeCritChance</xpath>
+          <value>
+            <MeleeCritChance>0.23</MeleeCritChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.23</MeleeCritChance>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets/MeleeParryChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets/MeleeParryChance</xpath>
+          <value>
+            <MeleeParryChance>1.5</MeleeParryChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeParryChance>1.5</MeleeParryChance>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+          <value>
+            <MeleeDodgeChance>0.92</MeleeDodgeChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeDodgeChance>0.92</MeleeDodgeChance>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <!-- Long Monospear -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>shaft</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.45</cooldownTime>
+          <chanceFactor>0.15</chanceFactor>
+          <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>shaft</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>1.68</cooldownTime>
+          <chanceFactor>0.05</chanceFactor>
+          <armorPenetrationBlunt>1</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>head</label>
+          <capacities>
+            <li>Stab</li>
+          </capacities>
+          <power>28</power>
+          <cooldownTime>1.39</cooldownTime>
+          <armorPenetrationBlunt>5.25</armorPenetrationBlunt>
+          <armorPenetrationSharp>22.5</armorPenetrationSharp>
+          <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]</xpath>
+          <value>
+            <statBases/>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>8</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases</xpath>
+          <value>
+            <Bulk>8</Bulk>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases/MeleeCounterParryBonus</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases/MeleeCounterParryBonus</xpath>
+          <value>
+            <MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/statBases</xpath>
+          <value>
+            <MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]</xpath>
+          <value>
+            <equippedStatOffsets/>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets/MeleeCritChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets/MeleeCritChance</xpath>
+          <value>
+            <MeleeCritChance>0.23</MeleeCritChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.23</MeleeCritChance>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets/MeleeParryChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets/MeleeParryChance</xpath>
+          <value>
+            <MeleeParryChance>1.5</MeleeParryChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeParryChance>1.5</MeleeParryChance>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+          <value>
+            <MeleeDodgeChance>0.92</MeleeDodgeChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeDodgeChance>0.92</MeleeDodgeChance>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <!-- Upcycling Doll - Dog -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_Doll_Dog"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>bash</label>
+          <labelUsedInLogging>false</labelUsedInLogging>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>1</power>
+          <cooldownTime>2</cooldownTime>
+          <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_Doll_Dog"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Doll_Dog"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>0.2</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_Doll_Dog"]/statBases</xpath>
+          <value>
+            <Bulk>0.2</Bulk>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <!-- Royalty-only Swatter -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AOC_Swatter"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Swatter"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>4</power>
+                <cooldownTime>1.4</cooldownTime>
+                <chanceFactor>0.15</chanceFactor>
+                <armorPenetrationBlunt>1</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>swatter</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>14</power>
+                <cooldownTime>1.2</cooldownTime>
+                <armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Flame</def>
+                    <amount>3</amount>
+                    <chance>0.25</chance>
+                  </li>
+                  <li>
+                    <def>EMP</def>
+                    <amount>5</amount>
+                  </li>
+                </extraMeleeDamages>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <li Class="PatchOperationSequence">
+          <operations>
+            <li Class="PatchOperationConditional">
+              <xpath>Defs/ThingDef[defName="AOC_Swatter"]/statBases/Bulk</xpath>
+              <match Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/statBases/Bulk</xpath>
+                <value>
+                  <Bulk>3</Bulk>
+                </value>
+              </match>
+              <nomatch Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/statBases</xpath>
+                <value>
+                  <Bulk>3</Bulk>
+                </value>
+              </nomatch>
+            </li>
+            <li Class="PatchOperationConditional">
+              <xpath>Defs/ThingDef[defName="AOC_Swatter"]/statBases/MeleeCounterParryBonus</xpath>
+              <match Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/statBases/MeleeCounterParryBonus</xpath>
+                <value>
+                  <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+                </value>
+              </match>
+              <nomatch Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/statBases</xpath>
+                <value>
+                  <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+                </value>
+              </nomatch>
+            </li>
+          </operations>
+        </li>
+        <li Class="PatchOperationSequence">
+          <operations>
+            <li Class="PatchOperationConditional">
+              <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets</xpath>
+              <nomatch Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]</xpath>
+                <value>
+                  <equippedStatOffsets/>
+                </value>
+              </nomatch>
+            </li>
+            <li Class="PatchOperationConditional">
+              <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets/MeleeCritChance</xpath>
+              <match Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets/MeleeCritChance</xpath>
+                <value>
+                  <MeleeCritChance>0.08</MeleeCritChance>
+                </value>
+              </match>
+              <nomatch Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets</xpath>
+                <value>
+                  <MeleeCritChance>0.08</MeleeCritChance>
+                </value>
+              </nomatch>
+            </li>
+            <li Class="PatchOperationConditional">
+              <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets/MeleeParryChance</xpath>
+              <match Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets/MeleeParryChance</xpath>
+                <value>
+                  <MeleeParryChance>0.12</MeleeParryChance>
+                </value>
+              </match>
+              <nomatch Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets</xpath>
+                <value>
+                  <MeleeParryChance>0.12</MeleeParryChance>
+                </value>
+              </nomatch>
+            </li>
+            <li Class="PatchOperationConditional">
+              <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+              <match Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+                <value>
+                  <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                </value>
+              </match>
+              <nomatch Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="AOC_Swatter"]/equippedStatOffsets</xpath>
+                <value>
+                  <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                </value>
+              </nomatch>
+            </li>
+          </operations>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AOC_ND"]/tools</xpath>
+    <value>
+      <tools Inherit="False">
+        <li Class="CombatExtended.ToolCE">
+          <label>brush head</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>16</power>
+          <cooldownTime>2.4</cooldownTime>
+          <armorPenetrationBlunt>4</armorPenetrationBlunt>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>handle</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>9</power>
+          <cooldownTime>2.4</cooldownTime>
+          <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_ND"]/statBases/Bulk</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/statBases/Bulk</xpath>
+          <value>
+            <Bulk>4</Bulk>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_ND"]/statBases/MeleeCounterParryBonus</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/statBases/MeleeCounterParryBonus</xpath>
+          <value>
+            <MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/statBases</xpath>
+          <value>
+            <MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets/MeleeCritChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets/MeleeCritChance</xpath>
+          <value>
+            <MeleeCritChance>0.08</MeleeCritChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.08</MeleeCritChance>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets/MeleeParryChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets/MeleeParryChance</xpath>
+          <value>
+            <MeleeParryChance>0.28</MeleeParryChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeParryChance>0.28</MeleeParryChance>
+          </value>
+        </nomatch>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+          <value>
+            <MeleeDodgeChance>0.23</MeleeDodgeChance>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_ND"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeDodgeChance>0.23</MeleeDodgeChance>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+</Patch>
