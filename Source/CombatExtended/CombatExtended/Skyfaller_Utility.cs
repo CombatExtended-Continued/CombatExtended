@@ -9,6 +9,7 @@ using UnityEngine;
 using RimWorld.Planet;
 
 namespace CombatExtended;
+
 public static class Skyfaller_Utility
 {
     public const float cameraSin = 0.84f; // Sin(57 degrees)

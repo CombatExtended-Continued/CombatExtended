@@ -8,6 +8,7 @@ using Verse.AI;
 using UnityEngine;
 
 namespace CombatExtended.AI;
+
 public class SquadBrainPlus
 {
     private readonly Map map;

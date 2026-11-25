@@ -5,6 +5,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 static class Harmony_Hediff_Injury
 {
     [HarmonyPatch(typeof(Hediff_Injury), nameof(Hediff_Injury.PostAdd))]

@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class WeaponPlatform : ThingWithComps
 {
     public readonly List<AttachmentLink> attachments = new List<AttachmentLink>();

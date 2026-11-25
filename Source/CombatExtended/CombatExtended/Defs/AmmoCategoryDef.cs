@@ -5,6 +5,7 @@ using System.Text;
 using Verse;
 
 namespace CombatExtended;
+
 public class AmmoCategoryDef : Def
 {
     public bool advanced = false;

@@ -6,6 +6,7 @@ using RimWorld.Planet;
 using Verse;
 
 namespace CombatExtended;
+
 public class WorldStrengthTracker : WorldComponent
 {
     private bool initialized = false;

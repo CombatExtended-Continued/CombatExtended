@@ -4,6 +4,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 [HarmonyPatch(typeof(ResearchPrerequisitesUtility), nameof(ResearchPrerequisitesUtility.UnlockedDefsGroupedByPrerequisites))]
 public class Harmony_ResearchPrerequisitesUtility
 {

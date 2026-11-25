@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 
 namespace CombatExtended;
+
 public class NonSnapTurretExtension : DefModExtension
 {
     public float speed = 1f;

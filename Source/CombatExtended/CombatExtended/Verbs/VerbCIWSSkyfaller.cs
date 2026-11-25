@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class VerbCIWSSkyfaller : VerbCIWS<Skyfaller>
 {
     public override IEnumerable<Skyfaller> Targets => Caster.Map?.listerThings.ThingsInGroup(Verse.ThingRequestGroup.ActiveTransporter).OfType<Skyfaller>();

@@ -9,6 +9,7 @@ using Verse.AI;
 using System.Reflection;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch]
 class Harmony_DangerWatcher
 {

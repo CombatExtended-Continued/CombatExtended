@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Contains a series of HoldRecord items.  Functionally not that different from a List of HoldRecord but that list cannot be saved, this can be.
 /// </summary>

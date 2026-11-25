@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class Dialog_SetMagCount : Window
 {
     private readonly CompMechAmmo mechAmmo;

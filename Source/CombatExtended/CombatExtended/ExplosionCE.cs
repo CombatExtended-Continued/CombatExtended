@@ -8,6 +8,7 @@ using Verse.Sound;
 using HarmonyLib;
 
 namespace CombatExtended;
+
 public class ExplosionCE : Verse.Explosion
 {
     // New properties

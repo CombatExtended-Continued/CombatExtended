@@ -8,6 +8,7 @@ using UnityEngine;
 using RimWorld;
 
 namespace CombatExtended;
+
 public class ProjectileCE_BunkerBuster : ProjectileCE_Explosive
 {
     public override void Impact(Thing hitThing)

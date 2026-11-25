@@ -3,6 +3,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class HediffComp_Prometheum : HediffComp
 {
     private const float InternalFireDamage = 2;

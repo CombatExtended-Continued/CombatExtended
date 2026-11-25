@@ -6,6 +6,7 @@ using RimWorld;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class TurretTracker : MapComponent
 {
     public HashSet<Building_Turret> Turrets = new HashSet<Building_Turret>();

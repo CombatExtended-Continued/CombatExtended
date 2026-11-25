@@ -7,6 +7,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 internal static class Harmony_ToxicUtility
 {
     /// <summary>

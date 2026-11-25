@@ -4,6 +4,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Game), nameof(Game.ExposeData))]
 public static class Harmony_Game_ExposeData
 {

@@ -3,6 +3,7 @@ using RimWorld;
 using RimWorld.Planet;
 
 namespace CombatExtended;
+
 public static class FactionHosilityUtility
 {
     public static ShellingResponseDef GetShellingResponseDef(this Faction faction) => GetShellingResponseDef(faction?.def ?? null);

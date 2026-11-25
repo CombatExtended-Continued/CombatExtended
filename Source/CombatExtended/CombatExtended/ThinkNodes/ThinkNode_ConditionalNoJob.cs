@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class ThinkNode_ConditionalNoJob : ThinkNode_Conditional
 {
     public override bool Satisfied(Pawn pawn)

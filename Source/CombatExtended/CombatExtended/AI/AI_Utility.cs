@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.Xml;
 using CombatExtended.Utilities;
 using RimWorld;
-using RimWorld.BaseGen;
 using UnityEngine;
 using Verse;
 
 namespace CombatExtended.AI;
+
 public static class AI_Utility
 {
     private static readonly Dictionary<Pawn, CompTacticalManager> _compTactical = new Dictionary<Pawn, CompTacticalManager>(2048);

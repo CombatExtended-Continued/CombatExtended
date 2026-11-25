@@ -7,6 +7,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class ApparelAutoPatcher
 {

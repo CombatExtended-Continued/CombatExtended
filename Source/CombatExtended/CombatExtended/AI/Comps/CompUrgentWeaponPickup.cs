@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.AI;
+
 public class CompUrgentWeaponPickup : ICompTactics
 {
     private const int BULLETIMPACT_COOLDOWN = 800;

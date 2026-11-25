@@ -9,6 +9,7 @@ using System.Linq;
 using Verse.AI;
 
 namespace CombatExtended;
+
 /// <summary>
 /// A container used for rendering the attachment editor in any place.
 /// </summary>

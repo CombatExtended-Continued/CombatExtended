@@ -8,6 +8,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended;
+
 public class CompProperties_MechAmmo : CompProperties
 {
     [NoTranslate]

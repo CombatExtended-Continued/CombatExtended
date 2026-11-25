@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(FireWatcher), "get_LargeFireDangerPresent")]
 internal static class Harmony_FireWatcher
 {

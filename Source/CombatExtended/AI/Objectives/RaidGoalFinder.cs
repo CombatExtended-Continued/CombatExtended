@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.AI;
+
 public abstract class RaidGoalFinder
 {
 

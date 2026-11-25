@@ -6,6 +6,7 @@ using Verse.AI;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class JobDriver_Stabilize : JobDriver
 {
     private const float BaseTendDuration = 60f;

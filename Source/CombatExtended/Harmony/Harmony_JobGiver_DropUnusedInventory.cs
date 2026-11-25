@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(JobGiver_DropUnusedInventory), "Drop")]
 public static class Harmony_JobGiver_DropUnusedInventory_Drop
 {

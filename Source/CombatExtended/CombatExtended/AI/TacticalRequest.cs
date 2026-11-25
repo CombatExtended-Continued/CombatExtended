@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace CombatExtended.AI;
+
 public struct TacicalRequest : IExposable
 {
     public LocalTargetInfo target;

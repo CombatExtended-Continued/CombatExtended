@@ -7,6 +7,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended.AI;
+
 public class FactionBrain : IExposable
 {
     public FactionBrainManager manager;

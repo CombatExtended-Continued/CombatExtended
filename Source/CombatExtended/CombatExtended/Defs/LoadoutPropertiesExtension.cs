@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class LoadoutPropertiesExtension : DefModExtension
 {
     #region Fields

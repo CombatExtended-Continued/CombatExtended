@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
+
 /* Overrides the CompReloadable reload job if the pawn has suitable ammo in their inventory.
  * If no inventory ammo is available, base method is allowed to execute (reload from stockpiles).
  */

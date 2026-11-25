@@ -1,6 +1,7 @@
 using RimWorld;
 
 namespace CombatExtended;
+
 /// <summary>
 /// CE-specific gas properties for the object gas system.
 /// </summary>

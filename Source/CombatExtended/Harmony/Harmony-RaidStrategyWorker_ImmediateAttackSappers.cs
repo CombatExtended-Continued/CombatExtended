@@ -10,6 +10,7 @@ using UnityEngine;
 using Harmony;
 
 namespace CombatExtended.Harmony;
+
 [HarmonyPatch(typeof(RaidStrategyWorker_ImmediateAttackSappers), "CanBeSapper")]
 public static class Harmony_RaidStrategyWorker_ImmediateAttackSappers_CanBeSapper
 {

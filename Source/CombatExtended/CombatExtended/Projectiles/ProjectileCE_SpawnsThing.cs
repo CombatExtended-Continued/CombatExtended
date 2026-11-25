@@ -7,6 +7,7 @@ using Verse;
 using Verse.Noise;
 
 namespace CombatExtended;
+
 public class ProjectileCE_SpawnsThing : ProjectileCE
 {
 

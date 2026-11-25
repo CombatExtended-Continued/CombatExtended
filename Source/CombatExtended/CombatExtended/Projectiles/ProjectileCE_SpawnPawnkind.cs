@@ -3,6 +3,7 @@ using RimWorld.Planet;
 using Verse;
 
 namespace CombatExtended;
+
 public class ProjectileCE_SpawnPawnkind : ProjectileCE
 {
     public override bool AnimalsFleeImpact => false;

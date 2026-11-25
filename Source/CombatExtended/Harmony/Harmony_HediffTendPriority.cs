@@ -8,6 +8,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Hediff), "TendPriority", MethodType.Getter)]
 class Harmony_HediffTendPriority
 {

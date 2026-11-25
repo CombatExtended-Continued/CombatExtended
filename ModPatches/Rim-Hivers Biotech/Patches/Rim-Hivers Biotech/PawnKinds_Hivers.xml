@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Civil Hives -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="Hiver_Worker" or
+			defName="Hiver_Worker_Archer" or
+			defName="Hiver_Worker_South" or
+			defName="Hiver_Worker_Archer_South"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>40</min>
+							<max>80</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="Hiver_Soldier_Archer" or
+			defName="Hiver_Civil_Queen" or
+			defName="Hiver_Soldier_Archer_South" or
+			defName="Hiver_Archer_Heavy_South" or
+			defName="Hiver_Queen_South"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>7</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>100</min>
+					<max>140</max>
+				</shieldMoney>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>60</min>
+							<max>120</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="Hiver_Soldier" or
+			defName="Hiver_Prince" or
+			defName="Hiver_PrinceLeader" or
+			defName="Hiver_Caravan_Prince" or
+			defName="Hiver_Caravan_Guard" or
+			defName="Hiver_Prince_South" or
+			defName="Hiver_PrinceLeader_South" or
+			defName="Hiver_Soldier_South"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>7</max>
+				</primaryMagazineCount>			
+				<shieldMoney>
+					<min>100</min>
+					<max>200</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.33</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Savage -->
+
+	<!-- Outlander -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="OutlanderDrone"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>4</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+							<min>20</min>
+							<max>90</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="OutlanderPrince" or
+			defName="OutlanderDrone" or
+			defName="OutlanderSoldier"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+							<min>40</min>
+							<max>140</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+					<li>
+						<generateChance>0.1</generateChance>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_FlareLauncher</li>
+						</weaponTags>
+						<magazineCount>
+							<min>1</min>
+							<max>3</max>
+						</magazineCount>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+
+	<!-- Misc -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="CivilHiver_Miner" or
+			defName="SavageHiver_Miner" or
+			defName="CivilHiver_Hunter" or
+			defName="SavageHiver_Hunter" or
+			defName="CivilHiver_Logger" or
+			defName="SavageHiver_Logger" or
+			defName="CivilHiver_Farmer"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>40</min>
+							<max>80</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+
+</Patch>

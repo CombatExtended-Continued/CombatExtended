@@ -8,6 +8,7 @@ using VEF;
 
 
 namespace CombatExtended.Compatibility.VEFCompat;
+
 [StaticConstructorOnStartup]
 public class VEFCompat : IModPart
 {

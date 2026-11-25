@@ -7,6 +7,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 /*
  *  If all apparel worn on pawns is the drop image of that apparel,
  *      PLEASE change "code.opcode = OpCodes.Brtrue"

@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public class StatPart_Attachments : StatPart
 {
     public StatPart_Attachments()

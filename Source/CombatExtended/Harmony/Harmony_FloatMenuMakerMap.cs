@@ -10,6 +10,7 @@ using UnityEngine;
 using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
+
 /*
  * The additional item to be inserted adds learning information for CE when a weapon is selected for equipping.
  * The target is actually a nested (compiler generated) class' method.

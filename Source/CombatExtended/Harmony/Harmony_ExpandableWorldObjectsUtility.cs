@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 
 namespace CombatExtended.HarmonyCE;
+
 public static class Harmony_ExpandableWorldObjectsUtility
 {
     [HarmonyPatch(typeof(ExpandableWorldObjectsUtility), nameof(ExpandableWorldObjectsUtility.ExpandableWorldObjectsOnGUI))]

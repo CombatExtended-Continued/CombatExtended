@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Important: the return type should be string.
 /// Used to allow for access to debug information anywhere via a tooltip.

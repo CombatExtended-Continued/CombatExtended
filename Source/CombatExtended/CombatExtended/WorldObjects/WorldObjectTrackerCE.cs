@@ -6,6 +6,7 @@ using RimWorld.Planet;
 using Verse;
 
 namespace CombatExtended.WorldObjects;
+
 /// <summary>
 /// Used to allow the spacing of ticking of world object components without affecting performance by spamming calls.
 /// </summary>

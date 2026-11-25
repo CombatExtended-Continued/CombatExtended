@@ -4,6 +4,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.Compatibility.PsyBlastersCompat;
+
 public class PsychicBlasterRocketCE : ProjectileCE_Explosive
 {
     PsychicProjectileExtension psyModExtension => def.GetModExtension<PsychicProjectileExtension>();

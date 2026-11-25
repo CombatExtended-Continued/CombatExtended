@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class LightingTracker : MapComponent
 {
     private const int FLASHAGE = 500;

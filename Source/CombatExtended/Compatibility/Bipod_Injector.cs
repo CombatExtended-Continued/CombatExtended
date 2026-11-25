@@ -11,6 +11,7 @@ using Verse.Sound;
 using UnityEngine;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class Bipod_Injector
 {

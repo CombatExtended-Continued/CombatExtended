@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace CombatExtended;
+
 public class GenericLabelExtension : DefModExtension
 {
     public string genericLabel;

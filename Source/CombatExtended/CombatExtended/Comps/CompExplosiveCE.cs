@@ -9,6 +9,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Empty class for backwards compatibility
 /// </summary>

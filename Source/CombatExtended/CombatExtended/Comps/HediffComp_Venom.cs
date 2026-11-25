@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class HediffComp_Venom : HediffComp
 {
     private float _venomPerTick;

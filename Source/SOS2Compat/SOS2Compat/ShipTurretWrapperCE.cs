@@ -3,6 +3,7 @@ using SaveOurShip2;
 using System.Reflection;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 public class ShipTurretWrapperCE : Building_ShipTurret
 {
     // This is so that we can fire ShipCombatProjectile from Verb_ShootShipCE by converting Building_ShipTurretCE into something inheriting from Building_ShipTurret.

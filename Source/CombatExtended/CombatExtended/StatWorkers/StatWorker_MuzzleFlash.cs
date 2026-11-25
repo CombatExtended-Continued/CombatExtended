@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public class StatWorker_MuzzleFlash : StatWorker
 {
     public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)

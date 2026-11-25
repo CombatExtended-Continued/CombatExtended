@@ -8,6 +8,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 public class Command_TargetShipCombatCE : Command
 {
     // Pretty much a copy of Command_TargetShipCombat from SOS2 except with Building_ShipTurret changed to Building_ShipTurretCE

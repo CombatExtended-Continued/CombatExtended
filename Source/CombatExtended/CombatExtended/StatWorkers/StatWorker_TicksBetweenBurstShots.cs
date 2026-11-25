@@ -4,6 +4,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class StatWorker_TicksBetweenBurstShots : StatWorker
 {
     public StatWorker_TicksBetweenBurstShots()

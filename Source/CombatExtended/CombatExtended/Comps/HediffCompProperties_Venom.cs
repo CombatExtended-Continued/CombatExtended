@@ -1,6 +1,7 @@
 ﻿using Verse;
 
 namespace CombatExtended;
+
 public class HediffCompProperties_Venom : HediffCompProperties
 {
     public float VenomPerSeverity;

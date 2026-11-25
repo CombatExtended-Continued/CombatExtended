@@ -11,6 +11,7 @@ using CombatExtended;
 using UnityEngine;
 
 namespace CombatExtended.HarmonyCE;
+
 /// <summary>
 /// Replaces DoExplosion on BUILDINGS, PAWNS, AMMO with the CE version that has correct AP and damage
 /// </summary>

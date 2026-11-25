@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Widgets), nameof(Widgets.DefIcon))]
 public static class Harmony_Widgets
 {

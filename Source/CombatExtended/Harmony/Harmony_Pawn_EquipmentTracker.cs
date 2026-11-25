@@ -10,6 +10,7 @@ using UnityEngine;
 using Verse.AI;
 
 namespace CombatExtended.HarmonyCE;
+
 /* Dev Notes:
  * A whole bunch of patches that all look like postfixes are the most apt.  Will have to look at each method in a case by case basis.
  */

@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class WorkGiver_ModifyWeapon : WorkGiver_Scanner
 {
     private const int SCAN_COOLDOWN = 300;

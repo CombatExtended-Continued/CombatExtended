@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class ShadowGrid : MapComponent
 {
     private readonly short[][] sigGrid;

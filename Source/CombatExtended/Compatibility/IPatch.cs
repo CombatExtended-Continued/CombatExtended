@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 namespace CombatExtended.Compatibility;
+
 public interface IPatch
 {
     public bool CanInstall();

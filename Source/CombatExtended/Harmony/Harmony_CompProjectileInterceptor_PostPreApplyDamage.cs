@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(CompProjectileInterceptor), nameof(CompProjectileInterceptor.PostPreApplyDamage))]
 internal static class Harmony_CompProjectileInterceptor_PostPreApplyDamage
 {

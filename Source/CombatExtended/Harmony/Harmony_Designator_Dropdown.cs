@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Verse;
 
 namespace CombatExtended;
+
 [HarmonyLib.HarmonyPatch(typeof(Designator_Dropdown), nameof(Designator.Visible), HarmonyLib.MethodType.Getter)]
 internal static class Harmony_Designator_Dropdown
 {

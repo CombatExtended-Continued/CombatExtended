@@ -9,6 +9,7 @@ using HarmonyLib;
 using System.Reflection;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch]
 class Harmony_PlaceWorker_ShowTurretRadius
 {

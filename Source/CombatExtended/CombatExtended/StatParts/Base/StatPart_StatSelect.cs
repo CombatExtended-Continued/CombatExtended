@@ -5,6 +5,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended;
+
 public abstract class StatPart_StatSelect : StatPart
 {
     public bool includeWeapons;

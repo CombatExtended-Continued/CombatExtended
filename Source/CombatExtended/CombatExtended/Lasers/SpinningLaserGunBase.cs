@@ -5,6 +5,7 @@ using System.Text;
 using Verse;
 
 namespace CombatExtended.Lasers;
+
 public abstract class SpinningLaserGunBase : LaserGun
 {
     public enum State

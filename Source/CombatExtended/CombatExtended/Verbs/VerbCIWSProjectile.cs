@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class VerbCIWSProjectile : VerbCIWS<ProjectileCE>
 {
     public new VerbProperties_CIWSProjectile Props => verbProps as VerbProperties_CIWSProjectile;

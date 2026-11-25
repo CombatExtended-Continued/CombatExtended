@@ -5,6 +5,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.AI;
+
 public class JobDriver_AttackOpportunistic : IJobDriver_Tactical
 {
     private ThingWithComps oldWeapon;

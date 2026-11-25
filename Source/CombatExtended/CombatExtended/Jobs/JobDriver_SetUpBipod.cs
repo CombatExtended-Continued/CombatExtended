@@ -11,6 +11,7 @@ using Verse.Sound;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class JobDriver_SetUpBipod : JobDriver
 {
     private ThingWithComps weapon

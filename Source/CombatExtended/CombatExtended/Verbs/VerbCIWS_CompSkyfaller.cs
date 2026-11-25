@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CombatExtended;
+
 public class VerbCIWS_CompSkyfaller : VerbCIWS_Comp<CompCIWSTarget_Skyfaller>
 {
 }

@@ -9,6 +9,7 @@ using Verse.AI;
 using CombatExtended.Compatibility;
 
 namespace CombatExtended;
+
 public class Command_Reload : Command_Action
 {
     List<Command_Reload> others;

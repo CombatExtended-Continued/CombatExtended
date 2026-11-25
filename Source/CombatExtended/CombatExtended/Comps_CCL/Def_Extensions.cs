@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public static class Def_Extensions
 {
     private static Dictionary<string, Texture2D> _cachedDefIcons = new Dictionary<string, Texture2D>();

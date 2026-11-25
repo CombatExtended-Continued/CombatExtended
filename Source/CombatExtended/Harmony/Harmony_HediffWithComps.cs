@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 static class Harmony_HediffWithComps_BleedRate_Patch
 {
     public static void Postfix(Hediff __instance, ref float __result)

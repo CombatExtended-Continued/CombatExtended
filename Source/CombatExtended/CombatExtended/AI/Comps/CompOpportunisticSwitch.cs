@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.AI;
+
 public class CompOpportunisticSwitch : ICompTactics
 {
     private enum TargetType

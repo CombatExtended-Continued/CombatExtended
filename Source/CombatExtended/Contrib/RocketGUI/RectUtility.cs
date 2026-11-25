@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace CombatExtended.RocketGUI;
+
 public static class RectUtility
 {
     public static Rect[] Columns(this Rect rect, int pieces, float gap = 5f)

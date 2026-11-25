@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended.AI;
+
 public sealed partial class SquadPather
 {
     //this is used to mark the number of passes over certin region

@@ -7,6 +7,7 @@ using Verse;
 using System.Linq;
 
 namespace CombatExtended;
+
 public class ITab_AttachmentView : ITab
 {
     private AttachmentLink highlighted = null;

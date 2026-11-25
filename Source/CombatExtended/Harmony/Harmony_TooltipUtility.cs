@@ -8,6 +8,7 @@ using UnityEngine;
 using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(TooltipUtility), "ShotCalculationTipString")]
 public class Harmony_TooltipUtility_ShotCalculationTipString_Patch
 {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace CombatExtended;
+
 public static partial class ShadowCastingUtility
 {
     private static readonly IntVec3 _offsetH = new IntVec3(1, 0, 0);

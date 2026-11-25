@@ -6,6 +6,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.AI;
+
 public static class Toils_CombatCE
 {
     public static Toil ReloadEquipedWeapon(IJobDriver_Tactical driver, TargetIndex progressIndex, Thing ammo = null)

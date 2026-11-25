@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace CombatExtended;
+
 public enum AimMode : byte
 {
     AimedShot = 0,

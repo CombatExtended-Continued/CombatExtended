@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<!-- ========== PawnKind Patches ========== -->
-	
+
 	<!-- Astropede inherits from the Centipede ThingDef so there's no need to seperately patch it -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="VGE_Astropede"]/combatPower</xpath>
-		<value>
-			<combatPower>580</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="VGE_Astropede"]/combatPower</xpath>
+			<value>
+				<combatPower>580</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="VGE_Astropede"]</xpath>
 		<value>
@@ -21,16 +24,19 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<!-- Hunter -->
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="VGE_Hunter"]/combatPower</xpath>
-		<value>
-			<combatPower>360</combatPower>
-		</value>
+
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="VGE_Hunter"]/combatPower</xpath>
+			<value>
+				<combatPower>360</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="VGE_Hunter"]</xpath>
 		<value>
@@ -42,7 +48,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VGE_Hunter"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
@@ -51,33 +57,33 @@
 			<NightVisionEfficiency>0.60</NightVisionEfficiency>
 		</value>
 	</Operation>
-			
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VGE_Hunter"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>4</ArmorRating_Sharp>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="VGE_Hunter"]/tools</xpath>
-	<value>
-		<tools Inherit="false">
-			<li Class="CombatExtended.ToolCE">
-				<label>shell spike</label>
-				<capacities>
-				<li>Stab</li>
-				</capacities>
-				<power>8</power>
-				<cooldownTime>2.6</cooldownTime>
-				<linkedBodyPartsGroup>SpikedShellAttackTool</linkedBodyPartsGroup>
-				<armorPenetrationSharp>3</armorPenetrationSharp>
-				<armorPenetrationBlunt>2.2</armorPenetrationBlunt>
-			</li>
-		</tools>
-	</value>
+		<xpath>Defs/ThingDef[defName="VGE_Hunter"]/tools</xpath>
+		<value>
+			<tools Inherit="false">
+				<li Class="CombatExtended.ToolCE">
+					<label>shell spike</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.6</cooldownTime>
+					<linkedBodyPartsGroup>SpikedShellAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
 	</Operation>
-	
+
 	<!-- Astronaut -->
 	<!-- This content is only available with Biotech, so we have to do a FindMod patch here -->
 	<Operation Class="PatchOperationFindMod">
@@ -86,17 +92,17 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="VGE_Astronaut"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/comps</xpath>
 					<value>
@@ -116,7 +122,7 @@
 						</li>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]</xpath>
 					<value>
@@ -126,7 +132,7 @@
 						</li>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/tools</xpath>
 					<value>
@@ -145,7 +151,7 @@
 						</tools>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
@@ -154,14 +160,14 @@
 						<NightVisionEfficiency>0.60</NightVisionEfficiency>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>2</ArmorRating_Sharp>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="VGE_Astronaut"]/statBases</xpath>
 					<value>
@@ -174,7 +180,7 @@
 						<MeleeParryChance>0.04</MeleeParryChance>
 					</value>
 				</li>
-				
+
 			</operations>
 		</match>
 	</Operation>

@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace ProjectileImpactFX;
+
 public class TrailThrower
 {
     public static void ThrowSmoke(Vector3 loc, float size, Map map, string defName)

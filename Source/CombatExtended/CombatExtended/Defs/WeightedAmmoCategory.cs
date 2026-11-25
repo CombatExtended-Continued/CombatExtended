@@ -9,6 +9,7 @@ using Verse;
 using System.Xml;
 
 namespace CombatExtended;
+
 public class WeightedAmmoCategory
 {
     public AmmoCategoryDef ammoCategory;

@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended.Lasers;
+
 public class LaserColor
 {
     static LaserColor[] colors =

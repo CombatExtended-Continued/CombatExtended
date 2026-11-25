@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 public class ShipProjectileCE : ProjectileCE_Explosive
 {
     // Modified the projectile drawing since we are setting it to shoot from above the roof height and the SOS2 turret graphics are completely top down

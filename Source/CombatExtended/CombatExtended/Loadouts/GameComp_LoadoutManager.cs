@@ -17,6 +17,7 @@ using Verse;
  */
 
 namespace CombatExtended;
+
 public class LoadoutManager : GameComponent
 {
     #region Fields

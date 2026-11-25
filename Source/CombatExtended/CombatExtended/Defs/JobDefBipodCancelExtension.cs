@@ -7,6 +7,7 @@ using Verse;
 using RimWorld;
 
 namespace CombatExtended;
+
 /// <summary>
 /// needs no fields, since it can just be used in HasModExtension
 /// </summary>

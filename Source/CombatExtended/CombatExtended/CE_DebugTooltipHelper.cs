@@ -10,6 +10,7 @@ using System.Text;
 using RimWorld;
 
 namespace CombatExtended;
+
 public class CE_DebugTooltipHelper : GameComponent
 {
     private StringBuilder builder = new StringBuilder();

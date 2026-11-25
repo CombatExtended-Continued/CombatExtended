@@ -112,7 +112,6 @@ Anthro Race |
 Antinium    |
 Anty the War Ant Race |
 AOC The Cleanup Devil |
-AOC The Cleanup Devil (1.7) |
 Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
 Appliances Expanded	|
@@ -326,6 +325,7 @@ Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
+Heavy Truck |
 Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
@@ -536,6 +536,7 @@ Rimefeller	|
 Rim-Elves   |
 Rim-Gnoblins	|
 Rim-Hivers!	|
+Rim-Hivers! - Biotech |
 Rim Flood	|
 Rim-Robots_	|
 Rim-Shek	|
@@ -554,6 +555,7 @@ Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
 Rimsenal - Spacer Faction Pack  |
 Rimsenal Xenotype Pack - Askbarn    |
+Rimsenal Xenotype Pack - Dioktri  |
 Rimsenal Xenotype Pack - Harana |
 Rimsenal Xenotype Pack - Zohar  |
 RimTraits - General Traits  |
@@ -578,6 +580,7 @@ Save Our Ship 2	|
 SCP - Clothing Only	|
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
+Service Weapon (Continued) |
 Seventh Seraph  |
 Shambler Variants  |
 Silkiera Race	|

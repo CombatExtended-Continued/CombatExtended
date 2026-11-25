@@ -1,4 +1,5 @@
 namespace CombatExtended.Utilities;
+
 public enum TrackedThingsRequestCategory
 {
     /// <summary>

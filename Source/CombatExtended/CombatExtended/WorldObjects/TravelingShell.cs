@@ -10,6 +10,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class TravelingShell : TravelingThing
 {
     public GlobalTargetInfo globalTarget;
@@ -99,7 +100,6 @@ public class TravelingShell : TravelingThing
 
     protected override void Arrived()
     {
-        int tile = Tile;
         foreach (WorldObject worldObject in Find.World.worldObjects.ObjectsAt(Tile))
         {
             if (TryShell(worldObject))

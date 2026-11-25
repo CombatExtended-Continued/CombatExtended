@@ -5,6 +5,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 public class JobGiver_ModifyCarriedWeapon : ThinkNode_JobGiver
 {
     private const int THROTTLE_COOLDOWN = 450;

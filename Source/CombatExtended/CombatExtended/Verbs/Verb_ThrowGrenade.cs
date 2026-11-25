@@ -13,6 +13,7 @@ using UnityEngine;
 using CombatExtended.Utilities;
 
 namespace CombatExtended;
+
 public class Verb_ThrowGrenade : Verb_ShootCEOneUse
 {
     private ShootLine _line;

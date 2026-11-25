@@ -2,6 +2,7 @@
 using Verse;
 
 namespace CombatExtended;
+
 public class StatWorker_BodyPartBluntArmor : StatWorker_BodyPartDensity
 {
     public override string UnitString => "CE_MPa".Translate();

@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class Alert_FactionInfluenced : Alert
 {
     private int _ticks = -1;

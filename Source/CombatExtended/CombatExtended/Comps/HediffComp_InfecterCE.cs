@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class HediffComp_InfecterCE : HediffComp
 {
     private const float InfectionInnerModifier = 3f;                            // Injuries to inner body parts will be this much more likely to get infected

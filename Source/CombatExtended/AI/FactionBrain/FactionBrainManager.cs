@@ -7,6 +7,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended.AI;
+
 public class FactionBrainManager : MapComponent
 {
     private List<FactionBrain> brains = new List<FactionBrain>();

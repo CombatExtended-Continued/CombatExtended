@@ -12,6 +12,7 @@ using Rimatomics;
 
 
 namespace CombatExtended.Compatibility;
+
 class Rimatomics : IPatch
 {
     public static SoundDef HitSoundDef = null;

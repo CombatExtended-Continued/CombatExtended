@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class StatWorker_Flammability : StatWorker
 {

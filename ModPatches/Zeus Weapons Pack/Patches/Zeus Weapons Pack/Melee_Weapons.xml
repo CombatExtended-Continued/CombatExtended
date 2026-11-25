@@ -1,5 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
+	<!-- Zeus Kanabo -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ZeusKanabo"]/statBases</xpath>
 		<value>
@@ -8,19 +10,21 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAT_ZeusKanabo"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ZeusKanabo"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>1.33</MeleeCritChance>
-				<MeleeParryChance>0.58</MeleeParryChance>
-				<MeleeDodgeChance>0.12</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>1.33</MeleeCritChance>
+			<MeleeParryChance>0.58</MeleeParryChance>
+			<MeleeDodgeChance>0.12</MeleeDodgeChance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusKanabo"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusKanabo"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -40,7 +44,7 @@
 						<li>Blunt</li>
 					</capacities>
 					<power>60</power>
-					<cooldownTime>3.0</cooldownTime>
+					<cooldownTime>5.0</cooldownTime>
 					<armorPenetrationBlunt>280</armorPenetrationBlunt>
 					<armorPenetrationSharp>0.2</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
@@ -56,14 +60,13 @@
 		</value>
 	</Operation>
 
+	<!-- Zeus Quarterstaff -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="CAT_ZeusQuarterstaff"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusQuarterstaff"]/equippedStatOffsets/MeleeDodgeChance</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.56</MeleeCritChance>
-				<MeleeParryChance>0.56</MeleeParryChance>
-				<MeleeDodgeChance>0.56</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.56</MeleeCritChance>
+			<MeleeParryChance>0.56</MeleeParryChance>
+			<MeleeDodgeChance>0.56</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -76,7 +79,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusQuarterstaff"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusQuarterstaff"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -117,14 +120,13 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<!-- Zeus Nunchucks -->
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ZeusNunchucks"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.23</MeleeCritChance>
-				<MeleeParryChance>0.43</MeleeParryChance>
-				<MeleeDodgeChance>0.23</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.23</MeleeCritChance>
+			<MeleeParryChance>0.43</MeleeParryChance>
+			<MeleeDodgeChance>0.23</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -137,7 +139,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusNunchucks"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusNunchucks"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -178,14 +180,17 @@
 		</value>
 	</Operation>
 
+	<!-- Zeus Jian -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAT_ZeusJian"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="CAT_ZeusJian"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusJian"]/equippedStatOffsets/MeleeDodgeChance</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>1.10</MeleeCritChance>
-				<MeleeParryChance>0.50</MeleeParryChance>
-				<MeleeDodgeChance>0.37</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>1.10</MeleeCritChance>
+			<MeleeParryChance>0.50</MeleeParryChance>
+			<MeleeDodgeChance>0.37</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -198,7 +203,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusJian"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusJian"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -252,6 +257,7 @@
 		</value>
 	</Operation>
 
+	<!-- Zeus Greathammer -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ZeusGreathammer"]/statBases</xpath>
 		<value>
@@ -261,7 +267,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusGreathammer"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusGreathammer"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -314,26 +320,26 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAT_ZeusGreathammer"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ZeusGreathammer"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>1.1</MeleeCritChance>
-				<MeleeParryChance>0.30</MeleeParryChance>
-				<MeleeDodgeChance>0.25</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>1.1</MeleeCritChance>
+			<MeleeParryChance>0.30</MeleeParryChance>
+			<MeleeDodgeChance>0.25</MeleeDodgeChance>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<!-- Zeus Tome -->
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ZeusTome"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.35</MeleeCritChance>
-				<SocialImpact>0.1</SocialImpact>
-				<MeleeParryChance>0.25</MeleeParryChance>
-				<MeleeDodgeChance>0.40</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.35</MeleeCritChance>
+			<MeleeParryChance>0.25</MeleeParryChance>
+			<MeleeDodgeChance>0.40</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -345,7 +351,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusTome"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusTome"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -370,15 +376,53 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="CAT_ZeusBaton"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusTome"]/verbs</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.8</MeleeCritChance>
-				<MeleeParryChance>1.4</MeleeParryChance>
-				<MeleeDodgeChance>0.40</MeleeDodgeChance>
-				<SuppressionPower>0.15</SuppressionPower>
-			</equippedStatOffsets>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<label>smite</label>
+					<defaultProjectile>CAT_ZeusTomeProjectileCE</defaultProjectile>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>12.9</range>
+					<warmupTime>2.3</warmupTime>
+					<soundCast>Shot_ChargeBlaster</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<burstShotCount>1</burstShotCount>
+					<commandIcon>UI/Smite</commandIcon>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</verbs>
 		</value>
+	</Operation>
+
+	<!-- Zeus Baton -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAT_ZeusBaton"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeCritChance>0.8</MeleeCritChance>
+			<MeleeParryChance>1.4</MeleeParryChance>
+			<MeleeDodgeChance>0.40</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="CAT_ZeusBaton"]/equippedStatOffsets/SuppressionPower</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="CAT_ZeusBaton"]/equippedStatOffsets/SuppressionPower</xpath>
+			<value>
+				<SuppressionPower>0.15</SuppressionPower>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="CAT_ZeusBaton"]/equippedStatOffsets</xpath>
+			<value>
+				<SuppressionPower MayRequire="ludeon.rimworld.ideology">0.15</SuppressionPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -390,7 +434,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusBaton"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusBaton"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -428,7 +472,7 @@
 					</capacities>
 					<power>20</power>
 					<cooldownTime>1.5</cooldownTime>
-					<armorPenetrationBlunt>100</armorPenetrationBlunt>
+					<armorPenetrationBlunt>60</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
 					<chanceFactor>1.33</chanceFactor>
 					<extraMeleeDamages>
@@ -442,30 +486,7 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusTome"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<label>smite</label>
-					<defaultProjectile>CAT_ZeusTomeProjectileCE</defaultProjectile>
-					<hasStandardCommand>true</hasStandardCommand>
-					<range>12.9</range>
-					<warmupTime>2.3</warmupTime>
-					<soundCast>Shot_ChargeBlaster</soundCast>
-					<soundCastTail>GunTail_Heavy</soundCastTail>
-					<muzzleFlashScale>9</muzzleFlashScale>
-					<burstShotCount>1</burstShotCount>
-					<commandIcon>UI/Smite</commandIcon>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
+	<!-- Zeus Standard -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ZeusStandard"]/statBases</xpath>
 		<value>
@@ -474,19 +495,21 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAT_ZeusStandard"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ZeusStandard"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>1.1</MeleeCritChance>
-				<MeleeParryChance>0.58</MeleeParryChance>
-				<MeleeDodgeChance>0.32</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>1.1</MeleeCritChance>
+			<MeleeParryChance>0.58</MeleeParryChance>
+			<MeleeDodgeChance>0.32</MeleeDodgeChance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ZeusStandard"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ZeusStandard"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -522,6 +545,7 @@
 		</value>
 	</Operation>
 
+	<!-- Rally Aura Buff Hediff -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/HediffDef[defName="CAT_RallyAuraBuffHediff"]/stages/li</xpath>
 		<value>

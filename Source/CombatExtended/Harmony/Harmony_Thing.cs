@@ -9,6 +9,7 @@ using HarmonyLib;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(Thing), "SmeltProducts")]
 public class Harmony_Thing_SmeltProducts
 {

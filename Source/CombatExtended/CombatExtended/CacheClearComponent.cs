@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Verse;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Game component responsible for clearing game-specific caches - things that would become irrelevant when loading or starting a new game.
 /// </summary>

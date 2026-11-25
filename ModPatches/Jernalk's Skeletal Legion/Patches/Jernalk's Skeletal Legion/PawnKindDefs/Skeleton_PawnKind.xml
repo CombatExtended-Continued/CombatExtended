@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="SL_Peon" or
-			defName="SL_Archer" or
-			defName="SL_Runner"
-			]/combatPower </xpath>
-		<value>
-			<combatPower>28</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="SL_Peon" or
+				defName="SL_Archer" or
+				defName="SL_Runner"
+				]/combatPower </xpath>
+			<value>
+				<combatPower>28</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -59,13 +62,16 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[
-			defName="SL_Hero"
-			]/combatPower </xpath>
-		<value>
-			<combatPower>90</combatPower>
-		</value>
+	<Operation Class="CombatExtended.PatchOperationSettingsConditional">
+		<settingName>vanillaCombatPower</settingName>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="SL_Hero"
+				]/combatPower </xpath>
+			<value>
+				<combatPower>90</combatPower>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">

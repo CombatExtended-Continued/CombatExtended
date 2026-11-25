@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended.WorldObjects;
+
 // TODO Rework all of this
 //
 //

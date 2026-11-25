@@ -7,6 +7,7 @@ using System.Text;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(JobGiver_PickUpOpportunisticWeapon), "ShouldEquipWeapon")]
 internal static class Harmony_JobGiver_PickUpOpportunisticWeapon
 {

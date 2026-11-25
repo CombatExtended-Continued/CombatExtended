@@ -8,6 +8,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 /* Ammo Injection Handler
  *
  * Automatically enables all ammo types defined and in use by at least one gun somewhere. Also enables appropriate crafting recipes and trading tags.
@@ -113,7 +114,7 @@ public static class AmmoInjector
         List<string> tradingTags = [];
         List<string> craftingTags = [];
         List<string> extraCraftingOptions = [];
-        foreach (AmmoDef ammoDef in ammoDefs)
+        foreach (AmmoDef ammoDef in ammoDefs.OfType<AmmoDef>())
         {
             tradingTags.Clear();
             craftingTags.Clear();

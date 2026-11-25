@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="CAT_ToxRapier" or
-			defName="CAT_ToxCurvedBlade" or
-			defName="CAT_ToxScythe" or
-			defName="CAT_ToxGauntlet" or
-			defName="CAT_ToxTriblade"]/equippedStatOffsets</xpath>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxGauntlet" or
 			defName="CAT_ToxTriblade"]</xpath>
@@ -16,6 +10,8 @@
 			</weaponTags>
 		</value>
 	</Operation>
+
+	<!-- Tox Rapier -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]</xpath>
 		<value>
@@ -25,15 +21,16 @@
 			</weaponTags>
 		</value>
 	</Operation>
-	<!-- Remove MVCF Comp -->
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
 			defName="CAT_ToxGauntlet" or
 			defName="CAT_ToxTriblade"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]
 		</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ToxRapier"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -73,15 +70,7 @@
 			</tools>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]/statBases</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]</xpath>
-			<value>
-				<statBases />
-			</value>
-		</nomatch>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]/statBases</xpath>
 		<value>
@@ -89,32 +78,23 @@
 			<MeleeCounterParryBonus>0.82</MeleeCounterParryBonus>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]/equippedStatOffsets</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]</xpath>
-			<value>
-				<equippedStatOffsets />
-			</value>
-		</nomatch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.27</MeleeDodgeChance>
+		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxRapier"]/equippedStatOffsets</xpath>
 		<value>
 			<MeleeCritChance>0.97</MeleeCritChance>
 			<MeleeParryChance>0.60</MeleeParryChance>
-			<MeleeDodgeChance>0.27</MeleeDodgeChance>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBlade"]/statBases</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBlade"]</xpath>
-			<value>
-				<statBases />
-			</value>
-		</nomatch>
-	</Operation>
+
+	<!-- Tox Curved Blade -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBlade"]/statBases</xpath>
 		<value>
@@ -122,15 +102,7 @@
 			<MeleeCounterParryBonus>0.53</MeleeCounterParryBonus>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBlade"]/equippedStatOffsets</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBlade"]</xpath>
-			<value>
-				<equippedStatOffsets />
-			</value>
-		</nomatch>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxCurvedBlade"]/equippedStatOffsets</xpath>
 		<value>
@@ -139,8 +111,10 @@
 			<MeleeDodgeChance>0.27</MeleeDodgeChance>
 		</value>
 	</Operation>
+
+	<!-- Tox Scythe -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ToxScythe"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ToxScythe"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -154,7 +128,6 @@
 					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 				</li>
-				<!--<li Class="CombatExtended.ToolCE"> <label>point</label> <capacities> <li>VFEE_StabToxblade</li> </capacities> <power>18</power> <cooldownTime>1.2</cooldownTime> <armorPenetrationBlunt>0.2</armorPenetrationBlunt> <armorPenetrationSharp>24</armorPenetrationSharp> <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup> </li>-->
 				<li Class="CombatExtended.ToolCE">
 					<label>edge</label>
 					<capacities>
@@ -170,15 +143,7 @@
 			</tools>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxScythe"]/statBases</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxScythe"]</xpath>
-			<value>
-				<statBases />
-			</value>
-		</nomatch>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxScythe"]/statBases</xpath>
 		<value>
@@ -186,15 +151,7 @@
 			<MeleeCounterParryBonus>0.53</MeleeCounterParryBonus>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxScythe"]/equippedStatOffsets</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxScythe"]</xpath>
-			<value>
-				<equippedStatOffsets />
-			</value>
-		</nomatch>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxScythe"]/equippedStatOffsets</xpath>
 		<value>
@@ -203,11 +160,12 @@
 			<MeleeDodgeChance>0.83</MeleeDodgeChance>
 		</value>
 	</Operation>
+
+	<!-- Tox Gauntlet -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="CAT_ToxGauntlet"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="CAT_ToxGauntlet"]/tools</xpath>
 		<value>
 			<tools>
-				<!--<li Class="CombatExtended.ToolCE"> <label>handle</label> <capacities> <li>Blunt</li> </capacities> <power>12</power> <cooldownTime>2</cooldownTime> <chanceFactor>0.15</chanceFactor> <armorPenetrationBlunt>0.8</armorPenetrationBlunt> <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup> </li>-->
 				<li Class="CombatExtended.ToolCE">
 					<label>point</label>
 					<capacities>
@@ -234,15 +192,7 @@
 			</tools>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxGauntlet"]/statBases</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxGauntlet"]</xpath>
-			<value>
-				<statBases />
-			</value>
-		</nomatch>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxGauntlet"]/statBases</xpath>
 		<value>
@@ -250,15 +200,7 @@
 			<MeleeCounterParryBonus>0.43</MeleeCounterParryBonus>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxGauntlet"]/equippedStatOffsets</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxGauntlet"]</xpath>
-			<value>
-				<equippedStatOffsets />
-			</value>
-		</nomatch>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxGauntlet"]/equippedStatOffsets</xpath>
 		<value>
@@ -267,6 +209,7 @@
 			<MeleeDodgeChance>0.25</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>CAT_ToxGauntlet</defName>
 		<statBases>
@@ -297,11 +240,12 @@
 			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
 	</Operation>
+
+	<!-- Tox Triblade -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="CAT_ToxTriblade"]/tools</xpath>
 		<value>
 			<tools>
-				<!--<li Class="CombatExtended.ToolCE"> <label>handle</label> <capacities> <li>Blunt</li> </capacities> <power>12</power> <cooldownTime>2</cooldownTime> <chanceFactor>0.15</chanceFactor> <armorPenetrationBlunt>0.8</armorPenetrationBlunt> <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup> </li> <li Class="CombatExtended.ToolCE"> <label>point</label> <capacities> <li>VFEE_StabToxblade</li> </capacities> <power>21</power> <cooldownTime>0.8</cooldownTime> <chanceFactor>1.33</chanceFactor> <armorPenetrationBlunt>0.2</armorPenetrationBlunt> <armorPenetrationSharp>29</armorPenetrationSharp> <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup> </li>-->
 				<li Class="CombatExtended.ToolCE">
 					<label>edge</label>
 					<capacities>
@@ -317,15 +261,7 @@
 			</tools>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxTriblade"]/statBases</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxTriblade"]</xpath>
-			<value>
-				<statBases />
-			</value>
-		</nomatch>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxTriblade"]/statBases</xpath>
 		<value>
@@ -333,15 +269,7 @@
 			<MeleeCounterParryBonus>0.43</MeleeCounterParryBonus>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="CAT_ToxTriblade"]/equippedStatOffsets</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="CAT_ToxTriblade"]</xpath>
-			<value>
-				<equippedStatOffsets />
-			</value>
-		</nomatch>
-	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="CAT_ToxTriblade"]/equippedStatOffsets</xpath>
 		<value>
@@ -350,6 +278,8 @@
 			<MeleeDodgeChance>0.25</MeleeDodgeChance>
 		</value>
 	</Operation>
+
+	<!-- Fletcher Crossbow -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="CAT_Fletcher_Crossbow"]/tools</xpath>
 		<value>
@@ -388,6 +318,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>CAT_Fletcher_Crossbow</defName>
 		<statBases>
@@ -415,6 +346,7 @@
 			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>CAT_ToxTriblade</defName>
 		<statBases>

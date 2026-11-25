@@ -8,6 +8,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class PatchOperationFindMod : PatchOperation
 {
     public string modName;

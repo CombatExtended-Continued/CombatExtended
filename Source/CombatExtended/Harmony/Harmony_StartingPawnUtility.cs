@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(StartingPawnUtility), nameof(StartingPawnUtility.GeneratePossessions))]
 internal static class StartingPawnUtility_GenerateAmmo
 {

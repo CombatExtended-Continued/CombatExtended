@@ -9,6 +9,7 @@ using System.Reflection;
 using System.IO;
 
 namespace CombatExtended.Loader;
+
 /*
   A compiled version of this class resides in our source tree.  Anyone who downloads the
   source tree and installs it uncompiled as a mod will get a warning that they are running

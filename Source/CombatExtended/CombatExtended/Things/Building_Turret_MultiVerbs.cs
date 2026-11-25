@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class Building_Turret_MultiVerbs : Building_TurretGunCE
 {
 

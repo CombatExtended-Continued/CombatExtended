@@ -7,6 +7,7 @@ using Verse.Sound;
 using CombatExtended;
 
 namespace CombatExtended.Lasers;
+
 public class LaserBeamCE : BulletCE
 {
 
@@ -85,7 +86,7 @@ public class LaserBeamCE : BulletCE
         Impact(hitThing, a);
     }
 
-    public void Impact(Thing hitThing, Vector3 muzzle)
+    public virtual void Impact(Thing hitThing, Vector3 muzzle)
     {
         bool shielded = hitThing.IsShielded() && laserBeamDef.IsWeakToShields;
 

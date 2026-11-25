@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public abstract class FileListDialog : Window
 {
     protected string interactButLabel = "Error";

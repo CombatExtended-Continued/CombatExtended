@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class HediffCompProperties_InfecterCE : HediffCompProperties
 {
     public float infectionChancePerHourUntended = 0.01f;

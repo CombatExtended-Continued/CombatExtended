@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse.Sound;
 
 namespace CombatExtended;
+
 /* Copied from Verb_MeleeAttack
  *
  * Added dodge/parry mechanics, crits, height check.

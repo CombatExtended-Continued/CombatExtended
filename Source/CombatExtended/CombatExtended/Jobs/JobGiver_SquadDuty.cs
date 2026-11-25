@@ -8,6 +8,7 @@ using Verse.AI;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class JobGiver_SquadDuty : ThinkNode_JobGiver
 {
     protected override Job TryGiveJob(Pawn pawn)

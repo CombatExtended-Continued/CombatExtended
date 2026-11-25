@@ -11,6 +11,7 @@ using RimWorld;
 using CombatExtended.Compatibility;
 
 namespace CombatExtended;
+
 public class JobGiver_DefenderReloadTurret : ThinkNode_JobGiver
 {
     /// <summary>

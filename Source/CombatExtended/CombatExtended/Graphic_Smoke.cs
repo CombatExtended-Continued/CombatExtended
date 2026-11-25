@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 
 namespace CombatExtended;
+
 public class Graphic_Smoke : Graphic_Gas
 {
     private const float DistinctAlphaLevels = 128f;

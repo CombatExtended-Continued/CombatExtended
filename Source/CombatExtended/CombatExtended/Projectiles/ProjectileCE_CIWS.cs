@@ -9,6 +9,7 @@ using Verse;
 using Verse.Sound;
 
 namespace CombatExtended;
+
 public class ProjectileCE_CIWS : ProjectileCE
 {
     #region Caching
@@ -64,6 +65,11 @@ public class ProjectileCE_CIWS : ProjectileCE
         }
         ticksToImpact++; //do not allow it hit zero
         base.Tick();
+        // Base tick can also destroy the projectile
+        if (Destroyed)
+        {
+            return;
+        }
         TryCollideWith(intendedTargetThing);
     }
     protected override bool CanCollideWith(Thing thing, out float dist)

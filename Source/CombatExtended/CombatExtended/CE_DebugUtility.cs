@@ -7,6 +7,7 @@ using Verse;
 using LudeonTK;
 
 namespace CombatExtended;
+
 public static class CE_DebugUtility
 {
     [CE_DebugTooltip(CE_DebugTooltipType.Map)]

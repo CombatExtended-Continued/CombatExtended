@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 namespace CombatExtended;
+
 [StaticConstructorOnStartup]
 public class Building_AutoloaderCE : Building
 {

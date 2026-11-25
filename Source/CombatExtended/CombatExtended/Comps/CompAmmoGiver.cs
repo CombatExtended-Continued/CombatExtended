@@ -10,6 +10,7 @@ using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended;
+
 public class CompAmmoGiver : ThingComp
 {
     public int ammoAmountToGive;

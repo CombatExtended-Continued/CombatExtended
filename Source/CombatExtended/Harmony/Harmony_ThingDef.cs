@@ -8,6 +8,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 /*
  *  Removes the stats in StatsToCull from the ThingDef info screen
  *  Acts as a StatWorker for BurstShotCount (which is normally handled by ThingDef)

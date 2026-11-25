@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace CombatExtended;
+
 // Variant of the vanilla Graphic_StackCount class, which changes the graphic displayed for an item
 // based on the current stack count, but with customizable upper limit for each subgraphic taken
 // from their respective filenames.

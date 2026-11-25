@@ -11,6 +11,7 @@ using UnityEngine;
 using CombatExtended;
 
 namespace CombatExtended;
+
 public class JobDriver_TakeAmmo : JobDriver
 {
     private Thing Ammo

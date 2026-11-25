@@ -3,7 +3,7 @@
 	<!-- ==========  Cost Change =========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/thingDef[defName="MRSKitR"]/recipeMaker/researchPrerequisite</xpath>
+		<xpath>Defs/ThingDef[defName="MRSKitR"]/recipeMaker/researchPrerequisite</xpath>
 		<value>
 			<researchPrerequisite>PrecisionRifling</researchPrerequisite>
 		</value>
@@ -236,7 +236,7 @@
 
 	<!-- ==========  Modular Spitfire =========== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/thingDef[defName="GD_MSSS"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GD_MSSS"]/statBases</xpath>
 		<value>
 			<statBases>
 				<WorkToMake>50</WorkToMake>
@@ -251,7 +251,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/thingDef[defName="GD_MSSS"]/verbs</xpath>
+		<xpath>Defs/ThingDef[defName="GD_MSSS"]/verbs</xpath>
 		<value>
 			<verbs>
 				<li Class="CombatExtended.VerbPropertiesCE">
@@ -272,7 +272,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/thingDef[defName="GD_MSSS"]</xpath>
+		<xpath>Defs/ThingDef[defName="GD_MSSS"]</xpath>
 		<value>
 			<comps>
 				<li Class="CombatExtended.CompProperties_AmmoUser">
@@ -288,9 +288,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/thingDef[defName="GD_MSSS"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="GD_MSSS"]/weaponTags</xpath>
 		<match Class="PatchOperationAdd">
-			<xpath>Defs/thingDef[defName="GD_MSSS"]/weaponTags</xpath>
+			<xpath>Defs/ThingDef[defName="GD_MSSS"]/weaponTags</xpath>
 			<value>
 				<li>CE_Sidearm</li>
 				<li>CE_AI_Pistol</li>
@@ -298,7 +298,7 @@
 			</value>
 		</match>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/thingDef[defName="GD_MSSS"]</xpath>
+			<xpath>Defs/ThingDef[defName="GD_MSSS"]</xpath>
 			<value>
 				<weaponTags>
 					<li>CE_Sidearm</li>
@@ -310,7 +310,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/thingDef[defName="GD_MSSS"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GD_MSSS"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -661,15 +661,15 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/thingDef[defName="GD_BSLauncher"]</xpath>
+		<xpath>Defs/ThingDef[defName="GD_BSLauncher"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/thingDef[defName="GD_INGrenadeLauncher"]</xpath>
+		<xpath>Defs/ThingDef[defName="GD_INGrenadeLauncher"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/thingDef[defName="GD_SKGrenadeLauncher"]</xpath>
+		<xpath>Defs/ThingDef[defName="GD_SKGrenadeLauncher"]</xpath>
 	</Operation>
 
 </Patch>

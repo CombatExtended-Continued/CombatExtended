@@ -10,6 +10,7 @@ using UnityEngine;
 using System.Reflection;
 
 namespace CombatExtended.AI;
+
 public class SquadPathMover
 {
     private enum states

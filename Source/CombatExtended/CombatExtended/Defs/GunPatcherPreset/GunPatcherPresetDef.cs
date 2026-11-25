@@ -9,6 +9,7 @@ using UnityEngine;
 using System.Xml;
 
 namespace CombatExtended;
+
 public class GunPatcherPresetDef : Def
 {
     #region stats

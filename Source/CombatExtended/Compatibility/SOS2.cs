@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Verse;
 
 namespace CombatExtended.Compatibility;
+
 public class SOS2 : IPatch
 {
     const string ModName = "Save Our Ship 2";

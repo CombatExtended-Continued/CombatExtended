@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Version of CompPropertes_Explosive that does not use the wicker
 /// </summary>

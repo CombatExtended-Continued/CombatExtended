@@ -6,6 +6,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 /// <summary>
 /// Just wraps an int so that the counts can be modified in the Dictionary without ending up modifying the Dictionary.
 /// </summary>

@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 
 namespace CombatExtended.HarmonyCE;
+
 [HarmonyPatch(typeof(FireUtility), "ChanceToStartFireIn")]
 internal static class Harmony_FireUtility_ChanceToStartFireIn
 {

@@ -2,6 +2,7 @@
 using Verse;
 
 namespace ProjectileImpactFX;
+
 // ProjectileImpactFX.BarrelOffsetExtension
 public class BarrelOffsetExtension : DefModExtension
 {

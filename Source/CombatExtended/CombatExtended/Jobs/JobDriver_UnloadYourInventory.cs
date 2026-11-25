@@ -6,6 +6,7 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended;
+
 /// <summary>
 /// This class gets used when a Pawn returning from a Caravan is unloading it's own inventory.
 /// Class is mostly copied from Rimworld with adjustments to have it ask components of CombatExtended for what and how much to drop from the player's own invetory.
