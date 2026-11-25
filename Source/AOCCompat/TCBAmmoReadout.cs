@@ -16,7 +16,11 @@ namespace AOC17CE
     {
         public static void Postfix(ThingDef __0, ref string __result)
         {
-            if (__0?.defName != "AOC17CE_TCBAP") return;
+            if (__0?.defName != "AOC17CE_TCBAP")
+            {
+                return;
+            }
+
             var settings = __0.GetModExtension<DelayedBlastExtension>() ?? new DelayedBlastExtension();
             string delay = (Math.Max(1, settings.delayTicks) / 60f).ToString("0.##", CultureInfo.CurrentCulture);
             string radius = Math.Max(0, settings.radius).ToString("0.##", CultureInfo.CurrentCulture);

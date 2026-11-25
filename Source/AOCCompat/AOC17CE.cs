@@ -31,11 +31,17 @@ namespace AOC17CE
         private static void UpdateIntakeDescription()
         {
             var ability = DefDatabase<AbilityDef>.GetNamedSilentFail("AOC_A2EIntake");
-            if (ability != null) ability.description = "AOC17CE_UnlimitedIntakeDescription".Translate();
+            if (ability != null)
+            {
+                ability.description = "AOC17CE_UnlimitedIntakeDescription".Translate();
+            }
+
             var shortSpear = DefDatabase<ThingDef>.GetNamedSilentFail("AOC_MonoSpear");
             string empNote = "AOC17CE_ShortSpearEMPNote".Translate();
             if (shortSpear != null && !(shortSpear.description ?? "").Contains(empNote))
+            {
                 shortSpear.description += "\n\n" + empNote;
+            }
         }
 
         // CE projectiles are not Verse.Projectile. Use CE's collision callback and
@@ -43,15 +49,31 @@ namespace AOC17CE
         public static bool Intake(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             if (!(projectile is BulletCE) || projectile.Destroyed || projectile.Map == null ||
-                projectile.landed || HediffComp_Intake.Active.Count == 0) return false;
+                projectile.landed || HediffComp_Intake.Active.Count == 0)
+            {
+                return false;
+            }
+
             foreach (var intake in HediffComp_Intake.Active)
             {
                 var pawn = intake.Pawn;
-                if (!intake.IsActive || pawn.Map != projectile.Map || projectile.launcher == pawn) continue;
+                if (!intake.IsActive || pawn.Map != projectile.Map || projectile.launcher == pawn)
+                {
+                    continue;
+                }
+
                 Vector3 hit;
                 if (!Sector.Intersects(from, to, pawn.DrawPos, intake.Direction,
-                    intake.Settings.radius, intake.Settings.halfAngle, out hit)) continue;
-                if (!IntakeWaste.Ensure(intake)) continue;
+                    intake.Settings.radius, intake.Settings.halfAngle, out hit))
+                {
+                    continue;
+                }
+
+                if (!IntakeWaste.Ensure(intake))
+                {
+                    continue;
+                }
+
                 intake.count++;
                 intake.PlayBlockSound();
                 FleckMaker.Static(hit, pawn.Map, FleckDefOf.MicroSparks, 0.5f);
@@ -76,7 +98,11 @@ namespace AOC17CE
             Func<Map, IntVec3, int, bool> emit)
         {
             var intake = (HediffComp_Intake)instance;
-            if (intake.count != 0) return true;
+            if (intake.count != 0)
+            {
+                return true;
+            }
+
             var pawn = intake.Pawn;
             return emit(pawn.Map, pawn.Position, 1);
         }
@@ -94,7 +120,11 @@ namespace AOC17CE
             ref bool __3, ref bool __result)
         {
             __result = true;
-            if (!(__0 is Bullet) || __0.Map == null) return false;
+            if (!(__0 is Bullet) || __0.Map == null)
+            {
+                return false;
+            }
+
             foreach (var intake in HediffComp_Intake.Active.ToArray())
             {
                 var pawn = intake.Pawn;
@@ -102,7 +132,11 @@ namespace AOC17CE
                 if (!intake.IsActive || pawn.Map != __0.Map || __0.Launcher == pawn ||
                     !Sector.Intersects(__1, __2, pawn.DrawPos, intake.Direction,
                         intake.Settings.radius, intake.Settings.halfAngle, out hit) ||
-                    !IntakeWaste.Ensure(intake)) continue;
+                    !IntakeWaste.Ensure(intake))
+                {
+                    continue;
+                }
+
                 intake.count++;
                 intake.PlayBlockSound();
                 var motion = (pawn.DrawPos + intake.Direction * 0.35f - hit).Yto0();
@@ -188,12 +222,20 @@ namespace AOC17CE
                 !target.Spawned || target.Dead || target.Map != pawn.Map ||
                 !AOCSkinBrush.ScrubReach.CanReach(pawn, target, settings.reach))
             { ___done = true; return false; }
-            if (--___nextTick > 0) return false;
-            if (pawn.stances.FullBodyBusy) { if (___nextTick <= -90) ___done = true; return false; }
+            if (--___nextTick > 0)
+            {
+                return false;
+            }
+
+            if (pawn.stances.FullBodyBusy) { if (___nextTick <= -90) { ___done = true; } return false; }
             ___done = true;
             var original = weapon.GetComp<CompEquippable>()?.AllVerbs.OfType<Verb_MeleeAttackCE>()
                 .FirstOrDefault(v => v.maneuver != null);
-            if (original == null) return false;
+            if (original == null)
+            {
+                return false;
+            }
+
             pawn.health.AddHediff(sequence.cooldown);
             pawn.health.AddHediff(sequence.overheat);
             var strike = new Verb_ScrubStrikeCE
@@ -202,7 +244,10 @@ namespace AOC17CE
                 tool = original.tool, maneuver = original.maneuver, reach = settings.reach
             };
             if (strike.Execute(target) && target.Spawned && !target.Dead)
+            {
                 AOCSkinBrush.CompScrub.PushTarget(pawn, target, sequence.pushCells);
+            }
+
             return false;
         }
     }
@@ -224,28 +269,41 @@ namespace AOC17CE
             bool wasLanded = landed;
             base.Impact(hitThing);
             if (!wasLanded && !Destroyed && landed && Settings?.linkSound != null)
+            {
                 Settings.linkSound.PlayOneShot(new TargetInfo(Position, Map));
+            }
         }
 
         public override void Tick()
         {
             int previous = ticksToDetonation;
             base.Tick();
-            if (Destroyed || !Spawned || !landed || Settings == null) return;
+            if (Destroyed || !Spawned || !landed || Settings == null)
+            {
+                return;
+            }
+
             int cue = Math.Max(0, def.projectile.explosionDelay - Settings.chargeCueTick);
             if (previous > cue && ticksToDetonation <= cue)
+            {
                 Settings.chargeSound?.PlayOneShot(new TargetInfo(Position, Map));
+            }
+
             if ((Find.TickManager.TicksGame + thingIDNumber) % 6 == 0)
+            {
                 Visuals.Dust(Position.ToVector3Shifted(), Map, def.projectile.explosionRadius,
                     Animation.PrimeProgress(ticksToDetonation, def.projectile.explosionDelay), Settings);
+            }
         }
 
         public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             base.DrawAt(drawLoc, flip);
             if (landed && Spawned && Settings != null)
+            {
                 Visuals.Prime(Position.ToVector3Shifted(), def.projectile.explosionRadius,
                     Animation.PrimeProgress(ticksToDetonation, def.projectile.explosionDelay), Settings);
+            }
         }
     }
 
@@ -262,7 +320,10 @@ namespace AOC17CE
             if (!((CompProperties_FormSequence)sequence.props).ranged)
             {
                 if (sequence.form?.defName == "AOC_LongMonoSpear")
+                {
                     return PierceSequenceCE.Tick(sequence, ref ___nextTick, ref ___done);
+                }
+
                 return true;
             }
             Pawn pawn = sequence.Pawn;
@@ -272,13 +333,20 @@ namespace AOC17CE
                 pawn.pather.Moving || pawn.equipment?.Primary != weapon || weapon.def != sequence.form ||
                 target == null || !target.Spawned || target.Dead || target.Downed || target.Map != pawn.Map)
             { ___done = true; return false; }
-            if (--___nextTick > 0) return false;
+            if (--___nextTick > 0)
+            {
+                return false;
+            }
             // The ability can finish while a recovery stance is still active.
             // Preserve the saved sequence until CE is ready to fire.
             if (pawn.stances.FullBodyBusy) { ___nextTick = 1; return false; }
             ___done = true;
             var original = weapon.GetComp<CompEquippable>()?.AllVerbs.OfType<Verb_ShootCE>().FirstOrDefault();
-            if (original == null) return false;
+            if (original == null)
+            {
+                return false;
+            }
+
             var properties = (VerbPropertiesCE)typeof(object).GetMethod("MemberwiseClone",
                 BindingFlags.Instance | BindingFlags.NonPublic).Invoke(original.verbProps, null);
             properties.warmupTime = 0;
@@ -290,7 +358,10 @@ namespace AOC17CE
             // Validate the skill verb so the normal throw's 32-cell range does
             // not reject targets within Gungnir's 36-cell ability range.
             if (shot.CanHitTarget(target) && shot.TryStartCastOn(target))
+            {
                 pawn.health.AddHediff(sequence.cooldown);
+            }
+
             return false;
         }
     }
@@ -311,9 +382,14 @@ namespace AOC17CE
             IntVec3 cell = pawn?.Position ?? IntVec3.Invalid;
             base.Impact(hitThing);
             if (map != null && cell.IsValid && cell.InBounds(map))
+            {
                 map.weatherManager.eventHandler.AddEvent(new WeatherEvent_LightningStrike(map, cell));
+            }
+
             if (pawn != null && pawn.Spawned && !pawn.Dead && pawn.BodySize <= 1.5f)
+            {
                 pawn.health.AddHediff(DefDatabase<HediffDef>.GetNamed("AOC_JavelinSlow"));
+            }
         }
     }
 

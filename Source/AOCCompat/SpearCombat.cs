@@ -39,10 +39,15 @@ namespace AOC17CE
                     yield return new CodeInstruction(OpCodes.Newobj, replacement);
                     replaced++;
                 }
-                else yield return instruction;
+                else
+                {
+                    yield return instruction;
+                }
             }
             if (replaced != 1)
+            {
                 throw new InvalidOperationException("AOC short-spear lightning: expected one constructor site, found " + replaced);
+            }
         }
     }
 
@@ -60,10 +65,16 @@ namespace AOC17CE
         {
             var current = active;
             if (current?.attacker == null || map != current.context || center != current.cell ||
-                damage != DamageDefOf.Flame) return;
+                damage != DamageDefOf.Flame)
+            {
+                return;
+            }
             // Copy an existing exclusion list rather than modifying caller data.
             ignoredThings = ignoredThings == null ? new List<Thing>() : new List<Thing>(ignoredThings);
-            if (!ignoredThings.Contains(current.attacker)) ignoredThings.Add(current.attacker);
+            if (!ignoredThings.Contains(current.attacker))
+            {
+                ignoredThings.Add(current.attacker);
+            }
         }
 
         public WeatherEvent_ShortSpearLightningCE(Map map, IntVec3 strikeCell, Pawn user)
@@ -87,7 +98,11 @@ namespace AOC17CE
 
         private void ApplyEMP()
         {
-            if (context == null || !cell.InBounds(context) || cell.Fogged(context)) return;
+            if (context == null || !cell.InBounds(context) || cell.Fogged(context))
+            {
+                return;
+            }
+
             GenExplosionCE.DoExplosion(cell, context, EMPRadius, DamageDefOf.EMP, attacker,
                 damAmount: EMPDamage, armorPenetration: DamageDefOf.EMP.defaultArmorPenetration,
                 weapon: DefDatabase<ThingDef>.GetNamedSilentFail("AOC_MonoSpear"),
@@ -127,7 +142,10 @@ namespace AOC17CE
             {
                 done = true; return false;
             }
-            if (--nextTick > 0) return false;
+            if (--nextTick > 0)
+            {
+                return false;
+            }
             // AOC adds this sequence during the ability cast. CE can still have
             // a busy recovery stance when its first tick arrives. Keep it queued
             // until the stance ends instead of consuming the sequence silently.

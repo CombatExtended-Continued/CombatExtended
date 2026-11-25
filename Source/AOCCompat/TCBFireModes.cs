@@ -13,13 +13,19 @@ namespace AOC17CE
         {
             string name = __instance.parent?.def?.defName;
             bool killaKill = name == "AOC_KILLAKILL";
-            if (name != "TCB_26K" && !killaKill) return true;
+            if (name != "TCB_26K" && !killaKill)
+            {
+                return true;
+            }
 
             var modes = __instance.AvailableFireModes;
             modes.Clear();
             modes.Add(FireMode.SingleFire);
             modes.Add(FireMode.BurstFire);
-            if (killaKill) modes.Add(FireMode.AutoFire);
+            if (killaKill)
+            {
+                modes.Add(FireMode.AutoFire);
+            }
 
             var aims = __instance.AvailableAimModes;
             aims.Clear();

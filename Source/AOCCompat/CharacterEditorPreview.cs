@@ -19,7 +19,11 @@ namespace AOC17CE
 
         public static bool Prefix(ThingDef __0, ref Texture2D __result)
         {
-            if (__0?.defName != "AOC_A2E") return true;
+            if (__0?.defName != "AOC_A2E")
+            {
+                return true;
+            }
+
             __result = __0.uiIcon;
             return false;
         }

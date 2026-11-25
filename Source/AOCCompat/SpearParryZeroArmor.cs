@@ -13,12 +13,19 @@ namespace AOC17CE
             ref float dmgAmount, Thing armor, float partDensity, ref bool __result)
         {
             string name = armor?.def?.defName;
-            if (name != "AOC_MonoSpear" && name != "AOC_LongMonoSpear" && name != "AOC_Monojavelin") return true;
+            if (name != "AOC_MonoSpear" && name != "AOC_LongMonoSpear" && name != "AOC_Monojavelin")
+            {
+                return true;
+            }
+
             if (armorAmount != 0f || partDensity != 0f || def == null ||
                 (def.armorCategory != DamageArmorCategoryDefOf.Sharp &&
                  def.armorCategory != CE_DamageArmorCategoryDefOf.Blunt) ||
                 float.IsNaN(penAmount) || float.IsInfinity(penAmount) || penAmount < 0f ||
-                float.IsNaN(dmgAmount) || float.IsInfinity(dmgAmount) || dmgAmount < 0f) return true;
+                float.IsNaN(dmgAmount) || float.IsInfinity(dmgAmount) || dmgAmount < 0f)
+            {
+                return true;
+            }
 
             // Holder stat multipliers can legitimately reduce weapon toughness
             // to zero. Resolve that boundary without CE's armor/penetration
