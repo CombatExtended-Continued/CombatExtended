@@ -702,6 +702,23 @@ public static class CE_Utility
             return;
         }
 
+        float baseDuration = shootVerb.verbProps.burstShotCount > 1
+            ? shootVerb.verbProps.ticksBetweenBurstShots
+            : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
+        // Very short bursts disable the animation even if the weapon extends its recoil duration.
+        if (baseDuration < 2)
+        {
+            return;
+        }
+
+        var recoilAdjustExtension = weaponDef.GetModExtension<GunDrawExtension>();
+        float duration = recoilAdjustExtension?.recoilTick > 0 ? recoilAdjustExtension.recoilTick : baseDuration;
+        int elapsedTicks = Find.TickManager.TicksGame - shootVerb.LastShotTick;
+        if (elapsedTicks >= duration)
+        {
+            return;
+        }
+
         float recoil = 0f;
         if (shootVerb is Verb_LaunchProjectileCE verbCE)
         {
@@ -712,25 +729,15 @@ public static class CE_Utility
             recoil = ((VerbPropertiesCE)shootVerb.verbProps).recoilAmount;
         }
 
-        float recoilRelaxation = shootVerb.verbProps.burstShotCount > 1 ? shootVerb.verbProps.ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
-
-        recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp((float)Math.Log10(recoilRelaxation), 0.1f, 10);
-
-        //Prevents recoil for something with absurd ROF, it's too fast for any meaningful recoil animation
-        if (recoilRelaxation < 2)
-        {
-            return;
-        }
+        recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp((float)Math.Log10(baseDuration), 0.1f, 10);
 
         Rand.PushState(shootVerb.LastShotTick);
         try
         {
             float muzzleJumpModifier = 10 * (float)Math.Log10(recoil) + 3;
-            GunDrawExtension recoilAdjustExtension = weaponDef.GetModExtension<GunDrawExtension>();
             if (recoilAdjustExtension != null)
             {
                 recoil *= recoilAdjustExtension.recoilModifier;
-                recoilRelaxation = recoilAdjustExtension.recoilTick > 0 ? recoilAdjustExtension.recoilTick : recoilRelaxation;
                 recoil = recoilAdjustExtension.recoilScale > 0 ? recoilAdjustExtension.recoilScale : recoil;
                 muzzleJumpModifier *= recoilAdjustExtension.muzzleJumpModifier > 0 ? recoilAdjustExtension.muzzleJumpModifier : 1;
             }
@@ -754,16 +761,11 @@ public static class CE_Utility
                 }
             }
 
-            int num = Find.TickManager.TicksGame - shootVerb.LastShotTick;
-            if (num < recoilRelaxation)
-            {
-                float num2 = Mathf.Clamp01(num / recoilRelaxation);
-                float num3 = Mathf.Lerp(recoil, 0f, num2);
-                drawOffset = new Vector3(0f, 0f, 0f - RecoilCurveAxisY.Evaluate(num2)) * num3;
-                angleOffset = (handheld ? -1 : Rand.Sign) * RecoilCurveRotation.Evaluate(num2) * num3 * MuzzleRiseMagicNumber * muzzleJumpModifier;
-                drawOffset = drawOffset.RotatedBy(aimAngle);
-                aimAngle += angleOffset;
-            }
+            float progress = Mathf.Clamp01(elapsedTicks / duration);
+            float remainingRecoil = Mathf.Lerp(recoil, 0f, progress);
+            drawOffset = new Vector3(0f, 0f, -RecoilCurveAxisY.Evaluate(progress)) * remainingRecoil;
+            angleOffset = (handheld ? -1 : Rand.Sign) * RecoilCurveRotation.Evaluate(progress) * remainingRecoil * MuzzleRiseMagicNumber * muzzleJumpModifier;
+            drawOffset = drawOffset.RotatedBy(aimAngle);
         }
         finally
         {

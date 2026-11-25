@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using RimWorld;
@@ -12,43 +11,32 @@ namespace CombatExtended.HarmonyCE;
 [HarmonyPatch(typeof(PawnRenderUtility), nameof(PawnRenderUtility.DrawEquipmentAiming))]
 internal static class Harmony_PawnRenderer_DrawEquipmentAiming
 {
-    public static Rot4 south = Rot4.South;
-
-    private static Thing equipment;
-
-    private static Vector3 recoilOffset = new Vector3();
-
-    private static float muzzleJump = 0;
-
     private static Vector3 casingDrawPos;
 
-    private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.006f, 0));
+    public static void Prefix(Vector3 drawLoc) => casingDrawPos = drawLoc;
 
-    private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.004f, 0));
-
-    public static void Prefix(Thing eq, Vector3 drawLoc)
+    private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle, CompEquippable equippable)
     {
-        equipment = eq;
-        casingDrawPos = drawLoc;
-    }
-
-    private static void RecoilCE(Thing eq, Vector3 position, float aimAngle, float num, CompEquippable compEquippable)
-    {
-        if (Controller.settings.RecoilAnim && compEquippable.PrimaryVerb.verbProps is VerbPropertiesCE)
+        var verb = equippable?.PrimaryVerb;
+        // Recoil belongs to this draw. A weapon or setting that skips it uses zero offsets.
+        Vector3 recoilOffset = Vector3.zero;
+        float muzzleJump = 0f;
+        if (Controller.settings.RecoilAnim && verb?.verbProps is VerbPropertiesCE)
         {
-            CE_Utility.Recoil(eq.def, compEquippable.PrimaryVerb, out var drawOffset, out var angleOffset, aimAngle, true);
-            recoilOffset = drawOffset;
-            muzzleJump = angleOffset;
+            CE_Utility.Recoil(eq.def, verb, out recoilOffset, out muzzleJump, aimAngle, true);
         }
-    }
 
-    private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
-    {
-        GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension() { DrawSize = eq.def.graphicData.drawSize };
-        if (drawData.DrawSize == Vector2.one) { drawData.DrawSize = eq.def.graphicData.drawSize; }
-        Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
-        Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
-        Vector3 casingOffset = new Vector3(drawData.CasingOffset.x, 0, drawData.CasingOffset.y);
+        var drawData = eq.def.GetModExtension<GunDrawExtension>();
+        var size = drawData?.DrawSize ?? Vector2.one;
+        if (size == Vector2.one)
+        {
+            size = eq.def.graphicData.drawSize;
+        }
+        var offset = drawData?.DrawOffset ?? Vector2.zero;
+        var casing = drawData?.CasingOffset ?? Vector2.zero;
+        Vector3 scale = new(size.x, 1, size.y);
+        Vector3 posVec = new(offset.x, 0, offset.y);
+        Vector3 casingOffset = new(casing.x, 0, casing.y);
         if (aimAngle > 200 && aimAngle < 340)
         {
             posVec.x *= -1;
@@ -58,8 +46,7 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
 
         float yAngle = matrix.rotation.eulerAngles.y;
         matrix.SetTRS(position + posVec.RotatedBy(yAngle) + recoilOffset, Quaternion.AngleAxis(yAngle + muzzleJump, Vector3.up), scale);
-        CompEquippable compEquippable = eq.TryGetComp<CompEquippable>();
-        if (compEquippable != null && compEquippable.PrimaryVerb is Verb_ShootCE verbCE)
+        if (verb is Verb_ShootCE verbCE)
         {
             verbCE.drawPos = casingDrawPos + (casingOffset + posVec).RotatedBy(yAngle);
         }
@@ -73,50 +60,50 @@ internal static class Harmony_PawnRenderer_DrawEquipmentAiming
         }
     }
 
-
-    /*
-     * This replace the last DrawMesh in
-     */
     internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();
-        var recoil_opcodes = new CodeInstruction[]
+        var recoil = AccessTools.Method(typeof(EquipmentUtility), nameof(EquipmentUtility.Recoil),
+            [typeof(ThingDef), typeof(Verb_LaunchProjectile), typeof(Vector3).MakeByRefType(), typeof(float).MakeByRefType(), typeof(float)]);
+        var drawMesh = AccessTools.Method(typeof(Graphics), nameof(Graphics.DrawMesh),
+            [typeof(Mesh), typeof(Matrix4x4), typeof(Material), typeof(int)]);
+
+        // Reuse the component already retrieved by vanilla instead of looking it up again at draw time.
+        var recoilPattern = new CodeMatch[]
         {
-                                new CodeInstruction(OpCodes.Ldarg_0),
-                                new CodeInstruction(OpCodes.Ldarg_1),
-                                new CodeInstruction(OpCodes.Ldarg_2),
-                                new CodeInstruction(OpCodes.Ldloc_1),
-                                new CodeInstruction(OpCodes.Ldloc_2),
-                                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)))
+            new(code => code.IsLdloc()),
+            CodeMatch.Calls(AccessTools.PropertyGetter(typeof(CompEquippable), nameof(CompEquippable.AllVerbs))),
+            CodeMatch.Calls(AccessTools.Method(typeof(EquipmentUtility), nameof(EquipmentUtility.GetRecoilVerb))),
+            new(code => code.opcode == OpCodes.Ldloca || code.opcode == OpCodes.Ldloca_S),
+            new(code => code.opcode == OpCodes.Ldloca || code.opcode == OpCodes.Ldloca_S),
+            new(code => code.IsLdarg(2)),
+            CodeMatch.Calls(recoil),
         };
-        int index = 0;
-        bool foundInjection = false;
-        for (int i = 0; i < codes.Count; i++)
+        var matcher = new CodeMatcher(codes).MatchStartForward(recoilPattern);
+        if (matcher.IsInvalid || codes.Count(code => code.Calls(recoil)) != 1)
         {
-            CodeInstruction code = codes[i];
-            if (foundInjection && code.opcode == OpCodes.Stloc_1)
-            {
-                index = i + 1;
-                break;
-            }
-            else if (code.opcode == OpCodes.Call && ReferenceEquals(code.operand, typeof(EquipmentUtility).GetMethod(nameof(EquipmentUtility.Recoil))))
-            {
-                foundInjection = true;
-            }
+            Log.Error("Combat Extended :: DrawEquipmentAiming expected one recognizable EquipmentUtility.Recoil sequence. Skipping renderer patch.");
+            return codes;
         }
-        if (!foundInjection)
+        var componentLoad = matcher.Instruction.Clone();
+
+        matcher.Advance(recoilPattern.Length).MatchStartForward(CodeMatch.Calls(drawMesh));
+        if (matcher.IsInvalid || codes.Count(code => code.Calls(drawMesh)) != 1 || matcher.Instruction.blocks.Count != 0)
         {
-            Log.Error($"Combat Extended :: Failed to find injection point when applying Patch: {HarmonyBase.GetClassName(MethodBase.GetCurrentMethod()?.DeclaringType)}");
+            Log.Error("Combat Extended :: DrawEquipmentAiming expected one Graphics.DrawMesh(Mesh, Matrix4x4, Material, int) after recoil, outside an exception boundary. Skipping renderer patch.");
+            return codes;
         }
-        codes.InsertRange(index, recoil_opcodes);
-        codes[codes.Count - 2].operand =
-            AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
-        codes.InsertRange(codes.Count - 2, new[]
-        {
-                                new CodeInstruction(OpCodes.Ldarg_0),
-                                new CodeInstruction(OpCodes.Ldarg_1),
-                                new CodeInstruction(OpCodes.Ldarg_2)
-                            });
+
+        // Branches into the draw call also need CE's arguments. Preserve their labels on the first load.
+        int drawIndex = matcher.Pos;
+        codes[drawIndex] = CodeInstruction.Call(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
+        codes.InsertRange(drawIndex,
+        [
+            new CodeInstruction(OpCodes.Ldarg_0).WithLabels(matcher.Instruction.labels),
+            new CodeInstruction(OpCodes.Ldarg_1),
+            new CodeInstruction(OpCodes.Ldarg_2),
+            componentLoad,
+        ]);
         return codes;
     }
 }
