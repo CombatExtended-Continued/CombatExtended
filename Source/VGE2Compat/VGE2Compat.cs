@@ -52,14 +52,17 @@ public class VGE2Compat : IModPart
                 .Union([newPosIV3])
                 .Distinct();
 
-            foreach (var cell in cells)
+            for (int i = 0; i < cells.Count(); i++)
             {
+                var cell = cells.ElementAt(i);
                 var building = cell.GetFirstThing(projectile.Map, InternalDefOf.VGE_GravshipArmor);
 
                 // Opposite faction
                 if (building != null && building.Faction != null && building.Faction.HostileTo(projectile.launcher.Faction))
                 {
                     // impact
+                    IntVec3 previousCell = i > 0 ? cells.ElementAt(i - 1) : lastPosIV3;
+                    projectile.ExactPosition = previousCell.ToVector3();
                     projectile.ExactPosition = projectile.ExactPosition.Yto0();
                     projectile.Impact(building);
                     return true;
