@@ -1,0 +1,27 @@
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='DVE_GreaterDryad_Spitter']/verbs/li[defaultProjectile='VDE_AcidBolt']</xpath>
+    <value>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>VDE_AcidBolt</defaultProjectile>
+        <warmupTime>2</warmupTime>
+        <burstShotCount>1</burstShotCount>
+        <minRange>2</minRange>
+        <range>24.9</range>
+        <soundCast>VDE_AcidBolt</soundCast>
+        <muzzleFlashScale>0</muzzleFlashScale>
+        <label>acidic spit</label>
+        <commonality>.8</commonality>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName='DVE_GreaterDryad_Spitter']/statBases</xpath>
+    <value>
+      <AimingAccuracy>1</AimingAccuracy>
+      <ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+    </value>
+  </Operation>
+</Patch>

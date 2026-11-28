@@ -1,0 +1,179 @@
+<Patch>
+  <!--Replace only the combat verb. Dryad.GauranlenTurret still selects its original sap verb for fires.-->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_Thorncaster_Gun']/verbs/li[defaultProjectile='Dryad_GauBullet']</xpath>
+    <value>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_DryadTurretCE</verbClass>
+        <defaultProjectile>Dryad_GauBullet</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+        <burstShotCount>2</burstShotCount>
+        <range>28.9</range>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_GauBullet']/thingClass</xpath>
+    <value>
+      <thingClass>CombatExtended.BulletCE</thingClass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_GauBullet']/projectile</xpath>
+    <value>
+      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <damageDef>RangedStab</damageDef>
+        <damageAmountBase>20</damageAmountBase>
+        <stoppingPower>2</stoppingPower>
+        <speed>35</speed>
+        <arcHeightFactor>0.25</arcHeightFactor>
+        <shadowSize>0.4</shadowSize>
+        <armorPenetrationSharp>4</armorPenetrationSharp>
+        <armorPenetrationBlunt>8</armorPenetrationBlunt>
+      </projectile>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_GiantThorncaster_Gun']/verbs/li[defaultProjectile='Dryad_GauBulletSpam']</xpath>
+    <value>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_DryadTurretCE</verbClass>
+        <defaultProjectile>Dryad_GauBulletSpam</defaultProjectile>
+        <warmupTime>1.5</warmupTime>
+        <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+        <burstShotCount>18</burstShotCount>
+        <range>30.9</range>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_GauBulletSpam']/thingClass</xpath>
+    <value>
+      <thingClass>CombatExtended.BulletCE</thingClass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_GauBulletSpam']/projectile</xpath>
+    <value>
+      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <damageDef>RangedStab</damageDef>
+        <damageAmountBase>15</damageAmountBase>
+        <stoppingPower>1</stoppingPower>
+        <speed>25</speed>
+        <arcHeightFactor>0.35</arcHeightFactor>
+        <shadowSize>0.42</shadowSize>
+        <armorPenetrationSharp>4</armorPenetrationSharp>
+        <armorPenetrationBlunt>6</armorPenetrationBlunt>
+      </projectile>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_Thornlauncher_Gun']/verbs/li[defaultProjectile='Dryad_HeavyGauBullet']</xpath>
+    <value>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_DryadTurretCE</verbClass>
+        <defaultProjectile>Dryad_HeavyGauBullet</defaultProjectile>
+        <warmupTime>3</warmupTime>
+        <ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+        <burstShotCount>1</burstShotCount>
+        <range>22.9</range>
+        <minRange>3.9</minRange>
+        <requireLineOfSight>false</requireLineOfSight>
+        <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_HeavyGauBullet']/thingClass</xpath>
+    <value>
+      <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_HeavyGauBullet']/projectile</xpath>
+    <value>
+      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <damageDef>RangedStab</damageDef>
+        <damageAmountBase>34</damageAmountBase>
+        <stoppingPower>3</stoppingPower>
+        <speed>40</speed>
+        <arcHeightFactor>0.5</arcHeightFactor>
+        <flyOverhead>true</flyOverhead>
+        <shadowSize>0.4</shadowSize>
+        <explosionRadius>1.1</explosionRadius>
+        <soundExplode>BulletImpact_Ground</soundExplode>
+        <screenShakeFactor>0</screenShakeFactor>
+        <doExplosionVFX>false</doExplosionVFX>
+        <armorPenetrationSharp>9</armorPenetrationSharp>
+        <armorPenetrationBlunt>16</armorPenetrationBlunt>
+      </projectile>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_SuperThornlauncher_Gun']/verbs/li[defaultProjectile='Dryad_SuperHeavyGauBullet']</xpath>
+    <value>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_DryadTurretCE</verbClass>
+        <defaultProjectile>Dryad_SuperHeavyGauBullet</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+        <burstShotCount>1</burstShotCount>
+        <range>34.9</range>
+        <minRange>3.9</minRange>
+        <requireLineOfSight>false</requireLineOfSight>
+        <ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_SuperHeavyGauBullet']/thingClass</xpath>
+    <value>
+      <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName='Dryad_SuperHeavyGauBullet']/projectile</xpath>
+    <value>
+      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <damageDef>RangedStab</damageDef>
+        <damageAmountBase>45</damageAmountBase>
+        <stoppingPower>3</stoppingPower>
+        <speed>60</speed>
+        <arcHeightFactor>0.5</arcHeightFactor>
+        <flyOverhead>true</flyOverhead>
+        <shadowSize>0.5</shadowSize>
+        <explosionRadius>1.1</explosionRadius>
+        <soundExplode>BulletImpact_Ground</soundExplode>
+        <screenShakeFactor>0</screenShakeFactor>
+        <doExplosionVFX>false</doExplosionVFX>
+        <extraDamages>
+          <li>
+            <def>Stun</def>
+            <amount>16</amount>
+            <chance>0.5</chance>
+          </li>
+          <li>
+            <def>EMP</def>
+            <amount>20</amount>
+            <chance>0.75</chance>
+          </li>
+        </extraDamages>
+        <armorPenetrationSharp>13</armorPenetrationSharp>
+        <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      </projectile>
+    </value>
+  </Operation>
+</Patch>
