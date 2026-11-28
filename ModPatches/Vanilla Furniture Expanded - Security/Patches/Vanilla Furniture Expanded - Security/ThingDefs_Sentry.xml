@@ -53,7 +53,7 @@
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFES_Turret_Concealed"]/thingClass </xpath>
 		<value>
@@ -75,7 +75,8 @@
 			defName="VFES_Turret_ShotgunTurret" or
 			defName="VFES_Turret_Minigun" or
 			defName="VFES_Turret_Concealed" or
-			defName="VFES_Turret_MilitaryTurret"
+			defName="VFES_Turret_MilitaryTurret" or
+			defName="VFES_Turret_TeslaBlaster"
 			]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
@@ -181,7 +182,7 @@
 			<range>68</range>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFES_Turret_Searchlight"]</xpath>
 		<value>
@@ -268,7 +269,7 @@
 			<noSingleShot>true</noSingleShot>
 		</FireModes>
 	</Operation>
-	
+
 	<!-- Armored Turret -->
 	<!-- Same stats as the military turret, as this turret's gimmick is its high HP -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -304,7 +305,7 @@
 			<noSingleShot>true</noSingleShot>
 		</FireModes>
 	</Operation>
-	
+
 	<!-- Shotgun Turret -->
 	<!-- Borrowed some stats from the Armory shotgun turret because, come on. Single shot, high damage shotgun turret. Couldn't have aligned more perfectly -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -469,36 +470,25 @@
 	</Operation>
 
 	<!-- Tesla Blaster -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_TeslaBlaster</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.09</ShotSpread>
-			<SwayFactor>0.46</SwayFactor>
-			<NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
-		</statBases>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_EMPCannon</defaultProjectile>
-			<warmupTime>3</warmupTime>
-			<range>86</range>
-			<burstShotCount>1</burstShotCount>
-			<ticksBetweenBurstShots>56</ticksBetweenBurstShots>
-			<soundCast>EnergyShield_AbsorbDamage</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-			<recoilPattern>Mounted</recoilPattern>
-		</Properties>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<noSnapshot>true</noSnapshot>
-			<noSingleShot>true</noSingleShot>
-		</FireModes>
-		<weaponTags Inherit="False">
-			<li>TurretGun</li>
-		</weaponTags>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_TeslaBlaster"]/verbs/li/range</xpath>
+		<value>
+			<range>45</range>
+		</value>
+	</Operation>
+
+	<Operation>
+		<xpath>Defs/ThingDef[defName="Bullet_TeslaBlaster"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/maxLifetime</xpath>
+		<value>
+			<maxLifetime>25</maxLifetime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_TeslaBlaster"]/modExtensions/li[@Class="VEF.Weapons.TeslaChainingProps"]/bounceRange</xpath>
+		<value>
+			<bounceRange>10</bounceRange>
+		</value>
 	</Operation>
 
 	<!-- Railgun Turret -->
@@ -540,7 +530,7 @@
 			<noSingleShot>true</noSingleShot>
 		</FireModes>
 	</Operation>
-	
+
 	<!-- Concealed Turret -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFES_Gun_ConcealedTurret</defName>
